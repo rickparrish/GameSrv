@@ -121,5 +121,10 @@ namespace RandM.GameSrv
         {
             Dialog.OKCancel("Still need to implement this", "TODO");
         }
+
+        private void mnuFileExit_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

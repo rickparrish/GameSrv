@@ -269,10 +269,16 @@ namespace RandM.GameSrv
                     StatusText("", false);
                     break;
                 case Keys.C:
-                    Process.Start(StringUtils.PathCombine(ProcessUtils.StartupPath, "GSConfig.exe"));
+                    if (!e.Alt && !e.Control)
+                    {
+                        Process.Start(StringUtils.PathCombine(ProcessUtils.StartupPath, "GSConfig.exe"));
+                    }
                     break;
                 case Keys.P:
-                    _GameSrv.Pause();
+                    if (!e.Alt && !e.Control)
+                    {
+                        _GameSrv.Pause();
+                    }
                     break;
                 case Keys.Q:
                     // Check if we're already stopped (or are stopping)

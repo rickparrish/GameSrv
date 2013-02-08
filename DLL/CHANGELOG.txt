@@ -1,5 +1,9 @@
 ﻿TODO Still to add: g5109b, lostv10, rokv100
 
+Feb 7, 2013
+	- Added File menu to GSConfig (which only has an Exit option for now)
+	- Fixed GameSrvGUI so that if you hit CTRL-C to copy some text from the status window, then GSConfig won't load as well
+
 Feb 1, 2013
     - Started work on a configuration program
 	- Removed RLoginMode configuration variable.  It is now assumed to be classic mode unless otherwise specified by the incoming connection.

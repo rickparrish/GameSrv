@@ -49,6 +49,7 @@ namespace RandM.GameSrv
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cmdUserEditor = new System.Windows.Forms.Button();
             this.cmdDoorGames = new System.Windows.Forms.Button();
             this.cmdMenuEditor = new System.Windows.Forms.Button();
             this.cmdNewUserQuestions = new System.Windows.Forms.Button();
@@ -61,9 +62,12 @@ namespace RandM.GameSrv
             this.cmdRunBBSSettings = new System.Windows.Forms.Button();
             this.chkRUNBBS = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.cmdUserEditor = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.mnuFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuFileExit = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -77,12 +81,22 @@ namespace RandM.GameSrv
             this.groupBox1.Controls.Add(this.cmdServerSettings1);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Location = new System.Drawing.Point(0, 24);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(589, 120);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "\"Door Server\" Configuration";
+            // 
+            // cmdUserEditor
+            // 
+            this.cmdUserEditor.Location = new System.Drawing.Point(501, 66);
+            this.cmdUserEditor.Name = "cmdUserEditor";
+            this.cmdUserEditor.Size = new System.Drawing.Size(75, 40);
+            this.cmdUserEditor.TabIndex = 7;
+            this.cmdUserEditor.Text = "User \r\nEditor";
+            this.cmdUserEditor.UseVisualStyleBackColor = true;
+            this.cmdUserEditor.Click += new System.EventHandler(this.cmdUserEditor_Click);
             // 
             // cmdDoorGames
             // 
@@ -208,15 +222,30 @@ namespace RandM.GameSrv
     "icate you want to disable the Door Server, and then click the buttons to configu" +
     "re the BBS launch parameters.";
             // 
-            // cmdUserEditor
+            // menuStrip1
             // 
-            this.cmdUserEditor.Location = new System.Drawing.Point(501, 66);
-            this.cmdUserEditor.Name = "cmdUserEditor";
-            this.cmdUserEditor.Size = new System.Drawing.Size(75, 40);
-            this.cmdUserEditor.TabIndex = 7;
-            this.cmdUserEditor.Text = "User \r\nEditor";
-            this.cmdUserEditor.UseVisualStyleBackColor = true;
-            this.cmdUserEditor.Click += new System.EventHandler(this.cmdUserEditor_Click);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuFile});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(589, 24);
+            this.menuStrip1.TabIndex = 2;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // mnuFile
+            // 
+            this.mnuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuFileExit});
+            this.mnuFile.Name = "mnuFile";
+            this.mnuFile.Size = new System.Drawing.Size(37, 20);
+            this.mnuFile.Text = "&File";
+            // 
+            // mnuFileExit
+            // 
+            this.mnuFileExit.Name = "mnuFileExit";
+            this.mnuFileExit.Size = new System.Drawing.Size(152, 22);
+            this.mnuFileExit.Text = "E&xit";
+            this.mnuFileExit.Click += new System.EventHandler(this.mnuFileExit_Click);
             // 
             // frmMain
             // 
@@ -225,8 +254,10 @@ namespace RandM.GameSrv
             this.ClientSize = new System.Drawing.Size(589, 247);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -235,7 +266,10 @@ namespace RandM.GameSrv
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -255,6 +289,9 @@ namespace RandM.GameSrv
         private System.Windows.Forms.CheckBox chkRUNBBS;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button cmdUserEditor;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem mnuFile;
+        private System.Windows.Forms.ToolStripMenuItem mnuFileExit;
     }
 }
 
