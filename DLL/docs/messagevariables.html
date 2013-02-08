@@ -1,0 +1,96 @@
+<html>
+  <head>
+    <title>GameSrv Door Server Documentation</title>
+	<link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <h1>Message Variables</h1>
+	  <h2>Introduction</h2>
+	  <blockquote>
+	  	In your custom ANSI files, there are several message variables that can be used to provide information about the system/current session/etc.  Below is a list of these variables, and what they translate to.<br />
+      <br />
+      All message variables can be left or right padded to a specific length, to help fit the text into a custom ANSI screen.  For example, {DATE} might return "1/1/2007" or "12/31/2007".  If spacing is important to your layout, the potential 2 character difference could throw things off.  So you could use {DATE10} to force the date string to be 10 characters, so either "1/1/2007  " (note the 2 extra spaces on the right) or "12/31/2007" (no extra padding was required) would be returned.  Similarly, you could use {10DATE} to have either "  1/1/2007" (2 extra spaces on the left) or "12/31/2007" (no padding required) returned.<br />
+      <br />
+      If you specify a length that is less than the actual length of the string, instead of padding the string, it will be truncated to the requested length.  For example, if a user named "LOCAL:ThisIsAReallyLongUserName" was on node 3, {NODE03USERNAME20} and {20NODE03USERNAME} would both return "LOCAL:ThisIsAReallyL".
+		</blockquote>	  	
+	
+    <h2>Descriptions</h2>
+    <ol>
+  	  <li class="l1" id="BBSNAME">
+  	    {BBSNAME}
+    		<ul class="l2">
+    		  <li>This variable will be replaced with the BBS Name you entered in the GameSrv configuration.</li>
+    		</ul>
+  	  </li>
+  	  <li class="l1" id="DATE">
+  	    {DATE}
+    		<ul class="l2">
+    		  <li>This variable will be replaced with the current date (formatted using your systems locale settings).</li>
+    		</ul>
+  	  </li>
+  	  <li class="l1" id="GSDIR">
+  	    {GSDIR}
+    		<ul class="l2">
+    		  <li>This variable will be replaced with the full path name that installed GameSrv to.</li>
+    		</ul>
+  	  </li>
+  	  <li class="l1" id="MENUNAME">
+  	    {MENUNAME}
+  		  <ul class="l2">
+    		  <li>This variable will be replaced with the name of the menu the user is currently at.</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="NODE">
+  	    {NODE}
+  		  <ul class="l2">
+    		  <li>This variable will be replaced with the node number that the client is connected to.</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="OPERATINGSYSTEM">
+  	    {OPERATINGSYSTEM}
+  		  <ul class="l2">
+    		  <li>This variable will be replaced with the name and version of the operating system that your system is running on.</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="SYSOPEMAIL">
+  	    {SYSOPEMAIL}
+  		  <ul class="l2">
+    		  <li>This variable will be replaced with the SysOp Email Address you entered in the GameSrv configuration.</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="TIME">
+  	    {TIME}
+  		  <ul class="l2">
+    		  <li>This variable will be replaced with the current time (formatted using your systems locale settings).</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="TIMELEFT">
+  	    {TIMELEFT}
+  		  <ul class="l2">
+    		  <li>This variable will be replaced with the amount of time the client has left this session (in the format of HOURS:MINUTES:SECONDS).</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="NODE__REMOTEINFO">
+  	    {NODE##REMOTEINFO}
+  		  <ul class="l2">
+    		  <li>This variable will be replaced with the given nodes IP address and port (in the format of IP ADDRESS:PORT).</li>
+    		  <li>You must specify a node number in place of the ## signs, for example {NODE02REMOTEINFO} would display node 2's remote info</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="NODE__STATUS">
+  	    {NODE##STATUS}
+  		  <ul class="l2">
+    		  <li>This variable will be replaced with the given nodes current status string (the text shown in the GUI's waiting for caller screen).</li>
+    		  <li>You must specify a node number in place of the ## signs, for example {NODE02STATUS} would display node 2's status</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="NODE__USERNAME">
+  	    {NODE##USERNAME}
+  		  <ul class="l2">
+    		  <li>This variable will be replaced with the given nodes user name.</li>
+    		  <li>You must specify a node number in place of the ## signs, for example {NODE02USERNAME} would display node 2's user name</li>
+  		  </ul>
+  	  </li>
+    </ol>
+  </body>
+</html>

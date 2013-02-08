@@ -1,0 +1,95 @@
+<html>
+  <head>
+    <title>GameSrv Door Server Documentation</title>
+	<link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <h1>Command Line Specifiers</h1>
+	  <h2>Introduction</h2>
+	  <blockquote>
+	  	When using the EXEC, EXEC_MSYNCFOS, or EXEC_NETFOSS menu commands, it is sometimes useful to pass information to the program being executed.  Below is a list of specifiers (and what they'll be replaced with) that can be entered as part of the command line you want to execute.
+		</blockquote>	  	
+	
+    <h2>Descriptions</h2>
+    <ol>
+  	  <li class="l1" id="DOOR32">
+  	    *DOOR32
+    		<ul class="l2">
+    		  <li>This specifier will be replaced with the full path/filename of the DOOR32.SYS dropfile.</li>
+    		</ul>
+  	  </li>
+  	  <li class="l1" id="DOORSYS">
+  	    *DOORSYS
+    		<ul class="l2">
+    		  <li>This specifier will be replaced with the full path/filename of the DOOR.SYS dropfile.</li>
+    		</ul>
+  	  </li>
+  	  <li class="l1" id="DORINFO">
+  	    *DORINFO
+    		<ul class="l2">
+    		  <li>This specifier will be replaced with the full path/filename of the DORINFO.DEF dropfile (it will always use this filename, no matter what node is in use).</li>
+    		</ul>
+  	  </li>
+  	  <li class="l1" id="DORINFO1">
+  	    *DORINFO1
+  		  <ul class="l2">
+    		  <li>This specifier will be replaced with the full path/filename of the DORINFO1.DEF dropfile (it will always use this filename, no matter what node is in use).</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="DORINFOx">
+  	    *DORINFOx
+  		  <ul class="l2">
+    		  <li>This specifier will be replaced with the full path/filename of the DORINFOx.DEF dropfile (it will substitute the actual node number in the place of the x).</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="HANDLE">
+  	    *HANDLE (deprecated)
+  		  <ul class="l2">
+    		  <li>Replaced by <a href="#SOCKETHANDLE">*SOCKETHANDLE</a></li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="IPADDRESS">
+  	    *IPADDRESS
+  		  <ul class="l2">
+    		  <li>The client's IP address (IPv4).</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="MINUTESLEFT">
+  	    *MINUTESLEFT
+  		  <ul class="l2">
+    		  <li>The number of minutes the client has remaining for this session.</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="NODE">
+  	    *NODE
+  		  <ul class="l2">
+    		  <li>The node number the client is connected to.</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="PASSWORD">
+  	    *PASSWORD
+  		  <ul class="l2">
+    		  <li>The client's password.</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="SECONDSLEFT">
+  	    *SECONDSLEFT
+  		  <ul class="l2">
+    		  <li>The number of seconds the client has remaining for this session.</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="SOCKETHANDLE">
+  	    *SOCKETHANDLE
+  		  <ul class="l2">
+    		  <li>The socket handle of the client connection (basically the TELNET version of a com number)</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="USERNAME">
+  	    *USERNAME
+  		  <ul class="l2">
+    		  <li>The client's user name (with RLoginHost prefix)</li>
+  		  </ul>
+  	  </li>
+    </ol>
+  </body>
+</html>

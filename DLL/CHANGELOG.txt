@@ -1,0 +1,147 @@
+﻿TODO Still to add: g5109b, lostv10, rokv100
+
+Feb 1, 2013
+    - Started work on a configuration program
+	- Removed RLoginMode configuration variable.  It is now assumed to be classic mode unless otherwise specified by the incoming connection.
+	  This also means you can mix classic and web mode on one server since it is specified per connection.
+	- Added TimeFormatLog and TimeFormatUI configuration variables, which allow you to customize the way dates/times
+	  are displayed in the GUI and Console programs, and stored in the log file
+	- Added IP_BANNED.ANS that gets displayed when an IP matches the banned IP filter
+
+January 31, 2013
+	- Add colour coding to certain message types (error, exception, warning, debug)
+
+January 29, 2013
+	- Add correct version to DOOR32.SYS file
+
+January 21, 2013
+	- Fixed a time formatting issue, which was causing times to display the current month number instead of the current minute number in some places!
+
+January 15, 2013
+	- DOS doors will now launch in a command shell on Windows, which should fix the "Out of environment space" error
+	  that was occuring when new variables were created via SET, and should also fix the problem with %DATE% and %TIME%
+	  being blank.
+
+January 11, 2013
+	- Implemented new WARNING level to complement ERROR level.  Will try to migrate some of the messages currently being reported as errors to be reported
+	  as warnings instead (if it makes more sense to report them that way of course).
+
+January 9, 2013
+    - Connections that launch RUNBBS.INI will now update the top 3 lines of the console and gui wfc
+	- Changed LocalOutput=[true|false] to WindowStyle=[Hidden|Minimized|Normal|Maximized] in the door ini files
+	  The old style was equivalent to true=Minimized, false=Hidden, so with this change you have more control and can use Normal or Maximized too
+	- Added the ability to setup a list of banned ips -- see config\banned-ips.txt for more information
+
+January 7, 2013
+    - Added door config option to specify how long to wait before force-quitting an external after a hangup event.  Mainly important for runbbs.ini usage,
+	  where post-logoff processing may need to run, and may take quite a bit of time before it completes.
+	- Added F1, P and Q hotkeys to the GUI version of the WFC (and rotated the message in the bottom-right corner so it's apparent that hitting F1 is an option)
+	- GUI now indents long lines that wrap
+
+January 6, 2013
+	- Added config option to allow each of the servers to be bound to a single IP address, instead of all addresses
+	  within the system.  This will allow multiple instances of GameSrv to be run on the same PC (or VM).
+	- Added tray icons to the new GUI screen to let you know what's up with the server.  (Need to make 32x32 versions though!)
+
+January 5, 2013
+    - Implemented a "classic" RLogin mode, which works more like true RLogin where the user is signed in without
+	  requiring any input from them.
+	- Supports the same key/value pair parameters as the "modern" RLogin mode, which means a door can be auto-launched
+	  after the connection is established
+
+December 30, 2012
+	- Completed NT Service, allowing GameSrv to run without having a user signed on
+
+December 29, 2012
+	- Created a proper GUI WFC screen
+	- Modified the original Console WFC screen to be much more plain (which makes it more Linux Server compatible)
+	- Created an NT Service WFC project, but haven't implemented anything yet
+
+December 28, 2012
+    - Modified "RUNBBS" feature to work via doors\runbbs.ini instead of RUNBBS.BAT
+	  This allows for the "RUNBBS" feature to work on 64bit Windows and Linux, since the Native mode can be set
+
+October 5, 2012
+	- Added {WHOSONLINE_#_ALIAS}, {WHOSONLINE_#_IPADDRESS} and {WHOSONLINE_#_STATUS} MCI codes (where # is the node number to get the whos online status for)
+	- Added a Who's Online menu to demonstrate the usage of these MCI codes.  Also demonstrates different menus for different access levels (sysops can see remote IPs, regular users cannot)
+
+August 25, 2012
+    - Changed flash socket policy server to allow other policy servers
+
+August 8, 2012
+	- Handled "An established connection was aborted by the software in your host machine" error
+
+July 26, 2012
+	- Handled "An existing connection was forcibly closed by the remote host" error
+
+July 23, 2012
+    - Troubleshooted (troubleshot?) problems with libptysharp on Ubuntu 11.10 and 12.04
+	- Wrote an "installer" that will do all the steps mentioned in README.txt for you
+
+July 20, 2012
+    - Added cpulimit support to Linux version, so if you're on a shared VPS you can control how much CPU each node uses (and hopefully avoid being terminated by your host!)
+
+July 18, 2012
+	- Added F1 help screen
+	- DisplayFile with @index file now reports what random file was selected
+
+Mar 16, 2012
+    - Updated TCP connection library to eliminate unnecessary delay when reading from remote user (was causing slow connections via HtmlTerm)
+
+Mar 11, 2012
+    - Added a start.sh for Linux users
+	- WFC screen and log file will now show IP address for all incoming connections.  May help identify hack attempts.
+	- WFC screen and log file will now show alias (after user enters alias, and before they enter password).  May help identify hack attempts.
+
+Mar 10, 2012
+    - Added some requested door games: Ambroshia, Axe & Fang, Death Masters, DoorMud, Drakeville
+	  Requested but not yet added: Galaxy 5, The Lost Temple, Realm of Kisom
+
+Mar 8, 2012
+    - Implemented last caller info and counts in win32 version
+	- user .ini files have a new AllowMultipleConnections property (that defaults to false) that can allow you to indicate a particular user should be allowed to connect to multiple nodes at once.  (Intended for guest accounts, but could be used for any purpose.)
+
+Mar 7, 2012
+    - Removed "you must run as root" requirement for Linux, since the new preferred method for running GameSrv is via 'privbind'
+
+Mar 6, 2012
+    - Added a sample RUNBBS.BAT.EXAMPLE file.  Rename to RUNBBS.BAT and modify accordingly to have GameSrv launch a DOS BBS program when a user connects
+	- Added a DisplayFileMore action, which will display a long file with pauses every 24 lines
+	- Updated DisplayFile* to allow an index file to be passed with the @ parameter, and a random filename from the index file will be displayed (see bulletins menu for example)
+	- Added {FILENAME} message variable, which will be the relative path to the currently displayed file
+	- Linux version now checks /etc/lsb-release for {OPERATINGSYSTEM} variable
+	- Screen clears now reset the RIP window (just in case a RIP client is in use)
+
+Jan 17, 2012
+    - Fixed the Linux version (was trying to execute code that should only happen on the Windows version with the nicer GUI)
+	- Added an application icon and gave the console window a meaningful title
+	- Fixed the Email the SysOp option on the main menu (wasn't pausing after displaying the ansi)
+	- Added {PAUSE} MCI that will pause the display of an ansi and wait for a keypress
+	- Telnet server now strips LF from CRLF pairs, and converts bare LF to CR (helps with some doors and bad telnet clients)
+
+Jan 16, 2012
+    - Fixed a bug that would cause 16bit doors to lock up if launched while there was data in the input buffer (which was quite likely to happen when the door was launched via the logon process)
+	- Implemented logging to file.  Changes are flushed once per minute and when GameSrv exits.
+
+Jan 15, 2012
+    - Added a system tray icon, and made the WFC hide by default (double click system tray icon to bring it back) (Windows only)
+
+Jan 14, 2012
+    - Added the missing "Id" parameter to the web callback
+	- Adding the custom new user responses to the web callback
+	- Added {ACCESSLEVEL} message variable
+	- Implemented a better looking WFC, based on Shotgun PRO's SGMail WFC (Windows only)
+
+Jan 13, 2012
+	- Displaying logon_success.ans moved to logonprocess.ini, so it can be disabled if desired
+	- logonprocess.ini and logoffprocess.ini are now run sequentially, rather than alphabetical order
+	  (the alphabetical thing was a carryover from the previous version that didn't really make sense anymore)
+	- Added note about entering NEW to register to the logon_enter_alias.ans file
+	- Added SysopEmail configuration option
+	- Added Email the SysOp menu option to MAIN menu
+	- Added config\newuser.ini, which is used to configure the new user questions
+	  Now the only required new user questions are alias and password, everything other than that is defined in newuser.ini
+	  New user questions can be required or not, confirmed or not, and validated against a few different formats (let me know if you have suggestions for other validations)
+    - Added dynamic message variables for the custom new user questions
+	- Fixed a critical bug where the user could have (tried to) overwrite local files by entering a malicious alias
+	  (for example entering c:\windows\win as their alias would have tried to overwrite c:\windows\win.ini with their user record)

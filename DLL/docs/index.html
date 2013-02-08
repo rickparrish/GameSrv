@@ -1,0 +1,208 @@
+<html>
+  <head>
+    <title>GameSrv Door Server Documentation</title>
+	<link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <p style="background-color: Yellow; border: 3px dashed black; padding: 5px;">NOTE: The documentation is all way out of date, so I woudln't put too much faith in any of it!  Just read the comments in the various .ini files (found in the config and doors subdirectories) for now</p>
+    <h1>GameSrv Door Server Documentation</h1>
+    <h2>Table of Contents</h2>
+    <ol>
+    	<li><a href="#Modes">Modes of Operation</a></li>
+    	<li><a href="#Configuration">Configuration</a></li>
+    	<li><a href="#Customization">Customization</a></li>
+    </ol>
+    
+    <h2 id="Modes">Modes of Operation</h2>
+    <ol>
+    	<li class="l1">
+    		Telnet Mode
+    		<ul>
+                In telnet mode, GameSrv acts as both a Waiting For Caller (WFC) and Door Server in one.  This is the standard method for running GameSrv, and is what it was originally intended for.  This documentation was written for this type of mode of operation, so keep reading!
+    		</ul>
+      </li>
+      <li class="l1">
+            Web Mode
+            <ul>
+                In web mode, GameSrv only acts as a WFC, and after a connection is received, passes it directly off to the requested door.  In conjunction with a web based telnet client, such as <a href="http://www.flashterm.com">FlashTerm</a>, door games can be directly integrated with your website via this mode.
+            </ul>
+      <li class="l1">
+    		External Mode
+    		<ul>
+    			In external mode, GameSrv only acts as a WFC, and after a connection is received, passes it directly off to a program of your choice.  See the <a href="RUNBBS.BAT.html">RUNBBS.BAT</a> documentation for more help with this mode of operation, and then ignore the rest of this page as it doesn't apply to you.
+    		</ul>
+      </li>
+    </ol>
+    
+    <h2 id="Configuration">Configuration</h2>
+    <ol>
+  	  <li class="l1">
+  	    <a href="GeneralInformation.html">General Information</a>
+  	    <ol class="l2">
+    		  <li><a href="GeneralInformation.html#SysOpName">SysOp Name</a></li>
+    		  <li><a href="GeneralInformation.html#SysOpEmailAddress">SysOp Email Address</a></li>
+    		  <li><a href="GeneralInformation.html#BBSName">BBS Name</a></li>
+    		  <li><a href="GeneralInformation.html#FirstNode">First Node</a></li>
+    		  <li><a href="GeneralInformation.html#TotalNodes">Total Nodes</a></li>
+    		</ol>
+  	  </li>
+  	  
+  	  <li class="l1">
+  	    <a href="EmailVerification.html">Email Verification</a>
+  	    <ol class="l2">
+    		  <li><a href="EmailVerification.html#EnableEmailVerification">Enable Email Verification</a></li>
+    		  <li><a href="EmailVerification.html#SMTPHostName">SMTP Host Name</a></li>
+    		  <li><a href="EmailVerification.html#SMTPUserName">SMTP User Name</a></li>
+    		  <li><a href="EmailVerification.html#SMTPPassword">SMTP Password</a></li>
+    		  <li><a href="EmailVerification.html#ConfirmSMTPPassword">Confirm SMTP Password</a></li>
+    		  <li><a href="EmailVerification.html#MessageSubject">Message Subject</a></li>
+    		  <li><a href="EmailVerification.html#MessageBody">Message Body</a></li>
+    		</ol>
+  	  </li>
+  	  
+  	  <li class="l1">
+  	    <a href="ServerThreads.html">Server Threads</a>
+  	    <ol class="l2">
+    		  <li><a href="ServerThreads.html#LocalAddress">Local Address</a></li>
+    		  <li><a href="ServerThreads.html#LocalPort">Local Port</a></li>
+    		  <li><a href="ServerThreads.html#ConnectionType">Connection Type</a></li>
+    		</ol>
+  	  </li>
+  	  
+  	  <li class="l1">
+  	    <a href="RLoginHostEditor.html">RLogin Host Editor</a>
+  	    <ol class="l2">
+    		  <li><a href="RLoginHostEditor.html#TODO">TODO</a></li>
+    		</ol>
+  	  </li>
+  
+  	  <li class="l1">
+  	    <a href="LoginProcess.html">Login Process</a>
+  	    <ol class="l2">
+    		  <li><a href="LoginProcess.html#Command">Command</a></li>
+    		  <li><a href="LoginProcess.html#Parameters">Parameters</a></li>
+    		  <li><a href="LoginProcess.html#RequiredAccess">Required Access</a></li>
+    		  <li><a href="LoginProcess.html#ExecutionOrder">Execution Order</a></li>
+    		</ol>
+  	  </li>
+  	  
+  	  <li class="l1">
+  	    <a href="LogoutProcess.html">Logout Process</a>
+  	    <ol class="l2">
+    		  <li><a href="LogoutProcess.html#Command">Command</a></li>
+    		  <li><a href="LogoutProcess.html#Parameters">Parameters</a></li>
+    		  <li><a href="LogoutProcess.html#RequiredAccess">Required Access</a></li>
+    		  <li><a href="LogoutProcess.html#ExecutionOrder">Execution Order</a></li>
+    		</ol>
+  	  </li>
+  	  
+  	  <li class="l1">
+  	    <a href="MenuEditor.html">Menu Editor</a>
+  	    <ol class="l2">
+    		  <li><a href="MenuEditor.html#ID">ID</a></li>
+    		  <li><a href="MenuEditor.html#MenuName">Menu Name</a></li>
+    		  <li><a href="MenuEditor.html#HotKey">Hot Key</a></li>
+    		  <li><a href="MenuEditor.html#Description">Description</a></li>
+    		  <li><a href="MenuEditor.html#Command">Command</a></li>
+    		  <li><a href="MenuEditor.html#Parameters">Parameters</a></li>
+    		  <li><a href="MenuEditor.html#RequiredAccess">Required Access</a></li>
+    		</ol>
+  	  </li>
+  	  
+  	  <li class="l1">
+  	    <a href="GroupEditor.html">Group Editor</a>
+  	    <ol class="l2">
+    		  <li><a href="GroupEditor.html#TODO">TODO</a></li>
+    		</ol>
+  	  </li>
+  	  
+  	  <li class="l1">
+  	    <a href="UserEditor.html">User Editor</a>
+  	    <ol class="l2">
+    		  <li><a href="UserEditor.html#TODO">TODO</a></li>
+    		</ol>
+  	  </li>
+    </ol>
+
+    <h2 id="Customization">Customization</h2>
+    <ol>
+  	  <li class="l1">
+  	    <a href="ansifiles.html">ANSI Files</a>
+  	    <ol class="l2">
+    		  <li><a href="ansifiles.html#CANNED_MENU_TEMPLATE.INI">CANNED_MENU_TEMPLATE.INI</a></li>
+    		  <li><a href="ansifiles.html#DISCONNECT_NODE.ANS">DISCONNECT_NODE.ANS</a></li>
+    		  <li><a href="ansifiles.html#EMAIL_VERIFICATION_SEND.ANS">EMAIL_VERIFICATION_SEND.ANS</a></li>
+    		  <li><a href="ansifiles.html#EMAIL_VERIFICATION_SEND_FAIL.ANS">EMAIL_VERIFICATION_SEND_FAIL.ANS</a></li>
+    		  <li><a href="ansifiles.html#EMAIL_VERIFICATION_SEND_SUCCESS.ANS">EMAIL_VERIFICATION_SEND_SUCCESS.ANS</a></li>
+    		  <li><a href="ansifiles.html#EMAIL_VERIFICATION_SENT.ANS">EMAIL_VERIFICATION_SENT.ANS</a></li>
+    		  <li><a href="ansifiles.html#EXCEEDED_CALL_LIMIT.ANS">EXCEEDED_CALL_LIMIT.ANS</a></li>
+    		  <li><a href="ansifiles.html#EXCEEDED_DAILY_LIMIT.ANS">EXCEEDED_DAILY_LIMIT.ANS</a></li>
+    		  <li><a href="ansifiles.html#EXCEEDED_IDLE_LIMIT.ANS">EXCEEDED_IDLE_LIMIT.ANS</a></li>
+    		  <li><a href="ansifiles.html#LOGIN_ENTER_PASSWORD.ANS">LOGIN_ENTER_PASSWORD.ANS</a></li>
+    		  <li><a href="ansifiles.html#LOGIN_ENTER_USERNAME.ANS">LOGIN_ENTER_USERNAME.ANS</a></li>
+    		  <li><a href="ansifiles.html#LOGIN_FAILED.ANS">LOGIN_FAILED.ANS</a></li>
+    		  <li><a href="ansifiles.html#LOGIN_HEADER.ANS">LOGIN_HEADER.ANS</a></li>
+    		  <li><a href="ansifiles.html#LOGIN_INVALID.ANS">LOGIN_INVALID.ANS</a></li>
+    		  <li><a href="ansifiles.html#LOGIN_SUCCESS.ANS">LOGIN_SUCCESS.ANS</a></li>
+    		  <li><a href="ansifiles.html#LOGIN_TWIT.ANS">LOGIN_TWIT.ANS</a></li>
+    		  <li><a href="ansifiles.html#LOGIN_TWO_NODES.ANS">LOGIN_TWO_NODES.ANS</a></li>
+    		  <li><a href="ansifiles.html#LOGOUT.ANS">LOGOUT.ANS</a></li>
+    		  <li><a href="ansifiles.html#NEWUSER_DUPLICATE_USERNAME.ANS">NEWUSER_DUPLICATE_USERNAME.ANS</a></li>
+    		  <li><a href="ansifiles.html#NEWUSER_EMAIL_MISMATCH.ANS">NEWUSER_EMAIL_MISMATCH.ANS</a></li>
+    		  <li><a href="ansifiles.html#NEWUSER_ENTER_EMAIL.ANS">NEWUSER_ENTER_EMAIL.ANS</a></li>
+    		  <li><a href="ansifiles.html#NEWUSER_ENTER_EMAIL_CONFIRM.ANS">NEWUSER_ENTER_EMAIL_CONFIRM.ANS</a></li>
+    		  <li><a href="ansifiles.html#NEWUSER_ENTER_PASSWORD.ANS">NEWUSER_ENTER_PASSWORD.ANS</a></li>
+    		  <li><a href="ansifiles.html#NEWUSER_ENTER_PASSWORD_CONFIRM.ANS">NEWUSER_ENTER_PASSWORD_CONFIRM.ANS</a></li>
+    		  <li><a href="ansifiles.html#NEWUSER_ENTER_REALNAME.ANS">NEWUSER_ENTER_REALNAME.ANS</a></li>
+    		  <li><a href="ansifiles.html#NEWUSER_ENTER_USERNAME.ANS">NEWUSER_ENTER_USERNAME.ANS</a></li>
+    		  <li><a href="ansifiles.html#NEWUSER_HEADER.ANS">NEWUSER_HEADER.ANS</a></li>
+    		  <li><a href="ansifiles.html#NEWUSER_PASSWORD_MISMATCH.ANS">NEWUSER_PASSWORD_MISMATCH.ANS</a></li>
+    		  <li><a href="ansifiles.html#NEWUSER_SUCCESS.ANS">NEWUSER_SUCCESS.ANS</a></li>
+    		  <li><a href="ansifiles.html#RLOGIN_DENIED.ANS">RLOGIN_DENIED.ANS</a></li>
+    		  <li><a href="ansifiles.html#RLOGIN_INVALID.ANS">RLOGIN_INVALID.ANS</a></li>
+    		  <li><a href="ansifiles.html#SERVER_BUSY.ANS">SERVER_BUSY.ANS</a></li>
+    		  <li><a href="ansifiles.html#SERVER_PAUSED.ANS">SERVER_PAUSED.ANS</a></li>
+    		  <li><a href="ansifiles.html#VERIFYEMAIL_ENTER_STRING.ANS">VERIFYEMAIL_ENTER_STRING.ANS</a></li>
+    		  <li><a href="ansifiles.html#VERIFYEMAIL_FAILED.ANS">VERIFYEMAIL_FAILED.ANS</a></li>
+    		  <li><a href="ansifiles.html#VERIFYEMAIL_HEADER.ANS">VERIFYEMAIL_HEADER.ANS</a></li>
+    		  <li><a href="ansifiles.html#VERIFYEMAIL_SUCCESS.ANS">VERIFYEMAIL_SUCCESS.ANS</a></li>
+        </ol>
+  	  </li>
+	    <li class="l1">
+	      <a href="CommandLineSpecifiers.html">Command Line Specifiers</a>
+	      <ol class="l2">
+		      <li><a href="CommandLineSpecifiers.html#DOOR32">*DOOR32</a></li>
+		      <li><a href="CommandLineSpecifiers.html#DOORSYS">*DOORSYS</a></li>
+		      <li><a href="CommandLineSpecifiers.html#DORINFO">*DORINFO</a></li>
+		      <li><a href="CommandLineSpecifiers.html#DORINFO1">*DORINFO1</a></li>
+		      <li><a href="CommandLineSpecifiers.html#DORINFOx">*DORINFOx</a></li>
+		      <li><a href="CommandLineSpecifiers.html#HANDLE">*HANDLE</a> (deprecated)</li>
+		      <li><a href="CommandLineSpecifiers.html#IPADDRESS">*IPADDRESS</a></li>
+		      <li><a href="CommandLineSpecifiers.html#MINUTESLEFT">*MINUTESLEFT</a></li>
+		      <li><a href="CommandLineSpecifiers.html#NODE">*NODE</a></li>
+		      <li><a href="CommandLineSpecifiers.html#PASSWORD">*PASSWORD</a></li>
+		      <li><a href="CommandLineSpecifiers.html#SECONDSLEFT">*SECONDSLEFT</a></li>
+		      <li><a href="CommandLineSpecifiers.html#SOCKETHANDLE">*SOCKETHANDLE</a></li>
+		      <li><a href="CommandLineSpecifiers.html#USERNAME">*USERNAME</a></li>
+        </ol>
+	    </li>
+	    <li class="l1">
+	      <a href="MessageVariables.html">Message Variables</a>
+	      <ol class="l2">
+		      <li><a href="MessageVariables.html#BBSNAME">BBSNAME</a></li>
+		      <li><a href="MessageVariables.html#DATE">DATE</a></li>
+		      <li><a href="MessageVariables.html#GSDIR">GSDIR</a></li>
+		      <li><a href="MessageVariables.html#MENUNAME">MENUNAME</a></li>
+		      <li><a href="MessageVariables.html#NODE">NODE</a></li>
+		      <li><a href="MessageVariables.html#OPERATINGSYSTEM">OPERATINGSYSTEM</a></li>
+		      <li><a href="MessageVariables.html#SYSOPEMAIL">SYSOPEMAIL</a></li>
+		      <li><a href="MessageVariables.html#TIME">TIME</a></li>
+		      <li><a href="MessageVariables.html#TIMELEFT">TIMELEFT</a></li>
+		      <li><a href="MessageVariables.html#NODE__REMOTEINFO">NODE##REMOTEINFO</a></li>
+		      <li><a href="MessageVariables.html#NODE__STATUS">NODE##STATUS</a></li>
+		      <li><a href="MessageVariables.html#NODE__USERNAME">NODE##USERNAME</a></li>
+        </ol>
+	    </li>
+	  </ol>
+  </body>
+</html>

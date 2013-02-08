@@ -1,0 +1,11 @@
+[0m[2J[0;0H[1;36mGAMESRV DOOR SERVER
+[34mCopyright (C) 2000-2012 R&M Software
+[0;34mAll Rights Reserved
+[0m
+    Date: [1;33m{DATE}[0m
+    Time: [1;33m{TIME}[0m
+    Node: [1;33m#{NODE}[0m
+ Connect: [1;33mTELNET[0m
+ Running: [1;33m{OPERATINGSYSTEM}
+[0m
+[0m

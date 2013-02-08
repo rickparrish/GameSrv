@@ -1,0 +1,233 @@
+<html>
+  <head>
+    <title>GameSrv Door Server Documentation</title>
+	<link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <h1>ANSI Files</h1>
+	  <h2>Introduction</h2>
+	  <blockquote>
+	  	Instead of hardcoding text strings in GameSrv, I instead decided to have everything handled via text files (or more specifically, ANSI files).  In the ANSI subdirectory is where you'll find these files, and below are short descriptions of when each file is used.
+		</blockquote>	  	
+	
+    <h2>Descriptions</h2>
+    <ol>
+  	  <li class="l1" id="DISCONNECT_NODE.ANS">
+  	    DISCONNECT_NODE.ANS
+  		  <ul class="l2">
+    		  <li>Displayed with the DISCONNECT_NODE menu command is executed.</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="EMAIL_VERIFICATION_SEND.ANS">
+  	    EMAIL_VERIFICATION_SEND.ANS
+  		  <ul class="l2">
+    		  <li>Displayed when an email verification message is being sent.</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="EMAIL_VERIFICATION_SEND_FAIL.ANS">
+  	    EMAIL_VERIFICATION_SEND_FAIL.ANS
+  		  <ul class="l2">
+    		  <li>Displayed when the email verification message fails to send.</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="EMAIL_VERIFICATION_SEND_SUCCESS.ANS">
+  	    EMAIL_VERIFICATION_SEND_SUCCESS.ANS
+  		  <ul class="l2">
+    		  <li>Displayed when the email verification message is successfully sent.</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="EMAIL_VERIFICATION_SENT.ANS">
+  	    EMAIL_VERIFICATION_SENT.ANS
+  		  <ul class="l2">
+    		  <li>Displayed when the user requests a resend of the email verification message when they've previously requested one for that session (only 1 message is sent per session).</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="EXCEEDED_CALL_LIMIT.ANS">
+  	    EXCEEDED_CALL_LIMIT.ANS
+  		  <ul class="l2">
+    		  <li>Displayed when a user is logged in, and uses all the time given to them for that call.</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="EXCEEDED_DAILY_LIMIT.ANS">
+  	    EXCEEDED_DAILY_LIMIT.ANS
+  		  <ul class="l2">
+    		  <li>Displayed when a user is logged in, and uses all the time given to them for that call.</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="EXCEEDED_IDLE_LIMIT.ANS">
+  	    EXCEEDED_IDLE_LIMIT.ANS
+  		  <ul class="l2">
+    		  <li>Displayed when a user doesn't press a key for a certain length of time.</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="LOGIN_ENTER_PASSWORD.ANS">
+  	    LOGIN_ENTER_PASSWORD.ANS
+  		  <ul class="l2">
+    		  <li>Prompts the user to enter their password during the login process.</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="LOGIN_ENTER_USERNAME.ANS">
+  	    LOGIN_ENTER_USERNAME.ANS
+  		  <ul class="l2">
+    		  <li>Prompts the user to enter their user name during the login process.</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="LOGIN_FAILED.ANS">
+  	    LOGIN_FAILED.ANS
+  		  <ul class="l2">
+    		  <li>Displayed after three invalid username/password attempts.</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="LOGIN_HEADER.ANS">
+  	    LOGIN_HEADER.ANS
+  		  <ul class="l2">
+    		  <li>Displayed at the beginning of the login process.</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="LOGIN_INVALID.ANS">
+  	    LOGIN_INVALID.ANS
+  		  <ul class="l2">
+    		  <li>Displayed after each invalid username/password attempt during the login process.</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="LOGIN_SUCCESS.ANS">
+  	    LOGIN_SUCCESS.ANS
+  		  <ul class="l2">
+    		  <li>Displayed when a valid username and password are entered during the login process.</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="LOGIN_TWIT.ANS">
+  	    LOGIN_TWIT.ANS
+  		  <ul class="l2">
+    		  <li>Displayed after a successful login if the user is assigned to the "twit" user group.</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="LOGIN_TWO_NODES.ANS">
+  	    LOGIN_TWO_NODES.ANS
+  		  <ul class="l2">
+    		  <li>Displayed after a successful login if the user is already logged into another node.</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="LOGOUT.ANS">
+  	    LOGOUT.ANS
+  		  <ul class="l2">
+    		  <li>Displayed after a user logs out of the system.</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="NEWUSER_DUPLICATE_USERNAME.ANS">
+  	    NEWUSER_DUPLICATE_USERNAME.ANS
+  		  <ul class="l2">
+    		  <li>Displayed during the new user registration process when a user requests a username that is already in use</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="NEWUSER_EMAIL_MISMATCH.ANS">
+  	    NEWUSER_EMAIL_MISMATCH.ANS
+  		  <ul class="l2">
+    		  <li>Displayed when the user enters two different string when entering their email address.</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="NEWUSER_ENTER_EMAIL.ANS">
+  	    NEWUSER_ENTER_EMAIL.ANS
+  		  <ul class="l2">
+    		  <li>Prompts the user to enter their email address.</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="NEWUSER_ENTER_EMAIL_CONFIRM.ANS">
+  	    NEWUSER_ENTER_EMAIL_CONFIRM.ANS
+  		  <ul class="l2">
+    		  <li>Prompts the user to re-enter their email address to confirm it is correct.</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="NEWUSER_ENTER_PASSWORD.ANS">
+  	    NEWUSER_ENTER_PASSWORD.ANS
+  		  <ul class="l2">
+    		  <li>Prompts the user to enter the password they would like to protect their account with.</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="NEWUSER_ENTER_PASSWORD_CONFIRM.ANS">
+  	    NEWUSER_ENTER_PASSWORD_CONFIRM.ANS
+  		  <ul class="l2">
+    		  <li>Prompts the user to re-enter the password they would like to protect their account with.</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="NEWUSER_ENTER_REALNAME.ANS">
+  	    NEWUSER_ENTER_REALNAME.ANS
+  		  <ul class="l2">
+    		  <li>Prompts the user to enter their real name.</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="NEWUSER_ENTER_USERNAME.ANS">
+  	    NEWUSER_ENTER_USERNAME.ANS
+  		  <ul class="l2">
+    		  <li>Prompts the user to enter the username they would like to protect their account with.</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="NEWUSER_HEADER.ANS">
+  	    NEWUSER_HEADER.ANS
+  		  <ul class="l2">
+    		  <li>Displayed at the beginning of the new user registration process.</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="NEWUSER_PASSWORD_MISMATCH.ANS">
+  	    NEWUSER_PASSWORD_MISMATCH.ANS
+  		  <ul class="l2">
+    		  <li>Displayed when the user entered two different strings when trying to enter the password they would like to protect their account with.</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="NEWUSER_SUCCESS.ANS">
+  	    NEWUSER_SUCCESS.ANS
+  		  <ul class="l2">
+    		  <li>Displayed when the user successfully enters all the required new user information.</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="RLOGIN_DENIED.ANS">
+  	    RLOGIN_DENIED.ANS
+  		  <ul class="l2">
+    		  <li>Displayed when a user connects from a host that does not have permission to connect via the RLogin protocol.</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="RLOGIN_INVALID.ANS">
+  	    RLOGIN_INVALID.ANS
+  		  <ul class="l2">
+    		  <li>Displayed when a non-RLogin connection attempt is made to a server thread expecting an RLogin connection.</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="SERVER_BUSY.ANS">
+  	    SERVER_BUSY.ANS
+  		  <ul class="l2">
+    		  <li>Displayed when a user connects when there are no free nodes available.</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="SERVER_PAUSED.ANS">
+  	    SERVER_PAUSED.ANS
+  		  <ul class="l2">
+    		  <li>Displayed when a user connects when the server is in the "paused" state.</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="VERIFYEMAIL_ENTER_STRING.ANS">
+  	    VERIFYEMAIL_ENTER_STRING.ANS
+  		  <ul class="l2">
+    		  <li>Prompts the user to enter the email verification string that was sent to their email address.</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="VERIFYEMAIL_FAILED.ANS">
+  	    VERIFYEMAIL_FAILED.ANS
+  		  <ul class="l2">
+    		  <li>Displayed when the user enters a string that does not match the one that was sent to their email address.</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="VERIFYEMAIL_HEADER.ANS">
+  	    VERIFYEMAIL_HEADER.ANS
+  		  <ul class="l2">
+    		  <li>Displayed at the beginning of the email verification process.</li>
+  		  </ul>
+  	  </li>
+  	  <li class="l1" id="VERIFYEMAIL_SUCCESS.ANS">
+  	    VERIFYEMAIL_SUCCESS.ANS
+  		  <ul class="l2">
+    		  <li>Displayed when the user successfully enters the string that was sent to their email address.</li>
+  		  </ul>
+  	  </li>
+    </ol>
+  </body>
+</html>

@@ -1,0 +1,303 @@
+﻿Thanks to web.archive.org I found old news entries that I have made about
+GameSrv over the years.  I also found this brief history I'd prepared in
+May of 2006:
+
+    GameSrv is a project I started several years ago. It started as an un-named 
+	program I was going to use to allow Telnet access to my Legend Of the Red 
+	Dragon game without the need for running a BBS (similar to how TradeWars had 
+	a telnet server that only worked for TradeWars). But then it was suggested 
+	that it could and should support any door game, so I started re-writing 
+	things and the un-named LORD only server never saw the light of day.
+
+    So I started working on the first (of many) re-writes. This version was 
+	separated into two portions, TelSrv was what I called the telnet server, and 
+	GameSrv is what I called the "user interface". TelSrv was designed for 
+	multiple uses. Of course the primary use was to be a front-end for GameSrv, 
+	but it could also be used as a front-end for other DOS or Win32 BBS software.
+	And GameSrv was a very basic user management and door launching system. It 
+	basically allowed users to log in (or create an account if they were a new 
+	user), and then run door games.
+    At the time my website was being hosted by someone else at no charge to 
+	myself, so as a thank-you I began selling source code to this version of 
+	TelSrv+GameSrv and the proceeds went to his PayPal account. One copy was 
+	sold to a University of Waterloo student (I'll always wonder if my work was 
+	used in a class assignment) and two others were sold to #bbs regulars 
+	(irc.thebbs.org). So if one of the 3 people released the code, you may just 
+	find it out there on the internet somewhere.
+
+	[ED: One of the buyers released the source to a 3rd party, who then put it
+	 up on SourceForge with his name in place of mine.  I wasn't too happy when
+	 I found out, which soured me on open sourcing for quite some time.  It
+	 probably was just a stupid mistake on that guys part to start by replacing
+	 his name with mine instead of, you know, actually making changes and/or
+	 improvements, but whatever.  Just had a look and it looks like the project
+	 still exists on SourceForge, although the source has long been removed. ]
+
+    While this version was available to the public, I was working on a new 
+	version that combined TelSrv and GameSrv into one single program that I was 
+	calling just GameSrv. This version eventually replaced the TelSrv+GameSrv 
+	combo as the preferred version, and is currently the only version available 
+	to the public, but unfortunately I had a hard drive crash during development 
+	and lost the source code to both the old TelSrv+GameSrv and new GameSrv 
+	versions, so development stopped at this point.
+
+    At this point I'd started taking C/C++ classes in college, so the next 
+	GameSrv rewrite was done in Borland C++ Builder (previously it had been 
+	Delphi or Pascal). Even though time was limited because of school work, I 
+	made a lot of progress on this version. In July of 2004 I started releasing 
+	alpha versions of this incarnation of GameSrv, but around this time I 
+	realized a couple things:
+
+        I don't really like C++
+        I planned on open sourcing GameSrv, and not a lot of people had Borland 
+		C++ Builder
+        I really don't like C++
+
+    So this project was "put down" in August of 2004.
+
+    So that brings us to the currently in development version. The end of 2004 
+	was a busy time for me (final semester of college), so it wasn't until early 
+	2005 that I actually started on this version. But by May of 2005 I had a lot 
+	of it complete, and was almost ready to start releasing alpha versions for 
+	testing. Unfortunately, the day job kept me busy, and by the time I got home,
+	I just didn't feel like doing more programming. So the little bit I needed 
+	to get done to release an alpha kept getting ignored.
+
+    So that brings us to today, May 10 2006, almost a year after my last news 
+	entry on www.randm.ca. As you could probably guess, I pretty much lost 
+	interest in developing GameSrv over the past year. But recently I've gotten 
+	back into the code. I had a look at my webpage statistics, and I saw that 
+	even with now news for 1 year and no release for 2 years, I am still getting 
+	a lot of GameSrv downloads. And when checking referers to my site, I'm 
+	seeing a lot of forum posts talking about GameSrv. It was then I realized 
+	there were still interested people, and I was letting them all down.
+
+    So I'm through making and breaking release date promises. I can't say or 
+	even guess when the next version of GameSrv will be out, I can only say I'm 
+	working on it again. And to avoid 1 year gaps in development, I'm making a 
+	new kind of promise:
+
+        I will try to work on GameSrv at a minimum of once per week. And I will 
+		work on GameSrv at least once per month. If I don't meet the once per 
+		month requirement without good reason (I'm moving in June, so things 
+		will be busy here for awhile), I will release whatever source code I 
+		have under an open source license.
+
+    So there you have it, a brief history to GameSrv.  
+	
+Here's all the news entries that I found:
+
+Jan 5, 2002
+
+Finally released a public version of MannTelSrv today. Its been tested with 
+EleBBS, Maximus, Mystic, Shotgun, and my own game server (which should hopefully
+be released soon). Support for DOS BBS packages was achieved using NetFoss. 
+
+[ED: Jan 5, 2002 marked the release of the first iteration of GameSrv, which
+ at the time was named MannTelSrv and only acted as a front-end for DOS/Win32
+ BBS packages (there was no door server for a couple weeks) ]
+
+Feb 15, 2002
+
+Uploaded MannTelSrv v3.00 today. Visually, very little has changed. You may 
+notice it no longer shows the IP of the incoming connections and instead shows 
+the current status. That is a work-in-progress and will be more useful soon I 
+hope.
+
+But anyway, you may not see much of a change, but 95% of the underlying code 
+was rewritten. Version 2.00 was prone to crashing and nodes not disappearing 
+from the Connections window after they were closed. This new version seems very 
+stable. I stress tested by connecting 255 clients to it (yes, simultaneously) 
+and although it slowed my system to a crawl for a couple minutes, the telnet 
+server kept on going. 
+
+Feb 28, 2002
+
+Uploaded MannTelSrv v3.12 today. It now accepts Windows messages to update the 
+node status display. At this time only MannBBS takes advantage of that, and 
+that's about all I expect ever to. But it's cool nonetheless :)
+
+Apr 25, 2002
+
+The software's formerly known as MannTelSrv v4.00 and MannBBS v2.01 were also 
+uploaded today. They are now known as TelSrv and GameSrv and are distributed 
+together under the TelSrv name. 
+
+May 8, 2002
+
+Uploaded TelSrv and GameSrv v4.10 today. This release finally adds internal 
+configuration for GameSrv as well as NetFoss support for TelSrv. It is also an 
+all-in-one package which should help minimize confusion with how to install and 
+configure NetFoss. 
+
+Apr 6, 2003
+
+There were a couple last minute bugs I had to work out, but GameSrv v3.04.06 has 
+now been released. Sorry about the lack of an upgrade path, you're going to have 
+to start from square 1 if you are currently a TelSrv user.
+
+[ED: Apr 6, 2003 marked the release of the second iteration of GameSrv, which
+ combined the previously separate telnet server (TelSrv) and door server
+ (GameSrv) into a single EXE (GameSrv) ]
+
+Apr 27, 2003
+
+GameSrv v3.04.27 has also been released. GameSrv itself didn't undergo any 
+changes, but mSyncFos was modified quite a bit with two major additions. The 
+first was to add file transfer support. It was actually there in the previous 
+versions, it was just broken. The second addition is support for running DOS 
+based FOSSIL doors under Win9x. Now you don't have to be running NT to use 
+GameSrv with old games!
+
+Aug 1, 2003
+
+GameSrv v3.08.01 was just released. This version implements a major feature many 
+people have been asking for lately, support for RLogin connections.
+
+The GUI is going to be completely redesigned for the next release, so I didnt 
+bother adding the ability to change the "secure host" setting. Read the included 
+documentation to learn how to manually set it by editing the SETUP.INI file. 
+
+Oct 14, 2003
+
+Finally, a new BETA of GameSrv has been released. I wouldn't recommend replacing 
+your current setup with it just yet, but please try it out and send any feedback 
+you have my way.
+
+Jun 24, 2004
+
+Just uploaded the webpage for the GameSrv ALPHA. Later tonight after I've thrown 
+together a small amount of documentation I'll upload the RAR archive and 
+activate the download link.
+
+[ED: Jun 24, 2004 marked the release of the third iteration of GameSrv, which
+ came about due to a HD crash where I lost the source code to ALL my programs.
+ I was taking C/C++ in college, so decided to try using Borland C++ Builder
+ instead of the usual Borland Delphi, which turned out to be a bad idea (Delphi
+ was so much better to work with) ]
+
+Jul 11, 2004
+
+Just uploaded a new ALPHA 2 version of GameSrv. This version is a little bit 
+more functional than the last, with the most important addition being the user 
+stuff. Now doors will see users as unique people, unlike in ALPHA 1 where it saw 
+them all as the same person.
+
+Jul 20, 2004
+
+Just uploaded a new ALPHA 3 version of GameSrv. This version has a couple new 
+commands available, but the main reason for the release is an important bugfix 
+that fixes possible cpu/memory hogging.
+
+Mar 19, 2005
+
+In other news, I'm working on GameSrv again (yay!). The bad news is, I'm 
+starting from scratch (again!). It's not because I've lost the source, which is 
+the usual reason, but because I've decided I really don't like Borland C++ 
+Builder very much afterall. So the new version is back in Borland Delphi, and 
+it's looking great. I found some nice tutorials on building hybrid Normal + 
+Interactive Service applications, so it'll run normally on Win9x systems, and as 
+a system service on NT* systems (as any good server should).
+
+[ED: Mar 19, 2005 marked the beginning of the fourth iteration of GameSrv, which
+ was necessary due to my growing dislike for Borland C++ Builder.  It actually
+ took another 1.5 years before I actually got a release out the door...it was
+ getting pretty obvious that I was losing interest in GameSrv by now ]
+
+Sep 23, 2006
+
+Holy Shit indeed. Yes, after many, many, many, many, many, MANY years, I've 
+finally released a new version of GameSrv. [ED: It was ONLY just over two
+years, hardly deserving of so many "many"s!]
+
+Before you get too excited, don't be. This is an early pre-release version just 
+meant to get your feedback on what works and what doesn't (a lot of the features 
+aren't implemented, so I already know some of the stuff isn't.)
+
+Along with the GameSrv release, I've made available 3 classic Seth Able / 
+Michael Preslar / GamePort door games specifically packaged for GameSrv. They 
+come preconfigured for use on 5 nodes, so all you have to do is run the .gsdoor 
+archive through the GSDoor installer, and you'll be ready to go without really 
+needing to know how to configure the door games. Basically this saves you the 
+headache of RTFMing, and me the headache of you asking me questions that would 
+have been answered by RTFMing!
+
+On a side note, I plan on adding multi-language support to GameSrv, so if anyone 
+wants to translate the strings found in the database, please let me know. There 
+aren't a lot there, and I may just try passing them through Google's translator, 
+but who knows how well that will work!
+
+Anyway, head on over to www.GameSrv.ca for the downloads.
+
+September 29 2006
+
+I've updated GameSrv to v6.09.29 to fix a problem with the GSDoor installer. So 
+if you had problems getting one of the 3 below games working, give it another 
+try.
+
+June 16, 2007
+
+OK, so it took a little longer than I planned, but I've just uploaded a new 
+pre-release version of GameSrv. This one is mostly feature complete (it even has
+configuration screens!), but there hasn't been a lot of testing put into it.
+So if you're feeling adventurous, please give it a try and let me know if you 
+run into any problems. If you've been running a previous pre-release version, 
+please let me know how the upgrade process goes (don't forget to back up your 
+existing GameSrv directory first though!
+
+March 13, 2008
+
+Somebody just brought to my attention the fact that I broke the promise I made 
+awhile ago. The promise was that I would try to work on GameSrv on a weekly 
+basis, and if I failed to work on it for a 30 day period, I would release the 
+source.
+Well, I didn't technically break the promise, as I have been working on GameSrv 
+here and there, but I definitely broke the spirit of the promise, which was to 
+get more work done in a shorter period of time, and make quicker releases.
+So I've decided to go ahead and put the GameSrv source online at SourceForge 
+under the GPLv3 license. It may take me a few days (likely it will happen on the 
+weekend) as I have no experience with CVS, so will have to look into that a bit 
+before I can actually make the source available.
+I just wanted to give you a heads up though, so look here for the source to 
+GameSrv in the near future!
+UPDATE: Well, that wasn't so tough after-all, so the source is online already!
+
+May 18, 2008
+
+GameSrv v8.05.18 was just released today. As usual, not a whole lot of testing 
+went into it before releasing it, so PLEASE make sure you backup your GameSrv 
+directory before upgrading. Of special need of testing is the "Run as NT 
+Service" option, so if you choose to try that option, please let me know your 
+expeciences, whether they be good or bad.
+
+June 3, 2008
+
+GameSrv v8.06.03 was just released today. A little more testing went into this 
+release than the last, but not much more, so PLEASE make sure you backup your 
+GameSrv directory before upgrading. This release adds a few new options, but the 
+biggest changes are some show-stopping "Run as NT Service" bugfixes, so please 
+continue to test that mode of operation to help find more!
+
+June 7, 2008
+
+GameSrv v8.06.07 was just released today. No new features here, just a bugfix 
+for those who upgraded from v7.06.15 to v8.05.18 and then to v8.06.03 (the 
+database didn't get upgraded properly, so you would have receved an error from 
+LoadConfigTbl() failing to run at startup).
+
+April 2, 2010
+
+GameSrv v10.04.02 was just released today. This is a minor bugfix to the 
+previous version, which just fixes a few problems related to email verification.
+
+[ED: Apr 2, 2010 marked the end of the fourth iteration of GameSrv.  Although
+ that's just a technicality.  In reality GameSrv #4 ceased development in 2008,
+ and the 2010 release was just to fix a minor bug. ]
+
+January 12, 2012
+
+This marks the beginning of the fifth, and likely last iteration of GameSrv.
+I'd been working on a rewrite of GameSrv in C# off and on for several years,
+and finally got around to making a release in 2012.  
+
+For the continuing history of GameSrv, see the CHANGELOG.TXT file.

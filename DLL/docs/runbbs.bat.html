@@ -1,0 +1,65 @@
+<html>
+  <head>
+    <title>GameSrv Door Server Documentation</title>
+	<link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <h1>RUNBBS.BAT</h1>
+	  <h2>Introduction</h2>
+	  <blockquote>
+	  	By default, when a connection is received by GameSrv, it launches the internal door server.  To override this behaviour and launch a separate BBS package instead, you must place a RUNBBS.BAT in the GameSrv directory (an example is included in the GameSrv directory, as well as displayed below).
+		</blockquote>	  	
+	
+    <h2>Example RUNBBS.BAT</h2>
+    <blockquote>
+    	<pre>
+@ECHO OFF
+REM
+REM This is an example RUNBBS.BAT, which is used to have GameSrv launch an
+REM external BBS program when a user connects instead of having the internal
+REM door server load.
+REM
+REM Using one of the three examples below, you can either run a native Win32
+REM program, run a DOS FOSSIL based program through NetFoss (not available on
+REM Win9x based systems), run a DOS FOSSIL based program through mSyncFos,
+REM or run a DOS COM based program through mSyncFos (not available on Win9x
+REM based systems).  Set all nodes to use COM1 when running DOS COM based
+REM programs through mSyncFos.
+REM
+REM RUNBBS.BAT is passed the node number the user connected to as the first
+REM parameter (%1), the socket handle as the second parameter (%2), and the
+REM user's IP address as the third parameter (%3) (probably not needed for
+REM most people, but for those who do need it, it's there)
+REM
+REM Example for Win32 native:
+REM
+REM C:\BBS\STARTBBS.BAT %1 %2
+REM
+REM
+REM Example for NetFoss
+REM
+REM NetFoss\NF.BAT /n%1 /h%2 C:\BBS\STARTBBS.BAT %1
+REM
+REM
+REM Example for mSyncFos
+REM
+REM mSyncFos\mSyncFos.exe -N%1 -S%2 C:\BBS\STARTBBS.BAT %1
+REM
+REM
+REM NOTE: When running through NetFoss or mSyncFos, DO NOT change the current
+REM working directory (e.g., CD\BBS).  Use a relative path to the NF.BAT or
+REM mSyncFos.exe, like in the above examples, or things will probably NOT work.
+REM
+REM If you need to change the current working directory, do so in the batch
+REM file that you pass on the NF.BAT or mSyncFos.exe command line (so using the
+REM examples above, your C:\BBS\STARTBBS.BAT would be the one to issue the
+REM CD\BBS command).  So a STARTBBS.BAT example might look like:
+REM
+REM @ECHO OFF
+REM CD\BBS
+REM BBS.EXE -N%1 (for DOS based software, which doesn't need the socket handle)
+REM BBS.EXE -N%1 -H%2 (for WIN32 base software, which needs the socket handle)
+    	</pre>
+    </blockquote>
+  </body>
+</html>

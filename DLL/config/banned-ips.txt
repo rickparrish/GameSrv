@@ -1,0 +1,16 @@
+﻿; List the IP addresses you want to ban from your server below
+; You must always list all 4 octets -- just use a * as a wildcard if you want to block a whole class A/B/C
+;
+; Example to block an individual IP address:
+; 1.2.3.4
+; Block a whole class A:
+; 1.*.*.*
+; Block a whole class B:
+; 1.2.*.*
+; Block a whole class C:
+; 1.2.3.*
+; Block in a really weird but syntactically valid way:
+; 1.*.*.4
+;
+; If you don't want to implement a banned ip list, you could delete this file to save a few cycles of unnecessary processing
+; for each connection
