@@ -169,7 +169,8 @@ namespace RandM.GameSrv
                 rtbStatus.SelectionHangingIndent = 0;
             }
 
-            // TODO
+            // TODO Make colours configurable
+            // TODO Sometimes this doesn't work and for example DEBUG text is displayed in gray
             if (message.Contains("ERROR") || message.Contains("EXCEPTION"))
             {
                 rtbStatus.SelectionColor = Color.Red;
