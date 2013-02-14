@@ -156,13 +156,11 @@ namespace RandM.GameSrv
 
         private void StatusText(string message, bool prefixWithTime)
         {
-            rtbStatus.SelectionStart = rtbStatus.Text.Length;
-
             if (prefixWithTime)
             {
                 string Time = DateTime.Now.ToString(_GameSrv.TimeFormatUI) + "  ";
                 rtbStatus.SelectionHangingIndent = Time.Length * _CharWidth;
-                rtbStatus.AppendText(Time);
+                rtbStatus.AppendText(Time, Color.LightGray);
             }
             else
             {
@@ -170,29 +168,25 @@ namespace RandM.GameSrv
             }
 
             // TODO Make colours configurable
-            // TODO Sometimes this doesn't work and for example DEBUG text is displayed in gray
-            if (message.Contains("ERROR") || message.Contains("EXCEPTION"))
-            {
-                rtbStatus.SelectionColor = Color.Red;
-            }
-            else if (message.Contains("WARNING"))
-            {
-                rtbStatus.SelectionColor = Color.Yellow;
-            }
-            else if (message.Contains("DEBUG"))
-            {
-                rtbStatus.SelectionColor = Color.Cyan;
-            }
-            else
-            {
                 // TODO Certain things may be green:
                 // "User hung-up while in external program"
                 // "No carrier detected (maybe it was a 'ping'?)"
                 // "External program requested hangup (dropped DTR)"
-                rtbStatus.SelectionColor = Color.LightGray;
+            Color TextColour = Color.LightGray;
+            if (message.Contains("ERROR") || message.Contains("EXCEPTION"))
+            {
+                TextColour = Color.Red;
+            }
+            else if (message.Contains("WARNING"))
+            {
+                TextColour = Color.Yellow;
+            }
+            else if (message.Contains("DEBUG"))
+            {
+                TextColour = Color.Cyan;
             }
 
-            rtbStatus.AppendText(message + "\r\n");
+            rtbStatus.AppendText(message + "\r\n", TextColour);
             rtbStatus.SelectionStart = rtbStatus.Text.Length;
             rtbStatus.ScrollToCaret();
         }

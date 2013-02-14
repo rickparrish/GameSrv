@@ -1,5 +1,9 @@
 ﻿TODO Still to add: g5109b, lostv10, rokv100
 
+Feb 13, 2013
+	- Implemented a RichTextBox extension for handling colour highlighting of certain rows -- hopefully this will fix
+	  the problem where some rows aren't coloured as they should be.
+
 Feb 7, 2013
 	- Added File menu to GSConfig (which only has an Exit option for now)
 	- Fixed GameSrvGUI so that if you hit CTRL-C to copy some text from the status window, then GSConfig won't load as well
