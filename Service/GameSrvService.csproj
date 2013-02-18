@@ -7,7 +7,7 @@
     <ProjectGuid>{A12F7768-BD40-4ACE-9D0A-67E90F3E22FB}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GameSrv</RootNamespace>
+    <RootNamespace>RandM.GameSrv</RootNamespace>
     <AssemblyName>GameSrvService</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
