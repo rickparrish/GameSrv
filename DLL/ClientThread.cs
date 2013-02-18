@@ -144,9 +144,12 @@ namespace RandM.GameSrv
             }
 
             // Now based on the rlogin mode, handle the rest of the details
-            if (_RLoginVariables.ContainsKey("mode") && (_RLoginVariables["mode"] == "web")) {
+            if (_RLoginVariables.ContainsKey("mode") && (_RLoginVariables["mode"] == "web"))
+            {
                 return AuthenticateRLoginWeb(ClientUserName, ServerUserName);
-            } else {
+            }
+            else
+            {
                 return AuthenticateRLoginClassic(ServerUserName);
             }
         }
@@ -404,12 +407,33 @@ namespace RandM.GameSrv
             }
             else
             {
-                return DisplayFile(StringUtils.PathCombine(ProcessUtils.StartupPath, "ansi", fileName.ToLower() + ".ans"), false, false, false);
+                List<string> FileNames = new List<string>();
+                if (_NodeInfo.TerminalType == TerminalType.Rip)
+                {
+                    FileNames.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "ansi", fileName.ToLower() + ".rip"));
+                }
+                if ((_NodeInfo.TerminalType == TerminalType.Rip) || (_NodeInfo.TerminalType == TerminalType.Ansi))
+                {
+                    FileNames.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "ansi", fileName.ToLower() + ".ans"));
+                }
+                FileNames.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "ansi", fileName.ToLower() + ".asc"));
+
+                foreach (string FullFileName in FileNames)
+                {
+                    if (File.Exists(FullFileName))
+                    {
+                        return DisplayFile(FullFileName, false, false, false);
+                    }
+                }
             }
+
+            return false;
         }
 
         private void DisplayCurrentMenu()
         {
+            // TODO Take terminal type into account
+
             // Check for custom menu, or if we should display a canned menu
             if (File.Exists(StringUtils.PathCombine(ProcessUtils.StartupPath, "menus", _CurrentMenu.ToLower() + _NodeInfo.User.AccessLevel.ToString() + ".ans")))
             {
@@ -986,7 +1010,7 @@ namespace RandM.GameSrv
             char? Result = null;
 
             Result = _NodeInfo.Connection.ReadChar(ReadTimeout());
-            if (Result == null) 
+            if (Result == null)
             {
                 if ((!_Stop) && (_NodeInfo.Connection.Connected))
                 {
@@ -1234,7 +1258,8 @@ namespace RandM.GameSrv
                 if (_NodeInfo.Door.Native)
                 {
                     // Start the process
-                    using (RMProcess P = new RMProcess()) {
+                    using (RMProcess P = new RMProcess())
+                    {
                         P.ProcessWaitEvent += OnDoorWait;
 
                         ProcessStartInfo PSI = new ProcessStartInfo(TranslateCLS(_NodeInfo.Door.Command), TranslateCLS(_NodeInfo.Door.Parameters));
@@ -1574,8 +1599,8 @@ namespace RandM.GameSrv
                             }
                             SetWindowStyle = true;
                         }
-                    } 
-                    
+                    }
+
                     DataTransferred = false;
 
                     // Check for dropped carrier
@@ -1787,8 +1812,8 @@ namespace RandM.GameSrv
                             }
                             SetWindowStyle = true;
                         }
-                    } 
-                    
+                    }
+
                     DataTransferred = false;
 
                     // Check for dropped carrier
@@ -2001,10 +2026,11 @@ namespace RandM.GameSrv
             return true;
         }
 
-        public void Start(int node, TcpConnection connection, ConnectionType connectionType)
+        public void Start(int node, TcpConnection connection, ConnectionType connectionType, TerminalType terminalType)
         {
             if (connection == null) throw new ArgumentNullException("connection");
 
+            _NodeInfo.TerminalType = terminalType;
             _NodeInfo.Node = node;
             _NodeInfo.ConnectionType = connectionType;
             switch (connectionType)

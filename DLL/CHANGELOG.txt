@@ -1,5 +1,8 @@
 ﻿TODO Still to add: g5109b, lostv10, rokv100
 
+Feb 17, 2013
+	- Implemented terminal type detection (rip, ansi, ascii), thanks to Synchronet for the very thorough logic
+
 Feb 13, 2013
 	- Implemented a RichTextBox extension for handling colour highlighting of certain rows -- hopefully this will fix
 	  the problem where some rows aren't coloured as they should be.

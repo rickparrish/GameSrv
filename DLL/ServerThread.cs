@@ -21,6 +21,9 @@ using System;
 using System.IO;
 using RandM.RMLib;
 using System.Globalization;
+using System.Threading;
+using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 namespace RandM.GameSrv
 {
@@ -84,15 +87,37 @@ namespace RandM.GameSrv
             }
         }
 
-        private void DisplayAnsi(string fileName, TcpConnection ATCP)
+        private void DisplayAnsi(string fileName, TcpConnection connection, TerminalType terminalType)
         {
             try
             {
-                ATCP.Write(FileUtils.FileReadAllText(StringUtils.PathCombine(ProcessUtils.StartupPath, "ansi", fileName + ".ans")));
+                List<string> FileNames = new List<string>();
+                if (terminalType == TerminalType.Rip)
+                {
+                    FileNames.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "ansi", fileName.ToLower() + ".rip"));
+                }
+                if ((terminalType == TerminalType.Rip) || (terminalType == TerminalType.Ansi))
+                {
+                    FileNames.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "ansi", fileName.ToLower() + ".ans"));
+                }
+                FileNames.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "ansi", fileName.ToLower() + ".asc"));
+
+                foreach (string FullFileName in FileNames)
+                {
+                    if (File.Exists(FullFileName))
+                    {
+                        connection.Write(FileUtils.FileReadAllText(FullFileName));
+                        break;
+                    }
+                }
             }
             catch (IOException ioex)
             {
                 RaiseExceptionEvent("I/O exception displaying " + fileName + ": " + ioex.Message, ioex);
+            }
+            catch (Exception ex)
+            {
+                RaiseExceptionEvent("Unknown exception displaying " + fileName + ": " + ex.Message, ex);
             }
         }
 
@@ -115,15 +140,16 @@ namespace RandM.GameSrv
                                 TcpConnection NewConnection = Connection.AcceptTCP();
                                 if (NewConnection != null)
                                 {
+                                    TerminalType TT = GetTerminalType(NewConnection);
                                     if (IsBannedIP(NewConnection.GetRemoteIP()))
                                     {
-                                        DisplayAnsi("IP_BANNED", NewConnection);
+                                        DisplayAnsi("IP_BANNED", NewConnection, TT);
                                         RaiseWarningMessageEvent("IP " + NewConnection.GetRemoteIP() + " matches banned IP filter");
                                         NewConnection.Close();
                                     }
                                     else if (_Paused)
                                     {
-                                        DisplayAnsi("SERVER_PAUSED", NewConnection);
+                                        DisplayAnsi("SERVER_PAUSED", NewConnection, TT);
                                         NewConnection.Close();
                                     }
                                     else
@@ -133,12 +159,12 @@ namespace RandM.GameSrv
                                         if (NewNode == 0)
                                         {
                                             NewClientThread.Dispose();
-                                            DisplayAnsi("SERVER_BUSY", NewConnection);
+                                            DisplayAnsi("SERVER_BUSY", NewConnection, TT);
                                             NewConnection.Close();
                                         }
                                         else
                                         {
-                                            NewClientThread.Start(NewNode, NewConnection, _ConnectionType);
+                                            NewClientThread.Start(NewNode, NewConnection, _ConnectionType, TT);
                                         }
                                     }
                                 }
@@ -156,6 +182,72 @@ namespace RandM.GameSrv
                     RaiseBindFailedEvent();
                 }
             }
+        }
+
+        // Logic for this terminal type detection taken from Synchronet's ANSWER.CPP
+        private TerminalType GetTerminalType(TcpConnection connection)
+        {
+            try {
+                /* Detect terminal type */
+                Thread.Sleep(200);
+	            connection.ReadString();		/* flush input buffer */
+                connection.Write("\r\n" +		/* locate cursor at column 1 */
+			        "\x1b[s" +	                /* save cursor position (necessary for HyperTerm auto-ANSI) */
+                    "\x1b[255B" +	            /* locate cursor as far down as possible */
+                    "\x1b[255C" +	            /* locate cursor as far right as possible */
+                    "\b_" +		                /* need a printable at this location to actually move cursor */
+                    "\x1b[6n" +	                /* Get cursor position */
+                    "\x1b[u" +	                /* restore cursor position */
+                    "\x1b[!_" +	                /* RIP? */
+                    "\x1b[0m_" +	            /* "Normal" colors */
+                    "\x1b[2J" +	                /* clear screen */
+                    "\x1b[H" +	                /* home cursor */
+                    "\xC" +		                /* clear screen (in case not ANSI) */
+                    "\r"		                /* Move cursor left (in case previous char printed) */
+			    );
+
+                char? c = '\0';
+                int i = 0;
+                string str = "";
+                while (i++ < 50)
+                { 	/* wait up to 5 seconds for response */
+                    c = connection.ReadChar(100);
+                    if (connection.ReadTimedOut)
+                        continue;
+                    if (c == null)
+                        continue;
+                    c = (char)(c & 0x7f);
+                    if (c == 0)
+                        continue;
+                    i = 0;
+                    if (string.IsNullOrEmpty(str) && c != '\x1b')	// response must begin with escape char
+                        continue;
+                    str += c;
+                    if (c == 'R')
+                    {   /* break immediately if ANSI response */
+                        Thread.Sleep(500);
+                        break;
+                    }
+                }
+
+                while (connection.CanRead(100))
+                {
+                    str += connection.ReadString();
+                }
+
+                if (str.ToUpper().Contains("RIPSCRIP"))
+                {
+                    return TerminalType.Rip;
+                }
+                else if (Regex.IsMatch(str, "\\x1b[[]\\d{1,3};\\d{1,3}R"))
+                {
+                    return TerminalType.Ansi;
+                }
+            } catch (Exception) {
+                // Ignore, we'll just assume ASCII if something bad happens
+            }
+
+            return TerminalType.Ascii;
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]

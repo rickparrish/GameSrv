@@ -31,6 +31,7 @@ namespace RandM.GameSrv
         public DoorInfo Door { get; set; }
         public int Node { get; set; }
         public int SecondsThisSession { get; set; }
+        public TerminalType TerminalType { get; set; }
         public DateTime TimeOn { get; set; }
         public UserInfo User { get; set; }
         public bool UserLoggedOn { get; set; }
@@ -42,6 +43,7 @@ namespace RandM.GameSrv
             Door = new DoorInfo("");
             Node = -1;
             SecondsThisSession = 300; // Default to 5 minutes during authentication, will be set accordingly at successful logon
+            TerminalType = TerminalType.Ascii;
             TimeOn = DateTime.Now;
             User = new UserInfo("");
             UserLoggedOn = false;
