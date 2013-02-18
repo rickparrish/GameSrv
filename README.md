@@ -4,7 +4,7 @@ GameSrv BBS Door Game Server
 This is the source to the new C# rewrite of the GameSrv BBS Door Game Server.<br />
 The old Delphi version can still be found on SourceForce at http://www.sf.net/projects/rm-gamesrv, but it is no longer maintained (and hasn't been for some time).<br />
 <br />
-You'll also need to fork RMLib and RMLibUI in order to compile this project.  They haven't been pushed to GitHub yet, but should follow in the next few days.
+You'll also need to get <a href="https://github.com/rickparrish/RMLib">RMLib</a> and <a href="https://github.com/rickparrish/RMLibUI">RMLibUI</a> in order to compile this project.
 
 Support Website
 ===============
