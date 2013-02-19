@@ -34,21 +34,9 @@ namespace RandM.GameSrv
     {
         static private Dictionary<ConnectionType, int> _ConnectionCounts = new Dictionary<ConnectionType, int>();
         static private GameSrv _GameSrv = new GameSrv();
-        static private object _WriteLock = new object();
 
         static void Main()
         {
-            //using (RMSQLiteConnection DB = new RMSQLiteConnection(ProcessUtils.StartupPath, "GameSrv.db", false))
-            //{
-            //    string SQL = "SELECT * FROM UserTbl";
-            //    DB.ExecuteReader(SQL);
-            //    while (DB.Reader.Read()) {
-            //        Console.WriteLine("ID: " + DB.Reader["UserId"]);
-            //    }
-            //}
-            //Console.ReadKey();
-            //Environment.Exit(0);
-
             // Add connection types to counter
             _ConnectionCounts[ConnectionType.RLogin] = 0;
             _ConnectionCounts[ConnectionType.Telnet] = 0;
@@ -207,12 +195,8 @@ namespace RandM.GameSrv
         {
             if (OSUtils.IsWindows)
             {
-                // TODO Fix Crt.Write to make it thread safe
-                lock (_WriteLock)
-                {
-                    if (prefixWithTime && (!string.IsNullOrEmpty(text))) Crt.Write(DateTime.Now.ToString("T") + "  ");
-                    Crt.Write(text);
-                }
+                if (prefixWithTime && (!string.IsNullOrEmpty(text))) Crt.Write(DateTime.Now.ToString("T") + "  ");
+                Crt.Write(text);
             }
             else
             {

@@ -37,6 +37,8 @@ namespace RandM.GameSrv
         static public object RegistrationLock = new object();
         static public bool StartedAsRoot { get; set; }
 
+        static private object _RootLock = new object();
+
         static private WindowsImpersonationContext _WIC = null;
 
         static Globals()
@@ -58,18 +60,21 @@ namespace RandM.GameSrv
         {
             if (!StartedAsRoot) return;
 
-            // If we're on a Unix machine, and running as root, drop privilege
-            if ((OSUtils.IsUnix) && (_WIC == null) && (WindowsIdentity.GetCurrent().Token == IntPtr.Zero))
+            lock (_RootLock)
             {
-                using (WindowsIdentity Before = WindowsIdentity.GetCurrent())
+                // If we're on a Unix machine, and running as root, drop privilege
+                if ((OSUtils.IsUnix) && (_WIC == null) && (WindowsIdentity.GetCurrent().Token == IntPtr.Zero))
                 {
-                    using (WindowsIdentity DropTo = new WindowsIdentity(dropToUser))
+                    using (WindowsIdentity Before = WindowsIdentity.GetCurrent())
                     {
-                        _WIC = DropTo.Impersonate();
-                        using (WindowsIdentity After = WindowsIdentity.GetCurrent())
+                        using (WindowsIdentity DropTo = new WindowsIdentity(dropToUser))
                         {
-                            if (After.Name != dropToUser) throw new ArgumentOutOfRangeException("dropToUser", "requested user account '" + dropToUser + "' does not exist");
-                            //TODO if (Globals.Debug) ConsoleLogWrite("Dropped privilege from " + Before.Name + " (" + Before.Token + ") to " + After.Name + " (" + After.Token + ")");
+                            _WIC = DropTo.Impersonate();
+                            using (WindowsIdentity After = WindowsIdentity.GetCurrent())
+                            {
+                                if (After.Name != dropToUser) throw new ArgumentOutOfRangeException("dropToUser", "requested user account '" + dropToUser + "' does not exist");
+                                //TODO if (Globals.Debug) ConsoleLogWrite("Dropped privilege from " + Before.Name + " (" + Before.Token + ") to " + After.Name + " (" + After.Token + ")");
+                            }
                         }
                     }
                 }
@@ -115,14 +120,17 @@ namespace RandM.GameSrv
         {
             if (!StartedAsRoot) return;
 
-            // If we're on a Unix machine, raise back to root privilege
-            if ((OSUtils.IsUnix) && (_WIC != null) && (WindowsIdentity.GetCurrent().Token != IntPtr.Zero))
+            lock (_RootLock)
             {
-                WindowsIdentity Before = WindowsIdentity.GetCurrent();
-                _WIC.Undo();
-                _WIC = null;
-                WindowsIdentity After = WindowsIdentity.GetCurrent();
-                //TODO if (Globals.Debug) ConsoleLogWrite("Raised privilege from " + Before.Name + " (" + Before.Token + ") to " + After.Name + " (" + After.Token + ")");
+                // If we're on a Unix machine, raise back to root privilege
+                if ((OSUtils.IsUnix) && (_WIC != null) && (WindowsIdentity.GetCurrent().Token != IntPtr.Zero))
+                {
+                    WindowsIdentity Before = WindowsIdentity.GetCurrent();
+                    _WIC.Undo();
+                    _WIC = null;
+                    WindowsIdentity After = WindowsIdentity.GetCurrent();
+                    //TODO if (Globals.Debug) ConsoleLogWrite("Raised privilege from " + Before.Name + " (" + Before.Token + ") to " + After.Name + " (" + After.Token + ")");
+                }
             }
         }
     }

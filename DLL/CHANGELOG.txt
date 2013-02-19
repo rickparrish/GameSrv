@@ -1,5 +1,8 @@
 ﻿TODO Still to add: g5109b, lostv10, rokv100
 
+Feb 19, 2013
+	- Fixed Crt unit in RMLib to be thread safe, so write lock no longer necessary in GameSrvConsole
+
 Feb 17, 2013
 	- Implemented terminal type detection (rip, ansi, ascii), thanks to Synchronet for the very thorough logic
 
