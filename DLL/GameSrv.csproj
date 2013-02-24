@@ -235,9 +235,6 @@
     <None Include="doors\usurper.zip">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="doors\usurper32.zip">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="doors\_sample.ini">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
