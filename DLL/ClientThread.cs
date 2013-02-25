@@ -270,7 +270,18 @@ namespace RandM.GameSrv
 
         private void ClrScr()
         {
-            _NodeInfo.Connection.Write("\r\n!|*" + Ansi.TextAttr(7) + Ansi.ClrScr() + Ansi.GotoXY(1, 1));
+            switch (_NodeInfo.TerminalType)
+            {
+                case TerminalType.Ansi:
+                    _NodeInfo.Connection.Write(Ansi.TextAttr(7) + Ansi.ClrScr() + Ansi.GotoXY(1, 1));
+                    break;
+                case TerminalType.Ascii:
+                    _NodeInfo.Connection.Write("\r\n\x0C");
+                    break;
+                case TerminalType.Rip:
+                    _NodeInfo.Connection.Write("\r\n!|*" + Ansi.TextAttr(7) + Ansi.ClrScr() + Ansi.GotoXY(1, 1));
+                    break;
+            }
         }
 
         private void CreateNodeDirectory()
@@ -285,7 +296,7 @@ namespace RandM.GameSrv
             Sl.Add("COM1:");                                                    // 1 - Comm Port
             Sl.Add("57600");                                                    // 2 - Connection Baud Rate
             Sl.Add("8");                                                        // 3 - Parity
-            Sl.Add(_NodeInfo.Node.ToString());        // 4 - Current Node Number
+            Sl.Add(_NodeInfo.Node.ToString());                                  // 4 - Current Node Number
             Sl.Add("57600");                                                    // 5 - Locked Baud Rate
             Sl.Add("Y");                                                        // 6 - Screen Display
             Sl.Add("Y");                                                        // 7 - Printer Toggle
@@ -296,18 +307,18 @@ namespace RandM.GameSrv
             Sl.Add("555-555-5555");                                             // 12 - User's Home Phone #
             Sl.Add("555-555-5555");                                             // 13 - User's Work Phone #
             Sl.Add("PASSWORD");                                                 // 14 - User's Password
-            Sl.Add(_NodeInfo.User.AccessLevel.ToString()); // 15 - User's Access Level
+            Sl.Add(_NodeInfo.User.AccessLevel.ToString());                      // 15 - User's Access Level
             Sl.Add("1");                                                        // 16 - User's Total Calls
             Sl.Add("00/00/00");                                                 // 17 - User's Last Call Date
-            Sl.Add(SecondsLeft().ToString());         // 18 - Users's Seconds Left This Call
-            Sl.Add(MinutesLeft().ToString());         // 19 - User's Minutes Left This Call (I love redundancy!)
+            Sl.Add(SecondsLeft().ToString());                                   // 18 - Users's Seconds Left This Call
+            Sl.Add(MinutesLeft().ToString());                                   // 19 - User's Minutes Left This Call (I love redundancy!)
             Sl.Add("GR");                                                       // 20 - Graphics Mode GR=Graphics, NG=No Graphics, 7E=7-bit
             Sl.Add("24");                                                       // 21 - Screen Length
             Sl.Add("N");                                                        // 22 - Expert Mode
             Sl.Add("");                                                         // 23 - Conferences Registered In
             Sl.Add("");                                                         // 24 - Conference Exited To Door From
             Sl.Add("00/00/00");                                                 // 25 - User's Expiration Date
-            Sl.Add((_NodeInfo.User.UserId - 1).ToString());// 26 - User's Record Position (0 based)
+            Sl.Add((_NodeInfo.User.UserId - 1).ToString());                     // 26 - User's Record Position (0 based)
             Sl.Add("Z");                                                        // 27 - User's Default XFer Protocol
             Sl.Add("0");                                                        // 28 - Total Uploads
             Sl.Add("0");                                                        // 29 - Total Downloads
@@ -320,7 +331,7 @@ namespace RandM.GameSrv
             Sl.Add(_NodeInfo.User.Alias);                                       // 36 - User's Alias
             Sl.Add("00:00");                                                    // 37 - Next Event Time
             Sl.Add("Y");                                                        // 38 - Error Correcting Connection
-            Sl.Add("Y");                                                        // 39 - ANSI Supported
+            Sl.Add(_NodeInfo.TerminalType == TerminalType.Ascii ? "N" : "Y");   // 39 - ANSI Supported
             Sl.Add("Y");                                                        // 40 - Use Record Locking
             Sl.Add("7");                                                        // 41 - Default BBS Colour
             Sl.Add("0");                                                        // 42 - Time Credits (In Minutes)
@@ -342,25 +353,30 @@ namespace RandM.GameSrv
             Sl.Add(_NodeInfo.Connection.Handle.ToString());                         // 2 - Comm Or Socket Handle
             Sl.Add("57600");                                                        // 3 - Baud Rate
             Sl.Add(ProcessUtils.ProductName + " v" + GameSrv.Version);              // 4 - BBSID (Software Name & Version
-            Sl.Add(_NodeInfo.User.UserId.ToString());     // 5 - User's Record Position (1 based)
+            Sl.Add(_NodeInfo.User.UserId.ToString());                               // 5 - User's Record Position (1 based)
             Sl.Add(_NodeInfo.User.Alias);                                           // 6 - User's Real Name
             Sl.Add(_NodeInfo.User.Alias);                                           // 7 - User's Handle/Alias
-            Sl.Add(_NodeInfo.User.AccessLevel.ToString());// 8 - User's Access Level
-            Sl.Add(MinutesLeft().ToString());             // 9 - User's Time Left (In Minutes)
-            Sl.Add("1");                                                            // 10 - Emulation (0=Ascii, 1=Ansi, 2=Avatar, 3=RIP, 4=MaxGfx)
-            Sl.Add(_NodeInfo.Node.ToString());            // 11 - Current Node Number
+            Sl.Add(_NodeInfo.User.AccessLevel.ToString());                          // 8 - User's Access Level
+            Sl.Add(MinutesLeft().ToString());                                       // 9 - User's Time Left (In Minutes)
+            switch (_NodeInfo.TerminalType)                                         // 10 - Emulation (0=Ascii, 1=Ansi, 2=Avatar, 3=RIP, 4=MaxGfx)
+            {
+                case TerminalType.Ansi: Sl.Add("1"); break;
+                case TerminalType.Ascii: Sl.Add("0"); break;
+                case TerminalType.Rip: Sl.Add("3"); break;
+            }
+            Sl.Add(_NodeInfo.Node.ToString());                                      // 11 - Current Node Number
             FileUtils.FileWriteAllText(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _NodeInfo.Node.ToString(), "door32.sys"), String.Join("\r\n", Sl.ToArray()));
 
             // Create DOORFILE.SR
             Sl.Clear();
-            Sl.Add(_NodeInfo.User.Alias);                              // Complete name or handle of user
-            Sl.Add("1");                                               // ANSI status:  1 = yes, 0 = no, -1 = don't know
-            Sl.Add("1");                                               // IBM Graphic characters:  1 = yes, 0 = no, -1 = unknown
-            Sl.Add("24");                                              // Page length of screen, in lines.  Assume 25 if unknown
-            Sl.Add("57600");                                           // Baud Rate:  300, 1200, 2400, 9600, 19200, etc.
-            Sl.Add("1");                                               // Com Port:  1, 2, 3, or 4; 0 if local.
-            Sl.Add(MinutesLeft().ToString());// Time Limit:  (in minutes); -1 if unknown.
-            Sl.Add(_NodeInfo.User.Alias);                              // Real name (the same as line 1 if not known)
+            Sl.Add(_NodeInfo.User.Alias);                                       // Complete name or handle of user
+            Sl.Add(_NodeInfo.TerminalType == TerminalType.Ascii ? "0" : "1");   // ANSI status:  1 = yes, 0 = no, -1 = don't know
+            Sl.Add("1");                                                        // IBM Graphic characters:  1 = yes, 0 = no, -1 = unknown
+            Sl.Add("24");                                                       // Page length of screen, in lines.  Assume 25 if unknown
+            Sl.Add("57600");                                                    // Baud Rate:  300, 1200, 2400, 9600, 19200, etc.
+            Sl.Add("1");                                                        // Com Port:  1, 2, 3, or 4; 0 if local.
+            Sl.Add(MinutesLeft().ToString());                                   // Time Limit:  (in minutes); -1 if unknown.
+            Sl.Add(_NodeInfo.User.Alias);                                       // Real name (the same as line 1 if not known)
             FileUtils.FileWriteAllText(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _NodeInfo.Node.ToString(), "doorfile.sr"), String.Join("\r\n", Sl.ToArray()));
 
             // Create DORINFO.DEF
@@ -374,9 +390,9 @@ namespace RandM.GameSrv
             Sl.Add(_NodeInfo.User.Alias);                                      // 7 - User's First Name / Alias
             Sl.Add("");                                                        // 8 - User's Last Name
             Sl.Add("City, State");                                             // 9 - User's Location (City, State, etc.)
-            Sl.Add("1");                                                       // 10 - User's Emulation (1=Ansi)
-            Sl.Add(_NodeInfo.User.AccessLevel.ToString());// 11 - User's Access Level
-            Sl.Add(MinutesLeft().ToString());        // 12 - User's Time Left (In Minutes)
+            Sl.Add(_NodeInfo.TerminalType == TerminalType.Ascii ? "0" : "1");  // 10 - User's Emulation (0=Ascii, 1=Ansi)
+            Sl.Add(_NodeInfo.User.AccessLevel.ToString());                     // 11 - User's Access Level
+            Sl.Add(MinutesLeft().ToString());                                  // 12 - User's Time Left (In Minutes)
             Sl.Add("1");                                                       // 13 - Fossil?
             FileUtils.FileWriteAllText(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _NodeInfo.Node.ToString(), "dorinfo.def"), String.Join("\r\n", Sl.ToArray()));
             FileUtils.FileWriteAllText(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _NodeInfo.Node.ToString(), "dorinfo1.def"), String.Join("\r\n", Sl.ToArray()));
@@ -445,7 +461,39 @@ namespace RandM.GameSrv
                 // Display generic .ans menu
                 DisplayFile(StringUtils.PathCombine(ProcessUtils.StartupPath, "menus", _CurrentMenu.ToLower() + ".ans"), true, false, false);
             }
-            else
+            else if (_NodeInfo.TerminalType == TerminalType.Ascii)
+            {
+                // Clear the screen
+                ClrScr();
+
+                // Display menu header
+                _NodeInfo.Connection.WriteLn("ÄÄÄ´°±² " + _CurrentMenu.ToUpper() + " MENU ²±°ÃÄÄÄ");
+                _NodeInfo.Connection.WriteLn("ÚÄÂÄÂÄÂÄÂÄÂÄÂÄÂÄÂÄÂÄÂÄÂÄÂÄÂÄÂÄÂÄÂÄÂÄÂÄÂÄÂÄÂÄÂÄÂÄÂÄÂÄÂÄÂÄÂÄÂÄÂÄÂÄÂÄÂÄÂÄÂÄÂÄÂÄÂÄ¿");
+                _NodeInfo.Connection.WriteLn("ÃÄÅÄÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»ÄÅÄ´");
+
+                // Display current menu options
+                int Row = 1;
+                _NodeInfo.Connection.Write((0 == Row % 2) ? "ÃÄÅÄº " : "ÃÄÅÄº ");
+                _NodeInfo.Connection.Write(StringUtils.PadRight(_CurrentMenu.ToUpper() + " MENU OPTIONS", ' ', 30 * 2 + 8));
+                _NodeInfo.Connection.WriteLn((0 == Row++ % 2) ? "ºÄÅÄ´" : "ºÄÅÄ´");
+                Row = DisplayCurrentMenuOptions(Row);
+
+                // Display menu footer
+                if (0 == Row % 2)
+                {
+                    _NodeInfo.Connection.WriteLn("ÃÄÅÄÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼ÄÅÄ´");
+                    _NodeInfo.Connection.WriteLn("ÀÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÙ");
+                }
+                else
+                {
+                    _NodeInfo.Connection.WriteLn("ÃÄÅÄÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼ÄÅÄ´");
+                    _NodeInfo.Connection.WriteLn("ÀÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÙ");
+                }
+
+                // Still part of the footer
+                _NodeInfo.Connection.Write("[" + StringUtils.SecToHMS(SecondsLeft()) + "] Select: ");
+            }
+            else 
             {
                 // Clear the screen
                 ClrScr();
@@ -488,28 +536,56 @@ namespace RandM.GameSrv
             int i = 0;
             while (i <= HotKeys.Count - 1)
             {
-                // Display left side
-                _NodeInfo.Connection.Write((0 == row % 2) ? "ÃÄ" + "\x1B" + "[0mÅ" + "\x1B" + "[1mÄ" + "\x1B" + "[0mº " : "\x1B" + "[1mÃÄÅÄ" + "\x1B" + "[0mº ");
-
-                // Display left hotkey and description
-                _NodeInfo.Connection.Write("\x1B" + "[1;33m" + HotKeys[i].ToString() + "\x1B" + "[1;30m] " + "\x1B" + "[0;37m");
-                _NodeInfo.Connection.Write(StringUtils.PadRight(_CurrentMenuOptions[HotKeys[i++].ToString()[0]].Name, ' ', 30) + " ");
-
-                // Check if that was the last item, or if there is one more
-                if (i >= HotKeys.Count)
+                if (_NodeInfo.TerminalType == TerminalType.Ascii)
                 {
-                    // Display blank space (that was the last item)
-                    _NodeInfo.Connection.Write(new string(' ', 30 + 4));
+                    // Display left side
+                    _NodeInfo.Connection.Write((0 == row % 2) ? "ÃÄÅÄº " : "ÃÄÅÄº ");
+
+                    // Display left hotkey and description
+                    _NodeInfo.Connection.Write(HotKeys[i].ToString() + "] ");
+                    _NodeInfo.Connection.Write(StringUtils.PadRight(_CurrentMenuOptions[HotKeys[i++].ToString()[0]].Name, ' ', 30) + " ");
+
+                    // Check if that was the last item, or if there is one more
+                    if (i >= HotKeys.Count)
+                    {
+                        // Display blank space (that was the last item)
+                        _NodeInfo.Connection.Write(new string(' ', 30 + 4));
+                    }
+                    else
+                    {
+                        // Display right hotkey and description
+                        _NodeInfo.Connection.Write(HotKeys[i].ToString() + "] ");
+                        _NodeInfo.Connection.Write(StringUtils.PadRight(_CurrentMenuOptions[HotKeys[i++].ToString()[0]].Name, ' ', 30) + " ");
+                    }
+
+                    // Display right side
+                    _NodeInfo.Connection.WriteLn((0 == row++ % 2) ? "ºÄÅÄ´" : "ºÄÅÄ´");
                 }
                 else
                 {
-                    // Display right hotkey and description
+                    // Display left side
+                    _NodeInfo.Connection.Write((0 == row % 2) ? "ÃÄ" + "\x1B" + "[0mÅ" + "\x1B" + "[1mÄ" + "\x1B" + "[0mº " : "\x1B" + "[1mÃÄÅÄ" + "\x1B" + "[0mº ");
+
+                    // Display left hotkey and description
                     _NodeInfo.Connection.Write("\x1B" + "[1;33m" + HotKeys[i].ToString() + "\x1B" + "[1;30m] " + "\x1B" + "[0;37m");
                     _NodeInfo.Connection.Write(StringUtils.PadRight(_CurrentMenuOptions[HotKeys[i++].ToString()[0]].Name, ' ', 30) + " ");
-                }
 
-                // Display right side
-                _NodeInfo.Connection.WriteLn((0 == row++ % 2) ? "\x1B" + "[1;30mºÄ" + "\x1B" + "[37mÅÄ´" : "\x1B" + "[1;30mºÄ" + "\x1B" + "[0mÅ" + "\x1B" + "[1mÄ" + "\x1B" + "[0m´");
+                    // Check if that was the last item, or if there is one more
+                    if (i >= HotKeys.Count)
+                    {
+                        // Display blank space (that was the last item)
+                        _NodeInfo.Connection.Write(new string(' ', 30 + 4));
+                    }
+                    else
+                    {
+                        // Display right hotkey and description
+                        _NodeInfo.Connection.Write("\x1B" + "[1;33m" + HotKeys[i].ToString() + "\x1B" + "[1;30m] " + "\x1B" + "[0;37m");
+                        _NodeInfo.Connection.Write(StringUtils.PadRight(_CurrentMenuOptions[HotKeys[i++].ToString()[0]].Name, ' ', 30) + " ");
+                    }
+
+                    // Display right side
+                    _NodeInfo.Connection.WriteLn((0 == row++ % 2) ? "\x1B" + "[1;30mºÄ" + "\x1B" + "[37mÅÄ´" : "\x1B" + "[1;30mºÄ" + "\x1B" + "[0mÅ" + "\x1B" + "[1mÄ" + "\x1B" + "[0m´");
+                }
             }
 
             return row;
@@ -565,6 +641,30 @@ namespace RandM.GameSrv
                     else
                     {
                         return false;
+                    }
+                }
+
+                // Check if we need to pick an extension based on the user's terminal type (do this if the file doesn't exist, and doesn't have an extension)
+                if (!File.Exists(fileName) && !Path.HasExtension(fileName))
+                {
+                    List<string> FileNamesWithExtension = new List<string>();
+                    if (_NodeInfo.TerminalType == TerminalType.Rip)
+                    {
+                        FileNamesWithExtension.Add(fileName + ".rip");
+                    }
+                    if ((_NodeInfo.TerminalType == TerminalType.Rip) || (_NodeInfo.TerminalType == TerminalType.Ansi))
+                    {
+                        FileNamesWithExtension.Add(fileName + ".ans");
+                    }
+                    FileNamesWithExtension.Add(fileName + ".asc");
+
+                    foreach (string FileNameWithExtension in FileNamesWithExtension)
+                    {
+                        if (File.Exists(FileNameWithExtension))
+                        {
+                            fileName = FileNameWithExtension;
+                            break;
+                        }
                     }
                 }
 

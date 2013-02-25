@@ -1,9 +1,13 @@
 ﻿TODO Still to add: g5109b, lostv10, rokv100
 
+Feb 25, 2013
+    - Added ASCII version of all ANSI files.  Also updated the way the DisplayFile* menu commands work, so you can pass a filename with no
+	  extension and then GameSrv will pick the best extension based on the user's terminal type.
+
 Feb 24, 2013
 	- Upgraded Usurper to latest version (0.23b).  This version ships with binaries for both DOS and Win32, so you
 	  can remove your old Usurper32 directory after updating the this version.
-	  A fresh install is recommended, but if you want to you should be able to upgade the old Usurper game by
+	  A fresh install is recommended, but if you want to you should be able to upgrade the old Usurper game by
 	  overwriting the contents of the old directory with the new directory.
 	  Unfortunately the old Usurper32 version is not compatible with 0.23b, so your only option is to delete the Usurper32
 	  directory and have players start fresh with the new 0.23b version.

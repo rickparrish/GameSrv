@@ -73,6 +73,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="ansi\email_sysop.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\exceeded_call_limit.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\exceeded_idle_limit.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ansi\ip_banned.ans">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -85,97 +94,193 @@
     <None Include="ansi\exceeded_idle_limit.ans">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="ansi\ip_banned.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ansi\logoff.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\logoff.asc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ansi\logon_enter_alias.ans">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="ansi\logon_enter_alias.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ansi\logon_enter_password.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\logon_enter_password.asc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ansi\logon_failed.ans">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="ansi\logon_failed.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ansi\logon_header.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\logon_header.asc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ansi\logon_invalid.ans">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="ansi\logon_invalid.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ansi\logon_success.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\logon_success.asc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ansi\logon_twit.ans">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="ansi\logon_twit.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ansi\logon_two_nodes.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\logon_two_nodes.asc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ansi\newuser_enter_alias.ans">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="ansi\newuser_enter_alias.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ansi\newuser_enter_alias_duplicate.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\newuser_enter_alias_duplicate.asc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ansi\newuser_enter_email.ans">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="ansi\newuser_enter_email.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ansi\newuser_enter_email_confirm.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\newuser_enter_email_confirm.asc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ansi\newuser_enter_email_invalid.ans">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="ansi\newuser_enter_email_invalid.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ansi\newuser_enter_email_mismatch.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\newuser_enter_email_mismatch.asc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ansi\newuser_enter_favouritenumber.ans">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="ansi\newuser_enter_favouritenumber.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ansi\newuser_enter_favouritenumber_invalid.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\newuser_enter_favouritenumber_invalid.asc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ansi\newuser_enter_password.ans">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="ansi\newuser_enter_password.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ansi\newuser_enter_password_confirm.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\newuser_enter_password_confirm.asc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ansi\newuser_enter_password_mismatch.ans">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="ansi\newuser_enter_password_mismatch.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ansi\newuser_enter_randomtext.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\newuser_enter_randomtext.asc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ansi\newuser_enter_realname.ans">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="ansi\newuser_enter_realname.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ansi\newuser_enter_realname_invalid.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\newuser_enter_realname_invalid.asc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ansi\newuser_header.ans">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="ansi\newuser_header.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ansi\newuser_success.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\newuser_success.asc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ansi\rlogin_callback_error.ans">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="ansi\rlogin_callback_error.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ansi\rlogin_invalid.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\rlogin_invalid.asc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ansi\server_busy.ans">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="ansi\server_busy.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ansi\server_paused.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\server_paused.asc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="bulletins\bulletin01.ans">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="bulletins\bulletin01.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="bulletins\bulletin02.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="bulletins\bulletin02.asc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="config\gamesrv.ini">
@@ -266,10 +371,16 @@
     <None Include="menus\whosonline.ans">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="menus\whosonline.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="menus\whosonline.ini">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="menus\whosonline100.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="menus\whosonline100.asc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="pty-sharp-1.0.tgz">
