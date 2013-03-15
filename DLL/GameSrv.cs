@@ -50,6 +50,7 @@ namespace RandM.GameSrv
         public event EventHandler<ExceptionEventArgs> ExceptionEvent = null;
         public event EventHandler<NodeEventArgs> LogOffEvent = null;
         public event EventHandler<NodeEventArgs> LogOnEvent = null;
+        public event EventHandler<StringEventArgs> MessageEvent = null;
         public event EventHandler<NodeEventArgs> NodeEvent = null;
         public event EventHandler<StatusEventArgs> StatusEvent = null;
         public event EventHandler<StringEventArgs> StatusMessageEvent = null;
@@ -346,6 +347,13 @@ namespace RandM.GameSrv
             RaiseAggregatedStatusMessageEvent(sender, "Node " + logOnEvent.NodeInfo.Node.ToString() + " (LOGON): " + logOnEvent.NodeInfo.User.Alias + " " + logOnEvent.Status);
         }
 
+        private void RaiseMessageEvent(object sender, string message)
+        {
+            EventHandler<StringEventArgs> Handler = MessageEvent;
+            if (Handler != null) Handler(sender, new StringEventArgs(message));
+            RaiseAggregatedStatusMessageEvent(sender, message);
+        }
+
         private void RaiseNodeEvent(object sender, NodeEventArgs nodeEvent)
         {
             EventHandler<NodeEventArgs> Handler = NodeEvent;
@@ -467,6 +475,11 @@ namespace RandM.GameSrv
         void ServerThread_ExceptionEvent(object sender, ExceptionEventArgs e)
         {
             RaiseExceptionEvent(sender, e);
+        }
+
+        private void ServerThread_MessageEvent(object sender, StringEventArgs e)
+        {
+            RaiseMessageEvent(sender, e.Text);
         }
 
         private void ServerThread_WarningMessageEvent(object sender, StringEventArgs e)
@@ -640,6 +653,7 @@ namespace RandM.GameSrv
                         _ServerThreads[_Config.RLoginServerPort].ConnectEvent += new EventHandler<ConnectEventArgs>(ServerThread_ConnectEvent);
                         _ServerThreads[_Config.RLoginServerPort].ErrorMessageEvent += new EventHandler<StringEventArgs>(ServerThread_ErrorMessageEvent);
                         _ServerThreads[_Config.RLoginServerPort].ExceptionEvent += new EventHandler<ExceptionEventArgs>(ServerThread_ExceptionEvent);
+                        _ServerThreads[_Config.RLoginServerPort].MessageEvent += new EventHandler<StringEventArgs>(ServerThread_MessageEvent);
                         _ServerThreads[_Config.RLoginServerPort].WarningMessageEvent += new EventHandler<StringEventArgs>(ServerThread_WarningMessageEvent);
                     }
 
@@ -652,6 +666,7 @@ namespace RandM.GameSrv
                         _ServerThreads[_Config.TelnetServerPort].ConnectEvent += new EventHandler<ConnectEventArgs>(ServerThread_ConnectEvent);
                         _ServerThreads[_Config.TelnetServerPort].ErrorMessageEvent += new EventHandler<StringEventArgs>(ServerThread_ErrorMessageEvent);
                         _ServerThreads[_Config.TelnetServerPort].ExceptionEvent += new EventHandler<ExceptionEventArgs>(ServerThread_ExceptionEvent);
+                        _ServerThreads[_Config.TelnetServerPort].MessageEvent += new EventHandler<StringEventArgs>(ServerThread_MessageEvent);
                         _ServerThreads[_Config.TelnetServerPort].WarningMessageEvent += new EventHandler<StringEventArgs>(ServerThread_WarningMessageEvent);
                     }
 
@@ -664,6 +679,7 @@ namespace RandM.GameSrv
                         _ServerThreads[_Config.WebSocketServerPort].ConnectEvent += new EventHandler<ConnectEventArgs>(ServerThread_ConnectEvent);
                         _ServerThreads[_Config.WebSocketServerPort].ErrorMessageEvent += new EventHandler<StringEventArgs>(ServerThread_ErrorMessageEvent);
                         _ServerThreads[_Config.WebSocketServerPort].ExceptionEvent += new EventHandler<ExceptionEventArgs>(ServerThread_ExceptionEvent);
+                        _ServerThreads[_Config.WebSocketServerPort].MessageEvent += new EventHandler<StringEventArgs>(ServerThread_MessageEvent);
                         _ServerThreads[_Config.WebSocketServerPort].WarningMessageEvent += new EventHandler<StringEventArgs>(ServerThread_WarningMessageEvent);
                     }
 

@@ -39,13 +39,14 @@ namespace RandM.GameSrv
         public event EventHandler<ConnectEventArgs> ConnectEvent = null;
         public event EventHandler<StringEventArgs> ErrorMessageEvent = null;
         public event EventHandler<ExceptionEventArgs> ExceptionEvent = null;
+        public event EventHandler<StringEventArgs> MessageEvent = null;
         public event EventHandler<StringEventArgs> WarningMessageEvent = null;
 
-        public ServerThread(string ALocalAddress, int ALocalPort, ConnectionType AConnectionType)
+        public ServerThread(string localAddress, int localPort, ConnectionType connectionType)
         {
-            _LocalAddress = ALocalAddress;
-            _LocalPort = ALocalPort;
-            _ConnectionType = AConnectionType;
+            _LocalAddress = localAddress;
+            _LocalPort = localPort;
+            _ConnectionType = connectionType;
             _Paused = false;
         }
 
@@ -140,6 +141,8 @@ namespace RandM.GameSrv
                                 TcpConnection NewConnection = Connection.AcceptTCP();
                                 if (NewConnection != null)
                                 {
+                                    RaiseMessageEvent("Incoming " + _ConnectionType.ToString() + " connection from " + NewConnection.GetRemoteIP() + ":" + NewConnection.GetRemotePort());
+
                                     TerminalType TT = GetTerminalType(NewConnection);
                                     if (IsBannedIP(NewConnection.GetRemoteIP()))
                                     {
@@ -154,17 +157,25 @@ namespace RandM.GameSrv
                                     }
                                     else
                                     {
-                                        ClientThread NewClientThread = new ClientThread();
-                                        int NewNode = RaiseConnectEvent(ref NewClientThread);
-                                        if (NewNode == 0)
+                                        if (!NewConnection.Connected)
                                         {
-                                            NewClientThread.Dispose();
-                                            DisplayAnsi("SERVER_BUSY", NewConnection, TT);
+                                            RaiseMessageEvent("No carrier detected (maybe it was a 'ping'?)");
                                             NewConnection.Close();
                                         }
                                         else
                                         {
-                                            NewClientThread.Start(NewNode, NewConnection, _ConnectionType, TT);
+                                            ClientThread NewClientThread = new ClientThread();
+                                            int NewNode = RaiseConnectEvent(ref NewClientThread);
+                                            if (NewNode == 0)
+                                            {
+                                                NewClientThread.Dispose();
+                                                DisplayAnsi("SERVER_BUSY", NewConnection, TT);
+                                                NewConnection.Close();
+                                            }
+                                            else
+                                            {
+                                                NewClientThread.Start(NewNode, NewConnection, _ConnectionType, TT);
+                                            }
                                         }
                                     }
                                 }
@@ -313,12 +324,12 @@ namespace RandM.GameSrv
             if (Handler != null) Handler(this, EventArgs.Empty);
         }
 
-        private int RaiseConnectEvent(ref ClientThread AClientThread)
+        private int RaiseConnectEvent(ref ClientThread clientThread)
         {
             EventHandler<ConnectEventArgs> Handler = ConnectEvent;
             if (Handler != null)
             {
-                ConnectEventArgs e = new ConnectEventArgs(AClientThread);
+                ConnectEventArgs e = new ConnectEventArgs(clientThread);
                 Handler(this, e);
                 return e.Node;
             }
@@ -326,22 +337,28 @@ namespace RandM.GameSrv
             return 0;
         }
 
-        private void RaiseErrorMessageEvent(string AMessage)
+        private void RaiseErrorMessageEvent(string message)
         {
             EventHandler<StringEventArgs> Handler = ErrorMessageEvent;
-            if (Handler != null) Handler(this, new StringEventArgs(AMessage));
+            if (Handler != null) Handler(this, new StringEventArgs(message));
         }
 
-        private void RaiseExceptionEvent(string AMessage, Exception AException)
+        private void RaiseExceptionEvent(string message, Exception exception)
         {
             EventHandler<ExceptionEventArgs> Handler = ExceptionEvent;
-            if (Handler != null) Handler(this, new ExceptionEventArgs(AMessage, AException));
+            if (Handler != null) Handler(this, new ExceptionEventArgs(message, exception));
         }
 
-        private void RaiseWarningMessageEvent(string AMessage)
+        private void RaiseMessageEvent(string message)
+        {
+            EventHandler<StringEventArgs> Handler = MessageEvent;
+            if (Handler != null) Handler(this, new StringEventArgs(message));
+        }
+
+        private void RaiseWarningMessageEvent(string message)
         {
             EventHandler<StringEventArgs> Handler = WarningMessageEvent;
-            if (Handler != null) Handler(this, new StringEventArgs(AMessage));
+            if (Handler != null) Handler(this, new StringEventArgs(message));
         }
     }
 }

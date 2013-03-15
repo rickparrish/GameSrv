@@ -1,5 +1,9 @@
 ﻿TODO Still to add: g5109b, lostv10, rokv100
 
+Mar 15, 2013
+	- Moved "Incoming connection from IP:PORT" message from ClientThread to ServerThread (which means it will be triggered sooner, so much less
+	  likely to report the useless "Incoming connection from :0"
+
 Feb 25, 2013
     - Added ASCII version of all ANSI files.  Also updated the way the DisplayFile* menu commands work, so you can pass a filename with no
 	  extension and then GameSrv will pick the best extension based on the user's terminal type.
