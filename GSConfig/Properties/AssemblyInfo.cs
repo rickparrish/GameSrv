@@ -31,8 +31,8 @@ using System;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("R&M Software")]
 [assembly: AssemblyProduct("GSConfig")]
-[assembly: AssemblyCopyright("Copyright ©  2013")]
-[assembly: AssemblyTrademark("Copyright (c) 2000-2013 Rick Parrish, R&M Software")]
+[assembly: AssemblyCopyright("Copyright (c) 2000-2013 Rick Parrish, R&M Software")]
+[assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
