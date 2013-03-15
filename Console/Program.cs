@@ -91,6 +91,7 @@ namespace RandM.GameSrv
                             WriteLn("GameSrv WFC Screen Help", false);
                             WriteLn("-=-=-=-=-=-=-=-=-=-=-=-", false);
                             WriteLn("F1 = Help (this screen)", false);
+                            WriteLn("C  = Configuration program", false);
                             WriteLn("P  = Pause (reject new connections, leave existing connections alone)", false);
                             WriteLn("Q  = Quit (shut down and terminate existing connections)", false);
                             WriteLn("", false);
