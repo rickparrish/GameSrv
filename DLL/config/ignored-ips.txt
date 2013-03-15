@@ -1,0 +1,3 @@
+﻿; List the IP addresses you want to silently ignore (similar to banning, but no output is sent to the client, nor is any message added to the log file)
+; (I have a service that checks if my BBS is online every half hour, and I use this file to exclude the service check from the log file)
+; See banned-ips.txt for an example of how to format ip entries

@@ -406,6 +406,9 @@
     <Content Include="config\banned-ips.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="config\ignored-ips.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="docs\ansifiles.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

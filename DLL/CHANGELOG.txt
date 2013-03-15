@@ -3,6 +3,9 @@
 Mar 15, 2013
 	- Moved "Incoming connection from IP:PORT" message from ClientThread to ServerThread (which means it will be triggered sooner, so much less
 	  likely to report the useless "Incoming connection from :0"
+	- Added the ability to setup a list of ignored ips -- like banned ips clients connecting from an ignored ip won't be allowed into the system,
+	  the difference here is no banned message will be sent to the client, nor will a log entry be added to indicate they connected.  
+	  (I have a service that checks if my BBS is online every half hour, and I use this file to exclude the service check from the log file)
 
 Feb 25, 2013
     - Added ASCII version of all ANSI files.  Also updated the way the DisplayFile* menu commands work, so you can pass a filename with no

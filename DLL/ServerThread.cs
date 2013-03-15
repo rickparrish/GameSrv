@@ -144,6 +144,11 @@ namespace RandM.GameSrv
                                     RaiseMessageEvent("Incoming " + _ConnectionType.ToString() + " connection from " + NewConnection.GetRemoteIP() + ":" + NewConnection.GetRemotePort());
 
                                     TerminalType TT = GetTerminalType(NewConnection);
+                                    if (IsIgnoredIP(NewConnection.GetRemoteIP()))
+                                    {
+                                        // Do nothing for ignored IPs
+                                        NewConnection.Close();
+                                    }
                                     if (IsBannedIP(NewConnection.GetRemoteIP()))
                                     {
                                         DisplayAnsi("IP_BANNED", NewConnection, TT);
@@ -306,6 +311,58 @@ namespace RandM.GameSrv
             catch (Exception ex)
             {
                 RaiseExceptionEvent("Unable to validate client IP against banned-ips.txt", ex);
+            }
+
+            // If we get here, it's an OK IP
+            return false;
+        }
+
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
+        private bool IsIgnoredIP(string ip)
+        {
+            try
+            {
+                string IgnoredIPsFileName = StringUtils.PathCombine(ProcessUtils.StartupPath, "config", "ignored-ips.txt");
+                if (File.Exists(IgnoredIPsFileName))
+                {
+                    string[] ConnectionOctets = ip.Split('.');
+                    if (ConnectionOctets.Length == 4)
+                    {
+                        string[] IgnoredIPs = FileUtils.FileReadAllLines(IgnoredIPsFileName);
+                        foreach (string IgnoredIP in IgnoredIPs)
+                        {
+                            if (IgnoredIP.StartsWith(";")) continue;
+
+                            string[] IgnoredOctets = IgnoredIP.Split('.');
+                            if (IgnoredOctets.Length == 4)
+                            {
+                                bool Match = true;
+                                for (int i = 0; i < 4; i++)
+                                {
+                                    if ((IgnoredOctets[i] == "*") || (IgnoredOctets[i] == ConnectionOctets[i]))
+                                    {
+                                        // We still have a match
+                                        continue;
+                                    }
+                                    else
+                                    {
+                                        // No longer have a match
+                                        Match = false;
+                                        break;
+                                    }
+                                }
+
+                                // If we still have a match after the loop, it's a Ignored IP
+                                if (Match) return true;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                RaiseExceptionEvent("Unable to validate client IP against ignored-ips.txt", ex);
             }
 
             // If we get here, it's an OK IP
