@@ -749,14 +749,6 @@ namespace RandM.GameSrv
         {
             try
             {
-                RaiseNodeEvent("Incoming connection from " + _NodeInfo.Connection.GetRemoteIP() + ":" + _NodeInfo.Connection.GetRemotePort());
-
-                if (!_NodeInfo.Connection.Connected)
-                {
-                    RaiseNodeEvent("No carrier detected (maybe it was a 'ping'?)");
-                    return;
-                }
-
                 // Make telnet connections convert CRLF to CR
                 _NodeInfo.Connection.LineEnding = "\r";
                 _NodeInfo.Connection.StripLF = true;
