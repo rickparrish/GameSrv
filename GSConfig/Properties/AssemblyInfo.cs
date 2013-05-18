@@ -30,7 +30,7 @@ using System;
 [assembly: AssemblyDescription("A minimalistic server used to host BBS door games")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("R&M Software")]
-[assembly: AssemblyProduct("GSConfig")]
+[assembly: AssemblyProduct("GameSrvConfig")]
 [assembly: AssemblyCopyright("Copyright (c) 2000-2013 Rick Parrish, R&M Software")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

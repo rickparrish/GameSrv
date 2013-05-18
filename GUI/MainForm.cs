@@ -266,7 +266,7 @@ namespace RandM.GameSrv
                 case Keys.C:
                     if (!e.Alt && !e.Control)
                     {
-                        Process.Start(StringUtils.PathCombine(ProcessUtils.StartupPath, "GSConfig.exe"));
+                        Process.Start(StringUtils.PathCombine(ProcessUtils.StartupPath, "GameSrvConfig.exe"));
                     }
                     break;
                 case Keys.P:
