@@ -141,45 +141,48 @@ namespace RandM.GameSrv
                                 TcpConnection NewConnection = Connection.AcceptTCP();
                                 if (NewConnection != null)
                                 {
-                                    RaiseMessageEvent("Incoming " + _ConnectionType.ToString() + " connection from " + NewConnection.GetRemoteIP() + ":" + NewConnection.GetRemotePort());
-
-                                    TerminalType TT = GetTerminalType(NewConnection);
                                     if (IsIgnoredIP(NewConnection.GetRemoteIP()))
                                     {
                                         // Do nothing for ignored IPs
                                         NewConnection.Close();
                                     }
-                                    if (IsBannedIP(NewConnection.GetRemoteIP()))
-                                    {
-                                        DisplayAnsi("IP_BANNED", NewConnection, TT);
-                                        RaiseWarningMessageEvent("IP " + NewConnection.GetRemoteIP() + " matches banned IP filter");
-                                        NewConnection.Close();
-                                    }
-                                    else if (_Paused)
-                                    {
-                                        DisplayAnsi("SERVER_PAUSED", NewConnection, TT);
-                                        NewConnection.Close();
-                                    }
                                     else
                                     {
-                                        if (!NewConnection.Connected)
+                                        RaiseMessageEvent("Incoming " + _ConnectionType.ToString() + " connection from " + NewConnection.GetRemoteIP() + ":" + NewConnection.GetRemotePort());
+
+                                        TerminalType TT = GetTerminalType(NewConnection);
+                                        if (IsBannedIP(NewConnection.GetRemoteIP()))
                                         {
-                                            RaiseMessageEvent("No carrier detected (maybe it was a 'ping'?)");
+                                            DisplayAnsi("IP_BANNED", NewConnection, TT);
+                                            RaiseWarningMessageEvent("IP " + NewConnection.GetRemoteIP() + " matches banned IP filter");
+                                            NewConnection.Close();
+                                        }
+                                        else if (_Paused)
+                                        {
+                                            DisplayAnsi("SERVER_PAUSED", NewConnection, TT);
                                             NewConnection.Close();
                                         }
                                         else
                                         {
-                                            ClientThread NewClientThread = new ClientThread();
-                                            int NewNode = RaiseConnectEvent(ref NewClientThread);
-                                            if (NewNode == 0)
+                                            if (!NewConnection.Connected)
                                             {
-                                                NewClientThread.Dispose();
-                                                DisplayAnsi("SERVER_BUSY", NewConnection, TT);
+                                                RaiseMessageEvent("No carrier detected (maybe it was a 'ping'?)");
                                                 NewConnection.Close();
                                             }
                                             else
                                             {
-                                                NewClientThread.Start(NewNode, NewConnection, _ConnectionType, TT);
+                                                ClientThread NewClientThread = new ClientThread();
+                                                int NewNode = RaiseConnectEvent(ref NewClientThread);
+                                                if (NewNode == 0)
+                                                {
+                                                    NewClientThread.Dispose();
+                                                    DisplayAnsi("SERVER_BUSY", NewConnection, TT);
+                                                    NewConnection.Close();
+                                                }
+                                                else
+                                                {
+                                                    NewClientThread.Start(NewNode, NewConnection, _ConnectionType, TT);
+                                                }
                                             }
                                         }
                                     }
