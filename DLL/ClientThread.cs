@@ -233,9 +233,36 @@ namespace RandM.GameSrv
 
                 if (Alias.ToUpper() == "NEW")
                 {
-                    // Trying to register as a new user
-                    RaiseNodeEvent("Registering as new user");
-                    return Register();
+                    bool CanRegister = false;
+
+                    if (string.IsNullOrEmpty(_Config.NewUserPassword))
+                    {
+                        CanRegister = true;
+                    }
+                    else
+                    {
+                        // Get new user password
+                        RaiseNodeEvent("Entering New User Password");
+                        DisplayAnsi("NEWUSER_ENTER_NEWUSER_PASSWORD");
+                        string NewUserPassword = ReadLn('*').Trim();
+                        _NodeInfo.Connection.WriteLn();
+
+                        CanRegister = NewUserPassword == _Config.NewUserPassword;
+                    }
+
+                    // Make sure we should still proceed
+                    if (QuitThread()) return false;
+
+                    if (CanRegister)
+                    {
+                        // Trying to register as a new user
+                        RaiseNodeEvent("Registering as new user");
+                        return Register();
+                    }
+                    else
+                    {
+                        RaiseNodeEvent("Entered invalid newuser password");
+                    }
                 }
                 else
                 {
@@ -493,7 +520,7 @@ namespace RandM.GameSrv
                 // Still part of the footer
                 _NodeInfo.Connection.Write("[" + StringUtils.SecToHMS(SecondsLeft()) + "] Select: ");
             }
-            else 
+            else
             {
                 // Clear the screen
                 ClrScr();
@@ -530,7 +557,10 @@ namespace RandM.GameSrv
         private int DisplayCurrentMenuOptions(int row)
         {
             ArrayList HotKeys = new ArrayList();
-            foreach (KeyValuePair<char, MenuOption> KV in _CurrentMenuOptions) HotKeys.Add(KV.Key);
+            foreach (KeyValuePair<char, MenuOption> KV in _CurrentMenuOptions)
+            {
+                HotKeys.Add(KV.Key);
+            }
             HotKeys.Sort();
 
             int i = 0;
@@ -844,7 +874,50 @@ namespace RandM.GameSrv
                     MenuOption MO = new MenuOption(_CurrentMenu, HotKey);
                     if ((MO.Loaded) && (_NodeInfo.User.AccessLevel >= MO.RequiredAccess))
                     {
-                        _CurrentMenuOptions.Add(HotKey, MO);
+                        bool CanAdd = true;
+
+                        // If the option is a door, check if the door can be run on the current platform
+                        if (MO.Action == Action.RunDoor)
+                        {
+                            DoorInfo DI = new DoorInfo(MO.Parameters);
+                            if (DI.Loaded)
+                            {
+                                // Determine how to run the door
+                                if (DI.Native)
+                                {
+                                    // Native is always OK
+                                }
+                                else if (OSUtils.IsWindows)
+                                {
+                                    if (ProcessUtils.Is64BitOperatingSystem)
+                                    {
+                                        // DOS doors are not OK on 64bit Windows if DOSBox is installed
+                                        CanAdd = IsDOSBoxInstalled();
+                                    }
+                                    else
+                                    {
+                                        // DOS doors are OK on 32bit Windows
+                                    }
+                                }
+                                else if (OSUtils.IsUnix)
+                                {
+                                    // DOS doors are OK on Linux if DOSEMU is installed
+                                    CanAdd = IsDOSEMUInstalled();
+                                }
+                                else
+                                {
+                                    // DOS doors are not OK on unknown platforms
+                                    CanAdd = false;
+                                }
+                            }
+                            else
+                            {
+                                // Can't load door, so don't display it
+                                CanAdd = false;
+                            }
+                        }
+
+                        if (CanAdd) _CurrentMenuOptions.Add(HotKey, MO);
                     }
                 }
                 catch (ArgumentException aex)
@@ -997,6 +1070,16 @@ namespace RandM.GameSrv
         public string IPAddress
         {
             get { return _NodeInfo.Connection.GetRemoteIP(); }
+        }
+
+        private bool IsDOSBoxInstalled()
+        {
+            return File.Exists(@"C:\Program Files (x86)\DOSBox-0.73\DOSBox.exe"); // TODO add configuration variable so this path is not hardcoded
+        }
+
+        private bool IsDOSEMUInstalled()
+        {
+            return File.Exists("/usr/bin/dosemu.bin"); // TODO add configuration variable so this path is not hardcoded
         }
 
         private void MainMenu()
@@ -1365,7 +1448,15 @@ namespace RandM.GameSrv
                 {
                     if (ProcessUtils.Is64BitOperatingSystem)
                     {
-                        RaiseErrorMessageEvent("DOS doors are not supported on 64bit Windows");
+                        
+                        if (IsDOSBoxInstalled())
+                        {
+                            RunDoorDOSBox(TranslateCLS(_NodeInfo.Door.Command), TranslateCLS(_NodeInfo.Door.Parameters));
+                        }
+                        else
+                        {
+                            RaiseErrorMessageEvent("DOS doors are not supported on 64bit Windows (unless you install DOSBox 0.73)");
+                        }
                     }
                     else
                     {
@@ -1381,8 +1472,15 @@ namespace RandM.GameSrv
                 }
                 else if (OSUtils.IsUnix)
                 {
-                    // TODO Doesn't this allow a door to hang if the user hangs up?  We need some method to force-quit it!
-                    RunDoorDOSEMU(TranslateCLS(_NodeInfo.Door.Command), TranslateCLS(_NodeInfo.Door.Parameters));
+                    if (IsDOSEMUInstalled())
+                    {
+                        // TODO Doesn't this allow a door to hang if the user hangs up?  We need some method to force-quit it!
+                        RunDoorDOSEMU(TranslateCLS(_NodeInfo.Door.Command), TranslateCLS(_NodeInfo.Door.Parameters));
+                    }
+                    else
+                    {
+                        RaiseErrorMessageEvent("DOS doors are not supported on Linux (unless you install DOSEMU)");
+                    }
                 }
                 else
                 {
@@ -1406,6 +1504,37 @@ namespace RandM.GameSrv
             }
         }
 
+        private void RunDoorDOSBox(string command, string parameters)
+        {
+            string DOSBoxConf = StringUtils.PathCombine("node" + _NodeInfo.Node.ToString(), "dosbox.conf");
+            string DOSBoxExe = @"C:\Program Files (x86)\DOSBox-0.73\DOSBox.exe"; // TODO add configuration variable so this path is not hardcoded
+
+            // Copy base dosbox.conf 
+            FileUtils.FileDelete(DOSBoxConf);
+            FileUtils.FileCopy("dosbox.conf", DOSBoxConf);
+
+            // If we're running a batch file, add a CALL to it
+            if (command.ToUpper().Contains(".BAT")) command = "call " + command;
+
+            string[] ExternalBat = new string[] { "mount c " + StringUtils.ExtractShortPathName(ProcessUtils.StartupPath), "C:", command + " " + parameters, "exit" };
+            FileUtils.FileAppendAllText(DOSBoxConf, string.Join("\r\n", ExternalBat));
+
+            string Arguments = "-telnet -conf " + DOSBoxConf + " -socket " + _NodeInfo.Connection.GetSocket().Handle.ToInt32().ToString();
+            if (Globals.Debug) RaiseNodeEvent("Executing " + DOSBoxExe + " " + Arguments);
+
+            // Start the process
+            using (RMProcess P = new RMProcess())
+            {
+                P.ProcessWaitEvent += OnDoorWait;
+
+                ProcessStartInfo PSI = new ProcessStartInfo(DOSBoxExe, Arguments);
+                PSI.WorkingDirectory = ProcessUtils.StartupPath;
+                PSI.WindowStyle = _NodeInfo.Door.WindowStyle;
+
+                P.StartAndWait(PSI);
+            }
+        }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2122:DoNotIndirectlyExposeMethodsWithLinkDemands")]
         private void RunDoorDOSEMU(string command, string parameters)
         {
@@ -1425,7 +1554,7 @@ namespace RandM.GameSrv
                 string[] ExternalBat = new string[] { "@echo off", "lredir g: linux\\fs" + ProcessUtils.StartupPath, "set path=%path%;g:\\dosutils", "fossil.com", "share.com", "ansi.com", "g:", command + " " + parameters, "exitemu" };
                 FileUtils.FileWriteAllText(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _NodeInfo.Node.ToString(), "external.bat"), String.Join("\r\n", ExternalBat), RMEncoding.Ansi);
 
-                string[] Arguments = new string[] { "HOME=" + ProcessUtils.StartupPath, "HOME=" + ProcessUtils.StartupPath, "QUIET=1", "DOSDRIVE_D=" + StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _NodeInfo.Node.ToString()), "/usr/bin/nice", "-n19", "/usr/bin/dosemu.bin", "-Ivideo { none }", "-Ikeystroke \\r", "-Iserial { virtual com 1 }", "-Ed:external.bat", "-o" + StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _NodeInfo.Node.ToString(), "dosemu.log") };//, "2> /gamesrv/NODE" + _NodeInfo.Node.ToString() + "/DOSEMU_BOOT.LOG" };
+                string[] Arguments = new string[] { "HOME=" + ProcessUtils.StartupPath, "HOME=" + ProcessUtils.StartupPath, "QUIET=1", "DOSDRIVE_D=" + StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _NodeInfo.Node.ToString()), "/usr/bin/nice", "-n19", "/usr/bin/dosemu.bin", "-Ivideo { none }", "-Ikeystroke \\r", "-Iserial { virtual com 1 }", "-Ed:external.bat", "-o" + StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _NodeInfo.Node.ToString(), "dosemu.log") };//, "2> /gamesrv/NODE" + _NodeInfo.Node.ToString() + "/DOSEMU_BOOT.LOG" }; // TODO add configuration variable so this path is not hardcoded
                 if (Globals.Debug) RaiseNodeEvent("Executing /usr/bin/env " + string.Join(" ", Arguments));
 
                 lock (Globals.PrivilegeLock)
@@ -2157,23 +2286,34 @@ namespace RandM.GameSrv
 
         private string TranslateCLS(string command)
         {
-            string[][] CLS = new string[][] {
-                                             new string[] {"*DOOR32", StringUtils.ExtractShortPathName(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _NodeInfo.Node.ToString() , "door32.sys"))},
-                                             new string[] {"*DOORSYS", StringUtils.ExtractShortPathName(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _NodeInfo.Node.ToString() , "door.sys"))},
-                                             new string[] {"*DOORFILE", StringUtils.ExtractShortPathName(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _NodeInfo.Node.ToString() , "doorfile.sr"))},
-                                             new string[] {"*DORINFO", StringUtils.ExtractShortPathName(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _NodeInfo.Node.ToString() , "dorinfo.def"))},
-                                             new string[] {"*DORINFO1", StringUtils.ExtractShortPathName(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _NodeInfo.Node.ToString() , "dorinfo1.def"))},
-                                             new string[] {"*DORINFOx", StringUtils.ExtractShortPathName(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _NodeInfo.Node.ToString() , "dorinfo" + _NodeInfo.Node.ToString() + ".def"))},
-                                             new string[] {"*HANDLE", _NodeInfo.Connection.Handle.ToString()},
-                                             new string[] {"*IPADDRESS", _NodeInfo.Connection.GetRemoteIP()},
-                                             new string[] {"*NODE", _NodeInfo.Node.ToString()},
-                                             new string[] {"*SOCKETHANDLE", _NodeInfo.Connection.Handle.ToString()},
-                                            };
+            StringDictionary CLS = new StringDictionary();
+            CLS.Add("**ALIAS", _NodeInfo.User.Alias);
+            CLS.Add("DOOR32", StringUtils.ExtractShortPathName(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _NodeInfo.Node.ToString(), "door32.sys")));
+            CLS.Add("DOORSYS", StringUtils.ExtractShortPathName(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _NodeInfo.Node.ToString(), "door.sys")));
+            CLS.Add("DOORFILE", StringUtils.ExtractShortPathName(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _NodeInfo.Node.ToString(), "doorfile.sr")));
+            CLS.Add("DORINFO", StringUtils.ExtractShortPathName(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _NodeInfo.Node.ToString(), "dorinfo.def")));
+            CLS.Add("DORINFO1", StringUtils.ExtractShortPathName(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _NodeInfo.Node.ToString(), "dorinfo1.def")));
+            CLS.Add("DORINFOx", StringUtils.ExtractShortPathName(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _NodeInfo.Node.ToString(), "dorinfo" + _NodeInfo.Node.ToString() + ".def")));
+            CLS.Add("HANDLE", _NodeInfo.Connection.Handle.ToString());
+            CLS.Add("IPADDRESS", _NodeInfo.Connection.GetRemoteIP());
+            CLS.Add("MINUTESLEFT", MinutesLeft().ToString());
+            CLS.Add("NODE", _NodeInfo.Node.ToString());
+            CLS.Add("**PASSWORD", _NodeInfo.User.PasswordHash);
+            CLS.Add("SECONDSLEFT", SecondsLeft().ToString());
+            CLS.Add("SOCKETHANDLE", _NodeInfo.Connection.Handle.ToString());
+            CLS.Add("**USERNAME", _NodeInfo.User.Alias);
+            foreach (DictionaryEntry DE in _NodeInfo.User.AdditionalInfo)
+            {
+                CLS.Add("**" + DE.Key.ToString(), DE.Value.ToString());
+            }
 
             // Perform translation
-            for (int I = 0; I < CLS.Length; I++)
+            foreach (DictionaryEntry DE in CLS)
             {
-                command = command.Replace(CLS[I][0], CLS[I][1]);
+                if (DE.Value != null)
+                {
+                    command = command.Replace("*" + DE.Key.ToString().ToUpper(), DE.Value.ToString());
+                }
             }
             return command;
         }

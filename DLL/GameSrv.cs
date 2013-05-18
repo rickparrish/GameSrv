@@ -122,19 +122,35 @@ namespace RandM.GameSrv
                 FileUtils.FileDelete("start.sh");
                 if (OSUtils.IsWin9x)
                 {
+                    FileUtils.FileDelete("dosbox.conf");
                     FileUtils.FileDelete("sbbsexec.dll");
                 }
                 else if (OSUtils.IsWinNT)
                 {
                     FileUtils.FileDelete("sbbsexec.vxd");
-                    if (!File.Exists(StringUtils.PathCombine(Environment.SystemDirectory, "sbbsexec.dll")))
+                    if (ProcessUtils.Is64BitOperatingSystem)
                     {
-                        RaiseErrorMessageEvent("PLEASE COPY SBBSEXEC.DLL TO " + StringUtils.PathCombine(Environment.SystemDirectory, "sbbsexec.dll").ToUpper() + " IF YOU PLAN ON RUNNING DOS DOORS USING THE EMBEDDED SYNCHRONET FOSSIL");
+                        FileUtils.FileDelete("sbbsexec.dll");
+                        string ProgramFilesX86 = Environment.GetEnvironmentVariable("PROGRAMFILES(X86)") ?? Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
+                        string DOSBoxExe = StringUtils.PathCombine(ProgramFilesX86, @"DOSBox-0.73\dosbox.exe");
+                        if (!File.Exists(DOSBoxExe))
+                        {
+                            RaiseErrorMessageEvent("PLEASE INSTALL DOSBOX 0.73 TO \"" + Path.GetDirectoryName(DOSBoxExe).ToUpper() + "\" IF YOU PLAN ON RUNNING DOS DOORS USING DOSBOX");
+                        }
+                    }
+                    else
+                    {
+                        FileUtils.FileDelete("dosbox.conf");
+                        if (!File.Exists(StringUtils.PathCombine(Environment.SystemDirectory, "sbbsexec.dll")))
+                        {
+                            RaiseErrorMessageEvent("PLEASE COPY SBBSEXEC.DLL TO " + StringUtils.PathCombine(Environment.SystemDirectory, "sbbsexec.dll").ToUpper() + " IF YOU PLAN ON RUNNING DOS DOORS USING THE EMBEDDED SYNCHRONET FOSSIL");
+                        }
                     }
                 }
             }
             else if (OSUtils.IsUnix)
             {
+                FileUtils.FileDelete("dosbox.conf");
                 FileUtils.FileDelete("dosxtrn.exe");
                 FileUtils.FileDelete("dosxtrn.pif");
                 FileUtils.FileDelete("install.cmd");
