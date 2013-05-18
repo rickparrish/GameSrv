@@ -98,7 +98,7 @@ namespace RandM.GameSrv
                         }
                         break;
                     case "C":
-                        Process.Start(StringUtils.PathCombine(ProcessUtils.StartupPath, "GSConfig.exe"));
+                        Process.Start(StringUtils.PathCombine(ProcessUtils.StartupPath, "GameSrvConfig.exe"));
                         break;
                     case "P":
                         _GameSrv.Pause();

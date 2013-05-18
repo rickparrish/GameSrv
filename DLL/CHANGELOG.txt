@@ -1,4 +1,38 @@
 ﻿TODO Still to add: g5109b, lostv10, rokv100
+TODO Thank you screen after registering disappears without pause
+TODO Add global war
+TODO Fix upgrader to implement porting of logon and logoff processes (just name "logoffprocessX" where X is the step number)
+TODO Add option to door .ini file to ignore DTR changes
+
+Apr 24, 2013
+	- Added *MINUTESLEFT and *SECONDSLEFT command-line specifiers since v10.04.02 had them and it made implementing the upgrader easier
+	- Added support for running doors under DOSBox 0.73, which should allow DOS doors to work under 64bit versions of Windows.  A few very quick tests showed that
+	  this worked OK for some doors, sort of OK but not really for others (output was really slow), and not at all for others.  So it's an option, but your
+	  best bet is still going to be to virtualize a 32bit version of Windows I think.
+	- Finished Upgrade.exe -- works OK on the test install of v10.04.02 that I installed here, but still needs additional testing
+
+Apr 23, 2013
+	- Renamed GSConfig to GameSrvConfig to match all the other EXEs
+	- Started work on Upgrade.exe, which will allow you to import your settings/users/menus from GameSrv v10.04.02
+	  - So far just settings for gamesrv.ini can be imported.  Still need to handle logon/logoff process, menus and users
+
+Apr 12, 2013
+	- Added filter so unplayable doors will not appear on the menu (for example 16bit DOS doors will not appear on the Doors menu when GameSrv
+	  is running on a 64bit version of Windows).
+
+Apr 5, 2013
+	- Added a NewUserPassword setting to the gamesrv.ini file -- this will allow you to run a private system where someone has
+	  to enter a password before they're allowed to create a new account.
+
+Apr 3, 2013
+	- Added *ALIAS, *USERNAME (same as *ALIAS) and *PASSWORD as command-line specifier variables.  By default GameSrv hashes a users password,
+	  meaning the original password cannot be retrieved, and so *PASSWORD will actually pass the hash.  If you disable the hashing, then
+	  *PASSWORD will pass the real password.
+	- Also added option to pass the variables found in NEWUSER.INI on the command-line.  So for example if you have an [Email] entry in
+	  newuser.ini, you can use *EMAIL to pass that on the command-line.
+	- Please read doors\_runbbs.ini before using these new parameters though -- there's an important security note and instructions on their usage.
+	- Added the ability to disable password hashing.  Not recommended, unless you have a need to do so.  If you have a need, just set PasswordPepper=DISABLE in the gamesrv.ini file
+	  NOTE: You can't change between hashing and plaintext once users start to sign up -- if you do, the old users will be unable to sign in after you make the change.
 
 Mar 15, 2013
 	- Moved "Incoming connection from IP:PORT" message from ClientThread to ServerThread (which means it will be triggered sooner, so much less
@@ -30,8 +64,8 @@ Feb 13, 2013
 	  the problem where some rows aren't coloured as they should be.
 
 Feb 7, 2013
-	- Added File menu to GSConfig (which only has an Exit option for now)
-	- Fixed GameSrvGUI so that if you hit CTRL-C to copy some text from the status window, then GSConfig won't load as well
+	- Added File menu to GameSrvConfig (which only has an Exit option for now)
+	- Fixed GameSrvGUI so that if you hit CTRL-C to copy some text from the status window, then GameSrvConfig won't load as well
 
 Feb 1, 2013
     - Started work on a configuration program
