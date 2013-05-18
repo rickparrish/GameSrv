@@ -73,6 +73,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="ansi\newuser_enter_newuser_password.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\newuser_enter_newuser_password.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ansi\email_sysop.asc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -341,6 +347,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="doors\_sample.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="dosbox.conf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="dosutils.zip">

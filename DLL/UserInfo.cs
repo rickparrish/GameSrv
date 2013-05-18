@@ -63,28 +63,35 @@ namespace RandM.GameSrv
             }
         }
 
-        static private string GetPasswordHash(string password, string salt, string pepper)
+        static public string GetPasswordHash(string password, string salt, string pepper)
         {
-            // Build the array of bytes to hash.  This is made up of the concatenation of:
-            //   salt:     A random string.  This string should be unique per user, and can be stored in the user record along with the rest of the users information
-            //   password: The plain text password
-            //   pepper:   Another random string.  This string should be unique per BBS, and can be stored in the bbs config file
-            // The purpose of the salt is to ensure that if the password hashes are stolen, a single rainbow table cannot be used to crack all the passwords.  For example, 2 users both using "password" as their password will have different hashes, since different salts will be applied.
-            // The purpose of the pepper is to ensure that even if the password hashes and per user salt values are stolen, and the attacker has the CPU power required to create per-user rainbow tables, the tables will still be incomplete without the secret pepper value that is stored separately.  (Probably not far enough away in this case, but it doesn't hurt to haev this)
-            using (SHA512Managed SHA = new SHA512Managed())
+            if (pepper.ToUpper().Trim() == "DISABLE")
             {
-                byte[] InBytes = Encoding.ASCII.GetBytes(salt + password + pepper);
-                byte[] OutBytes = SHA.ComputeHash(InBytes);
-
-                // Loop 1000 times -- this creates no noticeable delay on our server, but it may mean an attacker can now only try 1,000 per second instead of 1,000,000 per second
-                // TODO This isn't a well thought out implementation...probably good enough since GameSrv isn't a mission critical system, but it would be good
-                //      to implement something new (that doesn't break the old implementation)
-                for (int i = 0; i < 1024; i++)
+                return password;
+            }
+            else
+            {
+                // Build the array of bytes to hash.  This is made up of the concatenation of:
+                //   salt:     A random string.  This string should be unique per user, and can be stored in the user record along with the rest of the users information
+                //   password: The plain text password
+                //   pepper:   Another random string.  This string should be unique per BBS, and can be stored in the bbs config file
+                // The purpose of the salt is to ensure that if the password hashes are stolen, a single rainbow table cannot be used to crack all the passwords.  For example, 2 users both using "password" as their password will have different hashes, since different salts will be applied.
+                // The purpose of the pepper is to ensure that even if the password hashes and per user salt values are stolen, and the attacker has the CPU power required to create per-user rainbow tables, the tables will still be incomplete without the secret pepper value that is stored separately.  (Probably not far enough away in this case, but it doesn't hurt to haev this)
+                using (SHA512Managed SHA = new SHA512Managed())
                 {
-                    OutBytes = SHA.ComputeHash(OutBytes);
-                }
+                    byte[] InBytes = Encoding.ASCII.GetBytes(salt + password + pepper);
+                    byte[] OutBytes = SHA.ComputeHash(InBytes);
 
-                return Convert.ToBase64String(OutBytes);
+                    // Loop 1000 times -- this creates no noticeable delay on our server, but it may mean an attacker can now only try 1,000 per second instead of 1,000,000 per second
+                    // TODO This isn't a well thought out implementation...probably good enough since GameSrv isn't a mission critical system, but it would be good
+                    //      to implement something new (that doesn't break the old implementation)
+                    for (int i = 0; i < 1024; i++)
+                    {
+                        OutBytes = SHA.ComputeHash(OutBytes);
+                    }
+
+                    return Convert.ToBase64String(OutBytes);
+                }
             }
         }
 

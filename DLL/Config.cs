@@ -34,6 +34,7 @@ namespace RandM.GameSrv
         public int FlashSocketPolicyServerPort { get; set; }
         public int LastNode { get; set; }
         public int NextUserId { get; set; }
+        public string NewUserPassword { get; set; }
         public string PasswordPepper { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms", MessageId = "Login"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "RLogin")]
         public string RLoginServerIP { get; set; }
@@ -60,6 +61,7 @@ namespace RandM.GameSrv
             FlashSocketPolicyServerPort = 843;
             LastNode = 5;
             NextUserId = 1;
+            NewUserPassword = "";
             PasswordPepper = Debugger.IsAttached ? "ABCDEFGHIJKLMNOPQRSTUVWXYZ" : StringUtils.RandomString(100);
             RLoginServerIP = "0.0.0.0";
             RLoginServerPort = 513;
