@@ -83,8 +83,6 @@ namespace RandM.GameSrv
                     byte[] OutBytes = SHA.ComputeHash(InBytes);
 
                     // Loop 1000 times -- this creates no noticeable delay on our server, but it may mean an attacker can now only try 1,000 per second instead of 1,000,000 per second
-                    // TODO This isn't a well thought out implementation...probably good enough since GameSrv isn't a mission critical system, but it would be good
-                    //      to implement something new (that doesn't break the old implementation)
                     for (int i = 0; i < 1024; i++)
                     {
                         OutBytes = SHA.ComputeHash(OutBytes);
