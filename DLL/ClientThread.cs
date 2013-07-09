@@ -475,20 +475,31 @@ namespace RandM.GameSrv
 
         private void DisplayCurrentMenu()
         {
-            // TODO Take terminal type into account
+            // Generate list of possible menus to look for, prioritized by access level specific and terminal type specific
+            List<string> FilesToCheck = new List<string>();
 
-            // Check for custom menu, or if we should display a canned menu
-            if (File.Exists(StringUtils.PathCombine(ProcessUtils.StartupPath, "menus", _CurrentMenu.ToLower() + _NodeInfo.User.AccessLevel.ToString() + ".ans")))
+            // Access level specific
+            if (_NodeInfo.TerminalType == TerminalType.Rip) FilesToCheck.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "menus", _CurrentMenu.ToLower() + _NodeInfo.User.AccessLevel.ToString() + ".rip"));
+            if ((_NodeInfo.TerminalType == TerminalType.Rip) || (_NodeInfo.TerminalType == TerminalType.Ansi)) FilesToCheck.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "menus", _CurrentMenu.ToLower() + _NodeInfo.User.AccessLevel.ToString() + ".ans"));
+            FilesToCheck.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "menus", _CurrentMenu.ToLower() + _NodeInfo.User.AccessLevel.ToString() + ".asc"));
+
+            // No specified access level
+            if (_NodeInfo.TerminalType == TerminalType.Rip) FilesToCheck.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "menus", _CurrentMenu.ToLower() + ".rip"));
+            if ((_NodeInfo.TerminalType == TerminalType.Rip) || (_NodeInfo.TerminalType == TerminalType.Ansi)) FilesToCheck.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "menus", _CurrentMenu.ToLower() + ".ans"));
+            FilesToCheck.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "menus", _CurrentMenu.ToLower() + ".asc"));
+
+            // Check if any of the above files exists
+            for (int i = 0; i < FilesToCheck.Count; i++)
             {
-                // Display access level specific .ans menu
-                DisplayFile(StringUtils.PathCombine(ProcessUtils.StartupPath, "menus", _CurrentMenu.ToLower() + _NodeInfo.User.AccessLevel.ToString() + ".ans"), true, false, false);
+                if (File.Exists(FilesToCheck[i]))
+                {
+                    DisplayFile(FilesToCheck[i], true, false, false);
+                    return;
+                }
             }
-            else if (File.Exists(StringUtils.PathCombine(ProcessUtils.StartupPath, "menus", _CurrentMenu.ToLower() + ".ans")))
-            {
-                // Display generic .ans menu
-                DisplayFile(StringUtils.PathCombine(ProcessUtils.StartupPath, "menus", _CurrentMenu.ToLower() + ".ans"), true, false, false);
-            }
-            else if (_NodeInfo.TerminalType == TerminalType.Ascii)
+
+            // None of the files existed, displayed canned menu
+            if (_NodeInfo.TerminalType == TerminalType.Ascii)
             {
                 // Clear the screen
                 ClrScr();
@@ -1448,7 +1459,7 @@ namespace RandM.GameSrv
                 {
                     if (ProcessUtils.Is64BitOperatingSystem)
                     {
-                        
+
                         if (IsDOSBoxInstalled())
                         {
                             RunDoorDOSBox(TranslateCLS(_NodeInfo.Door.Command), TranslateCLS(_NodeInfo.Door.Parameters));
