@@ -223,16 +223,40 @@ namespace Upgrade
                     string Parameters = DB.Reader["Parameters"].ToString();
                     string RequiredAccess = DB.Reader["RequiredAccess"].ToString();
 
-                    if (Action == "RunDoor")
-                    {
-                        AddToLog(" - Unable to import EXEC* process for StepNumber = " + DB.Reader["StepNumber"].ToString() + ", please add equivalent RunDoor process manually");
-                    }
-                    else if (Action == DB.Reader["Command"].ToString())
+                    if (Action == DB.Reader["Command"].ToString())
                     {
                         AddToLog(" - Ignoring command that no longer exists (" + Action + ")");
                     }
                     else
                     {
+                        // See if we need to add the logon/off process as a door
+                        if (Action == "RunDoor")
+                        {
+                            string[] CommandAndParameters = DB.Reader["Parameters"].ToString().Split(' ');
+                            string Command = CommandAndParameters[0];
+                            string DoorParameters = string.Join(" ", CommandAndParameters, 1, CommandAndParameters.Length - 1);
+                            bool Native = DB.Reader["Command"].ToString() == "EXEC";
+
+                            using (IniFile DoorIni = new IniFile(StringUtils.PathCombine(ProcessUtils.StartupPath, "doors", GetSafeDoorFileName(Name) + ".ini")))
+                            {
+                                DoorIni.WriteString("DOOR", "Name", Name);
+                                DoorIni.WriteString("DOOR", "Command", Command);
+                                DoorIni.WriteString("DOOR", "Parameters", DoorParameters);
+                                DoorIni.WriteString("DOOR", "Native", Native.ToString());
+                                DoorIni.WriteString("DOOR", "ForceQuitDelay", "5");
+                                DoorIni.WriteString("DOOR", "WindowStyle", "Minimized");
+                            }
+
+                            AddToLog(" - Added Door = " + Name);
+                            AddToLog("         Command = " + Command);
+                            AddToLog("         Parameters = " + DoorParameters);
+                            AddToLog("         Native = " + Native.ToString());
+
+                            // Override settings to be used below
+                            Action = "RunDoor";
+                            Parameters = Name;
+                        }
+                    
                         Ini.WriteString(Name, "Name", Name);
                         Ini.WriteString(Name, "Action", Action);
                         Ini.WriteString(Name, "Parameters", Parameters);
