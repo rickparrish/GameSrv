@@ -1,5 +1,4 @@
 ﻿TODO Still to add: g5109b, lostv10, rokv100
-TODO Thank you screen after registering as new user disappears without pause
 TODO Add global war
 TODO Fix upgrader to implement porting of logon and logoff processes (just name "logoffprocessX" where X is the step number)
 TODO Add option to door .ini file to ignore DTR changes
