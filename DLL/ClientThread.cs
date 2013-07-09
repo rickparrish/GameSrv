@@ -2159,7 +2159,7 @@ namespace RandM.GameSrv
                         // to allow for last minute reception of output from DOS programs
                         if (LoopsSinceIO >= 3)
                         {
-                            if (NativeMethods.WaitForSingleObject(HangUpEvent, 0) == NativeMethods.WAIT_OBJECT_0)
+                            if ((_NodeInfo.Door.WatchDTR) && (NativeMethods.WaitForSingleObject(HangUpEvent, 0) == NativeMethods.WAIT_OBJECT_0))
                             {
                                 RaiseNodeEvent("External program requested hangup (dropped DTR)");
                                 _NodeInfo.Connection.Close();

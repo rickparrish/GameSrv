@@ -33,6 +33,7 @@ namespace RandM.GameSrv
         public string Name { get; set; }
         public bool Native { get; set; }
         public string Parameters { get; set; }
+        public bool WatchDTR { get; set; }
         public ProcessWindowStyle WindowStyle { get; set; }
 
         public DoorInfo(string door)
@@ -43,6 +44,7 @@ namespace RandM.GameSrv
             Name = "";
             Native = true;
             Parameters = "";
+            WatchDTR = true;
             WindowStyle = ProcessWindowStyle.Minimized;
 
             Load("DOOR");
