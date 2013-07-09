@@ -2253,20 +2253,8 @@ namespace RandM.GameSrv
 
             _NodeInfo.TerminalType = terminalType;
             _NodeInfo.Node = node;
+            _NodeInfo.Connection = connection;
             _NodeInfo.ConnectionType = connectionType;
-            switch (connectionType)
-            {
-                case ConnectionType.RLogin:
-                    _NodeInfo.Connection = new RLoginConnection();
-                    break;
-                case ConnectionType.Telnet:
-                    _NodeInfo.Connection = new TelnetConnection();
-                    break;
-                case ConnectionType.WebSocket:
-                    _NodeInfo.Connection = new WebSocketConnection();
-                    break;
-            }
-            _NodeInfo.Connection.Open(connection.GetSocket());
 
             base.Start();
         }

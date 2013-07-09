@@ -141,47 +141,65 @@ namespace RandM.GameSrv
                                 TcpConnection NewConnection = Connection.AcceptTCP();
                                 if (NewConnection != null)
                                 {
-                                    if (IsIgnoredIP(NewConnection.GetRemoteIP()))
+                                    TcpConnection TypedConnection = null;
+                                    switch (_ConnectionType)
                                     {
-                                        // Do nothing for ignored IPs
-                                        NewConnection.Close();
+                                        case ConnectionType.RLogin:
+                                            TypedConnection = new RLoginConnection();
+                                            break;
+                                        case ConnectionType.Telnet:
+                                            TypedConnection = new TelnetConnection();
+                                            break;
+                                        case ConnectionType.WebSocket:
+                                            TypedConnection = new WebSocketConnection();
+                                            break;
                                     }
-                                    else
+                                    if (TypedConnection != null)
                                     {
-                                        RaiseMessageEvent("Incoming " + _ConnectionType.ToString() + " connection from " + NewConnection.GetRemoteIP() + ":" + NewConnection.GetRemotePort());
+                                        TypedConnection.Open(NewConnection.GetSocket());
 
-                                        TerminalType TT = GetTerminalType(NewConnection);
-                                        if (IsBannedIP(NewConnection.GetRemoteIP()))
+                                        if (IsIgnoredIP(TypedConnection.GetRemoteIP()))
                                         {
-                                            DisplayAnsi("IP_BANNED", NewConnection, TT);
-                                            RaiseWarningMessageEvent("IP " + NewConnection.GetRemoteIP() + " matches banned IP filter");
-                                            NewConnection.Close();
-                                        }
-                                        else if (_Paused)
-                                        {
-                                            DisplayAnsi("SERVER_PAUSED", NewConnection, TT);
-                                            NewConnection.Close();
+                                            // Do nothing for ignored IPs
+                                            TypedConnection.Close();
                                         }
                                         else
                                         {
-                                            if (!NewConnection.Connected)
+                                            RaiseMessageEvent("Incoming " + _ConnectionType.ToString() + " connection from " + TypedConnection.GetRemoteIP() + ":" + TypedConnection.GetRemotePort());
+
+                                            TerminalType TT = GetTerminalType(TypedConnection);
+                                            if (IsBannedIP(TypedConnection.GetRemoteIP()))
                                             {
-                                                RaiseMessageEvent("No carrier detected (maybe it was a 'ping'?)");
-                                                NewConnection.Close();
+                                                DisplayAnsi("IP_BANNED", TypedConnection, TT);
+                                                RaiseWarningMessageEvent("IP " + TypedConnection.GetRemoteIP() + " matches banned IP filter");
+                                                TypedConnection.Close();
+                                            }
+                                            else if (_Paused)
+                                            {
+                                                DisplayAnsi("SERVER_PAUSED", TypedConnection, TT);
+                                                TypedConnection.Close();
                                             }
                                             else
                                             {
-                                                ClientThread NewClientThread = new ClientThread();
-                                                int NewNode = RaiseConnectEvent(ref NewClientThread);
-                                                if (NewNode == 0)
+                                                if (!TypedConnection.Connected)
                                                 {
-                                                    NewClientThread.Dispose();
-                                                    DisplayAnsi("SERVER_BUSY", NewConnection, TT);
-                                                    NewConnection.Close();
+                                                    RaiseMessageEvent("No carrier detected (maybe it was a 'ping'?)");
+                                                    TypedConnection.Close();
                                                 }
                                                 else
                                                 {
-                                                    NewClientThread.Start(NewNode, NewConnection, _ConnectionType, TT);
+                                                    ClientThread NewClientThread = new ClientThread();
+                                                    int NewNode = RaiseConnectEvent(ref NewClientThread);
+                                                    if (NewNode == 0)
+                                                    {
+                                                        NewClientThread.Dispose();
+                                                        DisplayAnsi("SERVER_BUSY", TypedConnection, TT);
+                                                        TypedConnection.Close();
+                                                    }
+                                                    else
+                                                    {
+                                                        NewClientThread.Start(NewNode, TypedConnection, _ConnectionType, TT);
+                                                    }
                                                 }
                                             }
                                         }
@@ -206,12 +224,13 @@ namespace RandM.GameSrv
         // Logic for this terminal type detection taken from Synchronet's ANSWER.CPP
         private TerminalType GetTerminalType(TcpConnection connection)
         {
-            try {
+            try
+            {
                 /* Detect terminal type */
                 Thread.Sleep(200);
-	            connection.ReadString();		/* flush input buffer */
+                connection.ReadString();		/* flush input buffer */
                 connection.Write("\r\n" +		/* locate cursor at column 1 */
-			        "\x1b[s" +	                /* save cursor position (necessary for HyperTerm auto-ANSI) */
+                    "\x1b[s" +	                /* save cursor position (necessary for HyperTerm auto-ANSI) */
                     "\x1b[255B" +	            /* locate cursor as far down as possible */
                     "\x1b[255C" +	            /* locate cursor as far right as possible */
                     "\b_" +		                /* need a printable at this location to actually move cursor */
@@ -223,7 +242,7 @@ namespace RandM.GameSrv
                     "\x1b[H" +	                /* home cursor */
                     "\xC" +		                /* clear screen (in case not ANSI) */
                     "\r"		                /* Move cursor left (in case previous char printed) */
-			    );
+                );
 
                 char? c = '\0';
                 int i = 0;
@@ -262,7 +281,9 @@ namespace RandM.GameSrv
                 {
                     return TerminalType.Ansi;
                 }
-            } catch (Exception) {
+            }
+            catch (Exception)
+            {
                 // Ignore, we'll just assume ASCII if something bad happens
             }
 
