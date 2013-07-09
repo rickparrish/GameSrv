@@ -444,29 +444,25 @@ namespace RandM.GameSrv
 
         public bool DisplayAnsi(string fileName)
         {
+            return DisplayAnsi(fileName, false);
+        }
+
+        public bool DisplayAnsi(string fileName, bool pauseAtEnd)
+        {
             if (string.IsNullOrEmpty(fileName))
             {
                 return false;
             }
             else
             {
-                List<string> FileNames = new List<string>();
-                if (_NodeInfo.TerminalType == TerminalType.Rip)
-                {
-                    FileNames.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "ansi", fileName.ToLower() + ".rip"));
-                }
-                if ((_NodeInfo.TerminalType == TerminalType.Rip) || (_NodeInfo.TerminalType == TerminalType.Ansi))
-                {
-                    FileNames.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "ansi", fileName.ToLower() + ".ans"));
-                }
-                FileNames.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "ansi", fileName.ToLower() + ".asc"));
+                List<string> FilesToCheck = new List<string>();
+                if (_NodeInfo.TerminalType == TerminalType.Rip) FilesToCheck.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "ansi", fileName.ToLower() + ".rip"));
+                if ((_NodeInfo.TerminalType == TerminalType.Rip) || (_NodeInfo.TerminalType == TerminalType.Ansi)) FilesToCheck.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "ansi", fileName.ToLower() + ".ans"));
+                FilesToCheck.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "ansi", fileName.ToLower() + ".asc"));
 
-                foreach (string FullFileName in FileNames)
+                for (int i = 0; i < FilesToCheck.Count; i++)
                 {
-                    if (File.Exists(FullFileName))
-                    {
-                        return DisplayFile(FullFileName, false, false, false);
-                    }
+                    if (File.Exists(FilesToCheck[i])) return DisplayFile(FilesToCheck[i], false, pauseAtEnd, false);
                 }
             }
 
@@ -1404,7 +1400,7 @@ namespace RandM.GameSrv
                         C.Save();
                     }
 
-                    DisplayAnsi("NEWUSER_SUCCESS");
+                    DisplayAnsi("NEWUSER_SUCCESS", true);
                 }
                 else
                 {
