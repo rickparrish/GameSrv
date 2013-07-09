@@ -8,6 +8,9 @@ Jul 9, 2013
     - Fixed WebSocket connections.  When I added the terminal type detection, I put it in a place that ran before the handshake occured for
 	  websocket connections, so that broke things.  The handshake now occurs before terminal type detection, so all is well.
 	- Fixed install.cmd to work for everyone.  For some it already worked, but for others it complained about not finding certain files
+	- Take terminal type into account when displaying menus (previously only looked for menus\*.ans, now will also look for *.rip and *.asc
+	  whenever appropriate)
+	- Fixed the thank-you screen that should have been displayed after registering (it didn't pause after displaying before)
 
 Apr 24, 2013
 	- Added *MINUTESLEFT and *SECONDSLEFT command-line specifiers since v10.04.02 had them and it made implementing the upgrader easier
