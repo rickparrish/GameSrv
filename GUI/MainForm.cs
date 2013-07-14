@@ -149,20 +149,28 @@ namespace RandM.GameSrv
             }
             else
             {
-                ListViewItem LVI = lvNodes.Items[e.NodeInfo.Node - _GameSrv.FirstNode];
-                LVI.SubItems[1].Text = e.NodeInfo.ConnectionType.ToString();
-                LVI.SubItems[2].Text = e.NodeInfo.Connection.GetRemoteIP();
-                LVI.SubItems[3].Text = e.NodeInfo.User.Alias;
-                LVI.SubItems[4].Text = e.Status;
+                ListViewItem LVINodes = lvNodes.Items[e.NodeInfo.Node - _GameSrv.FirstNode];
+                LVINodes.SubItems[1].Text = e.NodeInfo.ConnectionType.ToString();
+                LVINodes.SubItems[2].Text = e.NodeInfo.Connection.GetRemoteIP();
+                LVINodes.SubItems[3].Text = e.NodeInfo.User.Alias;
+                LVINodes.SubItems[4].Text = e.Status;
                 // TODO Show time user signed on at in listview?
 
-                // TODO Keep a counter for number of connections (of each type)?
-                //switch (e.NodeInfo.ConnectionType)
-                //{
-                //    case ConnectionType.RLogin: lblRLogin.Text = (Convert.ToInt32(lblRLogin.Text) + 1).ToString(); break;
-                //    case ConnectionType.Telnet: lblTelnet.Text = (Convert.ToInt32(lblTelnet.Text) + 1).ToString(); break;
-                //    case ConnectionType.WebSocket: lblWebSocket.Text = (Convert.ToInt32(lblWebSocket.Text) + 1).ToString(); break;
-                //}
+                ListViewItem LVIHistory = new ListViewItem(e.NodeInfo.Node.ToString());
+                LVIHistory.SubItems.Add(e.NodeInfo.ConnectionType.ToString());
+                LVIHistory.SubItems.Add(e.NodeInfo.Connection.GetRemoteIP());
+                LVIHistory.SubItems.Add(e.NodeInfo.User.Alias);
+                LVIHistory.SubItems.Add(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString());
+                lvHistory.Items.Insert(0, LVIHistory);
+                // TODO Add column to hold logoff date (and maybe also session duration)?
+
+                // Keep a counter for number of connections
+                switch (e.NodeInfo.ConnectionType)
+                {
+                    case ConnectionType.RLogin: lblRLoginCount.Text = (Convert.ToInt32(lblRLoginCount.Text) + 1).ToString(); break;
+                    case ConnectionType.Telnet: lblTelnetCount.Text = (Convert.ToInt32(lblTelnetCount.Text) + 1).ToString(); break;
+                    case ConnectionType.WebSocket: lblWebSocketCount.Text = (Convert.ToInt32(lblWebSocketCount.Text) + 1).ToString(); break;
+                }
             }
         }
 
@@ -309,8 +317,8 @@ namespace RandM.GameSrv
                         tsbDisconnect.Enabled = true;
                         this.Icon = (_GameSrv.ConnectionCount == 0) ? Properties.Resources.GameSrv16_32Started : Properties.Resources.GameSrv16_32InUse;
 
-                        // Don't want to do this if we just resumed
-                        if (_GameSrv.Status == ServerStatus.Started)
+                        // Only add if we haven't previously added
+                        if (lvNodes.Items.Count == 0)
                         {
                             for (int i = _GameSrv.FirstNode; i <= _GameSrv.LastNode; i++)
                             {
