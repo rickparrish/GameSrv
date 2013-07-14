@@ -137,7 +137,7 @@ namespace RandM.GameSrv
             }
         }
 
-        void GameSrv_StatusEvent(object sender, StatusEventArgs e)
+        private void GameSrv_StatusEvent(object sender, StatusEventArgs e)
         {
             UpdateTrayIcon();
         }
