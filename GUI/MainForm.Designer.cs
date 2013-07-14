@@ -72,6 +72,12 @@ namespace RandM.GameSrv
             this.tabLog = new System.Windows.Forms.TabPage();
             this.rtbLog = new System.Windows.Forms.RichTextBox();
             this.tabHistory = new System.Windows.Forms.TabPage();
+            this.lvHistory = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lblRLoginCount = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -79,12 +85,6 @@ namespace RandM.GameSrv
             this.label6 = new System.Windows.Forms.Label();
             this.lblTelnetCount = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.lvHistory = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -309,98 +309,6 @@ namespace RandM.GameSrv
             this.tabHistory.Text = "History";
             this.tabHistory.UseVisualStyleBackColor = true;
             // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.tableLayoutPanel1.ColumnCount = 6;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Controls.Add(this.lblRLoginCount, 5, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label4, 4, 0);
-            this.tableLayoutPanel1.Controls.Add(this.lblWebSocketCount, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label6, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.lblTelnetCount, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label8, 0, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(610, 19);
-            this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // lblRLoginCount
-            // 
-            this.lblRLoginCount.AutoSize = true;
-            this.lblRLoginCount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblRLoginCount.Location = new System.Drawing.Point(559, 1);
-            this.lblRLoginCount.Name = "lblRLoginCount";
-            this.lblRLoginCount.Size = new System.Drawing.Size(47, 17);
-            this.lblRLoginCount.TabIndex = 2;
-            this.lblRLoginCount.Text = "0";
-            this.lblRLoginCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Location = new System.Drawing.Point(408, 1);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(144, 17);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "RLogin";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lblWebSocketCount
-            // 
-            this.lblWebSocketCount.AutoSize = true;
-            this.lblWebSocketCount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblWebSocketCount.Location = new System.Drawing.Point(357, 1);
-            this.lblWebSocketCount.Name = "lblWebSocketCount";
-            this.lblWebSocketCount.Size = new System.Drawing.Size(44, 17);
-            this.lblWebSocketCount.TabIndex = 4;
-            this.lblWebSocketCount.Text = "0";
-            this.lblWebSocketCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label6.Location = new System.Drawing.Point(206, 1);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(144, 17);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "WebSocket";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lblTelnetCount
-            // 
-            this.lblTelnetCount.AutoSize = true;
-            this.lblTelnetCount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTelnetCount.Location = new System.Drawing.Point(155, 1);
-            this.lblTelnetCount.Name = "lblTelnetCount";
-            this.lblTelnetCount.Size = new System.Drawing.Size(44, 17);
-            this.lblTelnetCount.TabIndex = 6;
-            this.lblTelnetCount.Text = "0";
-            this.lblTelnetCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label8.Location = new System.Drawing.Point(4, 1);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(144, 17);
-            this.label8.TabIndex = 7;
-            this.label8.Text = "Telnet";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // lvHistory
             // 
             this.lvHistory.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -445,6 +353,97 @@ namespace RandM.GameSrv
             // 
             this.columnHeader5.Text = "Date/Time";
             this.columnHeader5.Width = 225;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.tableLayoutPanel1.ColumnCount = 7;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.Controls.Add(this.lblRLoginCount, 5, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label4, 4, 0);
+            this.tableLayoutPanel1.Controls.Add(this.lblWebSocketCount, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label6, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.lblTelnetCount, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label8, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(610, 19);
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // lblRLoginCount
+            // 
+            this.lblRLoginCount.AutoSize = true;
+            this.lblRLoginCount.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblRLoginCount.Location = new System.Drawing.Point(409, 1);
+            this.lblRLoginCount.Name = "lblRLoginCount";
+            this.lblRLoginCount.Size = new System.Drawing.Size(44, 17);
+            this.lblRLoginCount.TabIndex = 2;
+            this.lblRLoginCount.Text = "0";
+            this.lblRLoginCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label4.Location = new System.Drawing.Point(308, 1);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(94, 17);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "RLogin";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblWebSocketCount
+            // 
+            this.lblWebSocketCount.AutoSize = true;
+            this.lblWebSocketCount.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblWebSocketCount.Location = new System.Drawing.Point(257, 1);
+            this.lblWebSocketCount.Name = "lblWebSocketCount";
+            this.lblWebSocketCount.Size = new System.Drawing.Size(44, 17);
+            this.lblWebSocketCount.TabIndex = 4;
+            this.lblWebSocketCount.Text = "0";
+            this.lblWebSocketCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label6.Location = new System.Drawing.Point(156, 1);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(94, 17);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "WebSocket";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblTelnetCount
+            // 
+            this.lblTelnetCount.AutoSize = true;
+            this.lblTelnetCount.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTelnetCount.Location = new System.Drawing.Point(105, 1);
+            this.lblTelnetCount.Name = "lblTelnetCount";
+            this.lblTelnetCount.Size = new System.Drawing.Size(44, 17);
+            this.lblTelnetCount.TabIndex = 6;
+            this.lblTelnetCount.Text = "0";
+            this.lblTelnetCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label8.Location = new System.Drawing.Point(4, 1);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(94, 17);
+            this.label8.TabIndex = 7;
+            this.label8.Text = "Telnet";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // MainForm
             // 
