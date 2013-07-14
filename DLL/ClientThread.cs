@@ -1103,12 +1103,12 @@ namespace RandM.GameSrv
                 // Send node event message
                 RaiseNodeEvent("At " + _CurrentMenu.ToUpper() + " menu");
 
-                char HotKey = ReadChar().ToString().ToUpper()[0];
-                if (!QuitThread())
+                string HotKey = ReadChar().ToString().ToUpper();
+                if (!string.IsNullOrEmpty(HotKey) && !QuitThread())
                 {
-                    if (_CurrentMenuOptions.ContainsKey(HotKey))
+                    if (_CurrentMenuOptions.ContainsKey(HotKey[0]))
                     {
-                        MenuOption MO = _CurrentMenuOptions[HotKey];
+                        MenuOption MO = _CurrentMenuOptions[HotKey[0]];
                         switch (MO.Action)
                         {
                             case Action.ChangeMenu:
