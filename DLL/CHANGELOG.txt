@@ -2,6 +2,14 @@
 TODO Add global war
 TODO Starting, stopping, and starting again fails because all ports fail to bind
 
+Jul 15, 2013
+    - Slightly changed connection counters on history panel of GUI
+
+Jul 13, 2013
+	- Fix hotkey input at menu screens (if caller dropped carrier at a menu, an exception was thrown when
+	  trying to access the first character of an empty string)
+	- Add a new history panel to the GUI WFC
+
 Jul 12, 2013
 	- Added new icons to GUI:
 	  - Configure courtesy Oliver Scholtz (and others): http://www.iconfinder.com/iconsets/humano2
