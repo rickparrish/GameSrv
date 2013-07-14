@@ -1,5 +1,12 @@
 ﻿TODO Still to add: g5109b, lostv10, rokv100
 TODO Add global war
+TODO Starting, stopping, and starting again fails because all ports fail to bind
+
+Jul 12, 2013
+	- Added new icons to GUI:
+	  - Configure courtesy Oliver Scholtz (and others): http://www.iconfinder.com/iconsets/humano2
+	  - Disconnect courtesy Icons Land: http://www.iconfinder.com/iconsets/softwaredemo
+	  - Start, Pause and Stop courtesy Icons Land: http://www.iconfinder.com/iconsets/iconslandplayer
 
 Jul 9, 2013
     - Fixed WebSocket connections.  When I added the terminal type detection, I put it in a place that ran before the handshake occured for
@@ -10,6 +17,8 @@ Jul 9, 2013
 	- Fixed the thank-you screen that should have been displayed after registering (it didn't pause after displaying before)
 	- Upgrader now supports importing of LogOn and Logoff process items that used the EXEC* command
 	- Add WatchDTR setting to door configuration files (see _sample.ini for info)
+	- Upgraded Usurper to 0.23f
+	- Updated GameSrvGUI to look more like a real GUI (should be familiar to those who used older versions of GameSrv)
 
 Apr 24, 2013
 	- Added *MINUTESLEFT and *SECONDSLEFT command-line specifiers since v10.04.02 had them and it made implementing the upgrader easier
