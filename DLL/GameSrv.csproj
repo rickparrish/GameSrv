@@ -466,9 +466,6 @@
     <Content Include="dosxtrn.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="README.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="sbbsexec.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
