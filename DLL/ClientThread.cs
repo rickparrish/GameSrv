@@ -1068,6 +1068,14 @@ namespace RandM.GameSrv
                         RaiseNodeEvent("Running " + menuOption.Parameters);
                         RunDoor(menuOption.Parameters);
                         return false;
+                    case Action.Telnet:
+                        RaiseNodeEvent("Telnetting to " + menuOption.Parameters);
+                        _NodeInfo.Door = new DoorInfo("");
+                        _NodeInfo.Door.Command = "bin\\TelnetDoor.exe";
+                        _NodeInfo.Door.Native = true;
+                        _NodeInfo.Door.Parameters = "-D*DOOR32 -S" + menuOption.Parameters;
+                        RunDoor();
+                        return false;
                 }
             }
 
@@ -1118,6 +1126,7 @@ namespace RandM.GameSrv
                             case Action.DisplayFilePause:
                             case Action.LogOff:
                             case Action.RunDoor:
+                            case Action.Telnet:
                                 ExitWhile = HandleMenuOption(MO);
                                 break;
                         }
@@ -2506,7 +2515,8 @@ namespace RandM.GameSrv
             LogOff,
             MainMenu,
             Pause,
-            RunDoor
+            RunDoor,
+            Telnet
         }
 
         private enum ValidationType

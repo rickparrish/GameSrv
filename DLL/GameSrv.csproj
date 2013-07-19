@@ -406,6 +406,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\RMLib.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\TelnetDoor.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="bulletins\bulletins.lst">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
