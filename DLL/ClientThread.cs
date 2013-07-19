@@ -105,34 +105,8 @@ namespace RandM.GameSrv
 
         private bool AuthenticateRLogin()
         {
-            // First, get the 4 null terminated strings
-            string NullByte = _NodeInfo.Connection.ReadLn("\0", 5000);
-            if (QuitThread() || (string.IsNullOrEmpty(NullByte)))
-            {
-                DisplayAnsi("RLOGIN_INVALID");
-                return false;
-            }
-            string ClientUserName = _NodeInfo.Connection.ReadLn("\0", 5000);
-            if (QuitThread() || (string.IsNullOrEmpty(ClientUserName)))
-            {
-                DisplayAnsi("RLOGIN_INVALID");
-                return false;
-            }
-            string ServerUserName = _NodeInfo.Connection.ReadLn("\0", 5000);
-            if (QuitThread() || (string.IsNullOrEmpty(ServerUserName)))
-            {
-                DisplayAnsi("RLOGIN_INVALID");
-                return false;
-            }
-            string TerminalType = _NodeInfo.Connection.ReadLn("\0", 5000);
-            if (QuitThread() || (string.IsNullOrEmpty(TerminalType)))
-            {
-                DisplayAnsi("RLOGIN_INVALID");
-                return false;
-            }
-
             // Check for door request/web information in terminal type string
-            string[] TerminalTypeEntries = TerminalType.Split(';');
+            string[] TerminalTypeEntries = ((RLoginConnection)_NodeInfo.Connection).TerminalType.Split(';');
             foreach (string TerminalTypeEntry in TerminalTypeEntries)
             {
                 if (TerminalTypeEntry.Contains("="))
@@ -146,11 +120,11 @@ namespace RandM.GameSrv
             // Now based on the rlogin mode, handle the rest of the details
             if (_RLoginVariables.ContainsKey("mode") && (_RLoginVariables["mode"] == "web"))
             {
-                return AuthenticateRLoginWeb(ClientUserName, ServerUserName);
+                return AuthenticateRLoginWeb(((RLoginConnection)_NodeInfo.Connection).ClientUserName, ((RLoginConnection)_NodeInfo.Connection).ServerUserName);
             }
             else
             {
-                return AuthenticateRLoginClassic(ServerUserName);
+                return AuthenticateRLoginClassic(((RLoginConnection)_NodeInfo.Connection).ServerUserName);
             }
         }
 
