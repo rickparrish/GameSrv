@@ -2,6 +2,11 @@
 TODO Add global war
 TODO Starting, stopping, and starting again fails because all ports fail to bind
 
+Jul 19, 2013
+    - Fix RLogin connections.  Similar fix to the earlier WebSocket connection fix (terminal type detection was
+	  happening before rlogin header was parsed)
+	- Added new Telnet Action that can be used on the menus to connect to a remote server.
+	
 Jul 15, 2013
     - Slightly changed connection counters on history panel of GUI
 
