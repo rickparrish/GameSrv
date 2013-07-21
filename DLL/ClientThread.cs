@@ -22,6 +22,7 @@
   that have been ported from the original C code to C#.  Those portions are
   Copyright Rob Swindell - http://www.synchro.net/copyright.html
 */
+// TODO Remove this, just trying to get GitHub to stop thinking this file has changes when it doesn't!
 using System;
 using System.Collections;
 using System.Collections.Generic;
