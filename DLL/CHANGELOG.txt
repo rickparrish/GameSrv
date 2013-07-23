@@ -2,6 +2,9 @@
 TODO Add global war
 TODO Starting, stopping, and starting again fails because all ports fail to bind
 
+Jul 23, 2013
+	- Fix *DORINFO1 and *DORINFOx command-line specifiers (thanks Philip)
+
 Jul 19, 2013
     - Fix RLogin connections.  Similar fix to the earlier WebSocket connection fix (terminal type detection was
 	  happening before rlogin header was parsed)
