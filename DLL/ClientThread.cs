@@ -2264,33 +2264,33 @@ namespace RandM.GameSrv
 
         private string TranslateCLS(string command)
         {
-            StringDictionary CLS = new StringDictionary();
-            CLS.Add("**ALIAS", _NodeInfo.User.Alias);
-            CLS.Add("DOOR32", StringUtils.ExtractShortPathName(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _NodeInfo.Node.ToString(), "door32.sys")));
-            CLS.Add("DOORSYS", StringUtils.ExtractShortPathName(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _NodeInfo.Node.ToString(), "door.sys")));
-            CLS.Add("DOORFILE", StringUtils.ExtractShortPathName(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _NodeInfo.Node.ToString(), "doorfile.sr")));
-            CLS.Add("DORINFO", StringUtils.ExtractShortPathName(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _NodeInfo.Node.ToString(), "dorinfo.def")));
-            CLS.Add("DORINFO1", StringUtils.ExtractShortPathName(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _NodeInfo.Node.ToString(), "dorinfo1.def")));
-            CLS.Add("DORINFOx", StringUtils.ExtractShortPathName(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _NodeInfo.Node.ToString(), "dorinfo" + _NodeInfo.Node.ToString() + ".def")));
-            CLS.Add("HANDLE", _NodeInfo.Connection.Handle.ToString());
-            CLS.Add("IPADDRESS", _NodeInfo.Connection.GetRemoteIP());
-            CLS.Add("MINUTESLEFT", MinutesLeft().ToString());
-            CLS.Add("NODE", _NodeInfo.Node.ToString());
-            CLS.Add("**PASSWORD", _NodeInfo.User.PasswordHash);
-            CLS.Add("SECONDSLEFT", SecondsLeft().ToString());
-            CLS.Add("SOCKETHANDLE", _NodeInfo.Connection.Handle.ToString());
-            CLS.Add("**USERNAME", _NodeInfo.User.Alias);
+            List<KeyValuePair<string, string>> CLS = new List<KeyValuePair<string, string>>();
+            CLS.Add(new KeyValuePair<string, string>("**ALIAS", _NodeInfo.User.Alias));
+            CLS.Add(new KeyValuePair<string, string>("DOOR32", StringUtils.ExtractShortPathName(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _NodeInfo.Node.ToString(), "door32.sys"))));
+            CLS.Add(new KeyValuePair<string, string>("DOORSYS", StringUtils.ExtractShortPathName(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _NodeInfo.Node.ToString(), "door.sys"))));
+            CLS.Add(new KeyValuePair<string, string>("DOORFILE", StringUtils.ExtractShortPathName(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _NodeInfo.Node.ToString(), "doorfile.sr"))));
+            CLS.Add(new KeyValuePair<string, string>("DORINFOx", StringUtils.ExtractShortPathName(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _NodeInfo.Node.ToString(), "dorinfo" + _NodeInfo.Node.ToString() + ".def"))));
+            CLS.Add(new KeyValuePair<string, string>("DORINFO1", StringUtils.ExtractShortPathName(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _NodeInfo.Node.ToString(), "dorinfo1.def"))));
+            CLS.Add(new KeyValuePair<string, string>("DORINFO", StringUtils.ExtractShortPathName(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _NodeInfo.Node.ToString(), "dorinfo.def"))));
+            CLS.Add(new KeyValuePair<string, string>("HANDLE", _NodeInfo.Connection.Handle.ToString()));
+            CLS.Add(new KeyValuePair<string, string>("IPADDRESS", _NodeInfo.Connection.GetRemoteIP()));
+            CLS.Add(new KeyValuePair<string, string>("MINUTESLEFT", MinutesLeft().ToString()));
+            CLS.Add(new KeyValuePair<string, string>("NODE", _NodeInfo.Node.ToString()));
+            CLS.Add(new KeyValuePair<string, string>("**PASSWORD", _NodeInfo.User.PasswordHash));
+            CLS.Add(new KeyValuePair<string, string>("SECONDSLEFT", SecondsLeft().ToString()));
+            CLS.Add(new KeyValuePair<string, string>("SOCKETHANDLE", _NodeInfo.Connection.Handle.ToString()));
+            CLS.Add(new KeyValuePair<string, string>("**USERNAME", _NodeInfo.User.Alias));
             foreach (DictionaryEntry DE in _NodeInfo.User.AdditionalInfo)
             {
-                CLS.Add("**" + DE.Key.ToString(), DE.Value.ToString());
+                CLS.Add(new KeyValuePair<string, string>("**" + DE.Key.ToString(), DE.Value.ToString()));
             }
 
             // Perform translation
-            foreach (DictionaryEntry DE in CLS)
+            for (int i = 0; i < CLS.Count; i++)
             {
-                if (DE.Value != null)
+                if (CLS[i].Value != null)
                 {
-                    command = command.Replace("*" + DE.Key.ToString().ToUpper(), DE.Value.ToString());
+                    command = command.Replace("*" + CLS[i].Key.ToString().ToUpper(), CLS[i].Value.ToString());
                 }
             }
             return command;
