@@ -956,6 +956,7 @@ namespace RandM.GameSrv
         private void HandleLogOnProcess()
         {
             string[] Processes = LogOnProcess.GetProcesses();
+            Action LastAction = Action.None;
 
             // Loop through the options, and run the ones we allow here
             bool ExitFor = false;
@@ -966,6 +967,8 @@ namespace RandM.GameSrv
                     LogOnProcess LP = new LogOnProcess(Processes[i]);
                     if ((LP.Loaded) && (!QuitThread()))
                     {
+                        LastAction = LP.Action;
+
                         switch (LP.Action)
                         {
                             case Action.Disconnect:
@@ -989,10 +992,17 @@ namespace RandM.GameSrv
                         }
                     }
                 }
-                catch (ArgumentException aex)
+                catch (Exception ex)
                 {
                     // If there's something wrong with the ini entry (Action is invalid for example), this will throw a System.ArgumentException error, so we just ignore that menu item
-                    RaiseExceptionEvent("Exception executing logon process '" + Processes[i] + "'", aex);
+                    RaiseExceptionEvent("Exception executing logon process '" + Processes[i] + "'", ex);
+
+                    // If the exception was at the main menu, then exit the loop so we don't continue on to other items (like the twit menu)
+                    if (LastAction == Action.MainMenu)
+                    {
+                        // TODO Display error message and pause
+                        return;
+                    }
                 }
             }
         }
@@ -1006,6 +1016,10 @@ namespace RandM.GameSrv
                     case Action.ChangeMenu:
                         RaiseNodeEvent("Changing to " + menuOption.Parameters.ToUpper() + " menu");
                         _CurrentMenu = menuOption.Parameters.ToUpper();
+                        return false;
+                    case Action.DirectoryBrowse:
+                        RaiseNodeEvent("Browsing directory " + menuOption.Parameters);
+                        new DirectoryBrowse(_NodeInfo.Connection).Display(menuOption.Parameters);
                         return false;
                     case Action.Disconnect:
                         RaiseNodeEvent("Disconnecting");
@@ -1094,6 +1108,7 @@ namespace RandM.GameSrv
                         switch (MO.Action)
                         {
                             case Action.ChangeMenu:
+                            case Action.DirectoryBrowse:
                             case Action.Disconnect:
                             case Action.DisplayFile:
                             case Action.DisplayFileMore:
@@ -2482,6 +2497,7 @@ namespace RandM.GameSrv
         {
             None,
             ChangeMenu,
+            DirectoryBrowse,
             Disconnect,
             DisplayFile,
             DisplayFileMore,
