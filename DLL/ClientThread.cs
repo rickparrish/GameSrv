@@ -1017,10 +1017,6 @@ namespace RandM.GameSrv
                         RaiseNodeEvent("Changing to " + menuOption.Parameters.ToUpper() + " menu");
                         _CurrentMenu = menuOption.Parameters.ToUpper();
                         return false;
-                    case Action.DirectoryBrowse:
-                        RaiseNodeEvent("Browsing directory " + menuOption.Parameters);
-                        new DirectoryBrowse(_NodeInfo.Connection).Display(menuOption.Parameters);
-                        return false;
                     case Action.Disconnect:
                         RaiseNodeEvent("Disconnecting");
                         _NodeInfo.Connection.Close();
@@ -1108,7 +1104,6 @@ namespace RandM.GameSrv
                         switch (MO.Action)
                         {
                             case Action.ChangeMenu:
-                            case Action.DirectoryBrowse:
                             case Action.Disconnect:
                             case Action.DisplayFile:
                             case Action.DisplayFileMore:
@@ -2497,7 +2492,6 @@ namespace RandM.GameSrv
         {
             None,
             ChangeMenu,
-            DirectoryBrowse,
             Disconnect,
             DisplayFile,
             DisplayFileMore,
