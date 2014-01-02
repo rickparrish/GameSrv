@@ -268,7 +268,10 @@ namespace RandM.GameSrv
             }
             else
             {
-                _GameSrv.DisconnectNode(Convert.ToInt32(lvNodes.SelectedItems[0].SubItems[0].Text));
+                if (Dialog.NoYes("Are you sure you want to disconnect this user?", "Confirm disconnect") == DialogResult.Yes)
+                {
+                    _GameSrv.DisconnectNode(Convert.ToInt32(lvNodes.SelectedItems[0].SubItems[0].Text));
+                }
             }
         }
 
