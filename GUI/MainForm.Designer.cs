@@ -68,10 +68,7 @@ namespace RandM.GameSrv
             this.colRemoteIP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colUser = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colStatus = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.tcStatus = new System.Windows.Forms.TabControl();
-            this.tabLog = new System.Windows.Forms.TabPage();
-            this.rtbLog = new System.Windows.Forms.RichTextBox();
-            this.tabHistory = new System.Windows.Forms.TabPage();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.lvHistory = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -85,14 +82,15 @@ namespace RandM.GameSrv
             this.label6 = new System.Windows.Forms.Label();
             this.lblTelnetCount = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.rtbLog = new System.Windows.Forms.RichTextBox();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.tcStatus.SuspendLayout();
-            this.tabLog.SuspendLayout();
-            this.tabHistory.SuspendLayout();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -114,7 +112,7 @@ namespace RandM.GameSrv
             this.tsbSetup});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(624, 31);
+            this.toolStrip1.Size = new System.Drawing.Size(984, 31);
             this.toolStrip1.TabIndex = 4;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -183,7 +181,7 @@ namespace RandM.GameSrv
             this.mnuFile});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(624, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(984, 24);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -215,8 +213,8 @@ namespace RandM.GameSrv
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.tcStatus);
-            this.splitContainer1.Size = new System.Drawing.Size(624, 386);
+            this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
+            this.splitContainer1.Size = new System.Drawing.Size(984, 606);
             this.splitContainer1.SplitterDistance = 120;
             this.splitContainer1.TabIndex = 5;
             // 
@@ -235,7 +233,7 @@ namespace RandM.GameSrv
             this.lvNodes.Location = new System.Drawing.Point(0, 0);
             this.lvNodes.MultiSelect = false;
             this.lvNodes.Name = "lvNodes";
-            this.lvNodes.Size = new System.Drawing.Size(624, 120);
+            this.lvNodes.Size = new System.Drawing.Size(984, 120);
             this.lvNodes.TabIndex = 0;
             this.lvNodes.UseCompatibleStateImageBehavior = false;
             this.lvNodes.View = System.Windows.Forms.View.Details;
@@ -258,56 +256,30 @@ namespace RandM.GameSrv
             // colUser
             // 
             this.colUser.Text = "User";
-            this.colUser.Width = 125;
+            this.colUser.Width = 200;
             // 
             // colStatus
             // 
             this.colStatus.Text = "Status";
-            this.colStatus.Width = 225;
+            this.colStatus.Width = 500;
             // 
-            // tcStatus
+            // splitContainer2
             // 
-            this.tcStatus.Controls.Add(this.tabLog);
-            this.tcStatus.Controls.Add(this.tabHistory);
-            this.tcStatus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tcStatus.Location = new System.Drawing.Point(0, 0);
-            this.tcStatus.Name = "tcStatus";
-            this.tcStatus.SelectedIndex = 0;
-            this.tcStatus.Size = new System.Drawing.Size(624, 262);
-            this.tcStatus.TabIndex = 0;
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Name = "splitContainer2";
             // 
-            // tabLog
+            // splitContainer2.Panel1
             // 
-            this.tabLog.Controls.Add(this.rtbLog);
-            this.tabLog.Location = new System.Drawing.Point(4, 23);
-            this.tabLog.Name = "tabLog";
-            this.tabLog.Padding = new System.Windows.Forms.Padding(3);
-            this.tabLog.Size = new System.Drawing.Size(616, 235);
-            this.tabLog.TabIndex = 0;
-            this.tabLog.Text = "Log";
-            this.tabLog.UseVisualStyleBackColor = true;
+            this.splitContainer2.Panel1.Controls.Add(this.lvHistory);
+            this.splitContainer2.Panel1.Controls.Add(this.tableLayoutPanel1);
             // 
-            // rtbLog
+            // splitContainer2.Panel2
             // 
-            this.rtbLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rtbLog.Location = new System.Drawing.Point(3, 3);
-            this.rtbLog.Name = "rtbLog";
-            this.rtbLog.ReadOnly = true;
-            this.rtbLog.Size = new System.Drawing.Size(610, 229);
-            this.rtbLog.TabIndex = 0;
-            this.rtbLog.Text = "";
-            // 
-            // tabHistory
-            // 
-            this.tabHistory.Controls.Add(this.lvHistory);
-            this.tabHistory.Controls.Add(this.tableLayoutPanel1);
-            this.tabHistory.Location = new System.Drawing.Point(4, 23);
-            this.tabHistory.Name = "tabHistory";
-            this.tabHistory.Padding = new System.Windows.Forms.Padding(3);
-            this.tabHistory.Size = new System.Drawing.Size(616, 235);
-            this.tabHistory.TabIndex = 1;
-            this.tabHistory.Text = "History";
-            this.tabHistory.UseVisualStyleBackColor = true;
+            this.splitContainer2.Panel2.Controls.Add(this.rtbLog);
+            this.splitContainer2.Size = new System.Drawing.Size(984, 482);
+            this.splitContainer2.SplitterDistance = 549;
+            this.splitContainer2.TabIndex = 0;
             // 
             // lvHistory
             // 
@@ -321,11 +293,11 @@ namespace RandM.GameSrv
             this.lvHistory.FullRowSelect = true;
             this.lvHistory.GridLines = true;
             this.lvHistory.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.lvHistory.Location = new System.Drawing.Point(3, 22);
+            this.lvHistory.Location = new System.Drawing.Point(0, 19);
             this.lvHistory.MultiSelect = false;
             this.lvHistory.Name = "lvHistory";
-            this.lvHistory.Size = new System.Drawing.Size(610, 210);
-            this.lvHistory.TabIndex = 1;
+            this.lvHistory.Size = new System.Drawing.Size(549, 463);
+            this.lvHistory.TabIndex = 3;
             this.lvHistory.UseCompatibleStateImageBehavior = false;
             this.lvHistory.View = System.Windows.Forms.View.Details;
             // 
@@ -351,8 +323,8 @@ namespace RandM.GameSrv
             // 
             // columnHeader5
             // 
-            this.columnHeader5.Text = "Date/Time";
-            this.columnHeader5.Width = 225;
+            this.columnHeader5.Text = "Logon Date";
+            this.columnHeader5.Width = 157;
             // 
             // tableLayoutPanel1
             // 
@@ -372,12 +344,12 @@ namespace RandM.GameSrv
             this.tableLayoutPanel1.Controls.Add(this.lblTelnetCount, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.label8, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(610, 19);
-            this.tableLayoutPanel1.TabIndex = 0;
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(549, 19);
+            this.tableLayoutPanel1.TabIndex = 2;
             // 
             // lblRLoginCount
             // 
@@ -445,11 +417,21 @@ namespace RandM.GameSrv
             this.label8.Text = "Telnet";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // rtbLog
+            // 
+            this.rtbLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtbLog.Location = new System.Drawing.Point(0, 0);
+            this.rtbLog.Name = "rtbLog";
+            this.rtbLog.ReadOnly = true;
+            this.rtbLog.Size = new System.Drawing.Size(431, 482);
+            this.rtbLog.TabIndex = 1;
+            this.rtbLog.Text = "";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(624, 441);
+            this.ClientSize = new System.Drawing.Size(984, 661);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
@@ -465,9 +447,9 @@ namespace RandM.GameSrv
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
-            this.tcStatus.ResumeLayout(false);
-            this.tabLog.ResumeLayout(false);
-            this.tabHistory.ResumeLayout(false);
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            this.splitContainer2.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
@@ -496,10 +478,7 @@ namespace RandM.GameSrv
         private System.Windows.Forms.ColumnHeader colRemoteIP;
         private System.Windows.Forms.ColumnHeader colUser;
         private System.Windows.Forms.ColumnHeader colStatus;
-        private System.Windows.Forms.TabControl tcStatus;
-        private System.Windows.Forms.TabPage tabLog;
-        private System.Windows.Forms.RichTextBox rtbLog;
-        private System.Windows.Forms.TabPage tabHistory;
+        private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.ListView lvHistory;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
@@ -513,5 +492,6 @@ namespace RandM.GameSrv
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblTelnetCount;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.RichTextBox rtbLog;
     }
 }
