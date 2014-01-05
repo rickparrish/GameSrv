@@ -2,6 +2,9 @@
 TODO Add global war
 TODO Starting, stopping, and starting again fails because all ports fail to bind
 
+Jan 4, 2014
+	- History and Log windows now both visible at same time on GUI.  Hopefully nobody is still using 800x600 or smaller!
+
 Jul 23, 2013
 	- Fix *DORINFO1 and *DORINFOx command-line specifiers (thanks Philip)
 

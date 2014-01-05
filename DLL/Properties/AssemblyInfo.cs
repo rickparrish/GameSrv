@@ -1,6 +1,6 @@
 ﻿/*
   GameSrv: A BBS Door Game Server
-  Copyright (C) 2002-2013  Rick Parrish, R&M Software
+  Copyright (C) 2002-2014  Rick Parrish, R&M Software
 
   This file is part of GameSrv.
 
@@ -31,7 +31,7 @@ using System.Resources;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("R&M Software")]
 [assembly: AssemblyProduct("GameSrv")]
-[assembly: AssemblyCopyright("Copyright (c) 2000-2013 Rick Parrish, R&M Software")]
+[assembly: AssemblyCopyright("Copyright (c) 2000-2014 Rick Parrish, R&M Software")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -53,8 +53,8 @@ using System.Resources;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("13.07.14")]
-[assembly: AssemblyFileVersion("13.07.14")]
+[assembly: AssemblyVersion("14.01.04")]
+[assembly: AssemblyFileVersion("14.01.04")]
 
 [assembly: CLSCompliant(false)]
 [assembly: NeutralResourcesLanguageAttribute("en-US")]

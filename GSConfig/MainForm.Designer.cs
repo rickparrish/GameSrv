@@ -1,6 +1,6 @@
 ﻿/*
   GameSrv: A BBS Door Game Server
-  Copyright (C) 2002-2013  Rick Parrish, R&M Software
+  Copyright (C) 2002-2014  Rick Parrish, R&M Software
 
   This file is part of GameSrv.
 
