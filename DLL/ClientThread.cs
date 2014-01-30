@@ -1721,7 +1721,7 @@ namespace RandM.GameSrv
             IntPtr BytesWritten = IntPtr.Zero;
             bool DataTransferred = false;
             int LoopsSinceIO = 0;
-            Process P = null;
+            RMProcess P = null;
             IntPtr ReadBuffer = IntPtr.Zero;
             sbbsexec_start_t Start = new sbbsexec_start_t();
             IntPtr StartEvent = IntPtr.Zero;
@@ -1804,24 +1804,8 @@ namespace RandM.GameSrv
                 // Loop until something happens
                 BytesWritten = Marshal.AllocHGlobal(sizeof(uint));
                 ReadBuffer = Marshal.AllocHGlobal((int)XTRN_IO_BUF_LEN);
-                bool SetWindowStyle = (_NodeInfo.Door.WindowStyle == ProcessWindowStyle.Normal);
                 while (!_Stop)// TODO Check inside loop for other things QuitThread() would check
                 {
-                    if (!SetWindowStyle)
-                    {
-                        P.Refresh();
-                        if (P.MainWindowHandle != IntPtr.Zero)
-                        {
-                            switch (_NodeInfo.Door.WindowStyle)
-                            {
-                                case ProcessWindowStyle.Hidden: NativeMethods.ShowWindow(P.MainWindowHandle, NativeMethods.SW_HIDE); break;
-                                case ProcessWindowStyle.Maximized: NativeMethods.ShowWindow(P.MainWindowHandle, NativeMethods.SW_MAXIMIZE); break;
-                                case ProcessWindowStyle.Minimized: NativeMethods.ShowWindow(P.MainWindowHandle, NativeMethods.SW_MINIMIZE); break;
-                            }
-                            SetWindowStyle = true;
-                        }
-                    }
-
                     DataTransferred = false;
 
                     // Check for dropped carrier
@@ -1964,7 +1948,7 @@ namespace RandM.GameSrv
             IntPtr HangUpEvent = new IntPtr();
             IntPtr HungUpEvent = new IntPtr();
             int LoopsSinceIO = 0;
-            Process P = null;
+            RMProcess P = null;
             IntPtr ReadSlot = new IntPtr();
             IntPtr WriteSlot = new IntPtr();
 
@@ -2017,24 +2001,8 @@ namespace RandM.GameSrv
 
                 // Loop until something happens
                 bool DataTransferred = false;
-                bool SetWindowStyle = (_NodeInfo.Door.WindowStyle == ProcessWindowStyle.Normal);
                 while (!_Stop)// TODO Check inside loop for other things QuitThread() would check
                 {
-                    if (!SetWindowStyle)
-                    {
-                        P.Refresh();
-                        if (P.MainWindowHandle != IntPtr.Zero)
-                        {
-                            switch (_NodeInfo.Door.WindowStyle)
-                            {
-                                case ProcessWindowStyle.Hidden: NativeMethods.ShowWindow(P.MainWindowHandle, NativeMethods.SW_HIDE); break;
-                                case ProcessWindowStyle.Maximized: NativeMethods.ShowWindow(P.MainWindowHandle, NativeMethods.SW_MAXIMIZE); break;
-                                case ProcessWindowStyle.Minimized: NativeMethods.ShowWindow(P.MainWindowHandle, NativeMethods.SW_MINIMIZE); break;
-                            }
-                            SetWindowStyle = true;
-                        }
-                    }
-
                     DataTransferred = false;
 
                     // Check for dropped carrier
