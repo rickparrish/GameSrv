@@ -750,7 +750,7 @@ namespace RandM.GameSrv
             }
             catch (IOException ioex)
             {
-                RaiseExceptionEvent("I/O exception displaying " + fileName + ": " + ioex.Message, ioex);
+                RaiseExceptionEvent("Unable to display '" + fileName + "'", ioex);
                 return false;
             }
         }
@@ -823,7 +823,7 @@ namespace RandM.GameSrv
             }
             catch (Exception ex)
             {
-                RaiseExceptionEvent("Unhandled Exception in ClientThread::Execute(): " + ex.Message, ex);
+                RaiseExceptionEvent("Error in ClientThread::Execute()", ex);
             }
             finally
             {
@@ -904,7 +904,7 @@ namespace RandM.GameSrv
                 catch (ArgumentException aex)
                 {
                     // If there's something wrong with the ini entry (Action is invalid for example), this will throw a System.ArgumentException error, so we just ignore that menu item
-                    RaiseExceptionEvent("Exception while loading '" + _CurrentMenu + "' menu option for '" + HotKey + "'", aex);
+                    RaiseExceptionEvent("Unable to load '" + _CurrentMenu + "' menu option for '" + HotKey + "'", aex);
                 }
             }
         }
@@ -948,7 +948,7 @@ namespace RandM.GameSrv
                 catch (ArgumentException aex)
                 {
                     // If there's something wrong with the ini entry (Action is invalid for example), this will throw a System.ArgumentException error, so we just ignore that menu item
-                    RaiseExceptionEvent("Exception executing logoff process '" + Processes[i] + "'", aex);
+                    RaiseExceptionEvent("Error during logoff process '" + Processes[i] + "'", aex);
                 }
             }
         }
@@ -995,7 +995,7 @@ namespace RandM.GameSrv
                 catch (Exception ex)
                 {
                     // If there's something wrong with the ini entry (Action is invalid for example), this will throw a System.ArgumentException error, so we just ignore that menu item
-                    RaiseExceptionEvent("Exception executing logon process '" + Processes[i] + "'", ex);
+                    RaiseExceptionEvent("Error during logon process '" + Processes[i] + "'", ex);
 
                     // If the exception was at the main menu, then exit the loop so we don't continue on to other items (like the twit menu)
                     if (LastAction == Action.MainMenu)
@@ -1489,7 +1489,7 @@ namespace RandM.GameSrv
             }
             catch (Exception ex)
             {
-                RaiseExceptionEvent("Unhandled Exception while running door '" + _NodeInfo.Door.Name + "': " + ex.Message, ex);
+                RaiseExceptionEvent("Error while running door '" + _NodeInfo.Door.Name + "'", ex);
             }
             finally
             {
@@ -1916,10 +1916,17 @@ namespace RandM.GameSrv
                 }
 
                 // Terminate process if it hasn't closed yet
-                if ((P != null) && !P.HasExited)
+                try
                 {
-                    RaiseErrorMessageEvent("Door still running, performing a force quit");
-                    P.Kill();
+                    if ((P != null) && !P.HasExited)
+                    {
+                        RaiseErrorMessageEvent("Door still running, performing a force quit");
+                        P.Kill();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    RaiseExceptionEvent("Unable to perform force quit", ex);
                 }
 
                 // Free unmanaged resources
@@ -2171,11 +2178,18 @@ namespace RandM.GameSrv
             }
             finally
             {
-                // Terminate process if it hasn't closed yet
-                if ((P != null) && !P.HasExited)
+                try
                 {
-                    RaiseErrorMessageEvent("Door still running, performing a force quit");
-                    P.Kill();
+                    // Terminate process if it hasn't closed yet
+                    if ((P != null) && !P.HasExited)
+                    {
+                        RaiseErrorMessageEvent("Door still running, performing a force quit");
+                        P.Kill();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    RaiseExceptionEvent("Unable to perform force quit", ex);
                 }
 
                 // Free unmanaged resources

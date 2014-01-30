@@ -208,7 +208,7 @@ namespace RandM.GameSrv
                     }
                     catch (Exception ex)
                     {
-                        RaiseExceptionEvent(null, new ExceptionEventArgs("Unhandled exception while updating gamesrv.log", ex));
+                        RaiseExceptionEvent("Unable to update gamesrv.log", ex);
                     }
                 }
             }
@@ -338,7 +338,7 @@ namespace RandM.GameSrv
             }
             else
             {
-                RaiseAggregatedStatusMessageEvent(sender, "EXCEPTION: " + e.Message);
+                RaiseAggregatedStatusMessageEvent(sender, "EXCEPTION: " + e.Message + " (" + e.Exception.Message + ")");
             }
         }
 
@@ -462,7 +462,7 @@ namespace RandM.GameSrv
                     }
                     catch (ArgumentOutOfRangeException aoorex)
                     {
-                        RaiseExceptionEvent("Exception dropping from user root to user " + _Config.UnixUser + ": " + aoorex.Message, aoorex);
+                        RaiseExceptionEvent("Unable to drop from root to '" + _Config.UnixUser + "'", aoorex);
 
                         // Abort the server
                         if (_Status == ServerStatus.Started)
@@ -614,7 +614,7 @@ namespace RandM.GameSrv
                 }
                 catch (Exception ex)
                 {
-                    RaiseExceptionEvent("Unhandled Exception in GameSrv::StartFlashSocketPolicyServerThread(): " + ex.Message, ex);
+                    RaiseExceptionEvent("Error in GameSrv::StartFlashSocketPolicyServerThread()", ex);
                     return false;
                 }
             }
@@ -644,7 +644,7 @@ namespace RandM.GameSrv
             }
             catch (Exception ex)
             {
-                RaiseExceptionEvent("Unhandled Exception in GameSrv::StartNodeManager(): " + ex.Message, ex);
+                RaiseExceptionEvent("Error in GameSrv::StartNodeManager()", ex);
                 return false;
             }
         }
@@ -709,7 +709,7 @@ namespace RandM.GameSrv
                 }
                 catch (Exception ex)
                 {
-                    RaiseExceptionEvent("Unhandled Exception in GameSrv::StartServerThreads(): " + ex.Message, ex);
+                    RaiseExceptionEvent("Error in GameSrv::StartServerThreads()", ex);
                     return false;
                 }
             }
@@ -755,7 +755,7 @@ namespace RandM.GameSrv
                 }
                 catch (Exception ex)
                 {
-                    RaiseExceptionEvent("Unhandled Exception in GameSrv::StopNodeManger(): " + ex.Message, ex);
+                    RaiseExceptionEvent("Error in GameSrv::StopNodeManger()", ex);
                     return false;
                 }
             }
@@ -781,7 +781,7 @@ namespace RandM.GameSrv
             }
             catch (Exception ex)
             {
-                RaiseExceptionEvent("Unhandled Exception in GameSrv::StopServerThread(): " + ex.Message, ex);
+                RaiseExceptionEvent("Error in GameSrv::StopServerThread()", ex);
                 return false;
             }
         }
@@ -803,7 +803,7 @@ namespace RandM.GameSrv
                 }
                 catch (Exception ex)
                 {
-                    RaiseExceptionEvent("Unhandled Exception in GameSrv::StopFlashSocketPolicyServerThread(): " + ex.Message, ex);
+                    RaiseExceptionEvent("Error in GameSrv::StopFlashSocketPolicyServerThread()", ex);
                     return false;
                 }
             }

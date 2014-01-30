@@ -114,11 +114,11 @@ namespace RandM.GameSrv
             }
             catch (IOException ioex)
             {
-                RaiseExceptionEvent("I/O exception displaying " + fileName + ": " + ioex.Message, ioex);
+                RaiseExceptionEvent("Unable to display '" + fileName + "'", ioex);
             }
             catch (Exception ex)
             {
-                RaiseExceptionEvent("Unknown exception displaying " + fileName + ": " + ex.Message, ex);
+                RaiseExceptionEvent("Unable to display '" + fileName + "'", ex);
             }
         }
 
@@ -208,7 +208,7 @@ namespace RandM.GameSrv
                             }
                             catch (Exception ex)
                             {
-                                RaiseExceptionEvent("Unhandled exception in ServerThread::Execute(): " + ex.Message, ex);
+                                RaiseExceptionEvent("Error in ServerThread::Execute()", ex);
                             }
                         }
                     }
