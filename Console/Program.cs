@@ -33,7 +33,7 @@ namespace RandM.GameSrv
     class Program
     {
         static private Dictionary<ConnectionType, int> _ConnectionCounts = new Dictionary<ConnectionType, int>();
-        static private GameSrv _GameSrv = new GameSrv();
+        static private GameSrv _GameSrv = new GameSrv(true);
 
         static void Main()
         {
@@ -61,6 +61,13 @@ namespace RandM.GameSrv
             }
 
             // Init GameSrv          
+            if (!_GameSrv.Initialized)
+            {
+                WriteLn("", false);
+                WriteLn("*** ERROR: Unable to either start or connect to the GameSrv IPC server ***", false);
+                WriteLn("I'll keep trying to connect every 10 seconds -- until I do, all controls are disabled", false);
+                WriteLn("", false);
+            }
             _GameSrv.AggregatedStatusMessageEvent += new EventHandler<StringEventArgs>(GameSrv_AggregatedStatusMessageEvent);
             _GameSrv.LogOnEvent += new EventHandler<NodeEventArgs>(GameSrv_LogOnEvent);
             _GameSrv.Start();

@@ -33,7 +33,7 @@ namespace RandM.GameSrv
     public partial class MainForm : Form
     {
         private int _CharWidth = 0;
-        private GameSrv _GameSrv = new GameSrv();
+        private GameSrv _GameSrv = new GameSrv(true);
         private FormWindowState _LastWindowState = FormWindowState.Normal;
 
         public MainForm()
@@ -66,6 +66,13 @@ namespace RandM.GameSrv
             StatusText(Globals.Copyright, false);
 
             // Init GameSrv object
+            if (!_GameSrv.Initialized)
+            {
+                StatusText("", false);
+                StatusText("ERROR: Unable to either start or connect to the GameSrv IPC server", false);
+                StatusText("ERROR: I'll keep trying to connect every 10 seconds -- until I do, all controls are disabled", false);
+                StatusText("", false);
+            }
             _GameSrv.AggregatedStatusMessageEvent += new EventHandler<StringEventArgs>(GameSrv_AggregatedStatusMessageEvent);
             _GameSrv.ConnectionCountChangeEvent += new EventHandler<IntEventArgs>(GameSrv_ConnectionCountChangeEvent);
             _GameSrv.LogOffEvent += GameSrv_LogOffEvent;
@@ -99,6 +106,7 @@ namespace RandM.GameSrv
             if ((_GameSrv.Status != ServerStatus.Stopped) && (_GameSrv.Status != ServerStatus.Stopping))
             {
                 _GameSrv.Stop();
+                _GameSrv.Dispose();
             }
         }
 

@@ -24,6 +24,7 @@ using System.Security.Principal;
 using System.IO;
 using System.Timers;
 using System.Globalization;
+using System.Net;
 
 namespace RandM.GameSrv
 {
@@ -35,7 +36,10 @@ namespace RandM.GameSrv
         private int _BoundCount = 0;
         private object _BoundEventLock = new object();
         private Config _Config = new Config();
+        private IPCSocketClientThread _ControlClient = null;
+        private IPCSocketServerThread _ControlServer = null;
         private bool _Disposed = false;
+        private bool _Initialized = true;
         private List<string> _Log = new List<string>();
         private object _LogLock = new object();
         private Timer _LogTimer = new Timer();
@@ -56,8 +60,19 @@ namespace RandM.GameSrv
         public event EventHandler<StringEventArgs> StatusMessageEvent = null;
         public event EventHandler<StringEventArgs> WarningMessageEvent = null;
 
-        public GameSrv()
+        public GameSrv(bool tryStartClient)
         {
+            // Try to bring server online
+            _ControlServer = IPCSocketServerThread.GetNewServer(IPAddress.Loopback.ToString(), 55458); // TODO ascii values for "GameSrv" multiplied together mod 65535
+            _Initialized = (_ControlServer != null);
+
+            // If we want to try to bring the client online, do that now
+            if (tryStartClient)
+            {
+                _ControlClient = IPCSocketClientThread.GetNewClient(IPAddress.Loopback.ToString(), 55458); // TODO ascii values for "GameSrv" multiplied together mod 65535
+                _Initialized = (_ControlClient != null);
+            }
+
             _LogTimer.Interval = 60000; // 1 minute
             _LogTimer.Elapsed += LogTimer_Elapsed;
             _LogTimer.Start();
@@ -89,8 +104,26 @@ namespace RandM.GameSrv
                 if (disposing)
                 {
                     // Dispose managed resources.
-                    if (_FlashSocketPolicyServerThread != null) _FlashSocketPolicyServerThread.Dispose();
-                    if (_LogTimer != null) _LogTimer.Dispose();
+                    if (_FlashSocketPolicyServerThread != null)
+                    {
+                        _FlashSocketPolicyServerThread.Stop();
+                        _FlashSocketPolicyServerThread.Dispose();
+                    }
+                    if (_LogTimer != null)
+                    {
+                        _LogTimer.Stop();
+                        _LogTimer.Dispose();
+                    }
+                    if (_ControlClient != null)
+                    {
+                        _ControlClient.Stop();
+                        _ControlClient.Dispose();
+                    }
+                    if (_ControlServer != null)
+                    {
+                        _ControlServer.Stop();
+                        _ControlServer.Dispose();
+                    }
                 }
 
                 // Call the appropriate methods to clean up
@@ -212,6 +245,11 @@ namespace RandM.GameSrv
                     }
                 }
             }
+        }
+
+        public bool Initialized
+        {
+            get { return _Initialized; }
         }
 
         public int LastNode
