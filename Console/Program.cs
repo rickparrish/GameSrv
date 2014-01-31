@@ -133,6 +133,7 @@ namespace RandM.GameSrv
                         }
 
                         _GameSrv.Stop();
+                        _GameSrv.Dispose();
                         Quit = true;
                         break;
                 }

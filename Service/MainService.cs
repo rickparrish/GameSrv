@@ -67,12 +67,14 @@ namespace RandM.GameSrv
         {
             base.OnShutdown();
             _GameSrv.Stop();
+            _GameSrv.Dispose();
         }
 
         protected override void OnStop()
         {
             base.OnStop();
             _GameSrv.Stop();
+            _GameSrv.Dispose();
         }
     }
 }
