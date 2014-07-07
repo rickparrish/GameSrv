@@ -36,16 +36,13 @@ namespace RandM.GameSrv
         private int _BoundCount = 0;
         private object _BoundEventLock = new object();
         private Config _Config = new Config();
-        private IPCSocketClientThread _ControlClient = null;
-        private IPCSocketServerThread _ControlServer = null;
         private bool _Disposed = false;
-        private bool _Initialized = true;
+        private FlashSocketPolicyServerThread _FlashSocketPolicyServerThread = null;
         private List<string> _Log = new List<string>();
         private object _LogLock = new object();
         private Timer _LogTimer = new Timer();
         private NodeManager _NodeManager = null;
         private Dictionary<int, ServerThread> _ServerThreads = new Dictionary<int, ServerThread>();
-        private FlashSocketPolicyServerThread _FlashSocketPolicyServerThread = null;
         private ServerStatus _Status = ServerStatus.Stopped;
 
         public event EventHandler<StringEventArgs> AggregatedStatusMessageEvent = null;
@@ -60,18 +57,9 @@ namespace RandM.GameSrv
         public event EventHandler<StringEventArgs> StatusMessageEvent = null;
         public event EventHandler<StringEventArgs> WarningMessageEvent = null;
 
-        public GameSrv(bool tryStartClient)
+        public GameSrv()
         {
-            // Try to bring server online
-            _ControlServer = IPCSocketServerThread.GetNewServer(IPAddress.Loopback.ToString(), 55458); // TODO ascii values for "GameSrv" multiplied together mod 65535
-            _Initialized = (_ControlServer != null);
-
-            // If we want to try to bring the client online, do that now
-            if (tryStartClient)
-            {
-                _ControlClient = IPCSocketClientThread.GetNewClient(IPAddress.Loopback.ToString(), 55458); // TODO ascii values for "GameSrv" multiplied together mod 65535
-                _Initialized = (_ControlClient != null);
-            }
+            
 
             _LogTimer.Interval = 60000; // 1 minute
             _LogTimer.Elapsed += LogTimer_Elapsed;
@@ -114,16 +102,6 @@ namespace RandM.GameSrv
                         _LogTimer.Stop();
                         _LogTimer.Dispose();
                     }
-                    if (_ControlClient != null)
-                    {
-                        _ControlClient.Stop();
-                        _ControlClient.Dispose();
-                    }
-                    if (_ControlServer != null)
-                    {
-                        _ControlServer.Stop();
-                        _ControlServer.Dispose();
-                    }
                 }
 
                 // Call the appropriate methods to clean up
@@ -163,6 +141,8 @@ namespace RandM.GameSrv
                     FileUtils.FileDelete("sbbsexec.vxd");
                     if (ProcessUtils.Is64BitOperatingSystem)
                     {
+                        FileUtils.FileDelete("dosxtrn.exe");
+                        FileUtils.FileDelete("dosxtrn.pif");
                         FileUtils.FileDelete("sbbsexec.dll");
                         string ProgramFilesX86 = Environment.GetEnvironmentVariable("PROGRAMFILES(X86)") ?? Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
                         string DOSBoxExe = StringUtils.PathCombine(ProgramFilesX86, @"DOSBox-0.73\dosbox.exe");
@@ -245,11 +225,6 @@ namespace RandM.GameSrv
                     }
                 }
             }
-        }
-
-        public bool Initialized
-        {
-            get { return _Initialized; }
         }
 
         public int LastNode

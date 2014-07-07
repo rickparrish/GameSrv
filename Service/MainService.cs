@@ -30,7 +30,7 @@ namespace RandM.GameSrv
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "svc")]
     public partial class svcMain : ServiceBase
     {
-        private GameSrv _GameSrv = new GameSrv(false);
+        private GameSrv _GameSrv = new GameSrv();
 
         public svcMain()
         {
@@ -46,15 +46,7 @@ namespace RandM.GameSrv
         protected override void OnStart(string[] args)
         {
             base.OnStart(args);
-
-            if (_GameSrv.Initialized)
-            {
-                _GameSrv.Start();
-            }
-            else
-            {
-                throw new Exception("ERROR: Unable to start the GameSrv IPC server");
-            }
+            _GameSrv.Start();
         }
 
         protected override void OnPause()
