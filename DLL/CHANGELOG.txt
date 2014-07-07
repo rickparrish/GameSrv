@@ -1,7 +1,12 @@
-﻿TODO Still to add: g5109b, lostv10, rokv100
-TODO Add global war
-TODO Starting, stopping, and starting again fails because all ports fail to bind
+﻿TODO Starting, stopping, and starting again fails because all ports fail to bind
 TODO Add setting to enable "ignore statuscake/uptime robot checks" https://www.statuscake.com/API/Locations/txt http://uptimerobot.com/faq
+TODO Add setting to specify terminal type (ascii, ansi, rip, auto-detect)
+
+Mar 7, 2014
+	- Fixed websocket negotiation again, so now ancient browsers only supporting hixie-76 (like my touchpad) can connect
+
+Feb 25, 2014
+    - Fixed websocket negotiation, so now HtmlTerm in IE11 (and possibly other versions) can connect
 
 Jan 29, 2014
 	- Fixed a problem running DOS doors with Console and Service versions (output was going to GameSrv window, and
