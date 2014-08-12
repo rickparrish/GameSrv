@@ -65,7 +65,11 @@ namespace RandM.GameSrv
 
         void ClientThread_LogOnEvent(object sender, NodeEventArgs e)
         {
-            if (!e.NodeInfo.User.AllowMultipleConnections) KillOtherSession(e.NodeInfo.User.Alias, e.NodeInfo.Node);
+            // Kill other session if the user is a logged in user (ie not a RUNBBS.INI connection) and the user isn't allowed on multiple nodes
+            if ((e.NodeInfo.User.UserId > 0) && (!e.NodeInfo.User.AllowMultipleConnections))
+            {
+                KillOtherSession(e.NodeInfo.User.Alias, e.NodeInfo.Node);
+            }
             RaiseLogOnEvent(sender, e);
         }
 
