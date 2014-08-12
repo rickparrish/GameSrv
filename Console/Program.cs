@@ -197,12 +197,30 @@ namespace RandM.GameSrv
         {
             if (OSUtils.IsWindows)
             {
-                if (prefixWithTime && (!string.IsNullOrEmpty(text))) Crt.Write(DateTime.Now.ToString("T") + "  ");
+                if (prefixWithTime && (!string.IsNullOrEmpty(text))) Crt.Write(DateTime.Now.ToString(_GameSrv.TimeFormatUI) + "  ");
+                
+                if (text.Contains("ERROR:") || text.Contains("EXCEPTION:"))
+                {
+                    Crt.TextColor(Crt.LightRed);
+                }
+                else if (text.Contains("WARNING:"))
+                {
+                    Crt.TextColor(Crt.Yellow);
+                }
+                else if (text.Contains("DEBUG:"))
+                {
+                    Crt.TextColor(Crt.LightCyan);
+                }
+                else
+                {
+                    Crt.TextColor(Crt.LightGray);
+                }
+
                 Crt.Write(text);
             }
             else
             {
-                if (prefixWithTime && (!string.IsNullOrEmpty(text))) Console.Write(DateTime.Now.ToString("T") + "  ");
+                if (prefixWithTime && (!string.IsNullOrEmpty(text))) Console.Write(DateTime.Now.ToString(_GameSrv.TimeFormatUI) + "  ");
                 Console.Write(text);
             }
         }
