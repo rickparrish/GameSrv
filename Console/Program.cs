@@ -166,7 +166,7 @@ namespace RandM.GameSrv
 
                 // WFC Screen
                 Ansi.Write("[0;1;1;44;36m Last: [37mNo callers yet...                                                 [0;44;30m³    [1;36mRLogin: [37m0[36m      On: [37mNo callers yet...                                                 [0;44;30m³    [1;36mTelnet: [37m0[36m    Type: [37mNo callers yet...                                                 [0;44;30m³ [1;36mWebSocket: [37m0[36m   [0;34mÚðð[1mStatus[0;34mððÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ³[37m [32mTime: [37m[8C[32mDate: [37m[29C[34m³ °±²Û[1;44;37mGameSrv WFC Screen v" + GameSrv.Version + " [0;34m²±° ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ[37m  Press [1;30m[[33mF1[30m][0m For Help or [1;30m[[33mQ[30m][0m To Quit");
-                Crt.FastWrite(DateTime.Now.ToString(_GameSrv.TimeFormatUI).ToLower(), 9, 38, Crt.LightGreen);
+                Crt.FastWrite(DateTime.Now.ToString("hh:mmtt").ToLower(), 9, 38, Crt.LightGreen);
                 Crt.FastWrite(DateTime.Now.ToString("dddd MMMM dd, yyyy"), 23, 38, Crt.LightGreen);
 
                 Crt.Window(3, 5, 88, 36);
@@ -183,7 +183,7 @@ namespace RandM.GameSrv
             if (OSUtils.IsWindows)
             {
                 // Update time
-                Crt.FastWrite(StringUtils.PadRight(DateTime.Now.ToString(_GameSrv.TimeFormatUI).ToLower(), ' ', 7), 9, 38, Crt.LightGreen);
+                Crt.FastWrite(StringUtils.PadRight(DateTime.Now.ToString("hh:mmtt").ToLower(), ' ', 7), 9, 38, Crt.LightGreen);
                 Crt.FastWrite(StringUtils.PadRight(DateTime.Now.ToString("dddd MMMM dd, yyyy"), ' ', 28), 23, 38, Crt.LightGreen);
             }
         }
