@@ -90,18 +90,26 @@ namespace RandM.GameSrv
                             WriteLn("", false);
                             WriteLn("GameSrv WFC Screen Help", false);
                             WriteLn("-=-=-=-=-=-=-=-=-=-=-=-", false);
-                            WriteLn("F1 = Help (this screen)", false);
-                            WriteLn("C  = Configuration program", false);
+                            WriteLn("F1 = Help  (this screen)", false);
+                            WriteLn("C  = Clear (clear the status window)", false);
                             WriteLn("P  = Pause (reject new connections, leave existing connections alone)", false);
-                            WriteLn("Q  = Quit (shut down and terminate existing connections)", false);
+                            WriteLn("S  = Setup (launch the config program)", false);
+                            WriteLn("Q  = Quit  (shut down and terminate existing connections)", false);
                             WriteLn("", false);
                         }
                         break;
                     case "C":
-                        Process.Start(StringUtils.PathCombine(ProcessUtils.StartupPath, "GameSrvConfig.exe"));
+                        if (OSUtils.IsWindows)
+                        {
+                            Crt.ClrScr();
+                            Crt.GotoXY(1, 32);
+                        }
                         break;
                     case "P":
                         _GameSrv.Pause();
+                        break;
+                    case "S":
+                        Process.Start(StringUtils.PathCombine(ProcessUtils.StartupPath, "GameSrvConfig.exe"));
                         break;
                     case "Q":
                         // Check if we're already stopped (or are stopping)
