@@ -4,6 +4,7 @@ TODO Add setting to specify terminal type (ascii, ansi, rip, auto-detect)
 
 Aug 14, 2014
 	- Display date and type of last connection in GameSrvConsole
+	- Add options for 24hour display and simple output in GameSrvConsole
 
 Aug 13, 2014
 	- Add hotkey for clearing the screen in GameSrvConsole
