@@ -2,11 +2,25 @@
 TODO Add setting to enable "ignore statuscake/uptime robot checks" https://www.statuscake.com/API/Locations/txt http://uptimerobot.com/faq
 TODO Add setting to specify terminal type (ascii, ansi, rip, auto-detect)
 
+Aug 14, 2014
+	- Display date and type of last connection in GameSrvConsole
+
+Aug 13, 2014
+	- Add hotkey for clearing the screen in GameSrvConsole
+
+Aug 12, 2014
+	- Fixed a bug where RUNBBS sessions on node 1 were disconnected when a second call to node 2 came in
+	- GameSrvConsole no longer uses the TimeFormatUI in the footer (some formats were too large for the space allocated)
+	  - It now uses TimeFormatUI for that status messages though, and also colour codes error/warning/debug messages
+
 Mar 7, 2014
 	- Fixed websocket negotiation again, so now ancient browsers only supporting hixie-76 (like my touchpad) can connect
 
 Feb 25, 2014
     - Fixed websocket negotiation, so now HtmlTerm in IE11 (and possibly other versions) can connect
+
+Jan 31, 2014
+	- Ensure GameSrv object is disposed on program close (prevents the exe from hanging on close)
 
 Jan 29, 2014
 	- Fixed a problem running DOS doors with Console and Service versions (output was going to GameSrv window, and
@@ -14,6 +28,10 @@ Jan 29, 2014
 
 Jan 4, 2014
 	- History and Log windows now both visible at same time on GUI.  Hopefully nobody is still using 800x600 or smaller!
+
+Jan 2, 2014
+    - Confirm disconnect in GUI
+	- Don't coninue running the logon process items if the MainMenu item throws an exception
 
 Jul 23, 2013
 	- Fix *DORINFO1 and *DORINFOx command-line specifiers (thanks Philip)
