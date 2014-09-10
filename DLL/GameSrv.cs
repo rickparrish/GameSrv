@@ -38,6 +38,7 @@ namespace RandM.GameSrv
         private Config _Config = new Config();
         private bool _Disposed = false;
         private FlashSocketPolicyServerThread _FlashSocketPolicyServerThread = null;
+        private IgnoredIPsThread _IgnoredIPsThread = null;
         private List<string> _Log = new List<string>();
         private object _LogLock = new object();
         private Timer _LogTimer = new Timer();
@@ -59,7 +60,7 @@ namespace RandM.GameSrv
 
         public GameSrv()
         {
-            
+
 
             _LogTimer.Interval = 60000; // 1 minute
             _LogTimer.Elapsed += LogTimer_Elapsed;
@@ -96,6 +97,11 @@ namespace RandM.GameSrv
                     {
                         _FlashSocketPolicyServerThread.Stop();
                         _FlashSocketPolicyServerThread.Dispose();
+                    }
+                    if (_IgnoredIPsThread != null)
+                    {
+                        _IgnoredIPsThread.Stop();
+                        _IgnoredIPsThread.Dispose();
                     }
                     if (_LogTimer != null)
                     {
@@ -225,6 +231,11 @@ namespace RandM.GameSrv
                     }
                 }
             }
+        }
+
+        private void IgnoredIPsThread_ExceptionEvent(object sender, ExceptionEventArgs e)
+        {
+            RaiseExceptionEvent(sender, e);
         }
 
         public int LastNode
@@ -501,7 +512,7 @@ namespace RandM.GameSrv
             RaiseErrorMessageEvent(sender, e.Text);
         }
 
-        void ServerThread_ExceptionEvent(object sender, ExceptionEventArgs e)
+        private void ServerThread_ExceptionEvent(object sender, ExceptionEventArgs e)
         {
             RaiseExceptionEvent(sender, e);
         }
@@ -571,11 +582,23 @@ namespace RandM.GameSrv
                     goto ERROR;
                 }
 
+                // Start the ignored ips thread
+                if (!StartIgnoredIPsThread())
+                {
+                    RaiseErrorMessageEvent("Unable To Start Ignored IPs Thread");
+                    // Undo previous actions
+                    StopFlashSocketPolicyServerThread();
+                    StopServerThreads();
+                    StopNodeManager();
+                    goto ERROR;
+                }
+
                 // Check if we had a bind failure before finishing
                 if (_BindFailed)
                 {
                     RaiseErrorMessageEvent("One Or More Servers Failed To Bind To Their Assigned Ports");
                     // Undo previous actions
+                    StopIgnoredIPsThread();
                     StopFlashSocketPolicyServerThread();
                     StopServerThreads();
                     StopNodeManager();
@@ -635,6 +658,27 @@ namespace RandM.GameSrv
             {
                 return true;
             }
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
+        private bool StartIgnoredIPsThread()
+        {
+            RaiseStatusMessageEvent("Starting Ignored IPs Thread");
+
+            try
+            {
+                // Create Ignored IPs Thread and Thread objects
+                _IgnoredIPsThread = new IgnoredIPsThread();
+                _IgnoredIPsThread.ExceptionEvent += IgnoredIPsThread_ExceptionEvent;
+                _IgnoredIPsThread.Start();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                RaiseExceptionEvent("Error in GameSrv::StartIgnoredIPsThread()", ex);
+                return false;
+            }
+
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
@@ -744,6 +788,7 @@ namespace RandM.GameSrv
             {
                 RaiseStatusEvent(ServerStatus.Stopping);
 
+                StopIgnoredIPsThread();
                 StopFlashSocketPolicyServerThread();
                 StopServerThreads();
                 StopNodeManager();
@@ -817,6 +862,33 @@ namespace RandM.GameSrv
                 catch (Exception ex)
                 {
                     RaiseExceptionEvent("Error in GameSrv::StopFlashSocketPolicyServerThread()", ex);
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
+        private bool StopIgnoredIPsThread()
+        {
+            if (_IgnoredIPsThread != null)
+            {
+                RaiseStatusMessageEvent("Stopping Ignored IPs Thread");
+
+                try
+                {
+                    _IgnoredIPsThread.Stop();
+                    _IgnoredIPsThread.Dispose();
+                    _IgnoredIPsThread = null;
+
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    RaiseExceptionEvent("Error in GameSrv::StopIgnoredIPsThread()", ex);
                     return false;
                 }
             }

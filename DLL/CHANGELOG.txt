@@ -1,6 +1,9 @@
 ﻿TODO Starting, stopping, and starting again fails because all ports fail to bind
-TODO Add setting to enable "ignore statuscake/uptime robot checks" https://www.statuscake.com/API/Locations/txt http://uptimerobot.com/faq
 TODO Add setting to specify terminal type (ascii, ansi, rip, auto-detect)
+TODO You have an entry for 2048 but no binaries
+
+Sep 10, 2014
+	- Add a thread that downloads StatusCake and UptimeRobot IPs on an hourly basis so they can be added to the ignored-ips list.
 
 Aug 14, 2014
 	- Display date and type of last connection in GameSrvConsole

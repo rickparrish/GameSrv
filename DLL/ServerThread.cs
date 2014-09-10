@@ -347,7 +347,7 @@ namespace RandM.GameSrv
         {
             try
             {
-                string IgnoredIPsFileName = StringUtils.PathCombine(ProcessUtils.StartupPath, "config", "ignored-ips.txt");
+                string IgnoredIPsFileName = StringUtils.PathCombine(ProcessUtils.StartupPath, "config", "ignored-ips-combined.txt");
                 if (File.Exists(IgnoredIPsFileName))
                 {
                     string[] ConnectionOctets = ip.Split('.');

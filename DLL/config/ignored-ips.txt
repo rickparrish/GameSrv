@@ -1,3 +1,9 @@
 ﻿; List the IP addresses you want to silently ignore (similar to banning, but no output is sent to the client, nor is any message added to the log file)
-; (I have a service that checks if my BBS is online every half hour, and I use this file to exclude the service check from the log file)
+; This is useful if you have a service that monitors your server for uptime, such as StatusCake or UptimeRobot.  Speaking of which, the IPs used for
+; those services are automatically downloaded every hour, so you won't have to manually add them or keep this list up to date with their changing list
+; of IP addresses
+;
+; This list is combined with the StatusCake and UptimeRobot lists in the ignored-ips-combined.txt file -- Don't modify that file directly, or your changes
+; will be lost the next time the update runs.  Only ever edit the ignored-ips.txt file.
+;
 ; See banned-ips.txt for an example of how to format ip entries

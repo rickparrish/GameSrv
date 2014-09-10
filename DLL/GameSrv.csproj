@@ -58,6 +58,7 @@
     <Compile Include="GameSrv.cs" />
     <Compile Include="Globals.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="IgnoredIPsThread.cs" />
     <Compile Include="NodeInfo.cs" />
     <Compile Include="NodeManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -277,6 +278,12 @@
     <None Include="ansi\server_paused.asc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="bin\servers-header.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="bin\servers.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="bulletins\bulletin01.ans">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -406,6 +413,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\readme.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="bin\RMLib.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
