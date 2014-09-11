@@ -238,7 +238,27 @@ namespace RandM.GameSrv
                         RaiseNodeEvent("Entered invalid newuser password");
                     }
                 }
-                else
+                else if (IsBannedUser(Alias))
+                {
+                    List<string> BannedIPs = new List<string>();
+
+                    // Load existing banned ips, if file exists
+                    string BannedIPsFileName = StringUtils.PathCombine(ProcessUtils.StartupPath, "config", "banned-ips.txt");
+                    if (File.Exists(BannedIPsFileName)) BannedIPs.AddRange(FileUtils.FileReadAllLines(BannedIPsFileName));
+
+                    // Add new banned ip
+                    BannedIPs.Add(_NodeInfo.Connection.GetRemoteIP());
+
+                    // Save updated banned ip list
+                    FileUtils.FileWriteAllLines(BannedIPsFileName, BannedIPs.ToArray());
+
+                    // Abort future login attempts
+                    RaiseNodeEvent("IP banned for trying to log in as " + Alias);
+
+                    DisplayAnsi("USER_BANNED");
+                    return false;
+                }
+                else if (Alias != "")
                 {
                     RaiseNodeEvent("Logging on as " + Alias);
 
@@ -1071,6 +1091,34 @@ namespace RandM.GameSrv
             get { return _NodeInfo.Connection.GetRemoteIP(); }
         }
 
+        private bool IsBannedUser(string alias)
+        {
+            try
+            {
+                alias = alias.Trim().ToLower();
+                if (alias == "") return false; // Don't ban for blank inputs
+
+                string BannedUsersFileName = StringUtils.PathCombine(ProcessUtils.StartupPath, "config", "banned-users.txt");
+                if (File.Exists(BannedUsersFileName))
+                {
+                    string[] BannedUsers = FileUtils.FileReadAllLines(BannedUsersFileName);
+                    foreach (string BannedUser in BannedUsers)
+                    {
+                        if (BannedUser.StartsWith(";")) continue;
+
+                        if (BannedUser.Trim().ToLower() == alias) return true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                RaiseExceptionEvent("Unable to validate alias against banned-users.txt", ex);
+            }
+
+            // If we get here, it's an OK name
+            return false;
+        }
+
         private bool IsDOSBoxInstalled()
         {
             return File.Exists(@"C:\Program Files (x86)\DOSBox-0.73\DOSBox.exe"); // TODO add configuration variable so this path is not hardcoded
@@ -1263,7 +1311,7 @@ namespace RandM.GameSrv
                 }
 
                 // StartRegistration will check if the alias already exists, and if not, reserve it so there's no race condition for two people registering at the same time and both wanting the same alias
-                if (!_NodeInfo.User.StartRegistration(Alias))
+                if (IsBannedUser(Alias) || !_NodeInfo.User.StartRegistration(Alias))
                 {
                     // Alias has already been taken
                     DisplayAnsi("NEWUSER_ENTER_ALIAS_DUPLICATE");
