@@ -253,7 +253,7 @@ namespace RandM.GameSrv
                     FileUtils.FileWriteAllLines(BannedIPsFileName, BannedIPs.ToArray());
 
                     // Abort future login attempts
-                    RaiseNodeEvent("IP banned for trying to log in as " + Alias);
+                    RaiseWarningMessageEvent("IP banned for trying to log in as " + Alias);
 
                     DisplayAnsi("USER_BANNED");
                     return false;
