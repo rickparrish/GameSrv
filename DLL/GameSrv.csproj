@@ -284,10 +284,10 @@
     <None Include="ansi\server_paused.asc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="bin\servers-header.ans">
+    <None Include="bin\TelnetDoor-Header.ans">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="bin\servers.ini">
+    <None Include="bin\TelnetDoor.ini">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="bulletins\bulletin01.ans">
@@ -419,7 +419,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\readme.txt">
+    <Content Include="bin\TelnetDoor-Readme.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="bin\RMLib.dll">
