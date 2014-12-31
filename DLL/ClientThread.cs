@@ -47,7 +47,6 @@ namespace RandM.GameSrv
         private string _LastDisplayFile = "";
         private NodeInfo _NodeInfo = new NodeInfo();
         private Random _R = new Random();
-        private StringDictionary _RLoginVariables = new StringDictionary();
         private string _Status = "";
 
         // TODO Add a Disconnect event of some sort to allow a sysop to disconnect another node
@@ -105,85 +104,47 @@ namespace RandM.GameSrv
 
         private bool AuthenticateRLogin()
         {
-            // Check for door request/web information in terminal type string
-            string[] TerminalTypeEntries = ((RLoginConnection)_NodeInfo.Connection).TerminalType.Split(';');
-            foreach (string TerminalTypeEntry in TerminalTypeEntries)
-            {
-                if (TerminalTypeEntry.Contains("="))
-                {
-                    string[] KeyValue = TerminalTypeEntry.Split('=');
-                    string EntryValue = string.Join("=", KeyValue, 1, KeyValue.Length - 1).Trim();
-                    if (!string.IsNullOrEmpty(EntryValue)) _RLoginVariables.Add(KeyValue[0], EntryValue);
-                }
-            }
+            string UserName = ((RLoginConnection)_NodeInfo.Connection).ServerUserName;
+            string Password = ((RLoginConnection)_NodeInfo.Connection).ClientUserName;
+            string TerminalType = ((RLoginConnection)_NodeInfo.Connection).TerminalType;
 
-            // Now based on the rlogin mode, handle the rest of the details
-            if (_RLoginVariables.ContainsKey("mode") && (_RLoginVariables["mode"] == "web"))
+            if ((UserName == "") || (Password == ""))
             {
-                return AuthenticateRLoginWeb(((RLoginConnection)_NodeInfo.Connection).ClientUserName, ((RLoginConnection)_NodeInfo.Connection).ServerUserName);
+                // RLogin requires both fields
+                DisplayAnsi("RLOGIN_INVALID");
+                return false;
             }
             else
             {
-                return AuthenticateRLoginClassic(((RLoginConnection)_NodeInfo.Connection).ServerUserName);
-            }
-        }
-
-        private bool AuthenticateRLoginClassic(string serverUserName)
-        {
-            // Check if the username is valid
-            _NodeInfo.User = new UserInfo(serverUserName);
-            if (!_NodeInfo.User.Loaded)
-            {
-                // Nope, so register them and let them in
-                if (_NodeInfo.User.StartRegistration(serverUserName))
+                // Check if we're requesting a door
+                if (TerminalType.ToLower().StartsWith("xtrn="))
                 {
-                    _NodeInfo.User.SetPassword(StringUtils.RandomString(10), _Config.PasswordPepper);
-                    lock (Globals.RegistrationLock)
+                    _NodeInfo.Door = new DoorInfo(TerminalType.Substring(5)); // 5 = strip off leading xtrn=
+                    if (!_NodeInfo.Door.Loaded)
                     {
-                        Config C = new Config();
-                        _NodeInfo.User.UserId = C.NextUserId++;
-                        _NodeInfo.User.SaveRegistration();
-                        C.Save();
+                        // Requested door was not found
+                        DisplayAnsi("RLOGIN_INVALID_XTRN");
+                        return false;
                     }
                 }
-            }
 
-            // Classic RLogin is always successful since there's no password validation
-            return true;
-        }
-
-        private bool AuthenticateRLoginWeb(string clientUserName, string serverUserName)
-        {
-            // Check if the username is valid
-            _NodeInfo.User = new UserInfo(serverUserName);
-            if (_NodeInfo.User.Loaded)
-            {
-                // Yep, so validate the password
-                if (_RLoginVariables.ContainsKey("callback"))
+                // Check if the username is valid
+                _NodeInfo.User = new UserInfo(UserName);
+                if (_NodeInfo.User.Loaded)
                 {
-                    // Web connection means password is already hashed
-                    if (_NodeInfo.User.PasswordHash != clientUserName)
+                    // Yep, so validate the password
+                    if (!_NodeInfo.User.ValidatePassword(Password, _Config.PasswordPepper))
                     {
                         // Password is bad
-                        DisplayAnsi("RLOGIN_INVALID");
+                        DisplayAnsi("RLOGIN_INVALID_PASSWORD");
                         return false;
                     }
                 }
                 else
                 {
-                    // Not a web connection, so password should be plain text
-                    if (!_NodeInfo.User.ValidatePassword(clientUserName, _Config.PasswordPepper))
-                    {
-                        // Password is bad
-                        DisplayAnsi("RLOGIN_INVALID");
-                        return false;
-                    }
+                    // Nope, so perform the new user process with given username and password
+                    return Register(UserName, Password);
                 }
-            }
-            else
-            {
-                // Nope, so perform the new user process
-                return Register();
             }
 
             // If we get here, login is ok
@@ -814,9 +775,9 @@ namespace RandM.GameSrv
                         // TODO RECORD THE LOGIN SO A LAST 10 CALLERS FEATURE CAN BE IMPLEMENTED
 
                         // Check if RLogin is requesting to launch a door immediately via the xtrn= command
-                        if (_RLoginVariables.ContainsKey("xtrn"))
+                        if ((_NodeInfo.Door != null) && _NodeInfo.Door.Loaded)
                         {
-                            RunDoor(_RLoginVariables["xtrn"]);
+                            RunDoor();
                             Thread.Sleep(2500);
                         }
                         else
@@ -1294,6 +1255,11 @@ namespace RandM.GameSrv
 
         private bool Register()
         {
+            return Register(null, null);
+        }
+
+        private bool Register(string defaultUserName, string defaultPassword)
+        {
             bool Registered = false;
 
             try
@@ -1301,32 +1267,36 @@ namespace RandM.GameSrv
                 DisplayAnsi("NEWUSER_HEADER");
 
                 // Get an alias
-            GetAlias:
                 string Alias = "";
-                while ((string.IsNullOrEmpty(Alias)) || (Alias.ToUpper() == "NEW"))
+                if (string.IsNullOrEmpty(defaultUserName))
                 {
-                    DisplayAnsi("NEWUSER_ENTER_ALIAS");
-                    Alias = ReadLn().Trim();
-                    if (QuitThread()) return false;
-                }
+                GetAlias:
+                    Alias = "";
+                    while ((string.IsNullOrEmpty(Alias)) || (Alias.ToUpper() == "NEW"))
+                    {
+                        DisplayAnsi("NEWUSER_ENTER_ALIAS");
+                        Alias = ReadLn().Trim();
+                        if (QuitThread()) return false;
+                    }
 
-                // StartRegistration will check if the alias already exists, and if not, reserve it so there's no race condition for two people registering at the same time and both wanting the same alias
-                if (IsBannedUser(Alias) || !_NodeInfo.User.StartRegistration(Alias))
+                    // StartRegistration will check if the alias already exists, and if not, reserve it so there's no race condition for two people registering at the same time and both wanting the same alias
+                    if (IsBannedUser(Alias) || !_NodeInfo.User.StartRegistration(Alias))
+                    {
+                        // Alias has already been taken
+                        DisplayAnsi("NEWUSER_ENTER_ALIAS_DUPLICATE");
+                        goto GetAlias;
+                    }
+                }
+                else
                 {
-                    // Alias has already been taken
-                    DisplayAnsi("NEWUSER_ENTER_ALIAS_DUPLICATE");
-                    goto GetAlias;
+                    Alias = defaultUserName;
                 }
 
                 // Get their password
             GetPassword:
-                if (_RLoginVariables.ContainsKey("callback"))
+                string Password = "";
+                if (string.IsNullOrEmpty(defaultPassword))
                 {
-                    _NodeInfo.User.SetPassword(StringUtils.RandomString(10), _Config.PasswordPepper);
-                }
-                else
-                {
-                    string Password = "";
                     while (string.IsNullOrEmpty(Password))
                     {
                         DisplayAnsi("NEWUSER_ENTER_PASSWORD");
@@ -1334,13 +1304,10 @@ namespace RandM.GameSrv
                         if (QuitThread()) return false;
                     }
                     _NodeInfo.User.SetPassword(Password, _Config.PasswordPepper);
-                }
 
-                // Confirm their password (if it's not an rlogin web connection)
-                if (!_RLoginVariables.ContainsKey("callback"))
-                {
+                    // Confirm their password
                     DisplayAnsi("NEWUSER_ENTER_PASSWORD_CONFIRM");
-                    string Password = ReadLn('*').Trim();
+                    Password = ReadLn('*').Trim();
                     if (QuitThread()) return false;
 
                     if (!_NodeInfo.User.ValidatePassword(Password, _Config.PasswordPepper))
@@ -1349,84 +1316,78 @@ namespace RandM.GameSrv
                         goto GetPassword;
                     }
                 }
+                else
+                {
+                    Password = defaultPassword;
+                }
 
                 // Loop through the questions
                 string[] Questions = NewUserQuestion.GetQuestions();
                 for (int i = 0; i < Questions.Length; i++)
                 {
-                    // Check if we have the value supplied by an rlogin web connection
-                    if (_RLoginVariables.ContainsKey(Questions[i]))
+                    NewUserQuestion Question = new NewUserQuestion(Questions[i]);
+
+                GetAnswer:
+                    // Display prompt
+                    if (DisplayAnsi("NEWUSER_ENTER_" + Questions[i]))
                     {
-                        _NodeInfo.User.AdditionalInfo[Questions[i]] = _RLoginVariables[Questions[i]];
+                        // Get answer
+                        string Answer = ReadLn().Trim();
+                        if (QuitThread()) return false;
+
+                        // Check if answer is required
+                        if ((Question.Required) && (string.IsNullOrEmpty(Answer))) goto GetAnswer;
+
+                        // Check if answer requires validation
+                        if (!string.IsNullOrEmpty(Answer))
+                        {
+                            bool Valid = true;
+                            switch (Question.Validate)
+                            {
+                                case ValidationType.Email:
+                                    if (!StringUtils.IsValidEmailAddress(Answer)) Valid = false;
+                                    break;
+                                case ValidationType.Numeric:
+                                    double Temp = 0;
+                                    if (!double.TryParse(Answer, out Temp)) Valid = false;
+                                    break;
+                                case ValidationType.TwoWords:
+                                    if (!Answer.Contains(" ")) Valid = false;
+                                    break;
+                            }
+                            if (!Valid)
+                            {
+                                if (!DisplayAnsi("NEWUSER_ENTER_" + Questions[i] + "_INVALID")) _NodeInfo.Connection.WriteLn("Input is not valid!");
+                                goto GetAnswer;
+                            }
+                        }
+
+                        // Check if answer requires confirmation
+                        if (Question.Confirm)
+                        {
+                            if (!DisplayAnsi("NEWUSER_ENTER_" + Questions[i] + "_CONFIRM")) _NodeInfo.Connection.Write("Please re-enter: ");
+
+                            string Confirm = ReadLn().Trim();
+                            if (QuitThread()) return false;
+
+                            // Check if confirmation matches
+                            if (Confirm != Answer)
+                            {
+                                if (!DisplayAnsi("NEWUSER_ENTER_" + Questions[i] + "_MISMATCH")) _NodeInfo.Connection.WriteLn("Text does not match!");
+                                goto GetAnswer;
+                            }
+                        }
+
+                        // If we get here, the answer is valid, so save it
+                        _NodeInfo.User.AdditionalInfo[Questions[i]] = Answer;
                     }
                     else
                     {
-                        NewUserQuestion Question = new NewUserQuestion(Questions[i]);
-
-                    GetAnswer:
-                        // Display prompt
-                        if (DisplayAnsi("NEWUSER_ENTER_" + Questions[i]))
-                        {
-                            // Get answer
-                            string Answer = ReadLn().Trim();
-                            if (QuitThread()) return false;
-
-                            // Check if answer is required
-                            if ((Question.Required) && (string.IsNullOrEmpty(Answer))) goto GetAnswer;
-
-                            // Check if answer requires validation
-                            if (!string.IsNullOrEmpty(Answer))
-                            {
-                                bool Valid = true;
-                                switch (Question.Validate)
-                                {
-                                    case ValidationType.Email:
-                                        if (!StringUtils.IsValidEmailAddress(Answer)) Valid = false;
-                                        break;
-                                    case ValidationType.Numeric:
-                                        double Temp = 0;
-                                        if (!double.TryParse(Answer, out Temp)) Valid = false;
-                                        break;
-                                    case ValidationType.TwoWords:
-                                        if (!Answer.Contains(" ")) Valid = false;
-                                        break;
-                                }
-                                if (!Valid)
-                                {
-                                    if (!DisplayAnsi("NEWUSER_ENTER_" + Questions[i] + "_INVALID")) _NodeInfo.Connection.WriteLn("Input is not valid!");
-                                    goto GetAnswer;
-                                }
-                            }
-
-                            // Check if answer requires confirmation
-                            if (Question.Confirm)
-                            {
-                                if (!DisplayAnsi("NEWUSER_ENTER_" + Questions[i] + "_CONFIRM")) _NodeInfo.Connection.Write("Please re-enter: ");
-
-                                string Confirm = ReadLn().Trim();
-                                if (QuitThread()) return false;
-
-                                // Check if confirmation matches
-                                if (Confirm != Answer)
-                                {
-                                    if (!DisplayAnsi("NEWUSER_ENTER_" + Questions[i] + "_MISMATCH")) _NodeInfo.Connection.WriteLn("Text does not match!");
-                                    goto GetAnswer;
-                                }
-                            }
-
-                            // If we get here, the answer is valid, so save it
-                            _NodeInfo.User.AdditionalInfo[Questions[i]] = Answer;
-                        }
-                        else
-                        {
-                            RaiseErrorMessageEvent("Unable to prompt new user for '" + Questions[i] + "' since ansi\\newuser_enter_" + Questions[i].ToLower() + ".ans is missing");
-                        }
+                        RaiseErrorMessageEvent("Unable to prompt new user for '" + Questions[i] + "' since ansi\\newuser_enter_" + Questions[i].ToLower() + ".ans is missing");
                     }
                 }
 
-                Registered = SendRLoginWebCallback(); // Will only perform callback if necessary
-                if (!Registered) DisplayAnsi("RLOGIN_CALLBACK_ERROR");
-
+                Registered = true;
                 return Registered;
             }
             finally
@@ -2255,26 +2216,6 @@ namespace RandM.GameSrv
         private int SecondsLeft()
         {
             return _NodeInfo.SecondsThisSession - (int)DateTime.Now.Subtract(_NodeInfo.TimeOn).TotalSeconds;
-        }
-
-        private bool SendRLoginWebCallback()
-        {
-            if (_RLoginVariables.ContainsKey("callback"))
-            {
-                // Send the callback to the requested server
-                NameValueCollection NVC = new NameValueCollection();
-                NVC.Add("CallbackId", _RLoginVariables["callbackid"]);
-                NVC.Add("Alias", _NodeInfo.User.Alias);
-                NVC.Add("PasswordHash", _NodeInfo.User.PasswordHash);
-                foreach (DictionaryEntry DE in _NodeInfo.User.AdditionalInfo)
-                {
-                    NVC.Add(DE.Key.ToString(), DE.Value.ToString());
-                }
-                return WebUtils.HttpPost(_RLoginVariables["callback"], NVC).Contains("SUCCESS");
-            }
-
-            // If we get here, no callback was necessary
-            return true;
         }
 
         public void Start(int node, TcpConnection connection, ConnectionType connectionType, TerminalType terminalType)

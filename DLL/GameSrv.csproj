@@ -74,6 +74,18 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="ansi\rlogin_invalid_password.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\rlogin_invalid_password.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\rlogin_invalid_xtrn.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\rlogin_invalid_xtrn.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ansi\user_banned.ans">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -258,12 +270,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ansi\newuser_success.asc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="ansi\rlogin_callback_error.ans">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="ansi\rlogin_callback_error.asc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ansi\rlogin_invalid.ans">
