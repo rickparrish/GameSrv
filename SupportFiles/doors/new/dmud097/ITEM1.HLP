@@ -1,0 +1,457 @@
+;orc battle potion
+This flask contains a bubbling green liquid.  Orcs are known to drink these
+foul-tasting concoctions before going into battle.  The potion increases the
+user's combat effectiveness, but also leaves them in a cloudy state of mind.
+-
+;meditation cap
+This runed cap can only be worn by Monks.  It aids the wearer in combat, and
+in addition the wearer can USE it three times per day to restore lost hit
+points.
+-
+;shikomi-zue
+This is a hollow bamboo staff with a concealed blade inside.  The blade is
+spring loaded and can be released by pressing a trigger stud on the side of
+the weapon, making this a very effective weapon for backstabbing an enemy.
+-
+;chaos charm
+This is a small, crescent-shaped golden disc with a mirror in the center.  It
+has a faint magical aura, and when you stare into it for a long period of
+time you begin to feel disoriented.
+-
+;golden bracers
+These enchanted armbands are made of solid gold.  When worn, they increase the
+body's natural healing rate.
+-
+;malachite necklace
+This magical stone necklace increases the wearer's spellcasting power.
+-
+;elven cloak
+This finely-made cloak increases its wearer's ability to resist harmful magic.
+-
+;dwarven boots
+These well-constructed boots allow you to run more quickly.
+-
+;jewelled belt
+This belt has the magical ability to increase its wearer's stamina.
+-
+;scroll of return
+This magical scroll is the only means of escape from the demonic realm.
+-
+;Orb of Teleportation
+This is the Great Orb of Teleportation.  It was crafted so that the High
+Imperial Kingpriest could travel to the many cities within his empire with
+relative ease; however, it was greatly damaged during the Warmaster's invasion
+of the Land.  It no longer has the ability to teleport those who gaze within
+it.
+-
+;kusari-gama
+This is a sickle with a weighted chain on the end.  One end can be used to
+entangle the enemy, while the other is still available for striking.  
+-
+;amulet of healing
+This is a small holy amulet that has been blessed by a priest.  It may be
+used to heal the wearer several times per day.
+-
+;potion of restoration
+This green potion may be quaffed to negate many harmful spells and diseases.
+-
+;centaurhide tunic
+This tunic is made of the thick hide of a centaur.  It has the magical
+ability to increase the wearer's health.
+-
+;crimson sickle
+This is a standard sickle, permanently dyed red from the blood of those it has
+beheaded.  It is an excellent one-handed weapon.
+-
+;ebony scythe
+This is an excellent two-handed weapon.  It is filled with the evil power
+of the Grim Reaper.
+-
+;serpentine staff
+This twisted staff is usable only by mages, who can wield it with incredible
+effectiveness.
+-
+;emerald mace
+This magical mace is studded with emeralds, increasing the wearer's accuracy
+and magical potential.
+-
+;snakeskin gloves
+These gloves are crafted from the skin of a rare breed of serpent.  They are
+ultra-tough, providing decent protection.
+-
+;elven chainmail
+This suit of chainmail has been instilled with the power of the Elven God of
+the Hunt.  It has the magical ability to increase its wearer's dexterity.
+-
+;blackened platemail
+This massive suit of platemail radiates with evil, and is incredibly cold to
+the touch.  It has the magical ability to increase its wearer's strength.
+-
+;mystical robes
+These multicolored robes are covered with crimson runes.  They have the
+magical ability to increase their wearer's intellect.
+-
+;huge centaur hide
+This is the hide of a large centuar.  They are highly in demand due to their
+ability to be used in armor.
+-
+;rune of power
+This eye-shaped rune instills its wearer with incredible power.
+-
+;onyx ring
+This ring has an onyx stone in the center.  It radiates magical energy.
+-
+;golden talisman
+;crystal of sss'ra
+;emerald chalice
+This rare artifact is apparently useless.  Nonetheless, someone must want it
+for something.
+-
+;emerald ring
+This magical ring is studded with large emeralds.  
+-
+;mirror of teleportation
+As you stare into this gigantic mirror, a disembodied voice booms:
+<mirror of teleportation>
+-
+;gauntlets of might
+These metal gauntlets allow the wearer to lift incredible amounts of weight.
+They also have the ability to cast a strength-increasing spell.
+-
+;diamond bracelet
+This magical silver bracelet is studded with small diamonds.
+-
+;divine potion
+This flask contains a sparkling clear liquid that has been blessed by the
+gods.
+-
+;potion of invisibility
+This flask looks like it is empty.  Supposedly, an invisible liquid is
+inside...
+-
+;golden robes
+These magnificent robes have a golden shine to them.
+-
+;golden chainmail
+;golden platemail
+This magical suit of armor is studded with solid gold.
+-
+;ivory bracelet
+This bracelet, made of pure ivory, is inscribed with blood-red runes.  It has
+an aura of evil.
+-
+;gauntlets of annihilation
+These magical bronze gauntlets are inscribed with yellow runes.
+-
+;silver belt
+This magical belt is lined with silver.  
+-
+;platinum necklace
+This magical necklace is made of pure platinum.
+-
+;shimmering rod
+This rod shines with the power of the gods.  Only the righteous are able to
+harness its magical healing power.
+-
+;obsidian halberd
+This ancient halberd was once the property of Champion Ganelon, the only
+undefeated gladiator in the history of the empire.
+-
+;mithril greataxe
+The High Imperial Knight once wielded this greataxe, a weapon forged from
+the rarest of materials -- mithril.
+-
+;celestial broadsword
+This weapon was once used in battle by the High Imperial Kingpriest.  Part
+of his great life-force was used in the blade's construction.
+-
+;dragonbone warhammer
+This massive warhammer was carved from the bone of a gold dragon, a rare
+species known for their hypnotic power.
+-
+;ruby demonblade
+Shlkas'nar, King of Thieves, stole this blade from the Eye of Chaos.  Demonic
+spirits still dwell within the blade's core.
+-
+;fang dagger
+This ritualistic dagger is carved from the fang of an elder dragon lord.
+-
+;lightning claws
+These odd-looking gloves each have three razor-sharp obsidian claws attached
+to them.  They enable the wearer to attack with superhuman quickness.
+-
+;bladed staff
+This wooden staff has an obsidian blade attached to one end.
+-
+;ivory runestaff
+This ivory staff is inscribed with countless runes to increase its
+effectiveness.  The High Imperial Magus wielded it in the days of the Empire.
+-
+;shadowsteel naginata
+This wooden spear has a curved blade at the end that is made of shadowsteel,
+a priceless metal with a unique black glow.
+-
+;arquebus
+This strange contraption uses a black powder to fire stone balls.  It was
+crafted by a master weapons-builder years ago, and is the only one of its kind.
+-
+;titanic warhammer
+This resembles a standard warhammer, but is twice as large and much more
+deadly.
+-
+;executioner axe
+This axe has been tainted by the blood of countless victims.
+-
+;shadow dagger
+This plague-infected dagger gives off a highly magical aura.
+-
+;ring of warlords
+This magical ring increases the wearer's strength and health.
+-
+;ruby-studded ring
+This magical ring increases the wearer's dexterity and intellect.
+-
+;ring of necromancy
+This rare magical ring has the ability to raise and enslave the dead!
+-
+;crescent earring
+This magical earring is shaped like a crescent moon.
+-
+;black nosering
+This unattractive metal ring can be worn only on the nose.
+-
+;sacred ankh
+This ankh possesses an unknown magical function.
+-
+;illegal narcotics
+This is a bag containing a small amount of an unidentifiable substance.
+Possession of this stuff is undoubtedly unlawful.
+-
+;sling
+Light and accurate one-handed weapon.  Cannot backstab.
+-
+;dagger
+Light one-handed weapon.  Slightly increases chance of critical hits.
+-
+;club
+Large two-handed weapon that can stun the enemy.
+-
+;quarterstaff
+This light one-handed weapon can be used defensively as well, adding to its
+wielder's armor class.
+-
+;sickle
+This light one-handed weapon has a high chance of inflicting critical wounds.
+-
+;mace
+A decent one-handed weapon; however, not very good for surprise attacks.
+-
+;shortsword
+An accurate one-handed weapon.
+-
+;flail
+Powerful two-handed weapon that can stun the foe.  Not very good for
+surprise attacks, though.
+-
+;brass knuckles
+Monk-only weapon, worn on the hands.  Slightly increases the user's armor
+class, and can stun the enemy.
+-
+;pike
+Sharp two-handed weapon.
+-
+;spear
+One-handed edged weapon.  Higher chance of inflicting critical wounds.
+-
+;warhammer
+One-handed blunt weapon that can stun the foe.
+-
+;claymore
+A large, two-handed sword.
+-
+;broadsword
+A very accurate, one-handed sword.
+-
+;longsword
+This one-handed sword does not offer the increased accuracy of a broadsword,
+but offers better defense.
+-
+;halberd
+A deadly two-handed weapon.
+-
+;spiked gloves
+These gloves are studded with dozens of metal spikes.  When worn by a skilled
+monk, they make an excellent weapon.
+-
+;naginata
+This is a long spear with an extremely sharp, curved blade on the end.  Only
+ninjas are trained in use of this weapon.
+-
+;battle axe
+This one-handed axe has an increased chance of inflicting critical wounds.
+-
+;greatsword
+This is a massive two-handed sword.
+-
+;maul
+This huge, two-handed mace is not as accurate as a greatsword, but it can
+easily stun the enemy.
+-
+;ninja-to
+This finely-crafted blade is used by master ninjas.  It backstabs well, and
+also provides excellent protection.
+-
+;saber
+In the right hands, this one-handed sword is a deadly weapon.
+-
+;scourge
+This two-handed, whip-like weapon can inflict incredible pain. When repeatedly
+lashed, an enemy's strength may be reduced.
+-
+;greataxe
+This massive, two-handed axe is the most deadly of the non-magical weapons.
+-
+;throwing knife
+USE this small knife to quickly throw it at the enemy.
+-
+;great dragon fang
+This is the massive fang of a dragon king.  It is a grand trophy indeed.
+-
+;glowing pendant
+This neck ornament is made of an unknown glowing material.  Undoubtedly, it is
+the only one of its kind ever fashioned.  It greatly enhances the casting
+abilities of its wearer.
+-
+;serpent bracers
+These unique armbands are made of titanium.  Dragon-shaped glyphs have been
+carved into them.  When worn, they greatly increase the body's natural healing
+rate.
+-
+;dragonblade
+This one-of-a-kind greatsword eternally burns with the elemental power of
+dragonbreath.
+-
+;mithril crown
+This enchanted crown is made of mithril, a material favored by the dwarves.
+-
+;arm of grendel
+This furry arm emits the smell of death.  Nasty, smelly, rotting death.
+-
+;dark crystal
+This unusual crystal emits a sinister glow.  It feels deathly cold to the
+touch.  Undoubtedly, it has some magical properties.
+-
+;magic lamp
+According to legend, this golden lamp will summon a djinni when rubbed.
+-
+;monstrous horn
+This is the horn of some type of greater demon.  Slaying a beast of this
+strength is quite a rarity, making this object serve as a great trophy.
+-
+;rune of legends
+In the days of the empire, this triangular rune was awarded by the Kingpriest
+exclusively to the supremely powerful heroes of the land.
+-
+;infernal longsword
+This black metallic longsword was crafted and wielded by the mortal
+incarnation of the Angel of Death.  Besides being a superbly-crafted blade,
+it also has magical life-draining properties.
+-
+;shimmering claymore
+This superb one-handed blade once belonged to the Chief Guardsman of the
+Dungeon of Hades.  When the Warden turned his allegiance to Chaos, he executed
+the Chief Guardsman and took his sword.  The Warden then gave the claymore to
+his new Chaotic master as a trophy.
+-
+;lump of coal
+This appears to be a small lump of coal, slightly dusted with desert sand.  It
+seems to have a faint glow, but perhaps that is just your imagination.
+-
+;hydra tail
+This is the massive, scaly tail of a rock hydra.  In the right hands, it would
+make quite a weapon.  
+-
+;ethereal robes
+These transparent robes are nearly invisible to the eye as well as the touch.
+Nonetheless, they somehow provide excellent protection.
+-
+;heartwood staff
+This finely-carved Druidic staff has magical properties.
+-
+;nature's hand
+This wooden gauntlet is several hundred years old.  It has been passed down by
+generations of High Druids, and has been enchanted with very potent magic.
+-
+;imperial cloak
+This is the ancient cloak of an Imperial official.
+-
+;imperial boots
+These are the ancient boots of an Imperial official.
+-
+;blade of destiny
+This massive sword was created by the High Imperial Kingpriest himself.  It
+is the only weapon ever forged that is capable of mortally wounding the
+Warmaster of Chaos.  However, its unusual construction prevents it from
+harming other beings.
+-
+;hellblade
+This monstrous sword was forged from pure chaos.  It was designed with the
+purpose of slaying the Champion of Order, the great Imperial Knight who guards
+the Warmaster's cell.  However, its unusual construction prevents it from
+harming other beings.
+-
+;mark of order
+This earring bestows its wearer with the divine powers of order.
+-
+;mark of chaos
+This nosering instills its wearer with the energies of pure chaos.
+-
+;mark of heroes
+This bracelet identifies the wearer as one of the true champions of the realm.
+-
+;sapphire rod
+This blue rod is adorned with mysterious glyphs.  It has a magical aura.
+-
+;leviathan scale
+This gargantuan scale was removed from the body of a Leviathan, a massive
+arctic sea creature.  When worn as armor, it provides unparalleled protection.
+-
+;demon hide
+This hide was pulled from the corpse of a demon.  Judging from its thickness
+and magical properties, it came from a rare breed indeed.  When worn as armor,
+this hide appears to provide fairly good protection without being excessively
+heavy.
+-
+;bone sword
+This sword has been fashioned out of sharpened bone.  Its white surface is
+stained with blood, and the entire blade reeks of death.
+-
+;netherworld scepter
+This is the scepter of the King of the Demons.  Its tip is covered with
+spikes, and is constructed out of an extremely dense material.  This scepter
+could easily crack a human's head in half.
+-
+;imperial ring
+This signet ring bears the ancient symbol of the old Empire.
+-
+;phantom blade
+This blade is made of shadowsteel, an extremely rare metal with a unique black
+glow.  It feels nearly weightless to the touch.  Only a master ninja would
+know how to use such a lightweight blade with deadly force.
+-
+;aspect of chaos
+Your mortal brain cannot properly perceive this object.
+-
+;warmaster's head
+This is the severed head of the Warmaster of Chaos -- the greatest trophy
+imaginable.
+-
+;champion of order's head
+This is the severed head of the Champion of Order -- the greatest trophy
+imaginable.
+-
+-
+-
+:::STOP:::
+
+

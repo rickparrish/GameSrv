@@ -1,0 +1,216 @@
+
+                        °±² Ambroshia: Test of Time 4.0 ²±°
+                             Copyright (c) 2003-2004
+
+                                  DISCLAIMER
+
+        The author has taken every precaution to insure that no harm
+        or damage will occur on computer systems operating this package.
+        Nevertheless, the author shall NOT be held liable for whatever
+        may happen on your computer system or to any computer systems
+        which connects to your own as a result of operating this package.
+        The user assumes full responsibility for the correct operation of
+        this software package, whether harm or damage results from software
+        error, hardware malfunction, or operator error. NO warranties are
+        offered, expressly stated or implied, including without limitation
+        or restriction any warranties of operation for a particular purpose
+        and/or merchantability.  If you do not agree with this then do NOT
+        use this program.
+
+                                LICENSE AGREEMENT
+
+        The game program, support files, and documentation are copyrighted
+        products of Dominic Carretto. Dominic Carretto reserves all rights to
+        these products. This is protected by the United States of America
+        (USA) and International Copyright Laws. In no way shall the
+        components of the game software package be reproduced or modified
+        in any form or method without prior expressly written permission
+        from Dominic Carretto.
+
+        Tampering with or altering the contents or integrity of the game
+        software package is prohibited. No fee may be charged by any
+        agency other than Dominic Carretto beyond the cost of distributing
+        unregistered copies without prior expressly written permission from
+        Dominic Carretto.
+
+        This game is distributed under the Shareware concept. You are
+        allowed to operate this game for a trial period of thirty (30)
+        days. After this trial period, you must register the game 
+        or discontinue its usage. Again if you do not agree with this
+        then do NOT use this game.
+
+
+COPYRIGHT INFORMATION:
+This SOFTWARE is protected by copyright laws and international treaty
+provisions. You acknowledge that no title to the intellectual property in
+the SOFTWARE is transferred to you. You further acknowledge that title and
+full ownership rights to the SOFTWARE will remain the exclusive property of 
+the Dominic Carretto and you will not acquire any rights to the SOFTWARE 
+except as expressly set forth in this license. You agree that any copies of 
+the SOFTWARE will contain the same proprietary notices, which appear on and 
+in the SOFTWARE.
+
+
+That's the end of the boring stuff!
+
+
+--==[Introduction]==--:
+
+THE WORLD OF AMBROSHIA 4.0:
+
+* 10 Player Races w/ DUEL RACE OPTIONS 
+* 10 Character Classes w/ DUEL CLASS OPTIONS 
+* 5 Profession Guilds! 
+* 32bit DLL! For great multi-user gaming! 
+* Linux/BSD Port Available!
+* DOOR32 Support! 
+* NATIVE WINSERVER Support! 
+* Written in C++ for the fastest gameplay possible! 
+* Inspired by LORD, Usurper, Exitilus, and KNK! 
+* Embark on user created Quests!
+* Magic and steel go hand in hand 
+* Global In-Game TELEGRAMS!
+* Global Chat Room 
+* Create your own Kingdom and maintain it, from the tax rate to the building of a great military.. 
+* NEW KINGDOM TERRORISM AND ESPIONAGE OPTIONS! 
+* New Kingdom Diplomacy and Trading! 
+* Enjoy NEW marriage system and kids! 
+* 2 types of Leveling..Experience and Profession level up's "ala Exitilus" 
+* Hire Door Guards to protect you in the Inn.. 
+* Acquire land for the growth of your kingdom.. 
+* Recruit civilians for a militia to help you usurp the throne! 
+* Use your leadership and treasury to boost civilian approval! 
+* Annihilate your foe's financial investments and bank account.. 
+* Great kingdom warfare with cannons, catapults and dragon riders! 
+* Over 1000 monsters/creatures to fight against in varying environments including forests, mountains, sea battles, and dungeons... 
+* Over 300 different types of armor/helmets/shields etc 
+* Over 120 different types of weapons varying in quality and strength! 
+* Over 100 different spell types for spell casters to learn.. 
+* Unlimited amounts of money can now be held, and with that there is weapons that cost $1,000,000,000,000,000,000,000,000,000,000 and more!!!! 
+* Challenge your fellow companions in the great Ambroshia Arena where onlookers decide your fate! Your past evil and good deeds could save your life or end it... 
+* And More! 
+
+--==[UNREGISTERED LIMITATIONS]==--:
+
+Players will be unable to use the depository.
+Players cannot access high-level monsters.
+Players cannot send romantic mail.
+A few other small features disabled..
+
+
+--==[Installation:]==--:
+
+Just run the installation executable and install to a directory of your choosing.
+
+Maintenance will run every new day when the first player in joins. If you would like
+to set maintenance to run at other times, just call AMBLaunch.exe /TRYMAINT in a nightly batch job..
+
+If you notice that Maintenance has not run during the day, and you cannot get it to run. Please run
+AMBLaunch.exe /FORCEMAINT <--make sure nobody is online while this is run..
+
+--==[Setup]==--:
+
+Here I will explain how to setup the game in a few different BBS environments.
+
+@@ Local Mode @@:
+
+Just run AMBLAUNCH.EXE /L
+
+
+@@ Synchronet @@:
+
+Startup Directory: c:\ambv4
+Command Line: amblaunch.exe /N %N /D %F /SOCKET %H 
+If you would like to hide the local window, add a -SILENT to the end of the command line.
+
+Multiple Users: Yes
+Native 32-bit: Yes
+BBS Drop File In: Mystic DOOR32.SYS
+Place Drop File In: Node Directory
+
+
+@@ WinServer @@:
+
+Step 1: You must run Ambroshia through a batch file. Copy WCAMB.BAT
+from your Ambroshia directory and place it wherever you normally put door
+batch files, and edit it as directed in the batch file's comments.
+
+Step 2: Configure your BBS to run the door as "Door32 Compatible" for Door
+Type, and "WCAMB.BAT" for the Batch File. Be sure to enable the Multi-user
+toggle option.
+Using these lines in the bat file.
+cd c:\ambv4
+c:\ambv4\amblaunch.exe -n %wcnodeid% -d c:\doors\node%wcnodeid%
+
+Step 3: You must copy WinServers DOOR32.DLL file into the directory you put
+Ambroshia 4.0 in. This will allow the native support for WinServer in
+Ambroshia to work!
+
+
+@@ Mystic Setup @@:
+
+Command Data: 
+c:\ambv4\amblaunch.exe /n %3 /d c:\mystic\temp%3 
+
+
+@@ ELEBBS Setup @@:
+
+Command Line:
+c:\ambv4\amblaunch.exe -n *N -d c:\ele\NODE*N\door32.sys -socket *W 
+	
+
+@@ GameSrv Setup @@:
+** SELECT NO FOSSIL **
+Command Line: c:\ambv4\amblaunch.exe /n *N /d c:\bbs\node*N /socket *H 
+If you would like to hide the local window, add a -SILENT to the end of the command line.
+
+@@ Linux/FreeBSD Synchronet @@:
+ 1: Name                       Ambroshia
+ 2: Internal Code              AMBROSH
+ 3: Start-up Directory         /usr/bbs/sbbs/doors/ambrosia
+ 4: Command Line               ambrosia -D %f
+ 5: Clean-up Command Line
+ 6: Execution Cost             None
+ 7: Access Requirements
+ 8: Execution Requirements
+ 9: Multiple Concurrent Users  Yes
+10: Intercept Standard I/O     Yes
+11: Native (32-bit) Executable Yes
+12: Use Shell to Execute       No
+13: Modify User Data           No
+14: Execute on Event           No
+15: BBS Drop File Type         GAP             door.sys
+16: Place Drop File In         Node Directory
+17: Time Options...
+
+--==[Resetting Game]==--:
+
+Run the AMBConfig.exe file and follow the on screen instructions to reset
+your realm world.
+
+--==[Installing Quests]==--:
+To install quests to your game, just edit the Quests.dat file located in the
+data directory and input the Quest name followed by a comma, the Authors name 
+followed by a comma, then the actual Filename of the quest followed by a ending comma.
+
+Just put the actual quest file into the Quests directory.
+
+
+--==[Problems]==--:
+
+If maintenance does not run, and you receive a message stating you must manually run maint. Go
+to your Ambv4 directory and run AMBLAUNCH /TRYMAINT
+
+Also the game automatically creates daily backups. These are located in the Backups directory
+and are named according to the date it was created. To go back to a backup copy, just rename
+the file to game.db and copy it into your Data directory.
+
+If you run into a problem installing/setting up the door game, please contact
+me and I'll do my best to get you going. I am also available in the irc chat
+channel #ambroshia on irc.thebbs.org, as are a number of other sysops/bbs
+programmers.
+
+
+--==[Registration]==--:
+
+To register via PayPal: Go to http://www.thebbs.org/ambroshia and click on the registration link

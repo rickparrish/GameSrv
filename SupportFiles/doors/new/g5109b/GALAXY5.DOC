@@ -1,0 +1,1212 @@
+
+                              ÄÄÍÍ Galaxy 5 ÍÍÄÄ
+                            Version 1.09 Wide Beta
+                              By -Noel Software-
+                      Copyright (c) 1996 Thomas J. Smith
+
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      The latest version of Galaxy 5 can be found in these places to my
+      current knowledge...
+
+      FidoNet 1:2410/903 : Magic name G5, GALAXY5, or GALAXY
+      The Last Call BBS! : (313) 295-6284
+      Internet FTP site  : bbs.goldengate.net in DDSDOORS directory
+      WWW : http://www.geocities.com/SiliconValley/Heights/2233
+      DDSDOORS File Echo : I hatch all new releases via this file echo.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+                   ** Galaxy 5 Does NOT Need a Demo Key! **
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+           For quick installation instructions, refer to INSTALL.TXT
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      All files included with this archive have been stamped with the
+      exact time and date as shown on the "pre-play menu." If your *.EXE
+      files and/or GALAXY5.OVR file are dated a time and/or date other
+      than the one shown on your "pre-play menu," then more than likely,
+      the game has been tampered with. *NOTE* that a few text files may
+      not have the same date after installation due to copying the files
+      over to your Galaxy 5 directory (this gives them a time and date
+      matching that of your system at the time of installation).
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      Galaxy 5 was written from the ground up. No source code from any
+      other door game was used to create Galaxy 5.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      As of v1.07, all newly registered users will receive an awesome
+      ANSI screen showing that you have ported to Galaxy 5 into the
+      registered territory! ;> It can be used to promote the game in a
+      hello screen, bulletin, etc.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+                   -=ğş Thank you for trying Galaxy 5! şğ=-
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+
+                                   CONTENTS
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      Warning..........................................................1
+      Disclaimer.......................................................2
+      License Agreement................................................3
+      Introduction.....................................................4
+      Game Requirements................................................5
+      Files Included...................................................6
+      Installation.....................................................7
+      Upgrading........................................................8
+      Special features.................................................9
+      Restrictions in the unregistered version........................10
+      G5 Setup........................................................11
+      Support.........................................................12
+      What to do if there are problems................................13
+      Multi Node Use..................................................14
+      Credits.........................................................15
+      Where To Reach Me...............................................16
+      Registration....................................................17
+      Bug reports, comments, & suggestions............................18
+      Fido information................................................19
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+                                    WARNING                            1
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      This is a wide beta release of Galaxy 5. Which means that it is
+      still being tested for bugs. If you do not wish to use the game
+      on your system for fear of improper operation, then do not
+      install this version! Wait for the full release of Version 1.10
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      I have noticed that there are a few SysOps who believe that "Wide
+      Beta" copies should not be released. I strongly disagree.
+      Releasing a wide beta test version of the game shows bugs that
+      may exist on different BBS platforms, and under various different
+      setups that I would never catch by testing on my own system, as
+      everyones setup is different, and I would therefore end up
+      thinking the game was bug free until it was released. Wide beta
+      testing is the only way to learn of bugs that may exist that I
+      could never find on my own system. This game has been beta tested
+      on 6 other systems before public release.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      There are two areas of the game which have been tested, and found
+      to work (under my own testing anyway), but may still have problems
+      that I have not found. These are the Xports, and node to node
+      online two player battles. These were tested to the best of my
+      ability, but they could use quite a bit more testing. So if you
+      find anything wrong in these two areas of the game, please take
+      the time to inform me of the problem!
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+                                  DISCLAIMER                           2
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      The author has taken every precaution to insure that no harm or
+      damage will occur on computer systems operating this package.
+      Nevertheless, the author shall NOT be held liable for whatever
+      may happen on your computer system or to any computer systems
+      which connects to your own as a result of operating this package.
+      The user assumes full responsibility for the correct operation of
+      this software package, whether harm or damage results from
+      software error, hardware malfunction, or operator error. NO
+      warranties are offered, expressly stated or implied, including
+      without limitation or restriction any warranties of operation for
+      a particular purpose and/or merchantability. If you do not agree
+      with these terms, then do NOT use this program.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+                               LICENSE AGREEMENT                       3
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      The game program, support files, and documentation are copyrighted
+      products of Thomas J. Smith & -Noel Software-. Thomas J. Smith
+      reserves all rights to these products. This is protected by the
+      United States of America (USA) and International Copyright Laws.
+      In no way shall the components of the game software package be
+      reproduced or modified in any form or method without prior written
+      permission from the author. The .ZIP package containing this
+      program may be copied, distributed to BBS's, friends, internet
+      sites, posted on BBS's for download, added to CD-ROM shareware
+      discs, etc. as long as all original files are included, and
+      unmodified, and the same file name is used for the archive as was
+      when found (with the appropriate archiver extension).
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      Tampering with or altering the contents or integrity of the game
+      software package is prohibited. No fee may be charged by any
+      agency beyond the cost of distributing unregistered copies on
+      floppy and CD-ROM without prior written permission from the author.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      This game is distributed under the Shareware concept. You are
+      allowed to operate this game for as long as you wish, except that
+      no one will be allowed to win the game, and your G5 Editor will
+      not save any changes made, until registered. You may register the
+      game with -Noel Software- after you have determined that it will
+      meet your needs. There are no "unregistered" delays, nags, or
+      beeps anywhere in this game.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+                                 INTRODUCTION                          4
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      Galaxy 5 is a multi player game where your goal is to be number
+      one in the galaxy, and defeat the dreaded Raven Morpheous! Galaxy
+      5 supports multi player "real time" battles, its own mail writing
+      features with word wrap and quote on reply, uses either fossil or
+      internal COM routines, maintains itself without intervention from
+      the SysOp, support for external programs run directly from the
+      game (Xports), among many other features. There are many things
+      to discover in Galaxy 5, lots of things to do, and you can even
+      kill other players! RIP will be supported soon, and there is a
+      help menu where players can read and/or download a help file, or
+      RIPterm, if you allow downloads from within the door.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      When players reach level 15 (registered version only), they must
+      find the Raven Morpheous (the being responsible for all current
+      destruction done to the galaxy). After the player kills the Raven,
+      he/she starts the game over. Unlike the popular door game LORD,
+      Galaxy 5 does not need to be won a certain number of times.
+      However I am adding a feature where the game will take on a few
+      changes after a player has beaten the Raven, and they must then
+      seek out the person responsible for creating the Raven, and
+      destroy him. After this is done, then the game must be reset, and
+      that player will be listed in an honorable list of heroes!
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      Galaxy 5 is shareware. And as such, the unregistered version will
+      not allow anyone to win (can not pass level 8), the pre play menu
+      will read "This is an evaluation copy of Galaxy 5" and the G5
+      Editor will not save any changes. Registration costs only $15.00
+      U.S funds, and will "unlock" all of these features. Refer to
+      REGISTER.TXT (unpacked after installation) for info on how to
+      register.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+                  Here are just a few of Galaxy 5's features
+                                     -=ğ=-
+      ş Local Drop To Dos while caller is in door, chat with caller,
+        hang up caller, and quit door, all from local screen.
+      ş ANSI split screen chat (between SysOp and caller).
+      ş Multi Tasker aware (DESQview, OS/2, Windows, WIN-NT, & Win95).
+        Will give up timeslices while waiting for user input.
+      ş No need for a fossil driver to be resident, but can use one.
+      ş Built in ANSI routines so no need for ANSI driver to be
+        resident.
+      ş Full support of speeds up to 115,000 baud and the 16550 FIFO.
+      ş Assembly language serial input/output routines for speed and
+        efficiency.
+      ş Uses file locking routines for smooth multi node operation.
+      ş Contains a procedure to close all files and save any changes if
+        caller drops carrier, game crashes, etc.
+      ş Keeps a log of run-time errors if they occur in ERROR.LOG.
+      ş Support for the following door drop file formats,
+
+        DORINFO#.DEF : Remote Access compatible dorinfo.def dropfile
+                       format.
+        CALLINFO.BBS : Wildcat 2 compatible dropfile format.
+        DOOR.SYS     : Wildcat 3 & 4, and GAP compatible dropfile
+                       format.
+        SFDOORS.DAT  : SpitFire compatible dropfile format.
+        PCBOARD.SYS  : PCBoard 15.x compatible drop file formats.
+        MEGAHST#.DEF : MegaHost BBS drop files.
+        CHAIN.TXT    : WWIV BBS drop files.
+        CommandLine  : passing user info to the door through command
+                       line options is also supported.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      Note: If using the command line option, you must still create a
+            config file with the first line being CL for Command Line.
+            Then on the command line to run the door, pass these 6
+            parameters,
+
+      Parameter(1) should be the name of the Config file the door will
+                   use.
+      Parameter(2) Will enable or disable ANSI graphics..  Note: If
+                   ANSI, 1, GR, COLOR, or TRUE is passed to this
+                   parameter, ANSI will be set to true Else ANSI will
+                   be disabled.
+      Parameter(3) Pass the Baud Rate Here.
+                   Note: Legal Values are (If 0 passed then Local set to
+                   True), 0, 300, 600, 1200, 2400, 4800, 9600, 19200,
+                   38400, 57600, 115200.
+      Parameter(4) Pass the Users First Name Here.
+      Parameter(5) Pass the Users Last Name Here.
+      Parameter(6) Pass ComPort Here.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      The command line option is only supported for those BBS systems
+      that can not use one of the drop files that this game directly
+      supports. It is not recommended that you run the door this way if
+      you do not necessarily have to do so.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      If your BBS format is not supported, and you would like to run
+      the game on your system, then please take the time to send me a
+      copy of one of your drop files, and I will add support for your
+      particular BBS software if possible. If you have a layout of the
+      format of your drop files, that would help out alot, but I can
+      probably figure it out from a normal one actually created by your
+      BBS software.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+                                 REQUIREMENTS                          5
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      DOS 3.x or higher is needed in order to use the G5 Editor program.
+      If you do not run DOS 3.x or higher, and still wish to use the
+      G5 Editor program, let me know, and I can/will recompile a copy
+      that you will be able to use.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      The actual memory requirements for this game have not been
+      determined. However, It has been tested to run fine under a 2 meg
+      system. It has been tested on my system using Wildcat! 4.xx under
+      Win95 with 8 megs of ram. SHARE must be loaded IF you intend to
+      use the game in a multi-node environment (except Windows), OR
+      under DesqView. The game is RIP aware, and will automatically
+      detect when a caller is using RIP, and display the appropriate
+      screens (RIP has not yet been added). A FOSSIL driver is NOT
+      required to run the game, although one will be supported if you
+      wish. Automatic time slicing support is provided to most common
+      multi-taskers as well. Supported are DESQview, OS/2, Windows 3.x,
+      Win-NT, and Windows 95 as well. If you wish to allow players to
+      download the help files and/or RipTerm, then you must have a copy
+      of DSZ.COM, DSZ.EXE or GSZ.EXE, and show the game in G5 Setup
+      where it can find this program.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+                                FILES INCLUDED                         6
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      Below is a listing of all files included with the .ZIP file. If
+      you are missing ANY of these files (except for the DOC and TXT
+      files), the game more than likely will NOT function properly.
+      Feel free to give out copies of the ENTIRE archive package of
+      this game but please make sure that all of the original files are
+      included!
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      -------------------------
+       Included in G5xxxx.ZIP:
+      -------------------------
+      G5.ZIP       - .ZIP file containing all of the game files.
+      INSTALL.EXE  - Installation program.
+      INSTALL.TXT  - Installation instructions.
+      GALAXY5.DOC  - This documentation.
+      SCREENS.ZIP  - Some ANSI screens that you may use on your BBS to
+                     announce the door! ;>
+      WHATSNEW.TXT - Description of changes, additions, fixes, etc. in
+                     this (and previous) versions.
+      README.TXT   - Important program information.
+      CHARGEIT.TXT - Credit card ordering information.
+      FILE_ID.DIZ  - Description file for BBS use.
+
+      -----------------------------------------------
+       Directories you will have after installation:
+      -----------------------------------------------
+      C:\DOORS\G5 <----------- Or whatever your G5 directory will be.
+      C:\DOORS\G5\DATA <------ Where all data files will be kept.
+      C:\DOORS\G5\SCREENS <--- Where all display files are kept.
+      C:\DOORS\G5\MAIL <------ Where all mail files will be kept.
+      C:\DOORS\G5\TEXT <------ Where all *.TXT files are placed.
+      C:\DOORS\G5\TEMP <------ Temporary work directory.
+
+      ----------------------------------------
+       Files in your Galaxy 5 home directory:
+      ----------------------------------------
+      GALAXY5.EXE  - Main program file.
+      GALAXY5.OVR  - Overlay file.
+      G5.BAT       - Batch file that is called from your BBS.
+      G5EDITOR.EXE - Editor program to view and/or change player info,
+                     planet info, mates info, etc. etc. (will not save
+                     changes until registered). A very powerful, yet
+                     easy to use editor.
+      G5SETUP.EXE  - Setup program.
+      G5_STRUC.ZIP - Structures to data files, drop files, and listings
+                     of codes used by Galaxy 5 for third party
+                     programmers.
+      LOCAL.BAT    - File used to run the game in local mode.
+      NODE*.CFG    - Node config files. One for each node, numbered from
+                     NODE0.CFG to however many nodes you have setup.
+                     These will not exist until you have run "Setup
+                     Nodes" in G5 Setup.
+      XPORTS.DAT   - This file will contain the juice behind all of
+                     your Xports installed (if any). All lines in this
+                     file that begin with a semi-colon (;) are ignored.
+                     Read the XPORTS.TXT file for further information on
+                     Xports.
+      GALAXY5.DOC  - This documentation.
+      REGISTER.TXT - Registration form.
+
+      ---------------------------------
+       Files in the DATA subdirectory:
+      ---------------------------------
+      ARMOUR.DAT   - Text file containing all 10 armour names.
+      A_COST.DAT   - Cost of Armours 1 through 10.
+      BADWORDS.DAT - Text file containing all "bad words" you want
+                     filtered out anywhere users are allowed to input a
+                     string of text.
+      ENEMIES.DAT  - Data file containing enemy records.
+      G5CONFIG.DAT - Configuration data file.
+      G5_HELP1.DAT - Help text file on "Game Play" that callers can
+                     download from the help menu if you allow downloads
+                     (they can also just view the file if they wish).
+      G5_HELP2.DAT - Help text file on "Getting Around" that callers can
+                     download from the help menu if you allow downloads
+                     (they can also just view the file if they wish).
+      G5_INFO.DAT  - Text file containing info displayed to callers when
+                     they select (I)nfo from the Main Entrance screen.
+      G5_MATES.DAT - Data file containing records on the people at the
+                     inns that players can flirt with.
+      G5_SHIPS.DAT - Text file containing all 10 space craft names.
+      INNCOSTS.DAT - Text file containing prices of rooms at the inns
+                     for each player ranking.
+      LOOKS.DAT    - Text file containing amounts of "looks" required for
+                     successful flirts with "inn mates."
+      MAC_HELP.DAT - Text file shown to caller when requesting help with
+                     recording and using macros.
+      MARRY.DAT    - Text file containing "one liners" used in todays
+                     news when a player gets married.
+      NEWS.DAT     - Text file containing "one liners" used in todays
+                     news when a new TODAY.DAT file is written.
+      PLANETS.DAT  - Data file containing records for each planet.
+      SKILLS.DAT   - Skill amounts required for each rank to advance to
+                     the next rank. This is a regular ASCII text file.
+      S_COST.DAT   - Cost of Space Crafts 1 through 10.
+      TODAY.DAT    - Text file containing "Todays News."
+      TOOBAD.DAT   - Text file containing "one liners" used in todays
+                     news when a player gets killed (if they don't
+                     choose to say something themselves).
+      VERSION.DAT  - Used internally by G5, the install program, and
+                     also used by 3rd party utilities to determine which
+                     version of Galaxy 5 you are running.
+      VICTORY.DAT  - Text file containing "one liners" used in todays
+                     news when a player kills another player (if they
+                     don't choose to say something themselves).
+      WEAPONS.DAT  - Text file containing names of the 10 weapons.
+      W_COST.DAT   - Cost of Weapons 1 through 10.
+      W_DROIDS.DAT - Text file containing the names of the 14 warrior
+                     droids players will encounter to progess to the
+                     next player rank.
+      YESTRDAY.DAT - Text file containing "Yesterdays News."
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      Note: More files will be created in the DATA subdirectory as the
+            game is played.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+      -----------------------------------
+       Files in the SCREENS subdirectory
+      -----------------------------------
+      All *.ANS, *.ASC, & *.RIP (RIP files will not be included until
+      RIP support has been added). There are too many files in this
+      directory to list. However, if you wish to create your own screens
+      for the game, you can figure out which screens are which by
+      looking at them in an ANSI editor. The *.ANS files can be ANSI
+      files, or you can use G5 Codes, or both. The *.ASC files should
+      contain no ANSI codes, or G5 Color codes. However, all G5 codes
+      besides color codes will be supported in the *.ASC files. For
+      example, ~P1~ to display the name of the first planet in the
+      Galaxy will work among others.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      Note: If you will be making your own ANSI and/or ASCII screens for
+      Galaxy 5, keep in mind that by default, the screen will be shown
+      from beginning to end, meaning it will not pause. If you need a
+      screen to pause, simply insert a ~<>~ code at the position in the
+      display file you wish the <PAUSE> prompt to be called.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      Any ANSI screens that you create for the game yourself, MUST be
+      saved in 100 lines or less.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      The majority of *.ANS screens released with Galaxy 5 were created
+      using G5 color codes.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+                      Hints on merging G5 codes with ANSI
+                     -------------------------------------
+      If you create your own ANSI files for the game, and insert G5
+      codes into your ANSI's, then you will more than likely find out
+      that the codes used to display strings always "push" the text to
+      the right of them over further to the right, therefore knocking
+      everything out of order, or the codes do not display as planned
+      when you saved your file. Here is what you can do to get around
+      these problems!
+
+      1) First create your ANSI using the G5 codes where you want them.
+
+      2) Take note of the screen coordinates of EACH code (preferrably
+         on paper)!
+
+      3) After getting the coordinates, erase ALL G5 codes from the
+         display screen.
+
+      4) Save this screen in ANSI format using Home Cursor, NOT Clear
+         Screen, or Normal! Also save it in 100 lines or less. For
+         example reasons, name it TEST2.ANS.
+
+      5) Now, create a new ASCII placing your G5 codes at the
+         coordinates you jotted down using no color. Also place a ~XX~
+         code as the VERY FIRST line if you want the screen cleared.
+         Save this screen in ASCII, and name it TEST1.ANS (or TEST1.ASC
+         or whatever you wish).
+
+      6) From the DOS prompt, type COPY TEST1.ANS+TEST2.ANS FILENAME.ANS
+         This will merge the two TEST files into FILENAME.ANS. Of course
+         you will replace FILENAME.ANS with the name of your file you
+         are creating.
+         -OR-
+         Load TEST1.ANS in your editor, and merge TEST2.ANS to the end
+         of the file, then save it as the appropriate file name.
+
+      7) Log onto G5, and see how it worked. If it didn't display
+         properly, and you are SURE you followed the above instructions,
+         then check the coordinates of the G5 codes in the TEST1.ANS
+         file, and edit them as necessary, then follow the steps for
+         merging the two files again.
+         -OR-
+         Obtain the G5 Viewer freeware utility that allows you to view
+         display files created using G5 Codes, ANSI and/or ASCII. It can
+         be "Freq'd" via FidoNet from my system using the magic name
+         G5VIEWER (from 1:2410/903).
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+      --------------------------------
+       Files in the TEXT subdirectory
+      --------------------------------
+      BUGFOUND.TXT - Bug report form.
+      FUTURE.TXT   - Future plans list.
+      XPORTS.TXT   - Full information on Xports. Xports are
+                     external door programs that are run directly from
+                     the game (same as IGM's in LORD).
+      INSTALL.TXT  - The installation instructions text file.
+      HELP.TXT     - Text file to help beginning SysOps with the setup
+                     of doors on a BBS. Covers door setup, fossil
+                     drivers, locked baud rates, etc.
+      README.TXT   - Important information text file.
+      CHARGEIT.TXT - The same credit card information text file as
+                     found in the original archive.
+
+      ---------------------------------
+       Files in the MAIL subdirectory:
+      ---------------------------------
+      NONE - Until a player writes a message to another player, or a
+             player receives a message from the galaxy informer. This
+             directory will contain all messages to every player,
+             starting from MAIL0.DAT. Mail files are erased after the
+             players receive their mail.
+
+      ---------------------------------
+       Files in the TEMP subdirectory:
+      ---------------------------------
+      NONE - The only time you will see files in this directory, is if
+             someone is playing the door, and you are in another
+             "window" in a multi tasking environment looking in this
+             directory. It is where Galaxy 5 creates, and deletes
+             temporary files that it uses during game play. If you
+             should find any files in this directory while no one is
+             playing the game, you may safely delete them all, and
+             probably should. :)
+
+      --------------------------------------------
+       Files created by Galaxy 5 as play goes on:
+      --------------------------------------------
+      DATA\G5CONFIG.DAT - Configuration information stored with G5
+                          Setup.
+      DATA\DATE.DAT     - Text file containing the current date. Used to
+                          determine when the game should run maintenance
+                          mode.
+      DATA\WALL.DAT     - Text file containing "graffiti" players have
+                          posted on "The Black Wall."
+      DATA\PLAYERS.DAT  - Data file containing player info.
+      DATA\RIPTERM.DAT  - This one is created by G5 Setup. Text file
+                          containing full path and file name to your
+                          copy of RIPterm for callers to download from
+                          the help menu (if you allow it).
+      DATA\DONE.DAT     - Text file containing info on certain features
+                          each player has already done today, so they
+                          will not be allowed to do them again until
+                          the next day.  :)
+      DATA\GRAFFITI.DAT - The graffiti wall at the biker bar.
+      DATA\INNTALK*.DAT - Numbered INNTALK1.DAT through INNTALK5.DAT.
+                          Contains the conversations held at the inns.
+      DATA\INTRO.DAT    - Contains only one number between 1 and 5. G5
+                          rotates 5 intro screens to display to callers.
+                          This file holds the number of the next intro
+                          screen to display. G5 updates it after every
+                          player enters the game.
+      DATA\HIT_INFO.DAT - Contains record information between callers
+                          who have hired a player to kill another
+                          player (if any).
+      DATA\HEROES.DAT   - Contains the names of all players who have won
+                          the game for displaying from the (L)ist heroes
+                          options at the inns.
+      DATA\FLIRTED.DAT  - Names of players who have flirted with other
+                          players today. Erased at the beginning of each
+                          new day.
+      DATA\MACROS.DAT   - Contains macro strings recorded by players (if
+                          any).
+      DATA\TODAY.DAT    - "Today In The Galaxy" news file shown to each
+                           caller when entering the game.
+      DATA\YESTRDAY.DAT - "Yesterday In The Galaxy" news file shown when
+                          a caller chooses to view Yesterdays news.
+      GALAXY5.LOG       - Created by main program if errors occur, and
+                          if you have log errors set to TRUE under node
+                          setup in G5SETUP.
+      ERROR.LOG         - Generated in the case of a run-time error.
+                          If you have problems with the game, and you
+                          see this file, it helps if you can send it to
+                          me to review, along with a simple explanation
+                          of where at in the game the error occured (if
+                          you know of where).
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      There may be more files in the data subdirectory that I missed, as
+      there are quite a few. Some will exist at times, and some will
+      not. They depend on game play. And if some of the files mentioned
+      above do not exist, it more than likely doesn't necessarily mean
+      you are "missing" those files.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+                                 INSTALLATION                          7
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      If you have any trouble at all installing the game. You should
+      refer to the INSTALL.TXT file included in the G5xxx.ZIP archive.
+      This file contains detailed installation instructions, quick
+      installation instructions, and manual installation instructions
+      if you have to install the game without the INSTALL.EXE program.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      1. Unzip the G5xxx.ZIP file either to a temporary directory, or
+         the directory you wish the game to reside in. Change to the
+         directory you unzipped this file to, and run INSTALL.EXE
+         INSTALL will ask you what drive letter you wish to install the
+         game to, then it will ask you for the directory to install the
+         game to.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      2. Thats all you need to do for the installation part. INSTALL
+         will automatically run the G5SETUP.EXE program after installat-
+         ion is complete. While in the G5SETUP program, the first thing
+         you should probably do, is "Node Setup." Under node setup,
+         you will be creating the necessary configuration files needed
+         for each node that you will be running the game on. When you
+         choose this option, you will first be editing node 1. Press
+         PGUP for the next node (node 2), or PGDN for the previous node
+         (node 0), and so forth, to edit all of the nodes you have.
+         Online help is available throughout the program, just hit F1
+         whenever you need some help. After setting up your nodes,
+         choose "Setup Galaxy 5" to configure the game to your settings
+         and your preferences.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      3. Now you need to create your batch files needed to run the door
+         from your BBS software. In these batch files (or batch file),
+         you need to change to the Galaxy 5 directory, then CALL the
+         G5.BAT file with the first parameter being the number of the
+         node this batch file is being called from. For example, node
+         1's batch file would look something like this,
+
+         @ECHO OFF        <-- Turn off echoing commands to the screen.
+         CD\DOORS\GALAXY5 <-- Change to your Galaxy 5 directory.
+         CALL G5.BAT 1    <-- Call the G5.BAT file using the node number.
+
+         A Wildcat! system could use the %WCNODEID% variable in place of
+         the 1, to use the same batch file for each node (if you use the
+         SET WCNODEID=? command in your batch files that start
+         Wildcat!). Here is what mine looks like, using the WCNODEID
+         variable,
+
+         @ECHO OFF
+         CD\DOORS\GALAXY5
+         CALL G5.BAT %WCNODEID%
+
+         In the above example, the command that would be passed to the
+         G5.BAT file would be, G5.BAT 1 for node 1, or G5.BAT 2 for node
+         2, etc.
+
+         If your BBS software uses some kind of node id variable, then
+         you can put that in the command line to use the same batch file
+         for every node. Like a PCBoard system would be (I think),
+         %PCBNODE% or something like that, I forget.
+
+         Galaxy 5 needs the number of the node being run on the command
+         line, so it knows which node config file to read upon startup.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      4. If you need to, set up the door in your BBS setup, if your BBS
+         software needs it. For example, a Wildcat! 4 SysOp would have
+         to load MakeWild, choose "Doors" then edit a new door for
+         Galaxy 5 telling Wildcat! that the door is multi user, and the
+         name of the batch file to look for when the door is run by a
+         caller, then add the door to your DOORS.BBS display file.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      5. There is NO separate daily maintenance to be performed. Galaxy
+         5 will automatically run the built in maintenance routines at
+         the start of each new day when the first player of the day
+         enters the game! The maintenance routines currently checks for
+         player inactivity, and deletes players who haven't played for
+         the amount of days you specified in G5 Setup, revives players
+         who haven't played for the number of days you specified in G5
+         Setup, and adds interest to all players bank accounts (the
+         interest rate is also configurable by the SysOp in G5 Setup).
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+                                   UPGRADING
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      Upgrading Galaxy 5 is easy. Run the INSTALL program that comes
+      with the Shareware package, type in the path to your Galaxy 5
+      directory (or press F2 to pick it), and INSTALL will ask you if
+      you wish to use the upgrade options.  Choose yes if you have
+      customized anything about the game (like prices, displays, names
+      of weapons and armour, etc.). You can choose no to do a full
+      install over your old copy if you have not customized anything,
+      and your players stats will remain intact. It is a better idea to
+      choose NO to the upgrade options, if you have not customized
+      anything, so that you will not be missing anything.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      Upgrading your registered version (if registered) is just as easy.
+      Just find the latest version, and follow the above instructions.
+      Your copy will still remain registered!
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+                               SPECIAL FEATURES                        9
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      Listed here are some special features of the game that you should
+      be aware of since some may be of use to you! ;>
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+                                 BADWORDS.DAT
+
+      If this file exists in your DATA subdirectory, then it will be
+      used to filter out any "bad words." This file is included in the
+      distribution archive. You can edit it to your needs, or delete it
+      if you wish to allow "cursing" in your game! :) The format of the
+      file is as follows,
+                         BADWORD1|GOODWORD1
+                         BADWORD2|GOODWORD2
+
+      In these examples, if someone wrote a sentence anywhere in the
+      game where user input is allowed, and used the word BADWORD1, then
+      it would be replaced with GOODWORD1. Each bad word must be
+      followed by a |, and then the word to replace the bad word with.
+      Case is not important, as lower case will be used for all filters,
+      and there should be no spaces on each line.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+                                   LOGON.BAT
+
+      Galaxy 5 contains the ability to automatically run a LOGON.BAT
+      file if it exists in your Galaxy 5 directory. All you have to do
+      to use it, is create it, and place it in your home Galaxy 5
+      directory. When Galaxy 5 executes this batch file, it first
+      creates the three drop files NODE*.DAT, DROPFILE.*, & DORINFO*.DEF
+      in the TEMP subdirectory just like it does when an Xport is
+      executed, so that it may be used by the programs ran from this
+      batch file if needed. The * will be the node number of the caller.
+      Then G5 will show the caller a message to let them know what is
+      going on that looks like this, "*** RUNNING EXTERNAL PROGRAM ***."
+      Galaxy 5 will shell out, and execute this batch file after the
+      caller has logged into the game, and read "Today In The Galaxy."
+      It is ran just before the caller gets to the main menu. You can
+      use it to run external maintenance routines you may have set up,
+      or to run a certain Xport (or Xports), a random menu switching
+      program, or whatever. PLEASE NOTE that when G5 runs the LOGON.BAT
+      file, it "shells out" and executes LOGON.BAT. Which means that if
+      you are trying to run memory hungry programs from the LOGON.BAT
+      file, it may cause problems! :(
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+                                  PRELOG.BAT
+
+      Galaxy 5 can also run a PRELOG.BAT file for you if it exists in
+      your home Galaxy 5 directory. This file is ran right after the
+      program initializes, BEFORE the player even sees the "pre-log
+      menu." *HOWEVER*, please note that using this batch file, G5 does
+      NOT create the drop files that it does when the LOGON.BAT file is
+      ran or when an Xport is ran. This is because the players info has
+      not been completely obtained yet, since they have not yet actually
+      entered the game. This batch file can be used to launch programs
+      such as Paul Slinski's Eventer program which randomly writes an
+      event to Galaxy 5's news file. Do NOT run any programs from this
+      batch file that require the use of G5's drop files!
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+                                  LOGOFF.BAT
+
+      This file works in the EXACT same manner as the PRELOG.BAT file
+      mentioned above, except that it is ran just before G5 actually
+      exits back to the BBS.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      *NOTE* You should NEVER use the "EXIT" command in any of the above
+             batch files!! Not sure what could happen! :)  G5 will
+             automatically pick up where it left off after the batch
+             files are finished.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      If you would have other uses for external batch files, let me know
+      where you would like them inserted, and I'll probably put them in
+      for you. Its really no problem! :)
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+                                Welcome Message
+
+      When a player enters Galaxy 5 for the first time, they are sent a
+      default message addressed from SysOp stating, "Welcome to the
+      Galaxy!" If you would like this message to read something other
+      than the default, then create a text file in your Galaxy 5
+      directory named whatever you like containing your message. Then
+      run G5 Setup and type in the name of this text file under the
+      field "SysOps Welcome Message" under the menu option "Setup Galaxy
+      5," and this is the text all new players will receive in their
+      welcome message. Your message must be a plain ASCII text file
+      (however, it may contain G5 color codes).
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+                                SysOps Bulletin
+
+      Galaxy 5 will also display a bulletin for you. When callers enter
+      the game, if you have a file name specified under "SysOps
+      Bulletin" under the menu option "Setup Galaxy 5" in G5 Setup, and
+      if that file exists, then it will be displayed to the caller as
+      the "SysOps Bulletin" right after they read "Todays News." This
+      file can be plain ASCII, ANSI, G5 Codes, or a combination of each.
+      It is recommended that you either use ASCII, or G5 codes, since
+      ANSI can not be shown to callers with no ANSI terminal. G5 codes
+      can be used since any color codes are stripped out for non-ANSI
+      callers.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+                                Cheat Codes ;>
+
+      As you may figure out sooner or later, Galaxy 5 contains a few
+      cheat codes. Many people find cheat codes "unethical" or do not
+      approve of them in one way or another. So I have added the ability
+      to "suppress" all cheats in the game. If you do not want callers
+      to be able to cheat in your game (if they ever figure out the
+      cheats), all you have to do, is create a file named NO_CHEAT.DAT
+      and place it in your DATA subdirectory. This file can contain
+      anything you want, or nothing at all. It can be a 0 byte file. All
+      that matters, is that it exists, and if it does, then cheating
+      will NOT work anywhere! ;> If in the future you wish to allow
+      "cheating," simply delete the NO_CHEAT.DAT file.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+                                 Macro Strings
+
+      As of v1.04 Wide Beta, Galaxy 5 now supports its own macros. While
+      it is nothing very fancy, it is kind of a nice feature
+      nonetheless. Here are step by step instructions on how to use
+      them,
+
+      1) Choose the (R)ecord Macros option from any planets main menu.
+
+      2) Choose the number of the macro you wish to record, or
+         re-record. If you have macros recorded already, then they will
+         be shown, otherwise they will be either blank, or read "Empty."
+
+      3) Now you can use your macros by number anywhere you are allowed
+         to input a string of text. Like conversations at the inns,
+         after killing someone (or getting killed), sending mail to
+         another player, writing on the black wall or the graffiti wall,
+         etc. etc.
+
+      4) To use a macro, on a blank like (while being asked to enter
+         your text), type in the number of the macro you wish to use,
+         then press ENTER and that macro will be inserted. If the macro
+         is empty, then nothing will be inserted, try again! ;>
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+                     RESTRICTIONS IN THE UNREGISTERED GAME            10
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      Until the game is registered the following restrictions are in
+      effect...
+    ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+          a.  No one can finish the game. It will be unwinnable. The
+              highest level players can reach in the unregistered
+              version is 8. In the registered version there are a total
+              of 15 levels.
+
+          b.  The G5 Editor will not save any changes that you make. It
+              is simply there for you to evaluate, and see what the
+              working editor can do.
+
+          c.  In the Pre-Play Menu, one of the lines will read, "This is
+              an evaluation copy of Galaxy 5" until the game is
+              registered, which it will then read your name.
+
+          d.  After quitting G5 Setup, there is an "UNREGISTERED!"
+              message displayed on the screen.
+
+          e.  Registering the game enables all of the above and allows
+              you to alter virtually all of the game settings using the
+              G5EDITOR.EXE program.
+
+          f.  Any future updates can be obtained free from anywhere you
+              can find a shareware copy of G5 and upgrades are easy to
+              implement! All you have to do to upgrade is find the latest
+              shareware version and install it. If you are registered,
+              then your copy will still remain registered as long as
+              your GALAXY5.KEY file remains in your home G5 directory!
+
+          g.  I am always improving this game - so check my BBS, or look
+              around for a more current version whenever you have a
+              chance! ;>
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      There are NO "Unregistered" nags or any of those annoying delays
+      ANYWHERE in Galaxy 5! What is mentioned above, are the only
+      restrictions in Galaxy 5.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+                                    G5SETUP                           11
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      In the G5 Setup program, you need to set the game to your
+      preferences. If you do not do so, then the first time the door is
+      run, a default configuration will be created and used. G5 Setup
+      will allow you to create fresh data files (in the case that a data
+      file or two gets corrupted beyond repair), entirely reset the
+      game, set the "On Now" flag to OFF for all players (useful if a
+      player is being flagged as ON when you know they are not), fix
+      any marriage problems, and manage your node configuration files.
+      You can also start the G5 Editor from within G5 Setup. Both G5
+      Setup, and the G5 Editor contain full online help. Just highlight
+      the option you need help with, and press F1. Some areas allow use
+      of different keys, if this is the case, then the key(s) that you
+      can use will be highlighted when you highlight these areas.
+      Pressing ESC or your right mouse button will exit whatever part of
+      the program(s) you are in. If you have any unsaved information,
+      you will be asked if you wish to save your changes first.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      G5 Setup can use four different command line parameters (separately
+      or together in any order). When a command line parameter is used,
+      G5 Setup will run the called for options automatically,
+      unattended. This is good for running nightly maintenance or just
+      for running when you do not wish to start the entire setup
+      program. I would recommend having your mailer, or BBS run G5 Setup
+      with the /R parameter every night when you have it set to not
+      accept any callers, so as to make sure no one is incorrectly
+      flagged as being "On Now." Here are the four parameters G5 Setup
+      can accept,
+
+      /? - Will show you all of these command line switches and tell you
+           which ones do what (this switch is used alone).
+
+      /R - Reset "On Now" flag for all players. Take note that when
+           using this option on the command line, G5 Setup will not
+           check to see if anyone is playing the game at the moment, and
+           will set EVERY PLAYERS "On Now" flag to NO.
+
+      /D:? - Create fresh data file(s). /D:M = Create new G5_MATES.DAT
+             file, /D:P = Create new PLANETS.DAT file, /D:E = Create new
+             ENEMIES.DAT file, /D:A = Create them all. Take note that
+             when using this option on the command line, if the DATA
+             subdirectory does not exist in the directory running G5
+             Setup from, it will be created, and the file(s) specified
+             on the command line will be created in the DATA
+             subdirectory.
+
+      /M - Fix marriage problems. This will set EVERY PLAYERS record to
+           read "Not Married" and will also set all of the mates at each
+           inn to "Not Married."
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+                                    SUPPORT                           12
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      If you need help with something about the game, or have a
+      question, comment or suggestion, feel free to contact me using
+      any of the methods below. Whether you are a registered owner or
+      a shareware evaluator, I will answer your questions to the best of
+      my ability, and help you out the best I can! Please keep in mind
+      however, that support to unregistered users is on an "as I can"
+      basis. All registered customers receive support first...
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      My BBS   : The Last Call BBS! (313) 295-6284
+      Fido     : 1:2410/903
+      Internet : tsmith2@voyager.net
+      WWW      : http://www.geocities.com/SiliconValley/Heights/2233
+      Voice    : (313) 295-6287
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      I also frequent the following FidoNet echos,
+                                                  DOORGAMES
+                                                  ON_LINE_GAMES
+                                                  DOORWARE
+
+      When/if sending me mail via a FidoNet echo, please address your
+      messages to THOMAS J SMITH with NO period after the J! The only
+      reason I use my full name and middle initial, is because there are
+      so many others in cyberspace with the same name as I! :( I am
+      constantly receiving echomail addressed to TOM SMITH on other
+      BBS's! :)
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+                       WHAT TO DO IF THERE ARE PROBLEMS               13
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      Every effort is made to ensure that the game runs correctly before
+      it leaves my BBS as Shareware. If you are experiencing problems
+      please do the following before contacting me...
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      1.  Read ALL of the GALAXY5.DOC file and look through any other
+          text files to ensure you have setup the program correctly, and
+          have met all of the program requirements.
+
+      2.  Check your IRQ numbers under "Node Setup" for each node. This
+          is the most common problem I am asked about. Do NOT enter the
+          COM port number in this field! IRQ & COM numbers are TOTALLY
+          different! If you use the wrong IRQ number, then the door
+          will load, and will not respond to the callers input, only
+          the local console. If you are using a fossil driver, then
+          enter a 0 in the IRQ number field for EVERY node.
+
+      3.  Make sure you are calling the G5.BAT file from your BBS batch
+          file that runs Galaxy 5, and not GALAXY5.EXE. It is important
+          that you use "CALL G5.BAT 1" on the command line (replacing 1
+          with the proper node number, and using no quotes), instead of
+          running GALAXY5.EXE.  The G5.BAT file will execute GALAXY5.EXE
+          properly.
+
+      4.  Make sure you are changing to the Galaxy 5 directory from your
+          BBS batch file, and not running the game from your BBS drop
+          file directory! For example,
+                                      CD\DOORS\GALAXY5
+                                      CALL G5.BAT 1
+          And NOT like this,
+                            CALL C:\DOORS\GALAXY5\G5.BAT 1
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+                                 MULTINODE USE                        14
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      This game supports multinode use and provides automatic mulit-
+      tasker support (time slice releasing) for a wide variety of
+      multi-taskers, and uses file locking routines so as not to cross
+      or lose data while multiple players are online at the same time.
+      Real time messages, and "node to node" battles are also supported!
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+            Common Problems (Locked Bauds, High Speed modems, etc)
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      1.  The game does NOT require a fossil driver to run, but it will
+          use yours if you are using one, and have specified 0 for the
+          IRQ numbers for every node.
+
+      2.  If you are running a high speed modem (9600 baud or above),
+          then I suggest you run your bbs/mailer/doors at a locked baud
+          rate. On high speed error correcting modems, locking the baud
+          rate will have a noticeable increase on the speed of text
+          that is sent. It's beyond the scope of this document to
+          discuss configuring your BBS and mailer for a locked baud
+          rate, you may wish to consult those docs for information on
+          that. Here are a few things to keep in mind when setting up a
+          door with a locked baud rate...
+
+          a.  When using a locked baud rate, I highly recommend using a
+              FOSSIL driver. This game will work at high speeds without
+              one though. BNU is a good fossil driver which can even be
+              loaded and unloaded before and after you run this game.
+              And for Win95 users, there is even the WinFossil driver,
+              which enhances communications for DOS applications ran
+              under Windows 95 (I use this one myself!).
+
+          b.  If you are using a fossil, then make sure to tell the
+              fossil that the port is locked. For BNU, to lock COM1 at
+              38400, you would use something like "/L0:38400" on BNU's
+              command line. Note that 0 is used instead of 1. All COM
+              ports to BNU are decreased by one value. So COM 3 would be
+              2 to BUN, COM 4 would be 3, etc.
+
+          c.  If you lock the baud for one program, it must be locked
+              for everything. You can't lock the baud for just this
+              game, but not your BBS/mailer.
+
+      3.  What follows is some information on possible strange situat-
+          ions that may occur:
+
+                             Corrupted data files
+                            ----------------------
+      It is possible that something could happen to your players data
+      file. A power outage, game crash, Xport problem, or other event
+      could damage the data files. If you get gibberish anywhere in the
+      game like when someone views their stats or anywhere else, then
+      the best thing to do is run the G5SETUP.EXE program and reset the
+      game, if it is a problem with player info being displayed
+      incorrectly. If it is a problem elsewhere, try running G5SETUP,
+      and choosing the "Create Fresh Data Files" option, to create new
+      data files where possible. Of course, there is no substitute for
+      backing up your data files directory every now and then! ;>
+
+                               "File Is Missing"
+                              -------------------
+      You will see this one whenever the game tries to display a file
+      that doesn't exist. If you still have your original G5xxx.ZIP
+      file, unzip it, and run INSTALL, NOT using the upgrade options. If
+      you do not wish to do it this way, then you can unzip the G5.ZIP
+      file (located inside G5xxx.ZIP), and copy over all of the files to
+      the proper directories, not overwriting any files that you have
+      customized. *.ANS & *.ASC to the SCREENS subdirectory, and *.DAT
+      to the DATA subdirectory.
+
+                                  "I/O Error"
+                                 -------------
+      This message is displayed when there is a problem reading from a
+      data file. Check your PLANETS.DAT file, to make sure there are 5
+      records in it, and that there are 5 records in the G5_MATES.DAT
+      file also. If this is not the problem, then another data file has
+      been screwed up somewhere somehow, possibly due to a system crash.
+      You can try using the "Create Fresh Data Files" option in G5SETUP,
+      and see if that fixes the problem.
+
+                           "Overlay File Is Missing"
+                          ---------------------------
+      You will see this one when the game is booting up, if the
+      GALAXY5.OVR file could not be found in your home Galaxy 5
+      directory. If you still have the original G5xxx.ZIP archive, you
+      can unzip it, and unzip the G5.ZIP file (located inside G5xxx.ZIP)
+      then copy GALAXY5.OVR to your Galaxy 5 home directory (it also
+      wouldn't hurt to copy over the GALAXY5.EXE file also, as the two
+      may come from different versions if you only copy over one).
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+                                    CREDITS                           15
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      Thanx go to the following people for helping out with Galaxy 5 in
+      one way or another! :)
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      The callers of
+      The Last Call BBS! - Without the callers who played the game
+                           during test phases, I probably never would
+                           have been able to release this game!
+
+      Kenneth Bledsoe ---- For creating such a great door writing kit,
+                           the UrDoor unit. If you are wanting to get
+                           started writing doors in Turbo Pascal, and
+                           want an easy to use powerful kit, this is it!
+                           (if he ever shows up again!)
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+                    Thanx to the following Beta Test sites
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+            Tom McEachren - Wonderland BBS -------- (313) 274-3531
+            Tony Henson --- Line Noise ------------ Discontinued
+            Bruce Miller -- Millers Manor --------- (313) 595-8243
+            Bill LaBeau --- Late Night With Bills - (313) 283-3225
+            Tony Zarzecki - The Evil Crypt -------- (313) 538-3762
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      Thanx to Felicia, my 3 year old daughter for helping me with the
+      registrations I send out via postal mail! Don't know what I'd
+      do without her! :)
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      MUCHO thanx to MudShark for all the great ANSI's he created for
+      the game! And now for all of the utilities and Xports hes putting
+      together! He can be reached through my BBS under his real name,
+      Paul Slinski, or in the DOORGAMES and ON_LINE_GAMES echos on
+      FidoNet which he also frequents regularly, or his internet
+      address, mudshark3@juno.com
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      Thanx to Ron Porter for calling my system and helping test the
+      game. He helped alot with testing the online two player battles.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      The Error Log Unit was used to trap run-time errors to the
+      ERROR.LOG file. The Error Log Unit is a freeware unit created by
+      Bob Dalton, and so far, has worked great! :)
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      I also used a few snippets from Bob Daltons sample sysop
+      documentation included with the DDplus door driver package to
+      write this documentation.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+                               WHERE TO REACH ME                      16
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      Voice Phone        -=ğ=- (313) 295-6287
+      The Last Call BBS! -=ğ=- (313) 295-6284, Home of -Noel Software-
+      FIDO               -=ğ=- 1:2410/903
+      Internet E-Mail    -=ğ=- tsmith2@voyager.net
+      WWW      -=ğ=- http://www.geocities.com/SiliconValley/Heights/2233
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+                                 REGISTRATION                         17
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+                   ** CREDIT CARD ORDERS ACCEPTED ONLINE **
+                Visa, MasterCard, and Discover cards accepted!
+
+      You may register Galaxy 5 with a credit card in one of these ways,
+
+      - Call The Last Call BBS! at (313) 295-6284 and choose the
+        (O)nline Orders option from the main menu.
+
+      - Visit our WWW home page (listed just above), and choose the
+        "Register -Noel Software- Online" option.
+
+      - Use the REGISTER.TXT form to pay for your registration with your
+        credit card (see REGISTER.TXT for info), and either mail it,
+        e-mail it, or crash it to my fido address.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      If you or your users enjoy this game, then you may wish to
+      consider registration. It costs only 15 bucks, and will allow you
+      to change almost anything about the game, and will display your
+      name as "Registered By" instead of reading "This is an evaluation
+      copy of Galaxy 5" and players can pass level 8! Information on how
+      to register is shown in the enclosed REGISTER.TXT file. Included
+      with your registration is lifetime free updates, you never have to
+      pay an extra charge for future upgrades, minor or major! It is even
+      possible to register the game for home use, even if you do not run
+      a BBS! You and your family can enjoy it privately! :) To register
+      this game just print out the REGISTER.TXT file included with the
+      game and send it in with your check or money order to:
+
+                               Thomas J. Smith
+                               26910 Beverly
+                               Taylor, MI 48180
+
+      If you can not print out the REGISTER.TXT form, then you can write
+      one with the same info asked for on your own sheet of paper. The
+      format does not have to be the same, just try to include all of
+      the information asked for in the registration form.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      You may also run G5 Setup, and choose the "Register Galaxy 5"
+      option from the main menu. This is the easiest way, as it will
+      allow you to enter all of the info needed for registration in the
+      same format as the rest of G5 Setup, then you can either print the
+      info to your printer, or save it to a file on disk!
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      Reminder: You will be mailed a GALAXY5.KEY file by either postal
+      mail, by downloading it from The Last Call BBS!, by polling my
+      system at 1:2410/903 (FidoNet) 5-7 days after sending in your
+      registration, or uuencoded to your e-mail address, your choice, as
+      listed in the REGISTER.TXT file, with your registration. All you
+      have to do after receiving your key file, is put it in your home
+      Galaxy 5 directory, and all registered features will be
+      "unlocked!" Many months and hours of work went into creating this
+      game, and I think you will feel that it is well worth the money!
+      :) I have more than contributed to fellow SysOps with the
+      development of many fine freeware programs, as I understand
+      completely the high costs of running a BBS, especially as a hobby
+      (as I do)! A lot of work went into the development of Galaxy 5,
+      and I think you will find the price is lower than alot of other
+      door games not nearly as big as Galaxy 5!
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+                       BUG REPORTS/COMMENTS/SUGGESTIONS               18
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      * If you find a bug in the game, by all means, TELL ME ABOUT IT! *
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      I have made every attempt to make sure the game is free of bugs,
+      BUT the possibility always exists that one may have gotten by me,
+      or the testers. If you find a bug, or have a suggestion or comment
+      to make which would make future versions better, please fill out
+      the BUGFOUND.TXT form (print it out if mailing it), and send it to
+      me by uploading it to my BBS, sending crash through FIDO, or if
+      you want, you can even put it in an envelope, stamp it, and send
+      it through postal mail, along with your configuration files, batch
+      files, and if they exist in your Galaxy 5 directory, ERROR.LOG &
+      GALAXY5.LOG. I DO read ALL of them and those people that have made
+      suggestions in the past, can tell you, I have implemented almost
+      every one of them as suggested, so long as they were usable ideas.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+                               FIDO INFORMATION                       19
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      My BBS supports file "freq"ing at 2400 to 28.8 baud. Just request
+      G5 from 1:2410/903 for Galaxy 5. I also have a few other useful
+      BBS utilities, 90% of which are freeware! For a list of all
+      "freqable" programs from -Noel Software-, freq LIST, FILES, or
+      NOEL from 1:2410/903 and you will receive a text listing of all my
+      programs, all of which are also "freqable."
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+                        =----=ğ=- END OF DOC -=ğ=----=

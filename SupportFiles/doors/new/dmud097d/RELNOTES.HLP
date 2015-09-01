@@ -1,0 +1,415 @@
+;rn
+;all
+$15
+                            DOORMUD:  Release Notes
+$7
+                            ~~~~~~~~~~~~~~~~~~~~~~~
+
+;0.97
+$11
+]Version 0.97
+$7
+   [8/1/01]
+ - Completed the game world -- 330 new rooms.
+ - Added a Druid class.
+ - Added PvP Arena rooms to Ancalador, Arcadia, and Hades.  Players may battle
+   each other in these rooms without the risk of death penalties, criminal
+   penalties, or PvP level restrictions.
+ - Removed the concept of instant-kill effects.
+ - Made some changes to help prevent power-leveling.
+ - Limited items in shops now have a small chance of being reindexed at
+   maintenance.
+ - Made slight changes to the formulas for magic resistance and stealth.
+ - Changed how condition flags work with cumulative spell durations.
+ - For weapons that cast spells, the chance of a spell being triggered on a
+   bonus swing (at high levels) has been reduced.
+ - Casting harmful spells that have no effect on another player (due to safe
+   rooms, being outside PvP range, etc) no longer give criminal penalties.
+ - Self-injuring items like Dark Crystal now work properly in all cases.
+ - Players under level 16 can no longer fully use the Mirror of Teleportation
+   in Hades.
+ - Thieves and Bards can no longer rob monsters when at 0 monster fights.
+ - Fixed some odd glitches with spells that resurrect dead monsters.
+ - [Win32 Version] All sysop configuration options are now accessible from the
+   game's entrance menu, if you are logged on a Sysop account (security 90+).
+   The new in-game configuration menu replaces the old CONFIG.EXE program.
+
+
+$11
+]Version 0.96c
+$7
+   [6/29/01]
+ - Expanded the size of the game world -- 250 new rooms.
+ - Added several new spells and skills.
+ - Reduced the SP regen rate of Paladins, Warlocks, and Bards by 10%.
+ - Reduced the SP regen rate of Shamans by 5%.
+ - Changed some of the item drop logic.
+ - Re-balanced the SP cost and effects of many spells.
+ - Demons now have a maximum alignment of 0 and a minimum alignment of -2000.
+ - Healing potions and throwing knives from the newbie forest can no longer
+   be carried effectively by players above level 1.
+ - Area spells cast by hostile monsters will no longer hit other monsters.
+ - In standard difficulty mode, the Ferryman can now be bribed (level 11+).
+   In hard mode, he can still be bribed at level 10+ as before.
+ - Made confusion-type effects more irritating.
+ - Fixed a bug in the "wear all" command that didn't immediately apply all
+   stat bonuses from armor.
+ - Fixed a minor bug in teleportation-type effects.
+ - Fixed a bug which caused Continue prompts to sometimes still come up when
+   following in a party.
+ - NPC interaction is now immediately ended if the NPC dies, or if the player
+   is removed from the room.
+ - "Get all" no longer picks up items that were stashed by other players.
+ - Time and date changes no longer greatly disrupt monster regeneration rates.
+
+
+$11
+]Version 0.96b
+$7
+   [3/13/01]
+ - Expanded the size of the game world -- 185 new rooms.
+ - When using lower-level weapons at high levels, players can get multiple
+   swings per round.  Swing rate is based on player's level compared to the
+   weapon's intended level, and is affected by the player's class.  Also,
+   2-handed weapons get fewer bonus swings than lighter weapons.
+ - When an inactive player is deleted, all items that were hidden (stashed) by
+   that player are now properly reindexed.
+ - Monks and gladiators now get a slight bonus to punching damage for unarmed
+   combat.
+ - [DoorMUD Pro] Criminal penalties now last twice as long in hard mode.
+ - [Win32 Version] Fixed duplicate name bug.
+ - [Win32 Version] Fixed some invalid page faults.
+
+-0.97
+
+;0.96
+$11
+]Version 0.96
+$7
+   [12/28/00]
+ - The basic version of DoorMUD now allows 4 simultaneous users.
+ - The Professional version of DoorMUD now allows 16 simultaneous users.
+ - Made some changes to the way blocked exits work, in order to prevent
+   power-leveling in parties.
+ - On games with higher monster fight settings (150+), reduced percentage
+   of monster fights lost upon death.
+ - Experience charts in the basic game now vary slightly depending on the
+   daily monster fights setting.
+ - More monsters now cast room-effect spells.
+ - Changed the color for gossip messages.
+ - Using a key now properly unlocks the door for all players in the room,
+   unless the key is a limited item.
+ - Changes to the system clock no longer disrupt gameplay.
+ - Downgraded several potions and other spell-casting items.
+ - When following another player who is moving quickly, annoying continue
+   prompts will no longer constantly come up on the screen.
+ - Added 4 new action commands: growl, glare, spit, yawn.
+ - Added an "emote" command for customized action messages.
+ - Beginning in Jan 2001, sysops will be able to register on-line by credit 
+   card.
+ - [DoorMUD Pro] Increased monster damage in Hard Mode.
+ - [DoorMUD Pro] Increased cost of bribes in Hard Mode.
+ - [DOS version] Made some internal reformatting to much of the source code of
+   the game engine.  If you notice any odd bugs, please report them as soon as
+   possible.
+ - [Win32 version] User gender is now detected automatically.
+ - [Win32 version] Fixed illegal operation in the reroll command.
+ - [Win32 version] By default, dmud32.exe no longer creates a local display
+   window.  Sysops, please use the "-window" command line option if you would
+   still like the game to create local windows.  See readme.txt for details.
+
+-0.96
+
+;0.95
+$11
+]Version 0.95
+$7
+   [8/10/00]
+ - Players who are level 5 or higher now lose half of their daily monster
+   fights upon dying, instead of only a fourth.
+ - Made minor changes to a few of the races.
+ - Slighly reduced rest rates.
+ - Sysops can now set the daily monster fights as high as 1000 if desired,
+   although setting it this high is NOT recommended.
+ - When killing monsters with spells cast by items (ie rune of power and
+   gauntlets of annihilation), proper experience is now given for the kills.
+ - When sending mail to an offline player by using the TELL command, messages
+   of over 160 characters are now sent properly.
+ - Added action commands (ie "grin", "wave", "nod", etc).  These are just for
+   the purpose of player interaction; they do not have any effect on gameplay.
+   See "help actions" for a list.
+ - Changed the warning message for when players enter an area that is designed
+   for higher level characters.
+ - Added support for the DoorMUD Professional add-on.  DoorMUD Professional
+   increases the maximum number of simultaneous users to 10, and adds options 
+   to configure the game's experience tables and overall difficulty.  Sysops,
+   please see ADDONS.TXT for more information.
+ - Made internal changes to decrease lag.
+
+-0.95
+
+;0.94
+$11
+]Version 0.94
+$7
+   [7/15/00]
+ - Added support for command syntax "get all" and "wear all".
+ - Added criminal penalties for actions such as unsuccessful thievery and 
+   instigating player-vs-player combat.  Criminals cannot recall, use banks,
+   buy items, sell items, etc.  Penalty wears off after a few minutes.
+ - You can no longer exit, rest, or recall if you have been engaged in player-
+   vs-player combat in the last 25 seconds.
+ - Added new preferences options to block gossip, block tell messages, and
+   disable auto-talking.  See "help preferences" for more information.
+ - Added a new preference option to allow fast movement through the number
+   pad.  This option is OFF by default so you must intentionally set it to ON
+   via the preferences command to use it.  Num Lock must also be on.
+ - Players who are inactive for several weeks are now deleted entirely.
+ - Added support for gold to be on the ground in a room, and added command
+   syntax "get <#> gold" and "drop <#> gold".
+ - When a monster dies and more than one player is in the room, the gold now
+   falls to the ground, instead of having one player auto-grab it.
+ - Fixed bug in Gnome Nobleman's quest reward for non-spell-casters.
+ - Reduced abormally high rest rates for low-level characters.
+ - The "rank" / "topten" command now lists only 10 players by default, but you
+   can specify a parameter for more/less players (ie "top 20" or "top 5").
+ - Slightly changed the layouts of the Forest, Hades, and the Catacombs.
+ - Changed the names and command shortcuts for several martial arts skills.
+ - The order of player attack rounds now alternates, to make player-vs-player
+   combat more fair.  Previously, older characters always attacked first.
+ - Players who hang up in player-vs-player combat can now be attacked while
+   offline.  This is to discourage players from hanging up to avoid death.
+ - Reduced the amount of experience kept when rerolling.  You now maintain
+   enough experience to re-train half of your levels.
+ - Fixed bug that sometimes caused players to not gain experience from area
+   effect spell kills.
+ - The bridge troll now allows level 1 players to pass if they do him a favor.
+ - Invisible characters no longer generate movement messages.
+ - Added an "instructions" option to the main menu.
+ - Added "kill" command as alternative to "attack" (does the same thing).
+ - Balanced/weakened the monk's meditation cap item.  
+ - Moved the sysop game-reset options directly to the Config program.
+ - Added internal timeslicing routines for better performance on most systems.
+ - Fixed a few minor bugs that came up in odd situations.
+
+-0.94
+
+;0.93
+$11
+]Version 0.93
+$7
+   [5/21/00]
+ - Increased the damage on the Gnoll race's head butt attack.
+ - Changed the Movement Point system to a Monster Fights system.  
+ - Limited the rate at which players can run through rooms, depending on the
+   area and on the player's encumbrance.
+ - Added new commands: say, gossip, tell, who, follow, leave, party, break.
+ - Removed the "-maint" command line option.
+ - Changed the syntax for the Give command; see "help give".
+ - The game no longer needs to reload from backups in case of a crash.
+ - When viewing help files, the pause prompt now has options to abort the
+   display or view it in nonstop mode.
+ - Added a pre-game entrance menu, with options to view top ranking players,
+   see who is playing, etc.  Please note that the player ranking list is only
+   updated every 10 minutes when viewed from this menu.
+ - Removed the "settings" and "releasenotes" commands.  These options can now
+   be viewed from the entrance menu instead.
+ - Made some changes to decrease the rate at which players gain gold.
+ - Raised the experience tables for levels 4 through 20, but significantly
+   decreased the experience tables for levels 21 and up.
+ - Changed the duration and SP costs of a few spells.
+ - Changed item drop logic.  Rare items only drop once per day now.
+ - Changed the shop restock chances for uncommon items.
+ - You can no longer attack, rob, or cast spells on offline players.
+ - The game now runs fully in real-time; each round is 4 seconds long.
+   Combat, resting, monster regeneration, maintenance, and many other aspects
+   of the game now happen in real-time.
+ - Trolls can no longer rest in combat.  Instead, they have a faster rest
+   rate than other races.
+ - Players can no longer exit the game while in combat.
+ - Changed several aspects of the stealth/backstab system: the game now
+   shows you whether or not you succesfully snuck into a room; the stealth
+   formula has changed; medium and heavy encumbrance now lower your stealth;
+   sneaking players now have a better chance of being able to outrun monsters.
+ - Changed the color scheme for some combat messages.
+ - Players with heavy encumbrance now suffer a -10 armor class penalty.
+ - Looking at a piece of armor now displays what body part the item is worn
+   on and how much it adds to your armor class.
+ - Nonhostile monsters now hold grudges against players that attack them.
+ - Modified several aspects of the thievery system.
+ - Area spells now hit all monsters in a room for equal damage.
+ - Looking at a weapon now displays how much damage the weapon hits for at
+   your current level.
+ - Players cannot gain more than 25000 experience points if the game is
+   unregistered.
+ - Killing a player with an extremely high or low alignment now results in
+   more drastic alignment shifts for the killer.
+ - Player killing is no longer rewarded with experience points.
+ - Players who are killed by another player do not lose MFs for that death.
+ - Hoarded quest items now vanish entirely from your inventory.
+ - Limited items on inactive players are now reindexed back to their original
+   holding monster.  A player must be inactive for 2 weeks for this to occur.
+ - When rerolling, items stay in your inventory instead of appearing on the
+   ground in the Temple of Tolaria.
+ - Character names can no longer contain spaces.
+ - Hundreds of other internal changes.
+
+-0.93
+
+
+$15
+LAND OF THE FORGOTTEN:  Abbreviated Release Notes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+$7
+Release notes for the old Land of the Forgotten doorgame are shown below.
+Changes in previous versions that are no longer accurate have been removed
+from these listings.
+
+;0.92
+$11
+]Version 0.92
+$7
+   [9/22/99]
+ - Higher level characters now keep less experience when rerolling than in
+   previous versions.  Lower level characters, however, keep more experience
+   than before.
+ - All limited items now have higher resale values than regular items.
+ - Rare items now max at 5 per shop.
+ - Fixed a bug that prevented the spell Greater Healing from working.
+ - Golden robes, golden chainmail, and golden platemail now properly raise
+   magic resistance.
+ - Sysops can now find out the real names of players by looking at
+   USERINFO.TXT, a text file that the game updates at maintenance.
+
+-0.92
+;0.91
+$11
+]Version 0.91
+$7
+   [8/13/99]
+ - Fixed several bugs in the dropfile and comm routines that caused LOTF to
+   not always work properly on COM10 or higher, especially with DOOR.SYS.
+   LOTF should now run on any port without a problem.  
+ - Added support for the TRIBBS.SYS dropfile.
+ - Fixed a minor bug that sometimes caused monsters to not regenerate
+   properly at maintenance if the game only had 1 active player.
+
+-0.91
+;0.9
+$11
+]Version 0.9
+$7
+   [8/2/99]
+ - The game can now be registered, allowing players to advance past level 7.
+   In addition, the game world is much larger in the registered version,
+   including 2 additional towns and 7 more monster-filled areas for high-level
+   characters.
+ - A "stash" command has been added to allow items to be hidden in a room.
+ - Some spells are now castable in-between a round. 
+ - The amount of hitpoints healed by a natural player rest tick has been
+   reduced, making the game more difficult.
+ - Monsters now regain twice as many hitpoints as before when a player runs
+   and the monster does not follow.
+ - The help engine has been improved.  You can now abbreviate help topic
+   names (ie, "help move" instead of "help movement"), and help on specific 
+   commands has been improved.
+ - The game now has two ANSI intro screens.
+ - If a monster holds a rare item with a low drop chance, that item will now
+   always drop the first time the monster is killed.
+ - Some items can now be worn even if you already have another item worn in
+   that location. 
+ - The max value for each attribute is now determined by your class.
+ - The shop restocking formulas have been changed.
+ - The backstab damage formula and stealth formula have been changed.
+ - The magic resistance formula has been changed.
+ - The chance of getting a critical hit has been reduced. 
+ - Many of the magical items have been downgraded slightly.
+ - Heavy players now have a reduced chance of being able to outrun monsters.
+ - When you approach "heavy" encumbrance, you are given a warning message.
+ - Sysops can no longer change the starting gold for new players, the PvP 
+   setting, or the reindex rate setting.
+ - Sysops may now reset the game world completely.
+ - Sysops no longer have special powers, such as the "/locate" command.
+ - Added more extended descriptions for rooms, items, and monsters.
+ - Added help entries for every spell.
+ - The "talk" command now works properly as an alias for the "greet" command.
+ - Several minor bugs have been fixed, including a bug in the repeat command,
+   a bug in item command logic, a bug in the "preferences" command, a bug in
+   monster follow logic, and others.
+ - Dozens of other minor changes.
+
+-0.9
+;0.83
+$11
+]Version 0.83
+$7
+  [12/21/98]
+ - Many aesthetic changes were made to make the game easier for new players to
+   learn; most importantly, a "menu" command was added.
+ - Added a "map" command.
+ - When you type "exit", you are now prompted as to whether you really want
+   to exit.  
+ - Minor bugs in the rank, readmail, and recall commands have been fixed.
+ - The game no longer freezes when over 10 creatures are in the same room.
+ - The human character race has been improved to make it more playable.
+ - Many other internal changes.
+
+-0.83
+;0.82
+$11
+]Version 0.82
+$7
+  [11/20/98]
+ - Fixed several major bugs.
+ - Improved the logic for determining if an item should drop for you when you
+   kill certain creatures.
+ - Modified the hitpoint formula slightly.
+ - Each quest can now only be completed one time per player.
+ - Greatly modified the spellpoint formula and the costs of all spells to
+   balance out the spellcasting classes.
+ - When you reroll, you now keep some of your experience points.
+ - Changed the resting formulas.
+ - Some spells now have the ability to increase in effectiveness as you gain
+   levels.
+ - Dozens of other miscellaneous changes.
+
+-0.82
+;0.81a
+$11
+]Version 0.81a
+$7 
+ [09/24/98]
+ - Fixed an oversight in the v0.81 release that caused thievery to lockup the
+   game.
+
+;0.81
+$11
+]Version 0.81
+$7
+  [09/19/98]
+ - The "hints" help topic now works.
+ - You can no longer rob another player that is level 1 or 2.
+ - Changed the appearance of the statline prompt.
+ - When you reroll, you can now pick your old name, instead of getting the
+   message "That name is already in use!"
+ - The game now properly records preregistration codes.
+ - You can no longer raise an attribute above 20 when leveling.  
+ - When a monster kills you, it will now steal your gold.  The next time
+   that specific monster is killed, it will re-drop the stolen gold.
+
+-0.81
+-0.81a
+;0.8
+$11
+]Version 0.8
+$7  
+  [09/01/98]
+The first full beta of LOTF.  Only ONIX BBS received a copy of this version.
+Players are allowed to train up to level 7 in this version; it cannot be
+registered.
+
+-
+-
+:::STOP:::
+
+

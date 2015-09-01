@@ -1,0 +1,27 @@
+Leaving the confines of your kingdom, you set out to
+find some orcish encampements that have been rumored
+to be nearby..
+@PAUSE@
+You begin to walk out of Kingdom @KINGDOM@'s guarded gates..
+@PAUSE@
+Walking..
+@PAUSE@
+Walking...
+@PAUSE@
+Walking....
+@PAUSE@
+`bright red`Suddenly you are jumped!
+@PAUSE@
+@MONSTER:Orc:10:20:25:0:2:3:300:8
+You recover and hope that won't happen again!
+@PAUSE@
+`bright red`AGAIN!!!! MORE ORCS POP OUT OF THE BUSHES!!
+@PAUSE@
+@MONSTER:Orc:10:20:25:0:2:5:300:8
+`bright green`You decide not to venture any futher..
+@PAUSE@
+`bright magenta`You gain 3 extra hit points for your trouble!
+@STAT:MAXHP:3
+@PAUSE@
+
+@FINAL@

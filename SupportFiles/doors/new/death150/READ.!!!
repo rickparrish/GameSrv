@@ -1,0 +1,26 @@
+File:  READ.!!!
+
+If you are upgrading from a previous version, when you unpack the
+file DEATH.ZIP (or DEATH.ARJ), you might notice a few "Can't create file"
+errors.  Do not worry about them.  You already have those files marked
+as read only on your hard disk.
+
+To Upgrade, just unzip over the current game and type "SETUP".  If you are
+upgrading from v1.02 or below, you need to RESET the game using "SETUP."
++-------------------------------------------------------------------------+
+
+Version 1.50 fixes the last known bugs of the game, including a memory leak
+when posting public announcements, a bug found at the bank, the mistake I
+made on leaving the -CFG parameter unsupported in v1.40, etc.
+A new option called "[B]lind enemies spell" has been added to the level
+Master's menu.  Also, 2 more levels have been coded so the game now ends at
+level 18.  Five more weapons where added in the process.
+
+Finally, the files DMBBS_AD.ANS and DMBBS_AD.ASC have been added to help you
+advertise the game to your users, as well as the file CATALOG.EXE has been
+added to the package so you can see what's available from RPG2100 DoorWare.
+
+Enjoy!
+
+Carlos Garcia.
+rpg2100@aol.com

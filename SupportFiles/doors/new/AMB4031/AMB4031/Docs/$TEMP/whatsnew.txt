@@ -1,0 +1,270 @@
+Changes/Fixes/Additions to Ambroshia v4.5
+Compiled [07-07-2005]
+
+- Message stating you have won a tournament every time you level has been fixed.
+
+Changes/Fixes/Additions to Ambroshia v4.5
+Compiled [06-24-2005]
+
+- You can no longer attack dead players in the arena.
+- Updated to the latest SQL library 3.2.2
+- Lowered the default level multiplier to 10,000 from 30,000. Makes for faster leveling.
+- Fixed the bug where captured land during kingdom combat never was awarded.
+
+Changes/Fixes/Additions to Ambroshia v4.5
+Compiled [05-26-2005]
+
+- Upgraded to latest version of OpenDoors DLL 6.24
+- Updated the DLL files for AMBConfig.exe to latest versions.
+- Upgraded Installer package to latest NSIS build.
+- Increased the amount of experience needed for leveling.
+- AMBConfig upgrade - Sysops can now customize their game worlds!
+- Upgrades to existing functions in AMBConfig.
+- Tournament Mode added.
+- Press 1 from the Main Street to view Game Rules set by Sysop.
+- Nerfed one of the events found when fighting monsters..
+
+Changes/Fixes/Additions to Ambroshia v4.0
+Compiled [05-05-2005]
+
+- Fixed issue where kingdoms could not change diplomacies with other kingdoms.
+
+Changes/Fixes/Additions to Ambroshia v4.0
+Compiled [04-11-2005]
+
+- Players must now be a higher level to assassinate others.
+- Upgraded the SQL library to 3.2.1 from 3.08
+
+Changes/Fixes/Additions to Ambroshia v4.0
+Compiled [03-20-2005]
+
+- Fixed issue with characters not being able to marry others! Thanks Gowd!
+
+Changes/Fixes/Additions to Ambroshia v4.0
+Compiled [01-16-2005]
+
+- Fixed crash on rogue guild assassination menu. Thanks Dave (Red Dragon BBS)
+
+Changes/Fixes/Additions to Ambroshia v4.0
+Compiled [12-16-2004]
+
+- Fixed money cheat with purchasing of equipment. Thanks tyger
+- Fixed money cheat with adding of bounties. Thanks tyger
+- Fixed stat buildup cheat with rings and necklaces. Thanks tyger
+- Maint now drops the node and chat table and recreates them. Clears out old data.
+
+Changes/Fixes/Additions to Ambroshia v4.0
+Compiled [11-13-2004]
+
+- Fixed a reported crash with kingdom trading of gold.
+- Fixed reported issues with HP resetting to 1
+
+Changes/Fixes/Additions to Ambroshia v4.0
+Compiled [11-10-2004]
+
+- Typo in more kingdom options.
+- Removed SQL error msg when increasing kingdom army training.
+- Sped up text display of telegrams.
+- Made stat loss from assassinations dynamic instead of static.
+- Immigration menu now allows you to create your own kingdom if there is less then 5 already.
+- A kingdom must at least have 200 soldiers now to attack another kingdom.
+- Migrated the new militia combat code to kingdom combat. Much more realistic results..
+- Fixed some calculation issues with militia/kingdom combat code.
+- Removed the loading ansi since it was fubared on certain telnet screens. Might replace it.
+
+Changes/Fixes/Additions to Ambroshia v4.0
+Compiled [11-05-2004]
+
+- Hangup/Timeout cheat for level ups fixed.
+- Incorrectly worded news item for increasing army training was corrected.
+- If high lord suicides, the game will now allow someone else to take it.
+- Possibly fixed game not pausing correctly on exit and a few other areas. Need feedback.
+
+Changes/Fixes/Additions to Ambroshia v4.0
+Compiled [11-02-2004]
+
+- You can no longer run from a conjured demon.
+- Upgraded the SQL library to 3.08 from 2.8.15
+- Fixed a ton of potential crashes throughout the game.
+- Fixed another exploit in the use of magical items.
+- Sped up various menu text displays.
+- Shrunk the physical size of the DLL by reducing duplicate code.
+- Can no longer change diplomacy, wage war or trade with kingdoms with no rulers.
+- Fixed a calculation error when increasing kingdom serf support.
+- Various code clean up.
+- Bad calculation sometimes led to 0 potions being used during healing.
+
+Changes/Fixes/Additions to Ambroshia v4.0
+Compiled [10-20-2004]
+
+- I had the kingdom crime prevention check during criminal actions backward.
+- When listing players to choose in Criminal Actions, your character is no longer listed.
+- Fixed a potential crash in the rewarding of bounties after an arena victory.
+- If a player suicides and had past bounties posted on someone, those bounties are now
+  deleted. This could have caused crashes.
+- Fixed a bug when entering quests with just 1 HP. It would kick you out of the quest..
+- Fixed a potential crash in Arena combat, when checking to see if opponent had inn guards.
+- Sped up the text display output of the ranking menu.
+- Sped up the text display output of the npc fight menu.
+- Removed the no bodyguard option when asking for a room at the Tavern.
+- Fixed a calculation bug in Arena combat that would cause players to consistently miss even
+though they were more powerful of a player.
+- Added a new magic necklace called - Gold X2
+- Added to Criminal Actions, the ability to conjure a demon to attack another player!
+- Totally rewrote how bodyguards (NPC's) are created! They are now much stronger and tougher
+to defeat!
+- Now displays the # of potions you have left in the fight menus! Much requested!
+- Revamped the kidnapping event in the forest..
+
+Changes/Fixes/Additions to Ambroshia v4.0
+Compiled [10-16-2004]
+
+- Fixed a bug where you could send romantic mail to players of the same gender as you..
+- Fixed a bug/cheat that when unquiping equipment and the item was magical, the game would not take away the extra bonus the item gave you..
+
+Changes/Fixes/Additions to Ambroshia v4.0
+Compiled [09-17-2004]
+
+- When fighting in the forest, the game will now alert you when you are ready for a level raise..
+- Removed the crash protection system, as it needs a bit more work. Deuce will get it figured out :)
+
+Changes/Fixes/Additions to Ambroshia v4.0
+Compiled [09-10-2004]
+
+- Fixed a bug where you could purchase more land then 2 million
+- Fixed a crash on exit caused by suicides..
+- New algorithm for serf population increases, it now depends on how much land is available
+for new serfs to move in and live on..
+- Deuce implemented a crash protection system, that displays a BUG FOUND message to the user
+when the game crashes. This way players can now take screenshots and send them in and we can
+take care of them. This fix should resolve some of the node lockups and windows/linux crashes of
+the game..Thanks Deuce!!
+
+Changes/Fixes/Additions to Ambroshia v4.0
+Compiled [09-09-2004]
+
+- Fixed a money cheat with gambling with the old man in the tavern.
+- More fixes to the new militia combat code. If this works, I'll move the code to the kingdom combat..
+- When rulers promoted players, the msg they received said they promoted themselves..oops
+
+Changes/Fixes/Additions to Ambroshia v4.0
+Compiled [09-04-2004]
+
+- Fixed a crash when no bounty was entered, and a player just hit enter.
+
+Changes/Fixes/Additions to Ambroshia v4.0
+Compiled [09-02-2004]
+
+- If magic points that are negative will now be made positive again during maint..
+- Fixed a Hitpoint display error when in forest and viewing your status
+- Fixed negative number problems throughout the game...Major fix
+- Fixed an issue where kingdom land could get over 8 digits in length..
+- Fixed an issue where kingdom's magic towers were sometimes not providing protection..
+- Equipment rating now degrades correctly with militia battles..
+- A few cosmetic changes to the militia combat sequences..
+- Fixed a bug where kingdom soldiers would get to be screwed up during militia combat..
+- Kingdom rulers now must use 1 evil deed to use bioterrorism..
+- Fixed alignment issue in the diplomacy menu with soldiers..
+- Fixed issue with espionage/terroism menu not displaying all the kingdoms in the game..
+
+Changes/Fixes/Additions to Ambroshia v4.0
+Compiled [07-27-2004]
+
+- Updated the SQLite DLL to latest version.
+- Added in code that may help stop the crashing on systems. *NOT 100% SURE*
+- Re-added in the code to see players who are playing when you enter the game..
+- Modified code for determining if a player is new or not. This may help fix the
+  issue of existing players being seen as new players on entrance..
+- Added in a news posting when a ruler abdicates their throne.
+- Latest version of OpenDoors is now being used..
+- Fixed a bug where people staying at the Inn were not being seen as staying
+  at the Inn under certain circumstances..
+- Fixed a bug when a militia takes over a kingdom. The notifications to the kingdom
+  patrons was not working correctly. Possibly causing a crash?
+- Added in code to ask patrons on entrance of the game if they would like to take
+  over as ruler of their kingdom if the former regime sucides,abdicates or is
+  overthrown by the serfs..
+- Fixed a bug where you could promote people who were not in your kingdom.
+- You can only commit sucide once a day now..
+- Rulers can now abdicate their throne. Under More Kingdom Options
+- Moved the kingdom trading menu 1 menu deeper..
+- You must now have enough leadership pts to embezzle gold from the kingdom treasury..
+- If you or your nobles embezzle treasury gold, serf support will now drop accordingly..
+- If serf support drops too far, serfs will start a mass exodus from your kingdom..Affecting serf tax collections..
+- If serf support levels drop below 30%, the serfs will revolt and begin a regime change..
+- Kingdom news was cleaned up quite a bit for rulers..
+- Reworked the spell code yet again, makes casting even more realistic..
+- Tons of new internal code cleanup/changes by Deuce..
+- Fixed a bug where selling more then 2billion investments was not working correctly..Used as a cheat..
+- Fixed a bug that didnt subtract divine favor from the player doing the mutilating in the arena combat..
+- Rewrote the data handling for monster fights. Should speed up monster fights
+  and sysops should notice a lot less disk activity.
+- Kingdom rulers are no longer allowed to rob the bank.
+- New players to the game now are asked if they would like to join the realm instead of being taken
+  straight to the Name Your Character screen..
+- New magic attack calculations for the Black/White Guilds.
+  This really beefs up the strength of magic
+   - Black Magic Arts rely HEAVILY on mental abilities and less on intellect pts..
+   - White Magic Arts rely HEAVILY on intellect abilities and less on mental pts..
+- Fixed a bug where kingdom soldiers could get over 10 million..
+- When players enter the game, they are shown who else is playing now.
+- You now can't post a bounty of all zeros..
+- No longer allow all zeros to be entered in purchases in kingdom menu or militia menu.
+- Entering zeros in bank no longer deposits or withdraws your gold.
+- Maint now fixes negative HP's, Strength and Defense points..
+
+Changes/Fixes/Additions to Ambroshia v4.0
+Compiled [05-17-2004]
+
+- Fixed a cheat/bug in the bank depository.
+
+Changes/Fixes/Additions to Ambroshia v4.0
+Compiled [04-02-2004]
+
+- Fixed a magic spell that was way to strong..
+- Modified a few monsters that were way to easy to fight..
+- When demolishing a kingdom's defenses, an error msg was being displayed..
+- Fixed a problem with kingdom rewards and crime prevention decreasing..
+- Various game lockup issues resolved.
+- Improved math routines for combat situations.
+- Militias were taking over kingdoms way to easy. Fixed.
+- Drug house investments are now destroyed during kingdom plundering..
+- Increased percentages for plundering of investments. More destructive.
+- Added in more player ranking listings.
+- All Ambroshia functions are now in a DLL. This reduces memory consumption.
+- If you rob the bank and get caught, your hitpoints go down from the guard beating..
+- Added in the ability to get healed at the Healer Hut..
+- Deuce fixed a problem in the Door library. Fixes the lag in the game..
+- Players are now notified when others join/quit the game..
+- Added in new guild menu choices for characters.
+- Players can now see what other players are doing in the game..
+- Increased max lines for telegrams from 2 to 5 lines
+- Sysop can now force maintence to run at a desired time/interval.
+- Menu enhancements throughout the entire game.
+- Global command for sending telegrams to online players is now available.
+- New ANSI menus implemented..
+- When purchasing items now, you can see what you already have in its place
+- Stats lost on monster fight deaths are now dynamic based on your current level etc..
+- Donations to church now give random rewards
+- Drug trade houses are now destroyed during criminal actions.
+- Drug house investments now earn 45% instead of 60%
+- Adding bounties no longer requires evil deeds
+- Immigration attempts now only cost 1 evil deed instead of 2
+- You can now enter 3 digits for the militia equipment rating menu
+- When trying to buy soldiers in militia menu, if you had huge amounts of gold, you would see that you could buy negative soldiers..Fixed
+- Finally fixed the wording on the militia cannon purchase menu..
+- If you had the max # of soldiers or land, you could still buy unlimited amounts of each..
+- Fixed a bug with monsters missing you but hitting you with poison and a spell..There was a math error in the routine.
+- Tavern bodyguards got a much needed boost in power and abilities..
+- You can now hire up to 6 bodyguards when staying at the tavern..
+- You now get shown how much gold you won from an offline arena win
+- Rogue guild members can pickpocket unsuspecting online players now..
+- Children now give you extra forest fights. 25% of the # of kids you have will be given to you back as forest fights. So 30 kids = 7 extra fights
+- Added in a ton more random charm sayings..
+- Cleaned up all the problems with kingdom diplomacy and trading..
+- Added in storyline driven forest events..
+- Fixed some kingdom trade cheats
+- The SQL conversion is COMPLETE!
+- Added in a guild option for viewing your spell book..
+- GLOBAL IN-GAME CHAT ROOM ADDED!!!!
+- CREATE YOUR OWN QUESTS! AND EMBARK ON THEM! 

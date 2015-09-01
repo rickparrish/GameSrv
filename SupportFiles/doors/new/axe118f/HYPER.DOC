@@ -1,0 +1,665 @@
+NEWBIE
+
+Welcome to Axe & Fang. Some simple commands you will want to know are:
+
+commands      <- gives you a complete list of commands
+help          <- shows you a quick list of commands
+help <topic>  <- supply a topic, and if it's in help, it will be shown
+rent          <- very important to rent at an inn or lodge to have
+                 your items saved. Items will not be saved unless you rent
+score         <- gives you your players status
+inventory     <- list of carried items
+equipment     <- list of worn, held, wielded items
+who           <- list of all players in the game
+sizeup <name> <- VERY important, will give you an idea how combat with the
+                 target name would go
+
+The whole trick to playing Axe, is to explore the world, try new commands and
+have fun.
+
+#
+AREAS
+        List of Active Areas, their levels and direction from Tooth
+
+Area              Levels  Rooms  Location
+
+Graveyard         1-5     35+    Down back ally in Tooth
+Goblin Stronghold 5-10    50+    West of Tooth in mountains
+Troll Den         3-12    4      East of Tooth in South Forest
+Culhaven          7-15    40+    Far east of Tooth
+Tooth             1-25    40+    Here
+Dulnar Forest     1-5     15+    East of Tooth
+Goblin Range Mts. 3-7     14     North of Tooth
+Lake/Rivers       3-8     50+    North of Tooth (need raft)
+Dark Anar         5-7     16+    North of Culhaven
+WolfFang Mts.     5-15    26+    North of Culhaven
+ShadowLands       8-20    13+    North of Culhaven
+Underground Lake  6-10    35+    North of Culhaven
+#
+PICK LOCKS
+LOCKS
+Used to get through those doors you just can't find the key to or to
+open a chest etc.
+
+Ex: pick north door
+    pick door
+
+See Also : OPEN, CLOSE, LOCK, UNLOCK
+#
+SNEAK
+
+When you sneak, and sneak successfully, you will not be seen entering or
+exiting a room. Mobs and players that can't sense life or detect invis
+or detect evil (if you are evil) will not see you.
+
+ex: sneak
+
+See Also : HIDE
+
+#
+HIDE
+
+When you hide successfully in a room, you can only be seen with a sense life
+spell. This is very useful when low on hit points or moves or mana in an
+aggressive area.
+
+ex: hide
+#
+LOOK
+
+Used to take a look around.
+
+look             <- Will re-display the room you are in.
+look angel       <- Will show you a description of a person, if there is one.
+look south       <- Will give you a little information on that direction.
+
+#
+AC
+ARMOR CLASS
+
+Is your armor class, it is defined roughly as follows:
+
+  100 The worst you can be.
+   0  Very Heavily armored.
+ -100 The best you can get.
+
+#
+OPEN
+CLOSE
+LOCK
+UNLOCK
+
+Used to deal with exits and items, such as doors and chest.
+
+Ex: open grate
+    open down grate
+#
+NORTH
+SOUTH
+EAST
+WEST
+UP
+DOWN
+
+To travel in a given direction.
+#
+EAT
+DRINK
+
+At times you will become hungry and thirsty. It is very important to eat
+and drink if you wish to remain healthy at all.
+#
+WHO
+
+Lists the people currently in the game, and where they are located.
+#
+GIVE
+
+If is used to hand an item or coin(s) to another person in the world.
+
+Ex: give grim 100 coins
+    give grim blade
+
+#
+INVENTORY
+
+Gives you a list of all items your are carrying; if you can see them that
+is.
+
+See also: EQUIPMENT
+#
+EQUIPMENT
+
+Gives you a list of all items worn, held or wielded; if you can see them that
+is.
+
+See also: INVENTORY
+#
+WEAR
+
+To put on the items you find in the world to better protect your flesh, use
+this command. Understand, items have key words. What this means is an item
+named The Blade of Death may just have a keyword of blade. It's up to
+you to figure it out.
+
+Ex: wear boots
+
+See also: REMOVE, EQUIPMENT
+#
+WIELD
+
+To equip a weapon for combat, use this command.
+
+Ex: wield axe
+
+See also: REMOVE, EQUIPMENT
+#
+SCORE
+
+Score gives you a small list of info on your player. Abilities, gold, level
+and exp are just a few of the things shown.
+#
+SAY
+TELL
+SHOUT
+
+If you wish to chat among other players in the world, then you have these 3
+commands available to you. Say is visible only in the room you are in. Tell is
+visible only the person you are telling, and shout can be heard the world over.
+
+Ex : say hello all.
+     tell grim, Axe is a cool game
+     shout kiss my butt you goblin scum
+
+the char ' is a short cut for the say command.
+
+Ex: ' hello there.
+#
+KILL
+HIT
+
+You want to draw first blood then type kill <name of target>.
+#
+KICK
+
+Kick is a combat skill reserved for certain classes. While in combat and
+if you know the skill, you can type kick to sneak in a extra attack against
+your foe.
+
+Fighters See Also : Rescue, Bash
+#
+BASH
+
+Bash is a skill known by very few.  It is a combat skill which allows the
+user to throw their shoulder and shield into their opponent. You must be
+using a shield to perform this skill.
+#
+RESCUE
+
+Rescue is known by knights alone. This skill allows them to pull someone
+from combat that is taking damage. They then become the one the monsters
+beat upon and the other may help out the knight in killing the foes.
+#
+STEAL
+
+Use steal to steal gold or items from people. The chance of not getting
+caught depends on how well you have practiced steal, and if the person
+is asleep. Only thieves have this skill.
+
+Ex: steal gold drunk
+    steal sword mercenary   <- works only if it's in inventory
+
+#
+BACKSTAB
+
+Backstab is a nasty skill known only by assassins. It allows them to sneak up
+and plant their weapon deep in the back of the victim. Backstabs do greater
+damage each level you increase.
+
+Ex: backstab goblin
+#
+CAST
+
+Cast is used by all spell using classes. To cast a spell you must enclose
+the spell name in single quotes.
+
+Ex: cast 'heal' <name>
+
+Note: In combat damage spells are directed against your foe if no name is
+supplied.
+#
+DROP
+
+Drop allows you to discard unwanted items. If the item can be dropped that
+is.
+
+Ex: drop leather
+See also: GET
+#
+LIST
+BUY
+SELL
+
+To use these commands you must be in the same room as a shop keeper.
+
+List         <- will give you a list of all the shop keeper has to sell.
+buy <name>   <- to purchase a item.
+sell <name>  <- to sell a item
+#
+REMOVE
+
+This command allows you to remove items you no longer want to use, if
+they are removable or not cursed!
+
+remove <name>
+
+#
+SHOPS
+
+There are shops all throughout AXE. Some sell or buy only certain types
+of items, others will deal in all items.
+
+See also: BUY, SELL, LIST
+#
+COMMANDS
+
+A listing of all command in AXE.
+#
+WARRIOR
+
+  Warriors are the stock fighting class of AXE. They have above average
+strength and can carry and wield large weapons and armor. They are able
+to learn to kick the foes in combat.
+
+See also: PRACTICE
+#
+KNIGHT
+
+  Knights are a class above fighters. They have equal strength and can use
+all the same items as a fighter, but have the added skill of rescue. When
+in combat, and a friend is taking a lot of damage, a knight may have a chance
+with rescue to pull his friend free of the melee and take the damage himself.
+
+See also: PRACTICE
+#
+BARBARIAN
+
+  Barbarians are just that, brute force fighters. They have above average
+strength, and if they are an ogre or troll, have even higher strength.
+They have the ability to bash opponents in combat, if they are using a shield.
+If you are new to AXE and want to explore the world some, with little fear
+of monsters of your level, then become a ogre barbarian for a time. Once you
+know the layout of the world, then make yourself a new player if you wish a
+spell caster.
+
+See also: PRACTICE
+#
+THIEF
+
+  Thieves are a cunning class with the ability to steal from others in the game.
+They can sneak around unseen and peer at the belongings of other in their
+never ending quest to fill their own pockets with the gold of others.
+
+See also: PRACTICE
+#
+MONK
+
+  Monks are similar to thieves in that they can sneak. Instead of stealing,
+they practice the arts of hand to hand combat. Monks have the ability to sneak
+around and to throw kicks in combat.
+
+See also: PRACTICE
+#
+ASSASSIN
+
+  The assassin is a nasty class dedicated to planting their daggers in the
+backs of others. They can sneak, hide and backstab. It's not to wise to
+trust an assassin when you are his level or lower. You just might feel a sudden
+pain in your spine if you do. These guys are not to be trusted.
+
+See also: PRACTICE
+#
+CLERIC
+
+ Clerics are the healers of the world. They study the arts of spiritual spells
+and learn many ways to cure and remove many affects you can suffer from in
+your travels. It's always wise to have a cleric around.
+
+See also: PRACTICE
+#
+MAGIC USER
+
+ Magic users study the black arts. They gain very potent combat spells and
+many spells in the art of detection. But they have no spells in the art of
+healing.
+
+See also: PRACTICE
+#
+NECROMANCER
+
+This class is rather special. They learn all spells of both cleric and
+magic user, but because of their power they gain levels at twice the exp
+cost of either magic users or clerics alone. You can improve your spells
+with the practice command. Good class, but takes longer to get to higher 
+levels.
+
+See also: PRACTICE
+#
+PRACTICE
+
+Practice has two functions. One, if typed alone, it will display all your
+known skills and spells. If you are at your guild master, then you can practice
+your skills. To practice a skill type practice followed by the skill name.
+
+Ex: practice
+    practice backstab
+#
+EXITS
+
+When you type exit, a list of visible exits from the room you are in will
+be shown. Understand, all closed doors will not show. To find close, hidden,
+or secret exits, try moving in all directions, or looking in all directions.
+
+Ex: exits
+#
+QUIT
+
+When you get tired of playing, you can leave the game by typing 'quit'. Note
+that whatever stuff you might be carrying with you, is simply lost to you.
+If you wish to have your equipment put away until you are able to come
+back, you'll have to find an inn and rent for the night.
+
+See also: INN
+#
+INNS
+
+Inns are safe havens from the troubles of the world. For a modest cost in
+gold, one can rent a room for the night and have all your goods stored.
+Some items such as food, potions, keys can not be saved by renting.
+
+See also: RENT
+#
+RENT
+
+By typing rent in an inn, you will be given a short list of all items you
+have, that can't be rented (kept with you when you sleep) and are left behind.
+You will also be told how much it will cost to rent for the night. If you don't
+have enough gold, then lose some items, or go get more gold. Renting is the only
+way to save your items.
+
+See also: INN
+#
+GET
+
+If you are walking along and see an item you wish to take, then simply type
+get name. If you have died, or killed a foe, and wish to take items from them,
+then you must type get item object.
+
+Ex: get sword
+    get all
+    get sword corpse
+    get coin corpse
+    get all corpse
+    get all bag
+
+See also: DROP
+#
+SLEEPING
+REST
+SIT
+STAND
+
+At any point in the game, you may sit, rest or sleep. Each will speed the
+amount of healing you gain per game hour. Understand, while sleeping you
+will not see or hear anything, so don't sleep in dangerous areas like the
+graveyard.
+
+#
+FLEE
+
+If you find yourself losing, or about to die in a fight, simply type flee.
+You will, if successful, run out in a random direction. Be careful you
+might just run into a even more deadly monster in the next room.
+
+#
+GUILD
+
+The Guild house is the place where mortals may go to escape the troubles and
+perils of a cruel world. Each has a guild master, so that only members
+may practice their skills and spells. Non members will be rudely told to
+bug off.
+
+See also: PRACTICE
+#
+SIZEUP
+
+Usage : sizeup <monster>
+
+This command will compare your Level with the <monsters> level. You will then
+receive a rough estimate, which is by no means exact. Sizeup does not take
+hit points/special attacks/damage into account.
+
+Example:
+  > sizeup dirty
+#
+EXPERIENCE
+XP
+
+Experience is a way to measure your growth in the game. As you gain exp you
+will raise in levels, gain practice points, improve in your base ability
+to hit and the amount of damage you do. You gain exp for each point of damage
+you do, along with killing your foes.
+
+#
+QUAFF
+POTIONS
+
+In your travels you will come across many strange and powerful potions which
+may or may not help you in your quest. To use these potions simply quaff them.
+
+Ex: quaff potion
+
+#
+RECITE SCROLL
+SCROLLS
+
+To use a scroll simply type recite the name of the scroll. The scroll only
+needs to be in your inventory. You can recite scrolls in combat.
+
+Ex: recite scroll
+
+#
+USE
+WANDS
+STAFFS
+RODS
+
+You will for sure run across many forms of wands, staffs and rods in your
+exploration of the world. To use these spell imbedded items you must be
+holding it.
+
+Ex: use wand
+    use rod
+    use staff
+#
+HELP
+
+Following help is available:
+
+HELP <topic>    - Retrive help on a given topic.
+HELP            - List the commonly used commands.
+
+Ex: help backstab
+    help
+    help help
+
+#
+SPELLS
+
+  To see a list of spells type SPELLS <Class name>
+
+Ex: SPELLS MAGIC USER
+
+#
+SPELLS MAGIC USER
+
+1) Fire Bolt
+1) Invisibility
+2) Minor Shield
+2) Ice Bolt
+3) Sparks
+3) Fumble Fingers
+
+#
+SPELLS NECROMANCER
+
+1) Shake
+1) Mind Thrust
+2) Mend Flesh
+2) Tough Skin
+3) Weaken
+3) Burst Vains
+
+#
+SPELLS CLERIC
+
+1) Lesser Armor
+1) Minor Bless
+2) Minor Cure
+2) Detect Evil
+3) Lesser Curse
+3) Cure
+
+#
+HUMAN
+
+Human PC's are not given subtractions or additions to their abilities. They
+are considered the norm from which all others racial stocks are based. They
+normally have run of the mill abilities and can be any class.
+
+Classes : any
+
+#
+ELF
+
+Elves can be any class they wish. They have a bonus to saves against sleep and
+charm spells. They gain a bonus to thrown weapons and a bonus of +2 to
+intelligence. Elves have infra-red vision and can detect creatures in the
+dark with it. Elves have a minus 2 to strength.
+
+Classes : any
+
+#
+HALF ELF
+
+Very much like Elves, half elves gain a small bonus to saves against sleep and
+charm spells. They gain a +1 to intelligence and have infra-red vision. Half
+elves can detect monsters in the dark. Half elves have a minus 1 to strength.
+
+Classes : any
+
+#
+DWARF
+
+Dwarfs are a sturdy war toughened race. By their very nature Dwarfs are non
+magical. They can be all classes, except those that use magic spells and gain
+bonus to saves against spells. Dwarfs have a bonus to strength and constitution.
+For every 3 points of constitution they gain +1 to save against spells.
+
+Classes : Warrior Barbarian Knight Thief Assassin Monk Cleric
+
+#
+ORC
+
+Orcs are by nature evil and as such start the game with a -1000 alignment.
+They are cruel and take pleasure in death. They gain a +2 strength and a +2
+constitution. They have a -2 to intelligence.
+
+Classes : Warrior Thief Assassin Cleric
+
+#
+HALF ORC
+
+Half Orcs are looked upon by the other human races with dislike. Unlike true
+Orcs, they are not totally evil and have no alignment penalty at the start of
+the game. Like Orcs though they gain a +1 strength and a +1 constitution.
+They have a -1 to intelligence.
+
+Classes : Warrior Barbarian Thief Assassin Monk Cleric
+
+#
+DROW
+
+Drows are a race of Elves that moved underground thousands of years in the past.
+They became very nocturnal and studied the necromantic arts. They are normally
+evil in nature and have just recently returned to the surface world in small
+groups. Drow gain a +2 to intelligence and have a -2 to strength.
+
+Classes : Necromancer Thief Assassin Warrior
+
+#
+GNOME
+
+Gnomes are a small race of creatures, that normally live in mountain regions.
+Over the years, some have come down to make their way in the world of man. and
+have discovered they posses a greater dexterity than the normal man. Gnomes 
+gain a + 4 on dexterity but have a -2 to strength and constitution. They make
+great thieves and gain a + 10% to all thief skills.
+
+Classes : Thief Assassin Monk Cleric
+
+#
+GIANT
+
+Giants are huge humanoids. They are very strong. Average strength ranges
+from 19 to 21. Giants are not considered very bright though and have a max
+intelligence of 10.
+
+Classes : Warrior Barbarian
+
+#
+TROLL
+
+Trolls are huge humanoids. They are very strong. Average strength ranges
+from 18 to 20. Trolls are considered to be very stupid, and have a max
+intelligence of 5. Trolls have the ability to regenerate hit points faster than
+all other races.
+
+Classes : Warrior Barbarian
+
+#
+OGRE
+
+Ogres are massive brutes that have no concept of weakness. They are so stupid
+the thought that something can't be picked up and eaten never enters their
+minds. Due to this fact, Ogres can consume any items as food and have a natural
+strength in the range of 20 to 25. They on the other hand have a 4 intelligence.
+
+Classes : Barbarian
+
+#
+FOLLOW
+
+Used to follow another player or NPC in the world. If you are standing when
+the person leaves you will follow after them.
+
+ex: follow <name>       To follow player, NPC.
+
+ex: follow <your name>  Makes you stop following a player or NPC.
+#
+PARTY
+
+Used to form parties of players to wonder the world and share exp in combat.
+
+ex: party <name>  If not in your party, and they are following you they will
+                  join. If they are already in the party they will be
+                  kicked out.
+
+ex: party         Displays a list of those in your party and their status.
+#
+SYNC
+
+At times your character might become out of sync on another node. If this
+seems to happen to you, just type sync to once again have your character
+in the same spot on all nodes.
+#

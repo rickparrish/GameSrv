@@ -1,0 +1,32 @@
+
+How to write Quests for Ambroshia v4.0:
+
+Anyone can write a quest for Ambroshia. All it takes is a little bit of
+time and some imagination!
+
+Step 1: Open the document called Commands.txt in the Docs directory.
+
+- Read over some of the commands that are listed in it. They are given pretty
+detailed information on how to use them plus examples..
+
+Step 2: Open up an existing quest from the Quests directory. This way you can
+get an idea of how some quests are created..
+
+Step 3: Open up notepad and begin creating your quest!
+
+Step 4: When you are all done with your quest, save the quest with an extension
+of .amb 
+
+Step 5: Open another notepad session and create a little informational doc for
+sysops to read. This is where you describe your quest, and the rewards given
+to players if they complete your quest. This will make the sysops job of deciding
+if your quest un-balances their game a bit easier.
+
+Step 6: Near the top of your informational documentation, please let the sysop know to
+add your quest to their Quests.dat file. By inputing an additional line of:
+Your Quest Name,Your Name,Quest Name, <--notice the ending comma needs to be there..
+
+Please look at the Quests.dat file in your Data directory for examples..
+
+
+Thats it!

@@ -1,0 +1,70 @@
+You wake up one morning and while putting on your armour you see 
+a note under the door of your room.
+@PAUSE@
+You open the note and start to read.
+
+Dear Young Warrior, Your mother has been kidnapped and is being
+held in an underground castle to the east of here.
+
+You feel anger drawing up from inside you and you let out a mighty
+scream.
+@PAUSE@
+You grab your weapons kick the door down and run out of the tavern.
+
+When you get outside you jump onto the nearest horse and ride as fast
+as you can to the cave that will lead you to the castle.
+@PAUSE@
+You enter the cave adrenalin pumping through your body and your
+first victims step out of the darkness.
+@PAUSE@
+@MONSTER:Troll:20:5:5:0:0:2:500:100
+You finish them and continue into the dark void.
+
+You finally reach a spot where you can rest and get ready to
+continue tommorow.
+@PAUSE@
+
+@DAYEND:1
+You wake up ready to take on anything.
+
+You walk on and on until you reach the castle.
+
+Upon arrival you are greeted by the not so friendly castle
+gaurds.
+@PAUSE@
+@MONSTER:Castle Guard:20:5:5:0:0:3:500:100
+You finish them and enter the great castle.
+
+There are so many corridors in the castle that it is mind
+boggling.
+
+So you decide to go straight and finally come to a set of solid
+gold doors.
+@PAUSE@
+You enter into a huge room and see your mother hung from the
+ceiling by her arms.
+
+There is a dark figure sitting on a throne made purely of diamonds
+and gold.
+
+You charge the figure but before you get there you are stopped
+by some others...
+@PAUSE@
+@MONSTER:Evil Knight:20:5:5:0:0:2:500:100
+After finishing them you muster up enough strength and strike the
+dark figure...
+@PAUSE@
+@MONSTER:Devil Minion:20:5:5:0:0:1:500:100
+You get your mother down and go home happy.
+
+You recieve...
+
+`bright green`You gain 20 Hit points
+`bright green`You gain 25 High Experience
+`bright green`You gain $500,000
+@PAUSE@
+@STAT:MaxHP:20
+@HIGH:25
+@GOLD:500000
+
+@FINAL@

@@ -1,0 +1,526 @@
+;reserved room
+The game reserves use of this room for special purposes.  Please do not edit
+this room.
+-
+;Tolaria, temple
+This majestic building is the sole place of worship for the citizens of the 
+town of Tolaria.  Adventurers come here for healing and rest.
+<tolaria, temple>
+-
+;tolaria, dirt road
+This narrow dirt road is the main street in the small town of Tolaria.
+-
+;tolaria, spell shop
+This small shack sells spell scrolls and martial art tomes for novices.  The
+spells are weak and the selection is small, but the prices are low.
+<newbie shop>
+-
+;tolaria, armory
+This store sells hand-made weapons and armor for new adventurers.  The wares
+here are crude, but are nonetheless good enough for you to fight your way
+through the southern forest.
+<newbie shop>
+-
+;tolaria, training grounds
+Adventurers come here after a hard day of battle to train their combat skills.
+Alas, the training grounds here in Tolaria are usually devoid of famous 
+heroes, as they usually move to larger cities to seek out better training 
+facilities.  However, many of the realm's champions are known to have learned
+their first combat lesson right here on this very spot.
+<newbie trainer>
+-
+;forest, dirt road1
+This dirt road winds its way through the nameless forest that is south of
+Tolaria.  One of the eastern paths leads to Ancalador, a great walled city.
+Unfortunately, the forest has recently become overrun with thugs and brigands,
+so explorers are warned to take caution.  In addition, a tribe of orcs has 
+apparently built an encampment in the southwest corner of the forest.  A 
+novice adventurer could gain quite a reputation by slaying their leader.  
+-
+;forest, dirt road2
+The road forks here.  The road to the east leads directly to the city of
+Ancalador, the northwestern path leads back to Tolaria, and the southwestern
+path leads deeper into the forest.
+-
+;forest, dirt road3
+The road forks here.  The northern path leads back towards Tolaria and
+Ancalador, whilest the southeastern and southwestern paths lead deeper into
+the forest.
+-
+;forest, dirt road4
+The path forks here.  The road to the southwest seems to have been recently
+constructed, and you can see smoke in the sky off in that direction -- a good
+indication of some sort of encampment.
+-
+;forest, dirt road5
+<forest, dirt road5>
+-
+;forest path, bridge
+;forest, wooden bridge
+This less-than-sturdy bridge provides passage over a swiftly-flowing creek.
+-
+;forest, stone bridge
+This sturdy stone bridge provides passage over the creek below.
+<forest: stone bridge>
+-
+;orc encampment1
+You seem to have stumbled into a small orc encampment.  It was probably built
+recently by Orcs who were expelled from their homeland due to Human expansion.
+Apparently, they don't welcome outsiders...
+-
+;brigand hideout1
+You are standing inside of a run-down, one-story cottage.  It would seem that
+it is being used as a hideout for the brigands, bandits, and thieves of the
+forest.  Their leader is probably nearby.
+<brigand hideout1>
+-
+;ancalador, temple
+This is the Grand Temple of Ancalador, symbol of justice and holiness for all 
+that live in these lands.  Legend has it that the High Kingpriest dwells 
+somewhere within the temple's lower levels, and that radically aligned 
+individuals can see through the powerful magics that hide the location to what
+was once his throne room -- but perhaps is now his tomb.
+<generic temple script>
+<ancalador: temple>
+-
+;ancalador, western gates
+This is the western entrance of the ancient city of Ancalador.  To the east 
+lies the city, and to the west is the dirt path to Tolaria.
+<ancalador: western gates>
+-
+;ancalador, eastern gates
+<ancalador: eastern gates>
+-
+;Bloodwine Tavern1
+<bloodwine tavern>
+-
+;Ancalador, Armor Shop
+<Ancalador, Armor Shop>
+-
+;Ancalador, Town Square
+;Arcadia, Town Square
+<remove newbie items>
+-
+;Arcadia, City Arena
+This massive complex was built hundreds of years ago for Gladiator tournaments.
+;Ancalador, Arena
+Adventurers come here to battle each other without the risk of fatalities.  A
+trained staff of city priests waits nearby to revive any competitors who are
+seriously injured.
+-
+;forest path1
+The path used to continue to the east here, but a 20-foot-tall stone wall has
+been built to prevent access to the older part of Havenwood which beyond the
+wall.  The wall stretches the whole length of the forest, dividing it into two
+halves.  It was constructed by the elves several decades ago to separate elven
+territory from centaur territory.
+-
+;havenwood forest, narrow trail1
+Directly to your east is a 20-foot-tall wall, built by the elves to separate
+the older part of the forest -- centaur territory -- from the newer part of 
+the forest, which is controlled by the elves.
+-
+;forest road1
+The path used to continue to the west here, but a 20-foot-tall stone wall has
+been built to prevent he Centaurs from entering Elven territory.  The wall 
+stretches the whole length of the forest, dividing it into two halves.
+-
+;black road1
+$8
+You take a look around your surroundings, and discover that nothing looks at
+all familiar to anything you have ever seen before.  The sky is a swirled mess
+of colors.  There are no stars to be seen, making it impossible to tell exactly
+where you are.  The road below you is made of an unknown black metal.  To the 
+west is the cave that you came from, and to the east is a dense blackened 
+forest.  To the south, you can see some kind of encampment.  The black road 
+continues to the north.
+-
+;wooded path1
+To the west, you can see the edges of Havenwood Forest.  The path continues,
+leading through the center of the forest.
+-
+;forest path2
+This dirt path leads through Havenwood Forest, the ancestral home of the
+Wood Elves.  
+-
+;small cave1
+A back exit to the cave can be seen to the east, leading to an overgrown
+forest path.
+-
+;overgrown forest path1
+You seem to have discovered a secret entrance to the older part of Havenwood
+Forest, which is the traditional home of the Centaur race.  It has been said
+that other evil creatures inhabit this part of the forest as well, so it
+would be best to tread with care.
+-
+;forest road2
+This once-paved road has decayed into broken rubble.  It used to travel
+through the center of the forest, but it now dead-ends at the Great Wall
+that separates the two forest kingdoms.  An evil spirit of incredible power
+is rumored to travel this road on nights when a crescent moon is visible
+in the sky.
+-
+;murky caverns, entrance
+This is the entrance to a sprawling underground cavern, home to the many
+subterrainian races of the realm.
+-
+;dark cave1
+You appear to have entered some kind of cave.  It is completely dark, with
+the exception of a small ray of light coming from the east.  You get shivers
+down your spine from the aura of pure evil that seems to come from all around.
+-
+;The Courts of Chaos, Black Stairwell
+This is a narrow, spiraling stairwell made of some kind of black stone.  It
+leads to a large chamber below.  The bottom stairs have crumbled, making it
+so that there is no way to go back up the stairs once you have gone down them.
+-
+;haunted catacombs1
+These ancient catacombs were the traditional burial site of the kings and
+priests of the Old Kingdom.  In recent years, an unknown evil presence has
+filled the catacombs, causing the once-dead to wander the catacombs aimlessly.
+-
+;haunted catacombs2
+A large iron door lies in the western wall, supposedly leading to the lower
+levels of the catacombs.
+-
+;halls of the dead1
+As you walk through these dark halls, all you can hear is the echoing of your
+own footsteps.  It eventually leads to even lower levels of the catacombs,
+where the source of the great evil is rumored to come from.
+-
+;The Courts of Chaos, Throne Room
+This large chamber is lit by dozens of candles on the floor that form the
+shape of a pentagram.  In the center of the pentagram is a flaming throne.
+-
+;small cave234
+This small cave looks like it was artificially created.  However, you are
+unable to determine who made it, and for what purpose.
+<small cave234>
+-
+;narrow road1
+The road dead-ends here.  A large hole in the ground leads to a tunnel below.
+-
+;dungeons of destiny
+<dungeons of destiny>
+-
+;arcadia, western gates
+This is the western entrance to Arcadia.  It was once the most prosperous city
+in the entire realm, but it has fallen into disrepair in recent years.  The
+southern half of the city now consists entirely of slums, and visitors are
+advised to be careful.  In order to stop the drug trade, a guardsman stands
+here, permitting only those individuals with gate passes to enter the city.
+<arcadia: western gates>
+-
+;grand temple of arcadia
+This building is constructed entirely of pure ivory.  It was one of the last
+great temples built in the days of the Empire.
+<generic temple script>
+-
+;arcadia, imperial lane1
+To the east, Imperial Lane decays into a gravel street which leads towards
+the slums.  This is definitely not the nicest of neighborhoods.
+-
+;Temple of the Gods
+$8
+North: Divine Shop
+West:  Tolaria
+East:  Ancalador
+South: Arcadia
+Down:  Hades
+-
+;northern road, dead end
+The northern road ends here.  A narrow opening in the ground here leads to a
+cave below.
+-
+;northern road, fork
+An icy path leads to the west from here.  The northern road continues to the
+northeast and southeast.
+-
+;gravel road2
+<gravel road2>
+-
+;gravel road3
+<gravel road3>
+-
+;gravel road4
+<gravel road4>
+-
+;infernal keep, second floor1
+The hallway becomes too crumbled here to walk any further in this direction.
+-
+;dusty path1
+This path, which connects the cities of Ancalador and Arcadia, was once a
+major trade route in years past.  However, trade has declined in the last
+few decades, and now the road is rarely travelled.
+-
+;arcadia, southern gates
+It has been said that only heroes and fools venture into the southern parts
+of the realm.  In both cases, very few ever return.
+-
+;arcadia, northern gates
+Unexplored caves and barren tundras lie past these gates, in the northern
+parts of the realm.  Very little is known about these places; however, it is
+common knowledge that giants, titans, and other massive humanoids call the
+north their home.
+-
+;narrow underground tunnel1
+This tunnel is extremely small and very dark.
+-
+;cave opening
+This is the entrance to a massive natural cave of unknown size.  By the looks
+of things, it would appear that this cave has been largely undisturbed for
+centuries.  If anything is still living here, it probably won't welcome your
+presence...
+-
+;titanic caverns1
+The height of the tunnel here is enormous; the roof of the cave must be over
+one hundred feet above your head.
+-
+;crimson path, outside infernal keep
+The crimson path ends here, leading up to a dilapidated stone mansion.  
+-
+;infernal keep, entrance
+This old castle is dimly lit and very much in need of repair.  You cannot help
+but notice the stench of death in the air.
+-
+;shore of the river styx
+$4
+The realm of the mortals ends here, at the shores of the great River Styx.
+The living are not allowed past this point.  However, great champions have
+been known to give up their lives in order to visit the land of the dead.
+-
+;desert beach
+You stand at the shore of a great desert.  This entire continent was never
+part of the old Empire, and so little is known about its size and inhabitants.
+-
+;great pyramid, entrance
+This is the entrance to the Great Pyramid, supposed resting place of Pharaoh
+Al-Mil-Krahnar, long-dead ruler of a vast desert empire in ages past.  The
+pyramid's entrance was not sealed in any way, leading you to wonder if it is
+currently inhabited.
+-
+;desert path, outside great pyramid
+To the south lies the entrance of perhaps the largest man-made structure you
+have ever seen.
+-
+;the top of the great pyramid
+An ornate coffin lies strangely ajar in the center of this room.  Apparently,
+"long-dead" Pharaoh Al-Mil-Krahnar hasn't been resting in peace...
+-
+;sand temple, entrance
+This is the entrance to a fairly large complex, constructed out of adobe.
+-
+;sand temple, white chamber
+This room has been colored with some sort of shimmering, divine paint.  The
+reflection of the sun onto the white walls is nearly blinding, yet still
+breathtaking.
+-
+;temple of hell
+$4
+This massive underground temple is carved out of obsidian and ruby, and has
+an eternally burning pentagram located around the altar.  The entrance to
+the realm of chaos is known to be located directly below this temple, but only
+the most powerful of adventurers are capable of entering the chaos dimension.
+<temple of hell>
+-
+;hades, hall of mirrors
+<remove newbie items>
+-
+;hades, holy item shop
+This store sells priestly spells, potions, and other assorted trinkets.
+-
+;hades, hellmouth
+This point is the exact center of the realm of the dead.  A large stadium here
+acts as a Gladiator-style arena, where adventurers frequently come to battle
+each other.  In the center of the arena is a stairway which leads down into
+the ground, towards the Temple of Hades.
+<remove newbie items>
+-
+;hades, descent to dragon cave
+The street ends here at a gaping hole, leading down into the home of the
+dragon races.  A steel ladder runs along the side of the hole, allowing dragon
+slayers to enter the cave and practice their dangerous sport.
+-
+;dragon cave, entrance
+This wide, natural tunnel gleams with precious gems.  The heat here is almost
+unbearable, and you can sense that you are being watched.
+-
+;dragon cave1
+A narrow pit here leads to a lower level of the dragon cave, where even
+fiercer beasts dwell.
+-
+;dragon cave, emerald passageway1
+$2
+This passageway is studded with massive emeralds, casting the entire room in
+a green glow.  These near-priceless gems will probably never be mined, as no
+one is foolish enough to dare stealing from the green dragons that inhabit
+this part of the cave.
+-
+;dragon cave, silver chamber
+This chamber was unnaturally constructed out of pure silver.  Many humanoid
+bones lie on the floor, as many foolish heroes have died attempting to slay
+the rare breed of dragon that lives here.
+-
+;dark cave1463
+<dark cave1463>
+-
+;dark cave1462
+<dark cave1462>
+-
+;village gates1566
+These gates appear to be the only entrance to this small desert village.  As
+you approach the gates, you get the distinct feeling that this village has
+been cursed.  You can't help but notice that the walking dead inhabit the
+streets, giving you the impression that something horrible has happened here. 
+-
+;cursed village, training grounds
+Despite the level of decay in the rest of the village, these grounds remain
+in perfect condition.  It would appear that the undead hordes have totally
+ignored this small section of the village, most likely due to the presence
+of its mysterious caretaker.
+-
+;cursed village, temple altar
+<cursed altar>
+-
+;dungeon of the damned1276
+$4
+This was once the Dungeon of Hades, built twelve centuries ago to house some
+of the most heinous troublemakers of the Empire.  Since the disappearance of
+the Kingpriest, the Dungeon has fallen into disrepair, and most of the locks
+on the cells no longer function properly.  For this reason, the Dungeon was
+sealed off from the rest of Hades some time ago, trapping prisoners and 
+guardsmen alike for all eternity.  
+
+There are rumors that the Warmaster of Chaos is imprisoned somewhere deep
+within this dungeon.  His ancient cell is supposedly guarded by the great
+Champion of Order, once known for being second in command to the Kingpriest.
+-
+;hall of the damned1646
+This hall appears to have been constructed more recently than the rest of the
+dungeon.  A thick layer of dust covers the floor, suggesting that this hall
+isn't frequently used by the rest of the dungeon's inhabitants.
+<hall 1646>
+-
+;hall of the damned1647
+This room is home to the Champion of Order, the valiant knight who guards the
+cell of the wretched Warmaster of Chaos.  The Warmaster's cell can be seen
+directly west of here.
+<hall 1647>
+-
+;eternal prison of the dark one
+This small, dimly-lit cell has been the home of the Warmaster of Chaos for the
+past nine centuries.  The walls are constructed of several feet of solid
+obsidian, and have been enchanted with powerful magic to keep the Warmaster
+subdued.  The aura of evil here is so strong that it is nearly tangible.  
+-
+;Shrine of the Unholy Savior1695
+This floor of the dungeon appears to be some sort of shrine to the Angel of
+Death, a powerful minion of Chaos captured by the Empire during the Great War.
+Although his power pales in comparison to the Warmaster, the Angel of Death 
+was still known as one of Chaos's mightiest generals.  Apparently, misguided
+dungeon-dwellers now worship the Angel as their god.
+-
+;narrow vertical shaft1700
+This room appears to have been built for ventilation purposes.  Ice-cold air
+flows through it, reeking of death and decay.
+-
+;desert road1706
+<desert road1706>
+-
+;desert trail1707
+This barely-visible trail winds its way around the massive sand dunes of the
+desert.  Due to the extreme heat and other hostile conditions, few signs of
+life can be seen here. 
+-
+;ominous-looking cave1798
+This small, narrow cave is illuminated by a series of torches along each wall.
+The flickering light gives the cave a menacing appearance, as does the bones
+scattered along the floor.
+-
+;dune valley path1774
+<dune valley path1774>
+-
+;small hut1775
+This ramshackle hut is oddly located in the middle of the desert, not directly
+on any visible path or trail.  The door has been knocked off its hinges, 
+perhaps due to natural causes or possibly due to a break-in.  Nothing of value
+can be found here.
+-
+;tundra path1813
+This barely-visible path winds its way through the great northern tundra.  The
+terrain here is flat and treeless, and the soil is permanently frozen.  Few
+creatures are capable of living in this harsh environment.
+-
+;icy path820
+<icy path820>
+-
+;icy cave, marble staircase
+A staircase to the surface can be seen here.  It is carved out of pure ivory,
+indicating that it is certainly man-made.
+-
+;frozen island1931
+This chilly island is extremely small in size.  It is not far from the coast,
+as you can see the coastline off in the distance to the west.
+-
+;white tower1934
+The inside of this tower looks much more interesting than its drab, off-white
+exterior.  Strange artifacts of all sorts can be found here, and a plentiful
+amount of fancifully-constructed Imperial-era furniture fills the room.  A
+series of shelves containing thousands of books lines the walls.
+-
+;white tower1935
+Like the previous floor of the tower, odd artifacts and thousands of books are
+shelved here along the walls.  In addition, this top floor appears to serve as
+a bedroom for the tower's owner.  
+-
+;icy cave, entrance
+This cave appears to be a natural formation.  The temperatures here are even
+lower than on the tundra surface, but the overall environment is less harsh.
+You can't help but notice the frequent sounds of footsteps echoing throughout
+these deep caverns.
+-
+;tundra, frozen coastline1833
+To the northeast, a tall, white tower in the distance catches your eye as the
+sun reflects brightly off of its exterior.  Upon closer inspection, it appears
+to be positioned on a small island.  However, you can see no visible way of
+reaching it, because the ocean water is far too cold to be traversable.
+-
+;The Eye of Chaos, Entrance
+In front of you lies the entrance to the great Eye of Chaos, the ancient home
+of Order's eternal nemesis.  The hairs on your neck stand on end as you enter
+this odd dimension.   
+-
+;the Eye of Chaos, outer cavern1939
+This segment of the Chaos realm, the outermost section, has taken the form of
+a series of underground caverns.  The walls and floor constantly change before
+your eyes -- melting and oozing one minute, becoming solid rock the next.
+Flashing colored lights from an unknown source increase your feelings of
+disorientation.
+-
+;the eye of chaos, throne of demons
+A huge throne sits in the center of this room, decorated with every gem and
+jewel imaginable.  It is the seat of the King of Demons, the ceremonial ruler
+of the demon races.  Although the King has no real power to command the
+armies of Chaos, he is still greatly feared and respected.
+-
+;the eye of chaos, royal hallway2041
+This well-lit cavern is carpeted with a semi-solid red slime.  The god-awful
+noise of random, distorted trumpet notes rings through the air constantly.
+-
+;the eye of chaos, diamond chamber
+<glowing coal>
+-
+;the center of chaos
+$8
+You have finally reached the epicenter of the realm of chaos, the beginning
+and end of the fabric of reality.  You are surrounded by an infinite blackness
+that shakes the very foundations of your pathetic mortal mind.  And yet here
+you stand, ready to face your destiny.  Shall you force your way onward, and
+become one of the few beings to reach this point and survive?  Or shall you
+be annihilated like the hundreds of optimistic adventurers who came here, only
+to be slaughtered by the manifestation of pure chaos?  Fight onward, hero...
+-
+-
+-
+:::STOP:::
+

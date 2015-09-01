@@ -1,0 +1,153 @@
+旼컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴커
+� Realm of Kisom Version 1.00               Troubleshooting, Hints, & Tips �
+읕컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴켸
+
+   Here are some Frequently Asked Questions (FAQ) that will hopefully
+   solve some problems that you may be experiencing with Realm of Kisom.
+
+   Question: "When a user tries to access ROK on my BBS, it doesn't do
+             anything, and simply returns them to the BBS!"
+
+   Answer  : This is most likely caused by your ROK Batch file not executing
+             ROK properly.   See the above section for information on how to
+             setup your batch file.
+
+             {*} NOTE - ROK *might* not be getting enough Memory!  Here's a
+                        way to check if this is the problem: If, in the ROK
+                        batch file, you have "@ECHO OFF", delete that, then
+                        run ROK again. It should know show you what's going
+                        on when it tries to execute ROK from your BBS.  See
+                        where it executes the command line - and if it says
+                        something like: "Not enough memory to run program",
+                        then that's the problem!  :-)  If you are unsure of
+                        just how much Memory your BBS takes up, run MEM.EXE
+                        in the batch file and see.   Then, consult your BBS
+                        Documentation for info on reducing memory usage. It
+                        should then work for you.   ROK automatically loads
+                        most of it's files into EMS, if it's available.
+
+   Question: "ROK has the OnNow flag ON for a user who isn't even in the
+             game!  Another user enters, challenges that person, and ROK
+             screws up there!  Help!"
+
+   Answer  : This error is caused by an Abnormal Exit from the game.  Either
+             ROK had an error, a lock-up, power failure, etc.  This does not
+             happen when a user drops carrier, though, ROK is smart that way.
+
+             For Single-Line BBS's, the solution is *very* simple.  Run
+             NOW_OFF.EXE in the batch file that runs ROK (explained above).
+             This will turn the OnNow flag off for every user *before* a
+             user enters the game.
+
+             For Multi-Node BBS's, this is the fix.  You can run NOW_OFF.EXE
+             if you wish.   However, a more important step is to notify your
+             users that after seven seconds of no response from the other end
+             of the online duel, a player can choose to leave the fight.
+
+             What the heck am I talking about?  Here's an example to help:
+
+             Player A has had an abnormal exit from the game.  The OnNow flag
+             for this character has remained "ON".  Player B enters the game,
+             sees that Player A is online, and challenges that player.  After
+             seven seconds of Player A not responding in the fight - Player B
+             can choose to leave it.  It's very simple!   After this Player A
+             doesn't respond, Player B should know that Player A isn't really
+             online.
+
+             Hope that explains it! :-)
+
+   Question: "Why the heck are there so many MSG*_*.DAT files?"
+
+   Answer  : Those are Message Data Files.  They're mail waiting to be read
+             by certain players.
+
+   Question: "I cannot figure out how to pass the correct Node Number to the
+             batch file ROK command line!  Help!"
+
+   Answer  : Each BBS Software is different.  Almost all of them use a symbol
+             to represent a Node Number.    You will have to consult your BBS
+             Software Documentation to see how to do it.  Sorry I can't be of
+             any more assistance in this area.
+
+   Question: "ROK locks up at the Introduction ANSI/RIP Screen!"
+
+   Answer  : Well, I don't have a clue why this should happen.  If this is a
+             persistant error, there is a Toggle to disable showing it. It's
+             in ROKCFG.EXE's (M)iscellaneous Maintenance Menu. Simply Toggle
+             it to OFF, and you should have no more problems.
+
+             {*} NOTE - You can experiment with the three different FOSSIL
+                        Driver types (explained above), that may cause the
+                        Into ANSI/RIP lockups to go away.
+
+   Question: "A player was able to marry someone who wasn't even in the game!"
+
+   Answer  : In ROKCFG.EXE's (M)iscellaneous Maintenance Menu, there is an
+             option to Divorce *ALL* Married Players in the Realm.  If this
+             error should ever happen, simply run this option, and everything
+             should be fine.
+
+   Question: "My registration code doesn't work!  Help me out, please!"
+
+   Answer  : Extensive testing has been done to ensure that your registration
+             code *should* work.  However, if it does not, DON'T PANIC! :-)
+
+             Simply contact the me, and I'd be more than happy to help you out
+             with this problem. Ways of contacting me are given on Page 8 of
+             the ROK Documentation (ROK.DOC).
+
+   Question: "I don't know how to change my US funds into Canadian Funds!"
+
+   Answer  : Don't bother!  I accept BOTH Canadian AND US Funds in registration
+             forms!
+
+   Question: "I use DORINFO1.DEF as my dropfile.  I use it to run all my
+             nodes.  ROK doesn't recognize that it's supposed to be Node #2
+             with a DORINFO1.DEF file!  Help!"
+
+   Answer  : Most BBS Softwares that support DORINFO also support DOOR.SYS.
+             If your BBS Supports both of these, try changing it to DOOR.SYS.
+             If not, then run ROK with this command line:
+
+             ROK.EXE * /P<pathtodropfile>
+
+             Where "*" is the node number, /P<pathtodropfile> tells ROK where
+             to look for the DropFile.  It does not matter if this path has the
+             trailing backslash ("\") or not.
+
+             I think that should work, hopefully.
+
+   Question: "I want to run Maintenance today - again!"
+
+   Answer  : Simply delete TIME.DAT from your ROK Directory.  The next time
+             ROK is ran, Maintenance will execute again.
+
+   Question: "I have a bug report that isn't addressed anywhere in your ROK
+             documentation!"
+
+   Answer  : Fabulous!  Fill out BUGRPT.FRM.  Send this to me.  Ways of
+             contacting me are given on Page 8 of the ROK Documentation.
+	     *Please* be as clear as possible when explaining the report!
+	     Also, please print, if you can, or write neatly! :)
+
+   Question: "I'm stumped.  Nothing seems to work!"
+
+   Answer  : Consult Page 7 in ROK.DOC.  There, it will give you the
+             ROK Command Line Parameters.  This, hopefully, will help you out.
+
+   I hope I have covered most of the topics here.  If your question is not
+   addressed, then feel free to contact me.  Ways of contacting me are given
+   on Page 8 of the ROK Documentation (ROK.DOC).
+
+   Alternatively, you may call my BBS - The Inner City BBS, at 1-306-694-5864.
+   There is an entire message base setup for ROK alone (Msg.Area #4).  This is
+   the area to discuss comments/suggestions on how to improve ROK, bug reports
+   and more.  Almost everything is addressed in this area.
+
+   Hopefully, soon, there will be a ROK Echo available on Plannet Connect.
+   When it is available, I will hopefully be addressing messages in there.
+
+   ** Hope that helps! **
+
+Devon Brooks - Blazing Fire Software
+End of Realm of Kisom v1.00 Q_And_A Documentation

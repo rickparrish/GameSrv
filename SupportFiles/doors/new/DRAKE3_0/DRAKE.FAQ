@@ -1,0 +1,41 @@
+These are configurations questions that sysops have written to me. If you 
+have one, please let me know.
+
+Q : Drakeville won't do the maintenance.
+
+A : Make sure that you set up the path for the bulletin file. The before last
+line in the DRAKE.CFG should be the filename only of the bulletin and the next
+line is the path. Ex.  TOPTEN.ANS
+                       C:\BBS\
+
+Q : When I run Drakeville multi-node, it kicks out a player who is on-line.
+
+A : Make sure that you created a NODE FILE for EVERY node you want to run 
+Drakeville on. Also, make sure that you specify the number of nodes in the
+DRAKE.CFG. Also, you can make the DRAKE.OVR and DRAKE.EXE read-only files
+with ATTRIB +R DRAKE.OVR and ATTRIB +R DRAKE.EXE.
+
+Q : Drakeville doesn't want to run with WINDOWS NT.
+
+A : You need to remove the IRQ and PORT ADDRESS from the node files. Just 
+    delete these lines and save the file. 
+
+Q : My callers don't seem to be receiving the ANSI.
+
+A : This seems to heppen with Wildcat 4.+ under WIN95. If you use FOSSIL 
+    communication instead of INTERNAL it should be ok.
+
+Q : Drakeville plays locally but callers can't log on.
+
+A : Make sure that you copy the BBS drop file to the Drakeville dir.
+    ex.
+    COPY DOOR.SYS C:\DOORS\DRAKE
+    CD\DOORS\DRAKE
+    CALL GO_DRAKE 1
+    DEL DOOR.SYS
+    CD\BBS
+
+Q : I don't get the ANSI screens under WIN95.
+
+A : Well, WIN95, as far as I know, doesn't have a build in ANSI emulator. You
+    will need to set up ANSI.SYS.

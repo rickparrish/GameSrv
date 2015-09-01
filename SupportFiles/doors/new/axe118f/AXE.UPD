@@ -1,0 +1,154 @@
+/*-------------------------------------------------------------------------*/
+/*                              UPDATE DOC                                 */
+/*-------------------------------------------------------------------------*/
+
+AXE100,101,102,103,104,105,106,107,108,109,110,111
+
+Lost notes on these version but listing them anyways.
+
+----------------------------------------------------------------------------
+
+
+UPDATE 112  -- DEC 25 1994 --
+
++Prompt changed, now is displayed after every combat round.
++Payed changed to paid in rent.
++Added text for alignments
++added AXE.DOC
++moved INSTALL.DOC into AXE.DOC
+*although AXE.DOC is incomplete it will be updated with each new
+ archive.
++Added AXE.UPD this file
++changed the fossil open function to now set the buad rate instead
+ of just turning on the fossil as is.
++added winds of time which sweep players with less then 5 mins left back
+ to the town square of tooth.
++Added forced QUIT for players that don't rent before time expires.
++Modified name search function in spells to be more stable
++made a 44k cunk of the exe into a overlay to gain back 30k of
+ memory for world use
++Drow citidal completed
++built a conversion/import utility to convert ENVY mud area files into
+ AXE structers and import them into AXE
++fixed bug in 'look person' that made the items begin displaying on the
+ same line as the 'using' line.
++Changed the graveyard to totaly no agg area. You can now verture forth
+ to do battle as a newbie with full belief that a walking corpse will
+ not jump you. Goul is still agg so gain a few befor trying him.
++Sewer has been added to tooth, it's down under the drain in tooth
+ town square.
++World is now 544 rooms 200+ mobs and objs and only using 140k+ for
+ the world, looks like a 1k room world is very possible at this point.
+
+------------------------------------------------------------------------------
+
+AXE113  -- DEC 29 1994 --
+
++in house only version, found some major memory bugs with this version
+ and corrected them.
+
+------------------------------------------------------------------------------
+
+AXE114  -- DEC 30 1994 --
+
++Fixed segment wraping memory error.
++Changed graveyard and mugger and vagabond to wimpy aggrissive, what this
+ means is they will only attack you if your not standing up.
++Added Monks Monistary which can be found at the end of the Spear River.
++Added Mines which can be found north on the path to culhaven
++Did a major rewrite to room structers which now allow for greater
+ expansion of the world.
++Fixed a string error in the envy2axe converter that would corrupt keyowrds
+ to items. The corruption would keep you from using the item because the
+ keywords could not be found.
++World is now 701 rooms 350 mobs and 250+ items, over 9 total special areas
+ to explore ranging from 30 to 200 rooms a peace.
+
+------------------------------------------------------------------------------
+
+AXE115  -- JAN 3 1995 --
+
++Error in savings throws found and stomped out!
++Added morgue, now dead pc's corpse goto the temple in tooth for easy
+ reclaiming of goods.
++Improved the damage message for spells.
++Improved the convertion of envy flags into axe flags
++Fixed digit overflow from envy area files into the axe structers
++did some work in the party command, for some reason it was not always
+ replying to input. Hopefully it now works right.
+
+-----------------------------------------------------------------------------
+
+AXE116   -- JAN 5 1995 --
+
++optomised many function to reduce the size of the exe and speed up the
+ multi tasking
++fixed certain functions, now sleeping people well not hear or see anything
++fixed dark, now players that have no light or see invis now see the
+ term someone instead of a name in the dark.
++Fixed numorus errors in the world file
++added more to the docs
+
+-----------------------------------------------------------------------------
+
+AXE117   -- JAN 11 1995 --
+
++Fixed numorus errors in string display do to last version optomizing.
++Editted a large number of mobs that seemed to have no hit points
+ ac and other major stats.
++Finished first complete draft of doc files.
++Added reg key checking
++Added FILE_ID.DIZ
++Added ansi advertisment screen
++Fixed lights to prompt when growing dim and when burnout.
++Fixed error in wear which always said somthing weather you could see it or
+ not.
++Updated motd
++Did heavy editting to help file
++Added a areas list in help file
++Added a newbie section to help file
++Added all classes to help file
++Fixed error in fight prompt with said you git yourself instead of the name
+ of the mob you where fighting
++Fixed hold to tell you you light a object and hold it when it is a light
+ source.
++GrimNET was formed for beta and registerd sysop to join for support
+ of all doors.
++Fixed a string error in the chop function witch parced commands
++Pulled monk/mines/sewers/citidal from world do to coding and
+ room errors. Will be replaced at a laters time with better areas.
+
+-------------------------------------------------------------------------------
+
+AXE118 -- JAN 16 1995 --  PUBLIC
+
++Added Sneak command
++Added Hide Command
++Fixed error in kick command
++Fixed divide error
+
+------------------------------------------------------------------------------
+
+AXE118a -- JAN 21 1995 -- PUBLIC
+
++Fixed error in combat prompt that was using the wrong name
+
+------------------------------------------------------------------------------
+
+AXE118b -- JAN 22 1995 -- PUBLIC
+
++Fixed armor spell devide error in necromancer at level 3
++Corrected entryway to entry way
++corrected amchent to ancient
++corrected furture to further
++corrected sulfure to sulfur
++corrected dirctley to directly
++corrected wondering to wandering
++corrected bug in 'seems to be closed'
+
+-------------------------------------------------------------------------------
+
+AXE118C -- FEB 7 1995 -- PUBLIC
+
++Fixed error that kept players from killing other players
+

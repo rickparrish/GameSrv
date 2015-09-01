@@ -1,0 +1,598 @@
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Realm of Kisom Version 1.00: History File of Changes in Previous Versions ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+   Key: "o" means a change in an option in the game
+        "x" means a general comment about the game
+        "b" means a minor bug fix in the game
+        "B" means a MAJOR bug fix in the game
+        "+" means an addition to the game
+        "-" means a removal of an option from the game
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Change Date: Sunday, August 25th, 1996 - Version 1.00 ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ x The very first public version of ROK was released on this date.
+   ROKV100.ZIP - ROK v1.00 - to all, finally, after 3 months of beta testing.
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Change Date: Thursday, August 22nd, 1996 - Version 0.97 ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ b Now checks for Gold in the EGO "Esmerelda's Magic Shop" when players
+   wanted to curse other players.  This fixes Negative Gold problems as
+   well which stemmed from this option.  (I don't know how I could have
+   missed that one....)
+ o The Inn of Casimonda Owner can no longer set the price of getting a
+   room over $500,000.  This fixed a huge bug with regards to a negative
+   amount being given to players (a huge advantage for them).
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Change Date: Tuesday, August 13th, 1996 - Version 0.96 ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ b Fixed a minor bug in the Gangs Resurrection option.
+ B Fixed a huge bug in the listing of the Gangs if no gangs existed yet.
+ b Fixed a couple of problems in the online duels.
+ b The King/Queen can no longer purchase as many Soldiers as they want
+   until their Kingdom Treasury Funds run out from Aphrenam/Ishkan.
+ B Fixed EGO Funds collected problem.
+ B Players can no longer do battle in Gang Warfare if they do not belong
+   to a gang themselves.
+ o Re-did the Assigning/Demoting of S.Ranks in the Palace for the King/Queen.
+   Much better this way.  Fixed a few problems which stemmed from this option,
+   including the "duel account" bug.
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Change Date: Friday, August 9th, 1996 - Version 0.95d ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ x Gangs can no longer challenge themselves.
+ b Minor bug fix where players would not be able to read more than one msg
+   per log in.
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Change Date: Thursday, August 9th, 1996 - Version 0.95c ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ o Warrior's can no longer *ADD* Field Fights.  I found that this gives them
+   an unfair advantage comapred to the rest of the Guilds in the game.  If a
+   player was smart (and patient), s/he could go through the entire game in
+   one day.  Not anymore, with this change.
+ + Added an ATM page in Othello's Book of Kisom's Secrets.
+ + Players with Social Rankings can now chat in the Palace Conversation
+   Area.  This was supposed to be in the last version, but I forgot to put
+   it in.  I don't think the King/Queen will like talking to themselves all
+   the time. :-)
+ x Now does an "N/A" (not available) check for the 4th and 5th Spell if the
+   player is a Sorcerer/Cleric.
+ x If a player is defeated in a Player Battle, the other player will now
+   receive 10% experience - just as if that player had done been victorious
+   when s/he was playing.
+ o After running some tests I found that the amount you have to pay to the
+   Tax Collector is MUCH too high.  Instead of it being around 5% to 8%,
+   which is what it should have been, it was around 20% to 25% of their
+   Gold being taxed.  This was due to a bad calculation error in the code.
+   It has since been fixed.  I have tested the new method with numerous
+   different values, and it appears that it's always taking the percentage
+   that it should.  Good thing I fixed this, hey!
+ x When ROK is reset from ROKCFG.EXE, it will now delete the News Files,
+   and delete the Maintenance Flag file (TIME.DAT), if they exist.
+ x Beefed up the Level Master's once again.  Should be better now.
+ b Fixed a minor bug in regards to Atma's weapon.  What happened is that on
+   the next day, the player's weapon NAME wasn't being changed back to normal,
+   but the actual weapon was.  Fixed now.
+ b Fixed a small bug in Tax Time.  It should now add the Gold collected to
+   the Kingdom Treasury and the EGO Fund.
+ B Fixed a couple of MAJOR (and I do mean MAJOR) bugs in Player Battles.
+ x ** MAIL ROUTINES ARE FINISHED! **
+   At long last, after nearly two months of trying to get them to work, my
+   brain finally kicked in and figured out a STABLE (and quite easy) method
+   of doing them.  I've ran MANY tests, and it appears to be ROK solid (no
+   pun intended...).  Boy, am I a happy guy now!
+ x ** EGO'S HAVE BEEN FINISHED! **
+   After MANY hours of hard work, I've completed a COMPLETELY unique option
+   that has NEVER been used in ANY doorgame ever created!  EGO Support is
+   explained in the ROK Documentation - ROK.DOC.  Three EGO's are currently
+   in ROK at this point. They are: 1. The Altar of the Deities, 2. Esmerelda's
+   Magic Shop, and 3. Temple of Eternal Damnation.
+ x ** GANG'S HAVE BEEN COMPLETED! **
+   Yes, that's right, ROK now boasts GANG SUPPORT!  After 14 hours of really
+   hard work, I finished Gang Support (it was harder than I thought...).  I
+   hope it works well -- there could be MANY bugs in this option!
+ x An ENTER key press will now get players out of most menus/options.
+ b Fixed minor bug in the Assassin Technique #4 -- "Mutilate Remains".
+ x I've re-done the HoneyMoon sequences for both Hope and Logan to match
+   medieval times -- not current day stuff.
+ b Fixed a small bug in the Experience Rewards after a victorious p.battle.
+ + With the completion of Mail Routines, (T)ransfer Funds now works in the
+   Bank of Kisom.
+ x Players can now purchase the HRH.  It's much the same as the Inn of
+   Casimonda ownership.  Owners of the HRH receive 1% of all money gained
+   from players being healed (a lot, actually...).
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Change Date: Sunday, July 21st, 1996 - Version 0.95b ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ + *NEW* NODE0.DAT.  Type "ROK 0" on a command line to boot up Local Mode.
+   The only thing in this file is the word "Local", but it is necessary for
+   ROK to know that you want to run in Local Mode.
+ x Now resets Kingdom/Rebel Funds & Soldiers when ROK is reset.
+ x ** NEW REALISM APPROACH TO GAMING! **
+   Unlike in other "Kingdom-Style" doorgames, ROK approaches this method
+   with a touch of Realism not found in other doorgames today.  Every day,
+   there is a random chance that the King/Queen of the Realm of Kisom will
+   be invaded from another Kingdom (Ishkan, Aphrenam, etc).  There's also
+   a random chance that one of these Kingdoms will want to trade with the
+   Realm of Kisom.  Sort of like where Canada trades certain goods with the
+   United States, for example.  In these trade bargaining meetings, the
+   King/Queen can purchase Soldiers, sell Soldiers, demand tribute (Gold),
+   or give Tribute.  When they quit the meetings, there's a random response
+   from the Delegate (Verian for Ishkan, Borland for Aphrenam).  One such
+   response is that they immediately declare war on the Realm of Kisom.
+   Like I said, a new approach to implementing realism in doorgames today!
+ x Another such new realism is that when a player is Jailed, s/he will be
+   "tortured", so to speak.  Basically, they'll lose a random amount of
+   Strength/Defense/HP.  Let's face it.  For most incarcerated people, jail
+   isn't a cake walk.  ROK now is more realistic in that respect.
+ x ** IMPORTANT AUTHOR ADDRESS CHANGE **
+   No, I haven't moved.  I still live at the same address as before.  However,
+   since I am 16 years old, and perhaps in the next 3-4 years, I will move out
+   of my parent's house, I don't want to change every documentation of every
+   program that I've ever made.  My Mom owns her own business, and for at least
+   the next 12 years, she'll be in the same place.  So, all registrations/mail
+   will now be at that address (c/o 834 Ninth Avenue NW).  Another address of
+   note is that my Internet Server has switched Domains.  It is no longer the
+   "Brooksk@SaskNet.Sk.Ca".  Rather, it is now "bfs@sk.sympatico.ca".  Please
+   make note of these changes.
+ + Added the "Palace Dungeons" in the Palace.  Since v0.95a, I've seen a
+   major increase in players who're being Jailed (cannot be attacked).  Many
+   players TRY to become jailed at the end of the day, simply because it saves
+   them from being attacked while they're offline.  Players will first have to
+   bribe the Warden to get into the Dungeons, then they can attack whoever they
+   want to.  It's another one of ROK's secret's, though.  Press "D" when you've
+   snuck into the Palace to access the Dungeons.
+ + Added support for a "Yesterday's News" file (ROKYNEWS.TXT).  You may think
+   this would've been easy to do, but it was HARD! :-)  I have also hopefully
+   cleared up all of the "missing lines" of text when a new page is displayed.
+   I've tested the new listing method MANY different times, and it appears to
+   be working 100% right.
+ x Players now lose 10% of their XP when they're executed after a Rebellion.
+ + New conversation area: The Palace of Kisom.  King/Queen and all the S.Ranked
+   players can converse between themselves in there.
+ x I've re-done many things in the Weapon & Armour Shops.  New things include:
+   A player can now ask Matt/Anna for the best weapon available for their
+   current Gold on Hand, instead of having to look at all the prices and decide
+   which is the best one.  Players can now Haggle the prices - up to 20% can be
+   Haggled off of the weapon price.  Players who are the King/Queen or have a
+   Social Ranking are entitled to an automatic 10% discount on all Weapons and
+   Armours BEFORE Haggling.  Another thing to note is I've re-done the way ROK
+   buys/sells the Weapons/Armours.  Basically, it's less code to work with, and
+   from what I can tell it's perfect - but there *could* be bugs in the new
+   system I've created.
+ x The King/Queen can no longer Commit Suicide.
+ + Added a "Kingdom Editor" in ROKCFG.EXE's Editors Menu.  Here, when ROK is
+   registered, you can edit the Kingdom Funds & Soldiers, and the Rebel's Funds
+   and Soldiers.
+ x ROK now has ANSI! :-)  I'm hoping everyone likes the new screens.
+ x Balanced out the Kingdom damage when compared to the Rebel's damage in a
+   Kingdom-To-Rebel battle.  The way I had it before was the Kingdom would
+   almost always kill more Soldiers than the Rebel's would.  Fixed now.
+ x Players can now (R)un from the Tax Collector in Tax Time.
+ x Instead of being Jailed if they're caught Running/Bribing the Tax
+   Collector, players will now have to pay Double the taxes.
+ + Now adds the Gold to the Inn Owner's bank account when a player sleeps
+   in the Inn of Casimonda.  Also the Owner can now sleep for free.
+ x ROK now has a Bug Report/Comment/Suggestion Form included in the Archive.
+ + Instead of the boring "I have no comment." stuff after a player chooses not
+   to comment on their victory/defeat after a player battle, I've now added
+   random responses as well as different descriptions of the type of battle
+   that actually took place.  For example, if it was a first-round defeat,
+   it will say something like "I'M DEAD ALREADY!?", questions <name>.  Much
+   better this way, in my opinion.
+ + Added the Othello The Wizard Random Event in the Fields.
+ o (R)ob The Kingdom Fund when Sneaking into the Palace now works correctly.
+ o In a Player Battle, there is now a 50% chance that the challenger will
+   not get the first strike on his/her opponent.  More realistic this way.
+ o The Paladin/Cleric Spells, Enchant Weapon & Enchant Armour, now work the
+   way they are supposed to.  Enchant W. gives a 10% bonus on every battle
+   attack (not spell attack), and Enchant Armour absorbs 10% of all damage
+   inflicted during battles.  These spells work in either Player or Monster
+   battles.
+ o Beefed up the Level Masters.  They were WAY too wimpy...
+ o Toned down the Monster's battle damage.  I actually tested the new
+   system this time, and it seems to be much better now.  No longer do
+   monster's do outrageous damages.  Should be fair for all players now.
+ b Fixed minor bug in regards to the usage of Assassin's Techniques.
+   Basically, it would take away from the Maximum Skill Points instead
+   of the Current Skill Points.
+ o I've implemented an alternative way to kill Atma.  No, you won't get his
+   weapon with this method, but you will receive 250 XP * Level when if you
+   use this secret.
+ + Another one of the many secrets for players to discover while playing
+   ROK has been added - Players can now purchase a "Magic Potion" from
+   Othello, The Wizard, in the Health Revival Hut.  You'll have to guess
+   at the right key, though...
+ + New Status available in ROKCFG.EXE's Player Editor.  You can now set a
+   player's status to "Not Jailed" if you want to get them out of Jail for
+   the day.
+ + Added the Othello's Book of Kisom's Secrets random event in the Inn of
+   Casimonda and the Alley.  You can find this book once every time you go
+   into the Realm.  There are nine pages, each page gives one secret.  Some
+   a lot of players will know, but with this version, there are a few new
+   secrets, so they'll have to read the book to find out how to get them...
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Change Date: Monday, July 1st, 1996 - Version 0.95a ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ B Fixed a MAJOR bug with regards to the users records.  Well, it's *really*
+   hard to explain, so I won't bother.  In short, it would bloat the size of
+   the users record to about 1.2k/record.  It should be around 262b/record.
+   Fixed now, thank goodness.  I didn't sleep much last night because of this
+   bug.  :-)
+ b Fixed the "attack-a-dead-player" bug.
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Change Date: Sunday, June 30th, 1996 - Version 0.95 ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ x MAJOR new version! :-)
+ b Fixed a small bug in one of the rewards given when a Paladin, Cleric, or
+   a Sorcerer pray's to their Deities.
+ o Re-did the Sysop-To-User chat sequence.  Much better than before.  It will
+   now refresh the entire screen after the chat has been ended.  Hopefully it
+   will work fine, but if there are problems, let me know!
+ B Hopefully, I have fixed all the bugs surrounding the usage of Assassin
+   Techniques.  There were bugs if there was a certain combination of player
+   Techniques, etc.  It's really hard to explain.  However, after I fixed it,
+   I did extensive testing, and I haven't found a flaw since.  Again, I hope
+   this fixes the Techniques problem once and for all. :-)
+ o Changed the Statistics screen when the Assassin Technique "View Char Stats"
+   is used.  I had it as the OLD screen when ROK was still in it's infancy
+   stages.  It now looks like same as the normal View stats, except for the
+   fact that it has another characters statistics.  This change also affects
+   the Paladin/Cleric spell "View Other Char".
+ b Fixed minor bug when showing an external file, such as listing the players,
+   or showing the daily news.  Basically, when the file was down showing, in
+   some cases, it would not properly close the file.  If any of these files
+   were shown more than 13 times (any combination, not just listing players 13
+   times straight), it would give Run-Time Error #4, which, for some reason,
+   was not shown in ERROR.LOG.  I don't know if anyone has ever encountered
+   this error yet when testing the game, but I'm glad I fixed it regardless.
+   A pretty elusive bug, considering the circumstances.
+ x Added "Atma" and the Buying/Selling of the Inn of Casimonda explanations
+   in the ROK Documentation (ROK.DOC), on Page 7 (ROK Info & Notes).  I forgot
+   to explain it there the first time.  Sorry! :-)  It also now shows just how
+   much money the King receives from tax collections.
+ x If NODE1.DAT doesn't exist when ROKCFG.EXE's (S)etup Node(s) option is ran,
+   then it will be created.  The way I had it before was it would run-time error
+   out.  Fixed now.
+ + Fixed a small bug in the Rainbow random event.
+ o Decreased the amount of Gold you find at the end of the Rainbow in the
+   Rainbow random event.  Basically, it's based on the player's level now.
+ + Paladin's/Cleric's/Sorcerer's can now cast spells OUTSIDE of Monster or
+   Player battles.  It's done in the (V)iew Statistics screen.  Paladin's
+   and Cleric's can primarily use the "Heal Wounds" or "View Other Char"
+   spell, while Sorcerer's can cast "Reincarnation".  There are also some
+   other spells that can be cast outside of battles, but I won't go into
+   detail on those.  Major new option for these character classes! :)
+ o Re-did some of the Kingdom-To-Rebel fighting stuff.  Much better now.
+ b Fixed a minor bug in the Training Center.
+ o Merged "ATMA.DAT", and "INN.DAT" into the Global Variable file (ROK.DAT).
+ + Added (A)TM (Automated Teller Machine) in the Fields.  It isn't actually
+   displayed on the Field Menu, but if you hit (A), it'll happen. :)
+ + Hope/Logan now can divorce a player if they're married.  Didn't check for
+   this in previous versions.
+ + The King/Queen can now change the Tax Rate if they wish to do so.
+ x Now shows how many Soldiers players can afford when drafting soldiers into
+   the Rebel's Cause instead of making them do the calculations themselves. :)
+ o Re-did ALL ending sequences.  Much better than before.  There are specific
+   endings for: King/Queen, Prince/Princess, Duke/Dutchess, Squire/Squiress,
+   Paladin, Cleric, Sorcerer, Assassin, and Warrior Guild Members.  There's
+   also a "secret" ending within the game, too.
+ o Changed all Guilds Descriptions when a new player is deciding which Guild
+   to join.
+ + Major new feature!  Players can now steal the opponents weapon if they are
+   victorious against them in a player battle!  And, possibly best of all,
+   unlike in other games with this feature, if the SysOp wishes, s/he can
+   disable weapon stealing altogether!  The best of both worlds!  If you don't
+   like this in your ROK game, simply disable it in ROKCFG.EXE.  Oh, in case
+   you're wondering, it DOES decrease/increase the player's strength when they
+   take the opponents weapon (the same for the opponent as well).
+ + Another unique idea NOT found in any other doorgame!  "Atma" has been coded
+   into the game.  It's explained in the ROK Documentation (ROK.DOC) if you do
+   not know what it is.  Basically, it's a unique feature where if a player
+   defeats Atma in a player battle, s/he will be able to keep Atma's Weapon for
+   the day.  It's much stronger than the most expensive weapon in the game.
+   MAJOR new option! (If the SysOp wishes to do so, it can be disabled in the
+   Atma Editor in ROKCFG.EXE, fully functional when registered)
+ + Again, another unique option NOT found in any other doorgame!  The Inn of
+   Casimonda can now be bought by players!  It's explained in the Realm of
+   Kisom Documentation (ROK.DOC).  No need to go into detail here.  If SysOp's
+   wish, they can disable it in the Inn Editor in ROKCFG.EXE (fully functional
+   when registered).
+ + New Feature - The Alley!  (HINT: Press "*" from Main St to get to it)  Here,
+   players can Commit Suicide, Sneak into the Palace, and Rob the Bank of Kisom.
+ + Now limits the number of times a player can cast spells.  Uses a Spell points
+   system in comparison to Current HP and Max HP, but replace HP with the Spell
+   points (SP). :-)
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Change Date: Sunday, June 23rd, 1996 - Version 0.94d ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ x Finished the ROK Documentation!  A whopping 126k of information! :-)
+ - Removed "(R)equest Advice From Master" in the Training Center.  All the
+   information the Master gives you is available in the AI chat with the
+   Bartender.
+ + Added a "counter" in the Online battles.  Basically, what this does is
+   when it says "Waiting for other player to decide......", if the other
+   player doesn't choose an option in seven seconds, then this player can
+   choose to leave the fight or continue waiting.  This should help single
+   line BBS's with online duel problems.  I hope this works alright.
+ B Fixed a huge bug in the ending game sequence where it would totally screw
+   up the player's record.
+ B Fixed a MAJOR bug with the Sakar Kane HP rating *not* decreasing after an
+   attack.  :-)  Fixed.
+ b Fixed a bug in Tax Time.
+ o Changed Monster Battle Damage.  Reduced by more than 33%.  Should make
+   the game easier to play now, hopefully. :)
+ B Again, fixed a MAJOR bug in the HRH (Health Revival Hut).  Basically, on
+   higher levels, the cost would turn to a negative number.  Thus, it would
+   cost the player nothing to heal, plus s/he would get that negative gold
+   added to their Gold On Hand.  Had it is an "Integer" variable instead of
+   a "Long Integer", if anyone knows what I'm talking about. :-)
+ + Players can now view the Daily News & Happenings and List the Characters
+   in the game from the Introduction Screen.
+ o GREATLY increased the amount of Gold a player receives when they kill a
+   monster in the Fields.  After playing the game myself on my BBS for a few
+   days, I realized that the Gold rewards were MUCH to minimal for a player to
+   survive.  I couldn't win - and I'm the author! :-)  In some cases, as much
+   as a 200% increase was given.  Most, however, were about a 75% increase.
+ o All $1 Gold rewards are removed, and replaced with a "normal" reward.
+ o Re-worked some of the stuff in the HRH (Health Revival Hut).  Had many
+   requests for some much-needed information regarding how much HP could be
+   healed, etc.  Now gives appropriate amount of HP, as well as showing the
+   cost to heal one HP, the player's current HP status, and gold on hand.
+   Should be much easier now for players.
+ o Changed the odds of getting a random event in the Fields from 1 in 10 to
+   1 in 8.  We'll see how this works now.
+ x Should now display the correct Node Number on the SysOp Status Line.
+ x Now, when a Paladin/Cleric casts Heal Wounds/Complete Healing, it will
+   simply let the player choose another command.  The way I had it before
+   was that the player would heal, but then the monster would automatically
+   hit them.  Sort of made the spell a bit useless... :)
+ + Added Rainbow random event in the Fields.  This should help players if
+   they're lacking some much needed Gold.
+ + Added the Elf random event in the Fields.
+ + Added the Spirit of Beautification random event in the Fields.
+ + Added Zigfried's Fountain random event in the Fields.
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Change Date: Sunday, June 16th, 1996 - Version 0.94c ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ B Fixed MAJOR bug where it would cost the King/Queen of Kisom nothing to
+   purchase Soldiers.  Had it as the cost of 00 instead of 10 Gold. :-)
+ b Fixed a small bug in the Old Man random event.
+ B Fixed a somewhat large bug in the Kirin random event.
+ + Added new .EXE to the file.  This will simply set all player record's
+   "OnNow" flag to OFF.  This is ran from the batch file before ROK is
+   ran.  Useful on single-line BBS's.
+ x A couple of cosmetical changes throughout the game...  I'm actually a
+   great speller, I just don't pay attention sometimes.  Typing 100 Words
+   per minute has it's drawbacks ya know. :-)
+ + Added one event for each character class.  In short, this means that
+   there is now one event for each of the five character classes in ROK.
+   If the player doesn't have a class, then it will simply fight a monster
+   instead of going into the event.
+ B Fixed MAJOR bug which dealt with the beginning screen.  Basically, if a
+   player quit from THAT screen, instead of from inside the game, it would
+   completely erase the first player's record from the game.  HUGE bug. :)
+   After about 15 minutes, I erradicated it. :-)
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Change Date: Thursday, June 13th, 1996 - Version 0.94b ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ B Fixed MAJOR bug where it would always decrease a player's level if they
+   lost in a battle.
+ B When a player loses a level due to the 10% XP loss after a defeat in
+   battle, it now decreases their Strength/Defense/HP accordingly.
+ + ROK will now refill a player's HP if they've been killed and have not
+   player yet today.
+ b Fixed minor bug in the assigning of Rankings to Squires/Squiresses.
+ + Added Old Man random event in the Fields.
+ + Should now turn the OnNow Flag to OFF when a user drops carrier.
+ b Fixed "Division By Zero" bug in Tax Time.
+ B Fixed MAJOR bug in the OnLine Duel feature.  It's hard to explain, so I
+   won't bother trying.  Just know that it's fixed, hopefully.
+ B Fixed MAJOR bug with the Sorcerer's Guild regarding usage of Spells in
+   battles.  Only happened with Sorcerer's, though.  Fixed now.
+ B Fixed MAJOR bug with the Assassin's Techniques usage.
+ + Decreased the cost of Soldiers from $100 Gold to $10 Gold/Soldier.
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Change Date: Friday, June 7th, 1996 - Version 0.94a ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ b Fixed bug where the OnToday variable would not be reset to False upon
+   maintenance - meaning that if a player was killed, and s/he hasn't played
+   yet today, s/he would not be allowed in the game today, because the ontoday
+   variable was set to True.  Kind of complex stuff.  Fixed now.
+ b Fixed blank record error when it would screw up the order of the listing
+   of characters if a deleted player existed in the PLAYER.DAT.
+ x Re-worked battle damage.  Should do much less damage when attacking
+   monsters/players now.  Re-balanced the game, hopefully.
+ + If ENTER is pressed in the Healer's, it'll now return them to the previous
+   menu.
+ b Fixed Run-Time Error #2 upon resetting the game.
+ x If CleanMode is Enabled, then the (F)lirt With Bar Patrons will not be
+   seen on the Inn of Casimonda menu, nor will it inform the player that
+   the SysOp has disabled this feature should the "F" key be pressed, it will
+   simply re-draw the screen.
+ o If a blank input is given in the Inn/Rebel Conversation, it won't save it.
+ + Players can now view their Stats from the Weapon & Armour Shops.
+ b No longer allows color codes in player aliases.
+ o Now a 25% chance of being jailed when attempting to bribe the Tax Collector
+   instead of a 50% chance.
+ o If the GuildMaster is dead, then a Guild Member cannot challenge him/her
+   for the GuildMaster's job.
+ + The King can now assign Female S.Rankings (Princess, Dutchess, & Squiress)
+   to female characters in the game.  Now should hopefully be sexism free. :)
+ o If the King is a female, then it will now say "Queen!" instead of "*King*".
+   When making references to the "King" in these documentations, I will usually
+   use a "he" or "his", but it could be a "her" or "hers" as well.  I am *NOT*
+   a sexist person. :-)
+ + The King now gets 3 Gold pieces for every 10 Gold collected by Taxes.
+   Meaning, if $10 Gold was collected from a player, the King would get $3
+   extra Gold.  This is automatically put in the Bank of Kisom.
+ + Added a Conversation Editor - the SysOp can edit the lines in either the
+   Inn or Rebel Conversation.
+ + SysOp's can now specify the path to dropfile in the command line, similar
+   to "ROK.EXE 1 /PC:\BBS\NODE1".  /P, then the path, with or without the "\"
+   will tell ROK to look for the drop file at that directory.
+ + Unique addition - when a player is defeated, either in a monster or player
+   battle, s/he loses 10% of their experience.  After this is calculated, if
+   their XP is less than the previous level's requirement, then that player
+   will now drop a level.  Meaning, for example, if level 2 required 100 XP
+   points to pass, and this player was level three, but dropped below 100
+   XP, that player would now be Level 2.  Sort of complicated, but if you
+   think about it - it's a great addition to this game.
+ + Added "Atma" editor.  Atma isn't actually coded into the game yet - will
+   be in the next version, though.
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Change Date: Sunday, June 2nd, 1996 - Version 0.94 ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ x This is an absolutely fantastic beta team, I must say!
+ b Run-Time Error #2 upon first player log-in fixed.
+ b Fixed weird bug that when a monster/player missed during a fight, the
+   player's HP would go up.  (resulting from subracting a negative number
+   from the HP, <two negatives = positve, if you don't know math :->)
+ o Now displays appropriate information in View Stats screen when a player
+   selects (S)pell Info, and s/he doesn't have spells/techniques to view.
+ b Fixed bug in the Armour Shop where it would give no Gold to a player when
+   s/he sells their Armour.
+ x Now resets the two Chat Files to the standard ones that come with ROK when
+   the SysOp chooses to reset the game.
+ b Fixed small bug when proposing marriage to Hope or Logan in the Inn.
+ x It's now a 1 in 10 chance of getting a random event, instead of 1 in 6.
+   While watching players play the game on my BBS, it seemed to me that they
+   were getting events FAR too often.
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Date: Saturday, June 1st, 1996 - Version 0.93 ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ x Isn't it great that I put it on my BBS before I put it out for beta testing?
+   Just look at all the stuff I fixed/changed before it went out!  That saved
+   a lot of tester's some headaches, I'm sure, since today I released it to the
+   beta team.
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Change Date: Friday, May 31st, 1996 - Version 0.93 ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ B Fixed major bug in the Assassin's Guild where a member would not be
+   able to leave the Guild unless s/he attacked the GuildMaster first.
+ x Completed (S)etup Node(s) Menu in ROKCFG.EXE.  ROK now supports up to
+   999 Nodes, each fully configurable.
+ b Fixed a few minor bugs when (U)sing Assassin Techniques in the
+   Assassin's Guild.
+ + Added Kirin random event in the Fields.
+ x Players can now resign from a Guild if they are the GuildMaster.
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Change Date: Wednesday, May 29th, 1996 - Version 0.92 ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ + Now gives 10% interest per day in the Bank of Kisom.
+ + Checks for an "OnToday" flag.  This way, if a character has been killed,
+   but s/he hasn't played yet today, then s/he will be able to play.  It's
+   unfair to some players if I didn't implement this.
+ + Now uses Defense in determing damaged inflicted in player battles.
+   (Don't know how I could've missed that....)
+ x New method of Listing Players.  Now, ROK will write the players to
+   file - ROKRANKS.TXT, and then read the file in, similar to ROKTNEWS.TXT.
+   (This can also be used as a bulletin of some sort for BBS's to show
+   who's winning the game)
+ + Now shows Gold in Weapon/Armour Shops when purchasing a new weapon/armour.
+ B Fixed one MAJOR bug in each of the Guilds.
+ + Instead of being able to toggle the online status of a player, SysOp's can
+   now put them in Jail if they wish.  Also re-worked some things in the user
+   editor.
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Change Date: Tuesday, May 28th, 1996 - Version 0.91 ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ + When a player advances a level, it will now reward them with Skill Points
+   for their character class.  The formula is : Random Num between 1 & Level
+   times 5.  Meaning that if it was a level one player, it would be a random
+   number between 1 and 5.
+ + Completely re-wrote the Sakar Kane ending.  Now is much more refined, with
+   different endings depending on what type of character class you are, what
+   status you are in the Realm, and other variables.  In new versions, I hope
+   to re-do the ending sequences totally, to add more "spice" to the game.
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Change Date: Monday, May 27th, 1996 - Version 0.91 ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ + Players can now comment in the Daily News if they have been defeated
+   in a battle with another player.
+ x Now checks for the amount of player fights available to players per
+   day.  Don't know how I could've overlooked it when coding!
+ + Now writes to the Daily News when a player advances a level.
+ o Completely re-did the View Stats screen.  Now has the option to display
+   Guild Information as well as Spell Information, and an ENTER keypress
+   will exit the screen automatically.
+ + Players can now use Spells in both Monster and Player Battles, if they
+   have learned them from the Paladin's, Cleric's, or Sorcerer's Guild.
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Change Date: Sunday, May 26th, 1996 - Version 0.91 ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ b Fixed many things in the Sorcerer's Guild.  Seems I overlooked it when
+   I was coding it in that it was exactly the same as the Cleric's Guild.
+ x Re-did some of the things when the Tax Collector comes to collect his
+   dues.  Now doesn't ask for Gold if it's less than $0.  There's also a
+   random chance that a player will be sent to the Palace Dungeons for
+   punishment if they try to Bribe the Tax Collector.
+ o Now displays the new GuildMaster's name in the Daily News if a player
+   in a Guild has challenged and defeated the previous GuildMaster.
+ b Fixed small bug in the Training Center of Level Advancement.
+ + Added Error Logging to ERROR.LOG file when ROK has an error.
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Change Date: Saturday, May 25th, 1996 - Version 0.90 ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ + Now displays the cost of Soldiers in both the Palace and the Rebel's
+   Corner.  Players complained that they didn't know how much gold to
+   pay to hire a Soldier.  (100 Gold per Soldier is the cost)
+ o Changed the delays (again).  Should work better now this way.
+ b Now displays Coronation Ceremony text in ROKTNEWS.TXT when the King
+   selects the 2nd Option when deciding Darok's Fate.
+ b Fixed minor bug in Training Center of Level Advancement.
+ + Added options to list characters sleeping in both the Palace of Kisom
+   and the Inn of Casimonda.
+ + Added support for a Weapon for each Monster.  It's displayed when a
+   player looks for enemies in the Fields.  Configurable in the Monster
+   Editor in ROKCFG.EXE for each of the 200 Monsters in ROK.  Option will
+   save changes upon registering the game.
+ B Fixed major bug in the Assassin's Guild.
+ B Fixed major bug when purchasing a new Weapon or Armour.  Game would
+   lock up entirely at this point.  Fixed entirely.
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Change Date: Friday, May 24th, 1996 - Version 0.90 ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ + Players can now list the available Weapons & Armours in the Weapon
+   and Armour Shop to see the prices.
+ b Fixed minor bug where it would show the wrong Level Master's name.
+ b Fixed minor bug in Training Center of Level Advancement where it would
+   not re-display the menu after it paused for key press.
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Change Date: Thursday, May 23rd, 1996 - Version 0.90 ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ o Modified Delay procedure from one that I used to Pascal's Internal
+   Delay Procedure.  Had some problems under OS/2.
+ + When a player is deciding which Guild to join, it now shows how
+   many players are in each Guild.
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Change Date: Wednesday, May 22nd, 1996 - Version 0.90 ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ x The initial version of Realm of Kisom, 0.90 was completely finished.
+   Put on the authors BBS - The Inner City BBS (306) 694-5864 for alpha
+   testing.
+
+End of Realm of Kisom History File.

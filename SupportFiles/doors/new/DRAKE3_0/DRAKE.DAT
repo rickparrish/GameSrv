@@ -1,0 +1,899 @@
+&$MAIN_MENU
+[?7h[255D[32C[0;1;34mDRAKEVILLE 3.0
+
+[18C[30mÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´[34mMAIN MENU[30mÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+[18C³ [34m[[0;36mP[1;34m][0mlay Drakeville[8C[1;34m[[0;36mL[1;34m][0mist teams  [1;30m³
+[18C³ [34m[[0;36mI[1;34m][0mnstructions[11C[1;34m[[0;36mQ[1;34m][0muit to BBS [1;30m³
+[18C³[11C[34m[[0;36mG[1;34m][0mame Information[11C[1;30m³
+[18CÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ[0m
+&CLASSES
+^5Please choose a class...
+
+^9[^31^9]^7Assassin
+^9[^32^9]^7Berzerker
+^9[^33^9]^7Priest
+^9[^34^9]^7Ranger
+^9[^35^9]^7Warlock
+^9[^36^9]^7Blademaster
+^9[^37^9]^7Thief^0&
+
+&BEZERKER
+
+^1[^5Berzerker^1]^8: ^CThe ^5Berzerker ^Cis a powerful and savage warrior.
+Fearing nothing, the ^5Berserker^C can work himself into a frenzied battle
+state known as the ^5BERZERKER RAGE^C. ^0&
+&ASSASSIN
+^1[^5Assassin^1]^8: ^CIn the darkest recesses of the city dwell the ruthless
+^5Assassins^C. With dexterity and cunning, they can strike down an opponent
+with their infamous ^5DEATH BLOW^C. ^0&
+&THIEF
+
+^1[^5Thief^1]^8: ^CThe ^5Thieves^C have always been viewed as nuisances
+in the city. What they lack in combat skills, they make up for with their
+^5PILFERING^C skills.^0&
+&RANGER
+
+^1[^5Ranger^1]^8: ^CThe ^5Ranger^C is a legendary and fierce fighter, with
+the ability  to cast some priest ^5SPELLS^C. This mix of fighting and magic
+makes for a very deadly adventurer.^0&
+&WARLOCK
+
+^1[^5Warlock^1]^8: ^CThe ^5Warlocks^C are the masters of the ^5MYSTIC ARTS^C.
+Their spells being of destructive nature, they have been rumoured to end
+battles with the utterance of just a few syllables.^0&
+
+&PRIEST
+
+^1[^5Priest^1]^8: ^CThe ^5Priest^C is the caretaker of the body and soul.
+Highly intelligent and charismatic, the ^5Priest^C can call upon his deity
+to cast ^5SPELLS^C. ^0&
+&BLADEMASTER
+
+^1[^5Blademaster^1]^8: ^CThe ^5Blademaster^C is a fighter renowned for his
+incredible mastery of weapons. Having spent most of his life perfecting the
+art of battle, he can ^5ENTRANCE^C his opponents with his cat-like movements.^0&
+
+&RACES
+^5Please choose a race...
+
+^9[^3H^9]^7uman
+^9[^3E^9]^7lf
+^9[^3D^9]^7warf^0&
+&RACES2
+^9Please choose a race...
+
+^9[^3G^9]^7oblin
+^9[^3O^9]^7rc
+^9[^3T^9]^7roll^0&
+
+&$GAME_MAIN
+
+[?7h[255D[0;1;30mÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´[34mCITY STREETS[30mÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿³ [34m[[0;36mS[1;34m][0mearch The Catacombs[6C[1;34m[[0;36mR[1;34m][0mead Head[A
+[41Clines[10C[1;34m[[0;36mK[1;34m][0myle's Magic Shop    [1;30m³³ [34m[[0;36mH[1;34m][0mealers Shrine[12C[1;34m[[0;36mV[1;34m][0mampire's Kiss Tavern   [1;34m[[0;36mM[1;34m][0ma[A
+[60Cin Street[10C[1;30m³³ [34m[[0;36mW[1;34m][0meapon Shop[15C[1;34m[[0;36m![1;34m][0mSuicide[16C[1;34m[[0;36mX[1;34m][0mchange Player[7C[1;30m³³ [34m[[0;36mD[1;34m][0marien'[A
+[11Cs Armor Fitting    [1;34m[[0;36m*[1;34m][0mTeam Options[11C[1;34m[[0;36mA[1;34m][0mrena[16C[1;30m³³ [34m[[0;36mY[1;34m][0mour Stats[16C[1;34m[[0;36mC[1;34m][0mity Post Offi[A
+[46Cce[8C[1;34m[[0;36mT[1;34m][0murbo Mode[11C[1;30m³³ [34m[[0;36mP[1;34m][0mlayer Listing[12C[1;34m[[0;36mB[1;34m][0mank[20C[1;34m[[0;36mL[1;34m][0mevel Trainor[8C[1;30m³³ [A
+[2C[34m[[0;36mQ[1;34m][0muit To BBS[15C[1;34m[[0;36mG[1;34m][0mo to the Magic Hut[5C[1;34m[[0;36mZ[1;34m][0mWho's ON[12C[1;30m³ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ[A
+[53CÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+  [34mT[0;36mhe streets are filled with merchants and peasants going aboit their daily
+business. [1;34mT[0;36mhe tension in the air is almost palpable...[0m[255D
+&$GAME_MAIN2
+
+[?7h[255D[0;1;30mÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´[34mCATACOMBS[30mÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿³ [34m[[0;36mS[1;34m][0mearch The Streets[8C[1;34m[[0;36mR[1;34m][0mead Headli[A
+[43Cnes[10C[1;34m[[0;36mK[1;34m][0myle's Magic Shop    [1;30m³³ [34m[[0;36mH[1;34m][0mealers Hut[15C[1;34m[[0;36mD[1;34m][0mragon's Breath Tavern  [1;34m[[0;36mM[1;34m][0main Tu[A
+[65Cnnel[10C[1;30m³³ [34m[[0;36mW[1;34m][0meapon Depot[14C[1;34m[[0;36m![1;34m][0mSuicide[16C[1;34m[[0;36mX[1;34m][0mchange Player[7C[1;30m³³ [0mS[1;34m[[0;36mn[1;34m][0marr[A
+[9Ca's Armour Shop[6C[1;34m[[0;36m*[1;34m][0mTeam Options[11C[1;34m[[0;36mF[1;34m][0mighting Hole[8C[1;30m³³ [34m[[0;36mY[1;34m][0mour Stats[16C[1;34m[[0;36mC[1;34m][0mity Pos[A
+[40Ct Office[8C[1;34m[[0;36mT[1;34m][0murbo Mode[11C[1;30m³³ [34m[[0;36mP[1;34m][0mlayer Listing[12C[1;34m[[0;36mB[1;34m][0mank Of The Wicked[6C[1;34m[[0;36mL[1;34m][0mevel Ma[A
+[66Cster[9C[1;30m³³ [34m[[0;36mQ[1;34m][0muit To BBS[15C[1;34m[[0;36mG[1;34m][0mo Visit Malaky![8C[1;34m[[0;36mZ[1;34m][0mWho's ON[12C[1;30m³ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ[A
+[37CÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+  [34mT[0;36mhe tunnels are dank and musky. [1;34mO[0;36mrc merchants are trying to sell their
+goods while goblins are trying to rob them blind...[0m[255D
+&FIGHT
+
+^9[^3A^9]^7ttack!
+^9[^3R^9]^7un away^0&
+
+&$PATROL
+[?7h[255D[1C[0;1;30;41m²[40mÜÜÜ Ü  ÜÜÜ  Ü    Ü[8CÜ  [0;34m- [1mCATACOMBS [0;34m-[7C[1;30m²Ü [41m²±[0;31mß [1;30mşß   [0;31mÜ²   ÜÜ
+[1;30;41m²[40mßİ[40C±[5CÜ[41m²²±[1C[0;31mß  ÜÜ Ü° ß[33;41m²[40mİ Ş[41m²±[31;40mİ  [33;41m²°[31;40mÜ
+[1;30m²[43C[41m²[1C[40m°[10C[0;33mßß[12C[1;30mßİ[0;31mşß  Ş[33;41m±[40mİ[1;30mÛ[43CÜ[6C[0;31mşÜ[17C[1;30mÜ[41m²[40mÛ[47m²[40m²ß [0;33mß
+[1;30mß[8C[34m[[0;36mL[1;34m][0mook For Some [1;35mMalaky [0mMinions[5C[1;30mÛ [0;31mÜ[33;41m±[31;40mÜ   Ş[1;41mÜ[0;31mÜ[5C°[7C[1;30mÜ[47m²[40mÛßß[6C[0;31m±[44C[1;30mß[A
+[45C[0;31mŞ[33;41m°±²[31;40mÛÜ°ß[1;41mŞ²[0;31mİ[10C[1;30mÜ[41m²[40mß²  [0;31mşÜÜ    ß[1;30mÜ[12C[34m[[0;36mY[1;34m][0mour Team's Stats[12C[1;30mÛ [0;31m±ßßß[33;41m°[40m[A
+[51C[31;40mÛÜÜ ß[6C[1;30mÜ ş Ş[47m²[5C[0;31mŞ[1;41mß²Ü[0;31mÜ
+[1;30;47m²[43C[43m²[4C[0;31mŞİ [33m±[31mßßßÛÜÜ[33;41m°[1C[1;30;40m±²    ±[6C[0;35;41m°[31;40mÛ[1;41mßÛİ[40m
+[30mŞ[12C[34m[[0;36mH[1;34m][0mealer's Shrines[13C[1;30;41m²[5C[0;31mÜ[6C[1;30mÜ [0;31mßß[33;41m±[31;40mÜ[10CŞ[35;41m±[1;31m°[0;31mÛ[1;41mŞ²[0;31mİ[1;30m²[43C[41m±[6C[40m[A
+[51C[0;35;41m°[31;40mÜ [1;30mÜİş²  [0;31mß [33m°[31mßßÜÜ  °  [1;30;41m°[0;31mÜ ß[35;41m°[31;40m²ß
+[1;30mÛ[10C[34m[[0;36mC[1;34m][0mhange Combat Speed[12C[31mß  [1;30mÜ[41m²±[0;31mÜ ßşÜ ²Ü ß[8Cß[33m°[31mşÛ[35;41m±°[31;40mÛÜ  Üş[1;30;47m²[43C[43m²[1C[40mŞÜÛ[41m²±±°[40m[A
+[53C[0;31mÜÜ ß Ü[1;30;41m±[0;31mß[1;30m±  [0;31m±[7CßÜŞÛ Ûİ
+ Ü[8C[1;34m[[0;36mR[1;34m][0meturn To The Surface[11C[1;30mß ²ßÛÛ[41m²[40mßß[0;31m°ß[1;30;41m±±[40mß[41m²[40mİ [34mş[7C[0;31mÜ  Ş[35;41m±[31;40mÜ[32;41m°[1C[31;40mÛ°
+Ş[1;41m±[0;31mİ[41C[1;30;41m²[1C[40mÛÛÛ[43m²[40mİ [34mÜ   [30;41m²[40mİ ß[41mÛ[40mÜş[41mÛ[40mİ    [0;31m²   [35;41m°[31;40mÛİ İß
+[1;41mŞİ[42C[30;40mÜŞ[47m²[40mßÛÛÜ    Ü[47m²[40mÛ ²Ü[43m²[40mß²°[8C[0;31mŞ[35;41m°[31;40mÛÜ
+ß[1;41mßş[0;31mÜ[34C[1;30mÜ± ßÛ[47m²±[40m²İŞÛ²ÛÛÜÛ[43m²²[47m²[40mÛÛßÛ²Ü[5C[0;31m±   ÛßÜß
+ş ßßş Ü[1;41m°[0;31mÜ[19C[1;30m±ÜÜş  Ü²ß  ÜÛÜ ßß ÜÛ²ßß[41m²[40mÛ[43m²Û[40mß²ÛßßÜ±Üş    [0;31m°   Ü[35;41m±[32m°[31;40mÛ
+[6C[33m°[31mß  ß[1;41mş[0;31mÜÜÜ[1;41m°[0;31mÜ[6C[33mşÜ[1;30;43m°[0;33mÜ[1;30;43m±²[40mß Ü²Ü ş ß² ß   şß°    ß² ß²ßÜşß² ß[9C[0;31mŞ[35;41m±°[31;40mİ
+[12C[33m±[31mßß[1;41mßß[0;31mÛß²ßş   [33m°ß [1;30mßß  ß  thr.fuel.ice  [34mF[0;36mights [1;34mR[0;36memaining [1;34m: [0;32m^a   [31mÛÛ[0m[255D
+&$PATROL2
+[?7h[255D[12C[0;1;30mÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´[34mSTREETS[30mÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+[10C[0;34m° [1;30m³ [34m[[0;36mL[1;34m][0mook For Surface People [1;34m[[0;36mC[1;34m][0mhange Combat Speed    [1;30m³ [0;34m°
+[6C°  °±°[1;30m³ [34m[[0;36mY[1;34m][0mour Team's Stats[7C[1;34m[[0;36mR[1;34m][0meturn To The Catacombs[1;30m³[0;34m°±°  °
+[5C°±° ±²±[1;30m³ [34m[[0;36mH[1;34m][0mealer's Hut[12C[1;34mF[0;36mights [1;34mR[0;36memaining [1;34m: [0;32m^a    [1;30m³[0;34m±²± °±°
+[12C[1;30mÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ[0m
+&$WEAPON_STORE
+[?7h[255D[12C[0;1;30mÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´[34mWEAPON SHOP[30mÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+[10C[0;34m° [1;30m³ [34m[[0;36mB[1;34m][0muy A Weapon[13C[1;34m[[0;36mC[1;34m][0mhange Player[9C[1;30m³ [0;34m°
+[6C°  °±°[1;30m³ [34m[[0;36mS[1;34m][0mell Your Weapon[9C[1;34m[[0;36mR[1;34m][0meturn To The Streets [1;30m³[0;34m°±°  °
+[5C°±° ±²±[1;30m³ [34m[[0;36mF[1;34m][0mix Your Weapon[10C[1;34m[[0;36mP[1;34m][0mool All Gold[9C[1;30m³[0;34m±²± °±°
+[12C[1;30mÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+  [34mY[0;36mou work your way to the counter of the crowded, old weapon shop. [1;34mT[0;36mhe
+owner, [1;34mHitle Brows[0;36m, emerges from the back room and greets you.
+  [1;34m"G[0;36mreetings, friends... [1;34mH[0;36mow may I help you today?[1;34m"[0m
+&$WEAPON_STORE2
+[?7h[255D[12C[0;1;30mÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´[34mWEAPON SHOP[30mÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+[10C[0;34m° [1;30m³ [34m[[0;36mB[1;34m][0muy A Weapon[13C[1;34m[[0;36mC[1;34m][0mhange Player[9C[1;30m³ [0;34m°
+[6C°  °±°[1;30m³ [34m[[0;36mS[1;34m][0mell Your Weapon[9C[1;34m[[0;36mR[1;34m][0meturn To Catacombs   [1;30m³[0;34m°±°  °
+[5C°±° ±²±[1;30m³ [34m[[0;36mF[1;34m][0mix Your Weapon[10C[1;34m[[0;36mP[1;34m][0mool All Gold[9C[1;30m³[0;34m±²± °±°
+[12C[1;30mÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+  [34mY[0;36mou enter a decrepit and smelly hut. [1;34mS[0;36mitting on a stool with eyes
+half-closed, [1;34mGreck the Orc [0;36mturns towards you and snorts.
+  [1;34m"[37m<[34mGrunt[37m> [34mW[0;36mhat you want? [1;37m<[34mSnort[37m>[34m"[0m
+&$ARMOR_STORE
+[?7h[255D[12C[0;1;30mÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´[34mARMOUR SHOP[30mÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+[10C[0;34m° [1;30m³ [34m[[0;36mB[1;34m][0muy Some Armour[10C[1;34m[[0;36mC[1;34m][0mhange Player[9C[1;30m³ [0;34m°
+[6C°  °±°[1;30m³ [34m[[0;36mS[1;34m][0mell Your Armour[9C[1;34m[[0;36mR[1;34m][0meturn To The Streets [1;30m³[0;34m°±°  °
+[5C°±° ±²±[1;30m³ [34m[[0;36mF[1;34m][0mix Your Armour[10C[1;34m[[0;36mP[1;34m][0mool All Gold[9C[1;30m³[0;34m±²± °±°
+[12C[1;30mÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+  [34mY[0;36mou enter the tidy, well kept armour shop. [1;34mE[0;36myeing each of you from
+head to toe, [1;34mDarien Sundancer[0;36m, the owner, addresses you from behind the counter.  [1;34m"G[0;36mood day to you all. [1;34mD[0;36mo you see something of interest?[1;34m"[0m
+&$ARMOR_STORE2
+[?7h[255D[12C[0;1;30mÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´[34mARMOUR SHOP[30mÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+[10C[0;34m° [1;30m³ [34m[[0;36mB[1;34m][0muy Some Armour[10C[1;34m[[0;36mC[1;34m][0mhange Player[9C[1;30m³ [0;34m°
+[6C°  °±°[1;30m³ [34m[[0;36mS[1;34m][0mell Your Armour[9C[1;34m[[0;36mR[1;34m][0meturn To Main Tunnel [1;30m³[0;34m°±°  °
+[5C°±° ±²±[1;30m³ [34m[[0;36mF[1;34m][0mix Your Armour[10C[1;34m[[0;36mP[1;34m][0mool All Gold[9C[1;30m³[0;34m±²± °±°
+[12C[1;30mÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+  [34mY[0;36mou enter a small and broken-down hut. [1;34mF[0;36mrom the back, [1;34mSnarra the Goblin
+[0;36memerges and nearly runs you over.
+  [1;34m"Y[0;36mou better not waste [1;34mSnarra[0;36m's time, or [1;34mSnarra [0;36mwill tie you to spit and
+roast you! [1;37m<[34mGrumble[37m>[34m"[0m
+&$BANK
+[?7h[255D[12C[0;1;30mÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´[34mCITY BANK[30mÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+[12C³ [34m[[0;36mD[1;34m][0meposit Some Gold[8C[1;34m[[0;36mC[1;34m][0mhange Player[9C[1;30m³
+[10C[0;34m° [1;30m³ [34m[[0;36mW[1;34m][0mithdraw Some Gold[7C[1;34m[[0;36mR[1;34m][0meturn To The Streets [1;30m³ [0;34m°
+[6C°  °±°[1;30m³ [34m[[0;36mP[1;34m][0mool All Gold[12C[1;34m[[0;36mY[1;34m][0mour Team's Stats[5C[1;30m³[0;34m°±°  °
+[5C°±° ±²±[1;30m³[16C[34m[[0;36mT[1;34m][0mransfer Some Gold[16C[1;30m³[0;34m±²± °±°
+[12C[1;30mÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+  [34mY[0;36mou enter [1;34mDrakeville's [0;36mlargest (and only!) bank. [1;34mM[0;36mounds of glittering
+gold coins and precious jewels fill the barred vault. [1;34mA[0;36ms one of the
+counters becomes available, the clerk addresses your party.
+  [1;34m"G[0;36mreetings! [1;34mW[0;36mhat will be your transaction today?[1;34m"[0m
+&$BANK2
+[?7h[255D[12C[0;1;30mÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´[34mBANK OF THE WICKED[30mÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+[12C³ [34m[[0;36mD[1;34m][0meposit Some Gold[8C[1;34m[[0;36mC[1;34m][0mhange Player[9C[1;30m³
+[10C[0;34m° [1;30m³ [34m[[0;36mW[1;34m][0mithdraw Some Gold[7C[1;34m[[0;36mR[1;34m][0meturn To Catacombs   [1;30m³ [0;34m°
+[6C°  °±°[1;30m³ [34m[[0;36mP[1;34m][0mool All Gold[12C[1;34m[[0;36mY[1;34m][0mour Team's Stats[5C[1;30m³[0;34m°±°  °
+[5C°±° ±²±[1;30m³[15C[34m[[0;36mT[1;34m][0mransfer Some Gold[17C[1;30m³[0;34m±²± °±°
+[12C[1;30mÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+  [34mY[0;36mou enter a dead-end tunnel with a large iron gate blocking the end.
+[1;34mB[0;36mehind the gate, you see all sorts of treasures, from gold to gems.
+[1;34mA [0;36mvery large, very dimwitted troll attempts to address you in what he
+must believe is an educated voice.
+  [1;34m"G[0;36mood day to you. [1;34mW[0;36mhat you wanting?[1;34m"[0m
+&$LEVELS
+[?7h[255D[12C[0;1;30mÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´[34mLEVEL TRAINING[30mÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+[10C[0;34m° [1;30m³ [34m[[0;36mT[1;34m][0mrain For Next Level[5C[1;34m[[0;36mC[1;34m][0mhange Player[9C[1;30m³ [0;34m°
+[6C°  °±°[1;30m³ [34m[[0;36mE[1;34m][0mxamine The Pictures[5C[1;34m[[0;36mR[1;34m][0meturn To The Streets [1;30m³[0;34m°±°  °
+[5C°±° ±²±[1;30m³[16C[34m[[0;36mY[1;34m][0mour Team's Stats[17C[1;30m³[0;34m±²± °±°
+[12C[1;30mÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ [34mY[0;36mou enter the shrine to warriors from past, present and future. [1;34mP[0;36mictures
+of heroes of legend adorn the old walls. [1;34mF[0;36meelings of honor and valor wash
+over you as you make your way towards the level-masters.[0m
+&$LEVELS2
+[?7h[255D[12C[0;1;30mÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´[34mLEVEL TRAINING[30mÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+[10C[0;34m° [1;30m³ [34m[[0;36mT[1;34m][0mrain For Next Level[5C[1;34m[[0;36mC[1;34m][0mhange Player[9C[1;30m³ [0;34m°
+[6C°  °±°[1;30m³ [34m[[0;36mE[1;34m][0mxamine The Pictures[5C[1;34m[[0;36mR[1;34m][0meturn To Catacombs   [1;30m³[0;34m°±°  °
+[5C°±° ±²±[1;30m³[16C[34m[[0;36mY[1;34m][0mour Team's Stats[17C[1;30m³[0;34m±²± °±°
+[12C[1;30mÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+  [34mY[0;36mou enter a dark tunnel with drawings lining the walls. [1;34mP[0;36mictures of mighty
+warriors beating down weak light-dwellers brings a sense of pride and
+rightness to you. [1;34mA[0;36ms the tunnels opens up onto a larger area, you make your
+way towards the masters.[0m
+&$WEAPONS
+[?7h[255D[0;1mID   Name[22CPrice
+[0;34múúúúúúúúúúúúúúúúúúúúúúúúúúúúúúúúúúúúú
+[1m[[0;36m1[1;34m]  [0;36mB[37mutcher [36mK[37mnife[15C[1;34m200
+[[0;36m2[1;34m]  [0;36mS[37mhort [36mS[37mword[17C[1;34m800
+[[0;36m3[1;34m]  [0;36mL[37meather [36mW[37mhip[14C[1;34m2[0;34m,[1m000
+[[0;36m4[1;34m]  [0;36mA[37mxe [36mO[37mf [36mB[37mleeding[11C[1;34m5[0;34m,[1m000
+[[0;36m5[1;34m]  [0;36mW[37marhammer[16C[1;34m15[0;34m,[1m000
+[[0;36m6[1;34m]  [0;36mP[37meacekeeper[14C[1;34m40[0;34m,[1m000
+[[0;36m7[1;34m]  [0;36mL[37mancelot's [36mB[37mlade[8C[1;34m100[0;34m,[1m000
+[[0;36m8[1;34m]  [0;36mF[37mire [36mS[37mword[14C[1;34m300[0;34m,[1m000
+[[0;36m9[1;34m]  [0;36mH[37mead [36mB[37masher[13C[1;34m500[0;34m,[1m000
+[[0;36m10[1;34m] [0;36mF[37mire [36mS[37mtaff[12C[1;34m1[0;34m,[1m000[0;34m,[1m000
+[[0;36m11[1;34m] [0;36mJ[37mavelin [36mO[37mf [36mL[37mightning  [1;34m2[0;34m,[1m000[0;34m,[1m000
+[[0;36m12[1;34m] [0;36mT[37mhor's [36mH[37mammer[9C[1;34m5[0;34m,[1m000[0;34m,[1m000
+[[0;36m13[1;34m] [0;36mD[37meath [36mS[37mword[10C[1;34m10[0;34m,[1m000[0;34m,[1m000
+[[0;36m14[1;34m] [0;36mH[37mitle's [36mB[37mow[10C[1;34m50[0;34m,[1m000[0;34m,[1m000
+[[0;36m15[1;34m] [37mN[33memesis[13C[34m100[0;34m,[1m000[0;34m,[1m000[0m
+&$ARMORS
+[?7h[255D[0;1mID   Name[22CPrice
+[0;34múúúúúúúúúúúúúúúúúúúúúúúúúúúúúúúúúúúúú
+[1m[[0;36m1[1;34m]  [0;36mA[37mnimal [36mH[37mide[17C[1;34m200
+[[0;36m2[1;34m]  [0;36mP[37madded [36mA[37mrmour[15C[1;34m800
+[[0;36m3[1;34m]  [0;36mL[37meather [36mA[37mrmour[12C[1;34m2[0;34m,[1m000
+[[0;36m4[1;34m]  [0;36mC[37mhain [36mA[37mrmour[14C[1;34m5[0;34m,[1m000
+[[0;36m5[1;34m]  [0;36mS[37mplint [36mA[37mrmour[12C[1;34m15[0;34m,[1m000
+[[0;36m6[1;34m]  [0;36mS[37mcale [36mA[37mrmour[13C[1;34m40[0;34m,[1m000
+[[0;36m7[1;34m]  [0;36mP[37mlate [36mA[37mrmour[12C[1;34m100[0;34m,[1m000
+[[0;36m8[1;34m]  [0;36mC[37mloak [36mO[37mf [36mP[37mower[10C[1;34m300[0;34m,[1m000
+[[0;36m9[1;34m]  [0;36mL[37mancelot's [36mP[37mlate[8C[1;34m500[0;34m,[1m000
+[[0;36m10[1;34m] [0;36mK[37ming's [36mA[37mrmour[9C[1;34m1[0;34m,[1m000[0;34m,[1m000
+[[0;36m11[1;34m] [0;36mD[37mragon [36mS[37mcale [36mA[37mrmour   [1;34m2[0;34m,[1m000[0;34m,[1m000
+[[0;36m12[1;34m] [0;36mT[37mhor's [36mC[37mape[11C[1;34m5[0;34m,[1m000[0;34m,[1m000
+[[0;36m13[1;34m] [0;36mG[37molden [36mA[37mrmour[8C[1;34m10[0;34m,[1m000[0;34m,[1m000
+[[0;36m14[1;34m] [0;36mH[37mitle's [36mH[37melmet[7C[1;34m50[0;34m,[1m000[0;34m,[1m000
+[[0;36m15[1;34m] [37mE[33mlement [37mP[33mlate[7C[34m100[0;34m,[1m000[0;34m,[1m000[0m
+&$HEALERS
+[?7h[255D[12C[0;1;30mÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´[34mHEALER'S SHRINE[30mÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+[10C[0;34m° [1;30m³ [34m[[0;36mT[1;34m][0mend To Your Wounds[6C[1;34m[[0;36mH[1;34m][0meal All Teamates[5C[1;30m³ [0;34m°
+[6C°  °±°[1;30m³ [34m[[0;36mY[1;34m][0mour Team's Stats[8C[1;34m[[0;36mR[1;34m][0meturn To Streets[5C[1;30m³[0;34m°±°  °
+[5C°±° ±²±[1;30m³ [34m[[0;36mC[1;34m][0mhange Player[12C[1;34m[[0;36mP[1;34m][0mool All Gold[9C[1;30m³[0;34m±²± °±°
+[12C[1;30mÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+  [34mY[0;36mou enter the quiet and serene little shrine. [1;34mP[0;36motions, herbs and
+poultices line the shelves. [1;34mF[0;36mrom the corner, [1;34mDiane [0;36maddresses you.
+  [1;34m"A[0;36mre you in need of healing, valiant warriors?[1;34m"[0m
+&$HEALERS2
+[?7h[255D[12C[0;1;30mÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´[34mHEALING HUT[30mÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+[10C[0;34m° [1;30m³ [34m[[0;36mT[1;34m][0mend To Your Wounds[6C[1;34m[[0;36mH[1;34m][0meal All Teamates[5C[1;30m³ [0;34m°
+[6C°  °±°[1;30m³ [34m[[0;36mY[1;34m][0mour Team's Stats[8C[1;34m[[0;36mR[1;34m][0meturn To Catacombs   [1;30m³[0;34m°±°  °
+[5C°±° ±²±[1;30m³ [34m[[0;36mC[1;34m][0mhange Player[12C[1;34m[[0;36mP[1;34m][0mool All Gold[9C[1;30m³[0;34m±²± °±°
+[12C[1;30mÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+  [34mY[0;36mou enter a small temple dedicated to the dark l rd Malaky. [1;34mS[0;36mtanding
+behind a blood-covered altar, a [1;34mGoblin Shaman [0;36maddr sses you.
+  [1;34m"P[0;36mraises to the [1;34mDark Lord[0;36m. [1;34mW[0;36mhat I do for you? [1;37m<[34mSnort[37m>[34m"[0m
+&HEALERS2
+
+^9[^3H^9]^7eal all your wounds
+^9[^3B^9]^7uy some band-aids!
+^9[^3R^9]^7eturn to city streets^0&
+
+&DIANE_HEALING
+
+^3The priestess applies a poultice to your wounds while uttering prayers
+to the Gods. In moments, the wounds start to mend before your eyes, and
+before long, not even a scar remains!^0&
+
+&GOBLIN_HEALING
+
+^3The goblin hands you vials of green viscuous liquid. Moments after
+imbibing the strange brew, your wounds begin to smoke, and seconds after,
+they seem to evaporate!^0&
+
+&$PLAYER_FIGHT
+[?7h[255D[10C[0;34m° [1;30mÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´[34mARENA[30mÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿ [0;34m°
+[6C°  °±°[1;30m³ [34m[[0;36mC[1;34m][0mhalenge A Player[8C[1;34m[[0;36mY[1;34m][0mour Team's Stats[5C[1;30m³[0;34m°±°  °
+[5C°±° ±²±[1;30m³ [34m[[0;36mL[1;34m][0mist Available Victims   [1;34m[[0;36mR[1;34m][0meturn To The Streets [1;30m³[0;34m±²± °±°
+[12C[1;30mÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ[0m
+&$PLAYER_FIGHT2
+[?7h[255D[10C[0;34m° [1;30mÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´[34mFIGHTING HOLE[30mÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿ [0;34m°
+[6C°  °±°[1;30m³ [34m[[0;36mC[1;34m][0mhalenge A Player[8C[1;34m[[0;36mY[1;34m][0mour Team's Stats[5C[1;30m³[0;34m°±°  °
+[5C°±° ±²±[1;30m³ [34m[[0;36mL[1;34m][0mist Available Victims   [1;34m[[0;36mR[1;34m][0meturn To Catacombs   [1;30m³[0;34m±²± °±°
+[12C[1;30mÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ[0m
+&PLAYER_BATTLE
+
+^E-*^F Confrontation^E *-^0&
+
+&$POST_OFFICE
+[?7h[255D[12C[0;1;30mÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´[34mMAIL HOUSE[30mÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+[10C[0;34m° [1;30m³ [34m[[0;36mW[1;34m][0mrite Someone A Letter   [1;34m[[0;36mY[1;34m][0mour Team's Stats[5C[1;30m³ [0;34m°
+[6C°  °±°[1;30m³ [34m[[0;36mC[1;34m][0mheck Your Mail[10C[1;34m[[0;36mR[1;34m][0meturn To The Streets [1;30m³[0;34m°±°  °
+[5C°±° ±²±[1;30m³[17C[34m[[0;36mL[1;34m][0mist Pen Palls[19C[1;30m³[0;34m±²± °±°
+[12C[1;30mÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+  [34mT[0;36mhe mail house is the busiest establishment in the city. [1;34mB[0;36mags of letters
+line the walls of the back room from where [1;34mDrake [0;36memerges.
+  [1;34m"W[0;36melcome to the mail house![1;34m"[0;36m, shouts [1;34mDrake[0;36m. [1;34m"C[0;36man I help you?[1;34m"[0m
+&$POST_OFFICE2
+[?7h[255D[12C[0;1;30mÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´[34mMAIL HOUSE[30mÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+[10C[0;34m° [1;30m³ [34m[[0;36mW[1;34m][0mrite Someone A Letter   [1;34m[[0;36mY[1;34m][0mour Team's Stats[5C[1;30m³ [0;34m°
+[6C°  °±°[1;30m³ [34m[[0;36mC[1;34m][0mheck Your Mail[10C[1;34m[[0;36mR[1;34m][0meturn To Catacombs   [1;30m³[0;34m°±°  °
+[5C°±° ±²±[1;30m³[17C[34m[[0;36mL[1;34m][0mist Pen Palls[19C[1;30m³[0;34m±²± °±°
+[12C[1;30mÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+  [34mT[0;36mhe mail house is the busiest establishment in the catacombs. [1;34mB[0;36mags of
+letters line the walls of the back room from where [1;34mUgulak the Troll [0;36memerges.
+  [1;34m"[37m<[34mSnort[37m> [34mM[0;36me busy. [1;34mW[0;36mhat you want![1;34m"[0m
+&SEARCHING_FOR_MAIL
+
+^FSearching for your messages.^0&
+
+&PRESS
+                                ^4[^CP^DR^7E^FSS A ^7K^DE^CY^4]^0&
+&COME_BACK_TOMMOROW
+
+^CIt appears that your party is ^4DEAD^C. You will have to wait until
+tomorrow before the Gods ressurect your warriors so you may continue
+on your quest. Maybe you should take the time to devise new battle
+strategies...^0&
+
+&ATTENTION
+
+^9YOUR ATTENTION PLEASE!!!^0&
+
+&ON_LINE_BATTLE
+
+^9A short, rotund man escorts you both to a tiny stadium located below
+Excalibur's Level Training. The locals are already flooding the gates,
+each of them eagerly awaiting the battle.
+
+^3Godspeed!^0&
+
+&$INN
+[?7h[255D[12C[0;1;30mÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´[34mVAMPIRE'S KISS TAVERN[30mÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+[12C³ [34m[[0;36mE[1;34m][0mnter Beer Drinking Contest [1;34m[[0;36mT[1;34m][0mell It To Everyone[1;30m³
+[10C[0;34m° [1;30m³ [34m[[0;36mP[1;34m][0mlay Black Jack[13C[1;34m[[0;36mG[1;34m][0met A Room[9C[1;30m³ [0;34m°
+[6C°  °±°[1;30m³ [34m[[0;36mY[1;34m][0mour Team's Stats[11C[1;34m[[0;36mS[1;34m][0mpread Some Gossip [1;30m³[0;34m°±°  °
+[5C°±° ±²±[1;30m³ [34m[[0;36mR[1;34m][0meturn To Streets  [1;34m[[0;36mB[1;34m][0meer Drinking Record Holder [1;30m³[0;34m±²± °±°
+[12C[1;30mÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+  [34m"W[0;36melcome to the [1;34mVampire's Kiss Tavern[0;36m![1;34m" [0;36mshouts the barkeep as your
+party enters his establishment. [1;34m"T[0;36mhe barmaid will clear you a table
+while I pour you some ales.[1;34m"[0m
+&$INN2
+[?7h[255D[12C[0;1;30mÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´[34mDRAGON'S BREATH TAVERN[30mÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+[12C³ [34m[[0;36mE[1;34m][0mnter Beer Drinking Contest [1;34m[[0;36mT[1;34m][0mell It To Everyone[1;30m³
+[10C[0;34m° [1;30m³ [34m[[0;36mP[1;34m][0mlay Black Jack[13C[1;34m[[0;36mG[1;34m][0met A Room[9C[1;30m³ [0;34m°
+[6C°  °±°[1;30m³ [34m[[0;36mY[1;34m][0mour Team's Stats[11C[1;34m[[0;36mS[1;34m][0mpread Some Gossip [1;30m³[0;34m°±°  °
+[5C°±° ±²±[1;30m³ [34m[[0;36mR[1;34m][0meturn To Catacombs[1;34m[[0;36mB[1;34m][0meer Drinking Record Holder [1;30m³[0;34m±²± °±°
+[12C[1;30mÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+  [34m"[37m<[34mGrumble[37m> [34mY[0;36mou want drink?[1;34m" [0;36masks the orc barkeep. [1;34mT[0;36mhe dimly-lit tavern
+is bulging with Malaky's loyals. [1;34mS[0;36meveral arguments seem to be on the verge
+of bursting into fights. [1;34mJ[0;36must your typical day at [1;34mThe Dragon's Breath
+Tavern[0;36m.[0m
+&CASINO2
+
+^E-*^F Casino^E *-
+
+^CYou enter the dimly lit casino. Many orcs, trolls and goblins fill the
+main hall, all of them looking to make their fortune.
+
+^D[^5P^D]^9lay ^8Black Jack
+^D[^5R^D]^9eturn to city streets
+^D[^5Y^D]^9our stats^0&
+
+&BLACKJACK
+
+^9[^3T^9]^7ake another card
+^9[^3H^9]^7old!
+^0&
+
+&$NEW_PLAYER
+[?7h[255D[25C[0;34mş [36mW[37melcome to [36mD[37mrakeville [34mş
+
+    [1;31mFor as long as anyone can remember, the city of [35mDrakeville [31mhas been
+   tyrannically ruled by the evil demon-lord [5;35mMalaky[0;1;31m. His hunger for pain
+ and suffering unsatiable, he feasts on the deaths and despair of the city
+ from his lair in the catacombs below. The prophets foretell of a party of
+  powerful warriors that shall one day step forth and rid the city of its
+[11Cfoul enslaver. Could [35mYOUR [31mparty be the one spoke of?
+
+[33C[0;32m- OR -
+
+    [1mEver since the dominance of [35mMalaky[32m, the city folks of [0;32mDrakeville [1mhave
+   put together a great [0;32mcouncil [1mto protect the city. The [0;32mcouncil [1mis formed
+[8Cby [0;32mDrake the Flamed One[1m, [0;32mLord Hitle Bows[1m, [0;32mKyle Icingdeath [1mand
+   [0;32mDarien Sundancer[1m.[35mMalaky [32mwould apreciate any help he could to defeat this
+[32C[0;32mCOUNCIL[1m![0m
+&SLEEP
+
+^3The day was long and arduous but you finally find some respite. The beds
+are lumpy and smell funny, but, for tonight, this is ^9home^3. All quickly
+fall into a deep and blissfull sleep. Rest well...
+^0&
+&NO_MORE_ROOM
+
+^EThe present game if full.... sorry!^0&
+&STEAL2
+^9[^3K^9]^7eep it
+^9[^3S^9]^7ell it^0&
+
+&$KYLE
+[?7h[255D[13C[0;34m° [1;30mÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´[34mKYLE'S RUNE SHOP[30mÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿ [0;34m°
+[9C°  °±°[1;30m³[34m[[0;36mP[1;34m][0murchase a Rune Stone   [1;34m[[0;36mY[1;34m][0mour Team's Stats  [1;30m³[0;34m°±°  °
+[8C°±° ±²±[1;30m³[34m[[0;36mC[1;34m][0mhange Player[11C[1;34m[[0;36mR[1;34m][0meturn[13C[1;30m³[0;34m±²± °±°
+[15C[1;30mÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+  [34mY[0;36mou enter the dimly lit magic shop, the smell of burning incense
+filling your nostrils. [1;34mA [0;36mtall, gray haired man approaches your
+party, his movements eloquent and fluid.
+  [1;34m"G[0;36mreetings friends, how may I help you?[1;34m"[0m
+&$TEAM_MENU
+[?7h[255D[12C[0;1;30mÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´[34mTEAM OPTIONS[30mÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+[12C³ [34m[[0;36mN[1;34m][0mame Change[14C[1;34m[[0;36m![1;34m][0mRaise From The Dead  [1;30m³
+[10C[0;34m° [1;30m³ [34m[[0;36mC[1;34m][0mhange Player[12C[1;34m[[0;36mR[1;34m][0meturn To The Streets [1;30m³ [0;34m°
+[6C°  °±°[1;30m³ [34m[[0;36mO[1;34m][0mrder Of Players[9C[1;34m[[0;36mY[1;34m][0mour Team's Stats[5C[1;30m³[0;34m°±°  °
+[5C°±° ±²±[1;30m³ [34m[[0;36m@[1;34m][0mChange Team Name[8C[1;34m[[0;36mT[1;34m][0mrade Items[11C[1;30m³[0;34m±²± °±°
+[12C[1;30mÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ[0m
+&KYLE2
+
+^E-*^F Chaka's Magic Shop^E *-
+
+^CYou enter a run-down and darkly-lit shack. Chaka the Orc Warlock eyes
+your party suspiciously from head to toe before addressing you.
+^5"I be the great Chaka. What you want?"^C
+
+^4[^CP^4]^7urchase a ^DRune Stone
+^4[^CR^4]^7eturn to city streets
+^4[^CY^4]^7our stats^0&
+
+&RAISE
+
+^3You call upon the elders of the city to come forth and ^9raise^3 your
+party member from the dead. After accepting your sacrafice in the form
+of ^9gold^3, the elders start to pray to their god and soon your friend
+is once more among the living...
+^0&
+
+&RAISE2
+
+^3You inform the Warlock's Circle that they will raise your party member
+in exchange for gold, or you will slay them all. Not seeming intimidated
+in the bit, they form a circle around your comrade and chant in a low,
+monotonous voice. After several minutes, the spark of life returns to your
+friend's body...
+^0&
+
+&RUNES
+
+^9"Which color rune are you interested in?"
+
+^9[^4R^9]^4ed stone
+^9[^1B^9]^1lue stone
+^9[^EY^9]^Eellow stone
+^9[^AG^9]^Areen stone^0&
+&STEALING
+^3You get into a long converstion with the shop keeper. After a few minutes
+he gets tired of hearing you talking and goes to help another customer.
+^9"This is my chance..."^3,you say to yourself.^0&
+
+&DOING_IT
+
+^CHaving reached what you feel is the peek of your abilities, you set out
+to meet your destiny: the final battle between your party and ^DMalaky^C!
+A large crowd gathers before the entrance to the sewers to see you off on
+your most perilous quest. Be brave, warriors, and godspeed.^0&
+
+&DOING_IT2
+^CFeeling it is time for you to rid the world of the light-dwellers' 
+^5Council^C, you gather your weapons and make your way to the catacomb's 
+entrance. A large party of orcs, goblins and trolls sees you off, asking
+you to bring the ^5Council^C back so you may all feast upon their 
+carcasses.^0&
+
+&FINISH
+With a bloodcurdling cry, the once mighty demon-lord Malaky staggers back,
+drops to one knee, and falls flat on his face. With a thunderous roar, a
+beam of intense white light blasts through Malaky's back, binding heaven
+and earth for a few short seconds. When the light subsides, all that is
+left of the demon-lord is a charred, burnt out husk. After looting his
+lair, you return to city to share the spoils with the townsfolk. A great
+feast is held that evening in your party's honor. The minstrels compose
+songs in memory of your heroic deed. As the people feast for the first
+time in generations, the flames from the celebration pyre suddenly rise
+in a blinding flash burst to over ten feet high. From the flames, a booming
+voice emanates.
+^0&
+
+&FINISH2
+^5"Foolish mortals! You believe you have rid yourselves of your master?
+You believe your puny man-made weapons can truly hurt me? All you have
+done is buy yourself some time. I shall return, sooner than you realise,
+and then I will have my vengeance! You will then know the true meaning of
+suffering and desolation!"^C
+
+And with a final, cynical laugh, the voice subsides and the flames shrink
+back to their normal heights. You quickly surmise that the celebration is
+at an end... When will Malaky return? What will you do? Will you ever
+truly rid Drakeville of the evil demon-lord? No one can answer these
+questions. All you can do is wait for Malaky's return, and again attempt
+to destroy him once and for all...
+^0&
+
+&FINISH3
+^5With a final gurgling breath, the last member of the almighty Council
+falls to the ground. Hooting for joy, your party dances on their dead
+carcasses and dares anyone to confront you, the most powerful warriors
+of all times. After a few minutes of celebration, you gather the dead
+bodies, plunder the Council's castle, and drag everything back to the
+catacombs, where you will be the richest and most feared creatures in
+the whole world, second only in power to the mighty Malaky. You order
+the catacombs inhabitants to build a giant cooking fire to roast the
+flesh of the Council. As the first flames lick the exposed flesh of
+the Council, a blinding flash of white light engulfs their corpses.
+When the light subsides, their corpses are gone! A booming voice,
+seeminginly coming from everywhere at once, is heard throughout the
+catacombs.
+^0&
+
+&FINISH4
+^5"You have succeeded in defeating us, vile monsters. However, did you
+believe us so easily vanquished? Our magic is strong, and we can escape
+even death. One day, sooner than you can imagine, we shall return and 
+reclaim our city. Then you shall know real fear, as we lay death and
+destruction to all the minions of Malaky!"^C
+
+With that, the voice of Drake the Wizard subsides. This will certainly
+put a damper on the festivities. You decide that this must be a joke
+of some kind, but if the Council does return, you'll find a way to 
+destroy them for all time. For now, more important things have your
+attention, like the rape and pillage of the city of Drakeville...^0&
+
+&EVENT2
+
+^CAs you are strolling down one of the back streets, you hear someone
+addressing you from an alley between two buildings.
+^5"Psst! Come here!"^C
+
+Do you towards the buildings where the voice came from?
+^0&
+
+&EVENT2A
+
+^CAs you approach the alley, a huge, dark shape springs out at you.
+Before you can react, a shining blade arcs down and slashes you
+across the face. As the shape jumps back towards the alley, it stops
+and turns, laughing evilly, to look at you. You are startled when you
+make out just who the shape is... ^DMALAKY!^C Then, with a sudden clap
+of thunder and a puff of smoke, he disappears!^0&
+
+&EVENT2B
+
+^CYou approach the alley, your hand resting lightly on your weapon, and
+are relieved to see an old man, lying on the alley floor.
+^5"I've fallen and I can't get up!"^C yells the old man. You help him to
+his feet and dust him off. The old man, very grateful, hands you a small
+vial. You unstopper it and gulp down its contents. A strange, tingling
+fealing washes over you. Your hit-points have increased!^0&
+
+&EVENT2C
+
+^CYou have better things to do than run around dark alleys!^0&
+
+
+&INNTALK
+
+^9"^3Welcome to my establishment, warriors. If you're looking for a warm
+bed to rest your body, you've come to right place!^9"^0&
+
+&EVENT3
+
+^CA short, gnarled old lady walks up to you. ^5"Will you help me find
+my cats?"^C she asks. You know fully well that you'll lose 2 catacomb
+fights if you help her. Do you help the old woman?^0&
+
+&EVENT3A
+
+^CAfter searching and cursing for close to an hour, you find the
+the old woman's cats. Eternally grateful, the old woman hands you
+a small stone. You are delighted to realize it's a ^5"RUNE"^C!^0&
+
+&EVENT3B
+
+^CYou clearly state to the old lady that you are a ^5WARRIORS^C and
+not ^5CAT-CATCHERS^C! She curses at you and spits on your boots!^0&
+
+&GETUP!
+
+^5"Hey! I didn't hear no bell!"^C you hear as you fall to the floor.
+With the last bit of strength you have, you lift your head and are
+amazed with what you see. A 2-inch tall little old man with angel wings
+is fluttering in front of your face! He then proceeds to spit on the
+ground and points at you.
+^5"Get up you sonavabitch, 'cause Mickey loves ya!"^C
+One more round...^0&
+
+&IGM
+
+^E-*^F Main Street (IGM)^E *-
+
+^9[^3Y^9]^7our stats
+^9[^3L^9]^7ist available IGMs
+^9[^3R^9]^7eturn to streets^0&
+&IGM2
+
+^E-*^F Main Tunnel (IGM)^E *-
+
+^9[^3Y^9]^7our stats
+^9[^3L^9]^7ist available IGMs
+^9[^3R^9]^7eturn to Catacombs^0&
+&I1
+^4
+  ßÛßßÜ  ßÛßßÜ  ßÛßßÜ  ÜßÛ   Û ÜßÛßßßß ßÜ    ßÜ Û   ÜßÛ     ÜßÛ     ÜßÛßßßß
+   Û   Û  Û   Û  Û   Û   Û Üß    Û      Û     Û  Û    Û       Û       Û
+   Û   Û ßÛßÛß  ßÛßßßÛ  ÜÛÜß    ÜÛÜÜ    Û     Û  Û    Û       Û      ÜÛÜÜ
+   Û   Û  Û  ßÜ  Û   Û ß Û Û   ß Û       Û   Û   Û    Û       Û     ß Û
+  ÜßÜÜÜß ß    ß Üß  Üß  Üß  ßÜ  ÜßÜÜÜÜ  ßßßßß    ßÜ  ÜßÜÜÜÜ  ÜßÜÜÜÜ  ÜßÜÜÜÜ
+
+                      ^CVersion 3.0 by : Stephane Daigle
+
+     ^5The game doesn't realy need deep instruction cause it's all menu driven
+  and is quite clear. Just follow the menu and I think that you'll be able
+  to find your way.
+
+     ^FHere are a few tips...
+
+     ^5Buy new weapons and armor whenever you have the gold. This is very
+     important.
+     ^CAlways get your wounds healed after avery fight. Unless you didn't get
+     hit.
+     ^5To add maximum fun to the game, get involved in writting E-MAIL and
+     gossip at the inn. The game gets very fun when players communicate.
+     ^CIf you find that your team isn't any good. Just (!) kill it and
+     restart another one.
+^0&
+&R1
+^AOne night 4 men sat down to play.
+They played all night 'till break of day.
+They played for gold and not for fun
+With separate scores for everyone.
+Can you the paradox explain,
+If no one lost, how could all gain?
+
+What were they playing?
+^0&
+&R2
+^AWhat has roots as nobody sees,
+Is taller then trees
+Up, up it goes,
+And yet never grows?
+^0&
+&R3
+^AThirty white horses on a red hill,
+First they champ,
+Then they stamp,
+The they stand still.
+^0&
+&R4
+^AVoiceless it cries,
+Wingless flutters,
+Toothless bites,
+Mouthless mutters.
+^0&
+&R5
+^AIt cannot be seen, cannot be felt,
+Cannot be heard, cannot be smelt.
+It lies behind stars and under hills,
+And empty holes it fills.
+It comes first and follows after,
+Ends life, kills laughter.
+^0&
+&R6
+^AThis thing all things devours:
+Birds, beasts, trees, flowers;
+Gnaws iron, bites steel;
+Grinds hard stones to meal;
+Slays king, ruins town,
+And beats high mountains down.
+^0&
+&$WARNING
+[?7h[255D[50C[0mÜÜ²²ßßß[31mÜÜÜÜ[30;41m°[31;40m²[30;41m°[31;40mÛÛÛÛ[1;41m°[0;31mÛ[1;41m°°°±±²²[47m²[40m
+[45C[0mÜÜßß[31m°ÜÜÜÛÛÛÛÛ[1;41m°°[0;31mßßßßßßßÛÛÛÛ[1;41m°°°±±²[40m
+[42C[0;31m°°[37mşß[31mÜÜÛ[30;41m°[31;40m²ßßßßßß    [1;30mÜÛÛÛÛÛÜÜÜÜÜ [0;31mßß[1;41m°°±[40m
+[40C[0;31m°Ü²²Û[30;41mş[31;40mÜÛÜ [1;30mÜÜ[47m²²[40mÜ²   °ÛÛÛÛÛ[47m²[40mÛ[47m²²[40mÛÛÛÛÛÜ [0;31mß[1;41m°[40m
+[38C[0;31m°°²[47mÛ[40mÛÛ[47m²[40mßß[1;30mÜ[47m²²[40mß[47mÛ[40mÛÛÛÛİ°°²ÛÛÛÛ[47m²²²±±²²[40mÛÛÛÛÛÜ
+[39C[0;31mŞ[47m²²[40mİß [1;30mÜ[47mÛÜ[40mß   ßÛÛÛÛ  ŞÛÛ[47m²²±°±°°±±²²[40mÛ[47m²[40mÛÛİ
+ [0;32mC[1mhao[0;32ms C[1mreation[0;32ms S[1moftwar[0;32me [1mpresents... [31m°[0;31;47m²±±[1C[1;30;40mßßÛÛİ[5CŞÛÛÛİ  ßÛÛÛÛ[47m²²±±²²[40mÛÛÛÛÛÛÛ
+[39C[0;31;47m±°°[37;40m²°  [1;30mßş[6CÛÛÛ²°   ßß²²Û[47m²²[40mÛÛÛÛÛÛÛÛİ
+[10C[31mDrakeville 3.0[15C[0mŞ[31;47m°°[37;40mİ  [1;30mÜÜ    [0;32mş  [1;30mŞ[47m²[40mÛİ °[6Cß ÜÜÜÜßßßÛß
+[40C[0mß²  [1;30mŞÛÛÛÜÜŞßß  ßß Ü[47m²²[40mÜ ÜÜÜ²²ÛÛÛÛÛ²²ÜÜ
+    [35m- [34mPlay at your own risk! [35m-[15C[30mßÛÛÛÛß[5CÜşŞÛÛÛÛÛÛÛßÛÛÛÛÛÛÛÛÛ²²°
+[46CŞÛÛÛİ    ŞÛİ ßÛÛßß  ßÛßÛÛÛÛÛÛÛßİ
+[47CßÛß Üş  ÛÛ²°[12CßÛÛÛÛİßş
+[47C°² Üİ   ÛÛİ[6C[0;32mß[1;42m°[0;32mÜ[5C[1;30mŞÛÛÛ²°
+[46CÜ ÛÛß ÜşŞÛß şÜÜÜÛÜÜ    °°ÜÛÛİÛİ
+[45CŞÛÜÛÜÛÛÛÜÛÜ ß  ßÛÛÛÛÛÛÜÜ²²ÛÛ² ß
+[45C[0mÜİ [1;30mßÛßÛÛßÛÛß[5CßÛÛÛÛÛÛÛÛÛß
+[43C[0mÜÛÛÜÛÛÜ[1;30mß[0mÜÜ[1;30mßÛÛİ[7Cß²²ÛÛÛÛİ
+[42C[0mŞÛßÜÛÛßÜÛÛß ÜÜİ[5C[1;30m°° °°ßÛÛÛ²°
+[42C[0mß ŞÛßş²²ÛİÜ²²ß  [1;30mÜÛÜÛ²²ÜÜ   ßß
+[43C[0mÜß  ŞÛßÜÛÛß    [1;30mÜÛÜßÛÛÛÛÛÜ
+[47C[0mßÜÛÛß[5C[1;30mßÛÛÛİ°ÛÛÛÛÛİ
+[37mD[33mr[31ma[0;31mk[1;30meville 3.0 Copyright 1996 by St‚phane Da[0;31mi[1mg[33ml[37me [0mß[8C[1;30mŞÛÛ² ŞÛÛÛÛÛ[0m[255D
+&$MAIL
+[?7h[255D[40m
+[0m[12C[35mÜÜÜÜ
+[11C[41mÛÜßßß[40mÛ
+[9CÜÜ[41mÛ[1;31mÛÛÛ[46mß[0;35mÛ
+[6CÜÜßß[1;37mÜÜ[0;30mß[1;37mÜ[0;35mßÛÜ
+    ÜÛß[1;37mÜÜ[47mÛÛÛ[0;30mß[1;37;47mÛÛ[0;30mß[35mßÛ
+ Üßß[30;47mßßßß[1;37;40mß[47mÛÛÛ[0;30mß[1;37mß[30mÜÛ[0;30mß[35mÛ
+ Û[30mß[37;47mßßßßßß[30;40mß[1;37;47mÛ[40mß[0;30mß[1mÛÛÛ[0;30mß[35mÛ
+Û[30mß[37;47mßßßßßßßß[30;40mß[1mÜ[0;30mß[1mÛÛÛ[0;30mß[35mÛ
+Û[30mß[37;47mßßßßßßßß[30;40mß[1mÛÜÛÛÛ[0;30mß[35mÛ
+Û[30mß[37;47mßßßßßßßß[30;40mß[1mÛÛÛÛß[0;35mÜÛ
+Û[30mß[37;47mßßßßßßßß[30;40mß[1mÛÛß[0;35mÜÛß
+Û[30mß[37;47mßßßßßßßß[30;40mß[1mß[0;35mÜÛß
+ÛÜÜÜÜÜÜ[30mßß[43mß[35;40mÜÛÛ
+[6CÛ[30mßß[33;43mß[35;40mÛ
+[6CÛ[30mßß[33;43mß[35;40mÛ
+[6Cßßßßß
+[0m[255D
+&$COMBAT
+[?7h[255D[40m
+[0;1m   ÄÄ[33mÄÄ[31mÄÄ[0;31mÄÄ[1;30mÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ[0;31mÄÄ[1mÄÄ[33mÄÄ[37mÄÄ
+[18C[30mÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´[34mYOUR PARTY[30mÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+[18C³ [34m[[0;36m1[1;34m][25C[0mHP [34m:[7C[1;30m³
+[18C³ [34m[[0;36m2[1;34m][25C[0mHP [34m:[7C[1;30m³
+[18C³ [34m[[0;36m3[1;34m][25C[0mHP [34m:[7C[1;30m³
+[18C³ [34m[[0;36m4[1;34m][25C[0mHP [34m:[7C[1;30m³
+[18CÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+   [37mÄÄ[33mÄÄ[31mÄÄ[0;31mÄÄ[1;30mÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ[0;31mÄÄ[1mÄÄ[33mÄÄ[37mÄÄ
+[18C[30mÚÄÄÄÄÄÄÄÄÄÄÄÄÄ´[34mYOUR ENEMIES[30mÃÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+[18C³ [34m[ ][25C[0mHP [34m:[7C[1;30m³
+[18C³ [34m[ ][25C[0mHP [34m:[7C[1;30m³
+[18C³ [34m[ ][25C[0mHP [34m:[7C[1;30m³
+[18C³ [34m[ ][25C[0mHP [34m:[7C[1;30m³
+[18C³ [34m[ ][25C[0mHP [34m:[7C[1;30m³
+[18CÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´[34mACTIONS[30mÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿³[78C³³[78C³³[78C³³[78C³ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ[A
+[79CÙ[0m
+&MMAIN_MENU
+^9Welcome to the ^3Magic Hut^9!
+
+As you enter this dimly lit hut, you can help but feel a strange presence.
+From the far corner of the hut you hear a strange voice...
+
+^3"Come into the light..."^9, it beckons.
+
+As you walk towards the corner you spot a tiny ^3elf^9 sitting on a stool.
+
+^3"Ha... it's you. How may I help you?"
+
+^9[^3L^9]^7isten to some poetry
+^9[^3B^9]^7uy some potions
+^9[^3Y^9]^7our party's stats
+^9[^3P^9]^7ool Gold
+^9[^3R^9]^7eturn to streets
+^0&
+&MMAIN_MENU2
+^9Welcome to the ^3Malaky's Hut^9!
+
+As you enter this dimly lit hut, you can help but feel a strange presence.
+From the far corner of the hut you hear a strange voice...
+
+^3"Come into the light..."^9, it beckons.
+
+As you walk towards the corner you spot ^FMalaky^9 eating the flesh off a
+human skull.
+
+^3"Make it quick! Or I'll be eating yours next."
+
+^9[^3L^9]^7isten to some poetry
+^9[^3B^9]^7uy some potions
+^9[^3Y^9]^7our party's stats
+^9[^3P^9]^7ool Gold
+^9[^3R^9]^7eturn to Catacombs
+^0&
+&POEM1
+^8 - Darkness -
+
+^7The dark eludes me as you see,
+But yet I feel naked and free.
+Mystifying, soft and everywhere,
+I revel at your touch.
+
+I pull your hand,
+And kiss your lips.
+Lying deep in my room,
+Dreaming of what could be.
+
+Should you whisper in my ear,
+Words of wisdom, extassy and fear.
+Should you whisper in my ear,
+The secrets of death.
+
+The time as come,
+The needles tell.
+Flashing dots of light,
+Stray my sight.
+^0&
+&POEM2
+^8 - Solitude -
+
+^7A tear as dropped off my cheek,
+Fallen in my hand.
+Can anyone see?
+Does anybody care?
+
+To be born without choice,
+To live without gain,
+To laugh at my voice,
+How can I break these chains.
+^0&
+&POEM3
+^8 - Untitled -
+
+^7I sometimes wonder if the door is closed
+I knock, but you don't answer
+I shout, but you don't hear
+I cry, and you don't care
+
+Am I at the end of the road
+Once again
+I fall to the ground
+Face buried in mud
+While clenching to your gown
+
+Will there ever be an end to this madness
+Is there a cure for sadness
+Deeper and deeper I sink
+As your lips stay sealed
+
+Drowning from sorrow
+Dying from unspoken words
+^0&
+&POEM4
+^8- My eyes do not see -
+
+^7My eyes defy your presence,
+My eyes neglect the essentiels.
+But thank god for a heart
+That can see thru the garden.
+
+I listen to your plee,
+Oh great voyager of the sea.
+Your breath smells of knowledge,
+And your eyes shine of wisdom.
+
+Speak of a tale,
+Of serpents and whales,
+Cry out my name,
+I am not ashame.
+
+Let me climb on your back,
+So I may fly away,
+Over a forest, river or bay.
+Embrace me with your gentle hand,
+And choke me with your violent heart.
+^0&
+&POEM5
+^8- Lost in our world -
+^7
+The wind spoke to me last night,
+as I stood forth in fright.
+Like an angel he appeared,
+at the window that is mine.
+
+Your voice hangs in the air,
+Like a sparrow in despair.
+Your solitude I deeply share,
+When the seasons pass me by.
+
+A gentle hand to let me go,
+An opened mind to let me know.
+
+But you must leave,
+It would be best.
+Go know in full flight,
+And find your nest.
+^0&
+&$BUY
+[?7h[255D[0;1mID   Name[22CPrice
+[0;34múúúúúúúúúúúúúúúúúúúúúúúúúúúúúúúúúúúúú
+[1m[[0;36m1[1;34m]  [0;36mL[37might [36mH[37meal[18C[1;34m500
+[[0;36m2[1;34m]  [0;36mM[37medium [36mH[37meal[15C[1;34m1[0;34m,[1m000
+[[0;36m3[1;34m]  [0;36mH[37meavy [36mH[37meal[16C[1;34m4[0;34m,[1m000
+[[0;36m4[1;34m]  [0;36mH[37mealing[18C[1;34m10[0;34m,[1m000
+[[0;36m5[1;34m]  [0;36mS[37mpeed[20C[1;34m15[0;34m,[1m000
+[[0;36m6[1;34m]  [0;36mS[37mtrength[17C[1;34m20[0;34m,[1m000
+[[0;36m7[1;34m]  [0;36mD[37mexterity[16C[1;34m20[0;34m,[1m000[0m
+&END OF FILE

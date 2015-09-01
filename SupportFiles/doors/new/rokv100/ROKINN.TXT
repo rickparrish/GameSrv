@@ -1,0 +1,12 @@
+   `%Logan says:
+   `0"Boy, business has been slow today.  I sure hope it picks up soon."
+   `%Hope says:
+   `0"I sure hope so too, or I'd be out of a job.  Boy, I need a man."
+   `%Logan laughs:
+   `0"Har har har, if we weren't friends, I'd go after you!"
+   `%Hope yells:
+   `0"Well, maybe some young Warrior will come and sweep me off my feet."
+   `%Casimonda's Ghost whispers:
+   `0"Be warned, for I am here to avenge my death when the time comes."
+   `%Hope whispers:
+   `0"Who said that?  Huh?  This place is haunted.  I'm scared."

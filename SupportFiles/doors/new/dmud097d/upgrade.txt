@@ -1,0 +1,45 @@
+Upgrading from a previous version of Windows DoorMUD to the current one
+=======================================================================
+If you already have a previous *Windows* version of DoorMUD installed on your
+system, simply unzip the new archive to your existing DoorMUD directory,
+overwriting all older files.
+
+To see what has changed in this version of DoorMUD, hit R at the DoorMUD
+entrance menu to view the full release notes.
+
+
+Upgrading from the DOS version of DoorMUD to the Windows version
+================================================================
+(You only ever have to do this once!)
+
+If you already have the *DOS* doorgame version of DoorMUD on your system, but
+want to upgrade to the Win32 version, perform the following steps:
+
+      1. Backup all of your DoorMUD files to another directory (or possibly to
+         a zip file).  This is just as a precaution, in case you have problems
+         with the Windows version of DoorMUD.  
+
+      2. Unzip the archive to your existing DoorMUD directory, overwriting older
+         files.  (Don't worry, the current player file won't be erased)
+
+      3. Change the command line your BBS uses to call DoorMUD according to the
+         instructions found in DoorMUD's README.TXT (of the new door32 version),
+         section 3, step 2.
+      
+
+
+If you experience any problems with this 32-bit version, please e-mail 
+RhythmNp@aol.com.
+
+
+Sysop display window:
+  By default, the Door32 version of DoorMUD provides an interactive graphical
+  display window on your computer whenever one of your users is in DoorMUD.
+  This window allows you to monitor the user, as well as perform sysop actions
+  such as hang-up, increase/decrease time left, chat mode, etc.  Unless you are
+  running DoorMUD in local mode, this window automatically starts minimized.
+  If desired, you can eliminate this window entirely using the -silent command
+  line option (ie, dmud32d -n # -d XXX -silent).  
+
+
+<End of file>

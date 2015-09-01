@@ -1,0 +1,12 @@
+   `%Overon yells:
+   `0"It's cold out here!  We need more money to buy more Soldiers!"
+   `%Alkazar laughs:
+   `0"You work for the Training Center, you should have money to donate."
+   `%Garock says:
+   `0"There's been a lot of new Warriors in Kisom lately, have you noticed?"
+   `%Overon says:
+   `0"Definitely.  I'm sure some of them will want to join our Cause."
+   `%Garock whispers:
+   `0"And, with new people in our Cause, we'll have money to buy soliders!"
+   `%Alkazar yells:
+   `0"The Kingdom won't stand a chance!  Long live the Rebel's!"

@@ -1,0 +1,12 @@
+   `%Chancellor Robbins whispers:
+   `0"I miss Lord Darok.  Was his death really natural, I wonder?"
+   `%Kingdom Soldier says:
+   `0"I'd like to think so, but rumours run rampant around here..."
+   `%Baroness yells:
+   `0"Rumours?  What rumours?  Please explain yourself, Soldier."
+   `%Kingdom Soldier whispers:
+   `0"I've said too much already.  Please forget what I've told you."
+   `%Baroness laughs:
+   `0"Isn't anyone going to say ANYTHING about Darok's death?"
+   `%Chancellor Robbins yells:
+   `0"I believe the King should hire more Soldiers into the Army..."

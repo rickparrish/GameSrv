@@ -1,0 +1,43 @@
+Lost Temple Installation
+------------------------
+
+If you are updating from a previous version, you may skip this part of the 
+documentation and just read the "update" section of this file.
+
+To install The Lost Temple on your system, simply create the directory 
+where you want the game to reside and copy INSTALL.BAT and LOST.EXE 
+into that directory.  Run the install batch file and the game will extract
+itself and create all necessary directories.  Once installation is finished
+create a batch file to load the game similar to the following:
+
+CD C:\BBS\TEMPLE
+COPY C:\BBS\DOOR.SYS
+TEMPLE
+CD C:\BBS
+
+This game uses no command line switches or configuration files, it will 
+take all information it needs from the DOOR.SYS or DORINFO1.DEF dropfiles.  
+The game will automatically detect which file is present and read it in.
+Please be sure that you copy the dropfile into the game's root directory
+before you run the door!
+
+
+Updating The Lost Temple
+------------------------
+
+To update a previous version of The Lost Temple, copy the Lost.EXE file
+and the UPDATE.BAT file into your game's root directory.  Then just run
+the update.bat file.  Any new files will be added and old files will be
+overwritten automatically.
+
+
+Maintenance
+-----------
+
+  The Lost Temple requires no maintenance.  Once it is installed on your 
+system you will most likely not have to touch it again.  Everything is
+kept track of as the game is played, there's no need for daily maintenance
+by the game, or by you.
+
+
+

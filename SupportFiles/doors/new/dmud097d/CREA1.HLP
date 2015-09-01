@@ -1,0 +1,396 @@
+;bridge troll
+This guy is big and smelly.  It might not be a good idea to mess with him.
+-
+;orc chieftain
+This is a muscular, seven-foot-tall orc.  If he wasn't so drunk, he would
+probably be a much nastier adversary.
+-
+;elven messenger
+This elven youth appears to be mortally wounded, and it is clear that he is
+dying fast.  His face and neck are bloodied with slash marks, as is his
+clothing.  He motions you to come closer and speak to him.
+-
+;abomination
+This lovable blob of goo has several spiked tentacles that it uses to suck the
+brains out of its enemies.  It appears to be sitting on top of an object -- 
+probably something it stole from its last victim.
+-
+;cloaked figure
+This is a short goblin dressed in a long black cloak.  It is impossible to 
+learn anything else about him by looking at him.
+-
+;King of the Elves
+This is, without a doubt, the most obese, stuck-up, annoying little elf you
+have ever had the misfortune of encountering.  A voice in your head says
+"Slit fatboy's throat!  Slit fatboy's throat!", but it's never a good idea to 
+listen to voices in your head... maybe you should TALK to him instead.
+-
+;Zombie master
+Why, its your long-dead Uncle Bob come back to life!  Now he's the ruler of
+the undead, and he's every bit as pleasant as he used to be!  Apparently, his
+birthday present this year is to make you into his eternal undead slave...
+-
+;mad dwarf leader
+This guy is a raving lunatic.  He appears to have a few loose screws.  To be
+honest, he probably doesn't have a single screw completely screwed in.  He just
+stares at you and says "Hehehehahhoohohohehehhahah!", and then attempts to mine
+your body for precious stones.
+-
+;mayor
+You didn't vote for him.  But he has some kind of quest for you, so it might
+be best to hear what he has to say.
+-
+;elven guardsman
+;elite dwarven guardsman
+If you TALK to him, he may let you enter the fortress.
+-
+;gnome guardsman
+If you TALK to him, he may let you speak to his boss.
+-
+;high imperial kingpriest
+Before you stands the great Kingpriest, believed by many to be but a legend.
+He has been crippled with age, but you can sense that there is still great 
+power within him.
+-
+;skeleton
+This walking skeleton wears a rusted crown atop its head, signifying that
+long ago it was a mortal king of the old empire.  Evil forces have brought
+it back to life as a mindless undead minion of darkness.
+-
+;drooling lunatic
+As with all mentally unstable members of society, this poor man has been
+forced to live underground.
+-
+;sasquatch
+This is an eight-foot-tall, hair-covered ape-like creature.  Sasquatches used
+to inhabit Havenwood Forest in large numbers, but are now nearly extinct due
+to Elven hunting.  This may, in fact, be one of the last of its kind.
+-
+;gypsy tribeleader
+This is an ancient, hag-like gypsy.  A large scar covers her right eye,
+making her half blind.
+-
+;dwarven emperor
+This stout, muscular dwarf is the ruler of this entire kingdom.
+-
+;grim reaper
+$8
+This is a mortal servant of the Angel of Death.  Run, fool, it wants your
+soul!
+-
+;deathknight
+$8
+This large man is clad from head to toe in a suit of reflective black armor.
+He wields a massive two-handed sword, and stares at you with his glowing red
+eyes.
+-
+;headless horseman
+This massive, cloaked rider sits upon a monstrous black horse.  He is
+rumored to have once been an elven nobleman who was beheaded centuries ago
+by the Centaurs.  He rides back and forth on the crumbled forest road on
+nights of the crescent moon, killing all who get in his way.  His animated,
+disembodied head lies in his left hand, and an audible cackle can be heard
+coming from its mouth.
+-
+;master of the hunt
+$2
+This is an avatar of the Elven God of the Hunt.  It has been summoned by
+Elven druids to murder Centaurs that venture too close to Elven territory.
+-
+;medusa
+$12
+]Are you mad?  
+$7
+Looking directly at a medusa will turn you to stone permanently!
+-
+;demon prince
+$8
+This demon has taken the form of a massive winged humanoid.  Its body is
+covered with think, blood-red scales.  It has a pentagram on its forehead and
+wields a flaming greatsword.  It is one of the thousands of offspring
+of the great Demon King, and commands the forces of this lesser demon realm.
+-
+;ancient prisoner
+This elderly man is crippled with extreme age, but the sheer power of his
+gaze makes you wonder if he was once someone great.
+-
+;goblin king
+This greedy bastard won't listen to reason.  Perhaps you'll have to teach him
+a lesson.
+-
+;imperial patrolman
+This knight wears the crest of the old empire.  His title is ceremonial; it
+has been passed down through the generations, despite the nonexistant status
+of the empire.  His job is to patrol the road between Ancalador and Arcadia,
+slaying evil on sight.  
+-
+;granite golem
+This eleven foot tall golem is made of solid granite.  Its surface is
+inscribed with arcane runes, and the fiery glow in its eyesockets leads you
+to believe that very potent magics were used in its summoning.
+-
+;storm giant
+This giant commands the power of the blinding lightning bolt.
+-
+;thuderlord titan
+This massive titan commands the all-powerful Thunderbolt, capable of greatly
+weakening his enemy's will to fight back.
+-
+;two-headed giant
+This odd mutant resembles a normal stone giant, just with two heads.
+-
+;cyclops
+This one-eyed monstrosity is even larger and more powerful than a titan.
+-
+;gargoyle
+Much like a golem, this is a magically-animated stone sculpture.
+-
+;hellmonk
+This is a monk who has sold his soul to the demons of chaos in order to gain
+greater strength.  He dons black robes, along with necklaces and bracelets
+that consist of humanoid bones.
+-
+;dragon ogre
+This four-legged creature has the legs, tail, and lower body of a small
+dragon, along with the torso, arms, and head of an ogre.
+-
+;infernal champion
+This is one of the oldest deathknights to ever live, and thus commands more
+evil powers.  His glowing red eyes stab at your soul, and the cold aura that
+surrounds him sends shivers down your spine.
+-
+;infernal denizen
+This bloated demon is too large to move, and is nearly impossible to miss with
+a weapon.  It was probably summoned here for the sole purpose of feasting on
+the souls of the foolish mortal heroes that have tried to banish it.
+-
+;guardian spirit
+This spectral knight was summoned here to protect the pyramid from intruders.
+-
+;greater mummy
+This mummy is over seven feet tall, and wears an ankh around its neck.
+-
+;lich
+This man was once the Pharaoh of a great desert empire.  He had dabbled in
+evil magics during his lifetime in the attempt to become an immortal.  One
+hundred years after his natural death, he rose from the grave as a Lich and
+has lived at the top of his pyramid ever since.
+-
+;bone dragon
+This is the undead remains of a green dragon.
+-
+;vampire lord
+$4
+The most ancient of the Nosferatu, enemy to all that lives.  Even when it
+appears to have been slain, it only turns to mist and reforms several days
+later.
+-
+;unicorn
+$15
+This is the most beatiful creature you have ever seen.  Killing it would be
+the ultimate act of evil.
+-
+;avatar of light
+$15
+This is a mortal that has been filled with the power of the Demigod of Light.
+It represents a great imbalance in the war between good and evil.
+-
+;drug dealer
+Greet him properly, and he'll sell you stuff that will take you on a magic
+carpet ride to la-la land.
+-
+;demon knight
+This is a human knight that has been unwillingly possessed by a demon.
+-
+;hobgoblin slumlord
+This bloated hobgoblin is the current ruler of the streets.
+-
+;greater demon
+$8
+This massive demon is too large to move, and is nearly impossible to miss with
+a weapon.  Its recent summoning represents a great imbalance in the war
+between good and evil.
+-
+;wyvern
+$4
+This creature is a less-powerful cousin of the dragon races.  Nonetheless, it
+is still a fierce monster to slay.
+-
+;land wurm
+This monster resembles a dragon, but has no legs or wings.
+-
+;spirit keeper
+$8
+Only the fiery red eyes of this ancient being are visible from underneath its
+crimson cloak.  It feeds on the souls of mortals, and holds the power to
+transport you to the realm of the dead.  Greet him, if you feel worthy.
+-
+;green dragon
+$2
+One of the weaker dragon species, this beast can spit acid at its foes.
+-
+;silver dragon
+$15
+Silver dragons are an extremely rare, relatively powerful breed of dragon.
+Chills run down your spine as you stare at this ancient creature.
+-
+;hydra
+This is a rare monstrosity indeed: a multi-headed, ill-tempered, mutated
+dragon-like beast.  These have been known to swallow adventurers whole.
+-
+;dragon queen
+This ancient being is the matriach of the dragonkin.  She moves with an
+incredible quickness for her size, making her a difficult adversary to hit.
+She is naturally resistant to most magical attacks as well.  Her deadly
+breath-weapon is a spray of flaming rocks.  Very few adventurers have survived
+an encounter with this beast.
+-
+;dragon king
+This elder dragon lord assumed the title of dragon king after the previous
+king was slain by a mighty champion.  He is currently the oldest male dragon
+in the tribe, and his breath weapon combines the power of the elements to
+annihilate his enemies.  Of all the dragons, he is the second most powerful;
+only the ancient dragon queen ranks as his superior.
+-
+;Grendel
+$4
+This 8-foot-tall monstrosity is utterly grotesque.  Fresh blood drips from its
+razor-sharp fangs and claws.  Grendel is a natural coward; he has a reputation
+for feasting on unsuspecting warriors while they sleep, but usually runs from
+any fight that he does not initiate.
+-
+;frightened villager
+This pale-looking man is dressed in rags.  He beckons you to come speak with
+him.
+-
+;dark djinni
+This desert spirit has been summoned to grant your wishes.  He looks at you
+with a devious grin, and motions for you to converse with him.
+-
+;crazed sheriff
+This well-built troll is one of the few mortals able to fight off the undead
+hordes that have invaded this village.  Unfortunately, the experience of being
+surrounded by the living dead for countless years has apparently left him
+quite mad.
+-
+;guardian of the damned
+This immortal guardsman protects the dungeon from intruders.  It has been
+instructed not to attack loyal servants of the Gods, but it will defend itself
+if provoked.
+-
+;beholder
+This beast resembles a giant floating eyeball.  A number of eye-stalks branch
+from the top of it, each with a different magical attack.  It was created to
+act as a sentry in the most dangerous parts of the dungeon, and it will attack
+any intruder on sight.
+-
+;shadow lord
+This ancient being was once the good-natured warden of the Dungeon.  When the
+Dungeon was sealed off from the rest of Hades, the warden pledged his soul to
+the forces of Chaos in a fit of rage, transforming him into a demon.
+-
+;ancient master
+This man appears to be an elderly human at first glance, but you can sense a
+strange aura of incredible power about him.  On his forehead is a triangular
+rune -- a symbol which used to indicate great authority in the days of the
+Empire.  You can only guess at how he obtained it; certainly, he can't be the
+original owner, because the Empire crumbled nine centuries ago.
+-
+;desert guardian
+This tall, humanoid knight has an aura of great authority.  He solemnly stands
+guard over the vast expanse of sand dunes south of here.  His sword and armor
+are both covered with ancient Imperial runes, signifying that they once
+belonged to an Imperial Knight in the days of the Empire, over nine centuries
+ago.  You can only guess at why this man is here or how he obtained these 
+rare artifacts.
+-
+;Burningman
+This seven-foot-tall shaman stands in the middle of a firepit, completely
+covered in flames.  His unclothed body is severely burned, yet he seems to
+feel no pain.  He looks at you with an evil stare.
+-
+;rock hydra
+This is a rare monstrosity indeed: a multi-headed, ill-tempered, mutated
+dragon-like beast.  The desert-dwelling species is even more ferocious than
+other types of hydrae.
+-
+;trembling old hermit
+This elderly man walks hobbles around with the aid of a walking stick.  He
+appears to be thoroughly confused and disoriented.
+-
+;griffon
+This ferocious beast has the head and wings of an eagle and the body of a 
+lion.
+-
+;yeti
+This is a well-built, ape-like creature covered in white fur.  It growls
+angrily upon seeing you.
+-
+;leviathan
+This strange, primeval dragon has long been rumored only to be a legend.  Most
+of its massive body is underwater, making it difficult for you to judge its
+exact size.
+-
+;high imperial magus
+This brilliant mage was once known as the greatest spellcaster to ever serve
+the Empire.  After dedicating 70 years of his life to fighting Chaos, he
+retired to seclusion, never to be heard from again.  Although powerful, he
+is but a mortal -- it has undoubtedly taken a great deal of his power to 
+remain alive for so many centuries.  He studies you carefully, gazing deep
+into your eyes in search of the possible taint of Chaos.
+-
+;tundra guardian
+This tall, humanoid knight has an aura of great authority.  He solemnly stands
+guard over the vast tundra north of here.  His sword and armor are both
+covered with ancient Imperial runes, signifying that they once belonged to an
+Imperial Knight in the days of the Empire, over nine centuries ago.  You can
+only guess at why this man is here or how he obtained these rare artifacts.
+-
+;bloodthirster
+This twelve-foot-tall, winged demon towers over you.  It stares at you with a
+maniacal gleam in its eye.  You fear that it may be hungry.
+-
+;demon king
+This undulating, blubbery gray mass wears an ornate crown atop its head.  
+Despite its inability to remove its posterior from a massive throne, this
+creature supposedly has singlehandedly slain many of the realm's finest
+warriors.
+-
+;dark demigod
+This being bears an incredible resemblance to the High Imperial Kingpriest,
+only with a much more sinister facial expression.  Unlike the Kingpriest, he
+does not appear to be nearly as aged, and he certainly is not crippled.  His
+robes bear the symbol of the Chaos lords.
+-
+;avatar of chaos
+This being is a mortal incarnation of the pure powers of chaos.  It resembles
+an armored, humanoid knight.  It moves with an almost mechanical nature.  As
+it gazes at you, its pale-skinned face bears no emotion whatsoever.  
+-
+;chimera
+This fire-breathing monstrosity is part dragon, part lion, and part goat.
+-
+;diamond juggernaut
+This twenty-foot-tall golem is constructed out of pure diamond.
+-
+;deranged templar
+This ancient man wears the armor of an Imperial Templar, one of the highest
+positions in the old empire.  He stares at you with a blank expression on his
+wrinkled face.
+-
+;champion of order
+This aged knight was second in command to the High Imperial Kingpriest, and
+also acted as the General of the Holy Armies of Order.  After the Great War,
+he was given the task of eternally guarding the Warmaster's cell to prevent
+the forces of Chaos from freeing him.  
+-
+;warmaster of chaos
+This sinister being is the bane of order, the destroyer of the Empire, and
+the General of the Infernal Demon Legions of Chaos... he is the embodiment of
+all that is evil.  After nine centuries of imprisonment, his vile hatred burns
+even more strongly, fueling his dark power.
+-
+-
+:::STOP:::
+
+

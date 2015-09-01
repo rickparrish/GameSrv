@@ -1,0 +1,2003 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------
+                                       
+---------------------------------- Axe & Fang ----------------------------------
+ 
+------------------------------ Version 1.18 Public -----------------------------
+
+------------------------------ Copyright 1994/1995 -----------------------------
+
+--------------------------------------- by -------------------------------------
+
+-------------------------------- Charles Marchant ------------------------------
+
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+LEGAL NOTE:
+------------
+
+Axe & Fang is copyright 1994/1995 by Charles Marchant, all rights are
+reserved. Axe is not public domain or freeware. With out a registration
+key, you are granted a 60 day trial period to evaluate the game. At the
+end of the 60 days you must either register or remove the game from your
+system. Axe is supplied as is, no warranty is implied, hinted at, or
+given. In no way is the author responsible for any damage that occurs
+to your system while Axe & Fang or any of it's utilities are on it.
+Reading this passage is your acknowledgement of that fact. The source
+code for Axe & Fang will never be made public.
+
+
+TABLE OF CONTENTS:
+------------------------------------------------------------------------------
+
+SECTION                    TOPIC                                 PAGE
+
+   1................... Introduction ..............................1
+   2................... Installation ..............................2
+   3................... Files and the Directory Tree...............5
+   4................... Maintenance ...............................7
+   5................... System Requirements .......................8
+   6................... Note on Multi Nodes .......................9
+   7................... Support ..................................10
+   8................... Registration .............................11
+   9................... Being GOD in AXE .........................12
+  10................... Buildobj .................................13
+  11................... Buildmob .................................16
+  12................... Buildroom ................................21  
+  13................... Mload ....................................25
+  14................... Oload ....................................26
+  15................... The zone file ............................27
+  16................... Quest ....................................28
+  17................... Damaged Item Files .......................29
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  1 - INTRODUCTION
+----------------------------------------------------------------------------
+
+So cold steel and hot blood fills your every thought. The grand quest for
+fame and fortune fuels your every movement. Does the gleam of gold, ill-gotten
+or not, cloud your mind and feed your desires? If so, then enter a world where
+your iron grip will allow you to forge your own destiny and one day become an
+IMMORTAL!
+
+Axe & Fang has been designed to be as true an RPG as you can get on a computer.
+Many long hours of beta testing and re-coding have gone into AXE, in an
+attempt to bring you the best fantasy RPG door game that you can ever lay
+your paws on. Axe is by far the most flexible and interactive game on the
+market. Featuring over 65 interactive multi-node commands. Built in monster,
+object and room editors. The ability to load monsters and items on the spot.
+It's simple and straight forward zone file allows for complete freedom in
+building or editing worlds for AXE. On the spot quest generation for players
+on multi-nodes can be made.
+
+I hope you find AXE to be as fun to play as it was for me and the beta team to
+build! Thanks for taking time to give AXE a test drive.
+
+                              Author,
+                              Charles Marchant
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        1
+
+
+
+
+
+2 - INSTALLATION
+----------------------------------------------------------------------------
+
+Step 1: Unpack all of AXE???.ZIP into the desired directory you wish it
+        to run it in.
+
+Step 2: Run INSTALL.BAT. The install batch file will create the directory
+        tree and place all files into their desired places. It will then
+        delete all files not required in the root directory.
+
+Step 3: Create the config files for each node. This is as follows:
+
+  Sample config file for node 1
+  -----------------------------
+  file name NODE1.CFG  <- Must be different for each node!
+
+          c:\BBS\door.sys
+          2
+          Charles's Place
+          Mr.Quick
+          0
+          1
+          38400
+          2
+
+
+  Details of each line in config file
+  -----------------------------------
+
+         line 1  Path to drop file including name
+         line 2  type of drop file 1 = DORINFOx.DEF 2 = DOOR.SYS 3 = CHAIN.TXT
+         line 3  BBS name
+         line 4  SysOp Name
+         line 5  Port IRQ       ( 1 - 15 used only for internal com support )
+         line 6  Port base address ( fossil/digi port 0 - 63 )
+         line 7  Locked BPS Rate 0 = no lock
+         line 8  Com support 1 = internal 2 = fossil 3 = digi-board
+
+  Explanations of certain lines
+  -----------------------------
+
+  line 5: Line 5 is the irq line and can be numbered from 1 to 15.
+          Irq is only used under internal com support. It can be
+          any number under fossil or digi board support since it is
+          ignored. It is suggested you make it 0 just to keep the
+          config file easy to read.
+
+  line 6: Line 6 is special and you must understand this line in order
+          to get the game to function properly. Most if not all errors
+          in running AXE are right here!
+
+          Under Fossil or Digi-board support this is a number from 0
+          to 63, this is the port you wish to run this node under.
+          Fossil drivers begin numbering ports at 0 and not 1 so if
+          you want to run on pc com1 then you must supply a 0 here.
+
+
+
+
+                                        2
+
+
+
+
+
+
+
+          quick ref:
+
+          com1 = 0
+          com2 = 1
+          ...
+          ...
+          com8 = 7
+
+          Under internal com support this is a hexadecimal number equal
+          to the base address of the comport you wish to run the node
+          under.
+
+          quick ref:
+
+          com1 =  3f8
+          com2 =  2f8
+          com3 =  3e8
+          com4 =  2e8
+
+
+  Step 4: Create a batch file to run the door.
+          (Step 4 is subject to change at a later date)
+
+          If your BBS has the ability to pass the node number on a
+          command line then one batch file should work for all nodes.
+
+          example:
+
+          AXE.BAT
+
+          cd doors\axe
+          AXE node%1.cfg %1
+          cd..
+          cd..
+
+          Then just call AXE.BAT with one argument which is the
+          node number to run.
+
+          If your system doesn't pass the node on the command line
+          then a batch file for each node may be in order.
+
+          example:
+
+          AXE1.BAT
+
+          cd doors\axe
+          AXE NODE1.CFG 1
+          cd..
+          cd..
+
+          AXE.EXE takes two command line arguments, the first is the
+          path and name of the config file to use for that node and
+          the second is the node number to run under.
+
+  Step 5: Set up the door in your BBS.
+
+
+
+
+                                        3
+
+
+
+
+
+  Step 6: THIS IS A MUST!!! Be the first person to play.
+          Understand this! THE FIRST PERSON IN THE GAME IS GOD!!!
+          They are promoted to 25th level and give 99% in all skills!
+          They have full access to the god commands and can really
+          damage your game if they don't know what they are doing.
+          AFTER INSTALL, ENTER THE GAME IN LOCAL MODE!!! I will not
+          feel bad for any SysOp that doesn't do this! If you damage
+          the world/mob/obj files it is your duty to replace them.
+          I suggest keeping a backup of these files handy.
+
+  Step 7: If you wish to play as a normal person in the game, then
+          create another player. Only the first player into the
+          game becomes god, and all others start at 1st level where
+          the adventure begins! Then they can work their way up to become 
+          a god also.
+
+
+That's all there is to the installation of AXE. Simple and direct. If
+you have any problems, feel free to call me. My number is listed in
+the SysOp docs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        4
+
+
+
+
+
+  3 - FILES AND THE DIRECTORY TREE:
+-----------------------------------------------------------------------------
+
+  The Tree:
+  ---------
+  AXE (root) -- -- Player ------------------ -- A
+               |                            |-- B
+               |-- Docs                     |-- C
+               |                            |-- D
+               |-- Text -- -- Rooms         |-- E
+               |          |-- Mobs          |-- F
+               |-- Data   |-- Objs          /
+               |                            .
+               |-- Mobs                     .
+               |                            /
+               |-- Objs                     |-- X
+               |                            |-- Y
+               |-- World                    |-- Z
+               |
+               |-- Zones
+
+  Files by directory:
+  ------------------
+
+   AXE\
+
+        AXE.EXE      Main executable
+        HELP         Small Help screen, shown when a player types - help 
+        MOTD         Message of the Day. Displayed when a user logs in
+        *.CFG        Config files for each active node
+        *.BAT        Batch files to run each node
+        AXE.DOC      This document
+        INSTALL.BAT  Batch file used to create directories and move files
+
+   AXE\PLAYER
+
+        PC.MUD       Player data file created upon first player login
+
+   AXE\PLAYER\A .. Z
+
+        *.*          Player item files stored under the first letter of
+                     their name. Done this way to protect data and an
+                     easy way for the SysOp to purge a players items they
+                     believe were gotten in a rather sneaky manner.
+
+   AXE\DOCS
+
+       HELP_TAB      This is the hyper text help table for the online
+                     help command.
+
+   AXE\DATA
+
+       MULTI.DAT    This is the node share file. If you ever see this file while
+                    no nodes are running, then check your node setups for a
+                    duplicate. If this file is present, then you have an error
+                    somewhere and will surely get a share violation.
+
+
+
+                                        5
+
+
+
+
+
+   AXE\TEXT\ROOMS
+
+       ROOMS.MUD    This is the description file for all the rooms
+                    in the world (Not editable!)
+
+   AXE\TEXT\OBJS
+
+       OBJS.MUD     This is the description file for all the objs
+                    in the world (Not editable!)(not in yet)
+
+   AXE\TEXT\MOBS
+
+       MOBS.MUD      This is the description file for all the mobs
+                     in the world (Not editable!)
+
+   AXE\MOBS
+
+       MOB.MUD       This is the data file on all monsters (mobs) in
+                     the world.
+
+   AXE\OBJS
+
+       OBJ.MUD       This is the data file on all objects (objs) in the
+                     world.
+
+   AXE\WORLD
+
+       WORLD.MUD     This is the data file for all rooms in the world.
+
+
+   AXE\ZONES
+
+       ZONE.MUD      This is the heart of the world. This file controls
+                     what mobs and objs are loaded into the world. It
+                     controls what objs, mobs have for sell, to use or
+                     wear etc. If you damage this file the game will not run!
+
+
+*    Any extra directories or files should be left alone and be considered there
+     for future expansion.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        6
+
+
+
+
+
+4 - MAINTENANCE
+-------------------------------------------------------------------------------
+
+  Axe & Fang requires no maintenance of any kind. All work is handled online in
+real time as players adventure the world. Axe doesn't restrict players to any
+time limit, other than that which is passed in the drop file. It doesn't care
+if you log in 30 times a day at 30 mins a play, and it never will. People
+wanting to limit plays must figure out another means of doing it. The reason is
+rather simple, to maintain this data would add 4 bytes to every mob in the world
+and is considered a waste of space when overall growth of the world needs all
+the room it can get. Axe allows players to create as many characters as they
+wish, for the like reason. To monitor user BBS names would require an addition
+of 41 bytes per record. This is a total waste of memory where the overall
+world is concerned. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        7
+
+
+
+
+
+5 - SYSTEM REQUIREMENTS
+------------------------------------------------------------------------------
+
+  To run Axe & Fang you need......
+
+  Computer:    PC XT/AT IBM 100% compatible
+  Memory  :    460 to 640k free
+               Axe uses no XMS/EMS at all
+  BBS S.W.:    Capable of producing DOOR.SYS, CHAIN.TXT or DORINFOx.DEF
+               drop files.
+  OS      :    Dos 3.2 or higher or a OS that can run DOS shells and
+               use a FOSSIL driver
+  Free Space : Axe needs about 4 megs free HD space. This grows on
+               systems with more nodes.
+  Share.exe  : If you are running under DOS you must have share
+               loaded.
+
+  Multi Taskers: Axe detects OS/2, WINDOWS, WINDOWS/NT and DESQVIEW.
+                 Axe doesn't give up time slices for one reason,
+                 there is never a delay in the program. The only
+                 two delays in the program are at the login
+                 screens. Axe is in real time and sets in no loops
+                 waiting for character input and doing nothing.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        8
+
+
+
+
+
+6 - NOTE ON MULTI-NODES
+------------------------------------------------------------------------------
+
+  Axe uses a signal file found in the .\DATA directory while games
+  are in play. This file is called MULTI.DAT. This file is opened by the first
+  node to begin play and is closed and deleted by the last node to exit play.
+  This file can grow rather large on a big multi node system and it is
+  highly recommended that at least once a day no play be allowed in the
+  game on any nodes at the same time. If you run a nightly maintenance
+  and wish to make sure the file is deleted by adding a line to your batch
+  file, then be very sure there is no one in the door or you will get a
+  share violation and lock your window.
+
+  Further more, don't ever boot up two of the same nodes into axe at
+  one time. Anything from a share violation to MULTI.DAT being left
+  un-deleted can occur.
+
+  Axe requires that full file sharing be in affect. LANS that lock
+  resources from other running nodes, can not at this time run AXE in
+  multi-node interaction. You can still run AXE on more than one node but will
+  have to have more than one copy online for it to work properly.
+
+  In DOS, share must be loaded.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        9
+
+
+
+
+
+7 - SUPPORT FOR AXE & FANG
+------------------------------------------------------------------------------
+
+Support for Axe & Fang can be found at the following places...
+
+Author's BBS
+
+BBS      : Charles's Place
+SysOp    : Charles Marchant
+LOCATION : San Marcos, Texas
+FIDO     : 1:382/704
+GrimNET  : 800:1/100
+PHONE    : 1(512)392-0528
+SPEED    : 14.4k
+VOICE    : 1(512)392-2094
+INTERNET : NA
+FREQ     : AXE for latest version
+
+Support/Beta/Distrabution Sites
+
+BBS      : Random Access
+SysOp    : Bruce Parker
+LOCATION : Burton, South Carolina
+FIDO     : 1:3650/1
+GrimNET  : 800:2/100
+PHONE    : 1(803)521-0828
+SPEED    : 19.2K
+VOICE    : NA
+INTERNET : NA
+FREQ     : AXE for latest version
+
+BBS      : The UnKnown Gateway
+SysOp    : Dan Smith
+LOCATION : New Mexico , Clovis
+FIDO     : 1:318/7
+GrimNET  : 800:3/101
+PHONE    : 1-505-784-3275
+SPEED    : 28.8k
+VOICE    : NA
+INTERNET : NA
+FREQ     : AXE for latest version
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        10                       
+
+
+
+
+
+8 - REGISTRATION
+------------------------------------------------------------------------------
+
+To register Axe & Fang, print out the following form. Fill it out
+and send to the below address.  All keys will be processed in a quick and
+timely manner. You can expect to receive your key within 2 weeks max, from
+the time your registration form arrives.
+
+
+
+
+
+                             AXE & FANG VERSION 1.18
+                                REGISTRATION FORM
+                                -----------------
+                                 (Please Print)
+
+ Register to:_________________________________________
+
+ BBS Name :___________________________________________
+
+ FIDO _:____/____ (if applicable)
+
+ First Name :____________________ Last Name:_______________________________
+ (SysOp Name)
+
+ Address:__________________________________________________________________
+
+ Suburb or City:____________________________ State:____ Postal Code:_______
+
+ Country:__________________________ Home Phone: (    )_____________________
+
+
+ Cost of registration is 25$ in US funds. Check/Money Order/Cash
+
+
+ CHECKS & MONEY ORDERS
+
+     All checks and money orders should be made out to Charles
+     Marchant and in American dollars only.
+
+ ___: Send my key via Fidonet to above node number.
+
+ ___: Send my key via postal service to above address.
+
+
+
+                              - end print -
+----------------------------------------------------------------------------
+   SEND TO:             Charles Marchant
+                        130 Jackson Lane AP 5B
+                        San Marcos Texas
+                        78666
+----------------------------------------------------------------------------
+
+
+
+
+
+                                        11
+
+
+
+
+
+9 - BEING A GOD IN AXE & FANG
+------------------------------------------------------------------------------
+
+So you want to be a god do you? Well here's the door for you! There is less
+than 15% of AXE that is not SysOp editable or player editable. Since this is so,
+it is very important to understand what being a god is all about. Let's start
+by saying a god holds all the power in Axe. There is nothing he or she can not
+change to improve the world for their users, or to better the enjoyment of the
+game. Likewise, a god can so unbalance the game from sloppy editing as to make
+it too easy or hard. If the game is too easy, then you end up with all gods, and
+no peasants to punish. Too hard and no one will play the game after a while. To
+keep the world even and challenging, then you must read and understand the
+following sections before you begin to tailor AXE to your liking. One big word
+of advice, backup the AXE directory before each editing session, that way if you
+make a blunder, a recovery is near by.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        12
+
+
+
+
+
+10 - BUILDOBJ COMMAND
+-----------------------------------------------------------------------------
+
+To build or edit an object (obj), you must be level 25. Type buildobj
+and you will be prompted with the below:
+
+ ----------------------------------------------------------------------------
+|                                                                            |
+| Hello Grim, while you are building a obj, the world here will pause.       |
+| Highest obj in world = 155                                                 |
+| Edit Obj  (0 - 154) New Obj  ( 155 ) :                                     |
+|                                                                            |
+ ----------------------------------------------------------------------------
+
+To edit an old obj, enter it's number or else enter the number to the right of
+new mob (155 in this case) to begin editing a new monster. Once done, you will
+be prompted with a status window similar to the one below.
+
+------------------------------------------------------------------------------
+|                                                                            |
+| Obj Num : 155                                                              |
+| Obj Name : NEW OBJ                                                         |
+| Obj Type : UNDEFINED                                                       |
+| Apply Type : NONE  Amount : 0                                              |
+| Value  : 0                                                                 |
+| Weight : 0                                                                 |
+| Cost to Rent : 0                                                           |
+| Spec Flags :                                                               |
+| Affects :                                                                  |
+| Wear Flag :                                                                |
+| Values 0 : 0 - Bad item type                                               |
+| Values 1 : 0 - Bad item type                                               |
+| Values 2 : 0 - Bad item type                                               |
+| Values 3 : 0 - Bad item type                                               |
+|                                                                            |
+| (A-Name (B-Type (C-Apply (D-Value (E-Weight (F-Cost to rent (G-Spec Flag   |
+| (H-Affect Flags (I-Extra Values (W-Wear Flags (J-Save (K-Abort             |
+|                                                                            |
+ ----------------------------------------------------------------------------
+
+
+EXPLANATION OF COMMANDS
+-----------------------
+
+ A - Name            This command will first prompt you for the new name
+                     of the object, then prompt you for a keyword. The key
+                     word should be lower case and have meaning to the object,
+                     or be part of the objects name.
+                     
+                     ex:
+                        name      A blue steel key
+                        keyword   key
+
+ B - Type            This command allows you to select from a list of
+                     available type types. See list below. This will
+                     affect how the extra values are assigned.
+
+
+
+                                        13
+
+
+
+
+
+ C - Apply           This is a flag that is used to set a magical
+                     affect applied to the player when worn, held or
+                     wielded. After selecting an apply type, you will be
+                     prompted for a value, then whether it is negative
+                     or not.
+
+ D - Value           This is the value of the item in gold. A 0 value
+                     item can not be rented and is junked when a person
+                     tries to buy or sell it.
+
+ E - Weight          This is the weigh in pounds of the object. A players
+                     strength determines the amount of weight that they can
+                     handle for weapons etc.
+
+ F - Cost to Rent    This is the amount in gold it cost a player to save an
+                     object when they log out of the game using the rent
+                     command at an inn.
+
+ G - Spec Flag       Sets a visual flag like glowing, humming and others
+                     that the item will have.
+
+ H - Affect Flags    This is a set of flags that tells what type of affect
+                     the item will have on a player when worn, held or
+                     wielded.
+
+ I - Extra Values    This is a set of 4 fields which are assigned values
+                     depending on the type of item being built. Follow
+                     the prompts and you should have no problem with
+                     this section.
+
+ W - Wear Flag       This is a set of flags that determine whether
+                     a player can take an item and if so where it may be
+                     worn, held or wielded.
+
+ J - Save            Save the object to disk for later use by Axe.
+
+ K - Abort           This command simply aborts the editor.
+
+
+ CHARTS OF ITEM FLAGS
+ ----------------------------------------------------------------------------
+
+ TYPE LIST
+ ---------
+
+0  UNDEFINED              <-- no special item
+1  LIGHT                  <-- item is a light source such as a torch etc
+2  SCROLL                 <-- scroll with magic spells
+3  WAND                   <-- wand with magic spells
+4  STAFF                  <-- staff with magic spells
+5  WEAPON                 <-- weapon of some sort
+6  FIRE WEAPON            <-- unused at this point
+7  MISSILE                <-- unused at this point
+8  TREASURE               <-- item just has a gold value, like a jewel, gem
+9  ARMOR                  <-- armor of some type
+10 POTION                 <-- potion with magic spells
+
+
+
+                                        14
+
+
+
+
+
+11 WORN                   <-- flag used to set armor to a worn out state
+12 OTHER                  <-- copy of undefined
+13 TRASH                  <-- flag set to junk or 0 value items
+14 TRAP                   <-- unused at this point
+15 CONTAINER              <-- item like a bag etc, can hold other objects
+16 NOTE                   <-- item has writing on it and can be read
+17 LIQUID CONTAINER       <-- item like a jug or glass that can hold a liquid
+18 KEY                    <-- item can unlock a door or object
+19 FOOD                   <-- item can be eaten like steak, bread, mushroom
+20 MONEY                  <-- item is gold
+21 PEN                    <-- unused at this point
+22 BOAT                   <-- item is used to travel upon water
+
+
+SPECIAL FLAGS
+-------------
+
+1  GLOW                   <-- item glows
+2  HUM                    <-- item hums
+3  DARK                   <-- item dark
+4  EVIL                   <-- item is evil (will force attacks on good mobs)
+5  GOOD                   <-- item is good (will force attacks on evil mobs)
+6  INVISIBLE              <-- item is invisible
+7  MAGIC                  <-- item is magic
+8  NODROP                 <-- item can not be dropped or given away
+9  BLESS                  <-- item is blessed and adds to hit and ac
+10 ANTI-EVIL              <-- item can not be used by evil mobs
+11 ANTI-GOOD              <-- item can not be used by good mobs
+12 ANTI-NEUTRAL           <-- item can not be used by neutral mobs
+
+Affect Flags
+------------
+
+0  BLIND                <-- item will blind the mob when used
+1  INVISIBLE            <-- item turns mob invisible when used
+2  DETECT-EVIL          <-- item allows player to detect evil when used
+3  DETECT-INVISIBLE     <-- item allows player to detect invisibility when used
+4  DETECT-MAGIC         <-- item allows player to detect magic when used
+5  SENSE-LIFE           <-- item allows player to sense other players
+6  HOLD                 <-- item cast hold spell on player when used
+7  SANCTUARY            <-- item protects player from damage when used
+8  CURSE                <-- item curses a player when used (-hit -ac)
+9  POISON               <-- item poisons player when used -2 hp a game hour
+10 PROTECT-EVIL         <-- item reduces damage in combat against evil mobs
+11 PARALYSIS            <-- item induces paralysis when used
+12 SLEEP                <-- item cast sleep spell on player when used
+13 SNEAK                <-- not used at this point
+14 HIDE                 <-- not used at this point
+15 FEAR                 <-- not used at this point
+16 CHARM                <-- not used at this point
+
+
+
+
+
+
+
+
+                                        14
+
+
+
+
+
+Wear Flags
+-----------
+0  TAKE                 <-- must be set for a player to pick it up
+1  FINGER               <-- can wear on finger
+2  NECK                 <-- can wear around neck
+3  BODY                 <-- can wear on body (chest)
+4  HEAD                 <-- can wear on head
+5  LEGS                 <-- can wear on legs
+6  FEET                 <-- can wear on feet
+7  HANDS                <-- can wear on hands
+8  ARMS                 <-- can wear on arms
+9  SHIELD               <-- can be used as a shield
+10 ABOUT                <-- can wear about the whole body
+11 WAIST                <-- can wear around waist
+12 WRIST                <-- can wear on wrist
+13 WIELD                <-- can be wielded as a weapon
+14 HOLD                 <-- can be held in hand
+15 THROW                <-- not used
+
+Apply Flags
+-----------
+0  NONE                 <-- item applies nothing to the player
+1  STR                  <-- applies to a players strength
+2  DEX                  <-- applies to a players dexterity
+3  INT                  <-- applies to a players intelligence
+4  WIS                  <-- applies to a players wisdom
+5  CON                  <-- applies to a players constitution
+6  SEX                  <-- changes a players sex
+7  CLASS                <-- changes a players class
+8  LEVEL                <-- raises or reduces a players level
+9  AGE                  <-- raises or reduces a players age
+10 MANA                 <-- applies to a players mana
+11 HIT                  <-- applies to a players hit points
+12 MOVE                 <-- applies to a players movement points
+13 GOLD                 <-- applies to a players gold
+14 EXP                  <-- applies to a players exp points
+15 ARMOR                <-- applies to a players armor class
+16 HITROLL              <-- applies to a players chance to hit
+17 DAMROLL              <-- applies to a players damage bonus
+18 SAVING_PARA          <-- applies to saves vs hold/sleep type affects
+19 SAVING_ROD           <-- applies to saves vs rods/staffs/wands
+20 SAVING_PETRI         <-- applies to saves vs fear/curse type affects
+21 SAVING_BREATH        <-- applies to saves vs breath weapons
+22 SAVING_SPELL         <-- applies to saves vs spells
+
+
+Weapon types used to set extra values when building weapons
+------------------------------------------------------------------------------
+
+0 - HIT
+1 - BLUDGEON
+2 - PIERCE
+3 - SLASH
+4 - WHIP
+5 - CLAW
+6 - BITE
+7 - STING
+8 - CRUSH
+
+                                        15
+
+
+
+
+
+11 - BUILDMOB COMMAND
+-----------------------------------------------------------------------------
+
+To build or edit a monster (mob), you must be level 25. Type buildmob
+and you will be prompted with the below.
+
+ ----------------------------------------------------------------------------
+|                                                                            |
+| Hello Grim, while you are building a mob, the world here will pause.       |
+| Highest mob in world = 315                                                 |
+| Edit Mob  (0 - 315) New Mob  ( 316 ) :                                     |
+|                                                                            |
+ ----------------------------------------------------------------------------
+
+To edit an old mob enter it's number, else enter the number to the right of
+new mob to begin editing a new monster. Once done you will be prompted with
+a status window similar to the below.
+
+ ----------------------------------------------------------------------------
+|                                                                            |
+| Mob Number 0                                                               |
+| Name : BoneCrusher's Honor Guard                                           |
+| Abilities STR 13 INT 13 WIS 13 CON 13 DEX 13                               |
+| Sex : Male                                                                 |
+| Alignment : 1000                                                           |
+| ACT Flags :  SENTINEL NPC                                                  |
+| AFFECT flags :                                                             |
+| Position : STANDING                                                        |
+| Hit Pts 800  Move 50  Mana 50                                              |
+| AC : 0  Hitroll 3  Damroll 0                                               |
+| Damage dice Size 6 Num 6 +Dam 0                                            |
+| Attack type : CRUSH                                                        |
+| Spec Class : Shop Inn  Level 19  Exp 200000                                |
+| Gold : 103                                                                 |
+|                                                                            |
+| (A)Name (B)Abilities (C)Sex (D)Alignment (E)ACT Flag (F)AFFECT Flag (G)Pos |
+| (H)Hit Pts (I)Move (J)Mana (K)AC (L)Hitroll (M)Damroll (N)Damage dice      |
+| (O)Attack Type (P)Spec Class (Q)Level (R)Exp (S)Gold (T)Save (U)Abort      |
+| (V)Description :                                                           |
+|                                                                            |
+ ----------------------------------------------------------------------------
+
+EXPLANATION OF COMMANDS
+-----------------------
+
+  A - Name        This is the name of the mob shown to players.
+                  It is also the keyword when used in a players command.
+                  It is wise not to start the name with 'A', 'The', etc,
+                  since then a person must type kill the, kill a to and
+                  so on.
+
+  B - Abilities   A New NPC is set with a base ability score of 13's, if you
+                  wish to change them, this command will step you through
+                  each one and prompt for a new number. Abilities can go
+                  between 4 and 25.
+  C - Sex         This will prompt you for a sex of the mob, either neuter,
+                  male or female.
+
+
+                                        17
+
+
+
+
+
+  D - Alignment   This will prompt you for the new alignment of the mob.
+                  Alignment can range from -1000 ( max evil) to 1000
+                  ( max good )
+
+  E - ACT Flag    This is a special flag that tells the game how the mob
+                  will act in the world. A description of actions follows
+                  this section.
+
+  F - Affect Flag This is a special flag which can be used to set starting
+                  affects on a mob. A list of affects follows this section.
+
+  G - Position    This command allows you to alter the starting position
+                  of the mob. By default they are standing. Any other
+                  position will not allow the mob to act according to
+                  the act flag.
+
+  H - Hit Points  This command will prompt you for the new hit points of the
+                  mob. The norm is 12 to 20 points per level of the mob. The
+                  higher the number, the harder it is to kill. If you make 
+                  areas for ogre and troll barbarians to adventure in, then set 
+                  the hit points high since these class/race combos do high
+                  damage rolls.
+
+  I - Move        Will prompt for the mobs new amount of move points.
+                  The more move points a mob has, the more it can roam
+                  the world or flee from combat.
+
+  J - Mana        This command prompts for the new amount of mana the
+                  mob will have. This affects the amount of times they can
+                  employ special spell functions in combat.
+
+  K - AC          This is the mobs starting ac, and can range from -100
+                  to 100. Negative 100 is the best one can hope for and
+                  100 is the worst.
+
+  L - Hitroll     This is a mobs base chance to hit a player with ac 0.
+                  The lower this number becomes the easier a mob hits.
+                  The range can be from -20 to 20.
+
+  M - Damroll     This is a mobs bonus to damage. Once all damage is
+                  determined in combat this is added to it.
+
+  N - Damage Dice This will prompt you for 3 numbers. The first is
+                  the size of the dice to roll for damage, second is
+                  the number of dice to roll and third is the bonus
+                  to damage. For low level monsters keep damage small,
+                  say from 1 to 6 max, the higher mobs get, the more you
+                  can added to this. Setting this too high, will really
+                  unbalance the game for players. Too low and players
+                  will walk all over your world.
+
+  O - Attack Type This sets the prompt that will be seen when the mob
+                  attacks with bear hands. When used correctly, you can get
+                  the affect of a mob using a weapon without having to
+                  load one for them.
+
+
+
+
+                                        18
+
+
+
+
+
+  P - Spec Class  This is a bit that sets the mobs special flag. What
+                  the special class is used for is quite simple. There
+                  are two main groups of special classes, shop and
+                  guild. For a player to be able to buy or sell, a shop
+                  flag must be set. For a player to practice, a guild
+                  flag must be set. There are a number of each type used
+                  to limit the types of items bought and sold and the
+                  class that can practice with a certain mob.
+
+  Q - Level       This set the mobs level, it can range from 1 to
+                  25.
+
+  R - Exp         This is the base value a mob is worth in exp when killed.
+                  The amount shown is a seed amount used to figure earned
+                  exp for the kill. Other factors play into the final
+                  amount. Like the number of levels difference between
+                  killer and killed. The alignments of each and a few other
+                  small factors. See table below for suggested ranges
+                  per level of mob.
+
+  S - Gold        Gold is a special item for mobs. If you wish a shop keeper
+                  to be able to purchase a large amount of items, they must
+                  have gold. It's not suggested that you overload low level
+                  mobs with gold since this is a major factor in the game.
+                  Very high level and powerful weapons are all throughout
+                  the game and are meant for high level players only.
+                  The amount they cost to rent is high, if a low level
+                  player can kill a worm for 10k gold, then they will be
+                  able to keep a powerful weapon and walk all over your
+                  world making it unbalanced. When a player like that
+                  makes god, he or she will have no respect for how hard it
+                  was to get there, and lend nothing to your world of a
+                  positive nature.
+
+  T - Save        This saves the edited mob.
+
+  U - Abort       This aborts the edited mob.
+
+  V - Description This takes you to a small editor where you may add in
+                  a description for the mob or leave it to it's default.
+
+
+CHARTS AND TABLES FOR MOBS
+--------------------------
+
+Mob hit types
+-------------
+0 - HIT
+1 - BLUDGEON
+2 - PIERCE
+3 - SLASH
+4 - WHIP
+5 - CLAW
+6 - BITE
+7 - STING
+8 - CRUSH
+
+
+
+                                        19
+
+
+
+
+
+Mob Actions
+-----------
+
+  0  SPEC          <- not yet in use
+  1  SENTINEL      <- forces a mob to remain where they are
+  2  SCAVENGER     <- mobs will pick up items that are in rooms
+  3  ISNPC         <- tell AXE that a mob is computer run, MUST SET
+  4  NICE-THIEF    <- will keep mob from attacking a player that tries to steal
+  5  AGGRESSIVE    <- mob will attack players that they can see in the room
+  6  WIMPY         <- mob will flee from combat when hurt bad
+  7  STAY_ZONE     <- keeps a mob from wondering out of a zone
+
+
+  *If you set wimpy and aggressive the mob will attack players that are
+   sitting, resting and or sleeping
+
+
+Mob affect flags
+----------------
+
+0  BLIND               <- the mob is blind, could be useful for beggars etc
+1  INVISIBLE           <- the mob is invisible until combat
+2  DETECT-EVIL         <- mob can detect evil ( for future expansion )
+3  DETECT-INVISIBLE    <- mob can see invisible players/items
+4  DETECT-MAGIC        <- mob can detect magic ( for future expansion )
+5  SENSE-LIFE          <- mob can sense life, example hidden players
+6  HOLD                <- mob can't move until attacked, statues etc
+7  SANCTUARY           <- mob is protected by a greater being
+8  CURSE               <- mob is cursed, -hit -damage -saves
+9  POISON              <- mob has been poisoned
+10 PROTECT-EVIL        <- mob is protected from evil players
+11 PARALYSIS           <- mob can't move
+12 SLEEP               <- mob has been put to sleep magically  
+13 SNEAK               <- mob can move without being seen
+14 HIDE                <- mob is hidden in a room
+15 FEAR                <- mob is scared -hit -damage
+16 CHARM               <- mob has been charmed by someone
+
+
+Suggested Exp Range per level for NPC's
+----------------------------------------
+
+Level          Range          Level          Range
+  1              100           14            20000   
+  2              200           15            25000     
+  3              350           16            30000            
+  4              600           17            35000     
+  5             1000           18            40000            
+  6             2000           19            48000
+  7             3000           20            56000          
+  8             4000           21            66000
+  9             6000           22            80000
+ 10             8000           23           100000
+ 11            10000           24           130000
+ 12            13000           25           150000     
+ 13            16000
+
+
+
+                                        20
+
+
+
+
+
+12 - BUILDROOM COMMAND
+------------------------------------------------------------------------------
+
+To build or edit a room while in AXE, be in your god form (lvl 25 player) and
+type buildroom. The following prompt (except name) will appear.
+
+ ----------------------------------------------------------------------------
+|                                                                            |
+| Hello Grim, while you are building a room, the world here will pause.      |
+| Highest room in world = 315                                                |
+| Edit room (0 - 315) New room ( 316 ) :                                     |
+|                                                                            |
+ ----------------------------------------------------------------------------
+
+To edit an old room, enter the number of the room. To begin a new room, enter
+the last number displayed. ( 316 in this example )
+From here a display of room info will appear similar to below.
+
+ ----------------------------------------------------------------------------
+|                                                                            |
+| Name : NEW ROOM                                                            |
+| Num  : 316                                                                 |
+| Zone : 0                                                                   |
+| Light      : No                                                            |
+| Sector     : INSIDE                                                        |
+| Room Flags :                                                               |
+|                                                                            |
+ ----------------------------------------------------------------------------
+
+ (1-Name (2-Sector (3-Flags (4-Light (5-Zone (6-Exits (7-Save (8-Abort
+ (9-Room Description :
+
+A new room starts with these defaults.
+
+COMMAND SUMMARY
+---------------
+
+1 - Name          : Using this command, you can change the name of the room.
+
+2 - Sector        : Use this command to set the type of terrain the room is
+                    in.
+
+3 - Flags         : This command brings up a sub-list of possible flags to
+                    turn on or off for the room. Flags may be joined to
+                    build elaborate rooms.
+
+4 - Light         : If set to light, the room has lighting on as default.
+                    Leave it set to no, if its outside and you wish the
+                    day and night lighting to work here.
+
+5 - Zone          : This is a special number that controls mobs ability
+                    to roam a area. Say you want to make a trail that a
+                    guard will follow and go no where else. Give every
+                    room in the trail the same zone number and the guard
+                    will stay on this path only.
+
+
+
+
+                                        21
+
+
+
+
+
+6 - Exits         : This is a special command that sets all the possible
+                    exits from a room. When you select this option a
+                    sub-menu comes up listing the directions you may
+                    develop from. Choose a direction like north and
+                    you will then go through a number of extra prompts.
+                    See example after this section.
+
+7 - Save          : This command saves the room to disk.
+
+8 - Abort         : This command aborts your room editing with no save.
+
+9 - Description   : This command brings you into a small text editor.
+                    The old description will be displayed, then you will
+                    have a cursor below it, with which you can enter a new
+                    description with. Hitting @, at anytime will exit the
+                    editor and prompt you if you wish to replace the old
+                    description with the new one.
+
+Example Exit Command:
+--------------------
+
+After hitting 6 you will be prompted for a direction like so...
+
+ ----------------------------------------------------------------------------
+|                                                                            |
+| 0 - North                                                                  |
+| 1 - East                                                                   |
+| 2 - South                                                                  |
+| 3 - West                                                                   |
+| 4 - Up                                                                     |
+| 5 - Down                                                                   |
+| Edit which exit :                                                          |
+|                                                                            |
+ ----------------------------------------------------------------------------
+
+Select a direction and you will then be prompted with a number of options
+as follows.
+
+ ----------------------------------------------------------------------------
+|                                                                            |
+|  To room = 0 ((null))                                                      |
+|  New Room (N/y) :                                                          |
+|                                                                            |
+ ----------------------------------------------------------------------------
+
+If a 'To room' has already been selected the name of the room would follow
+the room number. To room 0 closes an exit off.
+
+If you answer Y, you will be prompted for the new room number for the exit
+to go to. If you wish a player to be able to come back from the room which
+the exit leads to, the then other rooms opposite exit must have the editing
+rooms number there. ex:  Editing room 10 going north, the 'to room' is 11, then
+room number 11's south exit must equal 10 to be a two way passage.
+
+You can make one way passages by leaving the 'to rooms' opposite direction
+blank or leading to another room all together.
+
+
+
+                                        22
+
+
+
+
+
+After selecting the new room you will see this prompt.
+
+ ----------------------------------------------------------------------------
+|                                                                            |
+| Key : 0                                                                    |
+| New key (N/y) :                                                            |
+|                                                                            |
+ ----------------------------------------------------------------------------
+
+If you wish to lock the room with a key of some kind, you would answer yes
+to this prompt, then supply the key number for the exit. NOTE: The key number
+is the extra value0 of a key items and not a key items real number.
+
+Following the key prompt you will be given a keyword prompt like so.
+
+ ----------------------------------------------------------------------------
+|                                                                            |
+|  Keyword :                                                                 |
+|  New keyword (N/y) :                                                       |
+|                                                                            |
+ ----------------------------------------------------------------------------
+
+Select yes, if you want a special door or exit and you will be given this list
+of possible exits to choose from.
+
+ ----------------------------------------------------------------------------
+|                                                                            |
+|   1 iron door          2 stone door            3 wood door                 |
+|   4 rock ledge         5 metal gate            6 wood gate                 |
+|   7 cupboard           8 curtain               9 tapestry                  |
+|  10 partition         11 screen               12 thornbush                 |
+|  13 grate             14 trapdoor             15 ledge                     |
+|  16 stump             17 slab                 18 tree trunk                |
+|  19 crevice           20 crack                21 skylight                  |
+|  22 bolder            23 rock                 24 alter                     |
+|  25 lid               26 portcullis           27 shutters                  |
+|  28 drawbridge        29 bars                 30 crate                     |
+|  31 log               32 webs                 33 portal                    |
+|  34 mirror            35 drain                36 entryway                  |
+|  37 step              38 edge                 39 closet                    |
+|  40 block             41 picture              42 statue                    |
+|  43 junk                                                                   |
+|                                                                            |
+|  New keyword number :                                                      |
+|                                                                            |
+ ----------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        23
+
+
+
+
+
+After selecting a option you will move onto the exit type flags as follows.
+
+ ----------------------------------------------------------------------------
+|                                                                            |
+| 0 OPEN                                                                     |
+| 1 CLOSED                                                                   |
+| 2 LOCKED                                                                   |
+| 3 UNLOCKED                                                                 |
+| 4 MAGIC                                                                    |
+| 5 PICKPROOF                                                                |
+| 6 ISDOOR                                                                   |
+|                                                                            |
+| Select:                                                                    |
+ ----------------------------------------------------------------------------
+
+If you selected keyword besides 0 (door) you will need to set ISDOOR flag.
+You can only set one flag at a time, so you will have to run back through the
+exit setup and select additional flags as desired.
+
+Explanations of exit flags:
+
+OPEN         <- the exit starts out at boot up as open
+CLOSED       <- the exits is closed at boot up
+LOCKED       <- exit is locked at boot up
+UNLOCKED     <- exit is not locked at boot up
+MAGIC        <- takes a spell/rod/staff/wand/potion to pass this door
+PICKPROOF    <- door can never be picked by a thief, etc.
+ISDOOR       <- means the exit is open and closable, must be set
+                for exits with other than 0 for a keyword
+
+NOTE: To make an exit usable for players while working on a area just
+      set the to_room to 0, you don't have to remove any other options
+      from the exit.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        24
+
+
+
+
+
+13 - MLOAD COMMAND
+------------------------------------------------------------------------------
+
+  This command is a very powerful god command, and can be used in the making
+ of quest. It loads a mob into the world at the same location as the god.
+ Since a lot of the mobs are aggressive it is wise to be in a god room,
+ rooms 0 to 9, when this is done. Then use the trans command to move the
+ mob to the desired location. Special mobs can be made and loaded into the
+ world without ever taking down the game. You can use the buildmob command
+ to make a special mob for a quest then load it right away using mload.
+ Mload takes one command argument and that is the record number of the
+ mob to load into the world.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        25
+
+
+
+
+
+14 - OLOAD COMMAND
+------------------------------------------------------------------------------
+
+  Oload is a powerful god command used to load objects into the world. The
+ loaded object is dropped on the ground at the gods feet. This command along
+ with mload, buildmob, buildobj, can all be used in the making of quest.
+ Oload takes one command argument and that is the record number of the object
+ to load.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        26
+
+
+
+
+
+15 - THE ZONE FILE
+------------------------------------------------------------------------------
+
+The zone file is in truth, the heart of Axe. It's what links all the mob, obj
+and room files together. The zone file controls what mobs are loading into
+what room, what objs are loaded into rooms, given to mobs or even
+equipped by the mobs. The zone file is a simple ASCII text file and follows
+this simple layout.
+
+# is used to comment a complete line
+M is used to load a mob
+O is used to load a obj
+G is used to give the last loaded obj to the last loaded mob
+E is used to give the last loaded obj to the last loaded mob
+  and have them equip it.
+$ is placed at the end of the zone file, once $ is found the
+  zone file is closed and zone loading is done. The $ must be
+  in the file at some point, normally the end.
+
+Zone file command syntax
+------------------------
+
+M <mob number> <room number>
+O <obj number> <room number>
+G
+E <location to equip>
+$
+
+Sample zone file
+----------------
+
+#--------------------------------
+# Area 1
+#--------------------------------
+
+M 1 100         <--- Load mob 1 to room 100
+O 1 100         <--- load obj 1 to room 100
+G               <--- Give to mob
+O 2 100         <--- load obj 2 to room 100
+E 16            <--- give to mob and wield as weapon
+
+#--------------------------------
+# End area 1
+#--------------------------------
+$               <--- End of zone file
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        27
+
+
+
+
+
+16 - QUEST
+------------------------------------------------------------------------------
+
+ Through the use of the editor commands, oload and mload, a god can make
+ on the fly quest.  This is really only good for multi-node systems but can
+ be a real blast if done right.
+
+example:
+
+ Say you have 10 lines and 5 players are in the game, all 6th to 15th level.
+ You could enter the game as god, edit a quick wicked item for a prize,
+ then load up a few aggressive monsters into Tooth to invade it. Have
+ the players defend Tooth and those that survive get one of the nice
+ items you built for a prize.
+
+ Or another idea is to hide a item somewhere in the world and let the
+ players search for it. You could also request a item known to be in
+ the world, and the first player that brings it to you wins the quest.
+
+ Likewise you can load a nasty mob somewhere in the world and let the
+ players attempt to find it and kill it.
+
+ Basically quest are wide open, you can be as colorful as you want, or not
+ have any at all, it's up to you.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        28
+
+
+
+
+
+17 - DAMAGED ITEM FILES
+------------------------------------------------------------------------------
+
+Damaged Item files are for the most part very easy to recover from. If a
+player for some reason ends up with a corrupted file follow these few steps.
+
+1) Delete his/her item file. This can be found in the \player\A to Z
+   directories. Look in the directory were the letter is the same as the
+   first letter of the players name. The item file will be named
+   part of ( all if the names shorter than 8 letter) the players
+   name. The extension is a number which is equal to the record number
+   of the player.
+
+2) If on a multi node system, then you enter on one node as god and have the
+   user enter the game on another node. Then just use oload to give the
+   player back any items he lost due to the corruption. Then just have him
+   or her rent.
+
+3) If on a single node system then deleting is about the best you can do.
+
+NOTE: In truth you can just preform step two and have the player drop all
+      before you begin to give him back the items lost.
+
+
+
+------------------------------- end docs -----------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        29

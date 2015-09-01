@@ -1,0 +1,340 @@
+Scores of trolls litter the wilderness you've left behind. Your throat
+scratches and immediately you head for the tavern, for fresh ale and
+stale donuts to celebrate a day of great battle.
+@PAUSE@
+Dropping into the chair you wave for a waitress. Without question she
+brings over your desire and takes a few coins. As you settle back and
+just begin to relax, two men approach you from the back of the tavern.
+
+Quietly both men set down at your table, motioning for the waitress to
+bring more ale.
+@PAUSE@
+Soon the ale arrives and the first man speaks.
+
+`bright green`"We require the aide of a skilled warrior."
+@PAUSE@
+Chewing on the stale donut you look over the two men. Neither carry
+weapons outwardly, and are garbed in the latest fashions from up the
+river, yet the bulky nature of the clothing gives away that beneath
+their spiffy threads they wear armor as does anyone whom isn't
+already dead.
+
+Glancing around the tavern you note that several men -- several well
+armed and big men -- are watching you.
+@PAUSE@
+`bright green`"For?" `grey`you ask.
+
+`bright green`"To lead our escort," `grey`the second man adds. `bright green`"Our last captain of the
+`bright green`escort fancied ale and one night found himself in a fight."
+@PAUSE@
+The hairs on the back of your neck spring up. You recall their
+captain, and his hands that wouldn't stay off of your favorite server
+here at the tavern. Both men stare at you, grinning.
+
+`bright green`"Yes, we know," `grey`the first man proclaimed. `bright green`"The job pays well and
+`bright green`only requires three days journey upriver. We already have five men
+`bright green`in the guard. All we need is a captain."
+@PAUSE@
+The second man asks, `bright green`"So, what do you think?"
+
+You down the ale and slam the mug against the table. Five big and
+well equipped men instantly stand, hands on weapons.
+
+`bright green`"Sure," `grey`you say, `bright green`"I'll do it."
+
+Both men smile and shake hands with you. The five guards calm down
+and return to sipping their juice drinks.
+@PAUSE@
+`bright green`"Be here in the morning at sunrise."
+@PAUSE@
+@DAYEND:1
+Finding it far too early in the morning for a civilized person such
+as yourself to be awake, you scratch at the stubble on your chin as
+the all too familiar tavern comes into view. Several dozen carts,
+lead by teams of mules, are lined up on the dusty street as the
+drivers prepare for the trip. Several of the guards from the night
+before can be seen inspecting the contents of the carts.
+@PAUSE@
+`bright green`"Glad to see your awake." `grey`It's the first man from the night before.
+
+`bright green`"We're ready to head out whenever you are."
+@PAUSE@
+`bright green`"Finish gearing up," `grey`you yell, `bright green`"we'll be leaving shortly."
+@PAUSE@
+The last few hours have been completely uneventful, with the exception
+of occasional deer or rabbit. Feeling your stomach grumble you stop
+the caravan and call out "Lunch!"
+
+Creaks and groans echo from the carts as hungry men break for food.
+@PAUSE@
+Soon several groups have formed, setting in shade and eating whatever
+is at hand. You find yourself wandering from group to group, talking
+with the merchants and hearing about their children at home, wares
+their transporting and the general dislike for their King Dax and
+the high taxes of the Kingdom of Minerva.
+@PAUSE@
+Moving on you speak with the other guards who clam up as you approach,
+leaving you feeling cold. Finishing off the stale biscuits and water
+you chose for lunch you head to the front of the caravan.
+@PAUSE@
+`bright red`And that's when they attack!!!!
+@PAUSE@
+@MONSTER:Troll:10:20:25:0:2:3:300:8
+Almost having worked up a sweat you take a break to stretch before
+tackling the next round. Several of the other guards stand behind you,
+watching their new leader with amusement.
+@PAUSE@
+@MONSTER:Kobold:50:25:35:0:2:3:400:20
+The guards laugh at you, openly questioning your skills. To prove your
+might you scream aloud, `bright green`"Stand back, men, I'll take the next group!"
+@PAUSE@
+@MONSTER:Troll:50:55:35:0:2:3:300:50
+And just as soon as you think the slaughter is over, yet another wave
+pours forth.
+@PAUSE@
+@MONSTER:Giant Ant:60:55:35:0:2:3:300:50
+Glancing up from the steaming corpses, you see that the drivers and
+guards have already mounted up and are ready to head out. Several of
+the guards snicker.
+
+Angered, you stomp towards the front and yell `bright green`"Let's head out!"
+@PAUSE@
+Only a few more hours down the road the path tightens and trees rise
+higher and higher blocking out the sunlight. The caravan slows down
+and the merchants begin to question your leadership skills.
+
+Giving a wave you bring the group to a halt and wave the guards to the
+front.
+@PAUSE@
+`bright green`"Keep your eyes extra sharp," `grey`you mutter, `bright green`"this isn't the best way to
+`bright green`travel through here but it's the fastest."
+
+Several of the guards simply grunt and walk away. Two stay up with you,
+one to each side.
+
+With a wave the crawling caravan resumes.
+@PAUSE@
+Surprisingly things have gone calmly when the caravan is forced to
+stop, two large trees downed across the road. The two guards flanking
+you move forwards, inspecting the situation as the others suspiciously
+eye the darkness of the forest.
+
+Jogging up you help, ever so slowly, move the trees from the road. 
+Sweat pours from your brow and your armor chaffs your skin. After
+almost a half hour the first tree is out of the way. As you break
+for a bit, one of the guards out into the darkness to relieve himself.
+@PAUSE@
+You and the two guards begin to move the final tree when a shout echoes
+from the forest. Dropping the tree you rush into the darkness.
+@PAUSE@
+Topping a hill you look down and see the lone guard standing over what
+had once been a battleground, strewn with burned bodies. Approaching
+closer you take a more careful look and come to a decision that the
+corpses were at one time kobalts. Or maybe barbarians. Or giants.
+@PAUSE@
+Hearing a scream from behind you and the guards rush back towards the
+road.
+
+`bright green`"Oh great," `grey`you think, `bright green`"my first acting as a captain and I loose the
+`bright green`entire caravan to the oldest trick in the book."
+
+Rushing out of the forest you look upon the caravan...
+@PAUSE@
+...only to see two old men collapsed and out of breath by the last tree.
+Their wives stand nearby screaming their heads off.
+
+Quickly you order everyone back to their vehicles and get all of the
+guards to assist in moving the last tree.
+
+In under ten minutes the caravan is back underway.
+@PAUSE@
+Just when you thought it couldn't get any darker, it did. The drivers
+begin complaining, insisting that you stop and camp for the night.
+@PAUSE@
+You yell back, `bright green`"Quiet down! Camp if you want, but we're not stopping."
+@PAUSE@
+Some of the drivers complain but for the most part quiet down and
+continue to to follow.
+@PAUSE@
+Hours have passed and it's well past sundown when the forest begins to
+break, opening upon a wide savannah.
+
+`bright green`"One more hour and we camp," `grey`you yell back to the group.
+@PAUSE@
+Uneventfully the hour passes and the forest vanishes from sight, as
+does anything more than a couple hundred feet away.
+@PAUSE@
+Settling down for the night you offer to take the first watch along
+with the youngest of the guards.
+
+`bright yellow`In short order the camp is established, the caravan fed and most off
+`bright yellow`to sleep.
+@PAUSE@
+@DAYEND:2
+Daylight stings into your eyes as you rouse yourself awake. The drivers
+are obviously tired, yet meet your gaze and smile, forgiving you for
+the night before. Several offer you portions of their breakfast and
+with little hesitation you accept.
+@PAUSE@
+With food out of the way the youngest guard approaches you. `bright green`"Morning,
+`bright green`Hans," `grey`you mutter, having gotten acquainted with him the night before.
+@PAUSE@
+`bright green`"Morning, sir," `grey`he says, handing you a map. `bright green`"We're about here. I
+`bright green`think if we take this route we can reach Minerva by nightfall." `grey`You
+take a close look, and check out several alternate routes. Hans'
+route, though the fastest way, is the least safe. Yet all of the
+other routes involve at least another 3 full days of travel.
+@PAUSE@
+Mulling over the choices you decide that another 3 or more days of this
+isn't worth the money. `bright green`"Alright, Hans, let's give it a shot."
+
+Hans smiles, curtly salutes and runs off to inform the other guards.
+@PAUSE@
+An hour later and the campgrounds are far behind. Ahead can be seen
+the bank of one of the many rivers that crisscross through the area.
+A wooden bridge crosses just to the east and you lead the caravan over
+towards it.
+
+Unlike most bridges, this one lacks the traditional trolls lurking
+beneath.
+@PAUSE@
+Instead, a group of barbarians have claimed it. The corpses of the
+trolls littering the ground.
+
+`bright red`"Stop!" `grey`you yell, approaching the bridge. Three guards follow.
+@PAUSE@
+Looking at the tattered rags that the barbarians wear and their
+general disregard for hygiene and you begin to wonder if they
+even know how to speak. Taking a chance you decide to ask them a
+question.
+
+`bright green`"How much to cross the bridge?"
+@PAUSE@
+One barbarian, much taller than the rest, steps forward.
+
+`bright green`"Nothing."
+
+You grin, thinking for just a second that civilization is finally
+spreading out of the suburbs and into the rural wastelands. But,
+just as the warm glow of friendship passes over you the barbarians
+attack.
+@PAUSE@
+@MONSTER:Barbarian:500:35:35:0:0:3:300:50
+Having taken out the first three you glance around. The other
+guards rush forward, joining the fray. Diving in, you assist
+where you can.
+@PAUSE@
+@MONSTER:Barbarian:500:35:35:0:0:2:300:50
+`bright red`Another attacks you from the rear.
+@PAUSE@
+@MONSTER:Barbarian:500:35:35:0:0:1:300:50
+Several more climb up from the ravine and join the fight.
+@PAUSE@
+@MONSTER:Barbarian:500:35:35:0:0:3:300:50
+With the last barbarian felled, you and Hans take account of the
+guards, noting one dead and another badly wounded.
+@PAUSE@
+Quickly you rush the caravan across, not wishing to see if the 
+barbarians have any relatives nearby. You leave the dead guard 
+behind.
+@PAUSE@
+Out of sight of the bridge you order the caravan to a halt, quickly
+giving orders.
+@PAUSE@
+`bright green`"All guards, get into the carts and ride with the caravan. Be
+`bright green`prepared for battle at all times and keep your eyes sharp. If we can
+`bright green`pick up our pace for the next few hours, we might be able to reach
+`bright green`Minerva before nightfall."
+
+`bright green`"Also, everyone, you have about 5 minutes to get some food down and
+`bright green`whatever else you feel you need to do. We won't be stopping for some
+`bright green`time."
+@PAUSE@
+Grunts, snipes and shallow remarks come as response but the group
+quickly goes to work and follow orders. In just under ten minutes
+dust is all that remains as the caravan run recklessly southward.
+@PAUSE@
+Nearly half the day has passed, quiet and bumpy. Small villages
+scatter the landscape, most burned to the ground, others obviously
+deserted.
+
+You realize that for now this is good, allowing the caravan to
+travel undisturbed, but you've also noted that the further south
+you travel, the more recent the devastation is.
+@PAUSE@
+Unrolling the map you take note of your current location. The
+caravan has covered almost half of the days journey already.
+@PAUSE@
+A shout echoes out from the rear of the caravan. Leaning out the
+side of the cart you look back as two guards point rearward.
+
+`bright blue`Several figures can be seen chasing you, the dust obscuring out
+`bright blue`any sharp details. `bright green`"Faster," `grey`you scream. With a jolt the
+first few wagons gain speed. In seconds the tail end does it's
+best to catch up.
+@PAUSE@
+A loud crack rips from the cart you ride in, spilling you and the
+contents of the cart across the ground. Before you even have a
+chance to look up you hear the hooves and wheels of the other
+vehicles rush by.
+@PAUSE@
+As you stand you see the broken wooden wheel, busted into dozens
+pieces. The two drivers quickly rise and rush underneath their
+cart for cover. To the south you can see the caravan slow up,
+the guards dismounting and rushing back to your aide.
+
+Remembering that you were being followed, you turn to the north
+just as they arrive.
+@PAUSE@
+@MONSTER:Orc Jr:250:45:35:0:0:4:3000:250
+Glancing back you see that help is still not here.
+@PAUSE@
+@MONSTER:Orc Mage:250:45:35:5:0:2:3000:250
+As the guards reach you, the main group of attackers arrive.
+
+The guards do what they can to help you.
+@PAUSE@
+@MONSTER:Orc Mage:250:45:35:5:0:6:3000:250
+All that's left are the last of their kids.
+@PAUSE@
+@MONSTER:Orc Jr:150:45:35:0:0:4:3000:250
+A few of the attackers still stand, but the sight of being outnumbered
+sends them rushing off back to the north.
+
+In a bloodthirsty cry you order pursuit!
+@PAUSE@
+@MONSTER:Orc Jr:150:45:35:0:0:3:3000:250
+With the last attackers dead you feel relieved.
+
+Returning to the stopped caravan, you see that the drivers and 
+merchants have already shifted much of the cargo from the disabled 
+cart into other vehicles.
+@PAUSE@
+With much aide from the guards, the caravan resumes it's near reckless
+pace towards the south.
+@PAUSE@
+Night approaches and the somber mood of the caravan lifts. You have
+entered Minerva. Scattered farms, the outskirts of the kingdom, grow
+the various crops that sustain those inside the city. The devastation
+of those farms and villages outside of the kingdom has ceased, with
+only the occasional buildings burned to the ground.
+
+Soon you arrive at the city walls.
+@PAUSE@
+The drivers and merchants shake your hands, wishing you well on your
+way back to @KINGDOM@
+@PAUSE@
+`bright magenta`The guards, following tradition, take you to the local tavern for a
+night of ale, talk and women...after you collect your pay.
+
+`bright yellow`You gain 2 Granary Silos
+`bright yellow`You gain 20 Hit points
+`bright yellow`You gain 15 High Experience
+`bright yellow`You gain $5,000,000
+@PAUSE@
+@COMM:Granary:2
+@STAT:MaxHP:20
+@HIGH:15
+@GOLD:5000000
+
+@FINAL@

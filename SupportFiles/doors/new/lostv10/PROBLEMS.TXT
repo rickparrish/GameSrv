@@ -1,0 +1,26 @@
+Several changes have been made in the way The Lost Temple handles files for
+version 1.0.  Because of this, some players will unfortunately be reset.
+
+V0.2 and V0.3 saved the players filenames exactly as the players handles
+appeared. This means that certain files were created by the game with
+spaces in the file names such as "JOE BLOW.PLY".  I didn't realize that
+these file names would interefere with certain maintenance functions such
+as drive de-fragment programs.  Version 1.0 will now strip spaces and 
+periods from the players handles and save the file names correctly.  Players
+that had no spaces in their names will not be effected, but others will
+have to start over.
+
+If you are having trouble getting rid of old files that contained spaces in
+the file names, you can do 2 things.  I've found that the PC-Tools programs
+will handle these file without a problem.  You can delete them with 
+PC-Tools.  If you can not locate a copy of PC-Tools or some other drive
+maintenace utility that can handle these files, you can delete *.* in the
+players directory and it will get rid of the files for you, but of course,
+this means that all players on your system will have to start over.
+
+Sorry for any inconvenience this may have caused, but the changes were 
+necessary.
+
+If you encounter any other problems with V1.0 you can contact me through
+FidoNet NetMail as  Jeff McGinty at 1:374/147. 
+

@@ -1,0 +1,180 @@
+Writing Ambroshia v4.0 Quests:
+
+All commands start with '@' except for regular text lines
+
+NOTE:  To use colors, just use `bright green` <--replace green with
+       whatever color you want to use ie: magenta,yellow,blue etc
+
+	 example:
+
+	 walking....
+	 travelling....
+	 `bright green`Then you see some light in the distance, glowing mysteriously..
+	 `bright green`you approach it, but a creature jumps out!
+	 @PAUSE@
+	 @MONSTER:Ogre:100:20:25:0:2:1:200:10
+	 The creatures corpse now lie on the ground....
+	 @PAUSE@
+
+Available Color Codes:
+	`bright green`
+	`bright yellow`
+	`bright cyan`
+	`bright blue`
+	`bright magenta`
+	`bright white`
+	`grey`   <---This is the default color
+
+@MONSTER:Name:THP:DAM:DEF:SPELL:POISON:NUM:GOLD:EXP
+
+	This commmand calls monsters to attack the adventurer...
+	it is necessary to put a few of these EVERYDAY of the quest
+	to make it more interesting....
+
+	Name   Is the name of the monster you want to spawn
+	THP    Total Hitpoints monster has..
+	DAM    Damage abilities of monster..
+	DEF    Defense abilities of monster
+	SPELL  Spell casting ability of monster
+	POISON Poison Level of monster
+	NUM    Total number of monsters to spawn
+	GOLD   Total gold given per monster killed..
+	EXP    Total experience given per monster killed
+
+	example:
+
+	 @MONSTER:Ogre:100:20:25:0:2:6:200:10
+	  this calls out 6 Orge
+
+@ANSI:xxxxxxx.xxx
+
+	This command calls on a ANSI graphics screen... to add some
+	pictures to your quest.  Not necessary at all... 
+	A good book is in no need of pictures.... (of course if you
+	are a great artist, then you should use lots of them)
+
+	xxxxxxx.xxx   the file name to display..
+
+	example:
+	  
+	  @ANSI:walking.ans 
+	  this display the ansi file called walking.ans
+
+@KINGDOM@
+
+	this command displays the kingdom the adventurer is from...
+
+	example:
+
+	You said "Yeah, I am from @KINGDOM@, its down south..."
+
+@NAME@
+
+	same as above, except it displays the name of the character
+	instead of the kingdom...
+
+@DAYEND:x
+
+	A VERY NECESSARY command.  marks the days....
+	check in the example files as to see how they are used..
+	x is the day....
+
+	example:
+	@DAYEND:1
+
+@STAT:xxxxx:yy
+
+	this command rewards attributes and stats to the quest taker
+	
+	xxxxx = the kind of stat to increase
+
+	xxxxxx code:
+	 
+	  Leadership
+	  Charm
+	  MaxHP
+	  Strength
+	  Defense
+	  MaxMagicPower
+	  Stamina
+	  Divine
+	  Intellect
+	  Agility
+
+	yy = is the number of increaase and reward..
+
+	example:
+
+	@STAT:MaxHP:20
+	 
+	this command rewards 20 hit points to the quest taker.
+
+@ITEM:xxx
+
+	this command rewards an item to the quest taker..
+
+	NOTE: This item MUST EXIST in the item.dat file! Or bad things could happen!
+
+	xxx : is the code for the item
+
+	now how would you know what code is for what item?
+	good question.  look in the item.dat file with your editor.
+	
+	example:
+
+	@ITEM:Spiral Armor
+	this awards Spiral Armor to the player
+
+@COMM:xxxxx:yy
+
+	this commands rewards yy number of investment items to the
+	player.
+
+	xxxxxx: the type of property.
+	if x =  Smuggling
+		DrugTrade
+		FleshTrade
+		HouseTrade
+		WaterTower
+		OreMine
+	 	Granary
+
+	yy: is the number awarded of that type.
+
+	example:
+
+	@COMM:DrugTrade:12
+	this awards the player 12 Drug Houses
+
+@HIGH:xx
+
+	this command awards the player xx amount of 
+	high experience points.
+	remember for every 25 hep, they will advance once
+	in their proffession.
+
+	xx: the amount of hep awarded
+
+	example:
+
+	@HIGH:45
+	this gives the player 45 high expericne points.
+
+@GOLD:xxxxxxxxxx
+
+	this commands awards gold
+
+	xxxxxx: the amount of gold given
+
+
+@FINAL@
+
+	THIS IS THE ABSOLUTELY IMPORTANT COMMAND 
+	to have in the very last line of your whole quest.
+	this marks the end of rewards and the real end
+	of quest this must be present or the game will freeze
+
+
+
+
+

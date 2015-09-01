@@ -1,0 +1,1541 @@
+;attributes
+;attribs
+Each character has four attributes: Strength, Intellect, Dexterity, and Health.
+Your race determines your starting values for these attributes.  
+
+;strength
+;str
+$11
+]Strength
+$7
+ is a measure of your physical might.  It greatly affects your 
+accuracy with weapons, and determines how much weight you can carry. 
+-str
+-strength
+
+;dexterity
+;dex
+$11
+]Dexterity
+$7
+ is a measure of how agile you are.  Dexterity is the main attribute
+for the backstab and thievery skills, and it also affects your accuracy, armor
+class, and ability to outrun enemies. 
+-dex
+-dexterity
+
+;intellect
+;int
+$11
+]Intellect
+$7
+ is a measure of your wisdom and intelligence; if you are a
+spellcaster, it determines how many spell points you have.  It also affects
+magic resistance, critical hit chance, and perception.
+-int
+-intellect
+
+;health
+;hea
+$11
+]Health
+$7
+ is a measure of how much you can endure.  It determines how many hit
+points you have, and also contributes to magic resistance.
+-
+;help
+;?
+DoorMUD's help file is divided into individual help on specific topics.  To 
+get help on a topic, simply type "help <topic name>".  You can get information
+on ANY command, item, or spell in this manner.
+
+$11
+]HELP INSTRUCTIONS 
+$7
+ - Type this to see a short manual explaining how to play
+                     the game.  Highly recommended for new players.
+$11
+]HELP TOPICS       
+$7
+ - Type this to view a list of some important help topics.
+$11
+]HELP COMMUNICATION
+$7
+ - Type this to see how to talk to other on-line players.
+$11
+]MENU              
+$7
+ - Type this to display a list of commands.
+$11
+]MAP               
+$7
+ - Type this to view a map of your current area.
+$11
+]=R                
+$7
+ - Type this to repeat your previous command.
+
+
+All commands and targets in DoorMUD can be abbreviated.  For example, instead
+of typing "attack orc scout", you can simply type "a o".
+
+A complete collection of DoorMUD area maps, item lists, spell lists, and more
+]can be found at the official DoorMUD web page: 
+$15
+http://dmud.thebbs.org
+-
+;menu
+The "menu" command displays a list of all of the game's commands.  Please
+note that if you are level 1, only the basic commands are displayed.
+-
+;warrior
+$15
+WARRIOR
+~~~~~~~
+$7
+Weapons:     All
+Armor:       All
+Skills:      None
+Description: Warriors are the basic hack-and-slash class.  They can use all
+             weapons and armor, but have no other special skills such as
+             spellcasting.
+-
+;shaman
+$15
+SHAMAN
+~~~~~~
+$7
+Weapons:     One-handed
+Armor:       Chain mail
+Skills:      Mystical Spells [2]
+Description: Shamans are good at both spellcasting and combat.  The spells they
+             cast are the Mystical spells, which tend to be very powerful but
+             also cost huge amounts of spell points.
+-
+;cleric
+$15
+CLERIC
+~~~~~~
+$7
+Weapons:     One-handed blunt weapons (ie maces, hammers, etc)
+Armor:       Light armor only
+Skills:      Cleric Spells [3]
+Description: Clerics are below average at combat, but are extremely proficient
+             at casting healing spells.
+-
+;paladin
+$15
+PALADIN
+~~~~~~~
+$7
+Weapons:     One-handed
+Armor:       All
+Skills:      Cleric Spells [1]
+Description: Paladins are a cross between warriors and clerics.  
+-
+;mage
+$15
+MAGE
+~~~~
+$7
+Weapons:     Light weapons only (ie daggers, staffs, etc)
+Armor:       Light armor only
+Skills:      Mage Spells [3]
+Description: Mages are terrible at hand-to-hand combat, but their powerful
+             spells can inflict much more damage than standard weapons.
+-
+;warlock
+$15
+WARLOCK
+~~~~~~~
+$7
+Weapons:     One-handed
+Armor:       All
+Skills:      Mage Spells [1]
+Description: Warlocks are a cross between warriors and mages.
+-
+;thief
+$15
+THIEF
+~~~~~
+$7
+Weapons:     One-handed (preferably edged weapons)
+Armor:       Chain Mail
+Skills:      Backstabbing [3]
+             Thievery [3]
+Description: Thieves are only average at hand-to-hand combat, but their
+             powerful backstabs more than make up for it.  They are also very
+             proficient at pickpocketing, allowing them to make money extremely
+             quickly.
+-
+;ninja
+$15
+NINJA
+~~~~~
+$7
+Weapons:     All (including special Ninja-only weapons)
+Armor:       Light armor only
+Skills:      Backstabbing [1]
+Special:     Ninjas get Critical Hits more often than other classes.
+Description: Ninjas are the ultimate hand-to-hand combat class -- they
+             can use all weapons, can backstab, and get extra critical hits.
+             However, they can only use a limited selection of armor, and their
+             backstabs are not as damaging as a Thief's or Bard's.
+-
+;bard
+$15
+BARD
+~~~~
+$7
+Weapons:     One-handed (preferably edged weapons)
+Armor:       Chain mail
+Skills:      Backstabbing [2]
+             Mystical Spells [1]
+             Thievery [2]
+Description: Bards are similar to thieves in terms of combat abilities and
+             skills.  They also have the ability to cast Mystical Spells.
+             However, they are not as proficient at backstabbing and thievery
+             as thieves are, nor are they as proficient at Mystical casting
+             as Shamans are.
+-
+;monk
+$15
+MONK
+~~~~
+$7
+Weapons:     Light weapons, as well as special Monk-only weapons.
+Armor:       Light armor only
+Skills:      Martial Arts [3]
+Description: Although monks cannot use heavier weapons and armor, they are
+             still primarily a hand-to-hand combat class.  They make use of
+             special Martial Arts stances and attacks to defeat their foes.
+-
+;gladiator
+$15
+GLADIATOR
+~~~~~~~~~
+$7
+Weapons:     All
+Armor:       Chain mail
+Skills:      Martial Arts [1]
+Description: Gladiators are a cross between Warriors and Monks.
+-
+;druid
+$15
+DRUID
+~~~~~
+$7
+Weapons:     Light weapons only (ie daggers, staffs, etc)
+Armor:       Light armor only
+Skills:      Mixed spells [3]
+Description: Druids are able to cast a selection of Mage and Cleric spells,
+             allowing them to be extremely potent spellcasters.  However, they
+             are terrible at hand-to-hand combat.
+-
+;halfling
+$15
+HALFLING
+~~~~~~~~
+$7
+Health:    12
+Strength:  10
+Intellect: 8
+Dexterity: 18
+Special:   Due to their small size, halflings are somewhat difficult to hit.  
+           This is represented by a +4 armor class bonus.
+Classes:   Halflings make good Thieves and Ninjas.
+-
+;goblin
+$15
+GOBLIN
+~~~~~~
+$7
+Health:    12
+Strength:  13
+Intellect: 9
+Dexterity: 16
+Special:   Goblins are naturally good at hiding from the law after committing
+           illegal activities.  For this reason, criminal penalties wear off
+           very quickly for Goblins.
+Classes:   Goblins make good Ninjas and Thieves.
+-
+;elf
+$15
+ELF
+~~~
+$7
+Health:    8
+Strength:  9
+Intellect: 17
+Dexterity: 15
+Special:   Elves are extremely agile, allowing them to dodge some attacks.
+           This is represented by a +2 armor class bonus.
+Classes:   Elves make good Clerics, Mages, and Druids.
+-
+;gnome
+$15
+GNOME
+~~~~~
+$7
+Health:    12
+Strength:  8
+Intellect: 18
+Dexterity: 12
+Classes:   Gnomes make good Mages, Clerics, and Druids.
+-
+;lizardman
+$15
+LIZARDMAN
+~~~~~~~~~
+$7
+Health:    12
+Strength:  14
+Intellect: 14
+Dexterity: 10
+Special:   Lizardmen are naturally resistant to magic.  This is represented by
+           a +5 magic resistance bonus.
+Classes:   Lizardmen make good Paladins, Warlocks, and Shamans.
+-
+;troll
+$15
+TROLL
+~~~~~
+$7
+Health:    17
+Strength:  14
+Intellect: 8
+Dexterity: 9
+Special:   When resting, Trolls heal faster than other races.
+Classes:   Trolls make good Monks, Warriors and Gladiators.
+-
+;dwarf
+$15
+DWARF
+~~~~~
+$7
+Health:    14
+Strength:  17
+Intellect: 11
+Dexterity: 8
+Special:   Dwarves are naturally resistant to magic.  This is represented by
+           a +5 magic resistance bonus.
+Classes:   Dwarves make good Warriors, Gladiators, and Monks.
+-
+;human
+$15
+HUMAN
+~~~~~
+$7
+Health:    13
+Strength:  13
+Intellect: 13
+Dexterity: 13
+Penalty:   Humans are slow learners.  For this reason, it takes them slightly
+           more experience to gain levels compared to other races.
+Classes:   Humans make good Bards, Paladins, Warlocks, and Shamans.
+-
+;dark elf
+$15
+DARK ELF
+~~~~ ~~~
+$7
+Health:    10
+Strength:  11
+Intellect: 14
+Dexterity: 15
+Special:   Dark Elves are naturally good at hiding from the law after 
+           committing illegal activities.  For this reason, criminal penalties
+           wear off very quickly for Dark Elves.
+Classes:   Dark Elves make good Bards, Clerics, and Mages.
+-
+;gnoll
+$15
+GNOLL
+~~~~~
+$7
+Health:    15
+Strength:  15
+Intellect: 9
+Dexterity: 9
+Special:   Gnolls have a special "head butt" attack; see below.
+Classes:   Gnolls make good Gladiators, Monks, and Warriors.
+
+;head butt
+$11
+HEAD BUTT
+$15
+Syntax: hb <creature>
+$7
+This attack is unique to Gnolls.  If it hits, it inflicts minor damage on the
+enemy and leaves them in a confused state for a short period of time.  Enemies
+who are confused in this manner will often fumble their attacks.  In addition,
+confused creatures cannot chase after you if you run away from them.
+
+-
+;demon
+$15
+DEMON
+~~~~~
+$7
+Health:    12
+Strength:  14
+Intellect: 14
+Dexterity: 14
+Special:   Demons start as very evil-aligned, and can never become good-
+           aligned.
+Penalty:   Demons do not believe in gods, and for this reason they cannot use
+           the Recall command to teleport like other races can.  They can only
+           Recall in areas very close to a temple, such as towns and roads.
+Classes:   Demons make good Warlocks, Paladins, Shamans, and Bards.
+-
+;combat
+;attack
+DoorMUD uses a real-time combat system.  Combat actions occur in rounds, every
+4 seconds.
+
+If you enter a room with hostile monsters, you will automatically "target" the 
+first one in the room.  On your statline, you will see how healthy the monster
+you are targeting is; see "help statline" for more information on this.
+
+If you are targeting a monster, type "attack", or "a" for short.  This will
+engage combat with the enemy, causing you to attack the monster every round.
+If you want to attack a monster other than the first one in the room, or if
+you want to attack one that isn't hostile, type "a <creature name>", ie 
+"a kobold".  This will attack the new monster and cause you to target it.
+;break
+If desired, you can stop your attack at any time by typing "break".
+-break
+
+
+;spells
+;(spells)
+;skills
+;magic
+;SP
+;spell points
+Many classes also have special combat spells and skills.  Some of these are
+automatic (ie backstab; see "help backstab"), but most aren't. 
+
+To see a list of the non-auto spells and skills you have, type either SPELLS
+or SKILLS.  This will show you a list of what spells/skills you have and what
+command you should use to cast the spell or use the skill.  In the case of
+spells, it also lists how many Spell Points the spell costs.
+
+If you don't specify a target for a spell/skill, the game will pick the most  
+logical target.  Ex: The spell Cure Wounds is cast by typing "cure"; if you
+just type "cure" by itself it will cast it on yourself.  However, an offensive
+spell like Frost Blast would target an enemy monster by default.  With most
+spells and skills, you can choose a different target exactly the same way that
+you can with the ATTACK command.
+-spells
+-(spells)
+-skills
+-magic
+-SP
+-spell points
+
+
+;rest
+;rest tick
+After combat, if you are low on hit points, it would be a good idea to use 
+the "rest" command.  This will cause you to quickly regain hitpoints.  The
+longer you rest for, the more hitpoints you regain.
+
+In addition, all creatures automatically regain some lost HPs and SPs every
+ten rounds (40 seconds).
+-
+;backstab
+;sneak
+;stealth
+;surprise attack
+The backstab/sneak system in DoorMUD is automatic.  Every time you move, the 
+game internally determines whether or not you successfully snuck into the
+room.  If you are sneaking, and a given monster has not "seen" you yet, your 
+first attack on it will be a backstab automatically.  Once you land a 
+backstab on a specific monster, it will be aware of you and you won't be able 
+to backstab it a second time.
+
+All edged weapons and most blunt weapons can backstab.  However, edged weapons 
+usually backstab for more damage than blunt weapons.  Some blunt weapons, such 
+as staffs, cannot backstab at all.
+
+(Please note that in the case of blunt weapons, it isn't really a "backstab",
+because you aren't stabbing.  You still do extra damage, though, because it
+is a surprise attack to your enemy's back.  The terms "backstab" and "surprise
+attack" are more or less interchangeable.)
+-
+;n
+;s
+;e
+;w
+;ne
+;nw
+;se
+;sw
+;u
+;d
+;movement
+All rooms in DoorMUD have standard exits.  To move through an exit, enter the 
+direction you wish to move  (ie "southeast", although you can abbreviate it 
+by just typing "se").  If desired, there is an option to use the number pad
+on your keyboard for faster movement.  Please see "help preferences" and read
+about option 6.
+
+Some exits will be locked doors or gates.  To open these, you will have to get
+a certain key and USE it in the room.  Other times, exits will be "blocked" by
+a creature in the room.  To go through these exits, you must either kill the
+blocking creature, or GREET it and convince it to let you pass.
+
+;search
+A few rooms have secret exits; to find these, you must SEARCH.  Searching will
+not always spot secret exits; the chance of you finding such an exit is based
+on your Intellect.  Usually, rooms with secret exits will have a clue in the
+room's description -- it is not necessary to go around searching every room.
+Searching can also reveal invisible players and hidden items.
+-search
+
+
+;recall
+;\
+Another useful movement command is the RECALL command.  This sends you to your
+place of worship; by default, this is the temple in Tolaria.  You cannot 
+recall during combat.  The command shortcut for "recall" is "\".
+-recall
+-\
+
+;pray
+;temple
+If you would like to change your place of worship, find a temple in another
+town and type "pray".  After doing this, recalling will send you to your new
+temple.
+-
+;info
+;look
+Type LOOK, or just hit enter on a blank line, to redisplay the current room.
+You can also look through exits, ie LOOK EAST or "l e" for short.
+
+There are other uses for the LOOK command as well:
+ - Looking at a player will show you what items the player is using.
+ - Looking at a monster gives you a description of the creature.
+ - Looking at an item gives hints about any special abilities the item might
+   have.  For weapons, the exact damage value is also displayed.
+-look
+
+
+;where
+Type WHERE to see what area you are in and what level characters the area was
+designed for.
+-where
+
+
+;statline
+Your statline displays your current Hit Points, Spell Points, and remaining 
+Monster Fights. If you are in combat, it will also display what percent of 
+max hit points the monster you are targeting is at.
+-statline
+
+
+;status
+;stat
+Type STATUS, or ST, to see a full status report of your character.
+-
+;equipment
+$14
+Recommended starting equipment, by class:
+$7
+
+WARRIOR:   club, robes, main gauche, greathelm
+SHAMAN:    sling, robes, main gauche, scroll of soulstrike
+CLERIC:    sling, robes, scroll of cure wounds
+PALADIN:   sling, robes, main gauche, greathelm, scroll of cure wounds
+MAGE:      sling, robes, scroll of frostblast
+WARLOCK:   dagger, robes, main gauche, greathelm, scroll of frostblast
+THIEF:     dagger, robes, main gauche
+NINJA:     shikomi-zue, robes
+BARD:      dagger, robes, main gauche, scroll of soulstrike
+MONK:      dagger, robes, meditation cap, book of defense
+GLADIATOR: club, robes, main gauche, book of defense
+DRUID:     sling, robes, scroll of cure wounds, scroll of frostblast
+
+After you buy your equipment, be sure to type "WEAR ALL" to equip your weapon,
+wear all your armor, and read your spell scrolls and skill books.
+-
+;encumbrance
+;weight
+;heavy
+Your strength determines your maximum encumbrance.  If the total weight you
+are carrying equals or exceeds HALF of your max encumbrance, you will become
+"heavy".  Heavy characters cannot run quickly, have a reduced chance of being
+able to outrun a monster, have a reduced armor class, and suffer a major 
+penalty to stealth.
+-heavy
+
+;medium
+;medium encumbrance
+As you start to approach "heavy" encumbrance, you will be given a warning
+message every time you pick up or purchase a new item, and your weight will
+be displayed as "medium" in your inventory.  However, the only harmful affect
+of "medium" encumbrance is a slight penalty to Stealth for characters that
+can backstab.
+-
+;use
+;items
+;shops
+There are 5 kinds of items:  Weapons, Armor, Scrolls, Potions, and Keys.
+
+;wear
+;weapons
+Weapons are equipped by typing "wear <weapon name>".  You can only have one
+weapon armed at a time.  To see the damage range of a weapon, LOOK at it.
+-weapons
+
+;armor
+;use
+Armor is worn by typing "wear <armor name>".  You can wear one piece of armor
+per body part.  Some pieces of armor can cast spells; to do this, type
+"use <armor name>".  For example, Monks may USE the Meditation Cap three
+times per day to regain some lost hit points.
+-armor
+-wear
+
+;scrolls
+Scrolls include scrolls, books, tomes, etc.  Type "use <scroll name>" to read
+the scroll/book/tome and learn one or more new spells or skills.  Once you
+have learned a new spell, it remains in your spell book forever, unless you
+PURGE it.  See "help combat" for info on casting spells.
+-scrolls
+
+;potions
+Potions are limited-use items that cast spells.  For example, a Healing Potion
+can heal you if you USE it, but it only can be used once before it is empty.
+-potions
+
+;keys
+Keys open doors.  To open a locked door or gate, USE the appropriate key.  You
+do not need to specify a direction.
+-keys
+-use
+
+
+$14
+These commands are also item-related:
+$7
+;wear all
+WEAR ALL:      Automatically equips weapons and armor from your inventory with
+               one command; also reads any spell scrolls and skill books.
+-wear all
+;get
+;get all
+GET <ITEM>:    Picks up an item on the ground.
+GET <#> GOLD:  Picks up gold from the ground.
+GET ALL:       Picks up all items on the ground at once.
+-get
+-get all
+;drop
+DROP <ITEM>:   Drops an item that you are carrying.
+DROP <#> GOLD: Drops gold onto the ground.
+-drop
+STASH <ITEM>:  Stashes an item.  See "help stash" for more details.
+;inventory
+INVENTORY:     Shows what items you are carrying and wearing.
+-inventory
+;list
+LIST:          Shows what items are for sale in this room, if it is a shop.
+-list
+;buy
+BUY <ITEM>:    Purchases item from a shop.
+-buy
+;sell
+SELL <ITEM>:   Sells an item to a shop.
+-sell
+;remove
+REMOVE <ITEM>: Removes (un-equips) an armed weapon or worn piece of armor. 
+-
+;stash
+;hide
+;hoard
+You can hide items by using the "stash <item>" command.  Hidden items are only
+instantly visible to the character that hid them; other characters will not
+see such items when they enter the room.  They may find items you have stashed
+by using the "search" command.  The chance that they will find anything,
+however, is low -- especially if they have below average Intellect.
+
+Please note that limited items and quest items cannot be stashed.
+-
+;exp table
+;experience
+;levels
+;training
+Type "exp" to see how many experience points you have and how many more you
+need to gain a level.
+
+Once you have enough Exp to gain a level, find a training room and type TRAIN.
+
+To see an experience table for your character, type "EXP TABLE".
+-
+;misc
+$14
+Misc. commands:
+$7
+;topten
+;rank
+RANK <#>:        Shows a list of the top players.  Simply type RANK to see
+                 the top 10 players, or RANK <#> to see a longer/shorter list
+                 (ie "rank 15" to see top 15 players).
+-rank
+-topten
+;rob
+;thievery
+ROB <CREATURE>:  Robs money from another player or a monster.  Requires the
+                 Thievery skill, and is not always successful.  You must be
+                 sneaking in order to rob a creature.
+-rob
+-thievery
+;deposit
+;withdraw
+;bank
+;bankbook
+DEPOSIT <#>:     Deposits gold into a bank account.  DEPOSIT ALL also works.
+WITHDRAW <#>:    Withdraws gold from bank.  WITHDRAW ALL Also works.
+BANKBOOK:        Shows how much money you have in the bank.
+-deposit
+-withdraw
+-bank
+-bankbook
+;reroll
+REROLL:          Resets your character to level 1 and allows you to pick a new
+                 class and race.  You keep your gold and items, but lose half
+                 of your levels (ie, a level 14 player who rerolls keeps
+                 enough experience to train back to level 7).
+-reroll
+PREFERENCES:     Allows you to set your preferences.  See "help preferences".
+GIVE <text>:     Gives items or gold to another player in the room.  Please
+                 see "help give" for more information.
+;greet
+;talk
+;ask
+TALK <MONSTER>:  Allows you to interact with a monster or NPC.
+-greet
+-ask
+-talk
+;purge
+PURGE <SPELL>:   Erases a spell from your spell book.
+-
+;give
+;transfer
+The GIVE command is used to transfer items or gold to other players.  The
+syntax for this command is:
+
+$12
+Give Item syntax:   GIVE <PLAYER> <ITEM>
+Give Gold syntax:   GIVE <PLAYER> <AMOUNT> gold
+$7
+
+For example, to give a shortsword to a player named Thor, you might type
+"give thor short".  To give that player 10 gold, you could type
+"give thor 10 gold" or simply "give thor 10 g".
+
+To stop players from giving you unwanted items, you can prevent other players
+from being able to give you items via the PREFERENCES command.
+-
+;preferences
+;set
+;auto-talking
+;number pad
+The PREFERENCES command is used to control personal settings for your
+character.  Typing PREFERENCES (or SET) brings up a menu of options:
+
+1. Let other players follow you:  This option controls whether or not other
+     players can follow you to join your party.  Note that setting it to NO
+     will not evict current followers from your party; use DISBAND to do that
+     if desired.
+
+2. Let other players give you items:  Setting it to NO prevents other players
+     from giving you items.
+
+3. View gossip messages:  Setting it to NO blocks incoming gossip messages,
+     but also prevents you from sending any.
+
+4. View tell messages:  Setting it to NO blocks incoming tell messages, but
+     also prevents you from sending any.
+
+5. Enable fast auto-talking:  When set to YES, anything that you type that is
+     not a command is echoed to the room if other players are present.  Set
+     this to NO to disable this feature.
+
+6. Enable number-pad movement:  When set to YES, you can use the number pad on
+     your keypad to move more quickly, ie "8" for "north".  You can also use
+     "+" for "up", "-" for "down", and "5" for attack.  Please note that NUM
+     LOCK must be ON for your keyboard in order to have this option work.
+-
+;exit
+;quit
+Type either EXIT or QUIT to exit the game.  There is no difference between 
+the two commands.
+-
+;unequip
+;disarm
+Both Unequip and Disarm are identical to Remove.  See "help remove".
+-
+;account
+The account command is identical to the bankbook command.  See "help misc".
+-
+;eat
+;drink
+The "eat" and "drink" commands only work on some items.  They are always
+the same as "use", on items that they do work on.  Ie, if you have a potion
+of healing, you can "drink potion" to do the exact same thing as "use potion",
+but "eat potion" does not work because it's a liquid.
+-
+;MF
+;monster fights
+;fights
+Each day, you receive a number of monster fights specified by your Sysop.
+Every time you kill a monster, it uses up one monster fight.  Once you run
+out of monster fights, you CAN still continue to kill more monsters if 
+desired, but they won't gain any experience or gold for it.  
+
+Unspent monster fights in DoorMUD add up from day to day, up to a maximum 
+specified by your Sysop.
+
+;death
+;dying
+;HP
+;hit points
+;lives
+;life
+When you reach 0 hit points, you die.  You will lose a portion of your monster
+fights, depending on your level.  You will automatically be revived in your
+place of worship (see "help pray").  Any gold you were carrying will be stolen
+by whatever/whoever killed you.  If you were killed by a player, some of your
+items may be stolen as well; if you a monster killed you, though, you will not
+lose any items.
+-MF
+-monster fights
+-fights
+
+There is no "lives" stat in DoorMUD, so your character can never get reset
+from dying too many times.  However, due to the way the Monster Fight system
+works, if you die multiple times in one day, you will run out of monster
+fights and thus not be able to gain any more exprience points until the next
+day.
+
+If you are in a shop, temple, trainer, or bank, you will usually be safe from
+player killers.  In addition, you can only be attacked by other players that 
+are within 2 levels of you.
+-
+;Tolaria
+;maps
+Type "map" to see a map of your current area.  Note that this command only
+works in certain areas (towns, newbie areas, etc) so that the element of
+exploration in the game is not ruined.
+
+Maps of every area can be found in Hypertext form on the official web site:
+$11
+http://dmud.thebbs.org
+-
+;ancalador
+$11
+Places of note in Ancalador:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+$9     
+Bank
+$7
+Money in the bank is safe from being lost through death or thievery.
+
+$9
+Armor Shop
+$7
+If you are of a class that can wear chain mail armor or better, be sure to
+talk to the shopkeeper about a special offer.
+
+$9
+Mayor's Office
+$7
+Located on the southwestern side of town, the mayor sometimes has a quest 
+for the occasional brave adventurer who stops by.
+
+$9
+The Bloodwine Tavern
+$7
+A seedy drinking establishment; the bouncer won't let lower level characters
+inside.  It is also a hangout for local thieves...
+
+$9
+The Arena
+$7
+Players can battle each other here without fear of death.
+
+$9
+Southern Gates
+$7
+Beyond these gates is a road that forks.  The eastern path leads to the Dwarven
+Kingdoms, and the western path leads to the Elven forests.
+
+$9
+Eastern Gates
+$7
+Only the toughest of adventurers are allowed past these gates, and for good
+reason.  What lies beyond will have to wait until level 8.
+
+$15
+Type "map" to see a map of the town.
+-
+;classes
+$11
+Please see individual help topics:
+$7
+Warrior
+Shaman
+Cleric
+Paladin
+Mage
+Warlock
+Thief
+Ninja
+Bard
+Monk
+Gladiator
+Druid
+-
+;races
+$11
+Please see individual help topics:
+$7
+Human
+Dwarf
+Troll
+Gnoll
+Elf
+Gnome
+Lizardman
+Dark Elf
+Halfling
+Goblin
+Demon
+-
+;LOTF
+LOTF stands for Land of the Forgotten, the name of DoorMUD before it became
+a multi-node game.
+-
+;mud
+;muds
+MUD stands for "multi-user dungeon".
+-
+;hang up penalty
+;hang-up penalty
+If you hang up while in Player-vs-Player combat, any player can now attack you
+while you are offline.  For this reason, you should never try hanging up to
+avoid player-vs-player combat.
+-
+;mres
+;mr
+;magic resistance
+Magic Resistance is your character's percent chance of resisting a harmful
+spell cast upon you.
+-
+;armor class
+;AC
+Your Armor Class (AC) number reflects the amount of armor your character is
+wearing.  Higher numbers are better, and reduce the chance of an enemy
+successfully landing an attack against you.
+-
+;accuracy
+Your accuracy is your exact chance of hitting an enemy monster.
+-
+;crits
+;critical hit
+;criticals
+The "criticals" stat on your statscreen shows the percent chance that you have
+of landing a critical hit on a successful weapon attack.
+
+Critical hits inflict a large amount of extra damage.
+-
+;alignment
+Your alignment reflects how good/evil/neutral your character is.  Certain
+items and spells may only be used by characters of a given alignment.  In
+addition, some monsters are hostile to characters of certain alignments.
+
+Every time your alignment shifts towards an extreme, you will find that your
+character is healed completely.
+-
+;xyz
+$11
+Welcome to DoorMUD!
+$7
+This introductory text provides a brief overview of the game.  More extensive
+help information is also available through the in-game HELP command.
+
+DoorMUD uses a command interface.  All commands and targets in DoorMUD can be
+abbreviated.  For example, instead of typing "attack orc scout", you can 
+simply type "a o".
+
+A complete collection of DoorMUD area maps, item lists, spell lists, and more
+]can be found at the official DoorMUD web page: 
+$15
+]http://dmud.thebbs.org
+$7
+.  It
+is highly recommended that you give the web site a look.
+
+
+;newbie
+;guide
+;instructions
+$11
+Moving around in DoorMUD
+$7
+Unlike most doorgame RPGs, DoorMUD's game world consists of actual rooms, not
+menus.  All rooms in DoorMUD have standard exits.  To move through an exit, 
+enter the direction you wish to move  (ie "southeast", although you can 
+abbreviate it by just typing "se").  
+
+If desired, there is an option to use the number pad on your keyboard for
+faster movement.  Please see "help preferences" and read about option 6.
+
+Another important movement command is "recall", which teleports you instantly
+to your temple room in town.
+
+
+$11
+Combat
+$7
+DoorMUD uses a real-time combat system.  Combat actions occur in rounds, every
+4 seconds.
+
+If you enter a room with hostile monsters, you will automatically "target" one
+of them.  On your statline, you will see how healthy this monster is.  To
+engage combat with it, type "attack", or simply "a".  This will cause you to
+attack the monster once per real-time combat round.
+
+If you want to attack a monster other than the first one in the room, or if
+you want to attack one that isn't hostile, type "a <creature name>", ie 
+"a kobold".  This will attack the new monster and cause you to target it.
+
+Many classes also have special combat spells and skills.  Some of these are
+automatic (such as backstab), but most aren't.  Type "skills" to see a list
+of spells and skills that you have and what command you need to use them.
+
+If you don't specify a target for a spell/skill, the game will pick the most  
+logical target.  Ex: The spell Cure Wounds is cast by typing "cure"; if you
+just type "cure" by itself it will cast it on yourself.  However, an offensive
+spell like Frost Blast would target an enemy monster by default.  With most
+spells and skills, you can choose a different target exactly the same way that
+you can with the attack command.
+
+After combat, if you are low on hit points, it would be a good idea to use 
+the "rest" command.  This will cause you to quickly regain hitpoints.  The
+longer you rest for, the more hitpoints you regain.
+
+In addition, all creatures automatically regain some lost HPs and SPs every
+ten rounds (40 seconds).
+
+
+$11
+Items
+$7
+Items are objects that your character can use.  If you have just started a new
+character, it is vital that you go to the shops in Tolaria and buy some. There
+are 2 shops in the starting town; type "map" to see where they are.  Once you
+are in a shop room, type "list" to see what's for sale there.  If you would 
+like to purchase an item, type BUY and then the name of the item, ie "buy
+dagger".  The item will go into your inventory; type "inventory" or just 
+simply "i" to see what you are carrying.
+
+Once you've bought something, you should either WEAR it (if its a piece of
+armor or a weapon) or READ it (if its a spell scroll or skill book).  You can
+type "wear all" as a shortcut.
+
+More item tips can be found in "help items".
+
+
+$11
+Interacting with other players
+$7
+Type "who" to see what other players are currently on-line.  You can send a
+message to all on-line players by typing "gossip <text>", or use the period
+key (".") as a shortcut.
+
+You can use the "tell" command to send a private message to one player, or
+use the "say" command to send a message to all players in your current room.
+Please see "help communication" for more information.
+
+Another important interaction feature in DoorMUD is group play -- you can join
+up with other players to defeat more difficult monsters as a team.  The
+"follow" command is used for this purpose; please see "help groups".
+
+
+$11
+And that's it! (sort of...)
+$7
+You can pretty much get into the game at this point.  Once you've outfitted
+your character, and understand the basics of movement and combat, you're set.
+Go into the forest and start killing some monsters!
+
+After you've gotten the hang of it, you should probably read more of the help
+files.  Vital commands such as "train", "status", etc can be explained by
+doing this.  It's probably a good idea to read HELP on all of the following
+topics eventually:
+
+;topics
+$15
+movement                         combat
+info                             equipment
+items                            misc
+communication                    groups
+death                            training
+story                            hints
+
+$7
+In addition, you can get help on most spells, skills, classes, races, commands,
+attributes, etc.
+-topics
+-xyz
+$15
+(To redisplay just this list of useful topics, type "help topics".)
+-
+;communication
+$14
+Communication commands:
+$7
+
+;who
+WHO:                      Lists all on-line players currently in the game.
+-who
+
+;gossip
+GOSSIP <MESSAGE>:         Sends a message to all on-line players.  The 
+                          shortcut key for this command is a period (".").
+                          If desired, use PREFERENCES to block gossips.
+-gossip
+
+;say
+SAY <MESSAGE>:            Sends a message to the players in your room.  The
+                          shortcut key for this command is a comma (",").
+                          As an alternative to using "say", instead just type
+                          any text that does not begin with a command, and
+                          whatever you typed will be echoed to the room if any
+                          other players are present.  (This auto-talking
+                          feature can be disabled if desired w/ PREFERENCES)
+-say
+
+;tell
+;mail
+TELL <PLAYER> <MESSAGE>:  Sends a private message to an on-line player.  This
+                          command can also be used to send mail to an off-
+                          line player as well, but in this case you must
+                          specify the FULL name of the player. 
+                          The shortcut key for this command is a slash ("/").
+                          If desired, use PREFERENCES to block tell.
+
+TELL ALL <MESSAGE>:       Makes an announcement on the daily log.
+-mail
+-tell
+
+
+;actions
+;emotions
+;emote
+The following action commands are available:
+hug, kiss, wave, grin, bow, nod, laugh, shrug, sigh, slap, frown, blush,
+cheer, clap, egrin, gasp, smile, sob, glare, growl, spit, yawn.
+
+You can also use the "emote" command to create customized action messages.
+-
+;groups
+;invite
+;party
+;join
+;follow
+;leave
+;disband
+$14
+Group commands:
+$7
+
+FOLLOW <PLAYER>:      Causes your character to join the party of the specified
+                      player.  Please note that players cannot be followed
+                      unless they specifically set this option via the 
+                      PREFERENCES command.
+
+LEAVE:                Causes you to stop following a player.
+
+DISBAND:              Causes all players who are following you to no longer
+                      be following you.
+
+;scan
+PARTY:                Shows the vital stats on all players in your party, as
+                      well as all other creatures in the room.
+-
+;hints
+;tips
+$11
+A few game hints
+$7
+
+* There are many NPCs that cannot be killed.  However, they often carry gold,
+  so if you are a thief or bard be sure to rob them anyway!
+
+* Most shops will buy items that they don't normally sell.  For example, the
+  armor shop in Ancalador will buy any kind of armor, regardless of where you
+  originally bought it.
+
+* The exits in some rooms sometimes change based on your level.  For example,
+  the room with the Bridge Troll will have a "blocked exit" east if you are
+  level one, but if you are level 2+ exit east won't be blocked off.
+
+* The cumulative monster fight system makes it so you don't have to play
+  every single day to stay on top.  It also makes it so that if you go on
+  vacation for a while, when you come back you'll find that you have a lot of
+  monster fights stored up and can regain a spot at the top of the player
+  ranking list.
+
+* Spell durations are cumulative.  For example, if you cast Bless on yourself,
+  and then immediately cast it on yourself again, it will last twice as long.
+  On the other hand, if an enemy monster casts Slow on you multiple times,
+  you'll be slowed for an extra-long period of time.
+-
+;!
+;=r
+;repeat command
+Typing "!" or "=r" automatically repeats the last command you entered.
+-
+;registration
+DoorMUD is shareware.  In the unregistered version, players may not advance
+beyond level 7 and thus can only explore about 700 of the 2100+ rooms in the
+game world.  
+
+DoorMUD can be registered by your Sysop for $20.  The registered version
+allows you to explore the entire game world and train past level 7 -- there is
+no maximum level in the registered version.
+
+Please make sure you actually ASK your Sysop to register.  Otherwise, he/she
+might not know that players have already defeated everything in the 
+unregistered version.  If your Sysop currently cannot afford to register, then
+you may want to pay for the game on his/her behalf; email rhythmnp@aol.com for
+information on this.
+
+If you're stuck at level 7 and your sysop hasn't registered yet, here's some
+ideas to keep you entertained:
+
+o Make sure you've done all the quests and beaten all the monsters in the
+  unregistered version, including the High Imperial Kingpriest.
+o Find people in other games on your BBS (or on other boards) and convince
+  them to give DoorMUD a try.  Personally take them around the game world
+  to get them experience faster.  Remember, the more people that play, the
+  more likely the Sysop is to register.
+o Consider rerolling to a new class and race.  You'll still keep enough exp
+  points for half your levels (ie, a level 7 character who rerolls keeps
+  enough experience to almost be level 4).  Trying out many classes will
+  give you a much broader view of character creation in DoorMUD.
+o Give the DoorMUD web site (http://dmud.thebbs.org) a thorough look.  Try
+  contributing ideas on the Web Message Board.  Many of the player suggestions
+  get added to the game within one release.
+-
+;story
+;storyline
+;history
+    Long ago, when the almighty gods first created the world of mortals, the 
+land was a perfect balance between Order and Chaos.  But the gods decided that
+such a world was impure, and so the world was divided into two halves: the 
+Realm of Order (the physical world, or simply The Land) and the Realm of Chaos
+(a supernatural world with no physical substance).  The evil gods reigned over
+the Realm of Chaos, while the righteous gods ruled over the Realm of Order.  
+And so the gods ruled over their appropriate realms for thousands of years, and
+all was as it should be.
+    
+    Alas, the gods soon grew tired of having to control every aspect of their
+realms, and so they created demi-gods to rule their domains for them.  
+Eventually, the gods stopped caring about their realms entirely and let the
+demi-gods do whatever they pleased.  Ages came and went, and ultimately only 
+one demi-god still lived: a being known as the High Imperial Kingpriest, the
+mightiest demi-god of Order.  He forged a benevolent empire out of the 
+physical world, and the Land was peaceful for centuries.  Meanwhile, the Realm
+of Chaos grew unchecked by any kind of divine force; the demonic creatures who
+ruled there forged their own regimes of evil.
+
+    As more centuries came and went, the powerful forces that separated the
+two Realms grew weaker and weaker, and demonic creatures of Chaos began to 
+enter the physical world.  At first, the Kingpriest fought off these foul
+creations with ease.  However, his power waned over time, and he found that
+preventing Chaos from meeting Order took up nearly all his energy.
+
+    Nonetheless, the mortal rulers of Chaos were persistent in their goals to
+defeat the Kingpriest and annex the physical world into their dark empires.  
+And so, the armies of Chaos united as one force under the leadership of a 
+sinister demon lord known simply as the Warmaster.  The army of the Warmaster
+grew and grew, and finally he launched an all-out assault against 
+the Kingpriest and his empire of Order.  The Kingpriest's magical powers were
+not potent enough to prevent the massive Chaos Army from entering the Realm of
+Order, and so the largest battle in history began between the Kingpriest's army
+and the minions of Chaos.
+
+    The battle raged on for ten days, and during those ten days much of the 
+Land was burnt to the ground and some of the Kingpriest's most powerful 
+artifacts were either looted or destroyed.  On the tenth day of battle, the
+Kingpriest's forces captured the Warmaster.  Alas, no weapon forged could kill
+him, and so he was imprisoned in a secret dungeon deep underground, where he
+still lives to this day.  After the Warmaster was captured, the remaining
+troops in the Army of Chaos retreated back to their unholy Realm.
+
+    Even though the Kingpriest won the battle, his empire was changed forever.
+Chaos had erupted in some parts of the physical world in the form of various
+kinds of monsters.  Long-dead knights rose from their graves to become undead
+minions of evil.  Demons were able to possess normal people and turn them into
+slaves of Chaos.  Entire humanoid races -- such as Trolls, Gnolls, Orcs, and
+Goblins -- turned to evil ways.
+
+    The Kingpriest was unable to deal with these new problems.  He had
+failed his gods and was unable to bring the Realm back to strict Order.  And 
+so, several days after the battle, the Kingpriest disappeared forever.  His 
+empire soon dissolved into individual city-states and kingdoms, and it has
+remained that way for the last nine centuries.  Very few individuals even know
+the history of the Land and its long-forgotten leader, and the peace that 
+once existed during the time of the Empire.
+
+    But all is not lost for the Realm.  It has been foretold that a mortal
+adventurer will one day permanently kill the Warmaster, and that doing so will
+restore the Realm to its former state.  A final victory for Order is thus 
+possible... but only if this great champion of Order is trained and ready.
+
+    Alas, if this prophecy is to come true, it must come true soon.  Minions
+of Chaos have finally located the underground prison where the Warmaster is
+held.  Evil adventurers are joining the forces of Chaos every day, and the old
+Imperial scholars fear that a great champion of Chaos will one day be born and
+will slay the knights that guard the Warmaster's cell.  The Chaos lords promise
+that whatever individual frees the Warmaster will become his second in command.
+All signs seem to indicate that if the Warmaster is set free and launches 
+another invasion on the Land, the world as you know it will come to an end.
+
+
+     So, adventurer, which goal will you strive for?  Do you intend on slaying
+the evil Warmaster and restoring Order to the land?  Or do you instead want to
+free the Evil one, and be right by his side when Order is no more?
+-
+;paralysis
+;paralyzed
+If you are paralyzed, do not panic.  Simply wait a minute or so for the effect
+to wear off.
+-
+;web page
+;web site
+The official DoorMUD web site can be found at http://dmud.thebbs.org and
+contains tons of info for players and sysops alike.  However, some players
+feel that knowing this information ruins a sense of exploration; these
+players are advised not to visit the "maps" and "items" links on the page.
+-
+;pvp
+;pk
+;player killing
+;criminal
+;law
+Certain actions cause your character to become a "criminal" for a set amount
+of time. These include things such as instigating player-vs-player combat
+unsuccessfully robbing another player, buying narcotics in the slums, bribing
+NPCs, etc. While you are a criminal, you cannot recall, use bank commands, buy
+items, or sell items. Any player (within normal level range) can attack a 
+Criminal without penalty. Also, some NPCs will interact with criminals 
+differently (guards will block certain areas, quest NPC's won't talk to you,
+etc). 
+
+Goblins and Dark Elves are naturally good at escaping from the law after
+committing illegal activities.  For this reason, criminal penalties wear off
+much more quickly for these two races.
+-
+;limited item
+;reindexing
+;inactivity
+;inactive
+Items are considered to be "limited" when only a set number of them exist in
+the game.  Limited items owned by inactive players eventually get reindexed 
+back into the game.
+
+;deletion
+Players who are excessively inactive eventually get deleted completely.  The
+number of days it takes before this occurs depends on the inactive player's
+level.  For example, an inactive level 5 player would be deleted in a matter
+of weeks, while an level 15 player would have to be inactive for many months
+before being deleted.
+-
+;stance
+Stances allow Monks and Gladiators to attain special abilities.  You may only
+assume one stance at a time.
+-
+;swings
+When using lower-level weapons at high levels, players can get multiple swings
+per round.  Swing rate is based on player's level compared to the weaapon's
+intended level, and is affected by the player's class.  Also, 2-handed weapons
+get fewer bonus swings than lighter weapons.
+-
+;frost blast
+Inflicts minor damage on an enemy.
+-
+;slow
+Decreases target's accuracy, armor class, and chance of following you.
+-
+;mage shield
++8 armor class to caster.
+-
+;incinerate
+Inflicts damage on an enemy.
+-
+;drain life
+Drains hit points from an enemy and gives them to you.
+-
+;weakness
+Reduces the amount of damage an enemy inflicts, and makes them less accurate.
+-
+;confusion
+Causes enemies to fumble attacks sometimes.  Negates Slow, though.
+-
+;cardiac arrest
+Gives the enemy a minor heart attack, inflicting damage and sometimes stunning
+them.
+-
+;invisibility
+Makes the caster much harder to hit, as well as invisible to players.
+-
+;lightning bolt
+Inflicts damage at a very low cost, but can miss.  Uses auto-combat (don't
+need to retype every round)
+-
+;charm
+Makes an enemy be your slave.
+-
+;fireball
+Inflicts very heavy damage on all monsters in the room.
+-
+;cure wounds
+Heals the target.
+-
+;curse
+Decreases target's Armor class and accuracy.  If cast on a player, that player
+will be unable to recall for a short period of time.
+-
+;bless
+Increases target's accuracy.
+-
+;holy force
+Inflicts damage on enemy.
+-
+;greater healing
+Better healing than cure wounds.
+-
+;blind
+Blinds an enemy and reduces their accuracy.
+-
+;contagion
+Gives a disease to all enemies in the room, inflicting low damage every round.
+-
+;flame strike
+Instantly inflicts damage.
+-
+;holy armor
+Increases armor class, accuracy, and damage.
+-
+;wrath of god
+Inflicts damage on all enemies in the room.
+-
+;divine healing
+The most powerful healing spell.
+-
+;animate dead
+Brings dead creatures back to life as your undead slaves.
+-
+;soulstrike
+Drains a small number of hitpoints from the target and gives them to you.
+-
+;berserk
+Makes you hit for more damage on every physical attack.
+-
+;hold person
+Renders the target unable to move and makes them very vulnerable to spells and
+attacks.
+-
+;resist magic
+Greatly increases target's magic resistance for a period of time.
+-
+;moonbeam
+Powerful, blinding damage spell.
+-
+;mystical fury
+Instantly inflicts random damage and confusion.
+-
+;shadowform
+Instills you with dark energy, increasing your armor class, hit points, and
+damage.
+-
+;spirit drain
+Drains hitpoints from all monsters in the room.
+-
+;teleport
+Teleports you to safety.
+-
+;defensive stance
+Stance that increases your armor class slightly.
+-
+;basic stance
+;natural stance
+Cancels your current martial arts stance.
+-
+;combat stance
+;forceful stance
+Stance that increases your strength.
+-
+;attack stance
+Stance that makes your hits do more damage.
+-
+;end meditation
+;meditation
+Meditation massively increases your magic resistance, but gives a slight
+penalty to hitpoints.  Note that this is NOT a stance.
+
+To stop meditating, type "end".
+-
+;jumpkick
+Damaging attack that hits all enemies in the room.
+-
+;evasion
+Free armor class bonus -- not a stance.
+-
+;frenzy
+;frenzied stance
+Stance that increases critical hit chance.
+-
+;mangle
+;knife-hand strike
+A powerful chop, capable of inflicting great pain on an enemy.
+-
+;unmerciful beating
+Beats your enemy into a living pulp, and renders them unable to leave the
+room for a short while.
+-
+;levitation
+Raises dexterity and greatly increases movement rate.  Also negates any
+paralysis-type effects.  Affects everyone in your party.
+-
+;cleanse
+Heals everyone in your party for a random amount.  Also negates disease and
+weakness-type effects.
+-
+;hands of quickness
+Allows everyone in your party to get an extra swing and better accuracy on the
+next round of combat.
+-
+;flying dragon strike
+Hits for very high damage, but is rather inaccurate.
+-
+;regenerative stance
+Stance that increases health and resting/healing rate.
+-
+;rising heel kick
+Hits for relatively low damage, but has a very high chance of stunning the
+enemy.
+-
+;astral projection
+Decreases maximum SP, but causes you to regain ALL of your spellpoints every
+10 rounds.  Also allows you to see invisible monsters.
+-
+-
+:::STOP:::
+

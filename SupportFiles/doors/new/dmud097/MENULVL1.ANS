@@ -1,0 +1,14 @@
+[?7h[255D[32C[0;1;36mBasic Commands:
+ [34mÚÄÄÄÄÄÄÄÄÄ[32mMovement[34mÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄ[32mCombat[34mÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄ[32mRoom Info[34mÄÄÄÄÄÄÄÄ¿
+ ³  [0mn    s    e    w    u  [1;34m³  [0mattack <creature>[5C[1;34m³  [0mlook[18C[1;34m³
+ ³  [0mne   nw   se   sw   d  [1;34m³  [0mrest[18C[1;34m³  [0mmap[19C[1;34m³
+ ³  [0mrecall[17C[1;34m³  [0m(spells)[14C[1;34m³[24C³
+ ÃÄÄÄÄÄÄÄÄÄÄ[32mShops[34mÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄ[32mCharacter Info[34mÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄ[32mItems[34mÄÄÄÄÄÄÄÄÄÄ´
+ ³  [0mlist[19C[1;34m³  [0mstatus[16C[1;34m³  [0mget[19C[1;34m³
+ ³  [0mbuy[20C[1;34m³  [0minventory[13C[1;34m³  [0mdrop[18C[1;34m³
+ ³  [0msell[19C[1;34m³  [0mskills[16C[1;34m³  [0mwear[18C[1;34m³
+ ³  [0mtrain[18C[1;34m³  [0mexperience[12C[1;34m³  [0mremove[16C[1;34m³
+ ³[25C³[24C³  [0muse[19C[1;34m³
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄ[32mMiscellaneous[34mÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³  [0mhelp[7Cmenu[7Cexit[7Csay[7Cgossip[7Ctell[9C=r  [1;34m³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ[0m

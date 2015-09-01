@@ -1,0 +1,70 @@
+DOORMUD AD-ONS:
+-=-=-=-=-=-=-=-
+
+If you wish to purhase any DoorMUD add-ons, please use the same ordering
+instructions as found in part 5 of README.TXT.   
+
+In order to use any DoorMUD add-ons, you must also have a basic DoorMUD
+registration.  If don't already have a registered copy of DoorMUD, you can
+order a registration and add-on(s) at the same time, if desired.  
+
+If you have any questions about the add-ons or how to order them, please
+send an e-mail to rhythmnp@aol.com.
+
+
+
+DOORMUD PROFESSIONAL
+~~~~~~~~~~~~~~~~~~~~
+   DoorMUD Professional is intended for larger boards with VERY active DoorMUD
+   games.  It adds the following features to DoorMUD:
+ 
+   - Increases the max user count to 16 users, meaning that 16 people can play
+     DoorMUD at the same time on your BBS.  (Please note that hardware and
+     memory restrictions may effectively reduce this number on some systems,
+     especially when using the DOS version of DoorMUD)
+
+   - Adds a sysop option to customize DoorMUD's experience point tables.  This
+     allows you to control how quickly players can gain levels.  Higher 
+     experience table settings make the game much more playable with higher 
+     Monster Fight settings.
+
+   - Adds an optional "hard" difficulty mode that makes DoorMUD more
+     challenging.  When in "hard" mode, monsters have more hitpoints, more
+     damaging attacks, and respawn at a faster rate; resting players heal
+     hitpoints more slowly; gold is slightly more scarce; and fewer areas are
+     level-restricted.  These changes make DoorMUD more difficult on larger 
+     boards, where players frequently join up in groups to defeat monsters.
+
+   - Adds a sysop option to configure the level range for player-vs-player
+     combat, or disable it entirely if desired.
+
+   Most smaller hobbyist boards will NOT need DoorMUD Professional.  You will
+   probably only need this add-on if you want to run a MUD-oriented BBS where
+   DoorMUD is frequently in use by many players at the same time.  
+
+   DoorMUD Professional is marketed as an *add-on*, meaning that you *must*
+   also have a basic DoorMUD registration in order to use it.  DoorMUD
+   Professional costs $40 US.  Remember, if you wish to buy DoorMUD
+   Professional but you do not already have a basic registration, you should
+   order both at the same time for $60 US ($20 for basic registration and $40
+   for DoorMUD Professional).
+
+   DoorMUD Professional is now available for order.  If you wish to receive
+   your order via e-mail, the zip file that will be sent is about 35k in
+   size, so be sure that your e-mail account can receive file attachments.
+
+
+
+DOORMUD WORLD EDITOR
+~~~~~~~~~~~~~~~~~~~~
+   This product will allow you, the sysop, to edit and add to the DoorMUD game
+   world through use of special implementor commands. Almost any aspect of the
+   game can be edited -- players, monsters, rooms, items, spells, quests, and 
+   more. You can even assign other trusted users of your BBS to be 
+   implementors as well.
+
+   The DoorMUD World Editor is still under development and is not yet
+   available for download.  More info to come soon.
+  
+
+Other add-ons TBA.

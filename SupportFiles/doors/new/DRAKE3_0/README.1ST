@@ -1,0 +1,17 @@
+ It's very important that you edit a line in the GO_DRAKE.BAT file. It's
+ written as...
+   REM CD\DOORS\DRAKE ...
+ You need to change the directory to fit your system. The game will still work
+ if you do not change it, but it could crash when you are running some IGMs.
+ Thanks!
+ 
+ P.S. If you are using more than 1 node you need to install SHARE!
+ 
+                                                Stephane Daigle
+                                                 - Drakville -
+                                                
+ If you want to become a Drakeville support and distribution BBS just leave      
+me some E-MAIL at esd2569@umoncton.ca. I will add your BBS information to
+the SUPPORT.DOC file. It spreads my game around and it's FREE advertising
+for your board. Everyone's happy ;-)
+ 

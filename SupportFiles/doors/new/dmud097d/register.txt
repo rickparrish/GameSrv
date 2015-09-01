@@ -1,0 +1,49 @@
+DoorMUD -- Registration Form   
+----------------------------
+ Please fill out the form neatly and legibly.  Please see README.TXT for
+ instructions on how to register. 
+
+ Please indicate what you are purchasing (check desired products):
+   [__] Basic DoorMUD Registration    ($20)
+   [__] DoorMUD Professional *Add-on* ($40 - read addons.txt before ordering!)
+
+ Method of receiving registration file (check one):
+   [__] E-mail (requires email address capable of receiving file attachments)
+   [__] Conventional mail (postal service) 
+
+ DoorMUD Pre-registration code:  __________________________
+ (Enter the door in local mode and select Sysop Configuration from the
+  entrance menu to find your prereg code.  You MUST fill this out exactly as
+  it appears.  Write as neatly as possible please.)
+
+ Your Name ______________________________________   (As entered in game config)
+
+ Mailing address, City, State, Zip Code, Country:
+    _____________________________________________         
+    _____________________________________________         
+    _____________________________________________         
+ 
+ Your e-mail address:  __________________________   
+
+ BBS Name              __________________________
+ BBS Phone Number      __________________________   (If applicable)
+ Telnet Address        __________________________   (If applicable)
+ BBS Software          __________________________
+   # of telnet lines   _____    
+   # of dial-up lines  _____   
+
+ A page on the DoorMUD web site currently lists all telnet boards that run the
+ game.  If your board is not already on this list, and you would like to be
+ added, check here  [___]
+
+ Where did you first hear about DoorMUD?   ___________________________________
+ 
+
+ I, _________________________ (Your Name), state that the above information is
+ correct.  Upon receiving my registration file, I will not distribute it in any
+ form.  Should any of the above be false or should I give out the registration
+ file, I will be held liable for any and all damages.
+
+ Signed _____________________  Date ____________    (Please sign in ink)
+             
+ If you wish, you may use the back of this sheet to write additional comments.

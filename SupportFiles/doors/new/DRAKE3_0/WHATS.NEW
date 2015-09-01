@@ -1,0 +1,93 @@
+- What's new in version 3.0 -
+
+Here is a listing of most of the changes I've made for Drakeville 3.0
+
+ * You can now choose to be EVIL or GOOD. You can be Orcs, Goblins and
+   Trolls and try to kill the COUNCIL that rules the city or be Humans,
+   Elves and Dwarves and try to kill Malaky. This is the major change in 
+   this version. It's kinda like having two games in one!
+
+ * Changed the options menu bar. The colors have changed and I added the
+   time left at the end of it.
+
+ * Fixed a small color goof in the arena. Hardly worth mentioning.
+
+ * Fixed the IGM return options bug. Now writes the name of the first 
+   available character instead of the users last name.
+
+ * You don't loose a player fight when you choose not to fight anymore. 
+
+ * You can no longer attack monsters that aren't there. Kinda makes sense!
+
+ * Added the TRADE option in the TEAM OPTIONS. You can trade weapons and
+   armors between party members.
+
+ * You can now read the YOU ARE OUT OF FIGHTS phrase. It used to write and
+   erase it too fast to read.
+
+ * Boosted the LESSER HEALING spell.
+
+ * You can now POOL your party's gold at the Magic Hut.
+
+ * Malaky battle bug fixed. If you try to attack Malaky with no more
+   catacombs fights left, you killed him without even fighting. Thanks
+   to Jason for finding this MAJOR BUG ;-)
+
+ * Added a GAME INFORMATION option in the main menu.
+
+ * Added WARP SPEED to the combat speed. Don't blink!
+
+ * Fixed a many a combat bugs! Actually, I rewrote the entire combat unit!
+
+ * Lowered the XP needed for level 2 and 3. Users like it when they can go
+   up levels quickly at the begining.
+
+ * Added 5 new ridles! When a ridle is answered correctly, nice little thigs
+   happens to the party.
+
+ * You can now see the player's EXP in the ARENA. Gone are the days of
+   attacking 0 exp characters.
+
+ * Fixed the number of catacomb fight bug. If you changed the order of
+   your party, it would reset the Catacomb Fights.
+
+ * Added the Beer Drinking Record Holder option in the inns.
+
+ * Added the DEADLIEST KILLER line. It's updated once a day.
+
+ * Added a 20 line FULL SCREEN MESSAGE EDITOR!
+
+ * Fixed the negative healing money bug. You can no longer get money from
+   your wounded party members;-(
+
+ * Drakeville will now save your party's information when you loose 
+   carrier.
+
+ * Monsters can now cast spells! VERY COOL AND MORE CHALENGING!
+
+ * Monsters can no longer attack more then once per round each. 
+
+ * Jason Lavigne wrote some more very cool text for the underworld part
+   of the game.
+
+ * Fixed tiny color bug in the WHO'S ON LINE.
+
+ * When you read the headlines you now have the option of not reading them all.
+
+ * Changed the local tag lines.
+
+ * Changed the local logon screen.
+
+ * Changed the colors from warm to cold. Looks way better!
+
+ * Added the team name when you list available victims.
+
+ * You can now change the team's name from the team's options menu.
+
+ * Added the Change Player option in Kyle's Magic Shop. It was always there,
+   but it didn't show up on the menu. 
+
+ * Drakeville now substracts the gold you need to resurect a party member. It
+   used to resurect you and you didn't have to pay for it.
+
+ * Added the amount of Fights Remaining to the combat menu bar.

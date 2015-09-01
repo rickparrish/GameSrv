@@ -1,0 +1,790 @@
+
+                              ÄÄÍÍ Galaxy 5 ÍÍÄÄ
+                      Copyright (c) 1996 Thomas J. Smith
+
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+                            Whats New in Galaxy 5?
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      *NOTE* This file has been reformatted to reflect the newest
+      versions fixes, additions, and changes first instead of last.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+                            *** SPECIAL NOTICE ***
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      I am hoping that this may be the last Wide Beta release of G5. If
+      there are few bug reports for this version, then they will be
+      fixed for release with the full release, v1.10! As it -looks- like
+      all of the major (and minor for that matter) bugs have been fixed.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+                                 New web site!
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      -Noel Software- is now on the web! Visit our home page at,
+      http://www.geocities.com/SiliconValley/Heights/2233 Credit card
+      orders can also be taken at this site to receive your key within
+      48 hours!
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+
+                                                        v1.09 Wide Beta
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      ş Added ability to adjust amount of "looks" needed to be
+        successful when flirting with an "inn mate." G5 reads the
+        LOOKS.DAT file for these 7 amounts.
+
+      ş Added option to have G5 "shell" out to Xports, or completely
+        exit (as it normally did). For those having trouble with Xports,
+        they can now try the "shell out" option and see if it works now.
+        This option is set under "Setup Galaxy 5 | Misc. Options." It
+        also -seems- that the "swap" option runs Xports faster...
+
+      ş Fixed problem with INBATTLE.# & GO.# files being left on disk
+        in the TEMP subdirectory. These are temporary files used when
+        two players battle in node-to-node combat.
+
+      ş Fixed cosmetic glitch in the random Mudshark event. A blank line
+        was being drawn in the text field.
+
+      ş Fixed problem with HIT_INFO.DAT file being 0 bytes sometimes,
+        and therefore causing an error.
+
+      ş Fixed problem with some user names not being converted to
+        uppercase causing users to have to start the game over due to
+        not being recognized by the game.
+
+      ş Fixed what may have caused minor problems when getting food or
+        drink at the inn. Variable was set at Byte and tried to
+        generate numbers higher than 255 (the byte limit) when players
+        would buy food or drink, and amounts would therefore come out
+        as negative amounts.
+
+      ş Fixed problem with interest rates. G5 was calculating interest
+        rates incorrectly during maintenance.
+
+      ş Fixed "Registered To" and "Thanx To..." fields shown on the
+        "pre-entry" menu so they are now centered like they were
+        supposed to be in the first place! ;)
+
+      ş Rewrote the "List Players" routine. It is now 100% faster when
+        listing players. This also applies to writing the player
+        rankings files when G5 terminates. Its -much- faster now! ;)
+
+      ş Added error checking for every routine that reads from external
+        files. If there is an error, the game will not halt, and the
+        player will be informed of the error, as well as the SysOp via
+        the ERROR.LOG file.
+
+      ş Added ability for players to stay at an Xport if the Xport
+        supports this. 3rd party programmers, refer to the G5_STRUC.ZIP
+        file for information on how to do this, and how it works.
+
+      ş Added (optional) ability for players to steal the weapon and/or
+        armour from another player that they kill, if the opponent has
+        a better weapon and/or armour than their own. This is turned on
+        by the SysOp in G5 Setup under "Setup Galaxy 5|Misc Options"
+
+      ş Added a VERSION.DAT file for 3rd party programmers (and for me
+        in fact). This is a normal text file containing only the version
+        number of Galaxy 5 running. It is located in the DATA
+        subdirectory.
+
+      ş Fixed problem with maintenance not correctly deleting players
+        that it was supposed to despite the maintenance routine showing
+        them deleted.
+
+      ş Fixed problem with players committing suicide and their macros
+        not also being deleted (if they had any recorded).
+
+      ş Added a <PAUSE> prompt when trying to escape from an enemy, and
+        you cannot escape.
+
+      ş Added support for MegaHost BBS's MEGAHST#.DEF drop file.
+
+      ş Added support for WWIV's CHAIN.TXT drop file.
+
+      ş Added option to abort paging another online user into battle by
+        pressing the ESC key during the page.
+
+      ş Added ability to change the delay factor of the hovering disc
+        that the guy gives you the opportunity to shoot in the
+        warfields (random event). This is for those systems where the
+        disc flew either too fast or too slow. The default value is 40.
+        To change the value, create a file named DELAY.DAT with only the
+        value you wish to use as the very first line, very first column,
+        and place it in your DATA subdirectory. This value can be
+        anywhere between 1 and 255. Increasing the value will slow down
+        the disc, decreasing it will speed it up.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+      Changes in G5 Editor v1.09 Wide Beta
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      ş Added the "flirt amounts" editor for editing the amounts in the
+        LOOKS.DAT file.
+
+      ş Fixed cosmetic glitch in the "Pick Files Editor." When pressing
+        F3 to pick a new file to edit, the name of the file picked would
+        not be shown at the top of the box, it would read the same as
+        the last file being edited.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+      Changes in G5 Setup v1.09 Wide Beta
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      ş Added the option to set the "swap out for xports" option to YES
+        or NO. Located under "Setup Galaxy 5|Misc. Options"
+
+      ş Added the option to set the "Allow Stealing of Weapons/Armour
+        option to YES or NO. Located under "Setup Galaxy 5|Misc.
+        Options"
+
+      ş Added MegaHost drop file selections in node setup.
+
+      ş Added WWIV drop file selections in node setup (CHAIN.TXT).
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+      Changes in INSTALL.EXE v1.09 Wide Beta
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      ş Fixed problem with "Runtime Error 002" when installing (or
+        upgrading) the game to the same directory running INSTALL from.
+
+      ş When INSTALL searches for a copy of GALAXY5.EXE on the chosen
+        drive letter, if it finds more than one, it will give you a pick
+        list of which directory to choose. You can still change the
+        target directory afterwards by manually typing it in.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+
+                                                        v1.08 Wide Beta
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      ş Fixed problem with Boko helping you out during a warrior droid
+        fight (if you have met Boko the same day), and thus not being
+        progressed to the next level.
+
+      ş Fixed a problem that I -thought- I fixed a long time ago! Lock
+        ups when changing your name with the bartender and using an
+        invalid G5 code. This is fixed for sure now! ;>
+
+      ş Fixed problem with players being allowed to continue to play
+        after getting killed by the "Biker Dude" at the biker bar.
+
+      ş Fixed problem with players being erased from the game when days
+        before deleting inactive players was set to 0.
+
+      ş Fixed it so that players cannot ask about the "Titanium Long
+        Sword" more than once when they are level 15. This never hurt
+        anything, but nonetheless, it has been corrected.
+
+      ş Fixed problem with players buying weapons, armour and/or space
+        crafts above number 10. Ya big cheaters! ;)
+
+      ş Fixed a problem in the NODE*.DAT file. The COMPORT line wasn't
+        reading COMPORT before the com port number in some cases. Not
+        sure if this has caused any problems yet, but it has been fixed
+        nonetheless.
+
+      ş Fixed problem with MuDsHaRK sometimes visiting when players flew
+        to the 6th planet. He wasn't supposed to pop up at all here! ;)
+
+      ş Got a new RAVEN.ANS ansi from the MuDsHaRK. Also added a new
+        RAVEN2.ANS, shown just before the Raven Morpheous speaks.
+
+      ş Fixed problem with players being married to "DELETED." This
+        happened when the player another player was married to, got
+        deleted from the game from either suicide, or lack of play as
+        set by the SysOp.
+
+      ş Fixed problem with mail scrolling up the screen (blankly). This
+        happened when mail was written to a players mail file
+        improperly. G5 now checks for the problem and will not lock-up.
+
+      ş Fixed a few mispelled words here and there.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+      Changes in G5 Editor v1.08 Wide Beta
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      ş Fixed problem with lockups during reading some players mail
+        files. This was due to improper G5 ~ codes being used in the
+        mail. The editor now checks for them just like the game does.
+
+      ş Fixed problem with screen not restoring properly when pressing
+        F1 for help in the "skills editor" area. After pressing "Ok"
+        when finished reading the help, the screen did not restore.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+      Changes in INSTALL.EXE v1.08 Wide Beta
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      ş Added a drive letter pick list for choosing the drive to install
+        the game to.
+
+      ş Added error checking for proper extraction of the game files
+        from within the G5.ZIP archive. Install would not unpack the
+        game files on some systems, but would continue with
+        installation.
+
+      ş Now searches the chosen drive for an existing copy of Galaxy 5.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+
+                                                        v1.07 Wide Beta
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      ş Ok, I do believe I -finally- fixed the problem with EMS not
+        being released after the game exits (yay)! At least it works on
+        my system. My total available EMS is the same after I'm done
+        playing as it was before I start the game.
+
+      ş A not so important "bug" was fixed. When falling in the pit, and
+        choosing to consume a drink, the purple liquid was spelled
+        liquit. A minor oversight on my part.  ;>
+
+      ş When viewing todays news, and selecting to view yesterdays news,
+        if there is no news for yesterday, it will tell you so, then
+        continue reading todays news instead of leaving the news.
+
+      ş Fixed problem with lockups at the "Bartender."
+
+      ş Fixed problem with G5_TMP_$.### files -STILL- being left on
+        disk when they should have been getting erased (again).
+
+      ş Added a new random event when going to another planet.
+
+      ş Fixed runtime error 106 during player fights. Added error
+        checking for this error, and if it occurs, the player is told
+        "Error reading from temporary player fight file!"
+
+      ş Fixed it so that when players select to go to another planet, if
+        they choose the number of the same planet they are currently on,
+        it will not show them going to the planet. It tells them that is
+        the planet they are on and lets them decide again.
+
+      ş Added a TEXT subdirectory to hold all of those *.TXT files
+        (except for REGISTER.TXT). This keeps the home G5 directory from
+        getting too cluttered.
+
+      ş Fixed problem with pressing "?" at the biker bar to redisplay
+        the menu taking you back to the warfields.
+
+      ş Added an ANSI file (and ASCII version) displayed to the caller
+        when the game is starting up (BEAMING.ANS & BEAMING.ASC),
+        instead of just writing "Transporting To Galaxy 5..." to the
+        upper left corner (if you wish to keep using the "Transporting"
+        message, just delete the BEAMING.* files).
+
+      ş Added the ability to run a PRELOG.BAT file. This works in the
+        same manner as the LOGON.BAT file except that it runs right
+        after initializing the program, BEFORE the player is taken into
+        the game (even before the player reaches the "pre-play menu."
+        This one CANNOT be used to run Xports, or any other utilities
+        that require reading of the G5 drop files!
+
+      ş Also added the ability to run a LOGOFF.BAT file. This one works
+        in the exact same manner as the PRELOG.BAT file, except that it
+        is ran right before G5 actually exits back to the BBS.
+
+      ş Fixed problem when an "Inn Mate" agrees to go upstairs with a
+        player, and the game showing the players krills on hand as the
+        one going upstairs with them, instead of the Inn Mates name!
+
+      ş Added support for Xports that can kill players. G5 will not
+        allow them to continue if they have been killed in an Xport.
+
+      ş Fixed problem with players in Xports being marked as "Not on
+        now" and their info being taken from the G5_ON.DAT file (the
+        temp file located in the TEMP subdirectory that shows who is
+        online at the moment).
+
+      ş Made it so that when a player gets a divorce, his/her looks go
+        back down to 10 (if their looks were higher than 10).
+
+      ş Fixed problem with mail being sent to the last player in the
+        data file when a player divorces an "Inn Mate." It no longer
+        writes mail since there is no actual person to receive it.
+
+      ş Fixed problem with runtime error 209 coming up sometimes when
+        the game is exiting.
+
+      ş Changed a few of the ANSI's to reflect a more, "spacey" theme.
+
+      ş Added new INN#.ANS ANSI's.
+
+      ş Fixed it so that players who have been killed who can not play
+        again until tomorrow can still view the news and receive any
+        new mail if they try to go back into the game.
+
+      ş Updated some of the structure files in G5_STRUC.ZIP.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+      Changes in G5 Setup v1.07 Wide Beta
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      ş Fixed problem in the "Register Galaxy 5" option. When saving a
+        file to disk, run-time error 160 occured when saving the file.
+
+      ş Added an option for deleting players with only 100 skill during
+        daily maintenance. 98% of the time, players with only 100 (or
+        200 in the case of an assasin) skill, usually never play again
+        after entering the game once.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+      Changes in G5 Editor v1.07 Wide Beta
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      ş Fixed problem with the mate editor showing the guys name as a
+        number. This only happened if the player editor has been loaded
+        prior to loading the mate editor.
+
+      ş Same as above for the Enemy Editor! :> The enemy's weapon was
+        being shown as a number after loading the player editor.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+
+                                                        v1.06 Wide Beta
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      ş Fixed a few problems with the dropfiles that G5 creates for
+        Xport support. When 0 was used for IRQ number in NODE*.CFG (for
+        use fossil driver), the COM port number wasn't being written to
+        the NODE*.DAT drop file, and the DORINFO*.DEF file that G5
+        creates read incorrect COM port info. It wuz writing just the
+        comport number, when it should have read COM4 (4 being replaced
+        with the proper COM port number).
+
+      ş Added a "-=ğContinue? [Yes/no]" prompt to the routine that
+        displays a text file to the user. This prompt comes up every 23
+        lines if the file is longer than 23 lines, and allows the user
+        to stop reading the file, or continue reading it. It used to be
+        a <PAUSE> prompt, and did not allow you to stop reading.
+
+      ş Added an option for the player to view the MAC_HELP.DAT file in
+        case they need help with recording macros. This file is located
+        in your DATA subdirectory, and can be edited to your likings.
+        Callers can read this file from the "Record Macros" menu.
+
+      ş In the new ANSI's of v1.05, I forgot to add the (T)ransfer
+        Krills option to the BANK.ANS screen. This has been corrected.
+        The BANK.ANS & BANK.ASC screens are also new anyhow! ;>
+
+      ş Added a random event when fighting in the warfields (and getting
+        your butt kicked). This event can only happen if you had an
+        encounter with Boko earlier in the day! ;>
+
+      ş Shareware version can now go up to level 8 instead of 6. There
+        are 15 levels total.
+
+      ş Fixed problem with number of power moves not being reduced by
+        one when players used one during an enemy fight.
+
+      ş Added the "B" option to the menu prompt at the bank (Buy Energy
+        Coins). The option was always available, just wasn't being shown
+        at the prompt like it should have been.
+
+      ş Made the fight against the Raven just a little bit easier. It
+        seemed nearly impossible to beat him sometimes! ;>
+
+      ş When using a power move against an enemy in the warfields, it
+        will no longer automatically kill the enemy, but will almost (if
+        not) double the amount of damage in your hit. What happens after
+        that depends on the enemy's current health and other factors.
+
+      ş Fixed a little typo with gender...the Raven always stated, "I
+        know why you are here little man.." for both male and female
+        players. This has been fixed to reflect the proper gender.
+
+      ş Quit using Pklite to compress the .EXE files. It was causing
+        lockups on some systems running under Qemm.
+
+      ş Fixed problem with cost to hire a player to hire another player
+        to kill another player not being allowed over 32,768. It can now
+        be as high as 2,147,483,647.
+
+      ş Fixed problem with marrying more than one other person being
+        allowed.
+
+      ş Fixed problem with hit men hired by more than one player not
+        getting paid for all of the hits if they were made.
+
+      ş Made the enemy fights just a _little_ bit harder.
+
+      ş Fixed a problem with a cheat code that wasn't giving what it
+        said it gave.
+
+      ş Fixed the (D)ive into pool option to totally revitalize your
+        health like it was supposed to.
+
+      ş Updated (or replaced) a few more of the ANSI's thanx to da
+        MudShaRk! ;>
+
+      ş -Finally- fixed the problem with G5_TMP_$.### files being left
+        on disk in the TEMP subdirectory! Where ### is a random number.
+        These were files containing quoted text when replying to
+        messages.
+
+      ş When reading todays news, and selecting to view yesterdays news,
+        if there was no news for yesterday, it would tell you so and
+        quit showing the news. This has been changed so that it goes
+        back to continue showing todays news instead of exiting from
+        reading the news.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+      Changes in INSTALL.EXE v1.06 Wide Beta
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      ş Will not overwrite your XPORTS.DAT file anymore with a blank one
+        if upgrading from a previous version.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+      Changes in G5 Setup v1.06 Wide Beta
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      ş Fixed help screens for the options, "Register Galaxy 5" and
+        "Quit Setup." Register option was showing the help screen for
+        the Quit setup option when F1 was pressed, and the Quit option
+        had no help screen.
+
+      ş Added an "UNREGISTERED!" reminder after exiting. ;>
+
+      ş Redone the "Register Galaxy 5" option to match the new format of
+        the REGISTER.TXT form.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+      Changes in G5 Editor v1.06 Wide Beta
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      ş Added a "Skill Amounts" editor. This will allow you to set the
+        required amount of skill points needed for each warrior on each
+        level to advance to the next level. This allows you to make the
+        game last longer, or shorten it. Only registered versions will
+        save any changes made via the G5 Editor, however unregistered
+        users can still change the skill amounts by editing the
+        SKILLS.DAT text file in the DATA subdirectory.
+
+      ş Added the option to delete a players mail when viewing their
+        mail (with the [F7] Mail option). You can now press the DEL key
+        to erase all of the players mail which you are currently
+        viewing.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+
+                                                         v1.05 Wide Beta
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      ş Increased the possible amount of looks you can get in a random
+        event that awards look points.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+      Changes in G5 Editor v1.05 Wide Beta
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      ş Fixed a BIG time mistake on my part. G5 Editor wouldn't even
+        start up in v1.04, gave a run-time error 103. This has been
+        fixed. Sorry people! :(
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+
+                                                         v1.04 Wide Beta
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      ş Fixed problem with invalid G5 codes being used locking up the
+        game.
+
+      ş Got some ANSI's from da MudShark! More coming soon! ;>
+
+      ş Fixed glitch where if you flirted with someone at an inn, asking
+        them up to your room and they rejected you, the game telling the
+        player his/her skill was increased by 1,000, and it wasn't (and
+        still isn't).
+
+      ş Fixed it so that players cannot ask a mate at the inns up to a
+        room if the game is being run clean.
+
+      ş Added a "Searching For Dupes..." message when a new player
+        enters the game, and it searches for duplicate handles. This is
+        just so the caller doesn't think it locked up or something while
+        it is searching.
+
+      ş "Pre-Play Menu" now shows who to give credit to for registering
+        Galaxy 5 for you (if anyone). This is an optional feature to
+        registered users. The name to be shown is set up in G5 Setup.
+
+      ş Fixed bug with taking "Inn Mate" up to a room, and it displaying
+        your amount of money in pocket instead of the name of the inn
+        mate.
+
+      ş Added support for 3rd party authors who do not use Turbo Pascal
+        to write Xports for the game. Refer to the text files located
+        inside the G5_STRUC.ZIP archive for full information.
+
+      ş Fixed problem with level 15 warriors being confronted by a
+        warrior droid without a name, and being progressed to level 16
+        (which isn't even supposed to exist BTW).
+
+      ş Prices of rooms at the inns are now configurable by the SysOp
+        via a new file located in the DATA subdirectory, INNCOSTS.DAT.
+        There are 15 prices in this file, one for each player rank.
+
+      ş There is a random feature that can happen to players at the bank
+        once in a while, but there was something in the code that
+        stopped it from ever coming up. I fixed that little problem...
+
+      ş Added feature where if a player who does not have a hyper bike
+        kills another player who does, he/she can take the bike from the
+        player he/she killed (if they choose to do so).
+
+      ş Fixed problem with when getting married to someone at on of the
+        inns, it showing that you walked up the stairs with him/her.
+
+      ş Added a new random event in the warfields. Its a deep, dark,
+        black hole in the ground...you'll see! ;>
+
+      ş Made "Warrior Droid" fights a little more challenging.
+
+      ş Added a routine when maintenance is ran that checks the MAIL
+        subdirectory for any mail that exists to a deleted account. Even
+        though when deleting a player via the game, or the G5 Editor,
+        this is done automatically, this was added as an added
+        precaution. ;>
+
+      ş Still working on a problem with EMS memory not being released
+        after Galaxy 5 exits. I got the amount not being released
+        reduced some, but it will still sometimes not give it all back.
+
+      ş Added error checking for proper path names of output scores
+        bulletins.
+
+      ş Added a timer that shows on local screen when/if an output
+        scores bulletin is locked by Galaxy 5 on another node. It will
+        wait 10 seconds, then "unlock" the output file if it doesn't
+        unlock after the countdown and write it (the output file).
+
+      ş Added a percentage status when the game runs maintenence. Shows
+        all the way up to 100% how much it has finished for each
+        maintenence routine.
+
+      ş Added macro support. Its not very fancy, but it works! ;> Refer
+        to GALAXY5.DOC for info on how to use them.
+
+      ş If a player used a power move against a warrior droid, it wasn't
+        decreasing their amount of power moves left. This has been
+        fixed.
+
+      ş Replaced all internal "Light Black (or dark gray)" colors with
+        light blue. The light black color doesn't show up on some comm.
+        terminals. The light black color was color code ~08~.
+
+      ş Galaxy 5 used to write one blank line after displaying any
+        display file. This has been changed. If you are upgrading, and
+        if you choose NOT to install the new ANSI & ASCII screens, then
+        you will more than likely have to edit your own to add one blank
+        line at the end of each file if you want a blank line to be
+        written between the display and the menu prompt.
+
+      ş Fixed problem with "Local Node 1" logons not being able to use
+        Xports. G5 was passing the com port of your node 1 config file
+        to the Xport when being run in local mode, when it should have
+        been passing 0 when the game is being played locally.
+
+      ş Added the ? option at the bank to redisplay the menu. It should
+        have been there from day one, however it wasn't. ;>
+
+      ş Fixed problem with the game not increasing your lays by one if
+        an inn mate agreed to sleep with you.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+      Changes In G5 Setup v1.04 Wide Beta
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      ş "Reset Game" option now writes new INNTALK*.DAT files, and
+        erases any files that may exist in the TEMP subdirectory.
+
+      ş "Setup Galaxy 5" option is broken up into 4 different categories
+        for easier setup.
+
+      ş Fixed bug under "Node Setup" with setting DORINFO*.DEF systems
+        to DORINFO.DEF and not letting you enter DORINFO1.DEF,
+        DORINFO2.DEF, etc. The program was always setting it to
+        DORINFO.DEF. This has been fixed.
+
+      ş Added new field in "Miscellaneous" under "Setup Galaxy 5" for
+        entering the name of whoever registered the game for you if
+        anyone, or you can put your own name here, or leave it blank.
+        Whatever name is entered here is the name that will be shown at
+        the pre-play menu as "Thanks to John Doe for registering
+        Galaxy 5!" (registered versions only).
+
+      ş SysOps welcome message text file no longer has to reside in your
+        home Galaxy 5 directory. G5 Setup now accepts a full path and
+        file name for your welcome message text file.
+
+      ş Added a field that allows you to turn off loading the overlay
+        file into EMS.
+
+      ş Added options to allow or disallow selling and/or buying of
+        energy coins at the bank, and an option to set the cost of the
+        coins.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+      Changes In G5 Editor v1.04 Wide Beta
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      ş Added "Room Prices" editor under "Prices" on the main menu. This
+        allows you to change the prices of what a room costs at the inns
+        for each player ranking.
+
+      ş Fixed the prices editors so that they only accept numbers (since
+        that is all that is allowed anyhow).
+
+      ş Added a "Saved" box that pops up when F10 is pressed after
+        editing something to let you know your info was saved
+        (registered versions only).
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+      Changes In INSTALL.EXE v1.04 Wide Beta
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      ş Now does a more thorough search for an existing Galaxy 5
+        directory before asking you what directory you want to install
+        it to (does NOT scan your hard drive, just looks for a few
+        possible directories).
+
+      ş INSTALL will automatically convert your configuration data file
+        for you (if you are upgrading), if it is missing the fields that
+        were added in v1.04 Wide Beta.
+
+      ş Implemented better upgrade options. Now lets you choose which
+        parts you want to upgrade.
+
+      ş Added an internal check for the G5.ZIP file. If it doesn't
+        exist, then INSTALL can not (and will not) continue.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+
+                                                         v1.03 Wide Beta
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      ş Fixed problem with a lockup when trying to use one of the cheat
+        codes (I'm not saying where ;> ).
+
+      ş Corrected typo in the 5th planet name. The "raw" name was
+        correct, but the fancy name read the same as the 3rd planet
+        (Bantini). This has been corrected.
+
+      ş Fixed it so that players can not flirt with same person (other
+        player) more than once a day.
+
+      ş Raised skill points needed to advance to next rank for all
+        ranks. Players were advancing much too quickly!
+
+      ş Tweaked the warfield fights a little so that it moves a little
+        faster (and still working on speeding things up).
+
+      ş Changed default colors of the fourth planet (Gorn) from dark and
+        light blue to brown and yellow. The dark blue was just too dark!
+
+      ş Fixed problem with the game not decreasing the amount of
+        medicines a player had on hand after drinking one in a player
+        fight.
+
+      ş Fixed problem with sentences that were too long in the news
+        files not wrapping correctly.
+
+      ş When players enter their own string of text to say in the news
+        after killing another player, or getting killed, changed it so
+        that if they choose no to the "Is This Ok?" prompt, it takes
+        them back to entering their text again, instead of just asking
+        for their feeling again.
+
+      ş Because of the above fix, the amount of text a player can enter
+        when saying something themselves, has been increased to 70
+        characters instead of 45.
+
+      ş Added a few more feelings to the pick list when asked how you
+        feel after a kill or getting killed.
+
+      ş Added an option when fighting enemies in the warfields that lets
+        you fight your enemy to the death. Choosing this option will
+        automatically keep attacking the enemy until you or the enemy is
+        dead, so use it with caution! ;>
+
+      ş Fixed problem with ~K#~ (highest number of player kills by the
+        person holding this record), displaying a number other than 0
+        when no one holds the record for highest number of player kills.
+
+      ş Fixed problem in the Help Menu when selecting to download a help
+        file, if RIPTERM.DAT did not exist (text file containing full
+        path and file name of archived RIPterm), it would say downloads
+        were not allowed. The RIPTERM.DAT file is completely unrelated
+        to downloading help files, and only applies to downloading
+        RIPterm. The game was treating it otherwise. This has been fixed.
+
+      ş Included a HELP.TXT file that explains the setup of doors,
+        fossil drivers, locked baud rates, etc. It is primarily for
+        beginning SysOps, who are still unfamiliar with door setup.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+      Changes In G5 Editor v1.03 Wide Beta
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      ş Added the price editor. It allows you to set the prices of
+        weapons, armour, and space crafts (registered versions only).
+        Unregistered users can still evaluate this feature, but it will
+        not save changes.
+
+      ş Fixed problem when editing a "pick file," and it would ask you
+        if you want to save your changes, if you chose yes, it would not
+        save the changes. This has been fixed.
+
+      ş Fixed problem with adding a new player, and the record number
+        not getting set to the proper number.
+
+      ş Fixed cosmetic glitch in the planet editor. The help line near
+        the bottom of the editing box for the light and dark color code
+        fields were switched. The dark color code fields help line read,
+        "This is the light color code for this planet." And the dark
+        color code fields help line read that it was the light color
+        code for this planet.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+      Changes In G5 Setup v1.03 Wide Beta
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      ş Added an option that will allow you to enter all of the required
+        registration info, and either print it to your printer, or save
+        it to a file on disk.
+
+      ş Changed the "Create Fresh Data Files" option so that you can now
+        choose which file you want to recreate, or you can choose all.
+        The command line parameter for this option has also changed in
+        order to support this new feature (type G5SETUP /? on the
+        command line for info).
+
+      ş Fixed a cosmetic glitch with the "F2 Pick" & "SPACEBAR Toggle"
+        options not being highlighted when editing the "COM Port #"
+        field under "Node Setup." Use of F2 and SPACEBAR for choosing
+        your COM port in this field is supported (always has been).
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+
+                                                         v1.02 Wide Beta
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      ş Corrected problem with ~K?~ codes not displaying the proper
+        information (highest player kills and who holds title). By
+        default, these codes are used in the P_KILL.* display files.
+        These display files are shown at the "Kill Other Players" menu.
+        On the line that says, "Player is the meanest murderer in the
+        galaxy with 23 kills!." Sometimes the wrong player would be
+        displayed here as having the highest number of player kills.
+
+      ş Fixed problem with users with only a first name (as read from
+        the BBS drop file) not being able to use Xports.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+
+                                                         v1.01 Wide Beta
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      ş Made enemy fights a little more smoother. Galaxy 5 now makes a
+        copy of the ENEMIES.DAT file in the TEMP subdirectory dedicating
+        this copy to the current node. This way, the ENEMIES.DAT file
+        does not have to be accessed every time a player looks for
+        something to kill in the warfields. The dedicated copy can
+        remain open until the player leaves the warfields. This copy is
+        also erased after the player leaves the game.
+
+      ş Corrected an error on my part in the G5_STRUC.PAS file
+        (structures to data files used in the game). I changed something
+        in the structure of the G5_MATES.DAT file after I created the
+        G5_STRUC.PAS file, and forgot to make the change in the
+        G5_STRUC.PAS file. To see what it should look like, refer to the
+        G5_STRUC.PAS file.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ

@@ -1,0 +1,10 @@
+* MULTI NODE INFO *
+
+ Make sure that you create a node file with DEDIT for every NODE you wish to
+ play Drakeville on.
+
+ You can run DOATTRIB.BAT to render the DRAKE.EXE and DRAKE.OVR to read-only.
+ This will solve some file sharing problems.
+
+   
+ 

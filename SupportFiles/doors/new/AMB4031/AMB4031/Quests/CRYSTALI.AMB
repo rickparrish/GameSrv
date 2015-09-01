@@ -1,0 +1,211 @@
+You are walking along
+  a long gravel rode...
+@PAUSE@
+It never seems to end..
+@PAUSE@
+Walking....
+@PAUSE@
+Walking....
+@PAUSE@
+`bright red`Suddenly Some Monsters Attack!
+@PAUSE@
+@MONSTER:Goblin:30000:1000:0:100:0:2:2000000:150000
+`bright green`The Monster's Corpse Now Lay On The Ground..
+@PAUSE@
+Suddenly You Wake Up Covered With Sweat and
+ You Relize It Was A Dream!
+@PAUSE@
+You Feel A Sharp Pain In Your Right Pocket..
+@PAUSE@
+You Take It Out And It Looks Like A Pendant
+ Of Some Sorts..
+@PAUSE@
+You Turn It Over And It Has A Map Enscribed
+ On The Back Of It... You Feel You Must Find
+ What This Map Leads Too... The Only Thing
+ Word On It Says "CrYsTaLiS"
+@PAUSE@
+`bright blue`You Take Your Sword And Set Out To Find Out
+`bright blue` What This CrYsTaLis Is....
+@PAUSE@
+Walking....
+@PAUSE@
+Walking....
+@PAUSE@
+`bright red`You Are Suddenly Attacked From Behind!!
+@PAUSE@
+@MONSTER:Mutant:15000:1000:0:500:0:1:2000000:120000
+Walking....
+@PAUSE@
+Walking....
+@PAUSE@
+Finally.. You Stagger Into Town And
+ Find The Tavern And Rent A Room...
+ And Fall Asleep....
+@PAUSE@
+@DAYEND:1
+`bright green`You Wake Up And Get Ready For The Next
+`bright green` Day Of Your Quest.....
+@PAUSE@
+You Walk DownStairs And Cheerfully Walk
+ Out Of Town Ready For A Day Of PeaceFul
+ Walking...
+@PAUSE@
+But Your Cheer Ends When You Encounter
+ A Group Of Evil Monsters!..
+@PAUSE@
+@MONSTER:Draconian:10000:1000:0:300:0:2:2000000:150000
+You Kick At The Body And It Crumbles..
+@PAUSE@
+More Monsters Attack!!
+@PAUSE@
+@MONSTER:Draconian:10000:900:0:300:0:3:2000000:150000
+You Run For Your Life As More Come Running
+ After You....
+@PAUSE@
+You Flee So Far That The Skeletors Stop Chasing
+ You.
+@PAUSE@
+You Check The Pendant And See That You Have Gone
+ Way Off Course...
+@PAUSE@
+What Was Once A Three Day Journey Now Has Become
+ A 5 day Journey...
+@PAUSE@
+Which Means You Still Have
+ About 3 Left Of Your Journey.
+@PAUSE@
+You Suddenly See That There
+ Is A Very Large City To The
+ West.
+@PAUSE@
+You Decide To Walk To The Town
+ So You Can Rest For Tommorrows
+ Journey.
+@PAUSE@
+Three Hours Later You Stumble
+ Into Town And Go To A Room At
+ The Tavern.
+@PAUSE@
+@DAYEND:2
+You Wake Up Early In
+ The Morning Refreshed..
+@PAUSE@
+As you set out on your 3rd
+ day of the quest you feel
+ something is terribly wrong
+@PAUSE@
+As you walk along the dirt rode
+ your stomach keeps turning flipflops!
+@PAUSE@
+What is wrong with you...
+@PAUSE@
+Walking....
+@PAUSE@
+Walking....
+@PAUSE@
+Walking....
+@PAUSE@
+`bright magenta`ATTACK!!!!
+@PAUSE@
+@MONSTER:Black Zombie:12000:1000:0:0:50:1:1000000:100000
+The Black Zombie is dead...
+@PAUSE@
+As You Keep Walking You Are
+ Suddenly Very Tired...
+@PAUSE@
+You Fall Asleep On A Tree...
+@PAUSE@
+@DAYEND:3
+You Are Awokin By The Sound Of Footsteps,
+ You Look Around And See Mad Rebels Surrounding
+ All Your Sides.
+@PAUSE@
+"What Can I Do For You Fine People," You Say
+@PAUSE@
+ They Answer Back With One Word.... "DIE!!,"
+@PAUSE@
+Monsters  ATTACK!
+@PAUSE@
+@MONSTER:Rebel:2000:200:0:0:0:10:100000:50000
+More Monsters ATTACK!!
+@PAUSE@
+@MONSTER:Rebel:2000:200:0:0:0:10:100000:50000
+You Are Surrounded By Rebels!!
+@PAUSE@
+You Run For Your LIFE!!
+@PAUSE@
+Running...
+@PAUSE@
+Running...
+@PAUSE@
+@MONSTER:Half Dead Rebel:500:200:0:0:0:10:100000:50000
+You Finally Escaped...
+@PAUSE@
+As you Check your Pendant You
+ See That You Have Found A Shortcut!!
+@PAUSE@
+Looking At The Pendant You See That
+ By The End Of The Day You Could Be
+ To CrYsTaLiS.
+@PAUSE@
+After You Walk For 3 More Hours
+ You See A Giant Cave In The Distance
+@PAUSE@
+CrYsTaLiS is a CAVE!!!
+@PAUSE@
+As you walk Into The Cave You See That
+It Seems To Go On Forever... But At The
+End There Seems To Be A Bright Light...
+@PAUSE@
+As You Are Walking You Suddenly Fall
+ Asleep.....
+@PAUSE@
+@DAYEND:4
+You Wake Up To See 2 Knights Looking
+ At You.. You Think Uhh Ohh This Is Trouble
+@PAUSE@
+But Amazingly They Help You To Your Feet.
+@PAUSE@
+They Tell You That They Are
+ Castle Guards From The
+ Distant Castle Of Ti Hee!!
+@PAUSE@
+They Wish To Help You On Your
+ Journey Down This Dangerous Cave..
+@PAUSE@
+So You Set Out With The Guards Ready
+ To Fight... But Amazingly There
+ Are no beasts or animals to defeat..
+@PAUSE@
+As You Near The Light A Giant Mega
+ Dragon Attacks The Guards!
+@PAUSE@
+They Die Instantaneously!!!!
+@PAUSE@
+As You Step Up To The Dragon
+ You Watch The Flames Come
+ Flying From His Nose!!!
+@PAUSE@
+Then The Mega Dragon Attacks!!
+@PAUSE@
+@MONSTER:Mega Dragon:50000:9000:0:0:0:1:2000000:200000
+When The Dragon Falls To The Ground
+ The Back Wall Of The Cave Suddenly
+ Opens And Many Treasures Can Be
+ Seen From Your View....
+@PAUSE@
+As You Walk Into The Room You Fell
+ Elited!!!
+@PAUSE@
+`bright green`You are given 500 Hit Points!
+`bright green`You are given 100 Agility Points!
+`bright green`You are given $1000000000 gold!
+`bright green`You are given 45 High Experience Points!
+@PAUSE@
+@STAT:MaxHP:500
+@STAT:Agility:100
+@HIGH:45
+@GOLD:1000000000
+@ITEM:Fire Cape
+@FINAL@

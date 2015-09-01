@@ -1,0 +1,131 @@
+                        The Lost Temple V1.0
+                        --------------------
+
+             Copyright 1994 - J.T. McGinty & Sean Burd
+
+                         User Documentation
+                         ------------------
+
+The following text is a listing and explanation of most of the
+commands found in The Lost Temple V1.0.  Please bear in mind that I
+am a programmer, not a writer.  Therefore this file may be a bit
+disorganized and will probably have a few thing accidentally
+omitted.  Other than that, I hope this will help you out a bit with
+the game.  It should suffice as a reference if you'd care to print
+it out.
+
+
+Game Overview
+-------------
+
+    The Lost Temple is your basic role playing game.  When you enter
+the game for the first time you will be asked to pick a race and
+class for your character. (Races and classes are explained within the
+game.) Once your character is generated, you will begin your journey
+through the fantasy world contained within the game.  Your main goal
+is to locate and free the lost temple.   To accomplish this you will
+have to advance levels and find several runes located in hidden
+areas throughout the game map.
+    You will most likely want to begin making maps of the game's
+different areas.  You might also want to ask your sysop to set aside
+a message base for Lost Temple players.  You'll find the game a bit
+easier if you can trade information with other players.  There's
+plenty of hidden stuff in the game, someone else might find
+something that you walked right past and vice versa.
+
+Game Commands
+-------------
+
+Attack       -  This command will work in any area where there is a
+                monster present.  I think it's rather self explanatory.
+
+Buy <item>   -  This command will allow you to buy items from
+                shopkeepers.  You must, of course, have room in your
+                inventory and have sufficient gold.
+
+Buy Level    -  This command works only in the training guild.  When
+                your character has reached the proper amount of
+                experience points, you will be allowed to advance to the
+                next level.  You must also have enough gold to pay for
+                your training.
+
+Cast <spell> -  This command will work in any area for spellcasters.
+                Offensive spells will only work when a monster is
+                present.  Defensive spells, such as acolytes healing
+                spells will work at any time as long as the player has
+                enough mana to cast the spell.
+
+Drink <item> -  This command will make your character drink an item
+                in your current inventory.
+
+Exits        -  This command will display all visible exits from the
+                room you are currently in.  (Beware, not all exits are
+                visible)
+
+Get <item>   -  This command will make your character pick up any item
+                that you may find on the ground.  You must have room in
+                your inventory.
+
+Health       -  This command will show your character's current health
+                information.  (May be abbreviated as "HE")
+
+Help         -  This command will give you a short menu of help topics
+                currently available to players.
+
+Inventory    -  This will display how much gold you currently have as
+                well as the items you are currently carrying.
+                Characters may hold up to 8 items.
+
+List         -  This command will work in any shop.  Use it to get a
+                listing of all items the shop sells as well as their
+                prices.
+
+List Acolyte -  This command works only in the training guild.  It will
+                display a list of spells available to acolytes as well
+                as their cost and how much mana they use when cast.
+
+List Druid   -  Same as above, but lists druid spells.
+
+List Sorcerer-  Same as above, but lists sorcerer spells.
+
+Look         -  This command will show you a brief description of any
+                monster in the room with you, as well as give you a hint
+                as to the monster's physical condition.
+
+Quit         -  This command will save your character and return you to
+                the BBS.
+
+Reroll       -  This command will allow you to get a new set of stats
+                for your character.  Current race and class are kept in
+                tact.
+
+Sell <item>  -  This will allow you to sell items to the shopkeepers.
+                You must be in the proper shop to sell an item. Ex. The
+                armor shop will not buy magical items.
+
+Spells       -  This command works only for spellcasters.  It will
+                display the spells currently contained within your
+                spellbook.
+
+Status       -  This command will show your character's current
+                statistics. (May be abbreviated as "ST")
+
+Suicide      -  This command will kill your character and the next time
+                you enter the game you will be prompted to choose a new
+                class and race.
+
+Use <item>   -  This command will use an item in your current inventory.
+                Not all items work with the use command.
+
+When dealing with potions, you will only have to enter the color of the
+potion you wish to buy, sell or drink.  For example, type "Buy Red" and
+not "Buy Red Potion".
+
+To move through the rooms simply type the direction you wish to move.
+Directional commands may be typed out in whole words or abbreviated such
+as "N" or "SW".
+
+You may also abbreviate some of the commonly used, single word commands
+such as "Attack" and "look" by typing only the first letter of the
+command.
+

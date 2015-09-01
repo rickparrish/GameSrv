@@ -1,0 +1,215 @@
+
+                              ÄÄÍÍ Galaxy 5 ÍÍÄÄ
+                      Copyright (C) 1996 Thomas J. Smith
+                        Installation instruction sheet
+
+
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      If you are having trouble installing Galaxy 5, and need to
+      manually install the game, move on to the section, MANUAL
+      INSTALLATION.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+                                   CONTENTS
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      Files In This Archive............................................1
+      Upgrading........................................................2
+      Quick Install....................................................3
+      Detailed Installation............................................4
+      Manual Installation..............................................5
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+                             FILES IN THIS ARCHIVE                     1
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      Included with G5xxx.ZIP (where xxx is the version number, and
+      may sometimes be more than 3 characters, like G5xxxx.ZIP), should
+      have been the following files.
+
+      INSTALL.EXE  - Installation program.
+      INSTALL.TXT  - This installation instructions text file.
+      GALAXY5.DOC  - Documentation for the door game.
+      G5.ZIP       - Program files zipped (pathnames stored,
+                     subdirectories recursed).
+      SCREENS.ZIP  - Some ANSI screens that you may use on your BBS to
+                     announce the door! ;>
+      WHATSNEW.TXT - Changes, additions, fixes, etc. in this version
+                     (as well as previous versions).
+      README.TXT   - Important information about the game.
+      CHARGEIT.TXT - Credit card ordering information.
+      FILE_ID.DIZ  - Description text file.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+                                   UPGRADING                           2
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      If you are upgrading, run the INSTALL program and show it the
+      directory where your copy of Galaxy 5 is installed to (if it
+      doesn't find it first! ;> ). If INSTALL finds a copy of
+      GALAXY5.EXE in the specified directory, then you will be asked if
+      you wish to use the upgrade options. **PLEASE NOTE** that you
+      should only choose Yes to this question if you have customized
+      anything about the game (screens, prices, armour & weapon names,
+      etc.). Otherwise, select No. G5 will NOT overwrite or erase any of
+      your player information. The PLAYERS.DAT file will remain intact.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      If you do select to use the upgrade options, then you will be
+      shown a list of the things that you can choose whether or not you
+      want them installed or not. These are as follows,
+
+      1) All files in the SCREENS subdirectory (*.ANS & *.ASC files).
+      2) All files in the DATA subdirectory (data files).
+      3) All *.TXT text files in your Galaxy 5 home directory.
+
+      Select the ones you wish to install by highlighting them, and
+      pressing your spacebar. A check mark will appear to the left of
+      the selected options. You can highlight an already selected option
+      and press your spacebar to "unmark" the option. After you have
+      determined which parts you want upgraded, press F10 to begin the
+      upgrade, or ESC to abort.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      **NOTE** When upgrading, INSTALL will always copy over the new
+               .EXE and .OVR files, regardless of which areas you have
+               marked for upgrade. Also, if there are any changes in the
+               G5CONFIG.DAT (setup configuration) data file, then that
+               file will be erased upon upgrading, and you must run
+               G5 Setup and go over all of your setup areas. :(  This is
+               the safest way of upgrading your setup (if needs be).
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+                                 QUICK INSTALL                         3
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      1 ş Unzip G5xxx.ZIP to either a temporary directory, or the
+          directory where you wish to install the game.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      2 ş Run INSTALL.EXE, choose the letter of the drive you want the
+          game installed to, then enter the directory where you want
+          the game installed to. If you choose a directory that does
+          not exist, it will be created.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      3 ş After INSTALL loads G5SETUP.EXE, choose "Node Setup," and
+          setup all of your BBS nodes, then choose "Setup Galaxy 5" to
+          set the game to your system and your likings (if upgrading,
+          INSTALL will not load G5 Setup).
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      4 ş Create your batch files for running the door. Your batch
+          file(s) that you use to run the game MUST call the G5.BAT
+          file with a node number as the first parameter. So in your
+          batch file(s) you would use something like, CALL G5.BAT 1
+          where 1 is the node number being loaded. Wildcat! systems can
+          take advantage of the wcnodeid variable by using,
+          CALL G5.BAT %WCNODEID% Example,
+                                         @ECHO OFF
+                                         CD\DOORS\GALAXY5
+                                         CALL G5.BAT 1
+                                         CD\BACK\TO\BBS\OR\WHATEVER
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      5 ş To try the game locally, either run the LOCAL.BAT file, or
+          type GALAXY5 /L on the command line. *NOTE* using the /L
+          parameter instead of the LOCAL.BAT file will not allow you to
+          use any Xports in the game. If you try to use an Xport and
+          you used the /L parameter, then the game will exit to DOS.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+                             DETAILED INSTALLATION                     4
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      1 ş You've probably already unzipped the G5xxx.ZIP file. Now just
+          run the INSTALL.EXE program. INSTALL can be ran from a
+          temporary directory and it will create its own directory of
+          your choice and place the files in their proper places, or if
+          you are running it from the directory you want it installed
+          to, it will create the necessary directories, and place the
+          files in their proper places. Either way, the installation
+          program will install the game properly.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      2 ş In the INSTALL program, you will first be asked to key in the
+          letter of the drive you want the game installed to. Then, if
+          a valid directory is found on that drive where the game can
+          be installed, then it will be shown, otherwise, the directory
+          you are running INSTALL from will be shown. Type in the
+          directory where you want the game installed to. If the
+          directory already exists, you may press F2 to choose that
+          directory from a pick list. Pressing F2 will only work for
+          choosing a directory that already exists.
+                                     -=ğ=-
+          If a GALAXY5.EXE file is found in the directory you chose to
+          install to, then you will be asked if you wish to use the
+          upgrade options. When you do, then only the files needed to
+          upgrade will be copied to your G5 directory. If you have not
+          customized anything about the game, then it would probably be
+          best to choose NO when asked to use upgrade options. This is
+          safe to do, and will keep all info pertaining to your players.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      3 ş INSTALL will automatically load the G5SETUP.EXE program
+          (unless you are using the upgrade options). When you get to
+          the G5 Setup program, the first thing you should do is choose
+          "Node Setup," and configure all of the nodes that you have.
+          G5 Setup contains online help throughout, just press F1
+          whenever you have a question to see if it helps! :) After
+          configuring your nodes, choose "Setup Galaxy 5" to set up the
+          game to your system and your likings.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      4 ş Create your batch files for running the door. Your batch
+          file(s) that you use to run the game MUST call the G5.BAT
+          file with a node number as the first parameter. So in your
+          batch file(s) you would use something like, CALL G5.BAT 1
+          where 1 is the node number being loaded. Wildcat! systems can
+          take advantage of the wcnodeid variable by using,
+          CALL G5.BAT %WCNODEID% Here is an example for node 2's batch
+          file,
+
+          @ECHO OFF
+          CD\DOORS\GALAXY5
+          CALL G5.BAT 2
+          CD\BACK\TO\BBS\OR\WHATEVER
+
+          And here is an example using the Wildcat! %wcnodeid% variable,
+
+          @ECHO OFF
+          CD\DOORS\GALAXY5
+          CALL G5.BAT %WCNODEID%
+          CD\WILDCAT\WCWORK\NODE%WCNODEID%
+
+          I use the above example using the %wcnodeid%. In fact, it is
+          exactly what my batch file looks like! Of course you must
+          remember that you have to be using the wcnodeid variable in
+          order for this to work. For a single line system, all you
+          would have to do is put SET WCNODEID=1 either in your CAT.BAT
+          or your AUTOEXEC.BAT. As for multi node Wildcat! systems, you
+          would have to add SET WCNODEID=N (where N is the proper node
+          number), in each of your CAT*.BAT files.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      It is extremely important that you CALL the G5.BAT file, and
+      not GALAXY5.EXE in your BBS batch file(s)!!
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+                              MANUAL INSTALLATION                      5
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      1 ş Unzip G5xxx.ZIP to the directory you wish to install the game
+          to (xxx will be the version number).
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      2 ş Rename the G5.ZIP file (this is inside the G5xxx.ZIP file) to
+          G5.EXE. G5.ZIP is actually a self extracting .ZIP archive
+          renamed back to .ZIP from .EXE.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      3 ş Type "G5 -d" (without the quotations). This will create a few
+          directories and place the proper files in the proper
+          directories. After this is done, you may delete the G5.EXE
+          archive, as it is no longer needed.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      4 ş Run G5SETUP.EXE and first choose "Setup Nodes" then choose
+          "Setup Galaxy 5" to setup the game to your system and your
+          likings.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      5 ş Follow the instructions above for making your batch file(s)
+          for running the door from your BBS software.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      6 ş To try the game locally, type LOCAL and press enter, or type
+          GALAXY5 /L on the command line.
+     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+                                ş END OF FILE ş

@@ -1,0 +1,696 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6718AABB-0FA8-44E7-A3B2-13A9FF71C478}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RandM.GameSrv</RootNamespace>
+    <AssemblyName>SupportFiles</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ansi\email_sysop.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\email_sysop.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\exceeded_call_limit.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\exceeded_call_limit.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\exceeded_idle_limit.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\exceeded_idle_limit.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\ip_banned.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\ip_banned.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\logoff.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\logoff.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\logon_enter_alias.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\logon_enter_alias.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\logon_enter_password.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\logon_enter_password.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\logon_failed.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\logon_failed.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\logon_header.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\logon_header.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\logon_invalid.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\logon_invalid.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\logon_success.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\logon_success.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\logon_twit.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\logon_twit.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\logon_two_nodes.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\logon_two_nodes.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\newuser_enter_alias.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\newuser_enter_alias.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\newuser_enter_alias_duplicate.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\newuser_enter_alias_duplicate.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\newuser_enter_email.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\newuser_enter_email.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\newuser_enter_email_confirm.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\newuser_enter_email_confirm.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\newuser_enter_email_invalid.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\newuser_enter_email_invalid.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\newuser_enter_email_mismatch.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\newuser_enter_email_mismatch.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\newuser_enter_favouritenumber.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\newuser_enter_favouritenumber.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\newuser_enter_favouritenumber_invalid.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\newuser_enter_favouritenumber_invalid.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\newuser_enter_newuser_password.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\newuser_enter_newuser_password.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\newuser_enter_password.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\newuser_enter_password.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\newuser_enter_password_confirm.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\newuser_enter_password_confirm.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\newuser_enter_password_mismatch.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\newuser_enter_password_mismatch.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\newuser_enter_randomtext.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\newuser_enter_randomtext.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\newuser_enter_realname.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\newuser_enter_realname.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\newuser_enter_realname_invalid.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\newuser_enter_realname_invalid.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\newuser_header.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\newuser_header.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\newuser_success.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\newuser_success.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\rlogin_invalid.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\rlogin_invalid.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\rlogin_invalid_password.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\rlogin_invalid_password.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\rlogin_invalid_xtrn.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\rlogin_invalid_xtrn.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\server_busy.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\server_busy.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\server_paused.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\server_paused.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\user_banned.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ansi\user_banned.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="bin\TelnetDoor-Header.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="bin\TelnetDoor.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="bulletins\bulletin01.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="bulletins\bulletin01.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="bulletins\bulletin02.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="bulletins\bulletin02.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="config\gamesrv.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="config\logoffprocess.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="config\logonprocess.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="config\newuser.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="cpulimit.sh">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="doors\amb4031.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="doors\axe118f.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="doors\bre.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="doors\death150.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="doors\dmud097.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="doors\drake3_0.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="doors\lord.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="doors\lord2.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="doors\mel_352.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="doors\new\AMB4031.zip" />
+    <None Include="doors\new\AMB4031\AMB4031\Data\ITEM.DAT" />
+    <None Include="doors\new\AMB4031\AMB4031\Data\MAGIC.DAT" />
+    <None Include="doors\new\AMB4031\AMB4031\Data\MONSTER.DAT" />
+    <None Include="doors\new\AMB4031\AMB4031\Data\POISON.DAT" />
+    <None Include="doors\new\AMB4031\AMB4031\Data\QUESTS.DAT" />
+    <None Include="doors\new\AMB4031\AMB4031\Docs\%24PLUGINSDIR\ioSpecial.ini" />
+    <None Include="doors\new\AMB4031\AMB4031\Docs\WCAMB.BAT" />
+    <None Include="doors\new\AMB4031\AMB4031\Quests\CRYSTALI.AMB" />
+    <None Include="doors\new\AMB4031\AMB4031\Quests\Quest1.amb" />
+    <None Include="doors\new\AMB4031\AMB4031\Quests\Quest2.amb" />
+    <None Include="doors\new\AMB4031\AMB4031\Quests\Quest3.amb" />
+    <None Include="doors\new\AMB4031\AMB4031\Quests\Quest4.amb" />
+    <None Include="doors\new\AMB4031\AMB4031\Skins\ALLEY.ANS" />
+    <None Include="doors\new\AMB4031\AMB4031\Skins\ARMOR.ANS" />
+    <None Include="doors\new\AMB4031\AMB4031\Skins\BANK.ANS" />
+    <None Include="doors\new\AMB4031\AMB4031\Skins\CHAT.ANS" />
+    <None Include="doors\new\AMB4031\AMB4031\Skins\CHURCH.ANS" />
+    <None Include="doors\new\AMB4031\AMB4031\Skins\GUILD.ANS" />
+    <None Include="doors\new\AMB4031\AMB4031\Skins\HEALER.ANS" />
+    <None Include="doors\new\AMB4031\AMB4031\Skins\INFO.ANS" />
+    <None Include="doors\new\AMB4031\AMB4031\Skins\INTRO.ANS" />
+    <None Include="doors\new\AMB4031\AMB4031\Skins\KINGDOM.ANS" />
+    <None Include="doors\new\AMB4031\AMB4031\Skins\LOADING.ANS" />
+    <None Include="doors\new\AMB4031\AMB4031\Skins\MAIN.ANS" />
+    <None Include="doors\new\AMB4031\AMB4031\Skins\MERCHANT.ANS" />
+    <None Include="doors\new\AMB4031\AMB4031\Skins\NEWS.ANS" />
+    <None Include="doors\new\AMB4031\AMB4031\Skins\NOBLE.ANS" />
+    <None Include="doors\new\AMB4031\AMB4031\Skins\PERS.ANS" />
+    <None Include="doors\new\AMB4031\AMB4031\Skins\QUESTS.ANS" />
+    <None Include="doors\new\AMB4031\AMB4031\Skins\SETUP.ANS" />
+    <None Include="doors\new\AMB4031\AMB4031\Skins\TAVERN.ANS" />
+    <None Include="doors\new\AMB4031\AMB4031\Skins\WEAPON.ANS" />
+    <None Include="doors\new\axe118f.zip" />
+    <None Include="doors\new\axe118f\AXE&amp;FANG.ANS" />
+    <None Include="doors\new\axe118f\AXE.DOC" />
+    <None Include="doors\new\axe118f\AXE.UPD" />
+    <None Include="doors\new\axe118f\DOOR.SYS" />
+    <None Include="doors\new\axe118f\FILE_ID.DIZ" />
+    <None Include="doors\new\axe118f\HELP" />
+    <None Include="doors\new\axe118f\HYPER.DOC" />
+    <None Include="doors\new\axe118f\INSTALL.BAT" />
+    <None Include="doors\new\axe118f\LOCAL1.BAT" />
+    <None Include="doors\new\axe118f\MOB.MUD" />
+    <None Include="doors\new\axe118f\MOBS.MUD" />
+    <None Include="doors\new\axe118f\MOTD" />
+    <None Include="doors\new\axe118f\NODE1.CFG" />
+    <None Include="doors\new\axe118f\NODE2.CFG" />
+    <None Include="doors\new\axe118f\NODE3.CFG" />
+    <None Include="doors\new\axe118f\OBJ.MUD" />
+    <None Include="doors\new\axe118f\ROOM.MUD" />
+    <None Include="doors\new\axe118f\WORLD.MUD" />
+    <None Include="doors\new\axe118f\ZONE.MUD" />
+    <None Include="doors\new\death150.zip" />
+    <None Include="doors\new\death150\DM.ZIP" />
+    <None Include="doors\new\death150\READ.!!!" />
+    <None Include="doors\new\dmud097.zip" />
+    <None Include="doors\new\dmud097d.zip" />
+    <None Include="doors\new\dmud097d\AREA.dat" />
+    <None Include="doors\new\dmud097d\COMMAND.dat" />
+    <None Include="doors\new\dmud097d\CONFIG.ref" />
+    <None Include="doors\new\dmud097d\CREA1.HLP" />
+    <None Include="doors\new\dmud097d\CREATURE.res" />
+    <None Include="doors\new\dmud097d\DESC.dat" />
+    <None Include="doors\new\dmud097d\DOORMUD1.ANS" />
+    <None Include="doors\new\dmud097d\DOORMUD2.ANS" />
+    <None Include="doors\new\dmud097d\ENCHANT.dat" />
+    <None Include="doors\new\dmud097d\ENTRANCE.ANS" />
+    <None Include="doors\new\dmud097d\FILE_ID.DIZ" />
+    <None Include="doors\new\dmud097d\format32.ref" />
+    <None Include="doors\new\dmud097d\game.hlp" />
+    <None Include="doors\new\dmud097d\item.res" />
+    <None Include="doors\new\dmud097d\ITEM1.HLP" />
+    <None Include="doors\new\dmud097d\menu.ans" />
+    <None Include="doors\new\dmud097d\MENULVL1.ANS" />
+    <None Include="doors\new\dmud097d\MISC.HLP" />
+    <None Include="doors\new\dmud097d\RELNOTES.HLP" />
+    <None Include="doors\new\dmud097d\ROOM.dat" />
+    <None Include="doors\new\dmud097d\ROOM1.HLP" />
+    <None Include="doors\new\dmud097d\SCRI1.HBS" />
+    <None Include="doors\new\dmud097d\SPELL.dat" />
+    <None Include="doors\new\dmud097d\wcmud.bat" />
+    <None Include="doors\new\dmud097\AREA.dat" />
+    <None Include="doors\new\dmud097\COMMAND.dat" />
+    <None Include="doors\new\dmud097\CONFIG.REF" />
+    <None Include="doors\new\dmud097\CREA1.HLP" />
+    <None Include="doors\new\dmud097\creature.res" />
+    <None Include="doors\new\dmud097\DESC.dat" />
+    <None Include="doors\new\dmud097\DOORMUD1.ANS" />
+    <None Include="doors\new\dmud097\DOORMUD2.ANS" />
+    <None Include="doors\new\dmud097\ENCHANT.dat" />
+    <None Include="doors\new\dmud097\ENTRANCE.ANS" />
+    <None Include="doors\new\dmud097\FILE_ID.DIZ" />
+    <None Include="doors\new\dmud097\game.hlp" />
+    <None Include="doors\new\dmud097\item.res" />
+    <None Include="doors\new\dmud097\ITEM1.HLP" />
+    <None Include="doors\new\dmud097\menu.ans" />
+    <None Include="doors\new\dmud097\MENULVL1.ANS" />
+    <None Include="doors\new\dmud097\MISC.HLP" />
+    <None Include="doors\new\dmud097\RELNOTES.HLP" />
+    <None Include="doors\new\dmud097\ROOM.dat" />
+    <None Include="doors\new\dmud097\ROOM1.HLP" />
+    <None Include="doors\new\dmud097\runmud.bat" />
+    <None Include="doors\new\dmud097\SCRI1.HBS" />
+    <None Include="doors\new\dmud097\SPELL.dat" />
+    <None Include="doors\new\DRAKE3_0.ZIP" />
+    <None Include="doors\new\DRAKE3_0\BADGUYS.DAT" />
+    <None Include="doors\new\DRAKE3_0\CHKLIST.MS" />
+    <None Include="doors\new\DRAKE3_0\DATA.DAT" />
+    <None Include="doors\new\DRAKE3_0\DATE.DAT" />
+    <None Include="doors\new\DRAKE3_0\DEDIT.DAT" />
+    <None Include="doors\new\DRAKE3_0\DJCV02.ZIP" />
+    <None Include="doors\new\DRAKE3_0\DOATTRIB.BAT" />
+    <None Include="doors\new\DRAKE3_0\DRAKE.1" />
+    <None Include="doors\new\DRAKE3_0\DRAKE.CFG" />
+    <None Include="doors\new\DRAKE3_0\DRAKE.DAT" />
+    <None Include="doors\new\DRAKE3_0\DRAKE.FAQ" />
+    <None Include="doors\new\DRAKE3_0\DRAKE.OVR" />
+    <None Include="doors\new\DRAKE3_0\DRAKEADD.ANS" />
+    <None Include="doors\new\DRAKE3_0\EXEMPLE.BAT" />
+    <None Include="doors\new\DRAKE3_0\FILE_ID.DIZ" />
+    <None Include="doors\new\DRAKE3_0\GOODGUYS.DAT" />
+    <None Include="doors\new\DRAKE3_0\GOSSIP.DAT" />
+    <None Include="doors\new\DRAKE3_0\GO_DRAKE.BAT" />
+    <None Include="doors\new\DRAKE3_0\IGM_INFO.PAS" />
+    <None Include="doors\new\DRAKE3_0\LOCAL.BAT" />
+    <None Include="doors\new\DRAKE3_0\MAIL.DAT" />
+    <None Include="doors\new\DRAKE3_0\NEWS.DAT" />
+    <None Include="doors\new\DRAKE3_0\NEWS.YES" />
+    <None Include="doors\new\DRAKE3_0\NODES.DOC" />
+    <None Include="doors\new\DRAKE3_0\POST_O.DAT" />
+    <None Include="doors\new\DRAKE3_0\README.1ST" />
+    <None Include="doors\new\DRAKE3_0\REGISTER.FRM" />
+    <None Include="doors\new\DRAKE3_0\SUPPORT.DOC" />
+    <None Include="doors\new\DRAKE3_0\SYSOP.DOC" />
+    <None Include="doors\new\DRAKE3_0\WHATS.NEW" />
+    <None Include="doors\new\DRAKE3_0\WINTER.DAT" />
+    <None Include="doors\new\g5109b.zip" />
+    <None Include="doors\new\g5109b\FILE_ID.DIZ" />
+    <None Include="doors\new\g5109b\G5.ZIP" />
+    <None Include="doors\new\g5109b\GALAXY5.DOC" />
+    <None Include="doors\new\g5109b\SCREENS.ZIP" />
+    <None Include="doors\new\lostv10.zip" />
+    <None Include="doors\new\lostv10\CONTEST.DOC" />
+    <None Include="doors\new\lostv10\FILE_ID.DIZ" />
+    <None Include="doors\new\lostv10\INSTALL.BAT" />
+    <None Include="doors\new\lostv10\INSTALL.DOC" />
+    <None Include="doors\new\lostv10\LEGAL.DOC" />
+    <None Include="doors\new\lostv10\REGISTER.DOC" />
+    <None Include="doors\new\lostv10\TEMPLE10.DOC" />
+    <None Include="doors\new\lostv10\UPDATE.BAT" />
+    <None Include="doors\new\rokv100.zip" />
+    <None Include="doors\new\rokv100\BETA_APP.DOC" />
+    <None Include="doors\new\rokv100\BUGRPT.FRM" />
+    <None Include="doors\new\rokv100\CONTACT.DOC" />
+    <None Include="doors\new\rokv100\FILE_ID.DIZ" />
+    <None Include="doors\new\rokv100\FREQSITE.DOC" />
+    <None Include="doors\new\rokv100\HISTORY.ROK" />
+    <None Include="doors\new\rokv100\LOCAL.BAT" />
+    <None Include="doors\new\rokv100\NODE0.DAT" />
+    <None Include="doors\new\rokv100\NODE1.DAT" />
+    <None Include="doors\new\rokv100\Q_AND_A.DOC" />
+    <None Include="doors\new\rokv100\REGISTER.DOC" />
+    <None Include="doors\new\rokv100\ROK.DOC" />
+    <None Include="doors\new\rokv100\ROK.OVR" />
+    <None Include="doors\new\rokv100\ROKMENU.DAT" />
+    <None Include="doors\new\rokv100\ROKMON.DAT" />
+    <None Include="doors\new\rokv100\ROKPROMO.ANS" />
+    <None Include="doors\new\rokv100\SAMPLE.BAT" />
+    <None Include="doors\new\rokv100\TESTERS.DOC" />
+    <None Include="doors\new\rokv100\TRAINER.DAT" />
+    <None Include="doors\rmastermind.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="doors\teos.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="doors\tw2002.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="doors\usurper.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="doors\_runbbs.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="doors\_sample.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="dosbox.conf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="dosutils.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="dosxtrn.pif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="gamesrv.log">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="install.cmd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="install.sh">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="menus\bulletins.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="menus\doors.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="menus\main.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="menus\whosonline.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="menus\whosonline.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="menus\whosonline.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="menus\whosonline100.ans">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="menus\whosonline100.asc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="pty-sharp-1.0.tgz">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="sbbsexec.vxd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="start.sh">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="_Release.cmd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\RMLib.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\TelnetDoor-Readme.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\TelnetDoor.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bulletins\bulletins.lst">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CHANGELOG.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="config\banned-ips.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="config\banned-users.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="config\ignored-ips.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="docs\ansifiles.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="docs\commandlinespecifiers.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="docs\emailverification.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="docs\generalinformation.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="docs\groupeditor.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="docs\index.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="docs\loginprocess.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="docs\logoutprocess.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="docs\menueditor.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="docs\messagevariables.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="docs\rloginhosteditor.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="docs\runbbs.bat.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="docs\serverthreads.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="docs\style.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="docs\usereditor.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="doors\new\AMB4031\AMB4031.exe" />
+    <Content Include="doors\new\AMB4031\AMB4031\%24PLUGINSDIR\InstallOptions.dll" />
+    <Content Include="doors\new\AMB4031\AMB4031\AMBConfig.exe" />
+    <Content Include="doors\new\AMB4031\AMB4031\AMBDLL.DLL" />
+    <Content Include="doors\new\AMB4031\AMB4031\AMBLaunch.exe" />
+    <Content Include="doors\new\AMB4031\AMB4031\Docs\%24PLUGINSDIR\modern-wizard.bmp" />
+    <Content Include="doors\new\AMB4031\AMB4031\Docs\%24TEMP\whatsnew.txt" />
+    <Content Include="doors\new\AMB4031\AMB4031\Docs\Commands.TXT" />
+    <Content Include="doors\new\AMB4031\AMB4031\Docs\Quests.txt" />
+    <Content Include="doors\new\AMB4031\AMB4031\Docs\SYSOP.TXT" />
+    <Content Include="doors\new\AMB4031\AMB4031\Docs\WhatsNew.txt" />
+    <Content Include="doors\new\AMB4031\AMB4031\DORINFO1.DEF" />
+    <Content Include="doors\new\AMB4031\AMB4031\MSVCP71.DLL" />
+    <Content Include="doors\new\AMB4031\AMB4031\MSVCR71.DLL" />
+    <Content Include="doors\new\AMB4031\AMB4031\ODoors62.dll" />
+    <Content Include="doors\new\AMB4031\AMB4031\sqlite3.dll" />
+    <Content Include="doors\new\axe118f\AXE.EXE" />
+    <Content Include="doors\new\dmud097d\addons.txt" />
+    <Content Include="doors\new\dmud097d\dmud32d.exe" />
+    <Content Include="doors\new\dmud097d\ODoors62.dll" />
+    <Content Include="doors\new\dmud097d\README.TXT" />
+    <Content Include="doors\new\dmud097d\register.txt" />
+    <Content Include="doors\new\dmud097d\upgrade.txt" />
+    <Content Include="doors\new\dmud097d\USERINFO.TXT" />
+    <Content Include="doors\new\dmud097\addons.txt" />
+    <Content Include="doors\new\dmud097\CONFIG.EXE" />
+    <Content Include="doors\new\dmud097\DMUD.EXE" />
+    <Content Include="doors\new\dmud097\README.TXT" />
+    <Content Include="doors\new\dmud097\register.txt" />
+    <Content Include="doors\new\dmud097\upgrade.txt" />
+    <Content Include="doors\new\dmud097\USERINFO.TXT" />
+    <Content Include="doors\new\DRAKE3_0\DEDIT.EXE" />
+    <Content Include="doors\new\DRAKE3_0\DRAKE.EXE" />
+    <Content Include="doors\new\g5109b\CHARGEIT.TXT" />
+    <Content Include="doors\new\g5109b\INSTALL.EXE" />
+    <Content Include="doors\new\g5109b\INSTALL.TXT" />
+    <Content Include="doors\new\g5109b\README.TXT" />
+    <Content Include="doors\new\g5109b\WHATSNEW.TXT" />
+    <Content Include="doors\new\lostv10\LOST.EXE" />
+    <Content Include="doors\new\lostv10\PROBLEMS.TXT" />
+    <Content Include="doors\new\rokv100\NOW_OFF.EXE" />
+    <Content Include="doors\new\rokv100\PALACE.TXT" />
+    <Content Include="doors\new\rokv100\REBEL.TXT" />
+    <Content Include="doors\new\rokv100\ROK.EXE" />
+    <Content Include="doors\new\rokv100\ROKCFG.EXE" />
+    <Content Include="doors\new\rokv100\ROKINN.TXT" />
+    <Content Include="dosxtrn.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="HISTORY.TXT">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sbbsexec.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

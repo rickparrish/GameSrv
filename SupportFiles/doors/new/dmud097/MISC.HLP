@@ -1,0 +1,425 @@
+;no ansi entrance.ans
+$9
+ÉÄÍÄÍÄÍÄÍÄÍÄÍÄÍÄÍÄÍÄÍÄÍÄÍÄÍÄÍÄÍÄÍÄÍÄÍÄ»
+]³ 
+$11
+]DOORMUD:  The Land of the Forgotten
+$9
+ ³
+ÈÄÍÄÍÄÍÄÍÄÍÄÍÄÍÄÍÄÍÄÍÄÍÄÍÄÍÄÍÄÍÄÍÄÍÄÍÄ¼
+-
+;config32
+$9
+ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»
+]º 
+$11
+]DOORMUD: Sysop Configuration Editor
+$9
+ º
+ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼
+
+-
+;xsdk globals
+
+The following Synchronet global commands may be used at any time while playing
+DoorMUD:
+
+$11
+]Control-P
+$7
+ -- Send a message to another online user, anywhere on the BBS
+$11
+]Control-U
+$7
+ -- List who's currently online on the BBS
+$11
+]Control-T
+$7
+ -- View amount of online time left
+
+Another way to list who's currently online is to type "#" or "=#" and hit
+enter.
+-
+;skills
+
+ 0=Class        5=Armor              9=Priest Spells     
+ 1=Race         6=Edged Weapons     10=Mystical Spells
+ 2=Magic        7=Blunt Weapons     11=unused
+ 3=Thievery     8=Wizard Spells     12=Martial Arts
+ 4=Backstab     
+
+-
+;classes
+
+ 0=Champion      5=Mage          9=Bard
+ 1=Warrior       6=Warlock      10=Monk
+ 2=Shaman        7=Thief        11=Gladiator
+ 3=Cleric        8=Ninja        12=Druid
+ 4=Paladin
+ 
+-
+;races
+
+ 0=Immortal    4=Gnoll           8=Dark Elf
+ 1=Human       5=Elf             9=Halfling
+ 2=Dwarf       6=Gnome          10=Goblin
+ 3=Troll       7=Lizardman      11=Demon
+
+-
+;align
+
+[-10 to 10]  Neutral
+[ 11 to 20]  Lawful             [-11 to -20]  Chaotic
+[ 21 to 50]  Good               [-21 to -50]  Evil
+[ 51 to XX]  Saintly            [-51 to -XX]  Demonic
+
+-
+;quest numbering
+
+ 1=Mayor
+ 2=Elf
+ 3=Dwarf
+ 4=Gnome
+ 5=Wounded Messenger
+ 6=Capt of Guard qst
+ 7=Dark Priest
+ 8=Capt permission (boat/slum)
+ 9=Desert/Tundra permission
+10=Endgame quest
+-
+;spell codes
+
+ { Player is Caster }
+ ( Other Caster )
+ < Player is Target >
+ [ Other Target ]
+ = Caster isn't target =
+
+ & = Caster's Name
+ + = Target's Name
+ @ = Amount of Damage
+
+-
+;creature conditions
+
+ 1=Strong      5=Confused       9=Invis
+ 2=Weak        6=No Recall     10=See Invis
+ 3=Stunned     7=Blind         11=Paralyzed
+ 4=Diseased    8=Charmed       
+
+-
+;enchant negate
+
+ 1  = Strong/Weak                     4  = Martial Arts Stance
+ 2  = AC bonus                        5  = Disease-Type
+ 3  = +/- Acc, Curse, etc             6  = Resist Magic
+
+-
+;potions
+
+ 0 = Not eatable or drinkable
+ 1 = Drinkable
+ 2 = Eatable
+ 3 = Eatable and Drinkable
+
+-
+;quitter
+$12
+Leaving so soon?
+$7
+
+Please consider giving this game a try.  DoorMUD is one of the few BBS games
+left that is still under active development by its author.  If you are not
+familiar with a command-based MUD, take some time to read through the help
+the help files.  It only takes a few minutes to learn the interface.
+
+Player support information can be found at http://dmud.thebbs.org -- please
+give this site a look.  You'll find area maps, item and spell lists, a player
+FAQ, and everything else you'll need to learn the game quickly.
+
+-
+;no player name
+
+Since you have supplied no name, it is assumed you do not wish to create a
+character.
+
+If you did not intentionally just hit enter, your Telnet Client may be using
+nonstandard CR/LF settings.  If this is the case, please consider trying a
+different telnet client when playing DoorMUD.
+
+$12
+Exiting...
+
+-
+;cannot level more
+
+$12
+You cannot advance beyond level 7 in this UNREGISTERED copy of DoorMUD.
+$7
+Please ask your sysop to register this game for $20 so that you can gain more
+levels and explore the rest of the game world.
+
+-
+;full game
+$14
+Sorry, this copy of DoorMUD only has a 4-user license, and 4 users are
+already in the game.  Your sysop must purchase the DoorMUD Professional
+upgrade in order to have more simultaneous players.
+
+-
+;rerolling
+Rerolling your character will allow you to pick a new class and race.  You
+will be able to keep all of your gold and items; however, you will lose a
+large portion of your experience points.  Please note that if you reroll, 
+your monster fights will NOT be refreshed until tomorrow.
+
+$12
+]To reroll, type
+$14
+] YES
+$12
+] in all
+$14
+] capital letters
+$12
+ at the prompt below.  Otherwise,
+hit enter to abort.
+
+-
+;/locate
+$12
+Syntax options for ;locate:
+
+$15
+ ;locate all boss
+ ;locate all dead
+
+ ;locate all rare
+ ;locate all limited
+ ;locate all quest
+ ;locate all uncommon
+ ;locate all stash
+
+ ;locate all area
+
+ ;locate <text to search for>
+ ;locate <reference number>
+-
+;no ansi menu.ans
+$15
+ ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»
+ ÇÄÄÄÄÄÄÄÄÄMovementÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄCombatÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄRoom InfoÄÄÄÄÄÄÄÄ¶
+ º  n    s    e    w    u  ³  attack                ³  look                  º
+ º  ne   nw   se   sw   d  ³  break                 ³  map                   º
+ º  recall                 ³  rest                  ³  where                 º
+ º                         ³  (spells)              ³  search                º
+ ÇÄÄÄÄÄÄÄÄÄÄShopsÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄCharacter InfoÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄItemsÄÄÄÄÄÄÄÄÄÄ¶
+ º  list                   ³  status                ³  get                   º
+ º  buy                    ³  inventory             ³  drop                  º
+ º  sell                   ³  skills                ³  wear                  º
+ º  train                  ³  experience            ³  remove                º
+ º  pray                   ³  exp table             ³  use                   º
+ º  deposit                ³  bankbook              ³  stash                 º
+ º  withdraw               ³  preferences           ³                        º
+ ÇÄÄÄÄÄÄÄÄÄÄÄMiscellaneousÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÁÄÄÄMultinodeÄÄÄÄÄÄÄÄÄÄÄÄ¶
+ º  help         rob          purge          ³   say               follow    º
+ º  menu         talk         rank           ³   gossip            leave     º
+ º  exit         give         reroll         ³   tell              party     º
+ º  =r                                       ³   who                         º
+ ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÏÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼
+-
+;Tolaria
+
+$15
+ <Note on reading maps:  Letters represent rooms, and lines represent exits
+  from the room.>
+$7
+
+      T               T = Temple (New players start here)
+      |               # = Dirt Road
+      #               A = Armory (Weapons and Armor)
+      |               S = Spells, Martial Arts
+    A-#-S             L = Trainer
+      |
+      #
+      |               
+    L-#              
+      |
+      #
+      |
+$11
+ The Forest
+
+-
+;Ancalador
+            #-#-#-#-#-#-#-#-#               F = To Forest
+            |   |           |               T = Temple
+            # D-#   T       #               A = Armor
+            |       |       |               W = Weapons
+            #     A-#-W     #               R = Trainer
+            |       |       |               B = Bank
+            #     R-#-B     #               S = Spells, amulets, potions
+            |       |       |               P = To Dusty Path (lvl 8+)
+      F <-#-#-#-#-#-#-#-#-#-#-#+> P         Z = Tavern (lvl 5+)
+            |       |   |   |               C = City Hall
+            #     S-#-S V   #               V = PvP Arena
+            |       |       |               D = Down to the Catacombs    
+            #-C     #       #                        
+            |       |       |               Wooded Path leads to several
+            #       #-#+Z   #               other places (Gnome Mansion,
+            |       |       |               Havenwood Forest, Murky Caverns,
+            #-#-#-#-#-#-#-#-#               Elder Havenwood Forest). 
+                    |                  
+                    #                        
+                    |                             
+$11
+               Wooded Path
+-
+;Arcadia
+                    N
+                     
+                    |
+            #-#-#-#-#-#-#-#-#               P = To Dusty Path
+            |       |       |               T = Temple
+            # J     #       #               A = Armor
+            | |     |       |               W = Weapons
+            #-J   W-#-A     #               R = Trainer
+            |       |       |               B = Bank
+            #   Z   #   R   #               S = Spells, amulets, potions
+            |   |   |   |   |               J = Jail / Captain of the Guard
+       P -#-#-#-#-#-#-#-#-#-#-D-D           Z = Tavern
+            |     | |       |               V = PvP Arena
+            #     B #       #               O = To Southern Road
+            |       |       +               N = To Northern Road
+            #-V   S-#-S    -s               D = Docks (To Desert, lvl 12+)
+            |       |       |               s = Slums (lvl 12+)
+            #       T                       s = Slums (lvl 12+)
+            |                                   [Map of slums not shown]
+            #-#-#-#+s-  slums       
+                |   |
+                     
+                O    
+-
+;the Forest
+
+    To                                    
+  Tolaria                                    
+(Lvl 1 town)   #-#-#                 
+     |        /     \             B = Bridge Troll  
+     #     #-#       #                (Try "greet troll")
+    /     /           \
+   #     #             #-B-#
+   |    /             /     \
+   #-#-#             #       #
+     |               |        \
+     #   #-#         #         #-#-#-> To Ancalador (lvl 2-7 town)
+      \ /   \        |
+       #     #       #       #-#-#
+       |      \     / \     /     \
+       #       #-#-#   #-#-#       #
+      / \                         /
+     #   #                   #-#-#
+     |    \                      |
+     #     #   @-@     #-#-#     #
+      \    |   | |    /     \   /
+       #   #   @-@ #-#       #-#
+       |    \  |  /
+     *-*-*   #-#-#
+    /    |\
+   *-* * * *                 @ = Abandoned Building
+   |   |   |                 * = Orc Encampment
+   * * * *-*   
+    \| |  /
+     *-*-*                  (Scroll up in your terminal to see full map)
+
+-
+;hades
+$8
+
+      #-# M #-#                  H = Hellmouth / PvP Arena  (Down to Holy,
+     /   \|/   \                     Items and Spells, Temple, etc)   
+    #     #     #                
+   /      |      \               B = Bank
+  # B     #     W #              W = Weapons
+   \ \    |    / /               A = Armor
+  C-# #-#-H-#-# #+F              S = Spells
+   / /    |    \ \               T = Trainer
+  # T     #     A #              M = Hall of Mirrors
+   \      |      /               
+    #     #     #                C = Down to Dragon Cave
+     \   /|\   /                 F = Down to Dungeon of the Damned 
+      #-# S #-#
+
+-
+;no ansi menulvl1.ans
+$11
+                                Basic Commands:
+$15
+ ÚÄÄÄÄÄÄÄÄÄMovementÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄCombatÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄRoom InfoÄÄÄÄÄÄÄÄ¿
+ ³  n    s    e    w    u  ³  attack <creature>     ³  look                  ³
+ ³  ne   nw   se   sw   d  ³  rest                  ³  map                   ³
+ ³  recall                 ³  (spells)              ³                        ³
+ ÃÄÄÄÄÄÄÄÄÄÄShopsÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄCharacter InfoÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄItemsÄÄÄÄÄÄÄÄÄÄ´
+ ³  list                   ³  status                ³  get                   ³
+ ³  buy                    ³  inventory             ³  drop                  ³
+ ³  sell                   ³  skills                ³  wear                  ³
+ ³  train                  ³  experience            ³  remove                ³
+ ³                         ³                        ³  use                   ³
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄMiscellaneousÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³  help       menu       exit       say       gossip       tell         =r  ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+-
+;level2
+$13
+
+Notice:
+=-=-=-=
+$3
+Now that you are level 2, the Bridge Troll in the forest will allow you to
+move past him.  Feel free to explore the rest of the game world!
+
+Your place of worship has automatically been changed to the Temple of
+Ancalador.  Whenever you die or Recall, you will be sent to the city of
+Ancalador instead of Tolaria.
+
+In addition, the "menu" command now displays all commands in the game,
+in place of just the basic ones that were displayed at level 1.
+<level2 temple adjust>
+
+-
+;level7
+;entrance7
+<unregd warning message>
+-
+;level8
+$11
+You receive the title of Hero!
+-
+;level12
+$11
+You receive the title of Lord!
+-
+;level16
+$11
+You receive the title of Champion!
+-
+;level21
+$11
+You assume the title of Master!
+-
+;entrance2
+;entrance3
+;entrance4
+Notice:
+=-=-=-=
+For a list of commands, please type "menu".
+
+
+-
+-
+-
+-
+-
+:::STOP:::
+

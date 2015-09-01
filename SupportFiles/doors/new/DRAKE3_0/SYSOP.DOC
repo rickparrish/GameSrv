@@ -1,0 +1,371 @@
+                                Drakeville 3.0
+                      Program & Design by Stephane Daigle
+
+                       Most of the text by Jason Lavigne
+
+                         Copyright 1996 Stephane Daigle
+
+                   (TO PLAY LOCAL JUST TYPE -=> LOCAL )
+
+                                 WARNING
+                                 -------
+                     This game is filled with violence!
+
+                                DISCLAIMER
+
+        I (Stephane Daigle) have taken every precaution to insure that no
+        harm or damage will occur on computer systems operating this package.
+        Nevertheless, I shall NOT be held liable for whatever may happen on
+        your computer system or to any computer systems which connects to your
+        own as a result of operating this package. The user assumes full
+        responsibility for the correct operation of this software package,
+        whether harm or damage results from software error, hardware
+        malfunction, or operator error. NO warranties are offered, expressly
+        stated or implied, including without limitation or restriction any
+        warranties of operation for a particular purpose and/or merchantability.
+        If you do not agree with this then do NOT use this program.
+
+                                LICENSE AGREEMENT
+
+        The game program, support files, and documentation are copyrighted
+        products of Stephane Daigle.  I reserves all rights to this product.
+        This is protected by the Canadien and International Copyright Laws.
+        In no way shall the components of the game software package be
+        reproduced or modified in any form or method without prior expressly
+        written permission from Stephane Daigle.
+
+        Tampering with or altering the contents or integrity of the game
+        software package is prohibited. No fee may be charged by any
+        agency beyond the cost of distributing unregistered copies without
+        prior expressly written permission from Stephane Daigle.
+
+        A major portion of this software comes from the DDPlus Door Driver
+        Package and was written by the authors of that package. The DDPlus
+        Doordriver kit has been used for the communications, interrupt
+        handling and some utility functions and that part of the software
+        remains copyrighted by the authors of the DDplus Package.
+
+        This game is distributed under the Shareware concept. You are
+        allowed to operate this game for a trial period of thirty (30)
+        days. After this trial period, you must register the game
+        or discontinue its usage. Again if you do not agree with this
+        then do NOT use this game.
+
+
+                                REQUIREMENTS:
+                                ------------
+        At this point in time the only requirements are FILES=10 (or more)
+        in your config.sys file and ANSI.SYS. SHARE must also be loaded IF
+        you intend to use the game in a multi-node environment OR under
+        DesqView. The game is RIP aware but NOT a RIP Game at this time. A
+        FOSSIL is NOT required to run the game, although one will be
+        supported if it exists. Automatic time slicing support is provided
+        to most common multi-taskers as well.
+
+                                Files Included
+                                --------------
+        Below is a listing of all files for the this Game.  If you are
+        missing ANY of these files (except for the DOC and FRM files), the
+        game will NOT function.  Feel free to give out copies of the ENTIRE
+        archive package of this game but please make sure all the files
+        below are in that package:
+
+        DRAKE.DAT       - Holds the ansi and text for Drakeville
+        DRAKE.1         - Exemple node file 
+        POST_O.DAT      - Post office mail file
+        NEWS.DAT        - Holds the city's headlines
+        FILE_ID.DIZ     - Small discription file for BBS file areas
+        IGM_INFO.PAS    - Pascal source to help write IGMs
+        BADGUYS.DAT     - Monster file
+        DRAKE.CFG       - Exemple configuration file
+        GOSSIP.DAT      - Holds the Inn's gossip
+        GO_DRAKE.BAT    - Batch file to start Drakeville with
+        SUPPORT.DOC     - List of BBS that distribute Drakeville
+        DRAKEADD.ANS    - Drakeville ANSI add
+        DEDIT.EXE       - Drakeville Game Editor
+        MAIL.DAT        - Player's Logon messages
+        DATE.DAT        - Holds the current date
+        WHATS.NEW       - List changes from version to version
+        GOODGUYS.DAT    - Monster file
+        DRAKE.EXE       - Drakeville main executable
+        REGISTER.FRM    - Registration form and info
+        DEDIT.DAT       - Data file for DEDIT.EXE
+        DOATTRIB.BAT    - Sets DRAKE.EXE and DRAKE.OVR to READ ONLY
+        DRAKE.FAQ       - Questions and Answers about Drakeville problems
+        SYSOP.DOC       - This file
+        DRAKE.OVR       - Drakeville overlay file
+        WINTER.DAT      - Data file
+        LOCAL.BAT       - Batch file the lets you play locally
+        NEWS.YES        - Yesterday's news file
+        EXEMPLE.BAT     - Exemple batch file to run Drakeville
+        NODES.DOC       - Help on how to set up Drakeville multi-node
+
+
+
+                           Installation
+                           ------------
+
+        1. Create a directory for the game:
+            example: "WC30\DOORS\GAMEDIR"
+
+        2. Make sure that ALL files listed above from the game package
+           are moved into that directory.
+
+        3. Create a node file for every node with DEDIT.EXE.
+
+        4. Create the config file with the same DEDIT.EXE.
+
+        5. To insure proper multi-node use DOS SHARE must be loaded
+           prior to the game and prior to DESQview.
+
+        6. In order to run the game program online the following
+           parameters may be used.
+
+        "/Bxxxxx"   This tells DRAKE.EXE to lock its baud rate at
+        xxxxx.  In order to get the most efficiency out of a high speed
+        error correcting modem (9600 baud or above), you may lock the baud
+        rate to a speed higher than what the caller is actually using.
+        By locking the baud to say 38,400, the modem can compress text data
+        that is being sent and achieve a baud rate much higher than the
+        actual transmission rate.
+        This will lock the baud rate at the same value for all nodes that
+        use this command line.  If you perfer a more selective way to lock
+        baud use 'LOCKBAUD' command in the DRAKE.(NODE) file.
+
+        "/Cx"     (where x is 1..4) This specifies a comport number.
+        Some bbs software does not create door information files (dropfiles)
+        that contain the comport number.  If your bbs does have a comport
+        listed in the dropfile then there is no need for this parameter.
+        The default is comport 0, local mode.
+
+        "/E" - Expanded Memory Specification If your machine has over one
+        megabyte of memory, then you may have some available.  GAME.EXE can
+        utilize EMS to improve game performance and reduce conventional
+        memory requirements.
+        This command will tell DRAKE.EXE   to use EMS memory to hold its
+        overlay buffer.  Otherwise disc area may be used to hold this buffer.
+        This needs a memory manager and when enabled and is compatible with
+        DESQview. Default is NOT to use available EMS.
+
+        "/L" or "0"  This tells DRAKE.EXE to load up in LOCAL mode.
+        This is good for testing or when a sysop just wants to "try out" the
+        door without messing with his BBS setup.  The "/L" mode will ask the
+        user for his name and run the door in local mode.
+
+        "/Nx"     (where x is 1..9) This specifies a "node number".
+        Some bbs software support multinode environments in which you must
+        know the node number of the drop file to use. For example, RBBS-PC
+        uses DORINFOx.DEF. If you specified "/N2" then DRAKE.EXE would use
+        DORINFO2.DEF.
+
+        "/Pyyy"   This specifies the path to the drop files.
+        For example, "/PC:\WILDCAT\WCWORK\NODE1" would tell DRAKE.EXE to
+        look for the drop file in C:\WILDCAT\WCWORK\NODE1. If this is left
+        out the program assumes the drop file is local.
+
+        "/R" To force local RIP for the sysop. Used only if the program
+        has RipLink built in and the door supports RIP.  Use AFTER the
+        /L parameter if you are using the door in local mode.
+
+        "/V"    This command will tell DRAKE.EXE not to show any display
+        on the local screen.  Only a colored screen and a message will be
+        displayed.  The cursor will not move as it will be turned off.
+        Saves a little processing on multi-tasking systems.
+
+        "/W"      This flags the program that a network is present even
+        though no multitaskers are detected.  This is useful if the door is
+        run on a network such as Novell that doesn't use multitaskers.
+
+
+            COMMON ERRORS
+            003  File path not found. Check to make sure the game
+                 directory is correctly named as GAMEDIR.
+            201  Files not found. Check to make sure that all required
+                 games files are in the GAMEDIR directory.
+
+        7. Install the door into your BBS software (see your BBS
+           software documentation for more information).  A batch file is
+           normally used to do this.  To run the program just have your
+           batch file change to the GAMEDIR directory and run GO_DRAKE.BAT -
+           Thats all there is to it!  Three different batch files sample
+           are included to help you run the game. These are included with
+           the game for editing and your use. Remember when writing the
+           batch routines for my games you must ensure that the game is
+           run from it's home directory AND that the game knows where to
+           find the drop file.  Satisfy these two requirements and you
+           should have no problems running the game as long as the other
+           setup criteria has been met. For dorinfo systems try using the
+           following:
+
+                            Sample Batch File
+                            -----------------
+
+                 COPY DORINFOx.DEF \RBBS\DOORS\GAMEDIR\*.*
+                 CD \RBBS\DOORS\GAMEDIR
+                 CALL GO_DRAKE x <-=- NODE number !!DO NOT USE "x"!!
+                 del dorinfox.def
+                 CD \WC30
+
+            -->  Please note that you replace the "x" with the appropriate
+                 node number. Ex: Dorinfo1.def ; Dorinfo2.def ; etc...
+
+
+        8.  Drakeville creates a TOPTEN.ANS score board. You can set up the
+            filename and the path with DEDIT.EXE
+
+        9.  Surprise!  There is NO separate daily maintenance to be
+            performed. The first player of each day will automatically run
+            the built in maintenance routines.
+
+
+                     RESTRICTIONS ON THE UNREGISTERED GAME
+                     -------------------------------------
+           I don't believe in cripling games because there are not registered.
+           The only restriction is that the players cannot go above level 5
+           before registering the game. After registering the game, the players
+           can go up to level 10 and finish the game.
+
+                                  Multinode use
+                                  -------------
+        This game supports multinode use and provides automatic
+        multi-tasker support  (time slice releasing) for a wide variety
+        of multi-taskers.
+ 
+               Common Problems (Locked Bauds, High Speed modems, etc)
+               ------------------------------------------------------
+
+        1.   The game does NOT require a fossil driver to run.
+
+        2.   If you are running a high speed modem (9600 baud or above),
+             then I suggest you run your bbs/mailer/doors at a locked baud
+             rate. On high speed error correcting modems, locking the baud
+             rate will have a noticeable increase on the speed of text that
+             is sent. It's beyond the scope of this document to discuss
+             configuring your BBS and mailer for a locked baud rate; you may
+             wish to consult those docs for information on that. Here are a
+             few things to keep in mind when setting up GAME with a locked
+             baud rate:
+
+             a.  When using a locked baud rate, I highly recommend
+                 using a  FOSSIL driver. This game will work at high
+                 speeds without one though. BNU is a good fossil driver
+                 which can even be loaded and unloaded before and after
+                 you run this game.
+
+             b.  If you are using a fossil, then make sure to tell the
+                 fossil that the port is locked. For BNU, to lock com1:
+                 at 38,400, you would use something like "L0=38400" on
+                 BNU's command line.
+
+             c.  If you lock the baud for one program, it must be
+                 locked for everything. You can't lock the baud for just
+                 this game, but not your BBS/mailer.
+
+             d.  You may need to use the /B switch on the game.exe
+                 Command line to specify the locked baud rate. For
+                 19,200 this would be "/B19200" and for 38,400 this
+                 would be "/B38400". Please note there is no space
+                 between the "/B" and the baud rate.
+
+        3.   What follows is some information on possible strange
+             situations that may occur:
+
+             a.  Low speed users can play the game, but high speed
+                 users get garbage.
+     
+                 - If you are not using the DORINFOx.DEF or
+                   DOOR.SYS drop file then you may wish to find a
+                   converter program to convert whatever drop file
+                   your BBS produces to the DORINFOx.DEF or DOOR.SYS
+                   format and tell game.exe to use that.
+
+                   Several converter programs are readily available
+                   on most BBS systems. CallDoor is a good one if you
+                   can find it. I have it on my BBS for download if
+                   you need it.
+
+             b.  The game hangs up when a user enters the game.
+
+                 - Sounds like the game is getting the wrong baud
+                   rate somehow. Try switching over to the DOOR.SYS
+                   drop file method if possible.
+
+             c.  Text and screens are getting cut off.
+
+                 - If you are running with a locked baud, then this
+                   could be caused by some sort of FLOW CONTROL
+                   problem. Try using a fossil if you aren't already.
+
+             d.  If you're using something other than the DOOR.SYS
+                 drop file, then I always suggest trying to use
+                 DOOR.SYS if possible. It is the most reliable method
+                 and has had the most testing. If that is not possible
+                 try DORINFOx.DEF as an alternative.
+
+             e.  A door locks up node 1.  This can happen with fossils
+                 or the internal communications routines because it
+                 uses the default comport of 1 when NONE is found in
+                 the dropfile or game.ctl file. To correct this make
+                 sure the right port is shown in the dropfile OR
+                 game.ctl file.
+
+             f.  ANSI is reflected correctly on the local screen but
+                 the user is getting garbage.  Assuming the user has
+                 ANSI installed then most likely the problem is at
+                 your end. First make sure you have configured the 
+                 game.ctl file to show the correct locked port rate.
+                 Second make sure the dropfile is passing the locked
+                 port rate INSTEAD of the actual conncet rate.  If it
+                 is not passing the locked port rate then you may
+                 need to use a different dropfile format OR use a
+                 dropfile converter program to change the line to
+                 show the locked port rate INSTEAD of the actual
+                 connect rate.
+
+                            "Corrupted" data files
+                             ----------------------
+        It is possible that something could happen to your game
+        data file.  A power outage, game crash, or other event could
+        damage the data  files.  If you get  one of these messages,
+        then the best thing to do is run the DEDIT.EXE program to
+        reset the game.
+
+                    
+                                 CREDITS:
+                                 --------
+        Diane Leger     - My girlfriend for support.
+        Jason Lavigne   - The one who got me interested in DOORS!
+        Aaron Hudon     - A beta tester from Alberta. Thanks for the info!
+        UdeM teachers   - Thanks for teaching how to code!
+
+        The DDPlus Team - Thanks to Scott Baker, Steve Lorenz,
+                          Bob Dalton, Andy Stewart, Tom Morgan
+                          and other contributors for that great
+                          turbo pascal door kit.  If you ever
+                          want to make a door product for use
+                          with BBS's then this is the kit to get!
+
+        DESQview is a registered trademark of Quarterdeck Office Systems.
+        Doordriver kit is proprietary software by Scott Baker.
+        Ripscript & Ripterm are registered trademarks of TeleGrafix
+        Communications.
+
+                               Where to reach me
+                               -----------------
+
+        I can be reached at the Wizard's Key BBS (1-506-783-7191) or on the
+        internet at esd2569@umoncton.ca or call me voice (during the summer
+        only, cause I'm a student) at 1-506-546-4110. You can also send me
+        mail at
+                   Stephane Daigle
+                   559 Fleet Cr.
+                   Bathurst NB
+                   Canada
+                   E2A-4H2
+
+                                  Registration
+                                  ------------
+        If you or your users enjoy this game, then please register it.
+        Information on price and how to register is shown on the
+        enclosed REGISTER.FRM.
+

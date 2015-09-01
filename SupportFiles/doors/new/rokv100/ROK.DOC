@@ -1,0 +1,2600 @@
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³  Realm of Kisom Version 1.00 - By Devon Brooks and Blazing Fire Software  ³
+³ =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*= ³
+³ The result of five months of coding & testing, I am proud to present ROK! ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+  Realm of Kisom is a Multi-Player, Mutil-Node, Real-Time FRPG BBS DoorGame
+  for use with Bulletin Board Systems (BBS).   We'll call it ROK for short.
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Realm of Kisom Version 1.00                                  Introduction ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+   The idea of a Kingdom complete with all of it's background, history, and
+   resources first came to me around Christmas of '95 when I was explaining
+   to my parents, aunts, and uncles how I create and market computer games.
+   When asked what I was going to do next for my game, I said I didn't know
+   what I was going to do.   The suggestion came up for a Real-Time fantasy
+   Kingdom with a background, history, storyline, multiple game outcomes, &
+   multiple possible scenarios.  I went on from there.  Dubbed the Realm Of
+   Kisom this game comes packed all that you SHOULD expect from a DoorGame.
+   I have tried very hard to make this game simply the *BEST* in Fantasy RP
+   Game's for BBS's. I am *VERY* proud of the work that I have done on ROK.
+
+   Thought maybe you'd like to know how I came up with the game idea. :-)
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Realm of Kisom Version 1.00                             Table Of Contents ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+   Realm Of Kisom and Blazing Fire Software Product Disclaimer ..... Page 1
+   Files That Should be Present in the ROKV100.ZIP Archive ......... Page 2
+   How to use ROKCFG.EXE to personally customize your ROK Game ..... Page 3
+   Registration Information, Pricing, and ROK Code Information ..... Page 4
+   Installing Realm of Kisom for use on Bulletin Board Systems ..... Page 5
+   Troubleshooting, Hints, Tips, and things to do before you ask ... Page 6
+   ROK Notes, Information, and things the SysOp should know ........ Page 7
+   How to contact Devon Brooks, the Author of Realm of Kisom ....... Page 8
+   Credits and Thank You's to anyone who contributed to ROK ........ Page 9
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Realm of Kisom Version 1.00            Page 1 - Realm of Kisom Disclaimer ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+   The author of this game, Devon Brooks, has taken great precautions to
+   ensure that this product will work fine on any computer system.  But,
+   I still cannot guarantee that it will not do damage to your computer.
+   Therefore, Devon Brooks - of Blazing Fire Software, cannot & will not
+   be held responsible should anything happen while running this copy of
+   Realm of Kisom.   You use this program, like everything else, at your
+   own risk.   Hopefully, though, ROK will cause you no problems at all.
+
+   Realm of Kisom is (c) Devon Brooks, Blazing Fire Software.  The *.ZIP
+   file can and is encouraged to be distributed among all other SysOp's,
+   friends, whatever - so long as the original archive remains umodified
+   in it's shareware format.  The distribution archive is in ZIP format,
+   however, you may re-archive it in ARJ, RAR, or any other archiver, so
+   long as the above conditions are met.
+
+   It's a crime to hack, modify, change, or alter any .EXE, .OVR, or any
+   other file contained in this archive whether it be a simple text file
+   or the main game's executable.   Anyone comitting a crime against the
+   author's product, Realm of Kisom, from Blazing Fire Software, will be
+   held liable for this crime, and possible criminal action on behalf of
+   the author will be invoked upon the person(s).
+
+   You have my permission (in fact, I strongly encourage it) to make the
+   Realm of Kisom available for FREQ or Download on your BBS, so long as
+   the contents of the archive remain umodified in its shareware format.
+
+   You are free to put this copy of Realm of Kisom on any ShareWare CD-
+   ROM disk, provided that when you create updates of this CD, you will
+   include the latest version of Realm of Kisom at that present time.
+
+   Under no circumstances should anyone, other than the author, receive
+   any form of currency (money) when ROK Reg. Codes or Archive is given
+   to another person, without the written permission from Devon Brooks.
+
+   I personally dislike having to put disclaimers when I write programs.
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Realm of Kisom Version 1.00                 Page 2 - ROKV100.ZIP Contents ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+   The following is a list of files that should be contained within the
+   ROKV100.ZIP archive. If one or more of these files is NOT present in
+   this archive - please download a fresh copy of the latest version in
+   one of the many FREQ sites (listed in FREQSITE.DOC), or on The Inner
+   City BBS (the author's BBS) at 1-306-694-5864. The latest version of
+   Realm of Kisom is always available on the BFS Web Site.  The address
+   is given in the ROK Notes Section (Page 7).
+
+   In alphabetical order :
+
+   BETA_APP.DOC - This is a form to fill out if you wish to become a Beta
+                  Tester for ROK, or become a Distribution Site for Blazing
+                  Fire Software.  Fill this out, and send it to me.  Ways of
+                  contacting me are given on Page 8 (How to Contact Devon
+                  Brooks, The Author).
+   BUGRPT.FRM   - Bug Report/Comment/Suggestion Form.  You don't HAVE to use
+                  this, but it's there for your convenience if you wish.
+   CONTACT.DOC  - How to get in contact with Devon Brooks, The Author of ROK.
+   FILE_ID.DIZ  - An ASCII Description of the main features of ROK.  This is
+                  primarily used as the file to be displayed if you put ROK
+                  up for download in your File Areas.
+   FREQSITE.DOC - Places where you can FREQ the latest version of ROK.
+ * GANGS.DAT    - This is a record of all the Gangs currently in existance.
+                  This file is not included in the ROKV100.ZIP archive, it is
+                  created when the first Gang is formed in ROK.
+   HISTORY.ROK  - History File of all previous versions of ROK.  What was
+                  fixed in those versions, comments, etc.
+   LOCAL.BAT    - Simple batch file which will run ROK in Local Mode.  It runs
+                  ROK with the command line of "ROK.EXE 0", which runs Local
+                  Mode.  It's basically so that the SysOp doesn't have to type
+                  the parameters and stuff all the time.
+ * NODE0.DAT    - ROK's *Local* Data File.  Even though there is only one word
+                  in this file ("Local"), it is necessary to run in Local Mode.
+                  (To run in Local Mode, type "ROK.EXE 0" on the command line)
+ * NODE1.DAT    - ROK's Node Data File.  You need one NODE*.DAT for every node
+                  on your BBS.  NODE*.DAT's are explained below.
+   NOW_OFF.EXE  - Turns *ALL* OnNow Flags off.  This is useful for Singe-Line
+                  BBS's.  Call in the batch file that runs ROK.
+ * PALACE.TXT   - Palace of Kisom Conversation File.
+ * REBEL.TXT    - Rebel's Corner Conversation file.
+   REGISTER.DOC - Realm of Kisom registration form.  When you are registering
+                  ROK, this is the file to fill out and mail to The Author.
+                  Please read the ROK Documentation (ROK.DOC) for registration
+                  information, pricing, and a special 50% off the price offer!
+ * ROK.DAT      - ROK Global Data File, contains global variable information.
+                  This file does not come with the ROK Archive. It is created
+                  after you run ROKCFG.EXE for the first time.
+   ROK.DOC      - Realm of Kisom Documentation.  What you are reading now.
+ * ROK.EXE      - ROK's Main Executable file.
+ * ROK.OVR      - ROK's OverLay file.  Used by ROK.EXE.
+   ROKPROMO.ANS - Ansi File for usage on a BBS to advertise ROK.
+ * ROKCFG.EXE   - Configuration Program.  Setup Nodes, SysOp Maintenance,
+                  Seven Editors, Game Options Configuration, and more.
+ * ROKINN.TXT   - Inn of Casimonda Conversation file.
+ * ROKMENU.DAT  - ROK ANSI Menu File.  Fully customizable, whether you're
+                  Registered or not.  You may *NOT* distribute the ROK archive
+                  if you've modified this file, though.
+ * ROKMON.DAT   - Field Monster Data file.  All 200 Monsters are in this file.
+                  Fully customizable in ROKCFG.EXE when Registered.
+   Q_AND_A.DOC  - Frequently Asked Questions (FAQ) that will hopefully answer
+                  some questions/problems you might have with ROK.
+   SAMPLE.BAT   - Sample Bat File to run ROK on either a multi-node or single-
+                  line BBS system.  Batch files are fully explained here in the
+                  ROK documentation, but for those who dislike reading the
+                  manual, I've included this.
+   TESTERS.DOC  - List of people who Beta Tested ROK.  Thanks a bunch guys!
+ * TRAINER.DAT  - Level Master's Data File.  All 20 Level Masters are in this
+                  file.  Fully customizable in ROKCFG.EXE when registered.
+
+   A "*" (without the "") by the Filename means that it is required for
+   Realm of Kisom to run.
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Realm of Kisom Version 1.00                 Page 3 - ROKCFG.EXE Explained ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+   Configuring Realm of Kisom, in my opinion, is as easy as 1-2-3, but,
+   I will explain it as best as I can should you need any assistance.
+
+   If ROKCFG.EXE is being run for the first time, or the ROK.DAT doesn't
+   exist, then you will be presented with the following screen:
+
+   ** ERROR READING THE ROK.DAT FILE **
+
+   Since this is the first version of Realm of Kisom, this will undoubtedly
+   be the first time you've run this game.   Thus, simply select Choice (1)
+   to begin the installation procedure.
+
+ û (1) Create a new ROK.DAT file using the default variables
+   (2) Skip the installation of Realm of Kisom and quit to DOS
+
+   You have two choices (1 or 2).  Since this is the first time you are
+   running ROKCFG.EXE, press 1, or Enter.    In almost every ROKCFG.EXE
+   Menu, the "û" (checkmark) exists beside each option. Pressing UP Key
+   or DOWN Key will move this checkmark up or down between the available
+   options.  Pressing Enter on the option that the checkmark is on will
+   invoke that option just as if you had hit the key in the () brackets.
+   This makes it simpler for you to choose the options you want instead
+   of searching for the correct keys to press.
+
+   After you choose Selection 1, the following line will appear:
+
+   ROK.DAT has been created using the default variables set by the author.
+
+   This is basically self explanatory, but in short, it means that the
+   ROK Global Variable File (ROK.DAT) has been created using the default
+   values that the author has implemented.  These vars are configurable.
+
+   After a key press, the following screen will appear:
+
+   ** Realm of Kisom Configuration V1.00  **
+
+ û (G)ame Options (Editable)
+   (S)etup Node(s) for BBS's
+   (M)iscellaneous Maintenance
+   (R)ealm of Kisom Editors Menu
+   (E)nter Registration Codes
+
+   (Q)uit ROK Config & Save Changes
+
+   An explanation of each option (briefly):
+
+   (G)ame Options    - Allows you to change various settings in the game.
+   (S)etup Node(s)   - Configure all of your BBS nodes (lines).  This is
+                       where you define your drop file, com port, etc...
+   (M)isc Maintenance- This menu is where the SysOp can perform various
+                       functions that affect the game.
+   (R)OK Editors Menu- This is the menu where you can edit various records
+                       in the game.  Currently, these editors include:
+                       Player, Monster, Level, Conversation, Atma, and the
+                       Inn of Casimonda.  All editors are fully functional.
+                       However, if you're running an unregistered version,
+                       and changes you make will not be saved.
+   (E)nter ROK Codes - When you register your copy of Realm of Kisom, you
+                       will receive three lines of code completely unique
+                       to your SysOp & BBS Name. This where you enter these
+                       codes to register your copy of Realm of Kisom.
+   (Q)uit ROKCFG.EXE - This will save any changes you've made while in
+                       ROKCFG.EXE (except for the editors if you are
+                       running an unregistered version), and exit the
+                       program completely.
+
+   In chronological order, I will do my best to explain each option.
+
+   =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
+
+   (G)ame Options (Editable) explained:
+
+   The following screen will appear upon entering this option:
+
+   ** Realm of Kisom Configuration Version 1.00  - Game Options **
+
+ û (1) Multi-Node Capability Support is xx.
+   (2) Standard Number of Field Fights given daily is xx.
+   (3) Standard Number of Player Fights given daily is xx.
+   (4) CleanMode Support (Turn ON to remove "mature" parts) is xx.
+   (5) Support to Transfer Funds between Bank Accounts is xx.
+   (6) Max Gold available to transfer between Bank Accounts is xx.
+   (7) Number of times a player can transfer funds per day is xx.
+   (8) Support for players to Commit Suicide is xx.
+   (9) Days users will have to wait to play again after suicide is xx.
+   (0) Support for players to take weapons after a player victory is xx.
+
+   (R) Reset the current Realm of Kisom game COMPLETELY.
+
+   (Q) Quit to Main ROK Configuration Menu
+
+   An explanation of each option in this menu:
+
+   (1) Multi-Node Capability Support is (ON/OFF).
+
+   Toggling this option between ON or OFF will set the Multi-Node
+   Capabiltiies in ROK ON or OFF.  Setting this to ON will enable
+   Multi-Node Real-Time Online Battles between two persons who're
+   in the game at the same time battling each other.  Set this to
+   OFF if you run a single node system.   If you have two or more
+   nodes that run on your BBS, set this to ON.
+
+   (2) Standard Number of Field Fights given daily is (xx).
+
+   (xx) stands for any given number.  If it is an unregistered version,
+   this value will be 15.  You cannot change this option until you have
+   registered your copy of Realm of Kisom.  If you have registered, you
+   may change this to anything you like. However, a desirable amount of
+   fights is somewhere between 15-40. 40 is a bit high, but if you want
+   a game where players can advance quickly, this is about as high as I
+   would set the value.
+
+   (3) Standard Number of Player Fights given daily is (xx).
+
+   (xx) stands for any given number.  This is the same as Option (2) in
+   the same menu, but is for the number of times a player can challenge
+   another player in one day.  3 is the value set by the author, and if
+   it is an unregistered version, you cannot change this value.  If you
+   have registered, you may change this value to whatever you wish.   A
+   desirable amount is between 3-5, since attacking other players let's
+   players gain experience quickly - thus advancing them further in the
+   game faster.
+
+   (4) CleanMode Support (Turn ON to remove "mature" parts) is (ON/OFF).
+
+   Recently, Bill Clinton, President of the United States of America,
+   passed a bill known as the TeleCommunications Decency Act - or TDA
+   for short.  In short, this means that if you abide by the law, you
+   must set this to ON - which removes the more "mature" parts in the
+   game.   I do not live in USA, I live in Canada, so I don't have to
+   abide by this law. However, since a large majority of my customers
+   are from USA, this option is needed.
+
+   What exactly is disabled when this is toggled to ON?  Players cannot
+   flirt with NPC's (Non-Playing Characters).    Male players can flirt
+   with Hope and females can flirt with Logan when CleanMode is toggled
+   to OFF.   If this is turned ON, no players at all can flirt with any
+   NPC in the game.  Also, when flirting with other human characters in
+   the game players cannot ask if they wish to meet in a bedroom in the
+   Inn of Casimonda for a "adult" encounter.
+
+   (5) Support to Transfer Funds between Bank Accounts is (ON/OFF).
+
+   In many cases, where a player is ready to challenge Sakar Kane and
+   restart his character afterwards, he/she will want to have someone
+   else have some money for them to save for he/she for after his/her
+   character gets reset.     Should this other "accomplice" decide to
+   give the money back after that character is reset - that character
+   would now have a definite head start in the game.    Having a vast
+   amount of money at the start of the game would let a player level-
+   up much quicker than any other player, thus unbalancing the entire
+   game. If you dislike the idea of players abusing this option, then
+   set this option to OFF.
+
+   (6) Max Gold available to transfer between Bank Accounts is (xx).
+
+   (xx) stands for any given number.  If Option 5 in the same menu is
+   toggled to an ON setting, then you can set the amount of gold that
+   can be transfered between the players.  An ON setting in Option 5,
+   mixed with the correct amount value creates a usable option within
+   the game without the possibilty of unbalance. (Explained in Option
+   (5) of this menu)
+
+   (7) Number of times a player can transfer funds per day is (xx).
+
+   (xx) stands for any given number.  If Option 5 in the same menu is
+   toggled to an ON setting, then you can set the number of times per
+   day a player can transfer funds from their bank account to another
+   player's account. The default value set by the author is $150,000,
+   but you may change this to whatever you wish, even in unregistered
+   versions.  Do not set this too high, though, as it will definitely
+   unbalance the game very quickly when players start abusing it.
+
+   (8) Support for players to Commit Suicide is xx.
+
+   Somewhere within the Realm (HINT: Press "*" from Main Street), players
+   can find Acro, a person who is willing to assist in suicide.  Basically,
+   this is a Toggle for the SysOp to Enable/Disable the ability for players
+   to commit suicide if they wish to do so.
+
+   (9) Days users will have to wait to play again after suicide is xx.
+
+   From what I have heard from other SysOp's, some users will create a player,
+   do stupid things in the game, then commit suicide, repeat, etc. This is the
+   reason for this option.   It will check to see if the username as committed
+   suicide then check to see if s/he has waited the required days before a new
+   character can be created.  Basically, it's to make the SysOp's life easier.
+
+   (0) Support for players to take weapons after a player victory is xx.
+
+   Many players have asked for a feature to steal the opponents weapon after
+   s/he has won in a player battle against another player.    Likewise, many
+   SysOp's do not like this in the game. Thus, I've implemented it - to suit
+   the requests of many players.   And, I've created this toggle for SysOp's
+   who dislike weapon-stealing in their games to disable it.  Fullfills both
+   suggestions - the best of both worlds! :-)
+
+   (R) Reset the current Realm of Kisom game COMPLETELY.
+
+   This option is also pretty self explanatory.  If your player file
+   has somehow become corrupted - or you wish to start a new game of
+   Realm Of Kisom, simply use this option. Basically, the only thing
+   this option does is delete the file called PLAYER.DAT which holds
+   every player's record in ROK.    Deleting this file manually will
+   also reset the current ROK Game.  This option will also reset the
+   Chat Files (ROKINN.TXT, REBEL.TXT, & PALACE.TXT), & set the Guild
+   Spells back to normal (not available to be learned).
+
+   You will be prompted to input a Yes/No answer to check if you are
+   absolutely sure you wish to reset the game, so you do not have to
+   worry if you accidentally hit the (R) key.
+
+   (Q) Quit to Main ROK Configuration Menu
+
+   This option will save any changes you've made while in the Game
+   Options menu, and return to the Main Configuration Menu.
+
+   =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
+
+   (S)etup Node(s) for BBS's explained:
+
+   The following screen will appear upon entering this option:
+
+   ** Realm of Kisom Version 1.00  - Node #(x) Setup **
+
+ û (1) BBS System Name   : (Name)
+   (2) BBS Software Type : (Type)
+   (4) Com Routines      : (Type)
+   (5) Com Port Number   : (Port)
+
+   ([) Move Back a Node  (]) Move Forward a Node  (Q)uit to Menu
+
+   An explanation of each option in this menu:
+
+   (1) BBS System Name.
+
+   This option is where you define your BBS Name.  This can be any
+   length, and it is not case sensitive.  This is also compared to
+   your SysOp Name and your ROK Registration code to see if it's a
+   valid code.  If you do not define your BBS Name here, it really
+   doesn't matter - though it wouldn't hurt to take that few extra
+   seconds to type it in here your BBS Name must be entered in the
+   (E)nter Registration Codes menu from the Main Config. Menu when
+   entering your Registration Codes.
+
+   (2) BBS Software Type.
+
+   This option is where you define your BBS Software Type, thus,
+   also defining your Drop File Type.   Supported Drop Files for
+   Realm of Kisom is the following:
+
+       DOORSYS  - The DOOR.SYS format (Wildcat!,GAP,TAG, etc)
+       DORINFO1 - Remote Access,others(uses DORINFO1.DEF)
+       RBBS     - Rbbs version 16.1+  (uses DORINFOx.DEF)
+       QUICK    - Quickbbs,Force,R.A. (uses DORINFOx.DEF)
+       PCB14    - Pcboard version 14
+       PCB15    - Pcboard version 15
+       PHOENIX  - Phoenix bbs (uses INFO.BBS)
+       SPITFIRE - Spitfires bbs (uses SFDOORS.DAT)
+       WWIV     - WWIV bbs (uses CHAIN.TXT)
+       TRIBBS   - TriBBS software (uses TRIBBS.SYS)
+       2AM      - JUMPER.DAT
+
+   To my knowledge, almost every BBS Software Type can run ROK on their
+   system. If your BBS Type is not listed in the above list try setting
+   this to DOORSYS or DORINFO1.  If neither of these work, consult your
+   BBS Documentation for information on their specific drop file type &
+   try again from there with the correct information.
+
+   (3) Com Routines.
+
+   There are four different types of Communications Routines supported by
+   Realm of Kisom.   These are: Fossil, XFossil, DigiBoard, and Internal.
+
+   An explanation of each type (they can be confusing!):
+
+   (1) Fossil Driver: This is the standard setting for most BBS's.  If
+                      you have problems with the com routine's in ROK,
+                      and you have this option configured to something
+                      other than FOSSIL try setting this to FOSSIL and
+                      see how it works then.
+
+                      Just what does FOSSIL do?  In short, FOSSIL will
+                      initialize the detected FOSSIL that is loaded at
+                      the time.  This means that it will reset the BNU
+                      or SIO.SYS (or whatever you're running) and then
+                      proceed with the game.   If an error is given at
+                      this point - then I suggest changing to Internal
+                      DDPlus Com Routines and it should work perfectly.
+
+                      I have never ran a BBS under Windows 3.x or 95,
+                      but from what I have heard, if you're running a
+                      BBS under a DOS Window, or a straight DOS-Based
+                      BBS, I recommend BNU Fossil Driver.  If you are
+                      running your BBS under OS/2 I recommend SIO.SYS
+                      made by Ray Gwinn.
+
+   (2) XFossil      : XFossil is nearly the same as FOSSIL, but with one
+                      difference. XFossil will NOT Initialize the FOSSIL
+                      that is loaded at that present time.    This means
+                      that when the detected FOSSIL is loaded - it won't
+                      re-initialize it at all. This type is rarely used,
+                      but if nothing else works, try this one.
+
+   (3) Internal Com : This option is used for Internal DDPlus Com Routines.
+                      DDPlus is the DoorDriver used with Realm of Kisom, so
+                      this option should work perfectly fine for you.  When
+                      FOSSIL is used sometimes there will be an error given
+                      similar to this:
+
+                      "FOSSIL was not initialized properly!  You should
+                      change it to INTERNAL Com Routines."
+
+                      If you get this error, change it to the Internal Com
+                      Routines and see if it works. Since DDPlus is almost
+                      part of the entire ROK Game, this FOSSIL Type should
+                      have no problems whatsoever.
+
+   (4) Com Port Number.
+
+   This is where you can define the Com Port that your modem is connected
+   to. If your BBS passes the Com Port to the drop file it creates (check
+   your BBS Software Documentation), then you need not have to define it.
+
+   ([) Move Back A Node.  (]) Move Forward A Node.
+
+   Each node created makes a NODE*.DAT in your ROK Directory, where *
+   is for the current node number.  ROK comes with a NODE1.DAT.  When
+   you hit either "[" or "]", if that NODE*.DAT doesn't exist then it
+   will be created.  This is sort of hard to explain, so I'll give an
+   example:
+
+   NODE1.DAT, NODE2.DAT, and NODE3.DAT exists. You are currently
+   editting NODE3.DAT.  If you hit "[", it will save the changes
+   you've made to NODE3.DAT, and call up NODE2.DAT, since you've
+   moved back a node.   If you hit "]", it will save the changes
+   you've made to NODE2.DAT, and call up NODE3.DAT, since you've
+   moved forward a node.   If you hit "]" again, since NODE4.DAT
+   does not exist it will be created with the variables with the
+   that was in NODE3.DAT.
+
+   I hope that example explains how it works.  You can create up to 999
+   Nodes. That's right a BBS with 999 nodes can run ROK! (In theory :-)
+
+   When executing ROK, you run it with the command line "ROK.EXE *",
+   where * is the node number. The * is the number used in NODE*.DAT,
+   which is explained above.   If NODE*.DAT does not exist, ROK will
+   give an error, and exit the program.
+
+   (Q)uit to Menu.
+
+   This will save any changes you've made to the NODE*.DAT that you are
+   currently editting and return you to the Main ROK Configuration Menu.
+
+   =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
+
+   (M)iscellaneous Maintenance:
+
+   The following screen will appear upon entering this option:
+
+   ** Realm of Kisom Configuration Version 1.00  **
+
+ û (D)ivorce *ALL* Married Players In The Realm
+   (T)urn "On Now" Statistic OFF For *ALL* Players
+   (O)pening ANSI/RIP Screens Are (ENABLED/DISABLED)
+
+   (Q)uit To Main ROK Configuration Menu
+
+   An explanation of each option in this menu:
+
+   (D)ivorce *ALL* Married Players In The Realm.
+
+   One of the best options in the Realm of Kisom is that opposite sexed
+   players (Male/Female) can interact with each other in adult methods.
+
+   When writing mail, if a player has enough Charisma Points, then he/she
+   will be able to propose to another player of the opposite sex.  Should
+   that other player accept the proposal, then those two players will now
+   be considered as a Married Couple: Husband and Wife, just like in real
+   life!   However, though extensive testing has been done to ensure that
+   no problems should come about when this option is utilized by players,
+   the chance of errors happening is great.    This is where this feature
+   comes in handy. If the marriages are not working correctly, simply use
+   this option, and it will divorce EVERY player in the Realm, instantly!
+
+   Another one of the many things ROK offers to make the SysOp's life easier.
+
+   (T)urn "On Now" Statistic OFF For *ALL* Players.
+
+   The "OnNow" flag is used for the Multi-Node Capability side of ROK.
+   With this flag, when players are online - this lets ROK know that a
+   Multi-Node Online Battle is about to take place.
+
+   If something should happen to ROK while a player is in the game, like
+   an abnormal exit, for example, and for some strange reason, the OnNow
+   flag is NOT reset so the player is no longer online then ROK will not
+   know if that player is online or not.   Thus, if another player comes
+   in, and sees this player online, and challenges him/her the game will
+   then "lock" up - since ROK tries to activate an Online Battle between
+   the two players when one of them really isn't there at all.
+
+   I hope the above example helps explain this. Extensive testing has been
+   done to ensure that under almost any circumstances, the OnNow flag will
+   be reset to show that the player is no longer in the game.  However, if
+   the flag is not reset, then use this option. It will reset all player's
+   OnNow Flag to zero, meaning that no one is in the game at that time.
+
+   Another one of the many things ROK offers to make the SysOp's life easier.
+
+   (O)pening ANSI/RIP Screens Are (ENABLED/DISABLED).
+
+   This has to be one of the best Toggles installed in ROK.  If you are
+   running your BBS on a slower modem (anything less than 9600 Baud) or
+   you have callers who are running at 2400 Baud - then disabling these
+   Introduction screens is a must, since most of them are quite long, &
+   intricate.  They are of professional quality.  It will take up quite
+   a bit of the users time for the entire screen to scroll down at 2400
+   Baud, so this Toggle is here for you if you wish to disable them.
+
+   (Q)uit To Menu.
+
+   This will write the Global Variable File (ROK.DAT) with the any
+   changes you might have made and return you to the Main Realm of
+   Kisom configuration menu.
+
+   =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
+
+   (R)ealm of Kisom Editors Menu explained:
+
+   The following screen will appear upon entering this option:
+
+   ** ROK v1.00 - Editors **
+
+ û (1) Player Editor
+   (2) Monster Editor
+   (3) Level Editor
+   (4) Conversation Editor
+   (5) "Atma" Editor
+   (6) Inn Editor
+   (7) Kingdom Editor
+
+   (R)eturn to Main Menu
+
+   {*} NOTE - All Editors are functional upon registration!
+
+   An explanation of each option in this menu:
+
+   (1) Player Editor explained:
+
+   {*} NOTE - If you are running an Unregistered Copy of Realm of Kisom
+              any changes you make while in the User Editor will not be
+              saved. You can view what the editor is like to give you a
+              feel of what the editor can do upon registering the game.
+
+   The following screen will appear upon entering this option:
+
+   ** Realm of Kisom Version 1.00  Player Editor - ROK Player Account #(x) **
+
+   (1) Player's Real Name  :                (2) Gold On Hand   :
+   (3) Player's Game Alias :                (4) Gold In Bank   :
+   (5) Current Hit Points  :                (6) Field Fights   :
+   (7) Maximum Hit Points  :                (8) Player Fights  :
+   (9) Strength Points     :                (0) Defense Points :
+   (A) Charisma Points     :                (B) Current Level  :
+   (C) Player's Experience :                (D) Player Gender  :
+   (E) Social Ranking      :                (F) Where Sleeping :
+   (G) Player's Status     :                (H) Flirted In Inn :
+   (I) Weapon Number       :                (J) Armour Number  :
+   (K) Current Weapon Name :                (L) Armour Name    :
+   (M) Flirted With Player :                (N) Current Guild  :
+
+   (!) Find User Name      (@) Edit Guild Skills   (#) Delete Player
+   ([) Back Up One Account (]) Advance One Account (R) Return To Menu
+
+   Your wish, Mortal? :
+
+   An explanation of each option in this menu:
+
+   (1) Player's Real Name.
+
+   This is the Player's REAL Name, as defined from your BBS Software's
+   Drop File. It can be an actual name like Devon Brooks, or an alias,
+   like Kasumi. This option should almost never be changed, unless you
+   are porting your BBS's user database from Real Names to Aliases, or
+   vice versa.
+
+   (2) Gold On Hand.
+
+   This is how much gold this player currently has on hand.  When changing
+   this value, do NOT include Comma's (,).    Simply enter the value, like
+   100000 (for $100,000), for example, and it will work fine.  If a "$" or
+   ",", or any other non-digit value is entered anywhere in the new value,
+   the value will not be changed, and will remain the same as before.
+
+   (3) Player's Game Alias.
+
+   This is the Player's ROK Game Alias.  This will not have any impact
+   on the Player's REAL Name from the BBS.    This is simply the Alias
+   that the player uses in ROK.
+
+   Unless a user mispelt his/her name in the game, this option should
+   almost never be changed.   The reason?  Simple.  Mail routines use
+   the player's ALIAS as the Messenger, NOT the Record Number.   This
+   is the same for Gangs.   It uses the Alias of the player - not the
+   Record Number. This means that if a this player wrote a message to
+   someone, then changed his/her name, when the recipient of that msg
+   receives it, it will create a dummy record for the previous names'
+   account -- because THAT Alias doesn't exist anymore.
+
+   I hope that explains the dangers involved in alias changing.
+
+   (4) Gold In Bank.
+
+   This is how much gold this player currently has in the Bank of Kisom.
+   When changing this value, do NOT include Comma's (,).    Simply enter
+   the value, like 100000 (for $100,000), for example - and it will work
+   fine.   If a "$", or ",", or any othner non-digit value is entered in
+   the new value, the value will not be changed and will remain the same
+   as before.
+
+   (5) Current Hit Points.
+
+   This is how many Hit Points this player currently has.  For example,
+   a level one player starts out with (20 of 20) Hit Points.  If he/she
+   challenged another player, and won, but lost 7 Hit Points during the
+   battle, then he/she would now have (13 of 20) Hit Points.
+
+   (6) Field Fights.
+
+   This is how many Field Fights this player has remaining for today to
+   use.    If it is an unregistered copy of Realm of Kisom, each player
+   will receive 15 Fights/day.   When registered, the SysOp can set the
+   amount of Fights he/she desires for the players to receive.
+
+   (7) Maximum Hit Points.
+
+   This is how much Maximum Hit Points this player currently has.  This
+   is used in conjunction with Current Hit Points, in the form of (x of
+   y), where x is Current HP, and y is Max HP.  For example: (10 of 20)
+   means that this player has 10 Current HP, out of a maximum of 20 HP.
+
+   The only time that Maximum HP is changed in the game is when a player
+   advances a level in the Training Center of Level Advancement, or in a
+   random event somewhere through the Realm of Kisom.
+
+   The Maximum Hit Points variable is used when a player enters the
+   Health Revival Hut to check how much Hit Points are needed to be
+   healed for the player.
+
+   (8) Player Fights.
+
+   This is how many Player Fights this player has remaining for today to
+   use. If it is an unregistered copy of Realm of Kisom each player will
+   receive 3 Player Fights/day.   When registered, the SysOp can set the
+   amount of Player Fights he/she desires for the players to receive.
+
+   (9) Strength Points.
+
+   This value is used to measure the bodily strength on this player.  It
+   is used to determine the damage that this player will do to a monster
+   or another player.  There are also other factors when determining the
+   damage, but this is the main one. Basically, the higher the strength,
+   the greater the damage done.
+
+   Both Strength AND Defense play a VITAL role in the battles throughout ROK.
+
+   (0) Defense Points.
+
+   This value is used to measure the amount of wounds that a player can
+   receive compared to the damage that they do. It is used to determine
+   the damage they receive when attacked by another player / monster in
+   the game.   Basically, the higher the defense, the less damage taken
+   when attacked.
+
+   Both Strength AND Defense play a VITAL role in the battles throughout ROK.
+
+   (A) Charisma Points.
+
+   Charisma is the general appearance of one's character, their voice,
+   their body, their hair, basically their overall good-looking-meter.
+
+   In ROK, Charisma is used throughout the Realm.   When players flirt
+   with each other, it is used as a "measure" of how other players can
+   determine if they accept their flirtatious method of communication.
+
+   It is also used when flirting with NPC's in the game, like Logan or
+   Hope.   If you have enough Charisma, eventually you will be able to
+   propose marriage - to another player in the game, or to an NPC.  It
+   is an option which really doesn't affect the game - but fun for the
+   players nonetheless.
+
+   (B) Current Level.
+
+   This is the current Level of Experience that this player is at.
+
+   I strongly recommend NOT to change this value unless you know what
+   each level's advancements rewards are (player gains 10 strength at
+   level 2, 30 strength at level 3, etc). Changing this value without
+   knowing how to increase the other statistics will most likely kill
+   this player daily - simply because he/she cannot survive against a
+   monster in the Fields.
+
+   (C) Player's Experience.
+
+   This is the amount of Experience (XP) that this player has gained
+   while playing ROK.  Each player starts out with 0 experience, and
+   works their way up.  Once they've reached a certain amount of XP,
+   they can challenge their level master. Should they win, they will
+   then advance one level until they've reached their ultimate goal,
+   Level 20. XP is gained all over ROK, but mainly in the Fields and
+   during Player Battles. The higher the Experience, the more levels
+   this player can advance.
+
+   Maximum Experience a player can have is 999,999,999 (in theory only).
+
+   (D) Player's Gender.
+
+   When selecting this option, you are not prompted for an input. Rather,
+   this is a Toggle, meaning that it cycles between two possilbe answers,
+   since the two acceptable Sexes are MALE or FEMALE. An example, if this
+   player is MALE, when this option is selected this player will now be a
+   FEMALE, and vice versa if the player was a FEMALE at the time.
+
+   (E) Social Ranking.
+
+   The King in Realm of Kisom has the ability to promote mere commoners
+   to a "Social Ranking", or a place in the King's Court.   These three
+   rankings are: Squire (low), Duke (middle), Prince (high). This means
+   that each of these three positions can be held by ONE player, & only
+   only player.  For example:
+
+                   Position "Prince" : Positiion Available
+                   Position "Duke"   : Sir Valiantis Banic
+                   Position "Squire" : Edgar The Great
+
+   From the above example, you can see that both the Duke and the Squire
+   positions are currently occupied by two different players. The Prince
+   position is currently unoccupied meaning that it can be filled by any
+   player in the Realm - except for "Sir Valiantis Banic" and "Edgar The
+   Great", because they already have a Ranking.
+
+   I hope that example explains how the Social Ranking variable works.
+
+   Just what does these rankings give players? Basically, the only thing
+   it lets these players do is sleep in the Palace of Kisom - instead of
+   the Inn of Casimonda or the Fields.   Should other players still wish
+   to kill these players sleeping in the Palace, it will cost dearly.
+
+                   Position "King"   : $1,000,000 to Bribe Guards
+                   Position "Prince" : $500,000   to Bribe Gaurds
+                   Position "Duke"   : $250,000   to Bribe Gaurds
+                   Position "Squire" : $100,000   to Bribe Gaurds
+
+   As you can see, it will cost a player quite a bit of Gold to Bribe the
+   Palace Guard to let them in and attack a player sleeping in the Palace
+   of Kisom. Since each of the three Social Ranking Positions can be held
+   by three different players, and the King is another player the maximum
+   possible number of players sleeping in the Palace is four.
+
+   {*} NOTE - Please make sure that when you change this Ranking to a
+              Prince, Duke, or Squire - that NO other player has this
+              ranking also, as it will cause MANY problems in ROK!
+
+   (F) Where Sleeping.
+
+   When a player is quitting the game, he/she could have three possible
+   choices of where to spend the night, depending on whether or not he/
+   she has a Social Ranking given from the King.  These places are:
+
+   The Fields: It will cost you nothing to stay here. When quitting the
+               game, if you exit normally from Main Street, you will be
+               put in the Fields automatically. Players most often will
+               attack other players who're staying in the Fields before
+               shelling out Gold to bribe their way past the Bartendar,
+               or the Palace Guards to attack a sleeping player.
+   The Inn   : Depending on your Level of Experience, it will cost you
+               anywhere from $200 to $25,000 to spend the night in the
+               Inn of Casimonda. Here, you can safely sleep, unless of
+               course, another player bribes the Bartendar so that he/
+               she can attack you. This is often enough deterrent that
+               players will leave a sleeping player alone, though.
+   The Palace: If a player is the King of Kisom - or a player has a Social
+               Ranking given from the King (see the above option) then he/
+               she can spend the night in the Palace of Kisom.    A player
+               whos sleeping here is basically ensured that they will have
+               a good night's sleep without being attacked. Another player
+               can - however, bribe the Palace Guards into letting them in
+               the Palace and attack a sleeping player.  The costs are:
+
+                   Position "King"   : $1,000,000 to Bribe Guards
+                   Position "Prince" : $500,000   to Bribe Gaurds
+                   Position "Duke"   : $250,000   to Bribe Gaurds
+                   Position "Squire" : $100,000   to Bribe Gaurds
+
+   As you can see, it will cost a player quite a bit of Gold to Bribe the
+   Palace Guard to let them in and attack a player sleeping in the Palace
+   of Kisom. Since each of the three Social Ranking Positions can be held
+   by three different players, and the King is another player the maximum
+   possible number of players sleeping in the Palace is four.
+
+   (G) Player's Status.
+
+   During the course of the game, each player can have two different status
+   definitions - Alive, or Dead.   There is also one other, OnNow, which is
+   used in Multi-Node Online Battles in the game, but the only two that you
+   have to worry about is Alive or Dead.  Alive, meaning that the player is
+   sleeping somewhere in the Realm (in the Inn, Fields, or the Palace), and
+   can be attacked by another player at any time. Dead, well, this is self-
+   explanatory. It means that this character has died for today, and cannot
+   play again until maintenance is run when the first player enters ROK the
+   next day.  Maintenance is where all players get ressurected by "The Gods
+   of War."  (I just LOVE Greek Mythology...)
+
+   (H) Flirted In Inn.
+
+   This variable can be a bit tricky to understand if you're relating it to
+   other Flirting variable (Flirted With Player, see below).  This variable
+   is very simple to explain. Has this player flirted with Hope or Logan in
+   in the Inn of Casimonda today? In ROK, if CleanMode is OFF, then players
+   are eligible to "flirt" with NPC's (Non-Playing-Characters) in the game.
+   Two of these NPC's are Hope (Males flirt with her), & Logan (females can
+   flirt with him). This can either be TRUE, meaning that they have flirted
+   in the Inn today or FALSE meaning they have not flirted in the Inn. This
+   variable is always set to FALSE when Maintenance is run.
+
+   (I) Weapon Number.
+
+   In the Realm of Kisom, it is vital for players to attain superb weaponry
+   if they wish to eventually challenge and defeat Sakar Kane, or, for that
+   matter, survive in the Fields or against other players.   Thus, a Weapon
+   Shop exists. Here, you can choose between 20 available weapons.  This is
+   where the Weapon Number comes in.   This number equals the number of the
+   weapon that this player is currently using.
+
+   (J) Armour Number.
+
+   Like Weapon Number, this is a vital area for players to utiltize to their
+   advantage.   There is 20 Armour Types available in the Armour Shop.  This
+   number equals the number of the armour that this player is using.
+
+   (K) Current Weapon Name.
+
+   This variable has no affect whatsoever on the Weapon Number variable.
+   Rather, this is simply the name of the weapon.   The game does indeed
+   give distinct names to each of it's 20 weapons - but if you wish, you
+   may change it to whatever you like by using this option.
+
+   (L) Armour Name.
+
+   This variable has no affect whatsoever on the Armour Number variable.
+   Rather, this is simply the name of the Armour.   The game does indeed
+   give distinct names to each of it's 20 armours - but if you wish, you
+   may change it to whatever you like by using this option.
+
+   (M) Flirted With Player.
+
+   This is the other half of the Flirting variable in ROK.  Writing mail
+   to other players is one of the funnest things ever to do in doorgames
+   today.   Thus, this is also in ROK.   Here, you can also "flirt" with
+   members of the opposite sex. If CleanMode is ON then the more "adult"
+   flirting options are disabled.   When writing flirtatious mail - this
+   variable is turned to TRUE.  This is set to FALSE upon Maintance run.
+
+   (N) Current Guild.
+
+   In the Realm of Kisom - there are five different Character Classes for
+   players to choose from. They are: Paladin, Cleric, Sorcerer, Assassin,
+   and Warrior.   Each of these classes also has a Guild to go with them,
+   complete with a GuildMaster (a human player from the Realm) & distinct
+   characteristics in each of these Guilds.   A brief run down of each of
+   these Guilds (they are fully explained in Page 7 - ROK Info & Notes) :
+
+   Paladin's Guild  : Paladin's are holy knights. Holy, meaning that they
+                      worship God, and follow the Church.   They can only
+                      do good deeds - any evil act cannot be committed at
+                      all. They also have some Clerical Spells, including
+                      the all-important Heal Wounds spell. There are five
+                      Spells available to Paladin's.   Players can have 3
+                      of these at any given time in the game. These three
+                      spells chosen by the GuildMaster.
+   Cleric's Guild   : Cleric's, like Paladin's, are Holy - meaning that they
+                      follow the Church, and worship God.  They too can only
+                      do good deads, any evil act cannot be committed at all.
+                      They have a broader range of Clerical Spells. In total,
+                      there are 10 to choose from. Players can have 5 spells
+                      at any given time in the game.   These five spells are
+                      chosen by the GuildMaster.
+   Sorcerer's Guild : Sorcerer's are Mages of the Medieval Times.  They dwell
+                      in the Mystical Arts possessing the most powerful magic
+                      in all of the Realm of Kisom.  If they can survive with
+                      this ability - the Sorcerer can easily be the strongest
+                      character in the game. In total 10 Spells are available
+                      for Sorcerer's to choose from. Of these 10, players can
+                      have 5 of them at any given time in the game. These ten
+                      Spells are chosen by the GuildMaster.
+   Assassin's Guild : An Assassin has to be the funnest character class to
+                      play in ROK.   They do not have spells - nor a great
+                      amount of strength.  However, they do possess one of
+                      the most unique options in ROK - "Techniques".  This
+                      is the coolest way to get back at another player, in
+                      odd, and strange methods.   There are five different
+                      Techniques available to choose from.  Of these five,
+                      players can have 3 of them at any given time.  These
+                      three are chosen by the GuildMaster.
+   Warrior's Guild  : The Warrior is the class to choose if you're unsure
+                      what class to pick.   It is basically the "default"
+                      class.  Basically, the Warrior can train his or her
+                      skills - and receive a random bonus on one of their
+                      attributes (stats).  Also, the Warrior can exchange
+                      points between two or more different stats. Meaning
+                      for example, they could take Ten Hit Points and add
+                      it to their Strength Total.    That would mean they
+                      now have 10 extra Strength - and 10 less Hit Points
+                      than they used to.   There are five different stats
+                      that a Warrior can take/give points to. Hit Points,
+                      Defense, Strength, Charisma, and Field Fights.   Of
+                      these five, players can trade between three of them
+                      at any given time.  These three are selected by the
+                      GuildMaster.
+
+   The above was a brief explanation of each of the five different Guilds in
+   Realm of Kisom.   As you can see, each of them has a GuildMaster (a human
+   player from the game), and each has distinct characteristics.  These make
+   ROK generally more enjoyable.  There's also a neat little storyline to go
+   along with how these Guild's (named the Guilds of Astradam) were created.
+
+   When changing the Guilds variable, *PLEASE* make sure that this player is
+   NOT the GuildMaster, as it will surely mess up your game quickly.  What I
+   mean by this is that if you are editting a player who is currently in the
+   Paladin's Guild and wish to change him to the Sorcerer's Guild, then make
+   sure that he/she is NOT the GuildMaster of the Paladin's Guild as it will
+   definitely screw up your game.
+
+   (!) Find User Name.
+
+   This option lets the person running ROKCFG.EXE to search the entire data
+   file (PLAYER.DAT) for a specific BBS User Name (not the ROK Game alias).
+   If no alias is found, it will tell you this, and return back to the same
+   account record.   When it has found a name, it will prompt you to see if
+   the full name is correct, in a Yes/No answer format.  If you answer Yes,
+   then it will load that account. You can use a FULL or PARTIAL name here.
+
+   (@) Edit Guild Skills.
+
+   The following screen will appear upon entering this option:
+
+   =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
+
+   ** Realm of Kisom Version 1.00  Player Editor - ROK Player Account #(x) **
+
+   (1) Prayed to the Gods today?    :        (2) Spells Chosen    :
+   (3) Unused Warrior Skill's Left  :        (4) Spells Remaining :
+
+   (R)eturn to Main Player Editor Menu
+
+   An explanation of each option in this menu:
+
+   (1) Prayed to the Gods today?
+
+   If a player is in the Paladin's, Cleric's, or Sorcerer's Guild, there is
+   an option to pray to their Diety (demi-God). In reward for praying, they
+   receive a random bonus on one of their statistics attributes.    Setting
+   this to FALSE will let the player pray today.   Likewise, a TRUE setting
+   will not let the player pray again until maintenance is ran the next day.
+
+   (2) Spells Chosen.
+
+   This is how many spells this player has already chosen.  It is not
+   recommended to change this value, as it could unbalance the game very
+   quickly.
+
+   (3) Unused Warrior Skills Left.
+
+   This stat, obviously, is for Warrior's only.  Warrior's special ability
+   is that they can take points away from a stat and add it to another one.
+   This is explained above in the Current Guild Option in the Player Editor.
+   Thus, this is how many unused points this player has remaining available
+   to distribute.
+
+   (4) Spells Remaining.
+
+   The GuildMaster of each Guild selects "Spells".  Paladin's, Cleric's, and
+   Sorcerer's have spells they can learn, while Assassin's have "Techniques",
+   and Warriors have tradeable attributes.    Increasing this value will let
+   this player have more spells available to learn.    It is not recommended
+   that you change this value, as it could unbalance the game quite quickly.
+
+   (R)eturn to Main Player Editor Menu.
+
+   This option will simply return to to the Player Editor Menu.
+
+   =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
+
+   (#) Delete Player.
+
+   This option will delete the current player record completely.  Right now,
+   it will simply change all of the information to blank - Real Name, Alias,
+   Weapon/Armour, etc, but a blank account will still exist in this spot. If
+   need be, I will include an option to totally erase blank records from the
+   PLAYER.DAT, but at this point in time there really is no need for such an
+   option.
+
+   {*} NOTE - Do not worry if you accidentally press the "#" key.  It will
+   prompt you for a Y/N answer to check if you are sure you wish to delete
+   this player.
+
+   ([) Back Up One Account.
+
+   If you are running an registered copy, it will save changes to the current
+   user record, and back up one account record.   The same goes for an unreg-
+   istered copy, except it won't save the changes you may have made.   What I
+   mean by "backing up one account" is this - An example:
+
+   You are currently editting User Account #8 - John Doe's Account.  Pressing
+   the "[" key will load account #7, whoever's account that may be. Again, if
+   it's a registered copy, it will save changes, but if it is an unregistered
+   copy, it won't.
+
+   (]) Advance One Account.
+
+   If you are running an registered copy, it will save changes to the current
+   user record, and advance one account record.   The same goes for an unreg-
+   istered copy, except it won't save the changes you may have made.   What I
+   mean by "advancing one account" is this - An example:
+
+   You are currently editting User Account #8 - John Doe's Account.  Pressing
+   the "]" key will load account #9, whoever's account that may be. Again, if
+   it's a registered copy, it will save changes, but if it is an unregistered
+   copy, it won't.
+
+   (R) Return To Menu.
+
+   If you are running a registered copy of ROK it will save any changes you
+   may have made to the current player record, and return to to the Editors
+   Menu. If you are running an unregistered copy of Realm of Kisom, it will
+   not save any changes you have made.
+
+   =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
+
+   (2) Monster Editor explained:
+
+   {*} NOTE - If you are running an Unregistered Copy of Realm of Kisom
+              any changes you make while in the Mon. Editor will not be
+              saved. You can view what the editor is like to give you a
+              feel of what the editor can do upon registering the game.
+
+   The following screen will appear upon entering this option:
+
+   ** ROK V1.00  Monster Editor - Account #(x) **
+
+   (1) Monster Name :
+   (2) Hand Gold    :
+   (3) Weapon Name  :
+   (4) Strength     :
+   (5) Experience   :
+   (6) Hit Points   :
+
+   ([) Back One (]) Ahead One (R) Return To Menu
+
+   Your wish, Mortal? :
+
+   An explanation of each option in this menu:
+
+   (1) Monster Name.
+
+   This is simply the name of the current monster.  It can be anything
+   from a simple ameoba, to something like the Grim Reaper.
+
+   (2) Hand Gold.
+
+   This is how much Gold the player receives when s/he kills this monster.
+   For example, if this monster had $500 Gold, the player would receive
+   $500 should s/he win when fighting this monster.
+
+   (3) Weapon Name.
+
+   Like Monster Name, this is simply the weapon that this monster uses
+   to attack enemies.   It can be anything at all.  It is displayed to
+   the character upon first screen when they battle.
+
+   (4) Strength.
+
+   This is the range of attack that this monster does.  ROK calculates
+   each monsters strength randomly.  Thus, there is a wide range of attack
+   damage values that can be given.  In short, the higher this number is,
+   the greater the damage done.
+
+   (5) Experience.
+
+   Like Hand Gold, this is how much experience a character gets as a
+   reward when this monster is defeated.  For example, if this value
+   was 100, when a character kills this monster, s/he would then get
+   100 Experience.
+
+   (6) Hit Points.
+
+   This is simply how many Hit Points (HP) this monster has.  The higher
+   the value will usually mean the harder to defeat.  When a player attacks
+   a monster, the damage inflicted from these attacks is subtracted from
+   this HP value.  When this HP value reaches 0 or below, then the monster
+   is killed.  Pretty simple.
+
+   ([) Back One.
+
+   If you are running an registered copy, it will save changes to the current
+   mon. record, and back up one account record.   The same goes for an unreg-
+   istered copy, except it won't save the changes you may have made.   What I
+   mean by "backing up one account" is this - An example:
+
+   You are currently editting Mon. Account #8 - John Doe's Account.  Pressing
+   the "[" key will load account #7, whoever's account that may be. Again, if
+   it's a registered copy, it will save changes, but if it is an unregistered
+   copy, it won't.
+
+   (]) Ahead One.
+
+   If you are running an registered copy, it will save changes to the current
+   mon. record, and advance one account record.   The same goes for an unreg-
+   istered copy, except it won't save the changes you may have made.   What I
+   mean by "advancing one account" is this - An example:
+
+   You are currently editting Mon. Account #8 - John Doe's Account.  Pressing
+   the "]" key will load account #9, whoever's account that may be. Again, if
+   it's a registered copy, it will save changes, but if it is an unregistered
+   copy, it won't.
+
+   (R) Return to Menu
+
+   If you are running a registered copy of ROK it will save any changes you
+   may have made to the current monster record and return to to the Editors
+   Menu. If you are running an unregistered copy of Realm of Kisom, it will
+   not save any changes you have made.
+
+   =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
+
+   (3) Level Editor explained:
+
+   {*} NOTE - If you are running an Unregistered Copy of Realm of Kisom
+              any changes you make while in the Lev. Editor will not be
+              saved. You can view what the editor is like to give you a
+              feel of what the editor can do upon registering the game.
+
+   The following screen will appear upon entering this option:
+
+   ** ROK V1.00  Level Editor - Level #(x) **
+
+   (1) Master's Name  :
+   (2) Experience Req :
+   (3) Weapon Name    :
+   (4) Strength Pts.  :
+   (5) Health Points  :
+   (6) Defense Points :
+
+   ([) Back One (]) Ahead One (R) Return To Menu
+
+   Your wish, Mortal? :
+
+   An explanation of each option in this menu:
+
+   (1) Master's Name.
+
+   This is simply the name of the Level Master.  Nothing more, nothing less.
+
+   (2) Experience Req.
+
+   This is the Experience required before a player can challenge this master
+   and advance a level.  For example, if this value was 1,000, then a player
+   would need at least 1,000 before s/he can challenge this master & advance
+   a level.
+
+   (3) Weapon Name.
+
+   This is simply the name of the Weapon that the Level Master uses in
+   battles.  This has no effect on the strength meter, though.
+
+   (4) Strength Pts.
+
+   This is the range of attack that this master does.  ROK calculates
+   each masters strength randomly.  Thus, there is a wide range of attack
+   damage values that can be given.  In short, the higher this number is,
+   the greater the damage done.
+
+   (5) Health Points.
+
+   This is simply how many Hit Points (HP) this master has.  The higher
+   the value will usually mean the harder to defeat.  When a player attacks
+   a monster, the damage inflicted from these attacks is subtracted from
+   this HP value.  When this HP value reaches 0 or below, then the master
+   is defeated, and the player advances one level.
+
+   (6) Defense Points.
+
+   This value is subtracted from the damage inflicted from a player's
+   attack.  For example, if the damage inflicted was 500, and this master's
+   defense was 250, then the damage would now be 250.
+
+   ([) Back One.
+
+   If you are running an registered copy, it will save changes to the current
+   mas. record, and back up one account record.   The same goes for an unreg-
+   istered copy, except it won't save the changes you may have made.   What I
+   mean by "backing up one account" is this - An example:
+
+   You are currently editting Mas. Account #8 - John Doe's Account.  Pressing
+   the "[" key will load account #7, whoever's account that may be. Again, if
+   it's a registered copy, it will save changes, but if it is an unregistered
+   copy, it won't.
+
+   (]) Ahead One.
+
+   If you are running an registered copy, it will save changes to the current
+   mas. record, and advance one account record.   The same goes for an unreg-
+   istered copy, except it won't save the changes you may have made.   What I
+   mean by "advancing one account" is this - An example:
+
+   You are currently editting Mas. Account #8 - John Doe's Account.  Pressing
+   the "]" key will load account #9, whoever's account that may be. Again, if
+   it's a registered copy, it will save changes, but if it is an unregistered
+   copy, it won't.
+
+   (R) Return To Menu.
+
+   If you are running a registered copy of ROK it will save any changes you
+   may have made to the current master record, and return to to the Editors
+   Menu. If you are running an unregistered copy of Realm of Kisom, it will
+   not save any changes you have made.
+
+   =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
+
+   (4) Conversation Editor explained:
+
+   {*} NOTE - If you are running an Unregistered Copy of Realm of Kisom
+              this editor will simply display the Chat File then return
+              to the Editors Menu.
+
+   The following line will appear upon entering this option:
+
+   Edit which Conversation File? <I>nn/<R>ebel Corner/<P>alace :
+
+   <I>nn will display "ROKINN.TXT", <R>ebel Corner will display "REBEL.TXT",
+   and <P>alace will display "PALACE.TXT".  For all files, this is the screen
+   that appears:
+
+   ** ROK v1.00 - Editting Conversation File - (filename) **
+
+       <name><action>:
+   (1) "<line>"
+       <name><action>:
+   (2) "<line>"
+       <name><action>:
+   (3) "<line>"
+       <name><action>:
+   (4) "<line>"
+       <name><action>:
+   (5) "<line>"
+       <name><action>:
+   (6) "<line>"
+
+   Edit which Line (1..6), or <Q>uit back to the Editors Menu :
+
+   Pressing <Q> will return you to the Editors Menu.
+
+   Choosing 1..6 will bring this up:
+
+   Old Line: "<old line text>                                              "
+   New Line: "                                                             "
+
+   After you press ENTER, it will replace the line in the file with the
+   new line you just entered.  That's basically it, in a nut shell. :-)
+
+   =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
+
+   (5) "Atma" Editor explained:
+
+   {*} NOTE - If you are running an Unregistered Copy of Realm of Kisom
+              any changes you make while in the Atma Editor will not be
+              saved. You can view what the editor is like to give you a
+              feel of what the editor can do upon registering the game.
+
+   {*} NOTE - "Atma" is explained on Page 7 (ROK Info & Notes).
+
+   The following screen will appear upon entering this option:
+
+   ** ROK v1.00 - Atma Editor **
+
+ û (1) Allow Players to Fight Atma?  :
+   (2) Experience Reward When Killed :
+   (3) Atma's Legendary Weapon Name  :
+   (4) Atma's Strength Points Rating :
+   (5) Atma's Defensive Pts. Rating  :
+   (6) Atma's Maximum Health Points  :
+
+   (R) Return to the Editors Menu
+
+   An explanation of each option in this menu:
+
+   (1) Allow Players to Fight Atma?
+
+   This is whether or not you want to let your players fight Atma.
+
+   (2) Experience Reward When Killed.
+
+   If Atma is defeated, this value is given to the player as an Experience
+   Reward.   Since Atma is supposedly a supreme enemy, this value is quite
+   high.  However, change as you so desire.
+
+   (3) Atma's Legendary Weapon Name.
+
+   This is the Weapon that the player receives for a day if s/he defeats
+   Atma.  Basically, it's supposedly a Legendary Weapon, like "Excalibur",
+   King Arthur's ultimate weapon.  This weapon is three times as strong as
+   the highest possible weapon sold in the Weapon Shop.  However, a player
+   who receives this weapon is only allowed to use it for one day, to make
+   it fair to other players.
+
+   (4) Atma's Strength Points Rating.
+
+   ROK calculates Atma's attack damage using this value.  Basically, the
+   higher the value, the more damage Atma will do to a player.  Since Atma
+   is a supreme enemy, this value is higher than normal.
+
+   (5) Atma's Defensive Pts. Rating.
+
+   ROK subtracts the player's damage by this value - Atma's defense.  In
+   short, the higher the value, the less damage a player will inflict on
+   Atma.  Since Atma is a supreme enemy, this value is quite high.
+
+   (6) Atma's Maximum Health Points.
+
+   This is simply how many HP Atma has.  The damage inflicted from a player
+   is subtracted from this value.  When this value is less than or equal to
+   0, Atma is defeated.  Since Atma is a supreme enemy, this value is quite
+   high.  Basically, the higher the HP, the harder it is to kill Atma.
+
+   (R) Return to the Editors Menu.
+
+   If you are running a registered copy of ROK it will save any changes you
+   may have made to the Atma record, and return you to the Editors Menu. If
+   If you are running an unregistered copy of ROK it won't save any changes
+   you've made.
+
+   =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
+
+   (6) Inn Editor explained:
+
+   {*} NOTE - If you are running an Unregistered Copy of Realm of Kisom
+              any changes you make while in the Inn Editor will not be
+              saved. You can view what the editor is like to give you a
+              feel of what the editor can do upon registering the game.
+
+   {*} NOTE - The Inn Ownership (Buying/Selling) is explained on Page 7
+              (ROK Info & Notes).
+
+   The following screen will appear upon entering this option:
+
+   ** ROK v1.00 - Inn Editor **
+
+   (1) Allow Inn For Sale? :
+   (2) Current Owner Name  :
+   (3) Price To Get A Room :
+
+   (R) Return to the Editors Menu
+
+   An explanation of each option in this menu:
+
+   (1) Allow Inn For Sale?
+
+   This is a toggle for the SysOp to enable/disable the buying and selling
+   of the Inn of Casimonda between players.  Enabling this will let players
+   own the Inn, set the prices of sleeping, and receive the subsequent Gold
+   they get from being owner.
+
+   (2) Current Owner Name.
+
+   This is simply the owner of the Inn at the current time.  If no one owns
+   the Inn, then "Logan" (an NPC) owns it.  Players must first purchase the
+   Inn from him, then that player owns it.
+
+   (3) Price To Get A Room.
+
+   This value is multiplied by the player's level.  The result is the cost
+   they must pay to the Owner if they wish to spend the night in the Inn.
+
+   For example, if this value was $500, then a level one would pay $500 to
+   spend the night, a level two would pay $1000, 3 would pay $1500, etc...
+
+   This is also the value that is used when other players wish to attack a
+   sleeping guest by bribing Logan, the Bartender. The same calculation is
+   used as explaned above.
+
+   (R) Return to the Editors Menu.
+
+   If you are running a registered copy of ROK it will save any changes you
+   may have made to the Inn Record - and return you to the Editors Menu. If
+   If you are running an unregistered copy of ROK it won't save any changes
+   you've made.
+
+   =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
+
+   (7) Kingdom Editor explained:
+
+   {*} NOTE - If you are running an Unregistered Copy of Realm of Kisom
+              any changes you make while in the Inn Editor will not be
+              saved. You can view what the editor is like to give you a
+              feel of what the editor can do upon registering the game.
+
+   The following screen will appear upon entering this option:
+
+   ** ROK v1.00 - Kingdom Editor **
+
+   (1) Kingdom Gold     :
+   (2) Kingdom Soldiers :
+   (3) Rebel's Gold     :
+   (4) Rebel's Soldiers :
+
+   (R) Return to the Editors Menu
+
+   An explanation of each option in this menu:
+
+   (1) Kingdom Gold.
+
+   This is the amount of Gold that the Kingdom has saved up.  The King/Queen
+   uses this to hire new Soldiers, or just to use it for their own purposes.
+
+   (2) Kingdom Soldiers.
+
+   This is the amount of Soldiers the Kingdom has in their Army. This is used
+   when/if the Kingdom is invaded from another Realm such as Aphrenam/Ishkan,
+   or when someone instigates a Rebellion in the Realm.
+
+   (3) Rebel's Gold.
+
+   Like Kingdom Gold, this is the total amount of Gold that the Rebel's have
+   saved up.  It's used to hire Soldiers into the Rebel's Army.
+
+   (4) Rebel's Soldiers.
+
+   Again, like Kingdom Soldiers, this is the amount of Soldiers in the Rebel's
+   Army.  This is used when a player instigates a Rebellion in the Realm.
+
+   (R) Return to the Editors Menu.
+
+   If you are running a registered copy of ROK it will save any changes you
+   may have made and return you to the Editors Menu.  If you are running an
+   an unregistered copy of ROK it won't save any changes you've made.
+
+   =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
+
+   (E)nter Registration Codes explained:
+
+   The following screen will appear upon entering this option:
+
+   ** Registering Realm of Kisom Version 1.00  **
+
+   (1) SysOp And BBS Name   :
+   (2) Registration Line #1 :
+   (3) Registration Line #2 :
+   (4) Registration Line #3 :
+
+   (Q) Quit to Main ROK Configuration Menu
+
+   If you're running an unregistered copy of ROK, then this line will appear:
+
+   UNREGISTERED COPY.  PLEASE CONSIDER REGISTERING REALM OF KISOM.
+
+   If you're running a registererd copy of ROK, then this line will appear:
+
+   REGISTERED COPY!  THANK YOU FOR REGISTERING REALM OF KISOM!
+
+   An explanation of each option in this menu:
+
+   (1) SysOp And BBS Name.
+
+   These lines will appear when you select this option:
+
+   "SysOp Name, BBS Name" - Example: "Devon Brooks, The Inner City BBS"
+
+   Your SysOp & BBS Name :
+
+   From the example shown, you know that you must put your SysOp Name/Alias,
+   then a Comma ",", then your BBS Name.   This string is used to check the
+   validity of your registration codes.
+
+   (2) Registration Line #1 (3) Registration Line #2 (4) Registration Line #3.
+
+   This is where you enter your lines of registration codes.  If it works,
+   after you've entered the last line, this line should appear:
+
+   REGISTERED COPY!  THANK YOU FOR REGISTERING REALM OF KISOM!
+
+   If you've entered your codes correctly, and it still doesn't say that your
+   game is registered, then consult Page 7 (ROK Notes) for information on how
+   to contact the author regarding faulty registration codes.
+
+   (Q) Quit to Main ROK Configuration Menu.
+
+   This will save any changes you may have made to ROK.DAT and return to
+   to the Main ROK Configuration Menu.
+
+   =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
+
+   (Q)uit ROK Config & Save Changes explained:
+
+   This will save any changes you may have made to the ROK.DAT file,
+   exit the program, and return you to your Operating System prompt.
+
+   =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
+
+   Whew!  I hope that explains ROKCFG.EXE fully! :-)
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Realm of Kisom Version 1.00             Page 4 - Registration Information ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+   Realm of Kisom is distributed in a "ShareWare" format.  What does ShareWare
+   mean?  Basically, it means that you, as a Consumer, are allowed to test ROK
+   for as long as you wish.    An unregistered copy of ROK is fully functional
+   to an extent - half the game. Once players reach Level 10, they will not be
+   allowed to continue until it is registered. That is the only restriction in
+   ROK, though, except for the Editors.
+
+   Just what does someone get when they register?  This:
+
+   * You will receive a Registration Code for YOUR SysOp Name or Alias, and
+     YOUR BBS Name -- Easily entered in the (E)nter Registration Codes option
+     in ROKCFG.EXE.
+   * Twice as many Levels, Level Masters, and Enemies!
+   * Players can advance past Level 10 and finish the game.
+   * Players can access the "secret" ending within the game.
+   * You can customize how many Field Fights and Player Fights your users
+     are allowed to have per day.
+   * Supporting *quality* ShareWare, such as this, helps create a better
+     ShareWare market for *ALL* ShareWare authors and their products.
+   * Player Editor in ROKCFG.EXE is fully functional.  Edit almost EVERY
+     aspect of each player record in your ROK Game!
+   * Monster Editor in ROKCFG.EXE is fully functional.  Customize the ROK
+     enemies to suit your desires!   Every variable in the Monster Record
+     is configurable when registered!
+   * Level Editor in ROKCFG.EXE is fully functional.  Edit the amount of
+     Experience that is needed for a player to advance to a certain level.
+     Customize your game so that it will take players quite a bit of time,
+     or no time at all to advance levels!  Every variable in the Level Master's
+     record is fully configurable when registered!
+   * Conversation Editor in ROKCFG.EXE is fully functional.  Edit lines of
+     text in the Inn or Rebel's Corner conversation.  View what your players
+     are saying, monitor swear words, change as you wish - all in just a few
+     key presses when you register your copy of Realm of Kisom!
+   * "Atma" Editor in ROKCFG.EXE is fully functional.  Customize Atma from a
+     strong Warrior to an even stronger Warrior, or even a weaker Warrior!
+     Rename Atma's Legendary Weapon to suit what you wish!  Atma's entire
+     variable record is fully configurable when registered!
+   * Inn Editor in ROKCFG.EXE is fully functional.  Set the prices for players
+     to sleep in the Inn, or the bribing prices for players to pay to Logan to
+     attack a sleeping guest!  Toggle the Inn buying/selling ON/OFF, set the
+     current selling price, and set the Current Owner's Name!  The entire Inn
+     variable record is fully configurable when registered!
+   * Possibly best of all - Free Updates!  Registering ROK is a one-time
+     thing.  Pay the $20.00 once, and that's it!  Your registered for life.
+     All future versions of ROK will work with your registration codes.
+   * You are entitled to a higher level of assistance should anything go
+     wrong while you run ROK.  I fully support my product to unregistered
+     SysOp's, but if I know that you've registered, chances are I'll be a
+     little more eager to serve and help you out, if I can.  Don't get me
+     wrong, I'm eager to help unregistered SysOp's as well. :)
+
+   The great thing about ShareWare is that you know what you are going to be
+   receiving if you register your copy of Realm of Kisom.  If you dislike an
+   option/feature in ROK, or you've found a bug, do not send money expecting
+   that the registration code will make it work better. Registering ROK will
+   only allow players to play the other half of the game - it doesn't unlock
+   any "Registered-Only" features within the game.
+
+   Even if you're NOT a SysOp, you can still register Realm of Kisom for the
+   same price.  It doesn't matter to me at all.   If you want ROK registered
+   to a name without a BBS Name, specify that when you fill out REGISTER.DOC
+   and I will be more than happy to do that for you!
+
+   {*} NOTE - If you do not have a printer on your computer, simply
+   take a piece of paper, and write down the following information:
+
+   SysOp Name         :                     Your Address   :
+   BBS Name           :                     State/Province :
+   Voice Phone Number :                     Postal Code    :
+   BBS Phone Number   :                     Suggestion(s)  :
+
+   You CAN do it this way if you wish, but I would prefer a typed
+   form as its much easier to read than some people's hand writing.
+
+   The current asking price of registration is $20.00.  I accept BOTH USA
+   and Canadian funds.  If you are a US citizen, you can exchange your US
+   Funds into Canadian, and the cost will drop by nearly $5.00 due to the
+   poor Canadian vs. American dollar rate.
+
+   =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
+
+   However, I do grant a special offer to those who wish to register ROK:
+
+   If you and a friend would like to register ROK together, then you are
+   entitled to a HUGE discount!  This is how to attain this special offer:
+
+   ** INSTEAD OF $20.00, THE COST DROPS TO $10.00!  A SAVINGS OF 50%! **
+
+   First, each of you fill out a seperate registration form.  Include the
+   information you wish, just as if you were registering normally.  Next,
+   put BOTH forms in the same envelope.   Then, since you are entitled to
+   receive the 50% off deal - each person place their registration amount
+   in the same envelope.  That way, when I open the envelope, I know that
+   you and this other person have registered together, thus entitling you
+   to the 50% off deal. If both forms are not together in the same order,
+   you will not receive the 50% off deal, and I will return your money to
+   you at no charge to you.
+
+   This offer works for any amounts of people.  2 People together would
+   make the order in the envelope $20.00 - $10.00 each.  4 People would
+   make the order in the envelope $40.00 - $10.00 each.  It works for
+   all amounts of people. If 10 SysOp's wanted to register ROK together,
+   together, it would be $100.00 - $10.00 each.  Great deal, hey? :-)
+
+   I hope that explains how the deal works.  If you have any questions,
+   feel free to contact me.  Contact methods are given on Page 8 (How to
+   Contact Devon Brooks, The Author).  I'd me more than happy to help you
+   out and answer any questions you might have!
+
+   =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
+
+   Since I live in Canada, mail will take a little longer to get to me if
+   you are sending it from the United States.  There is a date on the Reg
+   Form to tell me what the average time is for mail to get to me.   It's
+   about 1 and a half weeks for mail to reach me.  So, give me some time,
+   and your registration code usually be return to you within 24 hours of
+   me receiving it.   Please allow 2-4 weeks for your code to be returned
+   to you.  If it takes longer than this, by all means, please contact me
+   and ask me what the hold up is.  For some southern states, it may take
+   even longer than four weeks to return the registration code to you.
+
+   At this time, we do not have an OnLine Registration Site set up.  However,
+   one is in the works.  It should be up and running very soon, hopefully. :)
+
+   If you wish to register ROK, fill out REGISTER.DOC, and mail it to the
+   address given on Page 8 (How to Contact Devon Brooks, The Author).
+
+   ** Please consider registering Realm of Kisom if you haven't already! **
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Realm of Kisom Version 1.00            Page 5 - Installing Realm of Kisom ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+   Installing Realm of Kisom is *very* easy.  Simply follow these steps:
+
+   1. It is suggested to create a seperate ROK directory.
+   2. Unzip the ROKV094D.ZIP file into this directory.
+   3. Run ROKCFG.EXE.  Create the ROK.DAT file, if it asks you to.
+   4. In ROKCFG.EXE, go into (S)etup Node(s) for BBS's.  Here, create
+      as many NODE*.DAT files as you wish.  There must be one NODE*.DAT
+      file for every Node you run on your BBS.  (IE, if you have 10 Nodes,
+      you will need NODE1.DAT, NODE2.DAT ... all the way to NODE10.DAT)
+      In this menu, it allows you to configure your BBS Drop File type,
+      Com Port, and Com Routines.
+
+      {*} NOTE - Don't worry.  You won't have to manually edit all your
+                 nodes.  When you create a new node, it uses the previous
+                 node's values.
+
+   5. Setup your BBS to run ROK.  Consult your BBS Software Documentation
+      for information on running doorgames, and executing batch files.
+
+      For single-line BBS's, this is the suggested batch file setup:
+
+      @ECHO OFF                    - Do not display what is happening
+      CD\BBS\DOORS\ROK             - Change Dir to the ROK Directory
+      COPY \BBS\<dropfile>         - Copy your DropFile into the ROK Dir
+      NOW_OFF.EXE                  - Turn "OnNow" Flags off for all players
+      ROK.EXE 1                    - Run ROK on Node #1 (for one-node BBS's)
+      CD\BBS                       - Return to the BBS Directory
+      EXIT                         - Exit back to the BBS
+
+      For Multi-Node BBS's (more than one Node), this is the suggested
+      batch file setup:
+
+      @ECHO OFF                    - Do not display what is happening
+      CD\BBS\DOORS\ROK             - Change Dir to the ROK Directory
+      ROK.EXE * /P<pathtodropfile> - Run ROK.EXE, where "*" is the Node Number,
+                                     and the /P<path> tells ROK where the Drop
+                                     File is (with or without the trailing back-
+                                     slash <"\">).
+      CD\BBS                       - Return to the BBS Directory
+      EXIT                         - Exit back to the BBS
+
+      {*} NOTE - It is *not* necessary to copy the dropfile into the ROK
+                 directory.   If do not want to copy it, then you *must*
+                 use this command line to call ROK:
+
+                 ROK.EXE * /P<pathtodropfile>
+
+                 Where "*" is the node number (consult your BBS Software
+                 Documentation for information regarding passing the node
+                 number to command line).   The <pathtodropfile> does not
+                 need a trailing backslash (\) at the end, but if you put
+                 it there, it won't hurt either.
+
+   That's it!  Pretty simple, hey? :-)  If you have any questions regarding
+   installing Realm of Kisom, please, by all means contact me and feel free
+   to ask me anything you like. Ways to contact me are given on Page 8 (How
+   to contact Devon Brooks, The Author).
+
+   I hope that fully explains how to install Realm of Kisom on your BBS!
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Realm of Kisom Version 1.00       Page 6 - Troubleshooting, Hints, & Tips ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+   This section is here to answer some Frequently Asked Questions.
+
+   Question: "When a user tries to access ROK on my BBS, it doesn't do
+             anything, and simply returns them to the BBS!"
+
+   Answer  : This is most likely caused by your ROK Batch file not executing
+             ROK properly.   See the above section for information on how to
+             setup your batch file.
+
+             {*} NOTE - ROK *might* not be getting enough Memory!  Here's a
+                        way to check if this is the problem: If, in the ROK
+                        batch file, you have "@ECHO OFF", delete that, then
+                        run ROK again. It should know show you what's going
+                        on when it tries to execute ROK from your BBS.  See
+                        where it executes the command line - and if it says
+                        something like: "Not enough memory to run program",
+                        then that's the problem!  :-)  If you are unsure of
+                        just how much Memory your BBS takes up, run MEM.EXE
+                        in the batch file and see.   Then, consult your BBS
+                        Documentation for info on reducing memory usage. It
+                        should then work for you.   ROK automatically loads
+                        most of it's files into EMS, if it's available.
+
+   Question: "ROK has the OnNow flag ON for a user who isn't even in the
+             game!  Another user enters, challenges that person, and ROK
+             screws up there!  Help!"
+
+   Answer  : This error is caused by an Abnormal Exit from the game.  Either
+             ROK had an error, a lock-up, power failure, etc.  This does not
+             happen when a user drops carrier, though, ROK is smart that way.
+
+             For Single-Line BBS's, the solution is *very* simple.  Run
+             NOW_OFF.EXE in the batch file that runs ROK (explained above).
+             This will turn the OnNow flag off for every user *before* a
+             user enters the game.
+
+             For Multi-Node BBS's, this is the fix.  You can run NOW_OFF.EXE
+             if you wish.   However, a more important step is to notify your
+             users that after seven seconds of no response from the other end
+             of the online duel, a player can choose to leave the fight.
+
+             What the heck am I talking about?  Here's an example to help:
+
+             Player A has had an abnormal exit from the game.  The OnNow flag
+             for this character has remained "ON".  Player B enters the game,
+             sees that Player A is online, and challenges that player.  After
+             seven seconds of Player A not responding in the fight - Player B
+             can choose to leave it.  It's very simple!   After this Player A
+             doesn't respond, Player B should know that Player A isn't really
+             online.
+
+             Hope that explains it! :-)
+
+   Question: "Why the heck are there so many MSG*_*.DAT files?"
+
+   Answer  : Those are Message Data Files.  They're mail waiting to be read
+             by certain players.
+
+   Question: "I cannot figure out how to pass the correct Node Number to the
+             batch file ROK command line!  Help!"
+
+   Answer  : Each BBS Software is different.  Almost all of them use a symbol
+             to represent a Node Number.    You will have to consult your BBS
+             Software Documentation to see how to do it.  Sorry I can't be of
+             any more assistance in this area.
+
+   Question: "ROK locks up at the Introduction ANSI/RIP Screen!"
+
+   Answer  : Well, I don't have a clue why this should happen.  If this is a
+             persistant error, there is a Toggle to disable showing it. It's
+             in ROKCFG.EXE's (M)iscellaneous Maintenance Menu. Simply Toggle
+             it to OFF, and you should have no more problems.
+
+             {*} NOTE - You can experiment with the three different FOSSIL
+                        Driver types (explained above), that may cause the
+                        Into ANSI/RIP lockups to go away.
+
+   Question: "A player was able to marry someone who wasn't even in the game!"
+
+   Answer  : In ROKCFG.EXE's (M)iscellaneous Maintenance Menu, there is an
+             option to Divorce *ALL* Married Players in the Realm.  If this
+             error should ever happen, simply run this option, and everything
+             should be fine.
+
+   Question: "My registration code doesn't work!  Help me out, please!"
+
+   Answer  : Extensive testing has been done to ensure that your registration
+             code *should* work.  However, if it does not, DON'T PANIC! :-)
+
+             Simply contact the me, and I'd be more than happy to help you out
+             with this problem. Ways of contacting me are given on Page 8 (How
+             to Contact Devon Brooks, The Author).
+
+   Question: "I don't know how to change my US funds into Canadian Funds!"
+
+   Answer  : Don't bother!  I accept BOTH Canadian AND US Funds in registration
+             forms!
+
+   Question: "I use DORINFO1.DEF as my dropfile.  I use it to run all my
+             nodes.  ROK doesn't recognize that it's supposed to be Node #2
+             with a DORINFO1.DEF file!  Help!"
+
+   Answer  : Most BBS Softwares that support DORINFO also support DOOR.SYS.
+             If your BBS Supports both of these, try changing it to DOOR.SYS.
+             If not, then run ROK with this command line:
+
+             ROK.EXE * /P<pathtodropfile>
+
+             Where "*" is the node number, /P<pathtodropfile> tells ROK where
+             to look for the DropFile.  It does not matter if this path has the
+             trailing backslash ("\") or not.
+
+             I think that should work, hopefully.
+
+   Question: "I want to run Maintenance today - again!"
+
+   Answer  : Simply delete TIME.DAT from your ROK Directory.  The next time
+             ROK is ran, Maintenance will execute again.
+
+   Question: "I have a bug report that isn't addressed anywhere in your ROK
+             documentation!"
+
+   Answer  : Fabulous!  Fill out BUGRPT.FRM.  Send this to me.  Ways of
+             contacting me are given on Page 8 (How to Contact Devon Brooks,
+             The Author).  *Please* be as clear as possible when explaining
+             the report!  Also, please print, if you can, or write neatly! :)
+
+   Question: "I'm stumped.  Nothing seems to work!"
+
+   Answer  : Consult Page 7 (ROK Info & Notes).  There, it will give you the
+             ROK Command Line Parameters.  This, hopefully, will help you out.
+
+   I hope I have covered most of the topics here.  If your question is not
+   addressed, then feel free to contact me.  Ways of contacting me are given
+   on Page 8 (How to Contact Devon Brooks, The Author).
+
+   Alternatively, you may call my BBS - The Inner City BBS, at 1-306-694-5864.
+   There is an entire message base setup for ROK alone (Msg.Area #4).  This is
+   the area to discuss comments/suggestions on how to improve ROK, bug reports
+   and more.  Almost everything is addressed in this area.
+
+   Hopefully, soon, there will be a ROK Echo available on Plannet Connect.
+   When it is available, I will hopefully be addressing messages in there.
+
+   ** Hope that helps! **
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Realm of Kisom Version 1.00         Page 7 - ROK Notes, Information, Etc. ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+   The latest version of ROK can always be FREQed from 1:140/129, using
+   the Magic Name of "ROK".   I run on a 33.6k Modem, so it should take
+   less than 2-3 minutes for you to get the latest version!  It is also
+   available on the BFS Internet WWW Site (address is given below).
+
+   In case you are wondering just what ROK supports, here's a list of them:
+
+   * DesqView, OS/2, Windows 3.1, Windows 3.11, Windows NT, Windows 95, and
+     several other major Multi-Tasking Systems.  All should work fine!
+   * Support for most BBS DropFile types.  These include:
+
+       DOORSYS  - The DOOR.SYS format (Wildcat!,GAP,TAG, etc)
+       DORINFO1 - Remote Access,others(uses DORINFO1.DEF)
+       RBBS     - Rbbs version 16.1+  (uses DORINFOx.DEF)
+       QUICK    - Quickbbs,Force,R.A. (uses DORINFOx.DEF)
+       PCB14    - Pcboard version 14
+       PCB15    - Pcboard version 15
+       PHOENIX  - Phoenix bbs (uses INFO.BBS)
+       SPITFIRE - Spitfires bbs (uses SFDOORS.DAT)
+       WWIV     - WWIV bbs (uses CHAIN.TXT)
+       TRIBBS   - TriBBS software (uses TRIBBS.SYS)
+       2AM      - JUMPER.DAT
+
+   * IRQ Supports 0-15!
+   * Modem Baud Rates up to 115,200 Baud!
+   * Locked Baud Rates.
+   * CTS/RTS Flow Handshaking.
+   * Three types of Communications! (FOSSIL, XFOSSIL, Internal Com, all
+     explained above)
+   * *TRUE* Multi-Node Support!  One-On-One battles, yell at opponents,
+     and more!  "Smart" play allows one opponent in the battle to escape
+     after seven seconds of inactivity from the other player!
+   * Automatic RIP Detection.  Full Support.  Beautifully drawn RIP Graphics.
+     Professionally drawn.  The best in any doorgame today!
+   * *NO* External Maintenance Program!  It's all automatic upon first player
+     login on a new day.
+   * On average, at standard settings, players will use 10 minutes to play
+     their turns for the day!  Makes more time to do other stuff on the BBS,
+     as well as encouraging them to come back for more in the future!
+   * SysOp-To-User Chat!  F2 To Chat, ESCape to exit.
+   * Simply the *BEST* combination of Editors in *ANY* doorgame today! *SEVEN*
+     powerful editors in ROKCFG.EXE lets you fully customize almost everything
+     in the game!  Simply the *BEST* Editors ever created for a door game!
+   * *FIVE* Different Character Classes!  Paladin, Cleric, Sorcerer, Assassin,
+     and Warrior!  Completely unique from each other.  This lets players choose
+     and create their OWN destiny!
+   * Wide variety of Spells for Paladin's, Cleric's, and Sorcerer's!  Also a
+     great range of Techniques for Assassin's!
+   * "Never Reset" type of play.  When a player defeats Sakar Kane and wins the
+     game, only that player is reset.  All other players remain the same.
+   * Great co-ordination of colors.  Makes the game "feel" great!
+   * Powerful mail writing routines.  Unlimitted message length!
+   * *MANY* *MANY* *MANY* Secrets to discover all over the Realm of Kisom!
+   * Many interactive Random Events all over the Realm.  Simply unequaled.
+   * Free upgrades for registered SysOp's!  Registration is a one-time thing.
+   * Powerful Local Mode availability.  OnLine duels, yells, etc, all as if
+     you were actually on another node on the BBS!
+   * Registration is only $20.00!  Simply the greatest value for a doorgame
+     such as this.  The author accepts BOTH Canadian AND US Funds!
+   * Unequaled Kingdom-To-Rebel fighting!
+   * Wide range of attack damage gives lower-level players a fighting chance
+     against higher level opponents!
+   * Eight Different Medieval-Style Rankings for players!  It's actually like
+     you are there in a Medieval Realm!  Rankings include: King, Queen, Prince,
+     Princess, Duke, Dutchess, Squire, and Squiress!
+   * EGO's - New unique approach to gaming NOT found in any other doorgame!
+   * "Senate" - Players can vote on which EGO to be built!  Another of ROK's
+     many unique features NOT found in any other doorgame!  (explained below)
+   * Rich, in-depth storyline, with a deep background & history!
+   * Several possible scenarios.  The game can go several different ways!
+   * 10 Different, completely unique possible game endings.  One "secret"
+     ending as well!
+   * Buy/Sell the Inn of Casimonda!  Set the prices for players to sleep in
+     the Inn!  Just one of ROK's many unique options NOT found in any other
+     doorgame!
+   * 20 different, completely unique Weapons & Armours!
+   * Fully customizable game when the SysOp has registered!  Set the number
+     of Field and Player fights per day.  Configure the Level Master's to
+     let the game advance more slowly, or quicker!
+
+   =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
+
+   One of the most unique options in ROK is called EGO support.  What the
+   heck is EGO support, you ask?  Well, here's an explanation:
+
+   EGO stands for "Extra Game Option."
+
+   The King/Queen of Kisom can construct "Buildings".  These Buildings are
+   called EGO's.  These EGO's are coded into the game by Devon Brooks (The
+   Author), NOT a 3rd Party Programmer. Each EGO costs a certain amount of
+   Gold.    Once this requirement of Gold is met, then this EGO can now be
+   accessable for all players, and a new EGO can be constructed.    As new
+   ideas come up, possible future EGO's will be added by The Author.
+
+   When the King/Queen decides which EGO to be built - one day is allocated
+   for the players in the game to vote Yes/No to be in favour of or opposed
+   to the building of this EGO.  If the majority of players do not want the
+   EGO to be built - then they will get to decide which EGO they want to be
+   built.   Basically, it's a "Senate" type of thing.   If the players vote
+   against the King/Queen, then the Senate will overrule the King and build
+   a new EGO, just as the players requested.
+
+   ** Don't make the mistake, EGO's are *NOT* IGM's! **
+
+   Rather, EGO's are options within the game.  At this point in time, I am
+   not allowing 3rd Party Programmers to create EGO's for ROK.  By looking
+   at other games, IGM's cause nothing but problems.   However, I'm always
+   open to change, so this opinion on 3rd Party Programmers *could* change.
+
+   Hope that explains how EGO's work!
+
+   =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
+
+   Another one of the many unique features of ROK is the five different
+   character classes available to players.  An explanation of each class:
+
+   Paladin  - This type of character can do only good deeds.  Since Paladin's
+              are Holy Knights, they worship God.  Paladin's also can wield a
+              limited amount of Clerical Spells; the first five of ten can be
+              accessed by all Paladin's - three of which are available at the
+              same time. These five spells are: Heal Wounds, View Other Char,
+              Enchant Weapon, Enchant Armour, and Cure All Diseases. *All* of
+              these spells are explained in the next class (Cleric), how they
+              work, what they do, etc.
+
+   Cleric   - Like Paladin's, this type of character can also do only good
+              deeds.  Since Cleric's are Holy, they worship God.  Cleric's
+              wield a wide variety of Spells - five of which are available
+              at the same time.   These ten spells are - Heal Wounds, View
+              Other Char, Enchant Weapon, Enchant Armour, Cure All Diseases,
+              Holy Hammer, White Lore, Blindness, God's Divine, and Complete
+              Healing.  Here's a complete explanation of each of these spells:
+
+              Heal Wounds - This will Heal *half* of all the wounds that a
+                            character has and let the player choose another
+                            option in the battle.  For example, if a player
+                            had (10 of 20) HP, casting this spell will heal
+                            5 HP since that is half of what this player has
+                            sustained as damage.  After this spell is cast,
+                            the player will then be able to choose another
+                            option in the battle.
+
+              View Other Char - Casting this spell will enable you to view
+                                another character's statistics.  This screen
+                                is the same as if it a player viewing his or
+                                her statistics, but it will have the desired
+                                character's stats.  Usefulness?   Well, it's
+                                easy to see which players have Gold on their
+                                Hand, their strength, etc, before they attack
+                                them.
+
+              Enchant Weapon - Just as the spell says, casting this will give
+                               a player a 10% bonus on his/her attack damage.
+                               Cast this once any time in your turn, and it's
+                               duration will last until you quit the game.
+
+              Enchant Armour - Like Enchant Armour, casting this spell will
+                               give a player a 10% bonus on his/her Armour.
+                               This means that 10% will be subtracted from
+                               the damage received from a Monster/Player.
+                               Cast this once any time in your turn, and it's
+                               duration will last until you quit the game.
+
+              Cure All Dieseases - Anther one of ROK's many unique features is
+                                   that players have the ability to Cure/Bless
+                                   other players.  If a player is cursed, then
+                                   he/she must find a cure. Casting this spell
+                                   will Cure All Diseases, just as it says.
+
+              Holy Hammer - A mythical spell known only has "Holy Hammer" was
+                            thought to be a Spell wielded by the Cleric's. It
+                            has the potential to do 5 times as much damage as
+                            a normal attack.
+
+              White Lore - Pure energy, White Lore is the central focus of the
+                           Cleric's faith in the Good Lord. This blast has the
+                           potential to do 6 times as much damage as a normal
+                           attack.
+
+              Blindness - Just as the spell name says, this flash of light can
+                          effectively "blind" the opponent, thus reducing his/
+                          her chance of hitting you by 50%.
+
+              God's Divine - Calling upon forces of Divinity, God's Divine is
+                             the most potent spell in the Cleric's aresenal.
+                             Seemingly from God himself, this blast of energy
+                             has the potential of doing 8 times as much damage
+                             as a normal attack.
+
+              Complete Healing - Just as the spell name says, casting this will
+                                 heal a player of his wounds completely then
+                                 let the player choose another option in the
+                                 battle.  For example, if a player had (1 of
+                                 100) HP, this spell would heal 99 HP, since
+                                 that is the wounds sustained.    Simply the
+                                 most powerful non-offensive spell available
+                                 to Cleric's,
+
+   Sorcerer - This type of character, if trained correctly, could be the most
+              powerful character in the entire game, easily. Sorcerer's wield
+              "Black" Magic, or magic opposed to Paladin's/Cleric's.     If a
+              player is patient with this character, in time, Sorcerer's grow
+              to be simply the most powerful character.    Sorcerer's wield a
+              wide variety of Spells, five of which are available at the same
+              time.    These ten spells are - Magic Missile, Shield, Befriend
+              Enemy, Flaming Ball, Black Lore, Dispel Magic, Ice Storm, Clone
+              Self, Meteor Storm, and Reincarnation.   A complete explanation
+              of each of these spells:
+
+              Magic Missile - M. Missile has the potential of doing 5 times
+                              as much damage as a normal attack. Basically,
+                              this spell creates a "Missile", and shoots it
+                              at the desired target.
+
+              Shield - This spell will effectively reduce the damage taken
+                       from an enemy by 25%.  Meaning, that if an opponent
+                       hit you for 100 Damage - this spell would reduce it
+                       to 75.  Quite useful.
+
+              Befriend Enemy - One of the best spells that Sorcerer's can
+                               wield - Befriend Enemy lets you escape the
+                               battle instantaneously.   Just as it says,
+                               you "Befriend" your opponent, & the battle
+                               does not continue. *Very* useful if you're
+                               in a battle you cannot win.
+
+              Flaming Ball - Casting a large ball of fire - this spell has the
+                             potential to do 6 times as much damage as a normal
+                             attack.   Just as it says, a large Ball of fire is
+                             hurled at the opponent.
+
+              Black Lore - Pure energy - Black Lore is the central focus of the
+                           Sorcerer's faith in their Dieties.    This blast has
+                           the potential to do 7 times as much damage as normal
+                           attacks.
+
+              Dispel Magic - Another one of the most useful spells that they
+                             can wield, Sorcerer's have the ability to disable
+                             opponent's usage of spells by casting Dispel Magic.
+
+              Ice Storm - Just as the spell says, this spell will cause a
+                          large storm of Ice to be shattered over the opponent.
+                          This spell has the potential to do 9 times as much
+                          damage as a normal attack.
+
+              Clone Self - Just as the spell says, this spell will "Clone"
+                           the caster's character.    On subsequent Normal
+                           attacks - your "Clone" will also attack - doing
+                           twice as much damage as before.
+
+              Meteor Storm - The most potent spell in the entire game, Meteor
+                             Storm can do the most damage of all spells.   It
+                             has the potential to do 12 times as much damage
+                             as a normal attack.    Calling upon the heavens,
+                             this spell rains Meteors upon the desired target.
+
+              Reincarnation - Possibly the most useful spell in the Sorcerer's
+                              arsenal, Reincarnation does just that: bring you
+                              back to life if you die.  Casting this spell any
+                              time during your turn - and if you die somewhere
+                              in the game, this spell will automatically bring
+                              you back to life, just as if you had not died at
+                              all.  Simply the most useful spell to have.
+
+   Assassin - This type of character is the funnest character to player in the
+              game.   They do not possess potent spells.  Rather, they wield a
+              unique feature - "Techniques".   These Techniques can be used to
+              harm other players - in "odd" ways.  Like I said, this character
+              is the funnest to play!   Assassin's can wield a wide variety of
+              Techniques - 3 of these can be available at the same time. These
+              five Techniques are: Steal Hand Money, Scar Facial Area, View C.
+              Stats, Mutilate Remains, and Destroy Bank Account.    A complete
+              explanation of each of these Techniques:
+
+              Steal Hand Money - Just as it says - using this Technique will
+                                 have the chance of stealing a player's Gold
+                                 on hand.
+
+              Scar Facial Area - Using this Technique will have the chance of
+                                 scarring a player, or reducing their Charisma.
+                                 
+              View Character Stats - This Technique, like the Spell, will view
+                                     another character's statistics.   If used
+                                     in conjunction with the Steal Hand Money,
+                                     this will let the char know which players
+                                     have more money to steal from.
+
+              Mutilate Remains - Possibly one of the most unique Techniques
+                                 available to Assassin's, Mutiliate Remains
+                                 will have a chance to kill a sleeping player
+                                 without the need of a battle. In short, this
+                                 Technique will end the character's turn for
+                                 today.
+
+              Destroy Bank Account - Just as it says this Technique will have
+                                     the chance to destroy a players Bank of
+                                     Kisom account - thus, cutting off much-
+                                     needed Gold.  Using this Technique will
+                                     also end the character's turn for today.
+
+   Warrior  - The Warriors are "default" characters in the Realm. Usually,
+              this class is picked because players cannot decide which one
+              to choose. The Warriors are like Paladin's except they can't
+              wield any spells.   They *can*, however, Train once/day, and
+              receive a random bonus on one of their attributes.  Warriors
+              also posses a feature in ROK - the transferring of attribute
+              points.  What does this mean?  It means, for example, that a
+              Warrior can take 10 points away from HP, and add it onto the
+              Strength.  Thus, this character would now have 10 less HP, &
+              10 more strength.  There are five possible attributes that a
+              Warrior can trade between - three of them are a available at
+              the same time. These five attributes are: Strength, Defense,
+              Charisma, HP, and Field Fights.   Warrior's can trade points
+              between these attributes.   Hope that explains how it works!
+
+   I hope that explains what each Guild Class does!
+
+   =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
+
+   In case you're wondering, here's a bit of ROK Nostalgia:
+
+   First Playable      : May 22nd, 1996.
+   Beta Releases       : Ten beta versions.
+   Public Releases     : One, with the release of ROK v1.00.
+   Internal Versions   : About 2,000,000. :-)
+   Date ROK Started    : January 1st, 1996.
+   Total Hours of Work : About 600 hours.
+   v1.00 Release Date  : August 25th, 1996.
+
+   =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
+
+   Just like in a Medieval Kingdom, ROK supports the ability for the King/
+   Queen of Kisom to assing "Social Rankings".   What are Social Rankings,
+   you ask?  They are rankings in the eyes of the Kingdom, such as "Duke",
+   "Squire", "Baron", etc.
+
+   The King/Queen of Kisom can give out six rankings. These are: Prince,
+   Princess, Duke, Dutchess, Squire, and Squiress.  As you can see from
+   the names, three rankings are for Males, and three are for females.
+
+   What are the advantages when a player receives a Social Ranking?  In
+   short, this gives the player the ability to sleep in the Palace.  It
+   lets them sleep at night knowing that it'll take a large sum of Gold
+   for a player to Bribe the Palace Guard's into letting them challenge
+   a sleeping guest.    That is the advantage a Social Ranking gives to
+   players. That and the recognition in the Listings of Characters that
+   it shows their Rankings.
+
+   If a player has a Social Ranking, or is the King/Queen, they cannot
+   enter the (R)ebel's Corner from the Main Menu.
+
+   =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
+
+   ROK supports many "Command Line Parameters".  These Parameters are on
+   the same line that you call ROK.EXE with, if you didn't know.   These
+   are the list of Parameters:
+
+   (These can be used in any order)
+
+   *                    - Where * is the node number you wish to
+                          call ROK on.  (explained above)
+   0                    - Run ROK in Local Mode.
+   /Bxxx                - Specify Locked Baud Rate. (Example: /B38400)
+   /R                   - Forces RIP Graphics to be Enabled.
+   /Pyyy                - Specify Path to your Drop File.  This can be with
+                          or without the Trailing Backslash. This parameter
+                          *must* be used on Multi-Node BBS's. (explained above)
+   /E                   - Load files into EMS.  ROK automatically loads most
+                          of it's files into EMS, if it is available, so this
+                          might save just a tad more memory.  Maybe.
+
+   =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
+
+   ROK boasts the best RIP Graphics of all doorgames today.  If you don't
+   know what RIP is, here's a brief explanation:
+
+   RIP stands for "Remote Imaging Protocal".
+
+   At this time, ROK supports only RipTerm 1.54, since 2.00 is *not* very
+   popular, unfortunately. If 2.00 picks up in popularity or I see a wide
+   demand for it, then I will make ROK support both versions.
+
+   RIP is a form of Graphics, like ANSI, except it is in VGA mode, with
+   16 Color Graphics.    At this time, I do not know of a 256 Color RIP
+   Graphics Program, that is why only the 16 Colors.
+
+   To view the RIP Screens, you will need a RIP Terminal Program.  RipTerm
+   is suggested, but another that I know of supports it - Telix for Windows.
+   I've heard that a version of Telemate also supports RIP, but I'm not sure
+   on this one.
+
+   What advantages does RIP have?  It allows the user to view some beautifully
+   drawn artwork in the game instead of ANSI menus, and use a mouse instead of
+   pressing the keyboard to execute a command.
+
+   Regardless of whether or not your BBS Software supports RIP Graphics, ROK
+   does.   This means that even if your BBS can't run RIP Graphics, ROK will
+   still be able to show off it's the beautiful artwork to your users.
+
+   Some tips on how to get players to use the game in RIP Graphics:
+
+   1. Announce that the game has RIP Graphics.
+   2. Place RipTerm v1.54 online in your File Areas for the users to download.
+   3. Encourage them to test it out once, and if they like it, chances are
+      they'll continue playing it in RIP mode.
+
+   I hope the RIP Graphics section of this game is used.  It really is a great
+   feature in the game!
+
+   =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
+
+   Another one of ROK's many unique features is "Atma".
+
+   Atma is made of pure energy, focused on one soul purpose - players.
+   Basically, users will be able to challenge Atma once/day.  Since Atma
+   is one of the strongest enemies in the game, his default variables are
+   quite high, even close to that of Sakar Kane.
+
+   If players are able to defeat Atma, their reward is that they can keep
+   Atma's legendary weapon name - for the day, to make it fair to other
+   players.   Upon maintenance the next day, the player's old weapon will
+   be back in their hands, and they will be able to challenge Atma again.
+
+   The weapon is three times as powerful as the most expensive weapon in
+   ROK - the Ultimate Blade.  It cannot be sold, however.  :-)
+
+   Atma is fully configurable in the ROKCFG.EXE's Editors Menu.  All
+   changes will be saved when Realm of Kisom is registered.
+
+   =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
+
+   Another one of ROK's many unique features is that players can Buy and
+   Sell the Inn of Casimonda.
+
+   If no player owns the Inn, then Logan, an NPC, will be the owner.   The
+   default price for a player to purchase the Inn of Casimonda is $100,000.
+   From there, the price will increase by 33% for another player to buy the
+   Inn from that player.
+
+   Each time the Inn is bought, the price will increase by 33%.
+
+   How does one purchase the Inn from another player/Logan?  First of all,
+   you will need the required amount of Gold.   Secondly, you will have to
+   defeat the Owner in a FIST-FIGHT Battle. In short, this means that both
+   players will not be able to use their weapons in the battle. The reason
+   for this?  Simple.  Higher level players with more Gold will be able to
+   easily defeat lower level players who Own the Inn.    Should the player
+   who wishes to purchase the Inn win the fist-fight battle, s/he will then
+   pay the required Gold to the previous Owner, and then acquire the rights
+   to the Ownership.
+
+   If Logan is the Owner, a player will not have to fight him, though.  :-)
+
+   Hope that explains how it is bought and sold!
+
+   What are the advantages of owning the Inn?  Owners are able to set the
+   prices that players will have to pay to spend the night.   All profits
+   made go straight to the Owner's bank account.
+
+   No matter what, if you Own the Inn, when it is sold, you will *always*
+   make a profit, since the price always increases by 33%.
+
+   The Inn prices, ownership name, and a toggle to enable/disable the buying
+   and selling of the Inn is fully configurable in ROKCFG.EXE's Editors Menu.
+   All changes will be saved when Realm of Kisom is registered.
+
+   =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
+
+   In case you are wondering, 3% of all taxes collected go straight to the
+   King's Bank Account.  The rest goes toward "Kingdom Maintenance".  :-)
+
+   =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
+
+   I am 100% convinced that ROK will become an instant hit on your BBS.
+
+   Here are some ways for you to encourage users to try out ROK:
+
+   * Don't play the game yourself.  If players know that the SysOp is
+     playing, chances are some of them will quit.  Even if you're playing
+     fair, most of them will assume that you're cheating, and quit.
+   * Try not to run too many Doors on your BBS.  Even if you have a lot
+     of doors, if you have 30 Door users, chances are there will be only
+     3 to 5 players in each door.  Limitting the amount of doors will
+     make the players choose the same game all the time to play.  Even if
+     you only have ROK online, chances are most players will call more to
+     your BBS because they *know* they will find players in your game.
+   * Advertise the game in your opening BBS Screen.  This will let players
+     know that the game has been installed on your BBS.  Let them know that
+     it's a great game, RIP Compatible, etc.  Chances are, from your promo,
+     that they'll join up right away.  A file is included in the archive to
+     help you with this promotion - the ANSI Filename is "ROKPROMO.ANS".
+   * Make it easily accessable.  Nothing's worse than hitting three to four
+     keys to reach the door game's menu.  I have it available right from the
+     Main Menu on my BBS, and it works great!
+   * When you register, don't overdo the amount of Field/Player Fights you
+     are giving out per day.  Too much and the game goes way too quickly.
+     The default (15 Field Fights, 3 Player Fights) is there to make ROK run
+     at a balanced pace.
+
+   =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
+
+   ** I hope those notes help you out if you're having problems! **
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Realm of Kisom Version 1.00      Page 8 - Contacting Devon Brooks, Author ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+   You want to get in contact with me, Devon Brooks, The Author?  GREAT!
+
+   I simply *LOVE* receiving messages!  (Really, I do!)
+
+   Here are some of the most convenient ways of contacting me:
+
+   1. FidoNet EchoMail Message Areas.  I frequently read the DOORGAMES Echo
+      and the ON_LINE_GAMES Echo.
+
+      Hopefully soon, there will be a ROK echo available on Plannet Connect.
+      If this becomes available, I will, of course, answer messages in here as
+      well, since it *IS* an entire echo devoted to my game. :-)
+
+      Since I receive a LOT of messages every day, chances are you won't get
+      a reply back very quickly.   It usually takes me 1-2 days to answer my
+      mail completely.   Depending on where you live, please allow 5-10 days
+      for a reply to come back to you. It's also in here that I announce new
+      releases of ROK, so keep up in these echos, and you'll be kept informed!
+
+   2. Netmail.  My FidoNet Netmail Address is 1:140/129.
+
+      It doesn't matter if you route the Netmail message or crash it to me.
+      In most cases, I will route the reply back to you, but sometimes, if it
+      is urgent, I will crash it back to you.  I usually answer my Netmail
+      messages as soon as I can, so this might be the best method of getting
+      in contact with me.
+
+   3. Internet E-Mail.  My Internet Address is "bfs@sk.sympatico.ca",
+      without the quotes ("").
+
+      I usually check my Mail on the Internet about every 2 days.  However,
+      that does not mean you will get a reply in 2 days.  It will most likely
+      take about 4 days for me to reply to your message on here.  Depending
+      on the urgency of the message, though, I could reply back right away.
+
+   4. Voice Support!  My Voice Phone Number is 1-306-692-7374.  Please call
+      between 6pm and 9pm Central Standard Time (CST).  Please check *YOUR*
+      time zone, then check the difference of time between yours and mine,
+      THEN decide when to call.  What I mean is that if you are two hours
+      behind me, then call between 4pm and 7pm in your area, since that is
+      the equivalent to 6pm and 9pm in my area.  Does that make sense?  Hope
+      so.  There's nothing worse, in my opinion, than receiving a voice call
+      when I'm supposed to be sleeping! :-)
+
+      Voice support is probably the quickest method of contacting me.  It's
+      person-to-person, so that your questions are answered directly by me.
+
+      In case you didn't know, I am 16 years old.  Thus, I might not be home
+      sometimes, and my parents might answer.  If that is the case, simply
+      tell them that you will call back another time, and hopefully I will be
+      home at that time.  To make your life a bit easier, I have tennis league
+      nights on Monday, Tuesday, and Wednesday all this summer, so try not to
+      call those nights.
+
+      When I answer the phone, please notify me that you are calling for ROK
+      assistance.  Otherwise, I might think you are a friend of mine calling
+      me up, and I won't treat you with the courteousness I should. :-)
+
+   5. The Author's BBS.  My BBS is "The Inner City BBS".  The Phone Number is
+      1-306-694-5864.  This BBS is open 24 hours/day, 7 days a week.  Your 1st
+      call will simply be a verification call; after I've updated your access
+      level, you will have full access to the BBS.  Sorry I don't allow full
+      access on first call, but I've got a lot of "troublesome" users in my
+      area who like to abuse full-access-upon-first-call BBS's.
+
+      The verification call will take less than two minutes, tops.  Simply
+      call back the next day, or even later in the day, and you will have
+      normal access.  I usually check the BBS every 2-4 hours, so it won't
+      take that long to verify you.
+
+      If you leave me a message in a local area on my BBS, I will usually
+      reply to it within 2-4 hours of seeing it.  This is a quick method of
+      getting a reply.  There is a specific message area setup JUST for ROK
+      comments/suggestions/bug reports.  That is Message Area #2 on my BBS.
+      If you wish to write me a message on my BBS, this is the area to do it
+      in.  However, if you want it to be a private message, there's always
+      the local message area as well.  Doesn't matter to me at all.
+
+   6. The *Official* Blazing Fire Software Web Site.
+
+      The WWW address is: Http://www.sasknet.com/~bfs
+
+      If you don't know how to make the "~", it's the top left hand key on
+      the Keyboard, plus the Shift Button.  :-)  Some people ask me how to
+      make it.  I call it a "Squiggley".
+
+      On this WWW Site, you can always find the latest version of ROK here.
+      You can also see upcoming programs from Blazing Fire Software, info
+      regarding new upcoming releases of ROK, and E-Mail Devon Brooks, The
+      Author, directly from this site!
+
+      This WWW site was created and is maintained by Devon Brooks.
+
+   7. Almost as a last resort:
+
+      Mail.  Plain, ordinary "Snail" Mail.  My address is:
+
+      Devon Brooks
+      c/o 834 Ninth Avenue NW
+      Moose Jaw, Saskatchewan
+      Canada
+      S6H 2M5
+
+      This is also the address to send Registration Forms.  If you specify
+      an alternative way to reply besides Snail Mail, I will reply in that
+      form. Otherwise, you will receive a reply in the mail 2-4 weeks after
+      you sent it, depending on where you live.
+
+   I *LOVE* receiving messages from people.  If you have a question, comment,
+   suggestion, bug report, even if you just want to start a conversation - let
+   me know about it! :-)
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Realm of Kisom Version 1.00                  Page 9 - Credit's And Thanks ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+   Boy, when I think of the time I originally thought of ROK.....
+
+   First of all, above everyone and everything else, I thank God. God gave
+   me the ability to exercise patience in programming my game, patience in
+   the time it took to complete it, the knowledge of Turbo Pascal, &, most
+   of all, a happy life to live.
+
+   Secondly, I thank my family.  My parents, for their support when I was
+   feeling down because of an elusive Bug. And, even my big brother, whom
+   I fought with immensely when I was a kid.
+
+   Thirdly, a good friend of mine, Brad Berezowski.  Brad was there from the
+   very beginning, offering suggestions, comments - and sometimes insults to
+   me.  He thought of many features that ROK has.  Though he didn't actually
+   code any part of ROK, he was a driving force behind ROK's creation.
+
+   Next, I thank Bill Klassen.  He gave me the User Routines for ROK, how to
+   save/find a user record, and much, much more.  He gave me countless hours
+   of work.  He offered much needed help, support, and more.   In short, ROK
+   would not exist if Bill had not helped me out. And, for that, I thank him
+   immensely.
+
+   The beta testers.  Where would I be without them?  God only knows...  Here
+   is a list of them, in no particular order: John Wagontall, Brian Tremblay,
+   Chris Carson, Glen Moorehead, Mark Tassin, Ken Gray, Joe Clarke, Dan Shore,
+   Tom Brown, and Dale Ficken. These people reported bugs, typo's, etc, & also
+   gave some great suggestions for new options in the game.  I simply do not
+   know where ROK would be without the aid of these beta testers.  This list
+   of testers is also given in the file TESTERS.DOC, included in the archive.
+
+   Next, I thank Sean Mellor.  He took the time to draw some of ROK's awesome
+   ANSI graphics.  Thanks a million, Sean! :-)
+
+   Steve Lorenz, Bob Dalton, Scott Baker, and everyone else who contributed
+   to the DDPlus Package.  Simply the *BEST* DoorDriver available for TP.
+
+   I thank Jan Ferguson from the TURBO PASCAL Echo (FidoNet) for providing
+   me with assistance in regards to taking percentages of values.  Thanks a
+   lot, Jan!
+
+   Finally, I thank a lot of the users on my BBS.  They reported inital bugs
+   in the Alpha version of ROK, contributed suggestions/comments, and more.
+
+   That is all that I can think of at this point.  If I missed anyone, please
+   tell me, and I'll update this Documentation in the next version! :-)
+
+   =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
+
+   Also, if you feel I have missed something in this documentation, or I have
+   not convered something in the game, *please* notify me of this, and I will
+   update this Documentation in the next version.
+
+   ** I enjoyed writing ROK immensely!  I hope you have fun with it! **
+
+Devon Brooks - Blazing Fire Software
+End of the Realm of Kisom v1.00 Documentation

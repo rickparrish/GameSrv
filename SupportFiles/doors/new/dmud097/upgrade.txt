@@ -1,0 +1,12 @@
+Upgrading from an older version of DoorMUD to the current version
+=================================================================
+
+If you already have a previous version of DoorMUD installed on your BBS,
+upgrading to the newest release is easy.  Simply unzip the new archive to
+your old DoorMUD directory, overwriting the files from the older version.  
+
+
+To see what has changed in this version of DoorMUD, hit R at the DoorMUD
+entrance menu to view the full release notes.
+
+
