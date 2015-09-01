@@ -33,6 +33,7 @@ namespace RandM.GameSrv
         private bool _Disposed = false;
         private string _LocalAddress;
         private int _LocalPort;
+        private TerminalType _TerminalType;
 
         public event EventHandler BindFailedEvent = null;
         public event EventHandler BoundEvent = null;
@@ -42,11 +43,12 @@ namespace RandM.GameSrv
         public event EventHandler<StringEventArgs> MessageEvent = null;
         public event EventHandler<StringEventArgs> WarningMessageEvent = null;
 
-        public ServerThread(string localAddress, int localPort, ConnectionType connectionType)
+        public ServerThread(string localAddress, int localPort, ConnectionType connectionType, TerminalType terminalType)
         {
             _LocalAddress = localAddress;
             _LocalPort = localPort;
             _ConnectionType = connectionType;
+            _TerminalType = terminalType;
             _Paused = false;
         }
 
@@ -93,11 +95,11 @@ namespace RandM.GameSrv
             try
             {
                 List<string> FileNames = new List<string>();
-                if (terminalType == TerminalType.Rip)
+                if (terminalType == TerminalType.RIP)
                 {
                     FileNames.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "ansi", fileName.ToLower() + ".rip"));
                 }
-                if ((terminalType == TerminalType.Rip) || (terminalType == TerminalType.Ansi))
+                if ((terminalType == TerminalType.RIP) || (terminalType == TerminalType.ANSI))
                 {
                     FileNames.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "ansi", fileName.ToLower() + ".ans"));
                 }
@@ -167,7 +169,7 @@ namespace RandM.GameSrv
                                         {
                                             RaiseMessageEvent("Incoming " + _ConnectionType.ToString() + " connection from " + TypedConnection.GetRemoteIP() + ":" + TypedConnection.GetRemotePort());
 
-                                            TerminalType TT = GetTerminalType(TypedConnection);
+                                            TerminalType TT = _TerminalType == TerminalType.AUTODETECT ? GetTerminalType(TypedConnection) : _TerminalType;
                                             if (IsBannedIP(TypedConnection.GetRemoteIP()))
                                             {
                                                 DisplayAnsi("IP_BANNED", TypedConnection, TT);
@@ -275,11 +277,11 @@ namespace RandM.GameSrv
 
                 if (str.ToUpper().Contains("RIPSCRIP"))
                 {
-                    return TerminalType.Rip;
+                    return TerminalType.RIP;
                 }
                 else if (Regex.IsMatch(str, "\\x1b[[]\\d{1,3};\\d{1,3}R"))
                 {
-                    return TerminalType.Ansi;
+                    return TerminalType.ANSI;
                 }
             }
             catch (Exception)
@@ -287,7 +289,7 @@ namespace RandM.GameSrv
                 // Ignore, we'll just assume ASCII if something bad happens
             }
 
-            return TerminalType.Ascii;
+            return TerminalType.ASCII;
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]

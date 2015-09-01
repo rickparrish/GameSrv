@@ -45,6 +45,7 @@ namespace RandM.GameSrv
         public string SysopLastName { get; set; }
         public string TelnetServerIP { get; set; }
         public int TelnetServerPort { get; set; }
+        public TerminalType TerminalType { get; set; }
         public string TimeFormatLog { get; set; }
         public string TimeFormatUI { get; set; }
         public int TimePerCall { get; set; }
@@ -70,6 +71,7 @@ namespace RandM.GameSrv
             SysopLastName = "Sysop";
             TelnetServerIP = "0.0.0.0";
             TelnetServerPort = 23;
+            TerminalType = TerminalType.ANSI;
             TimeFormatLog = "G";
             TimeFormatUI = "T";
             TimePerCall = 60;

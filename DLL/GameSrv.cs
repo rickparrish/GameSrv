@@ -60,8 +60,6 @@ namespace RandM.GameSrv
 
         public GameSrv()
         {
-
-
             _LogTimer.Interval = 60000; // 1 minute
             _LogTimer.Elapsed += LogTimer_Elapsed;
             _LogTimer.Start();
@@ -720,7 +718,7 @@ namespace RandM.GameSrv
                     if (_Config.RLoginServerPort > 0)
                     {
                         // Create Server Thread and add to collection
-                        _ServerThreads.Add(_Config.RLoginServerPort, new ServerThread(_Config.RLoginServerIP, _Config.RLoginServerPort, ConnectionType.RLogin));
+                        _ServerThreads.Add(_Config.RLoginServerPort, new ServerThread(_Config.RLoginServerIP, _Config.RLoginServerPort, ConnectionType.RLogin, _Config.TerminalType));
                         _ServerThreads[_Config.RLoginServerPort].BindFailedEvent += new EventHandler(ServerThread_BindFailedEvent);
                         _ServerThreads[_Config.RLoginServerPort].BoundEvent += new EventHandler(ServerThread_BoundEvent);
                         _ServerThreads[_Config.RLoginServerPort].ConnectEvent += new EventHandler<ConnectEventArgs>(ServerThread_ConnectEvent);
@@ -733,7 +731,7 @@ namespace RandM.GameSrv
                     if (_Config.TelnetServerPort > 0)
                     {
                         // Create Server Thread and add to collection
-                        _ServerThreads.Add(_Config.TelnetServerPort, new ServerThread(_Config.TelnetServerIP, _Config.TelnetServerPort, ConnectionType.Telnet));
+                        _ServerThreads.Add(_Config.TelnetServerPort, new ServerThread(_Config.TelnetServerIP, _Config.TelnetServerPort, ConnectionType.Telnet, _Config.TerminalType));
                         _ServerThreads[_Config.TelnetServerPort].BindFailedEvent += new EventHandler(ServerThread_BindFailedEvent);
                         _ServerThreads[_Config.TelnetServerPort].BoundEvent += new EventHandler(ServerThread_BoundEvent);
                         _ServerThreads[_Config.TelnetServerPort].ConnectEvent += new EventHandler<ConnectEventArgs>(ServerThread_ConnectEvent);
@@ -746,7 +744,7 @@ namespace RandM.GameSrv
                     if (_Config.WebSocketServerPort > 0)
                     {
                         // Create Server Thread and add to collection
-                        _ServerThreads.Add(_Config.WebSocketServerPort, new ServerThread(_Config.WebSocketServerIP, _Config.WebSocketServerPort, ConnectionType.WebSocket));
+                        _ServerThreads.Add(_Config.WebSocketServerPort, new ServerThread(_Config.WebSocketServerIP, _Config.WebSocketServerPort, ConnectionType.WebSocket, _Config.TerminalType));
                         _ServerThreads[_Config.WebSocketServerPort].BindFailedEvent += new EventHandler(ServerThread_BindFailedEvent);
                         _ServerThreads[_Config.WebSocketServerPort].BoundEvent += new EventHandler(ServerThread_BoundEvent);
                         _ServerThreads[_Config.WebSocketServerPort].ConnectEvent += new EventHandler<ConnectEventArgs>(ServerThread_ConnectEvent);

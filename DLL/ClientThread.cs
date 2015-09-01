@@ -254,13 +254,13 @@ namespace RandM.GameSrv
         {
             switch (_NodeInfo.TerminalType)
             {
-                case TerminalType.Ansi:
+                case TerminalType.ANSI:
                     _NodeInfo.Connection.Write(Ansi.TextAttr(7) + Ansi.ClrScr() + Ansi.GotoXY(1, 1));
                     break;
-                case TerminalType.Ascii:
+                case TerminalType.ASCII:
                     _NodeInfo.Connection.Write("\r\n\x0C");
                     break;
-                case TerminalType.Rip:
+                case TerminalType.RIP:
                     _NodeInfo.Connection.Write("\r\n!|*" + Ansi.TextAttr(7) + Ansi.ClrScr() + Ansi.GotoXY(1, 1));
                     break;
             }
@@ -313,7 +313,7 @@ namespace RandM.GameSrv
             Sl.Add(_NodeInfo.User.Alias);                                       // 36 - User's Alias
             Sl.Add("00:00");                                                    // 37 - Next Event Time
             Sl.Add("Y");                                                        // 38 - Error Correcting Connection
-            Sl.Add(_NodeInfo.TerminalType == TerminalType.Ascii ? "N" : "Y");   // 39 - ANSI Supported
+            Sl.Add(_NodeInfo.TerminalType == TerminalType.ASCII ? "N" : "Y");   // 39 - ANSI Supported
             Sl.Add("Y");                                                        // 40 - Use Record Locking
             Sl.Add("7");                                                        // 41 - Default BBS Colour
             Sl.Add("0");                                                        // 42 - Time Credits (In Minutes)
@@ -342,9 +342,9 @@ namespace RandM.GameSrv
             Sl.Add(MinutesLeft().ToString());                                       // 9 - User's Time Left (In Minutes)
             switch (_NodeInfo.TerminalType)                                         // 10 - Emulation (0=Ascii, 1=Ansi, 2=Avatar, 3=RIP, 4=MaxGfx)
             {
-                case TerminalType.Ansi: Sl.Add("1"); break;
-                case TerminalType.Ascii: Sl.Add("0"); break;
-                case TerminalType.Rip: Sl.Add("3"); break;
+                case TerminalType.ANSI: Sl.Add("1"); break;
+                case TerminalType.ASCII: Sl.Add("0"); break;
+                case TerminalType.RIP: Sl.Add("3"); break;
             }
             Sl.Add(_NodeInfo.Node.ToString());                                      // 11 - Current Node Number
             FileUtils.FileWriteAllText(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _NodeInfo.Node.ToString(), "door32.sys"), String.Join("\r\n", Sl.ToArray()));
@@ -352,7 +352,7 @@ namespace RandM.GameSrv
             // Create DOORFILE.SR
             Sl.Clear();
             Sl.Add(_NodeInfo.User.Alias);                                       // Complete name or handle of user
-            Sl.Add(_NodeInfo.TerminalType == TerminalType.Ascii ? "0" : "1");   // ANSI status:  1 = yes, 0 = no, -1 = don't know
+            Sl.Add(_NodeInfo.TerminalType == TerminalType.ASCII ? "0" : "1");   // ANSI status:  1 = yes, 0 = no, -1 = don't know
             Sl.Add("1");                                                        // IBM Graphic characters:  1 = yes, 0 = no, -1 = unknown
             Sl.Add("24");                                                       // Page length of screen, in lines.  Assume 25 if unknown
             Sl.Add("57600");                                                    // Baud Rate:  300, 1200, 2400, 9600, 19200, etc.
@@ -372,7 +372,7 @@ namespace RandM.GameSrv
             Sl.Add(_NodeInfo.User.Alias);                                      // 7 - User's First Name / Alias
             Sl.Add("");                                                        // 8 - User's Last Name
             Sl.Add("City, State");                                             // 9 - User's Location (City, State, etc.)
-            Sl.Add(_NodeInfo.TerminalType == TerminalType.Ascii ? "0" : "1");  // 10 - User's Emulation (0=Ascii, 1=Ansi)
+            Sl.Add(_NodeInfo.TerminalType == TerminalType.ASCII ? "0" : "1");  // 10 - User's Emulation (0=Ascii, 1=Ansi)
             Sl.Add(_NodeInfo.User.AccessLevel.ToString());                     // 11 - User's Access Level
             Sl.Add(MinutesLeft().ToString());                                  // 12 - User's Time Left (In Minutes)
             Sl.Add("1");                                                       // 13 - Fossil?
@@ -411,8 +411,8 @@ namespace RandM.GameSrv
             else
             {
                 List<string> FilesToCheck = new List<string>();
-                if (_NodeInfo.TerminalType == TerminalType.Rip) FilesToCheck.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "ansi", fileName.ToLower() + ".rip"));
-                if ((_NodeInfo.TerminalType == TerminalType.Rip) || (_NodeInfo.TerminalType == TerminalType.Ansi)) FilesToCheck.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "ansi", fileName.ToLower() + ".ans"));
+                if (_NodeInfo.TerminalType == TerminalType.RIP) FilesToCheck.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "ansi", fileName.ToLower() + ".rip"));
+                if ((_NodeInfo.TerminalType == TerminalType.RIP) || (_NodeInfo.TerminalType == TerminalType.ANSI)) FilesToCheck.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "ansi", fileName.ToLower() + ".ans"));
                 FilesToCheck.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "ansi", fileName.ToLower() + ".asc"));
 
                 for (int i = 0; i < FilesToCheck.Count; i++)
@@ -430,13 +430,13 @@ namespace RandM.GameSrv
             List<string> FilesToCheck = new List<string>();
 
             // Access level specific
-            if (_NodeInfo.TerminalType == TerminalType.Rip) FilesToCheck.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "menus", _CurrentMenu.ToLower() + _NodeInfo.User.AccessLevel.ToString() + ".rip"));
-            if ((_NodeInfo.TerminalType == TerminalType.Rip) || (_NodeInfo.TerminalType == TerminalType.Ansi)) FilesToCheck.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "menus", _CurrentMenu.ToLower() + _NodeInfo.User.AccessLevel.ToString() + ".ans"));
+            if (_NodeInfo.TerminalType == TerminalType.RIP) FilesToCheck.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "menus", _CurrentMenu.ToLower() + _NodeInfo.User.AccessLevel.ToString() + ".rip"));
+            if ((_NodeInfo.TerminalType == TerminalType.RIP) || (_NodeInfo.TerminalType == TerminalType.ANSI)) FilesToCheck.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "menus", _CurrentMenu.ToLower() + _NodeInfo.User.AccessLevel.ToString() + ".ans"));
             FilesToCheck.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "menus", _CurrentMenu.ToLower() + _NodeInfo.User.AccessLevel.ToString() + ".asc"));
 
             // No specified access level
-            if (_NodeInfo.TerminalType == TerminalType.Rip) FilesToCheck.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "menus", _CurrentMenu.ToLower() + ".rip"));
-            if ((_NodeInfo.TerminalType == TerminalType.Rip) || (_NodeInfo.TerminalType == TerminalType.Ansi)) FilesToCheck.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "menus", _CurrentMenu.ToLower() + ".ans"));
+            if (_NodeInfo.TerminalType == TerminalType.RIP) FilesToCheck.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "menus", _CurrentMenu.ToLower() + ".rip"));
+            if ((_NodeInfo.TerminalType == TerminalType.RIP) || (_NodeInfo.TerminalType == TerminalType.ANSI)) FilesToCheck.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "menus", _CurrentMenu.ToLower() + ".ans"));
             FilesToCheck.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "menus", _CurrentMenu.ToLower() + ".asc"));
 
             // Check if any of the above files exists
@@ -450,7 +450,7 @@ namespace RandM.GameSrv
             }
 
             // None of the files existed, displayed canned menu
-            if (_NodeInfo.TerminalType == TerminalType.Ascii)
+            if (_NodeInfo.TerminalType == TerminalType.ASCII)
             {
                 // Clear the screen
                 ClrScr();
@@ -528,7 +528,7 @@ namespace RandM.GameSrv
             int i = 0;
             while (i <= HotKeys.Count - 1)
             {
-                if (_NodeInfo.TerminalType == TerminalType.Ascii)
+                if (_NodeInfo.TerminalType == TerminalType.ASCII)
                 {
                     // Display left side
                     _NodeInfo.Connection.Write((0 == row % 2) ? "ÃÄÅÄº " : "ÃÄÅÄº ");
@@ -640,11 +640,11 @@ namespace RandM.GameSrv
                 if (!File.Exists(fileName) && !Path.HasExtension(fileName))
                 {
                     List<string> FileNamesWithExtension = new List<string>();
-                    if (_NodeInfo.TerminalType == TerminalType.Rip)
+                    if (_NodeInfo.TerminalType == TerminalType.RIP)
                     {
                         FileNamesWithExtension.Add(fileName + ".rip");
                     }
-                    if ((_NodeInfo.TerminalType == TerminalType.Rip) || (_NodeInfo.TerminalType == TerminalType.Ansi))
+                    if ((_NodeInfo.TerminalType == TerminalType.RIP) || (_NodeInfo.TerminalType == TerminalType.ANSI))
                     {
                         FileNamesWithExtension.Add(fileName + ".ans");
                     }
@@ -1322,6 +1322,7 @@ namespace RandM.GameSrv
                 }
 
                 // Loop through the questions
+                // TODO Ignore [Alias] and [Password], in case a sysop adds them to newuser.ini
                 string[] Questions = NewUserQuestion.GetQuestions();
                 for (int i = 0; i < Questions.Length; i++)
                 {
