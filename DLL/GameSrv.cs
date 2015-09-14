@@ -17,6 +17,9 @@
   You should have received a copy of the GNU General Public License
   along with GameSrv.  If not, see <http://www.gnu.org/licenses/>.
 */
+// TODO finish config screens
+// TODO temp ban after x carrier drops during alias entry
+
 using System;
 using System.Collections.Generic;
 using RandM.RMLib;
@@ -60,6 +63,14 @@ namespace RandM.GameSrv
 
         public GameSrv()
         {
+            // Ensure the log directory exists
+            Directory.CreateDirectory(StringUtils.PathCombine(ProcessUtils.StartupPath, "logs"));
+            // Move log to new location, if necessary
+            if (File.Exists(StringUtils.PathCombine(ProcessUtils.StartupPath, "gamesrv.log")))
+            {
+                FileUtils.FileMove(StringUtils.PathCombine(ProcessUtils.StartupPath, "gamesrv.log"), StringUtils.PathCombine(ProcessUtils.StartupPath, "logs", "gamesrv.log"));
+            }
+
             _LogTimer.Interval = 60000; // 1 minute
             _LogTimer.Elapsed += LogTimer_Elapsed;
             _LogTimer.Start();
@@ -220,7 +231,7 @@ namespace RandM.GameSrv
                 {
                     try
                     {
-                        FileUtils.FileAppendAllText(StringUtils.PathCombine(ProcessUtils.StartupPath, "gamesrv.log"), string.Join(Environment.NewLine, _Log.ToArray()) + Environment.NewLine);
+                        FileUtils.FileAppendAllText(StringUtils.PathCombine(ProcessUtils.StartupPath, "logs", "gamesrv.log"), string.Join(Environment.NewLine, _Log.ToArray()) + Environment.NewLine);
                         _Log.Clear();
                     }
                     catch (Exception ex)

@@ -35,6 +35,7 @@ using System.Threading;
 using RandM.RMLib;
 using Unix;
 using System.Net.Sockets;
+using System.Timers;
 
 namespace RandM.GameSrv
 {
@@ -45,6 +46,9 @@ namespace RandM.GameSrv
         private Dictionary<char, MenuOption> _CurrentMenuOptions = new Dictionary<char, MenuOption>();
         private bool _Disposed = false;
         private string _LastDisplayFile = "";
+        private List<string> _Log = new List<string>();
+        private object _LogLock = new object();
+        private System.Timers.Timer _LogTimer = new System.Timers.Timer();
         private NodeInfo _NodeInfo = new NodeInfo();
         private Random _R = new Random();
         private string _Status = "";
@@ -57,6 +61,13 @@ namespace RandM.GameSrv
         public event EventHandler<NodeEventArgs> NodeEvent = null;
         public event EventHandler<StringEventArgs> WarningMessageEvent = null;
         public event EventHandler<WhoIsOnlineEventArgs> WhoIsOnlineEvent = null;
+
+        public ClientThread()
+        {
+            _LogTimer.Interval = 60000; // 1 minute
+            _LogTimer.Elapsed += LogTimer_Elapsed;
+            _LogTimer.Start();
+        }
 
         ~ClientThread()
         {
@@ -85,6 +96,12 @@ namespace RandM.GameSrv
                 {
                     // Dispose managed resources.
                     if (_NodeInfo.Connection != null) _NodeInfo.Connection.Dispose();
+
+                    if (_LogTimer != null)
+                    {
+                        _LogTimer.Stop();
+                        _LogTimer.Dispose();
+                    }
                 }
 
                 // Call the appropriate methods to clean up
@@ -94,6 +111,14 @@ namespace RandM.GameSrv
 
                 // Note disposing has been done.
                 _Disposed = true;
+            }
+        }
+
+        private void AddToLog(string logMessage)
+        {
+            lock (_LogLock)
+            {
+                _Log.Add(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.fff") + "  " + logMessage);
             }
         }
 
@@ -159,9 +184,16 @@ namespace RandM.GameSrv
             while (FailedAttempts++ < 3)
             {
                 // Get alias
+                if (Globals.Debug) AddToLog("Entering Alias");
                 RaiseNodeEvent("Entering Alias");
                 DisplayAnsi("LOGON_ENTER_ALIAS");
+                if (Globals.Debug) _NodeInfo.Connection.ReadEvent += Connection_ReadEvent;
                 string Alias = ReadLn().Trim();
+                if (Globals.Debug)
+                {
+                    _NodeInfo.Connection.ReadEvent -= Connection_ReadEvent;
+                    FlushLog();
+                }
 
                 // Make sure we should still proceed
                 if (QuitThread()) return false;
@@ -264,6 +296,11 @@ namespace RandM.GameSrv
                     _NodeInfo.Connection.Write("\r\n!|*" + Ansi.TextAttr(7) + Ansi.ClrScr() + Ansi.GotoXY(1, 1));
                     break;
             }
+        }
+
+        private void Connection_ReadEvent(object sender, StringEventArgs e)
+        {
+            AddToLog("ReadEvent " + e.Text);
         }
 
         private void CreateNodeDirectory()
@@ -815,6 +852,29 @@ namespace RandM.GameSrv
                 // Try to free the node
                 try { RaiseLogOffEvent(); }
                 catch { /* Ignore */ }
+
+                FlushLog();
+            }
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
+        private void FlushLog()
+        {
+            lock (_LogLock)
+            {
+                // Flush log to disk
+                if (_Log.Count > 0)
+                {
+                    try
+                    {
+                        FileUtils.FileAppendAllText(StringUtils.PathCombine(ProcessUtils.StartupPath, "logs", "node" + _NodeInfo.Node.ToString() + ".log"), string.Join(Environment.NewLine, _Log.ToArray()) + Environment.NewLine);
+                        _Log.Clear();
+                    }
+                    catch (Exception ex)
+                    {
+                        RaiseExceptionEvent("Unable to update node" + _NodeInfo.Node.ToString() + ".log", ex);
+                    }
+                }
             }
         }
 
@@ -1090,6 +1150,13 @@ namespace RandM.GameSrv
             return File.Exists("/usr/bin/dosemu.bin"); // TODO add configuration variable so this path is not hardcoded
         }
 
+        void LogTimer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            _LogTimer.Stop();
+            FlushLog();
+            _LogTimer.Start();
+        }
+
         private void MainMenu()
         {
             bool ExitWhile = false;
@@ -1270,7 +1337,7 @@ namespace RandM.GameSrv
                 string Alias = "";
                 if (string.IsNullOrEmpty(defaultUserName))
                 {
-                GetAlias:
+                    GetAlias:
                     Alias = "";
                     while ((string.IsNullOrEmpty(Alias)) || (Alias.ToUpper() == "NEW"))
                     {
@@ -1293,7 +1360,7 @@ namespace RandM.GameSrv
                 }
 
                 // Get their password
-            GetPassword:
+                GetPassword:
                 string Password = "";
                 if (string.IsNullOrEmpty(defaultPassword))
                 {
@@ -1328,7 +1395,7 @@ namespace RandM.GameSrv
                 {
                     NewUserQuestion Question = new NewUserQuestion(Questions[i]);
 
-                GetAnswer:
+                    GetAnswer:
                     // Display prompt
                     if (DisplayAnsi("NEWUSER_ENTER_" + Questions[i]))
                     {
@@ -1581,7 +1648,7 @@ namespace RandM.GameSrv
                     }
                 }
 
-                new Thread(delegate(object p)
+                new Thread(delegate (object p)
                 {
                     // Send data from door to user
                     try
@@ -2095,7 +2162,7 @@ namespace RandM.GameSrv
                     int MessageCount = 0;
                     int NextSize = 0;
                     int ReadTimeout = 0;
-                    if (NativeMethods.GetMailslotInfo(ReadSlot, ref MaxMessageSize, ref NextSize, ref  MessageCount, ref ReadTimeout))
+                    if (NativeMethods.GetMailslotInfo(ReadSlot, ref MaxMessageSize, ref NextSize, ref MessageCount, ref ReadTimeout))
                     {
                         byte[] BufBytes = new byte[XTRN_IO_BUF_LEN];
                         int BufPtr = 0;
