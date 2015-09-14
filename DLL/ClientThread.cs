@@ -938,6 +938,12 @@ namespace RandM.GameSrv
                                 CanAdd = false;
                             }
                         }
+                        else if (MO.Action == Action.Telnet)
+                        {
+                            // TODO Build a linux-friendly TelnetDoor so this can be re-enabled
+                            //      Or maybe just build the code in so no exec is necessary
+                            CanAdd = OSUtils.IsWindows;
+                        }
 
                         if (CanAdd) _CurrentMenuOptions.Add(HotKey, MO);
                     }
@@ -1094,12 +1100,17 @@ namespace RandM.GameSrv
                         RunDoor(menuOption.Parameters);
                         return false;
                     case Action.Telnet:
-                        RaiseNodeEvent("Telnetting to " + menuOption.Parameters);
-                        _NodeInfo.Door = new DoorInfo("");
-                        _NodeInfo.Door.Command = "bin\\TelnetDoor.exe";
-                        _NodeInfo.Door.Native = true;
-                        _NodeInfo.Door.Parameters = "-D*DOOR32 -S" + menuOption.Parameters;
-                        RunDoor();
+                        // TODO Build a linux-friendly TelnetDoor so this can be re-enabled
+                        //      Or maybe just build the code in so no exec is necessary
+                        if (OSUtils.IsWindows)
+                        {
+                            RaiseNodeEvent("Telnetting to " + menuOption.Parameters);
+                            _NodeInfo.Door = new DoorInfo("");
+                            _NodeInfo.Door.Command = "bin\\TelnetDoor.exe";
+                            _NodeInfo.Door.Native = true;
+                            _NodeInfo.Door.Parameters = "-D*DOOR32 -S" + menuOption.Parameters;
+                            RunDoor();
+                        }
                         return false;
                 }
             }
