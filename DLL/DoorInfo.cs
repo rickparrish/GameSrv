@@ -31,8 +31,9 @@ namespace RandM.GameSrv
         public string Command { get; set; }
         public int ForceQuitDelay { get; set; }
         public string Name { get; set; }
-        public bool Native { get; set; }
+        protected bool Native { get; set; }
         public string Parameters { get; set; }
+        public OSUtils.Platform Platform { get; set; }
         public bool WatchDTR { get; set; }
         public ProcessWindowStyle WindowStyle { get; set; }
 
@@ -44,10 +45,19 @@ namespace RandM.GameSrv
             Name = "";
             Native = true;
             Parameters = "";
+            Platform = OSUtils.Platform.Unknown;
             WatchDTR = true;
             WindowStyle = ProcessWindowStyle.Minimized;
 
-            Load("DOOR");
+            if (Load("DOOR"))
+            {
+                // Check if sysop supplies a Platform value
+                if (Platform == OSUtils.Platform.Unknown)
+                {
+                    // Nope, this must be an old door .ini, so guess a platform based on the Native property
+                    Platform = Native ? OSUtils.Platform.Windows : OSUtils.Platform.DOS;
+                }
+            }
         }
     }
 }

@@ -905,31 +905,41 @@ namespace RandM.GameSrv
                             if (DI.Loaded)
                             {
                                 // Determine how to run the door
-                                if (DI.Native)
+                                if (DI.Platform == OSUtils.Platform.DOS)
                                 {
-                                    // Native is always OK
-                                }
-                                else if (OSUtils.IsWindows)
-                                {
-                                    if (ProcessUtils.Is64BitOperatingSystem)
+                                    if (OSUtils.IsWindows)
                                     {
-                                        // DOS doors are not OK on 64bit Windows if DOSBox is installed
-                                        CanAdd = IsDOSBoxInstalled();
+                                        if (ProcessUtils.Is64BitOperatingSystem)
+                                        {
+                                            // DOS doors are OK on 64bit Windows if DOSBox is installed
+                                            CanAdd = IsDOSBoxInstalled();
+                                        }
+                                        else
+                                        {
+                                            // DOS doors are OK on 32bit Windows
+                                            CanAdd = true;
+                                        }
+                                    }
+                                    else if (OSUtils.IsUnix)
+                                    {
+                                        // DOS doors are OK on Linux if DOSEMU is installed
+                                        CanAdd = IsDOSEMUInstalled();
                                     }
                                     else
                                     {
-                                        // DOS doors are OK on 32bit Windows
+                                        // DOS doors are not OK on unknown platforms
+                                        CanAdd = false;
                                     }
                                 }
-                                else if (OSUtils.IsUnix)
+                                else if (DI.Platform == OSUtils.Platform.Linux)
                                 {
-                                    // DOS doors are OK on Linux if DOSEMU is installed
-                                    CanAdd = IsDOSEMUInstalled();
+                                    // Linux doors are OK on Linux
+                                    CanAdd = OSUtils.IsUnix;
                                 }
-                                else
+                                else if (DI.Platform == OSUtils.Platform.Windows)
                                 {
-                                    // DOS doors are not OK on unknown platforms
-                                    CanAdd = false;
+                                    // Windows doors are OK on Windows
+                                    CanAdd = OSUtils.IsWindows;
                                 }
                             }
                             else
@@ -1107,7 +1117,7 @@ namespace RandM.GameSrv
                             RaiseNodeEvent("Telnetting to " + menuOption.Parameters);
                             _NodeInfo.Door = new DoorInfo("");
                             _NodeInfo.Door.Command = "bin\\TelnetDoor.exe";
-                            _NodeInfo.Door.Native = true;
+                            _NodeInfo.Door.Platform = OSUtils.Platform.Windows;
                             _NodeInfo.Door.Parameters = "-D*DOOR32 -S" + menuOption.Parameters;
                             RunDoor();
                         }
@@ -1518,9 +1528,8 @@ namespace RandM.GameSrv
                 CreateNodeDirectory();
 
                 // Determine how to run the door
-                if (_NodeInfo.Door.Native)
+                if (((_NodeInfo.Door.Platform == OSUtils.Platform.Linux) && OSUtils.IsUnix) || ((_NodeInfo.Door.Platform == OSUtils.Platform.Windows) && OSUtils.IsWindows))
                 {
-                    // Start the process
                     using (RMProcess P = new RMProcess())
                     {
                         P.ProcessWaitEvent += OnDoorWait;
@@ -1532,7 +1541,7 @@ namespace RandM.GameSrv
                         P.StartAndWait(PSI);
                     }
                 }
-                else if (OSUtils.IsWindows)
+                else if ((_NodeInfo.Door.Platform == OSUtils.Platform.DOS) && OSUtils.IsWindows)
                 {
                     if (ProcessUtils.Is64BitOperatingSystem)
                     {
@@ -1558,7 +1567,7 @@ namespace RandM.GameSrv
                         }
                     }
                 }
-                else if (OSUtils.IsUnix)
+                else if ((_NodeInfo.Door.Platform == OSUtils.Platform.DOS) && OSUtils.IsUnix)
                 {
                     if (IsDOSEMUInstalled())
                     {
@@ -1572,7 +1581,7 @@ namespace RandM.GameSrv
                 }
                 else
                 {
-                    RaiseErrorMessageEvent("Unable to run non-native door on current platform");
+                    RaiseErrorMessageEvent("Unsure how to run door on current platform");
                 }
             }
             catch (Exception ex)

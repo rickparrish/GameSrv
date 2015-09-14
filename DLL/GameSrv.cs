@@ -19,7 +19,7 @@
 */
 // TODO finish config screens
 // TODO temp ban after x carrier drops during alias entry
-
+// TODO upgrade to Usurper 0.24 and add Linux version (will it work since its STDIO?)
 using System;
 using System.Collections.Generic;
 using RandM.RMLib;
