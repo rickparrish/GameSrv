@@ -513,7 +513,7 @@
     <None Include="dosxtrn.pif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="gamesrv.log">
+    <None Include="logs\gamesrv.log">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="install.cmd">

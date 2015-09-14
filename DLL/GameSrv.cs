@@ -65,11 +65,6 @@ namespace RandM.GameSrv
         {
             // Ensure the log directory exists
             Directory.CreateDirectory(StringUtils.PathCombine(ProcessUtils.StartupPath, "logs"));
-            // Move log to new location, if necessary
-            if (File.Exists(StringUtils.PathCombine(ProcessUtils.StartupPath, "gamesrv.log")))
-            {
-                FileUtils.FileMove(StringUtils.PathCombine(ProcessUtils.StartupPath, "gamesrv.log"), StringUtils.PathCombine(ProcessUtils.StartupPath, "logs", "gamesrv.log"));
-            }
 
             _LogTimer.Interval = 60000; // 1 minute
             _LogTimer.Elapsed += LogTimer_Elapsed;

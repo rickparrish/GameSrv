@@ -236,18 +236,19 @@ namespace RandM.GameSrv
                     List<string> BannedIPs = new List<string>();
 
                     // Load existing banned ips, if file exists
-                    string BannedIPsFileName = StringUtils.PathCombine(ProcessUtils.StartupPath, "config", "banned-ips.txt");
-                    if (File.Exists(BannedIPsFileName)) BannedIPs.AddRange(FileUtils.FileReadAllLines(BannedIPsFileName));
+                    //string BannedIPsFileName = StringUtils.PathCombine(ProcessUtils.StartupPath, "config", "banned-ips.txt");
+                    //if (File.Exists(BannedIPsFileName)) BannedIPs.AddRange(FileUtils.FileReadAllLines(BannedIPsFileName));
 
                     // Add new banned ip
-                    BannedIPs.Add(_NodeInfo.Connection.GetRemoteIP());
+                    //BannedIPs.Add(_NodeInfo.Connection.GetRemoteIP());
 
                     // Save updated banned ip list
-                    FileUtils.FileWriteAllLines(BannedIPsFileName, BannedIPs.ToArray());
+                    //FileUtils.FileWriteAllLines(BannedIPsFileName, BannedIPs.ToArray());
 
-                    // Abort future login attempts
+                    // Add to temp ban list
+                    Globals.AddTempIgnoredIP(_NodeInfo.Connection.GetRemoteIP());
+
                     RaiseWarningMessageEvent("IP banned for trying to log in as " + Alias);
-
                     DisplayAnsi("USER_BANNED");
                     return false;
                 }

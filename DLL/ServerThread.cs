@@ -349,6 +349,8 @@ namespace RandM.GameSrv
         {
             try
             {
+                if (Globals.IsTempIgnoredIP(ip)) return true;
+
                 string IgnoredIPsFileName = StringUtils.PathCombine(ProcessUtils.StartupPath, "config", "ignored-ips-combined.txt");
                 if (File.Exists(IgnoredIPsFileName))
                 {

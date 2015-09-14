@@ -2,7 +2,7 @@
 ;
 ; If someone tries to register with one of these names, it will be rejected
 ;
-; If someone tries to login with one of these names, they will be added to the banned-ips.txt file
+; If someone tries to login with one of these names, future connection attempts from them will be rejected for 10 minutes
 adm
 admin
 comcast
@@ -13,4 +13,5 @@ patrol
 root
 sh
 support
+ubnt
 user

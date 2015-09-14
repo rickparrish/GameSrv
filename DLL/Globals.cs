@@ -36,8 +36,10 @@ namespace RandM.GameSrv
         static public object PrivilegeLock = new object();
         static public object RegistrationLock = new object();
         static public bool StartedAsRoot { get; set; }
+        static public Dictionary<string, DateTime> TempIgnoredIPs = new Dictionary<string, DateTime>();
 
         static private object _RootLock = new object();
+        static private object _TempIgnoredIPsLock = new object();
 
         static private WindowsImpersonationContext _WIC = null;
 
@@ -54,6 +56,23 @@ namespace RandM.GameSrv
             }
 
             StartedAsRoot = ((OSUtils.IsUnix) && (WindowsIdentity.GetCurrent().Token == IntPtr.Zero));
+        }
+
+        static public void AddTempIgnoredIP(string ip)
+        {
+            lock (_TempIgnoredIPsLock)
+            {
+                if (TempIgnoredIPs.ContainsKey(ip))
+                {
+                    // Key exists, so just update the time
+                    TempIgnoredIPs[ip] = DateTime.Now;
+                }
+                else
+                {
+                    // Key does not exist, so add it
+                    TempIgnoredIPs.Add(ip, DateTime.Now);
+                }
+            }
         }
 
         static public void DropRoot(string dropToUser)
@@ -113,6 +132,33 @@ namespace RandM.GameSrv
                 //TODO Not used for now Result += "\r\n";
 
                 return Result;
+            }
+        }
+
+        static public bool IsTempIgnoredIP(string ip)
+        {
+            lock (_TempIgnoredIPsLock)
+            {
+                if (TempIgnoredIPs.ContainsKey(ip))
+                {
+                    // Key exists, check if it has expired
+                    if (DateTime.Now.Subtract(TempIgnoredIPs[ip]).TotalMinutes >= 10)
+                    {
+                        // Expired, remove record
+                        TempIgnoredIPs.Remove(ip);
+                        return false;
+                    }
+                    else
+                    {
+                        // Not expired, still ignored
+                        return true;
+                    }
+                }
+                else
+                {
+                    // Not ignored
+                    return false;
+                }
             }
         }
 
