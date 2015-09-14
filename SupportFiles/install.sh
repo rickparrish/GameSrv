@@ -20,7 +20,7 @@ if (( EUID != 0 )); then
 fi
 
 while true; do
-    echo "This has only been tested on Ubuntu 32bit (11.04, 11.10, 12.04 and 12.10)"
+    echo "This has only been tested on Ubuntu 14.04 LTS (32bit)"
     read -p "So do you want to try running it now? " yn
     case $yn in
         [Yy]* ) break;;
@@ -48,7 +48,7 @@ while true; do
     esac
 done
 
-apt-get install build-essential cpulimit dosemu libglib2.0-dev mono-gmcs mono-runtime pkg-config privbind unzip
+apt-get install build-essential cpulimit dosemu libglib2.0-dev libmono2.0-cil mono-gmcs mono-runtime pkg-config privbind unzip
 
 while true; do
     read -p "OK, so should I continue with extracting the dosutils.zip archive? " yn
@@ -59,7 +59,7 @@ while true; do
     esac
 done
 
-unzip -d dosutils.zip
+unzip -a dosutils.zip
 
 while true; do
     read -p "OK, so should I continue with compiling pty-sharp? " yn

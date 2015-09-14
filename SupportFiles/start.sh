@@ -23,4 +23,4 @@ fi
 sysctl -w vm.mmap_min_addr="0"
 
 cd /gamesrv
-privbind -u gamesrv -g gamesrv mono GameSrv.exe DEBUG
+privbind -u gamesrv -g gamesrv mono GameSrvConsole.exe
