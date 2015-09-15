@@ -949,13 +949,7 @@ namespace RandM.GameSrv
                                 CanAdd = false;
                             }
                         }
-                        else if (MO.Action == Action.Telnet)
-                        {
-                            // TODO Build a linux-friendly TelnetDoor so this can be re-enabled
-                            //      Or maybe just build the code in so no exec is necessary
-                            CanAdd = OSUtils.IsWindows;
-                        }
-
+                        
                         if (CanAdd) _CurrentMenuOptions.Add(HotKey, MO);
                     }
                 }
@@ -1111,17 +1105,8 @@ namespace RandM.GameSrv
                         RunDoor(menuOption.Parameters);
                         return false;
                     case Action.Telnet:
-                        // TODO Build a linux-friendly TelnetDoor so this can be re-enabled
-                        //      Or maybe just build the code in so no exec is necessary
-                        if (OSUtils.IsWindows)
-                        {
-                            RaiseNodeEvent("Telnetting to " + menuOption.Parameters);
-                            _NodeInfo.Door = new DoorInfo("");
-                            _NodeInfo.Door.Command = "bin\\TelnetDoor.exe";
-                            _NodeInfo.Door.Platform = OSUtils.Platform.Windows;
-                            _NodeInfo.Door.Parameters = "-D*DOOR32 -S" + menuOption.Parameters;
-                            RunDoor();
-                        }
+                        RaiseNodeEvent("Telnetting to " + menuOption.Parameters);
+                        Telnet(menuOption.Parameters);
                         return false;
                 }
             }
@@ -2330,6 +2315,127 @@ namespace RandM.GameSrv
             _NodeInfo.Connection.Close();
 
             base.Stop();
+        }
+
+        private void Telnet(string hostname)
+        {
+            bool _RLogin = false;
+            string _RLoginClientUserName = "TODO";
+            string _RLoginServerUserName = "TODO";
+            string _RLoginTerminalType = "TODO";
+
+            ClrScr();
+            _NodeInfo.Connection.WriteLn();
+            _NodeInfo.Connection.Write(" Connecting to remote server...");
+
+            TcpConnection RemoteServer = null;
+            if (_RLogin)
+            {
+                RemoteServer = new RLoginConnection();
+            }
+            else
+            {
+                RemoteServer = new TelnetConnection();
+            }
+
+            // Sanity check on the port
+            int Port = 23;
+            if (hostname.Contains(":"))
+            {
+                Port = int.Parse(hostname.Split(':')[1]);
+                hostname = hostname.Split(':')[0];
+            }
+            if ((Port < 1) || (Port > 65535))
+            {
+                Port = (_RLogin) ? 513 : 23;
+            }
+
+            if (RemoteServer.Connect(hostname, Port))
+            {
+                bool CanContinue = true;
+                if (_RLogin)
+                {
+                    // Send rlogin header
+                    RemoteServer.Write("\0" + _RLoginClientUserName + "\0" + _RLoginServerUserName + "\0" + _RLoginTerminalType + "\0");
+
+                    // Wait up to 5 seconds for a response
+                    char? Ch = RemoteServer.ReadChar(5000);
+                    if ((Ch == null) || (Ch != '\0'))
+                    {
+                        CanContinue = false;
+                        _NodeInfo.Connection.WriteLn("failed!");
+                        _NodeInfo.Connection.WriteLn();
+                        _NodeInfo.Connection.WriteLn(" Looks like the remote server doesn't accept RLogin connections.");
+                    }
+                }
+
+                if (CanContinue)
+                {
+                    _NodeInfo.Connection.WriteLn("connected!");
+
+                    bool UserAborted = false;
+                    while (!UserAborted && RemoteServer.Connected && !QuitThread())
+                    {
+                        bool Yield = true;
+
+                        // See if the server sent anything to the client
+                        if (RemoteServer.CanRead())
+                        {
+                            _NodeInfo.Connection.Write(RemoteServer.ReadString());
+                            Yield = false;
+                        }
+
+                        // See if the client sent anything to the server
+                        if (_NodeInfo.Connection.CanRead())
+                        {
+                            //string ToSend = "";
+                            //while (_NodeInfo.Connection.KeyPressed())
+                            //{
+                            //    byte B = (byte)_NodeInfo.Connection.ReadByte();
+                            //    if (B == 29)
+                            //    {
+                            //        // Ctrl-]
+                            //        RemoteServer.Close();
+                            //        UserAborted = true;
+                            //        break;
+                            //    }
+                            //    else
+                            //    {
+                            //        ToSend += (char)B;
+                            //    }
+                            //}
+                            //RemoteServer.Write(ToSend);
+
+                            RemoteServer.Write(_NodeInfo.Connection.ReadString());
+                            Yield = false;
+                        }
+
+                        // See if we need to yield
+                        if (Yield) Crt.Delay(1);
+                    }
+
+                    if (UserAborted)
+                    {
+                        _NodeInfo.Connection.WriteLn();
+                        _NodeInfo.Connection.WriteLn();
+                        _NodeInfo.Connection.WriteLn(" User hit CTRL-] to disconnect from server.");
+                        ReadChar();
+                    }
+                    else if ((_NodeInfo.Connection.Connected) && (!RemoteServer.Connected))
+                    {
+                        _NodeInfo.Connection.WriteLn();
+                        _NodeInfo.Connection.WriteLn();
+                        _NodeInfo.Connection.WriteLn(" Remote server closed the connection.");
+                        ReadChar();
+                    }
+                }
+            }
+            else
+            {
+                _NodeInfo.Connection.WriteLn("failed!");
+                _NodeInfo.Connection.WriteLn();
+                _NodeInfo.Connection.WriteLn(" Looks like the remote server isn't online, please try back later.");
+            }
         }
 
         private string TranslateCLS(string command)

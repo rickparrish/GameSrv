@@ -76,6 +76,8 @@ namespace RandM.GameSrv
                 WriteLn("", false);
             }
 
+            // TODO Detect first run and ask for basic settings if necessary
+
             // Init GameSrv          
             _GameSrv.AggregatedStatusMessageEvent += new EventHandler<StringEventArgs>(GameSrv_AggregatedStatusMessageEvent);
             _GameSrv.LogOnEvent += new EventHandler<NodeEventArgs>(GameSrv_LogOnEvent);

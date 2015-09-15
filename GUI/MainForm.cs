@@ -65,6 +65,8 @@ namespace RandM.GameSrv
             // Display copyright message(s)
             StatusText(Globals.Copyright, false);
 
+            // TODO Detect first run and launch GameSrvConfig if necessary
+
             // Init GameSrv object
             _GameSrv.AggregatedStatusMessageEvent += new EventHandler<StringEventArgs>(GameSrv_AggregatedStatusMessageEvent);
             _GameSrv.ConnectionCountChangeEvent += new EventHandler<IntEventArgs>(GameSrv_ConnectionCountChangeEvent);

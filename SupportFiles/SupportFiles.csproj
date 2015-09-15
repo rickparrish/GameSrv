@@ -255,12 +255,6 @@
     <None Include="ansi\user_banned.asc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="bin\TelnetDoor-Header.ans">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="bin\TelnetDoor.ini">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="bulletins\bulletin01.ans">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -560,15 +554,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\RMLib.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="bin\TelnetDoor-Readme.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="bin\TelnetDoor.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="bulletins\bulletins.lst">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
