@@ -6,9 +6,9 @@ namespace RandM.GameSrv
 {
     public enum TerminalType
     {
-        ANSI,
-        ASCII,
-        AUTODETECT,
-        RIP
+        Ansi,
+        Ascii,
+        AutoDetect,
+        Rip
     }
 }

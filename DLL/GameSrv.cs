@@ -154,11 +154,9 @@ namespace RandM.GameSrv
                         FileUtils.FileDelete("dosxtrn.exe");
                         FileUtils.FileDelete("dosxtrn.pif");
                         FileUtils.FileDelete("sbbsexec.dll");
-                        string ProgramFilesX86 = Environment.GetEnvironmentVariable("PROGRAMFILES(X86)") ?? Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
-                        string DOSBoxExe = StringUtils.PathCombine(ProgramFilesX86, @"DOSBox-0.73\dosbox.exe");
-                        if (!File.Exists(DOSBoxExe))
+                        if (!Globals.IsDOSBoxInstalled())
                         {
-                            RaiseErrorMessageEvent("PLEASE INSTALL DOSBOX 0.73 TO \"" + Path.GetDirectoryName(DOSBoxExe).ToUpper() + "\" IF YOU PLAN ON RUNNING DOS DOORS USING DOSBOX");
+                            RaiseErrorMessageEvent("PLEASE INSTALL DOSBOX 0.73 IF YOU PLAN ON RUNNING DOS DOORS USING DOSBOX");
                         }
                     }
                     else

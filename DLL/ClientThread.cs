@@ -133,7 +133,7 @@ namespace RandM.GameSrv
             string Password = ((RLoginConnection)_NodeInfo.Connection).ClientUserName;
             string TerminalType = ((RLoginConnection)_NodeInfo.Connection).TerminalType;
 
-            if ((UserName == "") || (Password == ""))
+            if (string.IsNullOrEmpty(UserName) || string.IsNullOrEmpty(Password))
             {
                 // RLogin requires both fields
                 DisplayAnsi("RLOGIN_INVALID");
@@ -233,7 +233,7 @@ namespace RandM.GameSrv
                 }
                 else if (IsBannedUser(Alias))
                 {
-                    List<string> BannedIPs = new List<string>();
+                    //List<string> BannedIPs = new List<string>();
 
                     // Load existing banned ips, if file exists
                     //string BannedIPsFileName = StringUtils.PathCombine(ProcessUtils.StartupPath, "config", "banned-ips.txt");
@@ -252,7 +252,7 @@ namespace RandM.GameSrv
                     DisplayAnsi("USER_BANNED");
                     return false;
                 }
-                else if (Alias != "")
+                else if (!string.IsNullOrEmpty(Alias))
                 {
                     RaiseNodeEvent("Logging on as " + Alias);
 
@@ -287,13 +287,13 @@ namespace RandM.GameSrv
         {
             switch (_NodeInfo.TerminalType)
             {
-                case TerminalType.ANSI:
+                case TerminalType.Ansi:
                     _NodeInfo.Connection.Write(Ansi.TextAttr(7) + Ansi.ClrScr() + Ansi.GotoXY(1, 1));
                     break;
-                case TerminalType.ASCII:
+                case TerminalType.Ascii:
                     _NodeInfo.Connection.Write("\r\n\x0C");
                     break;
-                case TerminalType.RIP:
+                case TerminalType.Rip:
                     _NodeInfo.Connection.Write("\r\n!|*" + Ansi.TextAttr(7) + Ansi.ClrScr() + Ansi.GotoXY(1, 1));
                     break;
             }
@@ -351,7 +351,7 @@ namespace RandM.GameSrv
             Sl.Add(_NodeInfo.User.Alias);                                       // 36 - User's Alias
             Sl.Add("00:00");                                                    // 37 - Next Event Time
             Sl.Add("Y");                                                        // 38 - Error Correcting Connection
-            Sl.Add(_NodeInfo.TerminalType == TerminalType.ASCII ? "N" : "Y");   // 39 - ANSI Supported
+            Sl.Add(_NodeInfo.TerminalType == TerminalType.Ascii ? "N" : "Y");   // 39 - ANSI Supported
             Sl.Add("Y");                                                        // 40 - Use Record Locking
             Sl.Add("7");                                                        // 41 - Default BBS Colour
             Sl.Add("0");                                                        // 42 - Time Credits (In Minutes)
@@ -380,9 +380,9 @@ namespace RandM.GameSrv
             Sl.Add(MinutesLeft().ToString());                                       // 9 - User's Time Left (In Minutes)
             switch (_NodeInfo.TerminalType)                                         // 10 - Emulation (0=Ascii, 1=Ansi, 2=Avatar, 3=RIP, 4=MaxGfx)
             {
-                case TerminalType.ANSI: Sl.Add("1"); break;
-                case TerminalType.ASCII: Sl.Add("0"); break;
-                case TerminalType.RIP: Sl.Add("3"); break;
+                case TerminalType.Ansi: Sl.Add("1"); break;
+                case TerminalType.Ascii: Sl.Add("0"); break;
+                case TerminalType.Rip: Sl.Add("3"); break;
             }
             Sl.Add(_NodeInfo.Node.ToString());                                      // 11 - Current Node Number
             FileUtils.FileWriteAllText(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _NodeInfo.Node.ToString(), "door32.sys"), String.Join("\r\n", Sl.ToArray()));
@@ -390,7 +390,7 @@ namespace RandM.GameSrv
             // Create DOORFILE.SR
             Sl.Clear();
             Sl.Add(_NodeInfo.User.Alias);                                       // Complete name or handle of user
-            Sl.Add(_NodeInfo.TerminalType == TerminalType.ASCII ? "0" : "1");   // ANSI status:  1 = yes, 0 = no, -1 = don't know
+            Sl.Add(_NodeInfo.TerminalType == TerminalType.Ascii ? "0" : "1");   // ANSI status:  1 = yes, 0 = no, -1 = don't know
             Sl.Add("1");                                                        // IBM Graphic characters:  1 = yes, 0 = no, -1 = unknown
             Sl.Add("24");                                                       // Page length of screen, in lines.  Assume 25 if unknown
             Sl.Add("57600");                                                    // Baud Rate:  300, 1200, 2400, 9600, 19200, etc.
@@ -410,7 +410,7 @@ namespace RandM.GameSrv
             Sl.Add(_NodeInfo.User.Alias);                                      // 7 - User's First Name / Alias
             Sl.Add("");                                                        // 8 - User's Last Name
             Sl.Add("City, State");                                             // 9 - User's Location (City, State, etc.)
-            Sl.Add(_NodeInfo.TerminalType == TerminalType.ASCII ? "0" : "1");  // 10 - User's Emulation (0=Ascii, 1=Ansi)
+            Sl.Add(_NodeInfo.TerminalType == TerminalType.Ascii ? "0" : "1");  // 10 - User's Emulation (0=Ascii, 1=Ansi)
             Sl.Add(_NodeInfo.User.AccessLevel.ToString());                     // 11 - User's Access Level
             Sl.Add(MinutesLeft().ToString());                                  // 12 - User's Time Left (In Minutes)
             Sl.Add("1");                                                       // 13 - Fossil?
@@ -449,8 +449,8 @@ namespace RandM.GameSrv
             else
             {
                 List<string> FilesToCheck = new List<string>();
-                if (_NodeInfo.TerminalType == TerminalType.RIP) FilesToCheck.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "ansi", fileName.ToLower() + ".rip"));
-                if ((_NodeInfo.TerminalType == TerminalType.RIP) || (_NodeInfo.TerminalType == TerminalType.ANSI)) FilesToCheck.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "ansi", fileName.ToLower() + ".ans"));
+                if (_NodeInfo.TerminalType == TerminalType.Rip) FilesToCheck.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "ansi", fileName.ToLower() + ".rip"));
+                if ((_NodeInfo.TerminalType == TerminalType.Rip) || (_NodeInfo.TerminalType == TerminalType.Ansi)) FilesToCheck.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "ansi", fileName.ToLower() + ".ans"));
                 FilesToCheck.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "ansi", fileName.ToLower() + ".asc"));
 
                 for (int i = 0; i < FilesToCheck.Count; i++)
@@ -468,13 +468,13 @@ namespace RandM.GameSrv
             List<string> FilesToCheck = new List<string>();
 
             // Access level specific
-            if (_NodeInfo.TerminalType == TerminalType.RIP) FilesToCheck.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "menus", _CurrentMenu.ToLower() + _NodeInfo.User.AccessLevel.ToString() + ".rip"));
-            if ((_NodeInfo.TerminalType == TerminalType.RIP) || (_NodeInfo.TerminalType == TerminalType.ANSI)) FilesToCheck.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "menus", _CurrentMenu.ToLower() + _NodeInfo.User.AccessLevel.ToString() + ".ans"));
+            if (_NodeInfo.TerminalType == TerminalType.Rip) FilesToCheck.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "menus", _CurrentMenu.ToLower() + _NodeInfo.User.AccessLevel.ToString() + ".rip"));
+            if ((_NodeInfo.TerminalType == TerminalType.Rip) || (_NodeInfo.TerminalType == TerminalType.Ansi)) FilesToCheck.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "menus", _CurrentMenu.ToLower() + _NodeInfo.User.AccessLevel.ToString() + ".ans"));
             FilesToCheck.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "menus", _CurrentMenu.ToLower() + _NodeInfo.User.AccessLevel.ToString() + ".asc"));
 
             // No specified access level
-            if (_NodeInfo.TerminalType == TerminalType.RIP) FilesToCheck.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "menus", _CurrentMenu.ToLower() + ".rip"));
-            if ((_NodeInfo.TerminalType == TerminalType.RIP) || (_NodeInfo.TerminalType == TerminalType.ANSI)) FilesToCheck.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "menus", _CurrentMenu.ToLower() + ".ans"));
+            if (_NodeInfo.TerminalType == TerminalType.Rip) FilesToCheck.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "menus", _CurrentMenu.ToLower() + ".rip"));
+            if ((_NodeInfo.TerminalType == TerminalType.Rip) || (_NodeInfo.TerminalType == TerminalType.Ansi)) FilesToCheck.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "menus", _CurrentMenu.ToLower() + ".ans"));
             FilesToCheck.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "menus", _CurrentMenu.ToLower() + ".asc"));
 
             // Check if any of the above files exists
@@ -488,7 +488,7 @@ namespace RandM.GameSrv
             }
 
             // None of the files existed, displayed canned menu
-            if (_NodeInfo.TerminalType == TerminalType.ASCII)
+            if (_NodeInfo.TerminalType == TerminalType.Ascii)
             {
                 // Clear the screen
                 ClrScr();
@@ -566,7 +566,7 @@ namespace RandM.GameSrv
             int i = 0;
             while (i <= HotKeys.Count - 1)
             {
-                if (_NodeInfo.TerminalType == TerminalType.ASCII)
+                if (_NodeInfo.TerminalType == TerminalType.Ascii)
                 {
                     // Display left side
                     _NodeInfo.Connection.Write((0 == row % 2) ? "ÃÄÅÄº " : "ÃÄÅÄº ");
@@ -678,11 +678,11 @@ namespace RandM.GameSrv
                 if (!File.Exists(fileName) && !Path.HasExtension(fileName))
                 {
                     List<string> FileNamesWithExtension = new List<string>();
-                    if (_NodeInfo.TerminalType == TerminalType.RIP)
+                    if (_NodeInfo.TerminalType == TerminalType.Rip)
                     {
                         FileNamesWithExtension.Add(fileName + ".rip");
                     }
-                    if ((_NodeInfo.TerminalType == TerminalType.RIP) || (_NodeInfo.TerminalType == TerminalType.ANSI))
+                    if ((_NodeInfo.TerminalType == TerminalType.Rip) || (_NodeInfo.TerminalType == TerminalType.Ansi))
                     {
                         FileNamesWithExtension.Add(fileName + ".ans");
                     }
@@ -913,7 +913,7 @@ namespace RandM.GameSrv
                                         if (ProcessUtils.Is64BitOperatingSystem)
                                         {
                                             // DOS doors are OK on 64bit Windows if DOSBox is installed
-                                            CanAdd = IsDOSBoxInstalled();
+                                            CanAdd = Globals.IsDOSBoxInstalled();
                                         }
                                         else
                                         {
@@ -924,7 +924,7 @@ namespace RandM.GameSrv
                                     else if (OSUtils.IsUnix)
                                     {
                                         // DOS doors are OK on Linux if DOSEMU is installed
-                                        CanAdd = IsDOSEMUInstalled();
+                                        CanAdd = Globals.IsDOSEMUInstalled();
                                     }
                                     else
                                     {
@@ -1124,7 +1124,7 @@ namespace RandM.GameSrv
             try
             {
                 alias = alias.Trim().ToLower();
-                if (alias == "") return false; // Don't ban for blank inputs
+                if (string.IsNullOrEmpty(alias)) return false; // Don't ban for blank inputs
 
                 string BannedUsersFileName = StringUtils.PathCombine(ProcessUtils.StartupPath, "config", "banned-users.txt");
                 if (File.Exists(BannedUsersFileName))
@@ -1145,16 +1145,6 @@ namespace RandM.GameSrv
 
             // If we get here, it's an OK name
             return false;
-        }
-
-        private bool IsDOSBoxInstalled()
-        {
-            return File.Exists(@"C:\Program Files (x86)\DOSBox-0.73\DOSBox.exe"); // TODO add configuration variable so this path is not hardcoded
-        }
-
-        private bool IsDOSEMUInstalled()
-        {
-            return File.Exists("/usr/bin/dosemu.bin"); // TODO add configuration variable so this path is not hardcoded
         }
 
         void LogTimer_Elapsed(object sender, ElapsedEventArgs e)
@@ -1532,7 +1522,7 @@ namespace RandM.GameSrv
                     if (ProcessUtils.Is64BitOperatingSystem)
                     {
 
-                        if (IsDOSBoxInstalled())
+                        if (Globals.IsDOSBoxInstalled())
                         {
                             RunDoorDOSBox(TranslateCLS(_NodeInfo.Door.Command), TranslateCLS(_NodeInfo.Door.Parameters));
                         }
@@ -1555,7 +1545,7 @@ namespace RandM.GameSrv
                 }
                 else if ((_NodeInfo.Door.Platform == OSUtils.Platform.DOS) && OSUtils.IsUnix)
                 {
-                    if (IsDOSEMUInstalled())
+                    if (Globals.IsDOSEMUInstalled())
                     {
                         // TODO Doesn't this allow a door to hang if the user hangs up?  We need some method to force-quit it!
                         RunDoorDOSEMU(TranslateCLS(_NodeInfo.Door.Command), TranslateCLS(_NodeInfo.Door.Parameters));

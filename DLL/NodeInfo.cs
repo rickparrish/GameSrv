@@ -43,7 +43,7 @@ namespace RandM.GameSrv
             Door = new DoorInfo("");
             Node = -1;
             SecondsThisSession = 300; // Default to 5 minutes during authentication, will be set accordingly at successful logon
-            TerminalType = TerminalType.ANSI;
+            TerminalType = TerminalType.Ansi;
             TimeOn = DateTime.Now;
             User = new UserInfo("");
             UserLoggedOn = false;

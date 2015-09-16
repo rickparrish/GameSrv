@@ -23,6 +23,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
+using System.IO;
 using System.Security.Principal;
 using System.Text;
 
@@ -133,6 +134,18 @@ namespace RandM.GameSrv
 
                 return Result;
             }
+        }
+
+        static public bool IsDOSBoxInstalled()
+        {
+            string ProgramFilesX86 = Environment.GetEnvironmentVariable("PROGRAMFILES(X86)") ?? Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
+            string DOSBoxExe = StringUtils.PathCombine(ProgramFilesX86, @"DOSBox-0.73\dosbox.exe");
+            return File.Exists(DOSBoxExe); // TODO add configuration variable so this path is not hardcoded
+        }
+
+        static public bool IsDOSEMUInstalled()
+        {
+            return File.Exists("/usr/bin/dosemu.bin"); // TODO add configuration variable so this path is not hardcoded
         }
 
         static public bool IsTempIgnoredIP(string ip)

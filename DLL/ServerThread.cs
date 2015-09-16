@@ -95,11 +95,11 @@ namespace RandM.GameSrv
             try
             {
                 List<string> FileNames = new List<string>();
-                if (terminalType == TerminalType.RIP)
+                if (terminalType == TerminalType.Rip)
                 {
                     FileNames.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "ansi", fileName.ToLower() + ".rip"));
                 }
-                if ((terminalType == TerminalType.RIP) || (terminalType == TerminalType.ANSI))
+                if ((terminalType == TerminalType.Rip) || (terminalType == TerminalType.Ansi))
                 {
                     FileNames.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "ansi", fileName.ToLower() + ".ans"));
                 }
@@ -169,7 +169,7 @@ namespace RandM.GameSrv
                                         {
                                             RaiseMessageEvent("Incoming " + _ConnectionType.ToString() + " connection from " + TypedConnection.GetRemoteIP() + ":" + TypedConnection.GetRemotePort());
 
-                                            TerminalType TT = _TerminalType == TerminalType.AUTODETECT ? GetTerminalType(TypedConnection) : _TerminalType;
+                                            TerminalType TT = _TerminalType == TerminalType.AutoDetect ? GetTerminalType(TypedConnection) : _TerminalType;
                                             if (IsBannedIP(TypedConnection.GetRemoteIP()))
                                             {
                                                 DisplayAnsi("IP_BANNED", TypedConnection, TT);
@@ -277,11 +277,11 @@ namespace RandM.GameSrv
 
                 if (str.ToUpper().Contains("RIPSCRIP"))
                 {
-                    return TerminalType.RIP;
+                    return TerminalType.Rip;
                 }
                 else if (Regex.IsMatch(str, "\\x1b[[]\\d{1,3};\\d{1,3}R"))
                 {
-                    return TerminalType.ANSI;
+                    return TerminalType.Ansi;
                 }
             }
             catch (Exception)
@@ -289,7 +289,7 @@ namespace RandM.GameSrv
                 // Ignore, we'll just assume ASCII if something bad happens
             }
 
-            return TerminalType.ASCII;
+            return TerminalType.Ascii;
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
