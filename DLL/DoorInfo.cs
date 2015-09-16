@@ -31,7 +31,6 @@ namespace RandM.GameSrv
         public string Command { get; set; }
         public int ForceQuitDelay { get; set; }
         public string Name { get; set; }
-        protected bool Native { get; set; }
         public string Parameters { get; set; }
         public OSUtils.Platform Platform { get; set; }
         public bool WatchDTR { get; set; }
@@ -43,7 +42,6 @@ namespace RandM.GameSrv
             Command = "";
             ForceQuitDelay = 5;
             Name = "";
-            Native = true;
             Parameters = "";
             Platform = OSUtils.Platform.Unknown;
             WatchDTR = true;
@@ -55,7 +53,11 @@ namespace RandM.GameSrv
                 if (Platform == OSUtils.Platform.Unknown)
                 {
                     // Nope, this must be an old door .ini, so guess a platform based on the Native property
-                    Platform = Native ? OSUtils.Platform.Windows : OSUtils.Platform.DOS;
+                    using (IniFile Ini = new IniFile(base.FileName))
+                    {
+                        bool Native = Ini.ReadBoolean(base.SectionName, "Native", false);
+                        Platform = Native ? OSUtils.Platform.Windows : OSUtils.Platform.DOS;
+                    }
                 }
             }
         }
