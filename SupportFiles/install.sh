@@ -20,7 +20,7 @@ if (( EUID != 0 )); then
 fi
 
 while true; do
-    echo "This has only been tested on Ubuntu 14.04 LTS (32bit)"
+    echo "This has only been tested on Ubuntu 14.04 LTS"
     read -p "So do you want to try running it now? " yn
     case $yn in
         [Yy]* ) break;;
