@@ -1,4 +1,13 @@
 DLL/doors/new/
+bin/Release/*
+!bin/Release/GameSrv.dll
+!bin/Release/GameSrvConfig.exe
+!bin/Release/GameSrvConsole.exe
+!bin/Release/GameSrvGUI.exe
+!bin/Release/GameSrvService.exe
+!bin/Release/Upgrade.exe
+!bin/Release/RMLib.dll
+!bin/Release/RMLibUI.dll
 
 #################
 ## Eclipse
@@ -44,7 +53,7 @@ local.properties
 
 # Build results
 [Dd]ebug/
-[Rr]elease/
+#[Rr]elease/
 *_i.c
 *_p.c
 *.ilk

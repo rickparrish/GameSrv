@@ -89,6 +89,7 @@ done
 
 groupadd gamesrv
 useradd -g gamesrv -s /usr/sbin/nologin gamesrv
+# TODOX don't hardcode /gamesrv
 chown -R gamesrv:gamesrv /gamesrv
 
 while true; do
