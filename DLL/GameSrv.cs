@@ -38,7 +38,7 @@ namespace RandM.GameSrv
         private bool _BindFailed = false;
         private int _BoundCount = 0;
         private object _BoundEventLock = new object();
-        private Config _Config = new Config();
+        private Config _Config = null;
         private bool _Disposed = false;
         private FlashSocketPolicyServerThread _FlashSocketPolicyServerThread = null;
         private IgnoredIPsThread _IgnoredIPsThread = null;
@@ -63,6 +63,8 @@ namespace RandM.GameSrv
 
         public GameSrv()
         {
+            _Config = new Config();
+
             // Ensure the log directory exists
             Directory.CreateDirectory(StringUtils.PathCombine(ProcessUtils.StartupPath, "logs"));
 

@@ -34,7 +34,7 @@ namespace RandM.GameSrv
     {
         static private Dictionary<ConnectionType, int> _ConnectionCounts = new Dictionary<ConnectionType, int>();
         static private bool _FancyOutput = OSUtils.IsWindows;
-        static private GameSrv _GameSrv = new GameSrv();
+        static private GameSrv _GameSrv = null;
         static private string _TimeFormatFooter = "hh:mmtt";
 
         static void Main(string[] args)
@@ -51,6 +51,12 @@ namespace RandM.GameSrv
                         _FancyOutput = false;
                         break;
                 }
+            }
+
+            // Remove old "stop requested" file
+            if (File.Exists(StringUtils.PathCombine(ProcessUtils.StartupPath, "GameSrvConsole.stop")))
+            {
+                FileUtils.FileDelete(StringUtils.PathCombine(ProcessUtils.StartupPath, "GameSrvConsole.stop"));
             }
 
             // Add connection types to counter
@@ -78,13 +84,15 @@ namespace RandM.GameSrv
 
             // TODO Detect first run and ask for basic settings if necessary
 
-            // Init GameSrv          
+            // Init GameSrv 
+            _GameSrv = new GameSrv();
             _GameSrv.AggregatedStatusMessageEvent += new EventHandler<StringEventArgs>(GameSrv_AggregatedStatusMessageEvent);
             _GameSrv.LogOnEvent += new EventHandler<NodeEventArgs>(GameSrv_LogOnEvent);
             _GameSrv.Start();
 
             // Main program loop
             int LastMinute = -1;
+            int LastSecond = -1;
             bool Quit = false;
             while (!Quit)
             {
@@ -96,62 +104,79 @@ namespace RandM.GameSrv
                         UpdateTime();
                         LastMinute = DateTime.Now.Minute;
                     }
+
+                    if ((DateTime.Now.Second % 2 == 0) && (DateTime.Now.Second != LastSecond))
+                    {
+                        LastSecond = DateTime.Now.Second;
+                        if (File.Exists(StringUtils.PathCombine(ProcessUtils.StartupPath, "GameSrvConsole.stop")))
+                        {
+                            FileUtils.FileDelete(StringUtils.PathCombine(ProcessUtils.StartupPath, "GameSrvConsole.stop"));
+
+                            _GameSrv.Stop();
+                            _GameSrv.Dispose();
+                            Quit = true;
+                            break;
+                        }
+                    }
                 }
 
-                char Ch = Crt.ReadKey();
-                switch (Ch.ToString().ToUpper())
+                if (Crt.KeyPressed())
                 {
-                    case "\0":
-                        char Ch2 = Crt.ReadKey();
-                        if (Ch2 == ';') // F1
-                        {
-                            WriteLn("", false);
-                            WriteLn("GameSrv WFC Screen Help", false);
-                            WriteLn("-=-=-=-=-=-=-=-=-=-=-=-", false);
-                            WriteLn("F1 = Help  (this screen)", false);
-                            WriteLn("C  = Clear (clear the status window)", false);
-                            WriteLn("P  = Pause (reject new connections, leave existing connections alone)", false);
-                            WriteLn("S  = Setup (launch the config program)", false);
-                            WriteLn("Q  = Quit  (shut down and terminate existing connections)", false);
-                            WriteLn("", false);
-                        }
-                        break;
-                    case "C":
-                        Crt.ClrScr();
-                        if (_FancyOutput) Crt.GotoXY(1, 32);
-                        break;
-                    case "P":
-                        _GameSrv.Pause();
-                        break;
-                    case "S":
-                        Process.Start(StringUtils.PathCombine(ProcessUtils.StartupPath, "GameSrvConfig.exe"));
-                        break;
-                    case "Q":
-                        // Check if we're already stopped (or are stopping)
-                        if ((_GameSrv.Status != ServerStatus.Stopped) && (_GameSrv.Status != ServerStatus.Stopping))
-                        {
-                            int ConnectionCount = _GameSrv.ConnectionCount;
-                            if (ConnectionCount > 0)
+                    char Ch = Crt.ReadKey();
+                    switch (Ch.ToString().ToUpper())
+                    {
+                        case "\0":
+                            char Ch2 = Crt.ReadKey();
+                            if (Ch2 == ';') // F1
                             {
                                 WriteLn("", false);
-                                WriteLn("There are " + ConnectionCount.ToString() + " active connections.", false);
-                                WriteLn("Are you sure you want to quit [y/N]: ", false);
+                                WriteLn("GameSrv WFC Screen Help", false);
+                                WriteLn("-=-=-=-=-=-=-=-=-=-=-=-", false);
+                                WriteLn("F1 = Help  (this screen)", false);
+                                WriteLn("C  = Clear (clear the status window)", false);
+                                WriteLn("P  = Pause (reject new connections, leave existing connections alone)", false);
+                                WriteLn("S  = Setup (launch the config program)", false);
+                                WriteLn("Q  = Quit  (shut down and terminate existing connections)", false);
                                 WriteLn("", false);
-                                Ch = Crt.ReadKey();
-                                if (Ch.ToString().ToUpper() != "Y")
+                            }
+                            break;
+                        case "C":
+                            Crt.ClrScr();
+                            if (_FancyOutput) Crt.GotoXY(1, 32);
+                            break;
+                        case "P":
+                            _GameSrv.Pause();
+                            break;
+                        case "S":
+                            Process.Start(StringUtils.PathCombine(ProcessUtils.StartupPath, "GameSrvConfig.exe"));
+                            break;
+                        case "Q":
+                            // Check if we're already stopped (or are stopping)
+                            if ((_GameSrv.Status != ServerStatus.Stopped) && (_GameSrv.Status != ServerStatus.Stopping))
+                            {
+                                int ConnectionCount = _GameSrv.ConnectionCount;
+                                if (ConnectionCount > 0)
                                 {
                                     WriteLn("", false);
-                                    WriteLn("Cancelling quit request.", false);
+                                    WriteLn("There are " + ConnectionCount.ToString() + " active connections.", false);
+                                    WriteLn("Are you sure you want to quit [y/N]: ", false);
                                     WriteLn("", false);
-                                    continue;
+                                    Ch = Crt.ReadKey();
+                                    if (Ch.ToString().ToUpper() != "Y")
+                                    {
+                                        WriteLn("", false);
+                                        WriteLn("Cancelling quit request.", false);
+                                        WriteLn("", false);
+                                        continue;
+                                    }
                                 }
                             }
-                        }
 
-                        _GameSrv.Stop();
-                        _GameSrv.Dispose();
-                        Quit = true;
-                        break;
+                            _GameSrv.Stop();
+                            _GameSrv.Dispose();
+                            Quit = true;
+                            break;
+                    }
                 }
             }
 
@@ -196,7 +221,7 @@ namespace RandM.GameSrv
 
                 // Setup scrolling region with a window
                 Crt.Window(3, 5, 88, 36);
-                Crt.GotoXY(1, 32); 
+                Crt.GotoXY(1, 32);
             }
             else
             {
