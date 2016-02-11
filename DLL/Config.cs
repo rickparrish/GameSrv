@@ -50,6 +50,7 @@ namespace RandM.GameSrv
         public string TimeFormatUI { get; set; }
         public int TimePerCall { get; set; }
         public string UnixUser { get; set; }
+        public bool ValidateRLoginPassword { get; set; }
         public string WebSocketServerIP { get; set; }
         public int WebSocketServerPort { get; set; }
 
@@ -76,6 +77,7 @@ namespace RandM.GameSrv
             TimeFormatUI = "T";
             TimePerCall = 60;
             UnixUser = "gamesrv";
+            ValidateRLoginPassword = true;
             WebSocketServerIP = "0.0.0.0";
             WebSocketServerPort = 1123;
 

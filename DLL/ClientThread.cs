@@ -158,11 +158,14 @@ namespace RandM.GameSrv
                 if (_NodeInfo.User.Loaded)
                 {
                     // Yep, so validate the password
-                    if (!_NodeInfo.User.ValidatePassword(Password, _Config.PasswordPepper))
+                    if (_Config.ValidateRLoginPassword)
                     {
-                        // Password is bad
-                        DisplayAnsi("RLOGIN_INVALID_PASSWORD");
-                        return false;
+                        if (!_NodeInfo.User.ValidatePassword(Password, _Config.PasswordPepper))
+                        {
+                            // Password is bad
+                            DisplayAnsi("RLOGIN_INVALID_PASSWORD");
+                            return false;
+                        }
                     }
                 }
                 else
