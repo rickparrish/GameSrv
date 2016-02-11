@@ -158,52 +158,65 @@ namespace RandM.GameSrv
                                     }
                                     if (TypedConnection != null)
                                     {
-                                        TypedConnection.Open(NewConnection.GetSocket());
-
-                                        if (IsIgnoredIP(TypedConnection.GetRemoteIP()))
+                                        if (TypedConnection.Open(NewConnection.GetSocket()))
                                         {
-                                            // Do nothing for ignored IPs
-                                            TypedConnection.Close();
-                                        }
-                                        else
-                                        {
-                                            RaiseMessageEvent("Incoming " + _ConnectionType.ToString() + " connection from " + TypedConnection.GetRemoteIP() + ":" + TypedConnection.GetRemotePort());
-
-                                            TerminalType TT = _TerminalType == TerminalType.AUTODETECT ? GetTerminalType(TypedConnection) : _TerminalType;
-                                            if (IsBannedIP(TypedConnection.GetRemoteIP()))
+                                            if (IsIgnoredIP(TypedConnection.GetRemoteIP()))
                                             {
-                                                DisplayAnsi("IP_BANNED", TypedConnection, TT);
-                                                RaiseWarningMessageEvent("IP " + TypedConnection.GetRemoteIP() + " matches banned IP filter");
-                                                TypedConnection.Close();
-                                            }
-                                            else if (_Paused)
-                                            {
-                                                DisplayAnsi("SERVER_PAUSED", TypedConnection, TT);
+                                                // Do nothing for ignored IPs
                                                 TypedConnection.Close();
                                             }
                                             else
                                             {
-                                                if (!TypedConnection.Connected)
+                                                RaiseMessageEvent("Incoming " + _ConnectionType.ToString() + " connection from " + TypedConnection.GetRemoteIP() + ":" + TypedConnection.GetRemotePort());
+
+                                                TerminalType TT = _TerminalType == TerminalType.AUTODETECT ? GetTerminalType(TypedConnection) : _TerminalType;
+                                                if (IsBannedIP(TypedConnection.GetRemoteIP()))
                                                 {
-                                                    RaiseMessageEvent("No carrier detected (maybe it was a 'ping'?)");
+                                                    DisplayAnsi("IP_BANNED", TypedConnection, TT);
+                                                    RaiseWarningMessageEvent("IP " + TypedConnection.GetRemoteIP() + " matches banned IP filter");
+                                                    TypedConnection.Close();
+                                                }
+                                                else if (_Paused)
+                                                {
+                                                    DisplayAnsi("SERVER_PAUSED", TypedConnection, TT);
                                                     TypedConnection.Close();
                                                 }
                                                 else
                                                 {
-                                                    ClientThread NewClientThread = new ClientThread();
-                                                    int NewNode = RaiseConnectEvent(ref NewClientThread);
-                                                    if (NewNode == 0)
+                                                    if (!TypedConnection.Connected)
                                                     {
-                                                        NewClientThread.Dispose();
-                                                        DisplayAnsi("SERVER_BUSY", TypedConnection, TT);
+                                                        RaiseMessageEvent("No carrier detected (maybe it was a 'ping'?)");
                                                         TypedConnection.Close();
                                                     }
                                                     else
                                                     {
-                                                        NewClientThread.Start(NewNode, TypedConnection, _ConnectionType, TT);
+                                                        ClientThread NewClientThread = new ClientThread();
+                                                        int NewNode = RaiseConnectEvent(ref NewClientThread);
+                                                        if (NewNode == 0)
+                                                        {
+                                                            NewClientThread.Dispose();
+                                                            DisplayAnsi("SERVER_BUSY", TypedConnection, TT);
+                                                            TypedConnection.Close();
+                                                        }
+                                                        else
+                                                        {
+                                                            NewClientThread.Start(NewNode, TypedConnection, _ConnectionType, TT);
+                                                        }
                                                     }
                                                 }
                                             }
+                                        }
+                                        else
+                                        {
+                                            if (_ConnectionType == ConnectionType.RLogin)
+                                            {
+                                                RaiseMessageEvent("Timeout waiting for RLogin header");
+                                            }
+                                            else
+                                            {
+                                                RaiseMessageEvent("No carrier detected (maybe it was a 'ping'?)");
+                                            }
+                                            TypedConnection.Close();
                                         }
                                     }
                                 }
