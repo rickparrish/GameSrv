@@ -77,7 +77,7 @@ namespace RandM.GameSrv
             TimeFormatUI = "T";
             TimePerCall = 60;
             UnixUser = "gamesrv";
-            ValidateRLoginPassword = true;
+            ValidateRLoginPassword = false;
             WebSocketServerIP = "0.0.0.0";
             WebSocketServerPort = 1123;
 
