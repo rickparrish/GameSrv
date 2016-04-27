@@ -8,6 +8,7 @@ bin/Release/*
 !bin/Release/Upgrade.exe
 !bin/Release/RMLib.dll
 !bin/Release/RMLibUI.dll
+!bin/Release/W32Door.exe
 
 #################
 ## Eclipse
