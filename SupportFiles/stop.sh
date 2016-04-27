@@ -1,5 +1,6 @@
 #!/bin/bash
-
+# Stop script for gamesrv start.sh script
+file="/var/run/gamesrv/start_sh.pid"
 # Check the effective user id to see if it's root (EUID works with sudo, UID does not)
 if (( EUID != 0 )); then
    echo "######## ########  ########   #######  ########"
@@ -13,25 +14,21 @@ if (( EUID != 0 )); then
    echo ""
    echo "####### ERROR: ROOT PRIVILEGES REQUIRED #########"
    echo "This script must be run as root to work properly!"
-   echo "You could also try running 'sudo ./start.sh' too."
+   echo "You could also try running 'sudo start.sh' too."
    echo "##################################################"
    echo ""
    exit 1
 fi
 
-# Check for Directory and PID and if not create gamesrv directory
-if [ -d /var/run/"$gamesrv" ]; then
-   # Create a PID file to keep track of what the process ID is 
-  echo $$ >> /var/run/gamesrv/start_sh.pid
-# Makes gamesrv directory in /var/run to place our pid file
-else [ mkdir -p /var/run/gamesrv ];
-  # Creates a PID file to keep track of what the process ID is
-  echo $$ >> /var/run/gamesrv/start_sh.pid
+# Find the PID we created on startup and placed in /var/run/gamesrv/start_sh.pid 
+if [ -e $file ];
+then
+   # Writes the file GameSrvConsole.stop to the /gamesrv Directory
+   # GameSrvConsole.exe checks every 2 sec for the file and if it exist
+   # Gracefully shuts down the process
+   echo $$ >> /gamesrv/GameSrvConsole.stop
+   # start_sh.pid is then removed cleaning things up for next time
+   rm $file
+# If the start_sh.pid does not exist then process is not running
+else echo "Process is NOT running."
 fi
-## for DOSEMU -- may be able to comment out in newer releases
-sysctl -w vm.mmap_min_addr="0"
-
-cd /gamesrv
-# Runs our DOS application as user and group gamesrv using mono
-# The & lets the process run in the background
-privbind -u gamesrv -g gamesrv mono GameSrvConsole.exe DEBUG &

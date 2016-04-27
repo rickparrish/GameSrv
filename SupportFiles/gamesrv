@@ -1,0 +1,44 @@
+#! /bin/sh
+### BEGIN INIT INFO
+# Provides: gamesrv
+# Required-Start: $remote_fs $syslog
+# Required-Stop: $remote_fs $syslog
+# Default-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Short-Description: gamesrv
+# Description: This file starts and stops the GameSrv server
+# Written by: Dean Warren theshadowlandsbbs.ssccbogart.info
+### END INIT INFO
+
+# Set Directory and PID file
+GAMESRV_DIR=/gamesrv
+file=/var/run/gamesrv/start_sh.pid
+
+case "$1" in
+ start)
+   # If case start then call start.sh in /gamesrv
+   $GAMESRV_DIR/start.sh 
+   ;;
+ stop)
+   # If case stop call stop.sh in /gamesrv
+   $GAMESRV_DIR/stop.sh 
+   sleep 10
+   ;;
+ restart)
+   # If  case restart then stop and start from /gamesrv
+   $GAMESRV_DIR/stop.sh 
+   sleep 20
+   $GAMESRV_DIR/start.sh 
+   ;;
+ status)
+    # If case status check to see if PID exist(more error checking to do here in the future)
+    if [ -e $file ]; 
+    then echo "gamesrv process running."
+    else echo "No pid found. Process might be stopped."
+    fi
+   ;;
+ *)
+   echo "Usage: gamesrv {start|stop|restart|status}" >&2
+   exit 3
+   ;;
+esac
