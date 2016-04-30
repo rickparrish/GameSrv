@@ -167,7 +167,7 @@ namespace RandM.GameSrv
                                             }
                                             else
                                             {
-                                                RaiseMessageEvent("Incoming " + _ConnectionType.ToString() + " connection from " + TypedConnection.GetRemoteIP() + ":" + TypedConnection.GetRemotePort());
+                                                RaiseMessageEvent("Incoming " + _ConnectionType.ToString() + " connection from " + TypedConnection.GetRemoteIP() + "," + TypedConnection.GetRemotePort());
 
                                                 TerminalType TT = _TerminalType == TerminalType.AUTODETECT ? GetTerminalType(TypedConnection) : _TerminalType;
                                                 if (IsBannedIP(TypedConnection.GetRemoteIP()))
@@ -230,7 +230,7 @@ namespace RandM.GameSrv
                 }
                 else
                 {
-                    RaiseErrorMessageEvent("Server Thread unable to listen on " + _LocalAddress + ":" + _LocalPort);
+                    RaiseErrorMessageEvent("Server Thread unable to listen on " + _LocalAddress + "," + _LocalPort);
                     RaiseBindFailedEvent();
                 }
             }
@@ -308,6 +308,7 @@ namespace RandM.GameSrv
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
         private bool IsBannedIP(string ip)
         {
+            // TODOX Handle IPv6
             try
             {
                 string BannedIPsFileName = StringUtils.PathCombine(ProcessUtils.StartupPath, "config", "banned-ips.txt");
@@ -360,6 +361,7 @@ namespace RandM.GameSrv
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
         private bool IsIgnoredIP(string ip)
         {
+            // TODOX Handle IPv6
             try
             {
                 if (Globals.IsTempIgnoredIP(ip)) return true;
