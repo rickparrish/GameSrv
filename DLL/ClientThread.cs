@@ -2367,16 +2367,8 @@ namespace RandM.GameSrv
             }
 
             // Sanity check on the port
-            // TODOX This should handle IPV6 addresses.  So something like:
-            // - If only one :, then it's host:port
-            // - If multiple :, then it's an IPV6 address
-            // - Maybe also accept host,port so then both v4 and v6 can pass a port
             int Port = 23;
-            if (hostname.Contains(":"))
-            {
-                Port = int.Parse(hostname.Split(':')[1]);
-                hostname = hostname.Split(':')[0];
-            }
+            WebUtils.ParseHostPort(hostname, ref hostname, ref Port);
             if ((Port < 1) || (Port > 65535))
             {
                 Port = (_RLogin) ? 513 : 23;

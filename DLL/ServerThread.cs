@@ -167,7 +167,7 @@ namespace RandM.GameSrv
                                             }
                                             else
                                             {
-                                                RaiseMessageEvent("Incoming " + _ConnectionType.ToString() + " connection from " + TypedConnection.GetRemoteIP() + "," + TypedConnection.GetRemotePort());
+                                                RaiseMessageEvent("Incoming " + _ConnectionType.ToString() + " connection from " + TypedConnection.GetRemoteIP() + ":" + TypedConnection.GetRemotePort());
 
                                                 TerminalType TT = _TerminalType == TerminalType.AUTODETECT ? GetTerminalType(TypedConnection) : _TerminalType;
                                                 if (IsBannedIP(TypedConnection.GetRemoteIP()))
@@ -230,7 +230,7 @@ namespace RandM.GameSrv
                 }
                 else
                 {
-                    RaiseErrorMessageEvent("Server Thread unable to listen on " + _LocalAddress + "," + _LocalPort);
+                    RaiseErrorMessageEvent("Server Thread unable to listen on " + _LocalAddress + ":" + _LocalPort);
                     RaiseBindFailedEvent();
                 }
             }
