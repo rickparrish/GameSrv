@@ -138,7 +138,7 @@ namespace RandM.GameSrv
                 FileUtils.FileDelete("cpulimit.sh");
                 FileUtils.FileDelete("dosutils.zip");
                 FileUtils.FileDelete("install.sh");
-                FileUtils.FileDelete("pty-sharp-1.0.tgz");
+                FileUtils.FileDelete("pty-sharp-1.0.zip");
                 FileUtils.FileDelete("start.sh");
                 if (OSUtils.IsWin9x)
                 {

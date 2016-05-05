@@ -541,7 +541,7 @@
     <None Include="menus\whosonline100.asc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="pty-sharp-1.0.tgz">
+    <None Include="pty-sharp-1.0.zip">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="sbbsexec.vxd">

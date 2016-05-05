@@ -123,9 +123,9 @@ namespace RandM.GameSrv
                     Result += "\r\n";
                     Result += "pty-sharp.dll is copyright Miguel de Icaza\r\n";
                     Result += "\r\n";
-                    Result += "pty-sharp-1.0.tgz src/pty.* is copyright Red Hat, Inc.\r\n";
+                    Result += "pty-sharp-1.0.zip src/pty.* is copyright Red Hat, Inc.\r\n";
                     Result += "\r\n";
-                    Result += "pty-sharp-1.0.tgz gnome-pty-helper is copyright Miguel de Icaza\r\n";
+                    Result += "pty-sharp-1.0.zip gnome-pty-helper is copyright Miguel de Icaza\r\n";
                     Result += "\r\n";
                 }
 

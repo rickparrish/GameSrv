@@ -33,8 +33,6 @@ chmod a+x cpulimit.sh
 rm dosxtrn.exe
 rm dosxtrn.pif
 rm install.cmd
-rm Mono.Posix.dll
-rm pty-sharp.dll
 rm sbbsexec.dll
 rm sbbsexec.vxd
 chmod a+x start.sh
@@ -48,7 +46,7 @@ while true; do
     esac
 done
 
-apt-get install build-essential cpulimit dosemu libglib2.0-dev libmono2.0-cil mono-gmcs mono-runtime pkg-config privbind unzip
+apt-get install build-essential cpulimit libglib2.0-dev libmono2.0-cil mono-gmcs mono-runtime pkg-config privbind unzip
 
 while true; do
     read -p "OK, so should I continue with extracting the dosutils.zip archive? " yn
@@ -70,13 +68,13 @@ while true; do
     esac
 done
 
-tar zxvf pty-sharp-1.0.tgz
+unzip -a pty-sharp-1.0.zip
 cd pty-sharp-1.0
 ./configure --prefix=/usr LIBS=-lglib-2.0
 make
 make install
 cd ..
-rm pty-sharp-1.0.tgz
+rm pty-sharp-1.0.zip
 
 while true; do
     read -p "OK, so should I continue with adding the gamesrv user and group? " yn
@@ -101,6 +99,7 @@ while true; do
     esac
 done
 
+apt-get install dosemu
 dosemu
 
 while true; do
