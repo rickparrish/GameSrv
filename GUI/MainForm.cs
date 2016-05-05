@@ -65,8 +65,6 @@ namespace RandM.GameSrv
             // Display copyright message(s)
             StatusText(Globals.Copyright, false);
 
-            // TODO Detect first run and launch GameSrvConfig if necessary
-
             // Init GameSrv object
             _GameSrv.AggregatedStatusMessageEvent += new EventHandler<StringEventArgs>(GameSrv_AggregatedStatusMessageEvent);
             _GameSrv.ConnectionCountChangeEvent += new EventHandler<IntEventArgs>(GameSrv_ConnectionCountChangeEvent);
@@ -157,7 +155,6 @@ namespace RandM.GameSrv
                 LVINodes.SubItems[2].Text = e.NodeInfo.Connection.GetRemoteIP();
                 LVINodes.SubItems[3].Text = e.NodeInfo.User.Alias;
                 LVINodes.SubItems[4].Text = e.Status;
-                // TODO Show time user signed on at in listview?
 
                 ListViewItem LVIHistory = new ListViewItem(e.NodeInfo.Node.ToString());
                 LVIHistory.SubItems.Add(e.NodeInfo.ConnectionType.ToString());
@@ -165,7 +162,6 @@ namespace RandM.GameSrv
                 LVIHistory.SubItems.Add(e.NodeInfo.User.Alias);
                 LVIHistory.SubItems.Add(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString());
                 lvHistory.Items.Insert(0, LVIHistory);
-                // TODO Add column to hold logoff date (and maybe also session duration)?
 
                 // Keep a counter for number of connections
                 switch (e.NodeInfo.ConnectionType)
@@ -231,11 +227,6 @@ namespace RandM.GameSrv
                 rtbLog.SelectionHangingIndent = 0;
             }
 
-            // TODO Make colours configurable
-            // TODO Certain things may be green:
-            // "User hung-up while in external program"
-            // "No carrier detected (maybe it was a 'ping'?)"
-            // "External program requested hangup (dropped DTR)"
             Color TextColour = Color.Black;
             if (message.Contains("ERROR:") || message.Contains("EXCEPTION:"))
             {

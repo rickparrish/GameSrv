@@ -1,0 +1,19 @@
+﻿; List the IP addresses you want to allow to connect to your RLogin server
+; You must always list all 4 octets -- just use a * as a wildcard if you want to block a whole class A/B/C
+;
+; Example to block an individual IP address:
+; 1.2.3.4
+; Block a whole class A:
+; 1.*.*.*
+; Block a whole class B:
+; 1.2.*.*
+; Block a whole class C:
+; 1.2.3.*
+; Block in a really weird but syntactically valid way:
+; 1.*.*.4
+;
+; If you don't want to implement a RLogin whitelist list, you could delete this file to save a few cycles of unnecessary processing
+; for each RLogin connection
+;
+; For backwards compatability the whitelist defaults to allowing anybody to connect via RLogin
+*.*.*.*

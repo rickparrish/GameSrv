@@ -160,7 +160,10 @@ namespace RandM.GameSrv
                                     {
                                         if (TypedConnection.Open(NewConnection.GetSocket()))
                                         {
-                                            if (IsIgnoredIP(TypedConnection.GetRemoteIP()))
+                                            if ((_ConnectionType == ConnectionType.RLogin) && !IsRLoginIP(TypedConnection.GetRemoteIP()))
+                                            {
+                                            }
+                                            else if (IsIgnoredIP(TypedConnection.GetRemoteIP()))
                                             {
                                                 // Do nothing for ignored IPs
                                                 TypedConnection.Close();
@@ -236,6 +239,45 @@ namespace RandM.GameSrv
             }
         }
 
+        private bool FileContainsIP(string filename, string ip)
+        {
+            // TODOZ Handle IPv6
+            string[] ConnectionOctets = ip.Split('.');
+            if (ConnectionOctets.Length == 4)
+            {
+                string[] FileIPs = FileUtils.FileReadAllLines(filename);
+                foreach (string FileIP in FileIPs)
+                {
+                    if (FileIP.StartsWith(";")) continue;
+
+                    string[] FileOctets = FileIP.Split('.');
+                    if (FileOctets.Length == 4)
+                    {
+                        bool Match = true;
+                        for (int i = 0; i < 4; i++)
+                        {
+                            if ((FileOctets[i] == "*") || (FileOctets[i] == ConnectionOctets[i]))
+                            {
+                                // We still have a match
+                                continue;
+                            }
+                            else
+                            {
+                                // No longer have a match
+                                Match = false;
+                                break;
+                            }
+                        }
+
+                        // If we still have a match after the loop, it's a banned IP
+                        if (Match) return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
         // Logic for this terminal type detection taken from Synchronet's ANSWER.CPP
         private TerminalType GetTerminalType(TcpConnection connection)
         {
@@ -308,60 +350,29 @@ namespace RandM.GameSrv
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
         private bool IsBannedIP(string ip)
         {
-            // TODOX Handle IPv6
             try
             {
                 string BannedIPsFileName = StringUtils.PathCombine(ProcessUtils.StartupPath, "config", "banned-ips.txt");
                 if (File.Exists(BannedIPsFileName))
                 {
-                    string[] ConnectionOctets = ip.Split('.');
-                    if (ConnectionOctets.Length == 4)
-                    {
-                        string[] BannedIPs = FileUtils.FileReadAllLines(BannedIPsFileName);
-                        foreach (string BannedIP in BannedIPs)
-                        {
-                            if (BannedIP.StartsWith(";")) continue;
-
-                            string[] BannedOctets = BannedIP.Split('.');
-                            if (BannedOctets.Length == 4)
-                            {
-                                bool Match = true;
-                                for (int i = 0; i < 4; i++)
-                                {
-                                    if ((BannedOctets[i] == "*") || (BannedOctets[i] == ConnectionOctets[i]))
-                                    {
-                                        // We still have a match
-                                        continue;
-                                    }
-                                    else
-                                    {
-                                        // No longer have a match
-                                        Match = false;
-                                        break;
-                                    }
-                                }
-
-                                // If we still have a match after the loop, it's a banned IP
-                                if (Match) return true;
-                            }
-                        }
-                    }
+                    return FileContainsIP(BannedIPsFileName, ip);
+                }
+                else
+                {
+                    // No file means not banned
+                    return false;
                 }
             }
             catch (Exception ex)
             {
                 RaiseExceptionEvent("Unable to validate client IP against banned-ips.txt", ex);
+                return false; // Give them the benefit of the doubt on error
             }
-
-            // If we get here, it's an OK IP
-            return false;
         }
-
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
         private bool IsIgnoredIP(string ip)
         {
-            // TODOX Handle IPv6
             try
             {
                 if (Globals.IsTempIgnoredIP(ip)) return true;
@@ -369,47 +380,42 @@ namespace RandM.GameSrv
                 string IgnoredIPsFileName = StringUtils.PathCombine(ProcessUtils.StartupPath, "config", "ignored-ips-combined.txt");
                 if (File.Exists(IgnoredIPsFileName))
                 {
-                    string[] ConnectionOctets = ip.Split('.');
-                    if (ConnectionOctets.Length == 4)
-                    {
-                        string[] IgnoredIPs = FileUtils.FileReadAllLines(IgnoredIPsFileName);
-                        foreach (string IgnoredIP in IgnoredIPs)
-                        {
-                            if (IgnoredIP.StartsWith(";")) continue;
-
-                            string[] IgnoredOctets = IgnoredIP.Split('.');
-                            if (IgnoredOctets.Length == 4)
-                            {
-                                bool Match = true;
-                                for (int i = 0; i < 4; i++)
-                                {
-                                    if ((IgnoredOctets[i] == "*") || (IgnoredOctets[i] == ConnectionOctets[i]))
-                                    {
-                                        // We still have a match
-                                        continue;
-                                    }
-                                    else
-                                    {
-                                        // No longer have a match
-                                        Match = false;
-                                        break;
-                                    }
-                                }
-
-                                // If we still have a match after the loop, it's a Ignored IP
-                                if (Match) return true;
-                            }
-                        }
-                    }
+                    return FileContainsIP(IgnoredIPsFileName, ip);
+                }
+                else
+                {
+                    // No file means not ignored
+                    return false;
                 }
             }
             catch (Exception ex)
             {
                 RaiseExceptionEvent("Unable to validate client IP against ignored-ips.txt", ex);
+                return false; // Give them the benefit of the doubt on error
             }
+        }
 
-            // If we get here, it's an OK IP
-            return false;
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
+        private bool IsRLoginIP(string ip)
+        {
+            try
+            {
+                string RLoginIPsFileName = StringUtils.PathCombine(ProcessUtils.StartupPath, "config", "rlogin-ips.txt");
+                if (File.Exists(RLoginIPsFileName))
+                {
+                    return FileContainsIP(RLoginIPsFileName, ip);
+                }
+                else
+                {
+                    // No file means any RLogin connection allowed
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                RaiseExceptionEvent("Unable to validate client IP against ignored-ips.txt", ex);
+                return true; // Give them the benefit of the doubt on error
+            }
         }
 
         private void RaiseBindFailedEvent()

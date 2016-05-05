@@ -23,6 +23,7 @@ using RandM.RMLib;
 using System.Globalization;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 
 namespace RandM.GameSrv
 {
@@ -76,6 +77,7 @@ namespace RandM.GameSrv
         void ClientThread_NodeEvent(object sender, NodeEventArgs e)
         {
             RaiseNodeEvent(sender, e);
+            UpdateWhoIsOnlineFile();
         }
 
         void ClientThread_WarningMessageEvent(object sender, StringEventArgs e)
@@ -187,7 +189,7 @@ namespace RandM.GameSrv
                     }
                 }
             }
-            
+
             if (Raise) RaiseConnectionCountChangeEvent();
             return Result;
         }
@@ -296,6 +298,7 @@ namespace RandM.GameSrv
             }
 
             RaiseConnectionCountChangeEvent();
+            UpdateWhoIsOnlineFile();
         }
 
         public void Stop()
@@ -314,6 +317,37 @@ namespace RandM.GameSrv
             }
 
             RaiseConnectionCountChangeEvent();
+        }
+
+        private void UpdateWhoIsOnlineFile()
+        {
+            try
+            {
+                var SB = new StringBuilder();
+                SB.AppendLine("Node,RemoteIP,User,Status");
+                lock (_ListLock)
+                {
+                    // Get status from each node
+                    for (int Node = _NodeFirst; Node <= _NodeLast; Node++)
+                    {
+                        if (_ClientThreads[Node] == null)
+                        {
+                            SB.AppendLine($"{Node}\t\t\tWaiting for caller");
+                        }
+                        else
+                        {
+                            SB.AppendLine($"{Node}\t{_ClientThreads[Node].IPAddress}\t{_ClientThreads[Node].Alias}\t{_ClientThreads[Node].Status}");
+                        }
+                    }
+                }
+
+                string WhoIsOnlineFilename = StringUtils.PathCombine(ProcessUtils.StartupPath, "whoisonline.txt");
+                FileUtils.FileWriteAllText(WhoIsOnlineFilename, SB.ToString());
+            }
+            catch (Exception ex)
+            {
+                RaiseExceptionEvent(this, new ExceptionEventArgs("Unable to update whoisonline.txt", ex));
+            }
         }
     }
 }

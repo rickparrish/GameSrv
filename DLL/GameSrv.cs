@@ -17,9 +17,6 @@
   You should have received a copy of the GNU General Public License
   along with GameSrv.  If not, see <http://www.gnu.org/licenses/>.
 */
-// TODO finish config screens
-// TODO temp ban after x carrier drops during alias entry
-// TODO upgrade to Usurper 0.24 and add Linux version (will it work since its STDIO?)
 using System;
 using System.Collections.Generic;
 using RandM.RMLib;

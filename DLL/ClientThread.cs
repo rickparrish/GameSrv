@@ -36,6 +36,7 @@ using RandM.RMLib;
 using Unix;
 using System.Net.Sockets;
 using System.Timers;
+using System.Linq;
 
 namespace RandM.GameSrv
 {
@@ -53,7 +54,7 @@ namespace RandM.GameSrv
         private Random _R = new Random();
         private string _Status = "";
 
-        // TODO Add a Disconnect event of some sort to allow a sysop to disconnect another node
+        // TODOZ Add a Disconnect event of some sort to allow a sysop to disconnect another node
         public event EventHandler<StringEventArgs> ErrorMessageEvent = null;
         public event EventHandler<ExceptionEventArgs> ExceptionEvent = null;
         public event EventHandler<NodeEventArgs> LogOffEvent = null;
@@ -739,7 +740,7 @@ namespace RandM.GameSrv
                                     _NodeInfo.Connection.Write(TranslatedLines[i]);
                                     if (i < TranslatedLines.Length - 1) _NodeInfo.Connection.WriteLn();
 
-                                    // TODO This doesn't work when a single line of output is spread across multiple lines of input
+                                    // TODOZ This doesn't work when a single line of output is spread across multiple lines of input
                                     //      Should somehow count the number of lines scrolled, and pause after 24
                                     if ((i % 24 == 23) && (i < TranslatedLines.Length - 1))
                                     {
@@ -812,8 +813,6 @@ namespace RandM.GameSrv
                         _NodeInfo.UserLoggedOn = true;
                         _NodeInfo.SecondsThisSession = _Config.TimePerCall * 60;
                         RaiseLogOnEvent();
-
-                        // TODO RECORD THE LOGIN SO A LAST 10 CALLERS FEATURE CAN BE IMPLEMENTED
 
                         // Check if RLogin is requesting to launch a door immediately via the xtrn= command
                         if ((_NodeInfo.Door != null) && _NodeInfo.Door.Loaded)
@@ -1051,13 +1050,6 @@ namespace RandM.GameSrv
                 {
                     // If there's something wrong with the ini entry (Action is invalid for example), this will throw a System.ArgumentException error, so we just ignore that menu item
                     RaiseExceptionEvent("Error during logon process '" + Processes[i] + "'", ex);
-
-                    // If the exception was at the main menu, then exit the loop so we don't continue on to other items (like the twit menu)
-                    if (LastAction == Action.MainMenu)
-                    {
-                        // TODO Display error message and pause
-                        return;
-                    }
                 }
             }
         }
@@ -1389,7 +1381,6 @@ namespace RandM.GameSrv
                 }
 
                 // Loop through the questions
-                // TODO Ignore [Alias] and [Password], in case a sysop adds them to newuser.ini
                 string[] Questions = NewUserQuestion.GetQuestions();
                 for (int i = 0; i < Questions.Length; i++)
                 {
@@ -1538,7 +1529,7 @@ namespace RandM.GameSrv
                 {
                     if (Globals.IsDOSEMUInstalled())
                     {
-                        // TODO Doesn't this allow a door to hang if the user hangs up?  We need some method to force-quit it!
+                        // TODOZ Doesn't this allow a door to hang if the user hangs up?  We need some method to force-quit it!
                         RunDoorDOSEMU(TranslateCLS(_NodeInfo.Door.Command), TranslateCLS(_NodeInfo.Door.Parameters));
                     }
                     else
@@ -1573,7 +1564,8 @@ namespace RandM.GameSrv
             if (Globals.Debug) RaiseNodeEvent("DEBUG: DOSBox launching " + command + " " + parameters);
 
             string DOSBoxConf = StringUtils.PathCombine("node" + _NodeInfo.Node.ToString(), "dosbox.conf");
-            string DOSBoxExe = @"C:\Program Files (x86)\DOSBox-0.73\DOSBox.exe"; // TODO add configuration variable so this path is not hardcoded
+            string ProgramFilesX86 = Environment.GetEnvironmentVariable("PROGRAMFILES(X86)") ?? Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
+            string DOSBoxExe = StringUtils.PathCombine(ProgramFilesX86, @"DOSBox-0.73\dosbox.exe"); // TODOZ add configuration variable so this path is not hardcoded
 
             // Copy base dosbox.conf 
             FileUtils.FileDelete(DOSBoxConf);
@@ -1585,7 +1577,7 @@ namespace RandM.GameSrv
             string[] ExternalBat = new string[] { "mount c " + StringUtils.ExtractShortPathName(ProcessUtils.StartupPath), "C:", command + " " + parameters, "exit" };
             FileUtils.FileAppendAllText(DOSBoxConf, string.Join("\r\n", ExternalBat));
 
-            // TODOX Todd/maskreet does it this way -- maybe safer with commands passed this way, or at the very least with -securemode?
+            // TODOZ Todd/maskreet does it this way -- maybe safer with commands passed this way, or at the very least with -securemode?
             /* dosbox.exe -c "mount d c:\games\!u_games\%4\%1" -c "mount e c:\doorway"
                 -c "mount f c:\doorsrv\node%3" -c "e:" -c "bnu" -c "DOORWAY.EXE SYSF
                 CFG\%1.cfg" -securemode -socket %2 -c "exit"
@@ -1672,7 +1664,7 @@ namespace RandM.GameSrv
                 if (File.Exists(StringUtils.PathCombine(ProcessUtils.StartupPath, "cpulimit.sh"))) Process.Start(StringUtils.PathCombine(ProcessUtils.StartupPath, "cpulimit.sh"), pty.ChildPid.ToString());
 
                 // Loop until something happens
-                while (!_Stop) // TODO Check inside loop for other things QuitThread() would check
+                while (!_Stop) // TODOZ Check inside loop for other things QuitThread() would check
                 {
                     DataTransferred = false;
 
@@ -1894,7 +1886,7 @@ namespace RandM.GameSrv
                 // Loop until something happens
                 BytesWritten = Marshal.AllocHGlobal(sizeof(uint));
                 ReadBuffer = Marshal.AllocHGlobal((int)XTRN_IO_BUF_LEN);
-                while (!_Stop)// TODO Check inside loop for other things QuitThread() would check
+                while (!_Stop) // TODOZ Check inside loop for other things QuitThread() would check
                 {
                     DataTransferred = false;
 
@@ -2101,7 +2093,7 @@ namespace RandM.GameSrv
 
                 // Loop until something happens
                 bool DataTransferred = false;
-                while (!_Stop)// TODO Check inside loop for other things QuitThread() would check
+                while (!_Stop) // TODOZ Check inside loop for other things QuitThread() would check
                 {
                     DataTransferred = false;
 
@@ -2498,8 +2490,6 @@ namespace RandM.GameSrv
 
         private string TranslateMCI(string text, string fileName)
         {
-            // TODO @USERLASTCALL@
-
             StringDictionary MCI = new StringDictionary();
             MCI.Add("ACCESSLEVEL", _NodeInfo.User.AccessLevel.ToString());
             MCI.Add("ALIAS", _NodeInfo.User.Alias);
@@ -2673,7 +2663,8 @@ namespace RandM.GameSrv
             {
                 using (IniFile Ini = new IniFile(StringUtils.PathCombine(ProcessUtils.StartupPath, StringUtils.PathCombine("config", "newuser.ini"))))
                 {
-                    return Ini.ReadSections();
+                    // Return all the sections in newuser.ini, except for [alias] and [password] since they're reserved
+                    return Ini.ReadSections().Where(x => (x.ToLower() != "alias") && (x.ToLower() != "password")).ToArray();
                 }
             }
         }

@@ -93,7 +93,6 @@ namespace RandM.GameSrv
                             using (WindowsIdentity After = WindowsIdentity.GetCurrent())
                             {
                                 if (After.Name != dropToUser) throw new ArgumentOutOfRangeException("dropToUser", "requested user account '" + dropToUser + "' does not exist");
-                                //TODO if (Globals.Debug) ConsoleLogWrite("Dropped privilege from " + Before.Name + " (" + Before.Token + ") to " + After.Name + " (" + After.Token + ")");
                             }
                         }
                     }
@@ -129,8 +128,6 @@ namespace RandM.GameSrv
                     Result += "pty-sharp-1.0.tgz gnome-pty-helper is copyright Miguel de Icaza\r\n";
                     Result += "\r\n";
                 }
-                //TODO Not used for now Result += "System.Data.SQLite.dll is copyright SQLite Development Team\r\n";
-                //TODO Not used for now Result += "\r\n";
 
                 return Result;
             }
@@ -139,13 +136,13 @@ namespace RandM.GameSrv
         static public bool IsDOSBoxInstalled()
         {
             string ProgramFilesX86 = Environment.GetEnvironmentVariable("PROGRAMFILES(X86)") ?? Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
-            string DOSBoxExe = StringUtils.PathCombine(ProgramFilesX86, @"DOSBox-0.73\dosbox.exe");
-            return File.Exists(DOSBoxExe); // TODO add configuration variable so this path is not hardcoded
+            string DOSBoxExe = StringUtils.PathCombine(ProgramFilesX86, @"DOSBox-0.73\dosbox.exe"); // TODOZ add configuration variable so this path is not hardcoded
+            return File.Exists(DOSBoxExe); 
         }
 
         static public bool IsDOSEMUInstalled()
         {
-            return File.Exists("/usr/bin/dosemu.bin"); // TODO add configuration variable so this path is not hardcoded
+            return File.Exists("/usr/bin/dosemu.bin"); // TODOZ add configuration variable so this path is not hardcoded
         }
 
         static public bool IsTempIgnoredIP(string ip)
@@ -188,7 +185,6 @@ namespace RandM.GameSrv
                     _WIC.Undo();
                     _WIC = null;
                     WindowsIdentity After = WindowsIdentity.GetCurrent();
-                    //TODO if (Globals.Debug) ConsoleLogWrite("Raised privilege from " + Before.Name + " (" + Before.Token + ") to " + After.Name + " (" + After.Token + ")");
                 }
             }
         }

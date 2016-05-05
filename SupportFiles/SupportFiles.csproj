@@ -300,6 +300,7 @@
     <None Include="doors\drake3_0.zip">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="doors\exitv320.zip" />
     <None Include="doors\lord.zip">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -558,6 +559,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="CHANGELOG.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="config\rlogin-ips.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="config\banned-ips.txt">

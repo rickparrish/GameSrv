@@ -17,8 +17,6 @@
   You should have received a copy of the GNU General Public License
   along with GameSrv.  If not, see <http://www.gnu.org/licenses/>.
 */
-// TODO Lowercase everything
-
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -54,9 +52,9 @@ namespace RandM.GameSrv
             }
 
             // Remove old "stop requested" file
-            if (File.Exists(StringUtils.PathCombine(ProcessUtils.StartupPath, "GameSrvConsole.stop")))
+            if (File.Exists(StringUtils.PathCombine(ProcessUtils.StartupPath, "gamesrvconsole.stop")))
             {
-                FileUtils.FileDelete(StringUtils.PathCombine(ProcessUtils.StartupPath, "GameSrvConsole.stop"));
+                FileUtils.FileDelete(StringUtils.PathCombine(ProcessUtils.StartupPath, "gamesrvconsole.stop"));
             }
 
             // Add connection types to counter
@@ -82,8 +80,6 @@ namespace RandM.GameSrv
                 WriteLn("", false);
             }
 
-            // TODO Detect first run and ask for basic settings if necessary
-
             // Init GameSrv 
             _GameSrv = new GameSrv();
             _GameSrv.AggregatedStatusMessageEvent += new EventHandler<StringEventArgs>(GameSrv_AggregatedStatusMessageEvent);
@@ -108,9 +104,9 @@ namespace RandM.GameSrv
                     if ((DateTime.Now.Second % 2 == 0) && (DateTime.Now.Second != LastSecond))
                     {
                         LastSecond = DateTime.Now.Second;
-                        if (File.Exists(StringUtils.PathCombine(ProcessUtils.StartupPath, "GameSrvConsole.stop")))
+                        if (File.Exists(StringUtils.PathCombine(ProcessUtils.StartupPath, "gamesrvconsole.stop")))
                         {
-                            FileUtils.FileDelete(StringUtils.PathCombine(ProcessUtils.StartupPath, "GameSrvConsole.stop"));
+                            FileUtils.FileDelete(StringUtils.PathCombine(ProcessUtils.StartupPath, "gamesrvconsole.stop"));
 
                             _GameSrv.Stop();
                             _GameSrv.Dispose();
@@ -208,7 +204,6 @@ namespace RandM.GameSrv
         {
             if (_FancyOutput)
             {
-                //TODO Can do this without System.Windows.Forms reference? Crt.SetIcon(new Icon(Assembly.GetExecutingAssembly().GetManifestResourceStream("GameSrv.GameSrv16+32.ico")).Handle);
                 Crt.SetTitle("GameSrv WFC Screen v" + GameSrv.Version);
                 Crt.SetWindowSize(90, 40);
                 Crt.HideCursor();
