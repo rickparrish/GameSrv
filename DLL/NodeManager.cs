@@ -144,7 +144,11 @@ namespace RandM.GameSrv
                 }
             }
 
-            if (Raise) RaiseConnectionCountChangeEvent();
+            if (Raise)
+            {
+                RaiseConnectionCountChangeEvent();
+                UpdateWhoIsOnlineFile();
+            }
         }
 
         private void DisplayAnsi(string ansi, int node)
@@ -284,6 +288,7 @@ namespace RandM.GameSrv
             }
 
             RaiseConnectionCountChangeEvent();
+            UpdateWhoIsOnlineFile();
         }
 
         public void Start()
@@ -317,6 +322,7 @@ namespace RandM.GameSrv
             }
 
             RaiseConnectionCountChangeEvent();
+            UpdateWhoIsOnlineFile();
         }
 
         private void UpdateWhoIsOnlineFile()

@@ -308,6 +308,28 @@ namespace RandM.GameSrv
             AddToLog("ReadEvent " + e.Text);
         }
 
+        private void ConvertDoorSysToDoor32Sys(string doorSysPath)
+        {
+            string[] DoorSysLines = FileUtils.FileReadAllLines(doorSysPath);
+            List<string> Door32SysLines = new List<string>()
+            {
+                "2", // Telnet
+                _NodeInfo.Connection.Handle.ToString(), // Socket
+                DoorSysLines[1], // Baud rate
+                ProcessUtils.ProductName + " v" + GameSrv.Version, // BBSID
+                (Convert.ToInt32(DoorSysLines[25]) + 1).ToString(), // User's record position (convert 0-based DOOR.SYS to 1-based DOOR32.SYS)
+                DoorSysLines[9], // Real name
+                DoorSysLines[35], // Alias
+                DoorSysLines[14], // Access level
+                DoorSysLines[18], // Time left (in minutes)
+                "1", // Emulation (1=ANSI, a sane default I think)
+                DoorSysLines[3] // Node number
+            };
+
+            string Door32SysPath = StringUtils.PathCombine(Path.GetDirectoryName(doorSysPath), "door32.sys");
+            FileUtils.FileWriteAllLines(Door32SysPath, Door32SysLines.ToArray());
+        }
+
         private void CreateNodeDirectory()
         {
             Directory.CreateDirectory(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _NodeInfo.Node.ToString()));
@@ -2242,7 +2264,8 @@ namespace RandM.GameSrv
                                 {
                                     if (Globals.Debug) RaiseNodeEvent("DEBUG: w32door.run found");
                                     string[] W32DoorRunLines = FileUtils.FileReadAllLines(W32DoorFile);
-                                    RunDoorNative(W32DoorRunLines[0], W32DoorRunLines[1]);
+                                    ConvertDoorSysToDoor32Sys(W32DoorRunLines[0]);
+                                    RunDoorNative(W32DoorRunLines[1], W32DoorRunLines[2]);
                                 }
                                 finally
                                 {

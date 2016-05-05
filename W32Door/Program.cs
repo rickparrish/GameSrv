@@ -37,10 +37,10 @@ namespace W32Door
                 string DoorParameters = string.Join(" ", args, 2, args.Length - 2);
 
                 // Create the DOOR32.SYS
-                int Node = CreateDoor32Sys(DoorSysPath);
+                int Node = GetNodeFromDoorSys(DoorSysPath);
 
                 // Create the W32DOOR.RUN
-                string W32DoorRunPath = CreateW32DoorRun(Node, DoorCommand, DoorParameters);
+                string W32DoorRunPath = CreateW32DoorRun(Node, DoorSysPath, DoorCommand, DoorParameters);
 
                 // Wait for W32DOOR.RUN to be deleted
                 while (File.Exists(W32DoorRunPath))
@@ -55,42 +55,24 @@ namespace W32Door
             }
         }
 
-        static int CreateDoor32Sys(string doorSysPath)
-        {
-            string[] DoorSysLines = FileUtils.FileReadAllLines(doorSysPath);
-            List<string> Door32SysLines = new List<string>()
-            {
-                "2", // Telnet
-                Environment.GetEnvironmentVariable("GS_SOCKET"), // Socket handle
-                DoorSysLines[1], // Baud rate
-                ProcessUtils.ProductName + " v" + GameSrv.Version, // BBSID
-                (Convert.ToInt32(DoorSysLines[25]) + 1).ToString(), // User's record position (convert 0-based DOOR.SYS to 1-based DOOR32.SYS)
-                DoorSysLines[9], // Real name
-                DoorSysLines[35], // Alias
-                DoorSysLines[14], // Access level
-                DoorSysLines[18], // Time left (in minutes)
-                "1", // Emulation (1=ANSI, a sane default I think)
-                DoorSysLines[3] // Node number
-            };
-
-            string Door32SysPath = StringUtils.PathCombine(Path.GetDirectoryName(doorSysPath), "door32.sys");
-            Log($"Creating: {Door32SysPath}");
-            FileUtils.FileWriteAllLines(Door32SysPath, Door32SysLines.ToArray());
-
-            return Convert.ToInt32(DoorSysLines[3]); // Node number
-        }
-
-        static string CreateW32DoorRun(int node, string command, string parameters)
+        static string CreateW32DoorRun(int node, string doorSysPath, string command, string parameters)
         {
             string W32DoorRunPath = StringUtils.PathCombine(ProcessUtils.StartupPath, $"node{node}", "w32door.run");
             Log($"Creating: {W32DoorRunPath}{Environment.NewLine} - Command: {command}{Environment.NewLine} - Parameters: {parameters}");
 
             FileUtils.FileWriteAllLines(W32DoorRunPath, new string[] {
+                doorSysPath,
                 command,
                 parameters
             });
 
             return W32DoorRunPath;
+        }
+
+        static int GetNodeFromDoorSys(string doorSysPath)
+        {
+            string[] DoorSysLines = FileUtils.FileReadAllLines(doorSysPath);
+            return Convert.ToInt32(DoorSysLines[3]); // Node number
         }
 
         static void Log(string message)
