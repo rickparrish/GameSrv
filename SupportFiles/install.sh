@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Check the effective user id to see if it's root (EUID works with sudo, UID does not)
-if (( EUID != 0 )); then
+if ! [ $(id -u) = 0 ]; then
    echo "######## ########  ########   #######  ########"
    echo "##       ##     ## ##     ## ##     ## ##     ##"
    echo "##       ##     ## ##     ## ##     ## ##     ##"
