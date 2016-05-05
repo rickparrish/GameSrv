@@ -68,6 +68,8 @@ namespace RandM.GameSrv
             _LogTimer.Interval = 60000; // 1 minute
             _LogTimer.Elapsed += LogTimer_Elapsed;
             _LogTimer.Start();
+
+            RMLog.Handler += RMLog_Handler;
         }
 
         ~GameSrv()
@@ -459,6 +461,11 @@ namespace RandM.GameSrv
             EventHandler<StringEventArgs> Handler = WarningMessageEvent;
             if (Handler != null) Handler(sender, new StringEventArgs(message));
             RaiseAggregatedStatusMessageEvent(sender, "WARNING: " + message);
+        }
+
+        private void RMLog_Handler(object sender, RMLogEventArgs e)
+        {
+            AddToLog($"[{e.Level.ToString()}] {e.Message}");
         }
 
         private void ServerThread_BindFailedEvent(object sender, EventArgs e)

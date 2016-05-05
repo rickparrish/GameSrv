@@ -550,6 +550,8 @@
     <None Include="start.sh">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="stop.sh" />
+    <None Include="update_from_git.sh" />
     <None Include="_Release.cmd">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

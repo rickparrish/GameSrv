@@ -70,6 +70,7 @@ done
 
 unzip -a pty-sharp-1.0.zip
 cd pty-sharp-1.0
+chmod a+x configure
 ./configure --prefix=/usr LIBS=-lglib-2.0
 make
 make install
