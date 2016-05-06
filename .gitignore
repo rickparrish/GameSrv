@@ -9,6 +9,8 @@ bin/Release/*
 !bin/Release/RMLib.dll
 !bin/Release/RMLibUI.dll
 !bin/Release/W32Door.exe
+!bin/Release/update_from_git.ps1
+!bin/Release/update_from_git.sh
 
 #################
 ## Eclipse
