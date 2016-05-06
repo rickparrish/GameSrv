@@ -159,7 +159,7 @@ namespace RandM.GameSrv
                 if (_NodeInfo.User.Loaded)
                 {
                     // Yep, so validate the password
-                    if (_Config.ValidateRLoginPassword)
+                    if (_Config.RLoginValidatePassword)
                     {
                         if (!_NodeInfo.User.ValidatePassword(Password, _Config.PasswordPepper))
                         {
@@ -172,7 +172,39 @@ namespace RandM.GameSrv
                 else
                 {
                     // Nope, so perform the new user process with given username and password
-                    return Register(UserName, Password);
+                    if (_Config.RLoginSkipNewUserPrompts)
+                    {
+                        // We're going to just directly register the user since sysop wants to skip the prompts
+                        if (IsBannedUser(UserName))
+                        {
+                            RaiseWarningMessageEvent("RLogin user not allowed due to banned alias: '" + UserName + "'");
+                            return false;
+                        }
+                        else
+                        {
+                            lock (Globals.RegistrationLock)
+                            {
+                                if (_NodeInfo.User.StartRegistration(Alias))
+                                {
+                                    _NodeInfo.User.SetPassword(Password, _Config.PasswordPepper);
+                                    Config C = new Config();
+                                    _NodeInfo.User.UserId = C.NextUserId++;
+                                    _NodeInfo.User.SaveRegistration();
+                                    C.Save();
+                                }
+                                else
+                                {
+                                    // TODOZ This user lost the race (_NodeInfo.User.Loaded returned false above, so the user should have been free to register, but between then and .StartRegistration the alias was taken)
+                                    //       Not sure what to do in this case, aside from log that it happened
+                                    RaiseWarningMessageEvent("RLogin user lost a race condition and couldn't register as '" + UserName + "'");
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        return Register(UserName, Password);
+                    }
                 }
             }
 

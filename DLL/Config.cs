@@ -40,6 +40,8 @@ namespace RandM.GameSrv
         public string RLoginServerIP { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "RLogin"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms", MessageId = "Login")]
         public int RLoginServerPort { get; set; }
+        public bool RLoginSkipNewUserPrompts { get; set; }
+        public bool RLoginValidatePassword { get; set; }
         public string SysopEmail { get; set; }
         public string SysopFirstName { get; set; }
         public string SysopLastName { get; set; }
@@ -50,7 +52,6 @@ namespace RandM.GameSrv
         public string TimeFormatUI { get; set; }
         public int TimePerCall { get; set; }
         public string UnixUser { get; set; }
-        public bool ValidateRLoginPassword { get; set; }
         public string WebSocketServerIP { get; set; }
         public int WebSocketServerPort { get; set; }
 
@@ -67,6 +68,8 @@ namespace RandM.GameSrv
             PasswordPepper = Debugger.IsAttached ? "ABCDEFGHIJKLMNOPQRSTUVWXYZ" : StringUtils.RandomString(100);
             RLoginServerIP = "0.0.0.0";
             RLoginServerPort = 513;
+            RLoginSkipNewUserPrompts = true;
+            RLoginValidatePassword = false;
             SysopEmail = "root@localhost";
             SysopFirstName = "New";
             SysopLastName = "Sysop";
@@ -77,7 +80,6 @@ namespace RandM.GameSrv
             TimeFormatUI = "T";
             TimePerCall = 60;
             UnixUser = "gamesrv";
-            ValidateRLoginPassword = false;
             WebSocketServerIP = "0.0.0.0";
             WebSocketServerPort = 1123;
 
