@@ -160,10 +160,7 @@ namespace RandM.GameSrv
                                     {
                                         if (TypedConnection.Open(NewConnection.GetSocket()))
                                         {
-                                            if ((_ConnectionType == ConnectionType.RLogin) && !IsRLoginIP(TypedConnection.GetRemoteIP()))
-                                            {
-                                            }
-                                            else if (IsIgnoredIP(TypedConnection.GetRemoteIP()))
+                                            if (IsIgnoredIP(TypedConnection.GetRemoteIP()))
                                             {
                                                 // Do nothing for ignored IPs
                                                 TypedConnection.Close();
@@ -173,7 +170,13 @@ namespace RandM.GameSrv
                                                 RaiseMessageEvent("Incoming " + _ConnectionType.ToString() + " connection from " + TypedConnection.GetRemoteIP() + ":" + TypedConnection.GetRemotePort());
 
                                                 TerminalType TT = _TerminalType == TerminalType.AUTODETECT ? GetTerminalType(TypedConnection) : _TerminalType;
-                                                if (IsBannedIP(TypedConnection.GetRemoteIP()))
+                                                if ((_ConnectionType == ConnectionType.RLogin) && !IsRLoginIP(TypedConnection.GetRemoteIP()))
+                                                {
+                                                    // Do nothing for non-whitelisted RLogin IPs
+                                                    RaiseWarningMessageEvent("IP " + TypedConnection.GetRemoteIP() + " doesn't match RLogin IP whitelist");
+                                                    TypedConnection.Close();
+                                                }
+                                                else if (IsBannedIP(TypedConnection.GetRemoteIP()))
                                                 {
                                                     DisplayAnsi("IP_BANNED", TypedConnection, TT);
                                                     RaiseWarningMessageEvent("IP " + TypedConnection.GetRemoteIP() + " matches banned IP filter");

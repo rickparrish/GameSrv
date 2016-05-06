@@ -508,6 +508,9 @@
     <None Include="dosxtrn.pif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="gamesrv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="logs\gamesrv.log">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -550,8 +553,15 @@
     <None Include="start.sh">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="stop.sh" />
-    <None Include="update_from_git.sh" />
+    <None Include="stop.sh">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="update_from_git.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="update_from_git.sh">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="_Release.cmd">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
