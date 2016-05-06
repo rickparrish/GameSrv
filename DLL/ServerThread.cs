@@ -27,10 +27,9 @@ using System.Collections.Generic;
 
 namespace RandM.GameSrv
 {
-    class ServerThread : RMThread, IDisposable
+    class ServerThread : RMThread
     {
         private ConnectionType _ConnectionType;
-        private bool _Disposed = false;
         private string _LocalAddress;
         private int _LocalPort;
         private TerminalType _TerminalType;
@@ -52,41 +51,20 @@ namespace RandM.GameSrv
             _Paused = false;
         }
 
-        ~ServerThread()
+        protected override void Dispose(bool disposing)
         {
-            Dispose(false);
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            // This object will be cleaned up by the Dispose method.
-            // Therefore, you should call GC.SupressFinalize to
-            // take this object off the finalization queue
-            // and prevent finalization code for this object
-            // from executing a second time.
-            GC.SuppressFinalize(this);
-        }
-
-        private void Dispose(bool disposing)
-        {
-            // Check to see if Dispose has already been called.
             if (!_Disposed)
             {
-                // If disposing equals true, dispose all managed
-                // and unmanaged resources.
                 if (disposing)
                 {
-                    // Dispose managed resources.
+                    // dispose managed state (managed objects).
                 }
 
-                // Call the appropriate methods to clean up
-                // unmanaged resources here.
-                // If disposing is false,
-                // only the following code is executed.
+                // free unmanaged resources (unmanaged objects)
+                // set large fields to null.
 
-                // Note disposing has been done.
-                _Disposed = true;
+                // Call the base dispose
+                base.Dispose(disposing);
             }
         }
 

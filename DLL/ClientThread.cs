@@ -40,12 +40,11 @@ using System.Linq;
 
 namespace RandM.GameSrv
 {
-    public class ClientThread : RMThread, IDisposable
+    public class ClientThread : RMThread
     {
         private Config _Config = new Config();
         private string _CurrentMenu;
         private Dictionary<char, MenuOption> _CurrentMenuOptions = new Dictionary<char, MenuOption>();
-        private bool _Disposed = false;
         private string _LastDisplayFile = "";
         private List<string> _Log = new List<string>();
         private object _LogLock = new object();
@@ -70,32 +69,13 @@ namespace RandM.GameSrv
             _LogTimer.Start();
         }
 
-        ~ClientThread()
+        protected override void Dispose(bool disposing)
         {
-            Dispose(false);
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            // This object will be cleaned up by the Dispose method.
-            // Therefore, you should call GC.SupressFinalize to
-            // take this object off the finalization queue
-            // and prevent finalization code for this object
-            // from executing a second time.
-            GC.SuppressFinalize(this);
-        }
-
-        private void Dispose(bool disposing)
-        {
-            // Check to see if Dispose has already been called.
             if (!_Disposed)
             {
-                // If disposing equals true, dispose all managed
-                // and unmanaged resources.
                 if (disposing)
                 {
-                    // Dispose managed resources.
+                    // dispose managed state (managed objects).
                     if (_NodeInfo.Connection != null) _NodeInfo.Connection.Dispose();
 
                     if (_LogTimer != null)
@@ -105,13 +85,11 @@ namespace RandM.GameSrv
                     }
                 }
 
-                // Call the appropriate methods to clean up
-                // unmanaged resources here.
-                // If disposing is false,
-                // only the following code is executed.
+                // free unmanaged resources (unmanaged objects)
+                // set large fields to null.
 
-                // Note disposing has been done.
-                _Disposed = true;
+                // Call the base dispose
+                base.Dispose(disposing);
             }
         }
 
@@ -1830,6 +1808,7 @@ namespace RandM.GameSrv
             }
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1049:TypesThatOwnNativeResourcesShouldBeDisposable")]
         struct sbbsexec_start_t
         {
             public uint Mode;

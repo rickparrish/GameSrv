@@ -35,6 +35,7 @@ namespace RandM.GameSrv
             if (disposing && (components != null))
             {
                 components.Dispose();
+                _GameSrv.Dispose();
             }
             base.Dispose(disposing);
         }
