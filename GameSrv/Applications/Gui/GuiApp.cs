@@ -17,23 +17,28 @@
   You should have received a copy of the GNU General Public License
   along with GameSrv.  If not, see <http://www.gnu.org/licenses/>.
 */
+using RandM.RMLib;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace RandM.GameSrv
 {
-    static class Program
+    static class GuiApp
     {
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
-        [STAThread]
-        static void Main()
+        public static void Start()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            try {
+                Crt.HideConsole();
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new MainForm());
+            } finally {
+                Crt.ShowConsole();
+            }
         }
     }
 }

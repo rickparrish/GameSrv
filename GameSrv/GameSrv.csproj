@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{A00FC7A6-AED3-446A-B936-9E1E990465C7}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>RandM.GameSrv</RootNamespace>
     <AssemblyName>GameSrv</AssemblyName>
@@ -39,6 +39,9 @@
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>GameSrv.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Posix">
       <HintPath>..\..\DLL\Mono.Posix.dll</HintPath>
@@ -47,10 +50,35 @@
       <HintPath>..\..\DLL\pty-sharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Applications\Console\ConsoleApp.cs" />
+    <Compile Include="Applications\Gui\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Applications\Gui\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Applications\Gui\GuiApp.cs" />
+    <Compile Include="Applications\Service\MainService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Applications\Service\MainService.Designer.cs">
+      <DependentUpon>MainService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Applications\Service\ProjectInstaller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Applications\Service\ProjectInstaller.Designer.cs">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Applications\Service\ServiceApp.cs" />
     <Compile Include="ClientThread.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="CustomEvents.cs" />
@@ -61,13 +89,23 @@
     <Compile Include="IgnoredIPsThread.cs" />
     <Compile Include="NodeInfo.cs" />
     <Compile Include="NodeManager.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="ServerStatus.cs" />
     <Compile Include="ServerThread.cs" />
     <Compile Include="TerminalType.cs" />
     <Compile Include="UserInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\DLL\RMLibUI\RMLibUI.csproj">
+      <Project>{01c2c32e-3fc5-4241-9725-d84af6620d78}</Project>
+      <Name>RMLibUI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\DLL\RMLib\RMLib.csproj">
       <Project>{c57f0d98-f290-42c1-97bd-cd85b47a2fb4}</Project>
       <Name>RMLib</Name>
@@ -75,6 +113,49 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="GameSrv.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Applications\Gui\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Applications\Service\MainService.resx">
+      <DependentUpon>MainService.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Applications\Service\ProjectInstaller.resx">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GameSrv16+32.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GameSrv16+32InUse.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GameSrv16+32Paused.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GameSrv16+32Started.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GameSrv16+32Stopped.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GameSrv16InUse.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GameSrv16Paused.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GameSrv16Started.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GameSrv16Stopped.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

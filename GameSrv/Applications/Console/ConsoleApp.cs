@@ -1,47 +1,22 @@
-﻿/*
-  GameSrv: A BBS Door Game Server
-  Copyright (C) 2002-2014  Rick Parrish, R&M Software
-
-  This file is part of GameSrv.
-
-  GameSrv is free software: you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation, either version 3 of the License, or
-  any later version.
-
-  GameSrv is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-
-  You should have received a copy of the GNU General Public License
-  along with GameSrv.  If not, see <http://www.gnu.org/licenses/>.
-*/
+﻿using RandM.RMLib;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using System.Reflection;
-using System.Security.Principal;
-using RandM.RMLib;
 using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Text;
 
-namespace RandM.GameSrv
-{
-    class Program
-    {
+namespace RandM.GameSrv {
+    class ConsoleApp {
         static private Dictionary<ConnectionType, int> _ConnectionCounts = new Dictionary<ConnectionType, int>();
         static private bool _FancyOutput = OSUtils.IsWindows;
         static private GameSrv _GameSrv = null;
         static private string _TimeFormatFooter = "hh:mmtt";
 
-        static void Main(string[] args)
-        {
+        public static void Start(string[] args) {
             // Check command-line parameters
-            foreach (string Arg in args)
-            {
-                switch (Arg.ToLower())
-                {
+            foreach (string Arg in args) {
+                switch (Arg.ToLower()) {
                     case "24h":
                         _TimeFormatFooter = "HH:mm";
                         break;
@@ -52,8 +27,7 @@ namespace RandM.GameSrv
             }
 
             // Remove old "stop requested" file
-            if (File.Exists(StringUtils.PathCombine(ProcessUtils.StartupPath, "gamesrvconsole.stop")))
-            {
+            if (File.Exists(StringUtils.PathCombine(ProcessUtils.StartupPath, "gamesrvconsole.stop"))) {
                 FileUtils.FileDelete(StringUtils.PathCombine(ProcessUtils.StartupPath, "gamesrvconsole.stop"));
             }
 
@@ -67,8 +41,7 @@ namespace RandM.GameSrv
             Write(Globals.Copyright, false);
 
             // Check if running as root
-            if (Globals.StartedAsRoot)
-            {
+            if (Globals.StartedAsRoot) {
                 WriteLn("", false);
                 WriteLn("*** WARNING: Running GameSrv as root is NOT recommended ***", false);
                 WriteLn("", false);
@@ -90,22 +63,17 @@ namespace RandM.GameSrv
             int LastMinute = -1;
             int LastSecond = -1;
             bool Quit = false;
-            while (!Quit)
-            {
-                while (!Crt.KeyPressed())
-                {
+            while (!Quit) {
+                while (!Crt.KeyPressed()) {
                     Crt.Delay(100);
-                    if (DateTime.Now.Minute != LastMinute)
-                    {
+                    if (DateTime.Now.Minute != LastMinute) {
                         UpdateTime();
                         LastMinute = DateTime.Now.Minute;
                     }
 
-                    if ((DateTime.Now.Second % 2 == 0) && (DateTime.Now.Second != LastSecond))
-                    {
+                    if ((DateTime.Now.Second % 2 == 0) && (DateTime.Now.Second != LastSecond)) {
                         LastSecond = DateTime.Now.Second;
-                        if (File.Exists(StringUtils.PathCombine(ProcessUtils.StartupPath, "gamesrvconsole.stop")))
-                        {
+                        if (File.Exists(StringUtils.PathCombine(ProcessUtils.StartupPath, "gamesrvconsole.stop"))) {
                             FileUtils.FileDelete(StringUtils.PathCombine(ProcessUtils.StartupPath, "gamesrvconsole.stop"));
 
                             _GameSrv.Stop();
@@ -116,11 +84,9 @@ namespace RandM.GameSrv
                     }
                 }
 
-                if (Crt.KeyPressed())
-                {
+                if (Crt.KeyPressed()) {
                     char Ch = Crt.ReadKey();
-                    switch (Ch.ToString().ToUpper())
-                    {
+                    switch (Ch.ToString().ToUpper()) {
                         case "\0":
                             char Ch2 = Crt.ReadKey();
                             if (Ch2 == ';') // F1
@@ -148,18 +114,15 @@ namespace RandM.GameSrv
                             break;
                         case "Q":
                             // Check if we're already stopped (or are stopping)
-                            if ((_GameSrv.Status != ServerStatus.Stopped) && (_GameSrv.Status != ServerStatus.Stopping))
-                            {
+                            if ((_GameSrv.Status != ServerStatus.Stopped) && (_GameSrv.Status != ServerStatus.Stopping)) {
                                 int ConnectionCount = _GameSrv.ConnectionCount;
-                                if (ConnectionCount > 0)
-                                {
+                                if (ConnectionCount > 0) {
                                     WriteLn("", false);
                                     WriteLn("There are " + ConnectionCount.ToString() + " active connections.", false);
                                     WriteLn("Are you sure you want to quit [y/N]: ", false);
                                     WriteLn("", false);
                                     Ch = Crt.ReadKey();
-                                    if (Ch.ToString().ToUpper() != "Y")
-                                    {
+                                    if (Ch.ToString().ToUpper() != "Y") {
                                         WriteLn("", false);
                                         WriteLn("Cancelling quit request.", false);
                                         WriteLn("", false);
@@ -179,15 +142,12 @@ namespace RandM.GameSrv
             Environment.Exit(0);
         }
 
-        static void GameSrv_AggregatedStatusMessageEvent(object sender, StringEventArgs e)
-        {
+        static void GameSrv_AggregatedStatusMessageEvent(object sender, StringEventArgs e) {
             WriteLn(e.Text);
         }
 
-        static void GameSrv_LogOnEvent(object sender, NodeEventArgs e)
-        {
-            if (_FancyOutput)
-            {
+        static void GameSrv_LogOnEvent(object sender, NodeEventArgs e) {
+            if (_FancyOutput) {
                 _ConnectionCounts[e.NodeInfo.ConnectionType] += 1;
 
                 Crt.FastWrite(StringUtils.PadRight(e.NodeInfo.User.Alias + " (" + e.NodeInfo.Connection.GetRemoteIP() + ":" + e.NodeInfo.Connection.GetRemotePort() + ")", ' ', 65), 8, 1, (Crt.Blue << 4) + Crt.White);
@@ -200,10 +160,8 @@ namespace RandM.GameSrv
             }
         }
 
-        private static void InitConsole()
-        {
-            if (_FancyOutput)
-            {
+        private static void InitConsole() {
+            if (_FancyOutput) {
                 Crt.SetTitle("GameSrv WFC Screen v" + GameSrv.Version);
                 Crt.SetWindowSize(90, 40);
                 Crt.HideCursor();
@@ -217,59 +175,44 @@ namespace RandM.GameSrv
                 // Setup scrolling region with a window
                 Crt.Window(3, 5, 88, 36);
                 Crt.GotoXY(1, 32);
-            }
-            else
-            {
+            } else {
                 Crt.ClrScr();
             }
         }
 
-        private static void UpdateTime()
-        {
-            if (_FancyOutput)
-            {
+        private static void UpdateTime() {
+            if (_FancyOutput) {
                 // Update time
                 Crt.FastWrite(StringUtils.PadRight(DateTime.Now.ToString(_TimeFormatFooter).ToLower(), ' ', 7), 9, 38, Crt.LightGreen);
                 Crt.FastWrite(StringUtils.PadRight(DateTime.Now.ToString("dddd MMMM dd, yyyy"), ' ', 28), 23, 38, Crt.LightGreen);
             }
         }
 
-        static private void Write(string text)
-        {
+        static private void Write(string text) {
             Write(text, true);
         }
 
-        static private void Write(string text, bool prefixWithTime)
-        {
+        static private void Write(string text, bool prefixWithTime) {
             if (prefixWithTime && (!string.IsNullOrEmpty(text))) Crt.Write(DateTime.Now.ToString(_GameSrv.TimeFormatUI) + "  ");
 
-            if (text.Contains("ERROR:") || text.Contains("EXCEPTION:"))
-            {
+            if (text.Contains("ERROR:") || text.Contains("EXCEPTION:")) {
                 Crt.TextColor(Crt.LightRed);
-            }
-            else if (text.Contains("WARNING:"))
-            {
+            } else if (text.Contains("WARNING:")) {
                 Crt.TextColor(Crt.Yellow);
-            }
-            else if (text.Contains("DEBUG:"))
-            {
+            } else if (text.Contains("DEBUG:")) {
                 Crt.TextColor(Crt.LightCyan);
-            }
-            else
-            {
+            } else {
                 Crt.TextColor(Crt.LightGray);
             }
 
             Crt.Write(text);
         }
 
-        static private void WriteLn(string text)
-        {
+        static private void WriteLn(string text) {
             Write(text + "\r\n");
         }
 
-        static private void WriteLn(string text, bool prefixWithTime)
-        {
+        static private void WriteLn(string text, bool prefixWithTime) {
             Write(text + "\r\n", prefixWithTime);
         }
     }

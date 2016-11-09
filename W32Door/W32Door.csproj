@@ -49,7 +49,7 @@
       <Project>{c57f0d98-f290-42c1-97bd-cd85b47a2fb4}</Project>
       <Name>RMLib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DLL\GameSrv.csproj">
+    <ProjectReference Include="..\GameSrv\GameSrv.csproj">
       <Project>{a00fc7a6-aed3-446a-b936-9e1e990465c7}</Project>
       <Name>GameSrv</Name>
     </ProjectReference>

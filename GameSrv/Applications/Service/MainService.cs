@@ -28,11 +28,11 @@ using System.Text;
 namespace RandM.GameSrv
 {
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "svc")]
-    public partial class svcMain : ServiceBase
+    public partial class MainService : ServiceBase
     {
         private GameSrv _GameSrv = new GameSrv();
 
-        public svcMain()
+        public MainService()
         {
             InitializeComponent();
         }

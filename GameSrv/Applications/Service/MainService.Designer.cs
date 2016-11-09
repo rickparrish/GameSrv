@@ -19,7 +19,7 @@
 */
 namespace RandM.GameSrv
 {
-    partial class svcMain
+    partial class MainService
     {
         /// <summary> 
         /// Required designer variable.

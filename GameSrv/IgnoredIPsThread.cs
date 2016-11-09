@@ -80,8 +80,8 @@ namespace RandM.GameSrv
                     RaiseExceptionEvent("Unable to combine Ignored IPs lists", ex);
                 }
 
-                // Get the user
-                _StopEvent.WaitOne(3600000); // Wait for one hour before updating again
+                // Wait for one hour before updating again
+                if (!_Stop && (_StopEvent != null)) _StopEvent.WaitOne(3600000); 
             }
         }
 
