@@ -146,6 +146,9 @@ namespace RandM.GameSrv
                             return false;
                         }
                     }
+
+                    // TODOX Add option where password is validated at the server-level instead of user level
+                    //       That would allow someone to allow RLogin to anybody, but only if they had the right password
                 }
                 else
                 {
