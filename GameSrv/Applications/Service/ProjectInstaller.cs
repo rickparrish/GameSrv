@@ -23,13 +23,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration.Install;
 
-namespace RandM.GameSrv
-{
+namespace RandM.GameSrv {
     [RunInstaller(true)]
-    public partial class ProjectInstaller : System.Configuration.Install.Installer
-    {
-        public ProjectInstaller()
-        {
+    public partial class ProjectInstaller : System.Configuration.Install.Installer {
+        public ProjectInstaller() {
             InitializeComponent();
         }
     }

@@ -22,15 +22,12 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace RandM.GameSrv
-{
-    static class GuiApp
-    {
+namespace RandM.GameSrv {
+    static class GuiApp {
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
-        public static void Start()
-        {
+        public static void Start() {
             try {
                 Crt.HideConsole();
                 Application.EnableVisualStyles();

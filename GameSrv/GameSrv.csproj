@@ -87,7 +87,6 @@
     <Compile Include="_ToRefactor\DoorInfo.cs" />
     <Compile Include="_ToRefactor\GameSrv.cs" />
     <Compile Include="_ToRefactor\Globals.cs" />
-    <Compile Include="_ToRefactor\GlobalSuppressions.cs" />
     <Compile Include="_ToRefactor\IgnoredIPsThread.cs" />
     <Compile Include="_ToRefactor\NodeInfo.cs" />
     <Compile Include="_ToRefactor\NodeManager.cs" />

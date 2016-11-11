@@ -25,10 +25,8 @@ using System.Threading;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 
-namespace RandM.GameSrv
-{
-    class ServerThread : RMThread
-    {
+namespace RandM.GameSrv {
+    class ServerThread : RMThread {
         private ConnectionType _ConnectionType;
         private string _LocalAddress;
         private int _LocalPort;
@@ -38,8 +36,7 @@ namespace RandM.GameSrv
         public event EventHandler BoundEvent = null;
         public event EventHandler<ConnectEventArgs> ConnectEvent = null;
 
-        public ServerThread(string localAddress, int localPort, ConnectionType connectionType, TerminalType terminalType)
-        {
+        public ServerThread(string localAddress, int localPort, ConnectionType connectionType, TerminalType terminalType) {
             _LocalAddress = localAddress;
             _LocalPort = localPort;
             _ConnectionType = connectionType;
@@ -47,12 +44,9 @@ namespace RandM.GameSrv
             _Paused = false;
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (!_Disposed)
-            {
-                if (disposing)
-                {
+        protected override void Dispose(bool disposing) {
+            if (!_Disposed) {
+                if (disposing) {
                     // dispose managed state (managed objects).
                 }
 
@@ -64,62 +58,44 @@ namespace RandM.GameSrv
             }
         }
 
-        private void DisplayAnsi(string fileName, TcpConnection connection, TerminalType terminalType)
-        {
-            try
-            {
+        private void DisplayAnsi(string fileName, TcpConnection connection, TerminalType terminalType) {
+            try {
                 List<string> FileNames = new List<string>();
-                if (terminalType == TerminalType.RIP)
-                {
+                if (terminalType == TerminalType.RIP) {
                     FileNames.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "ansi", fileName.ToLower() + ".rip"));
                 }
-                if ((terminalType == TerminalType.RIP) || (terminalType == TerminalType.ANSI))
-                {
+                if ((terminalType == TerminalType.RIP) || (terminalType == TerminalType.ANSI)) {
                     FileNames.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "ansi", fileName.ToLower() + ".ans"));
                 }
                 FileNames.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "ansi", fileName.ToLower() + ".asc"));
 
-                foreach (string FullFileName in FileNames)
-                {
-                    if (File.Exists(FullFileName))
-                    {
+                foreach (string FullFileName in FileNames) {
+                    if (File.Exists(FullFileName)) {
                         connection.Write(FileUtils.FileReadAllText(FullFileName));
                         break;
                     }
                 }
-            }
-            catch (IOException ioex)
-            {
+            } catch (IOException ioex) {
                 RMLog.Exception(ioex, "Unable to display '" + fileName + "'");
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 RMLog.Exception(ex, "Unable to display '" + fileName + "'");
             }
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
-        protected override void Execute()
-        {
-            using (TcpConnection Connection = new TcpConnection())
-            {
-                if (Connection.Listen(_LocalAddress, _LocalPort))
-                {
+        protected override void Execute() {
+            using (TcpConnection Connection = new TcpConnection()) {
+                if (Connection.Listen(_LocalAddress, _LocalPort)) {
                     BoundEvent?.Invoke(this, EventArgs.Empty);
 
-                    while (!_Stop)
-                    {
+                    while (!_Stop) {
                         // Accept an incoming connection
                         if (Connection.CanAccept(1000)) // 1 second
                         {
-                            try
-                            {
+                            try {
                                 TcpConnection NewConnection = Connection.AcceptTCP();
-                                if (NewConnection != null)
-                                {
+                                if (NewConnection != null) {
                                     TcpConnection TypedConnection = null;
-                                    switch (_ConnectionType)
-                                    {
+                                    switch (_ConnectionType) {
                                         case ConnectionType.RLogin:
                                             TypedConnection = new RLoginConnection();
                                             break;
@@ -130,116 +106,81 @@ namespace RandM.GameSrv
                                             TypedConnection = new WebSocketConnection();
                                             break;
                                     }
-                                    if (TypedConnection != null)
-                                    {
-                                        if (TypedConnection.Open(NewConnection.GetSocket()))
-                                        {
-                                            if (IsIgnoredIP(TypedConnection.GetRemoteIP()))
-                                            {
+                                    if (TypedConnection != null) {
+                                        if (TypedConnection.Open(NewConnection.GetSocket())) {
+                                            if (IsIgnoredIP(TypedConnection.GetRemoteIP())) {
                                                 // Do nothing for ignored IPs
                                                 TypedConnection.Close();
-                                            }
-                                            else
-                                            {
+                                            } else {
                                                 RMLog.Info("Incoming " + _ConnectionType.ToString() + " connection from " + TypedConnection.GetRemoteIP() + ":" + TypedConnection.GetRemotePort());
 
                                                 TerminalType TT = _TerminalType == TerminalType.AUTODETECT ? GetTerminalType(TypedConnection) : _TerminalType;
-                                                if ((_ConnectionType == ConnectionType.RLogin) && !IsRLoginIP(TypedConnection.GetRemoteIP()))
-                                                {
+                                                if ((_ConnectionType == ConnectionType.RLogin) && !IsRLoginIP(TypedConnection.GetRemoteIP())) {
                                                     // Do nothing for non-whitelisted RLogin IPs
                                                     RMLog.Warning("IP " + TypedConnection.GetRemoteIP() + " doesn't match RLogin IP whitelist");
                                                     TypedConnection.Close();
-                                                }
-                                                else if (IsBannedIP(TypedConnection.GetRemoteIP()))
-                                                {
+                                                } else if (IsBannedIP(TypedConnection.GetRemoteIP())) {
                                                     DisplayAnsi("IP_BANNED", TypedConnection, TT);
                                                     RMLog.Warning("IP " + TypedConnection.GetRemoteIP() + " matches banned IP filter");
                                                     TypedConnection.Close();
-                                                }
-                                                else if (_Paused)
-                                                {
+                                                } else if (_Paused) {
                                                     DisplayAnsi("SERVER_PAUSED", TypedConnection, TT);
                                                     TypedConnection.Close();
-                                                }
-                                                else
-                                                {
-                                                    if (!TypedConnection.Connected)
-                                                    {
+                                                } else {
+                                                    if (!TypedConnection.Connected) {
                                                         RMLog.Info("No carrier detected (maybe it was a 'ping'?)");
                                                         TypedConnection.Close();
-                                                    }
-                                                    else
-                                                    {
+                                                    } else {
                                                         ClientThread NewClientThread = new ClientThread();
                                                         int NewNode = RaiseConnectEvent(ref NewClientThread);
-                                                        if (NewNode == 0)
-                                                        {
+                                                        if (NewNode == 0) {
                                                             NewClientThread.Dispose();
                                                             DisplayAnsi("SERVER_BUSY", TypedConnection, TT);
                                                             TypedConnection.Close();
-                                                        }
-                                                        else
-                                                        {
+                                                        } else {
                                                             NewClientThread.Start(NewNode, TypedConnection, _ConnectionType, TT);
                                                         }
                                                     }
                                                 }
                                             }
-                                        }
-                                        else
-                                        {
-                                            if (_ConnectionType == ConnectionType.RLogin)
-                                            {
+                                        } else {
+                                            if (_ConnectionType == ConnectionType.RLogin) {
                                                 RMLog.Info("Timeout waiting for RLogin header");
-                                            }
-                                            else
-                                            {
+                                            } else {
                                                 RMLog.Info("No carrier detected (maybe it was a 'ping'?)");
                                             }
                                             TypedConnection.Close();
                                         }
                                     }
                                 }
-                            }
-                            catch (Exception ex)
-                            {
+                            } catch (Exception ex) {
                                 RMLog.Exception(ex, "Error in ServerThread::Execute()");
                             }
                         }
                     }
-                }
-                else
-                {
+                } else {
                     RMLog.Error("Server Thread unable to listen on " + _LocalAddress + ":" + _LocalPort);
                     BindFailedEvent?.Invoke(this, EventArgs.Empty);
                 }
             }
         }
 
-        private bool FileContainsIP(string filename, string ip)
-        {
+        private bool FileContainsIP(string filename, string ip) {
             // TODOZ Handle IPv6
             string[] ConnectionOctets = ip.Split('.');
-            if (ConnectionOctets.Length == 4)
-            {
+            if (ConnectionOctets.Length == 4) {
                 string[] FileIPs = FileUtils.FileReadAllLines(filename);
-                foreach (string FileIP in FileIPs)
-                {
+                foreach (string FileIP in FileIPs) {
                     if (FileIP.StartsWith(";")) continue;
 
                     string[] FileOctets = FileIP.Split('.');
-                    if (FileOctets.Length == 4)
-                    {
+                    if (FileOctets.Length == 4) {
                         bool Match = true;
-                        for (int i = 0; i < 4; i++)
-                        {
-                            if ((FileOctets[i] == "*") || (FileOctets[i] == ConnectionOctets[i]))
-                            {
+                        for (int i = 0; i < 4; i++) {
+                            if ((FileOctets[i] == "*") || (FileOctets[i] == ConnectionOctets[i])) {
                                 // We still have a match
                                 continue;
-                            }
-                            else
-                            {
+                            } else {
                                 // No longer have a match
                                 Match = false;
                                 break;
@@ -256,10 +197,8 @@ namespace RandM.GameSrv
         }
 
         // Logic for this terminal type detection taken from Synchronet's ANSWER.CPP
-        private TerminalType GetTerminalType(TcpConnection connection)
-        {
-            try
-            {
+        private TerminalType GetTerminalType(TcpConnection connection) {
+            try {
                 /* Detect terminal type */
                 Thread.Sleep(200);
                 connection.ReadString();		/* flush input buffer */
@@ -281,8 +220,7 @@ namespace RandM.GameSrv
                 char? c = '\0';
                 int i = 0;
                 string str = "";
-                while (i++ < 50)
-                { 	/* wait up to 5 seconds for response */
+                while (i++ < 50) { 	/* wait up to 5 seconds for response */
                     c = connection.ReadChar(100);
                     if (connection.ReadTimedOut)
                         continue;
@@ -295,111 +233,78 @@ namespace RandM.GameSrv
                     if (string.IsNullOrEmpty(str) && c != '\x1b')	// response must begin with escape char
                         continue;
                     str += c;
-                    if (c == 'R')
-                    {   /* break immediately if ANSI response */
+                    if (c == 'R') {   /* break immediately if ANSI response */
                         Thread.Sleep(500);
                         break;
                     }
                 }
 
-                while (connection.CanRead(100))
-                {
+                while (connection.CanRead(100)) {
                     str += connection.ReadString();
                 }
 
-                if (str.ToUpper().Contains("RIPSCRIP"))
-                {
+                if (str.ToUpper().Contains("RIPSCRIP")) {
                     return TerminalType.RIP;
-                }
-                else if (Regex.IsMatch(str, "\\x1b[[]\\d{1,3};\\d{1,3}R"))
-                {
+                } else if (Regex.IsMatch(str, "\\x1b[[]\\d{1,3};\\d{1,3}R")) {
                     return TerminalType.ANSI;
                 }
-            }
-            catch (Exception)
-            {
+            } catch (Exception) {
                 // Ignore, we'll just assume ASCII if something bad happens
             }
 
             return TerminalType.ASCII;
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
-        private bool IsBannedIP(string ip)
-        {
-            try
-            {
+        private bool IsBannedIP(string ip) {
+            try {
                 string BannedIPsFileName = StringUtils.PathCombine(ProcessUtils.StartupPath, "config", "banned-ips.txt");
-                if (File.Exists(BannedIPsFileName))
-                {
+                if (File.Exists(BannedIPsFileName)) {
                     return FileContainsIP(BannedIPsFileName, ip);
-                }
-                else
-                {
+                } else {
                     // No file means not banned
                     return false;
                 }
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 RMLog.Exception(ex, "Unable to validate client IP against banned-ips.txt");
                 return false; // Give them the benefit of the doubt on error
             }
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
-        private bool IsIgnoredIP(string ip)
-        {
-            try
-            {
+        private bool IsIgnoredIP(string ip) {
+            try {
                 if (Globals.IsTempIgnoredIP(ip)) return true;
 
                 string IgnoredIPsFileName = StringUtils.PathCombine(ProcessUtils.StartupPath, "config", "ignored-ips-combined.txt");
-                if (File.Exists(IgnoredIPsFileName))
-                {
+                if (File.Exists(IgnoredIPsFileName)) {
                     return FileContainsIP(IgnoredIPsFileName, ip);
-                }
-                else
-                {
+                } else {
                     // No file means not ignored
                     return false;
                 }
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 RMLog.Exception(ex, "Unable to validate client IP against ignored-ips.txt");
                 return false; // Give them the benefit of the doubt on error
             }
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
-        private bool IsRLoginIP(string ip)
-        {
-            try
-            {
+        private bool IsRLoginIP(string ip) {
+            try {
                 string RLoginIPsFileName = StringUtils.PathCombine(ProcessUtils.StartupPath, "config", "rlogin-ips.txt");
-                if (File.Exists(RLoginIPsFileName))
-                {
+                if (File.Exists(RLoginIPsFileName)) {
                     return FileContainsIP(RLoginIPsFileName, ip);
-                }
-                else
-                {
+                } else {
                     // No file means any RLogin connection allowed
                     return true;
                 }
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 RMLog.Exception(ex, "Unable to validate client IP against ignored-ips.txt");
                 return true; // Give them the benefit of the doubt on error
             }
         }
 
-        private int RaiseConnectEvent(ref ClientThread clientThread)
-        {
+        private int RaiseConnectEvent(ref ClientThread clientThread) {
             EventHandler<ConnectEventArgs> Handler = ConnectEvent;
-            if (Handler != null)
-            {
+            if (Handler != null) {
                 ConnectEventArgs e = new ConnectEventArgs(clientThread);
                 Handler(this, e);
                 return e.Node;

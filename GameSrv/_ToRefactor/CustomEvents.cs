@@ -20,50 +20,41 @@
 using System;
 using System.Collections.Specialized;
 
-namespace RandM.GameSrv
-{
-    public class ConnectEventArgs : EventArgs
-    {
+namespace RandM.GameSrv {
+    public class ConnectEventArgs : EventArgs {
         public ClientThread ClientThread { get; private set; }
         public int Node { get; set; }
 
-        public ConnectEventArgs(ClientThread clientThread)
-        {
+        public ConnectEventArgs(ClientThread clientThread) {
             ClientThread = clientThread;
             Node = -1;
         }
     }
 
-    public class NodeEventArgs : EventArgs
-    {
+    public class NodeEventArgs : EventArgs {
         public NodeInfo NodeInfo { get; private set; }
         public string Status { get; private set; }
         public NodeEventType EventType { get; private set; }
 
-        public NodeEventArgs(NodeInfo nodeInfo, string status, NodeEventType eventType)
-        {
+        public NodeEventArgs(NodeInfo nodeInfo, string status, NodeEventType eventType) {
             NodeInfo = nodeInfo;
             Status = status;
             EventType = eventType;
         }
     }
 
-    public class StatusEventArgs : EventArgs
-    {
+    public class StatusEventArgs : EventArgs {
         public GameSrvStatus Status { get; private set; }
 
-        public StatusEventArgs(GameSrvStatus status)
-        {
+        public StatusEventArgs(GameSrvStatus status) {
             Status = status;
         }
     }
 
-    public class WhoIsOnlineEventArgs : EventArgs
-    {
+    public class WhoIsOnlineEventArgs : EventArgs {
         public StringDictionary WhoIsOnline { get; private set; }
 
-        public WhoIsOnlineEventArgs()
-        {
+        public WhoIsOnlineEventArgs() {
             WhoIsOnline = new StringDictionary();
         }
     }

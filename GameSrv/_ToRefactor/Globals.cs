@@ -27,11 +27,8 @@ using System.IO;
 using System.Security.Principal;
 using System.Text;
 
-namespace RandM.GameSrv
-{
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Globals")]
-    public static class Globals
-    {
+namespace RandM.GameSrv {
+    public static class Globals {
         public static bool Debug { get; set; }
         public static Collection<string> Log = new Collection<string>();
         public static object PrivilegeLock = new object();
@@ -44,13 +41,10 @@ namespace RandM.GameSrv
 
         private static WindowsImpersonationContext _WIC = null;
 
-        static Globals()
-        {
+        static Globals() {
             Debug = Debugger.IsAttached;
-            foreach (string arg in Environment.GetCommandLineArgs())
-            {
-                if (arg.ToUpper() == "DEBUG")
-                {
+            foreach (string arg in Environment.GetCommandLineArgs()) {
+                if (arg.ToUpper() == "DEBUG") {
                     Debug = true;
                     break;
                 }
@@ -59,39 +53,28 @@ namespace RandM.GameSrv
             StartedAsRoot = ((OSUtils.IsUnix) && (WindowsIdentity.GetCurrent().Token == IntPtr.Zero));
         }
 
-        public static void AddTempIgnoredIP(string ip)
-        {
-            lock (_TempIgnoredIPsLock)
-            {
-                if (TempIgnoredIPs.ContainsKey(ip))
-                {
+        public static void AddTempIgnoredIP(string ip) {
+            lock (_TempIgnoredIPsLock) {
+                if (TempIgnoredIPs.ContainsKey(ip)) {
                     // Key exists, so just update the time
                     TempIgnoredIPs[ip] = DateTime.Now;
-                }
-                else
-                {
+                } else {
                     // Key does not exist, so add it
                     TempIgnoredIPs.Add(ip, DateTime.Now);
                 }
             }
         }
 
-        public static void DropRoot(string dropToUser)
-        {
+        public static void DropRoot(string dropToUser) {
             if (!StartedAsRoot) return;
 
-            lock (_RootLock)
-            {
+            lock (_RootLock) {
                 // If we're on a Unix machine, and running as root, drop privilege
-                if ((OSUtils.IsUnix) && (_WIC == null) && (WindowsIdentity.GetCurrent().Token == IntPtr.Zero))
-                {
-                    using (WindowsIdentity Before = WindowsIdentity.GetCurrent())
-                    {
-                        using (WindowsIdentity DropTo = new WindowsIdentity(dropToUser))
-                        {
+                if ((OSUtils.IsUnix) && (_WIC == null) && (WindowsIdentity.GetCurrent().Token == IntPtr.Zero)) {
+                    using (WindowsIdentity Before = WindowsIdentity.GetCurrent()) {
+                        using (WindowsIdentity DropTo = new WindowsIdentity(dropToUser)) {
                             _WIC = DropTo.Impersonate();
-                            using (WindowsIdentity After = WindowsIdentity.GetCurrent())
-                            {
+                            using (WindowsIdentity After = WindowsIdentity.GetCurrent()) {
                                 if (After.Name != dropToUser) throw new ArgumentOutOfRangeException("dropToUser", "requested user account '" + dropToUser + "' does not exist");
                             }
                         }
@@ -100,25 +83,18 @@ namespace RandM.GameSrv
             }
         }
 
-        public static string Copyright
-        {
-            get
-            {
+        public static string Copyright {
+            get {
                 string Result = "";
                 Result += ProcessUtils.ProductNameOfCallingAssembly + " " + ProcessUtils.ProductVersionOfCallingAssembly + " is copyright Rick Parrish, R&M Software\r\n";
                 Result += "\r\n";
-                if (OSUtils.IsWin9x)
-                {
+                if (OSUtils.IsWin9x) {
                     Result += "dosxtrn.exe, sbbsexec.vxd and code ported from Synchronet's xtrn.cpp are copyright Rob Swindell - http://www.synchro.net/copyright.html\r\n";
                     Result += "\r\n";
-                }
-                else if (OSUtils.IsWinNT)
-                {
+                } else if (OSUtils.IsWinNT) {
                     Result += "dosxtrn.exe, sbbsexec.dll and code ported from Synchronet's xtrn.cpp are copyright Rob Swindell - http://www.synchro.net/copyright.html\r\n";
                     Result += "\r\n";
-                }
-                else if (OSUtils.IsUnix)
-                {
+                } else if (OSUtils.IsUnix) {
                     Result += "dosemu integration code ported from Synchronet's xtrn.cpp is copyright Rob Swindell - http://www.synchro.net/copyright.html\r\n";
                     Result += "\r\n";
                     Result += "pty-sharp.dll is copyright Miguel de Icaza\r\n";
@@ -133,54 +109,41 @@ namespace RandM.GameSrv
             }
         }
 
-        public static bool IsDOSBoxInstalled()
-        {
+        public static bool IsDOSBoxInstalled() {
             string ProgramFilesX86 = Environment.GetEnvironmentVariable("PROGRAMFILES(X86)") ?? Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
             string DOSBoxExe = StringUtils.PathCombine(ProgramFilesX86, @"DOSBox-0.73\dosbox.exe"); // TODOZ add configuration variable so this path is not hardcoded
-            return File.Exists(DOSBoxExe); 
+            return File.Exists(DOSBoxExe);
         }
 
-        public static bool IsDOSEMUInstalled()
-        {
+        public static bool IsDOSEMUInstalled() {
             return File.Exists("/usr/bin/dosemu.bin"); // TODOZ add configuration variable so this path is not hardcoded
         }
 
-        public static bool IsTempIgnoredIP(string ip)
-        {
-            lock (_TempIgnoredIPsLock)
-            {
-                if (TempIgnoredIPs.ContainsKey(ip))
-                {
+        public static bool IsTempIgnoredIP(string ip) {
+            lock (_TempIgnoredIPsLock) {
+                if (TempIgnoredIPs.ContainsKey(ip)) {
                     // Key exists, check if it has expired
-                    if (DateTime.Now.Subtract(TempIgnoredIPs[ip]).TotalMinutes >= 10)
-                    {
+                    if (DateTime.Now.Subtract(TempIgnoredIPs[ip]).TotalMinutes >= 10) {
                         // Expired, remove record
                         TempIgnoredIPs.Remove(ip);
                         return false;
-                    }
-                    else
-                    {
+                    } else {
                         // Not expired, still ignored
                         return true;
                     }
-                }
-                else
-                {
+                } else {
                     // Not ignored
                     return false;
                 }
             }
         }
 
-        public static void NeedRoot()
-        {
+        public static void NeedRoot() {
             if (!StartedAsRoot) return;
 
-            lock (_RootLock)
-            {
+            lock (_RootLock) {
                 // If we're on a Unix machine, raise back to root privilege
-                if ((OSUtils.IsUnix) && (_WIC != null) && (WindowsIdentity.GetCurrent().Token != IntPtr.Zero))
-                {
+                if ((OSUtils.IsUnix) && (_WIC != null) && (WindowsIdentity.GetCurrent().Token != IntPtr.Zero)) {
                     WindowsIdentity Before = WindowsIdentity.GetCurrent();
                     _WIC.Undo();
                     _WIC = null;
@@ -190,9 +153,7 @@ namespace RandM.GameSrv
         }
     }
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms", MessageId = "Login"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "RLogin")]
-    public enum RLoginMode
-    {
+    public enum RLoginMode {
         Classic,
         Web
     }

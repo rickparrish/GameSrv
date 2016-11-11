@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace RandM.GameSrv
-{
-    public enum TerminalType
-    {
+namespace RandM.GameSrv {
+    public enum TerminalType {
         ANSI,
         ASCII,
         AUTODETECT,

@@ -23,11 +23,8 @@ using RandM.RMLib;
 using System;
 using System.Diagnostics;
 
-namespace RandM.GameSrv
-{
-    public class Config : ConfigHelper
-    {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "BBS")]
+namespace RandM.GameSrv {
+    public class Config : ConfigHelper {
         public string BBSName { get; set; }
         public int FirstNode { get; set; }
         public string FlashSocketPolicyServerIP { get; set; }
@@ -36,9 +33,7 @@ namespace RandM.GameSrv
         public int NextUserId { get; set; }
         public string NewUserPassword { get; set; }
         public string PasswordPepper { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms", MessageId = "Login"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "RLogin")]
         public string RLoginServerIP { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "RLogin"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms", MessageId = "Login")]
         public int RLoginServerPort { get; set; }
         public bool RLoginSkipNewUserPrompts { get; set; }
         public bool RLoginValidatePassword { get; set; }
@@ -56,8 +51,7 @@ namespace RandM.GameSrv
         public int WebSocketServerPort { get; set; }
 
         public Config()
-            : base(ConfigSaveLocation.Relative, StringUtils.PathCombine("config", "gamesrv.ini"))
-        {
+            : base(ConfigSaveLocation.Relative, StringUtils.PathCombine("config", "gamesrv.ini")) {
             BBSName = "New GameSrv BBS";
             FirstNode = 1;
             FlashSocketPolicyServerIP = "0.0.0.0";
@@ -85,21 +79,17 @@ namespace RandM.GameSrv
 
             Load();
 
-            if (base.Loaded)
-            {
+            if (base.Loaded) {
                 // Check for blank pepper (means it was the first time the config was loaded, and there's no value yet)
-                if (string.IsNullOrEmpty(PasswordPepper))
-                {
+                if (string.IsNullOrEmpty(PasswordPepper)) {
                     PasswordPepper = Debugger.IsAttached ? "ABCDEFGHIJKLMNOPQRSTUVWXYZ" : StringUtils.RandomString(100);
                     Save();
                 }
             }
         }
 
-        public string ServerPorts
-        {
-            get
-            {
+        public string ServerPorts {
+            get {
                 List<string> Result = new List<string>();
                 if (RLoginServerPort > 0) Result.Add(RLoginServerPort.ToString());
                 if (TelnetServerPort > 0) Result.Add(TelnetServerPort.ToString());
@@ -108,8 +98,7 @@ namespace RandM.GameSrv
             }
         }
 
-        public new void Save()
-        {
+        public new void Save() {
             base.Save();
         }
     }

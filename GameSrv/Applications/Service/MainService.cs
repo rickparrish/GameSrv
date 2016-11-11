@@ -25,45 +25,36 @@ using System.Diagnostics;
 using System.ServiceProcess;
 using System.Text;
 
-namespace RandM.GameSrv
-{
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "svc")]
-    public partial class MainService : ServiceBase
-    {
+namespace RandM.GameSrv {
+    public partial class MainService : ServiceBase {
         private GameSrv _GameSrv = new GameSrv();
 
-        public MainService()
-        {
+        public MainService() {
             InitializeComponent();
         }
 
-        protected override void OnContinue()
-        {
+        protected override void OnContinue() {
             base.OnContinue();
             _GameSrv.Start();
         }
 
-        protected override void OnStart(string[] args)
-        {
+        protected override void OnStart(string[] args) {
             base.OnStart(args);
             _GameSrv.Start();
         }
 
-        protected override void OnPause()
-        {
+        protected override void OnPause() {
             base.OnPause();
             _GameSrv.Pause();
         }
 
-        protected override void OnShutdown()
-        {
+        protected override void OnShutdown() {
             base.OnShutdown();
             _GameSrv.Stop();
             _GameSrv.Dispose();
         }
 
-        protected override void OnStop()
-        {
+        protected override void OnStop() {
             base.OnStop();
             _GameSrv.Stop();
             _GameSrv.Dispose();

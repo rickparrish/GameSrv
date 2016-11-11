@@ -30,11 +30,8 @@ using System.Timers;
 using System.Globalization;
 using System.Net;
 
-namespace RandM.GameSrv
-{
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1724:TypeNamesShouldNotMatchNamespaces"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Srv")]
-    public class GameSrv : IDisposable
-    {
+namespace RandM.GameSrv {
+    public class GameSrv : IDisposable {
         private int _BindCount = 0;
         private bool _BindFailed = false;
         private int _BoundCount = 0;
@@ -54,8 +51,7 @@ namespace RandM.GameSrv
         public event EventHandler<NodeEventArgs> NodeEvent = null;
         public event EventHandler<StatusEventArgs> StatusChangeEvent = null;
 
-        public GameSrv()
-        {
+        public GameSrv() {
             _Config = new Config();
 
             // Ensure the log directory exists
@@ -68,13 +64,11 @@ namespace RandM.GameSrv
             RMLog.Handler += RMLog_Handler;
         }
 
-        ~GameSrv()
-        {
+        ~GameSrv() {
             Dispose(false);
         }
 
-        public void Dispose()
-        {
+        public void Dispose() {
             Dispose(true);
             // This object will be cleaned up by the Dispose method.
             // Therefore, you should call GC.SupressFinalize to
@@ -84,28 +78,22 @@ namespace RandM.GameSrv
             GC.SuppressFinalize(this);
         }
 
-        private void Dispose(bool disposing)
-        {
+        private void Dispose(bool disposing) {
             // Check to see if Dispose has already been called.
-            if (!_Disposed)
-            {
+            if (!_Disposed) {
                 // If disposing equals true, dispose all managed
                 // and unmanaged resources.
-                if (disposing)
-                {
+                if (disposing) {
                     // Dispose managed resources.
-                    if (_FlashSocketPolicyServerThread != null)
-                    {
+                    if (_FlashSocketPolicyServerThread != null) {
                         _FlashSocketPolicyServerThread.Stop();
                         _FlashSocketPolicyServerThread.Dispose();
                     }
-                    if (_IgnoredIPsThread != null)
-                    {
+                    if (_IgnoredIPsThread != null) {
                         _IgnoredIPsThread.Stop();
                         _IgnoredIPsThread.Dispose();
                     }
-                    if (_LogTimer != null)
-                    {
+                    if (_LogTimer != null) {
                         _LogTimer.Stop();
                         _LogTimer.Dispose();
                     }
@@ -121,53 +109,39 @@ namespace RandM.GameSrv
             }
         }
 
-        private void AddToLog(string logMessage)
-        {
-            lock (_LogLock)
-            {
+        private void AddToLog(string logMessage) {
+            lock (_LogLock) {
                 _Log.Add(DateTime.Now.ToString(_Config.TimeFormatLog) + "  " + logMessage);
             }
         }
 
-        private void CleanUpFiles()
-        {
-            if (OSUtils.IsWindows)
-            {
+        private void CleanUpFiles() {
+            if (OSUtils.IsWindows) {
                 FileUtils.FileDelete("cpulimit.sh");
                 FileUtils.FileDelete("dosutils.zip");
                 FileUtils.FileDelete("install.sh");
                 FileUtils.FileDelete("pty-sharp-1.0.zip");
                 FileUtils.FileDelete("start.sh");
-                if (OSUtils.IsWin9x)
-                {
+                if (OSUtils.IsWin9x) {
                     FileUtils.FileDelete("dosbox.conf");
                     FileUtils.FileDelete("sbbsexec.dll");
-                }
-                else if (OSUtils.IsWinNT)
-                {
+                } else if (OSUtils.IsWinNT) {
                     FileUtils.FileDelete("sbbsexec.vxd");
-                    if (ProcessUtils.Is64BitOperatingSystem)
-                    {
+                    if (ProcessUtils.Is64BitOperatingSystem) {
                         FileUtils.FileDelete("dosxtrn.exe");
                         FileUtils.FileDelete("dosxtrn.pif");
                         FileUtils.FileDelete("sbbsexec.dll");
-                        if (!Globals.IsDOSBoxInstalled())
-                        {
+                        if (!Globals.IsDOSBoxInstalled()) {
                             RMLog.Error("PLEASE INSTALL DOSBOX 0.73 IF YOU PLAN ON RUNNING DOS DOORS USING DOSBOX");
                         }
-                    }
-                    else
-                    {
+                    } else {
                         FileUtils.FileDelete("dosbox.conf");
-                        if (!File.Exists(StringUtils.PathCombine(Environment.SystemDirectory, "sbbsexec.dll")))
-                        {
+                        if (!File.Exists(StringUtils.PathCombine(Environment.SystemDirectory, "sbbsexec.dll"))) {
                             RMLog.Error("PLEASE COPY SBBSEXEC.DLL TO " + StringUtils.PathCombine(Environment.SystemDirectory, "sbbsexec.dll").ToUpper() + " IF YOU PLAN ON RUNNING DOS DOORS USING THE EMBEDDED SYNCHRONET FOSSIL");
                         }
                     }
                 }
-            }
-            else if (OSUtils.IsUnix)
-            {
+            } else if (OSUtils.IsUnix) {
                 FileUtils.FileDelete("dosbox.conf");
                 FileUtils.FileDelete("dosxtrn.exe");
                 FileUtils.FileDelete("dosxtrn.pif");
@@ -177,72 +151,55 @@ namespace RandM.GameSrv
             }
         }
 
-        public int ConnectionCount
-        {
-            get
-            {
+        public int ConnectionCount {
+            get {
                 if (_NodeManager == null) return 0;
                 return _NodeManager.ConnectionCount;
             }
         }
 
-        public void DisconnectNode(int node)
-        {
+        public void DisconnectNode(int node) {
             _NodeManager.DisconnectNode(node);
         }
 
-        public int FirstNode
-        {
+        public int FirstNode {
             get { return _Config.FirstNode; }
         }
 
         // TODOX FSPST should call RMLog methods directly
-        private void FlashSocketPolicyServerThread_ErrorMessageEvent(object sender, StringEventArgs e)
-        {
+        private void FlashSocketPolicyServerThread_ErrorMessageEvent(object sender, StringEventArgs e) {
             RMLog.Error(e.Text);
         }
 
-        private void FlashSocketPolicyServerThread_MessageEvent(object sender, StringEventArgs e)
-        {
+        private void FlashSocketPolicyServerThread_MessageEvent(object sender, StringEventArgs e) {
             RMLog.Info(e.Text);
         }
 
-        private void FlashSocketPolicyServerThread_WarningMessageEvent(object sender, StringEventArgs e)
-        {
+        private void FlashSocketPolicyServerThread_WarningMessageEvent(object sender, StringEventArgs e) {
             RMLog.Warning(e.Text);
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
-        private void FlushLog()
-        {
-            lock (_LogLock)
-            {
+        private void FlushLog() {
+            lock (_LogLock) {
                 // Flush log to disk
-                if (_Log.Count > 0)
-                {
-                    try
-                    {
+                if (_Log.Count > 0) {
+                    try {
                         FileUtils.FileAppendAllText(StringUtils.PathCombine(ProcessUtils.StartupPath, "logs", "gamesrv.log"), string.Join(Environment.NewLine, _Log.ToArray()) + Environment.NewLine);
                         _Log.Clear();
-                    }
-                    catch (Exception ex)
-                    {
+                    } catch (Exception ex) {
                         RMLog.Exception(ex, "Unable to update gamesrv.log");
                     }
                 }
             }
         }
 
-        public int LastNode
-        {
+        public int LastNode {
             get { return _Config.LastNode; }
         }
 
-        private bool LoadGlobalSettings()
-        {
+        private bool LoadGlobalSettings() {
             RMLog.Info("Loading Global Settings");
-            if (_Config.FirstNode > _Config.LastNode)
-            {
+            if (_Config.FirstNode > _Config.LastNode) {
                 RMLog.Error("FirstNode cannot be greater than LastNode!");
                 return false;
             }
@@ -250,88 +207,65 @@ namespace RandM.GameSrv
             return _Config.Loaded;
         }
 
-        void LogTimer_Elapsed(object sender, ElapsedEventArgs e)
-        {
+        void LogTimer_Elapsed(object sender, ElapsedEventArgs e) {
             _LogTimer.Stop();
             FlushLog();
             _LogTimer.Start();
         }
 
-        void NodeManager_ConnectionCountChangeEvent(object sender, IntEventArgs e)
-        {
+        void NodeManager_ConnectionCountChangeEvent(object sender, IntEventArgs e) {
             ConnectionCountChangeEvent?.Invoke(sender, e);
         }
 
-        void NodeManager_NodeEvent(object sender, NodeEventArgs e)
-        {
+        void NodeManager_NodeEvent(object sender, NodeEventArgs e) {
             NodeEvent?.Invoke(sender, e);
         }
 
-        public void Pause()
-        {
-            if (_Status == GameSrvStatus.Paused)
-            {
+        public void Pause() {
+            if (_Status == GameSrvStatus.Paused) {
                 UpdateStatus(GameSrvStatus.Resuming);
-                foreach (KeyValuePair<int, ServerThread> KV in _ServerThreads)
-                {
+                foreach (KeyValuePair<int, ServerThread> KV in _ServerThreads) {
                     KV.Value.Pause();
                 }
                 UpdateStatus(GameSrvStatus.Started);
 
                 // We really want to be in the Started state, so override the above (but dont raise an event)
                 _Status = GameSrvStatus.Started;
-            }
-            else if (_Status == GameSrvStatus.Started)
-            {
+            } else if (_Status == GameSrvStatus.Started) {
                 UpdateStatus(GameSrvStatus.Pausing);
-                foreach (KeyValuePair<int, ServerThread> KV in _ServerThreads)
-                {
+                foreach (KeyValuePair<int, ServerThread> KV in _ServerThreads) {
                     KV.Value.Pause();
                 }
                 UpdateStatus(GameSrvStatus.Paused);
             }
         }
 
-        private void RMLog_Handler(object sender, RMLogEventArgs e)
-        {
+        private void RMLog_Handler(object sender, RMLogEventArgs e) {
             AddToLog($"[{e.Level.ToString()}] {e.Message}");
         }
 
-        private void ServerThread_BindFailedEvent(object sender, EventArgs e)
-        {
+        private void ServerThread_BindFailedEvent(object sender, EventArgs e) {
             // Bind failed on one or more server threads, so abort the server
-            if (_Status == GameSrvStatus.Started)
-            {
+            if (_Status == GameSrvStatus.Started) {
                 Stop();
-            }
-            else
-            {
+            } else {
                 _BindFailed = true;
             }
         }
 
-        private void ServerThread_BoundEvent(object sender, EventArgs e)
-        {
+        private void ServerThread_BoundEvent(object sender, EventArgs e) {
             // Check if all server threads are now bound
-            lock (_BoundEventLock)
-            {
-                if (++_BoundCount == _BindCount)
-                {
-                    try
-                    {
+            lock (_BoundEventLock) {
+                if (++_BoundCount == _BindCount) {
+                    try {
                         Globals.DropRoot(_Config.UnixUser);
-                    }
-                    catch (ArgumentOutOfRangeException aoorex)
-                    {
+                    } catch (ArgumentOutOfRangeException aoorex) {
                         RMLog.Exception(aoorex, "Unable to drop from root to '" + _Config.UnixUser + "'");
 
                         // Abort the server
-                        if (_Status == GameSrvStatus.Started)
-                        {
+                        if (_Status == GameSrvStatus.Started) {
                             Stop();
-                        }
-                        else
-                        {
+                        } else {
                             _BindFailed = true;
                         }
                     }
@@ -339,36 +273,29 @@ namespace RandM.GameSrv
             }
         }
 
-        private void ServerThread_ConnectEvent(object sender, ConnectEventArgs e)
-        {
+        private void ServerThread_ConnectEvent(object sender, ConnectEventArgs e) {
             e.Node = _NodeManager.GetFreeNode(e.ClientThread);
         }
 
-        public bool Start()
-        {
-            if (_Status == GameSrvStatus.Paused)
-            {
+        public bool Start() {
+            if (_Status == GameSrvStatus.Paused) {
                 // If we're paused, call Pause() again to un-pause
                 Pause();
                 return true;
-            }
-            else if (_Status == GameSrvStatus.Stopped)
-            {
+            } else if (_Status == GameSrvStatus.Stopped) {
                 UpdateStatus(GameSrvStatus.Starting);
 
                 // Clean up the files not needed by this platform
                 CleanUpFiles();
 
                 // Load the Global settings
-                if (!LoadGlobalSettings())
-                {
+                if (!LoadGlobalSettings()) {
                     RMLog.Info("Unable To Load Global Settings...Will Use Defaults");
                     _Config.Save();
                 }
 
                 // Start the node manager
-                if (!StartNodeManager())
-                {
+                if (!StartNodeManager()) {
                     RMLog.Info("Unable To Start Node Manager");
                     // Undo previous actions
                     goto ERROR;
@@ -380,8 +307,7 @@ namespace RandM.GameSrv
                 _BoundCount = 0;
 
                 // Start the server threads
-                if (!StartServerThreads())
-                {
+                if (!StartServerThreads()) {
                     RMLog.Info("Unable To Start Server Threads");
                     // Undo previous actions
                     StopServerThreads();
@@ -390,8 +316,7 @@ namespace RandM.GameSrv
                 }
 
                 // Start the flash socket policy server thread
-                if (!StartFlashSocketPolicyServerThread())
-                {
+                if (!StartFlashSocketPolicyServerThread()) {
                     RMLog.Error("Unable To Start Flash Socket Policy Server Thread");
                     // Undo previous actions
                     StopServerThreads();
@@ -400,8 +325,7 @@ namespace RandM.GameSrv
                 }
 
                 // Start the ignored ips thread
-                if (!StartIgnoredIPsThread())
-                {
+                if (!StartIgnoredIPsThread()) {
                     RMLog.Error("Unable To Start Ignored IPs Thread");
                     // Undo previous actions
                     StopFlashSocketPolicyServerThread();
@@ -411,8 +335,7 @@ namespace RandM.GameSrv
                 }
 
                 // Check if we had a bind failure before finishing
-                if (_BindFailed)
-                {
+                if (_BindFailed) {
                     RMLog.Error("One Or More Servers Failed To Bind To Their Assigned Ports");
                     // Undo previous actions
                     StopIgnoredIPsThread();
@@ -426,7 +349,7 @@ namespace RandM.GameSrv
                 UpdateStatus(GameSrvStatus.Started);
                 return true;
 
-            ERROR:
+                ERROR:
 
                 // If we get here, we failed to go online
                 UpdateStatus(GameSrvStatus.Stopped);
@@ -436,8 +359,7 @@ namespace RandM.GameSrv
             return false;
         }
 
-        private int GetBindCount()
-        {
+        private int GetBindCount() {
             int Result = 0;
             if (_Config.FlashSocketPolicyServerPort > 0) Result += 1;
             if (_Config.RLoginServerPort > 0) Result += 1;
@@ -446,15 +368,11 @@ namespace RandM.GameSrv
             return Result;
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
-        private bool StartFlashSocketPolicyServerThread()
-        {
-            if (_Config.FlashSocketPolicyServerPort > 0)
-            {
+        private bool StartFlashSocketPolicyServerThread() {
+            if (_Config.FlashSocketPolicyServerPort > 0) {
                 RMLog.Info("Starting Flash Socket Policy Server Thread");
 
-                try
-                {
+                try {
                     // Create Flash Socket Policy Server Thread and Thread objects
                     _FlashSocketPolicyServerThread = new FlashSocketPolicyServerThread(_Config.FlashSocketPolicyServerIP, _Config.FlashSocketPolicyServerPort, _Config.ServerPorts);
                     _FlashSocketPolicyServerThread.BindFailedEvent += ServerThread_BindFailedEvent;
@@ -464,72 +382,53 @@ namespace RandM.GameSrv
                     _FlashSocketPolicyServerThread.WarningMessageEvent += FlashSocketPolicyServerThread_WarningMessageEvent;
                     _FlashSocketPolicyServerThread.Start();
                     return true;
-                }
-                catch (Exception ex)
-                {
+                } catch (Exception ex) {
                     RMLog.Exception(ex, "Error in GameSrv::StartFlashSocketPolicyServerThread()");
                     return false;
                 }
-            }
-            else
-            {
+            } else {
                 return true;
             }
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
-        private bool StartIgnoredIPsThread()
-        {
+        private bool StartIgnoredIPsThread() {
             RMLog.Info("Starting Ignored IPs Thread");
 
-            try
-            {
+            try {
                 // Create Ignored IPs Thread and Thread objects
                 _IgnoredIPsThread = new IgnoredIPsThread();
                 _IgnoredIPsThread.Start();
                 return true;
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 RMLog.Exception(ex, "Error in GameSrv::StartIgnoredIPsThread()");
                 return false;
             }
 
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
-        private bool StartNodeManager()
-        {
+        private bool StartNodeManager() {
             RMLog.Info("Starting Node Manager");
 
-            try
-            {
+            try {
                 _NodeManager = new NodeManager(_Config.FirstNode, _Config.LastNode);
                 _NodeManager.ConnectionCountChangeEvent += NodeManager_ConnectionCountChangeEvent;
                 _NodeManager.NodeEvent += NodeManager_NodeEvent;
                 _NodeManager.Start();
                 return true;
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 RMLog.Exception(ex, "Error in GameSrv::StartNodeManager()");
                 return false;
             }
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
-        private bool StartServerThreads()
-        {
-            if ((_Config.RLoginServerPort > 0) || (_Config.TelnetServerPort > 0) || (_Config.WebSocketServerPort > 0))
-            {
+        private bool StartServerThreads() {
+            if ((_Config.RLoginServerPort > 0) || (_Config.TelnetServerPort > 0) || (_Config.WebSocketServerPort > 0)) {
                 RMLog.Info("Starting Server Threads");
 
-                try
-                {
+                try {
                     _ServerThreads.Clear();
 
-                    if (_Config.RLoginServerPort > 0)
-                    {
+                    if (_Config.RLoginServerPort > 0) {
                         // Create Server Thread and add to collection
                         _ServerThreads.Add(_Config.RLoginServerPort, new ServerThread(_Config.RLoginServerIP, _Config.RLoginServerPort, ConnectionType.RLogin, _Config.TerminalType));
                         // TODOX Confirm these are all needed
@@ -538,8 +437,7 @@ namespace RandM.GameSrv
                         _ServerThreads[_Config.RLoginServerPort].ConnectEvent += ServerThread_ConnectEvent;
                     }
 
-                    if (_Config.TelnetServerPort > 0)
-                    {
+                    if (_Config.TelnetServerPort > 0) {
                         // Create Server Thread and add to collection
                         _ServerThreads.Add(_Config.TelnetServerPort, new ServerThread(_Config.TelnetServerIP, _Config.TelnetServerPort, ConnectionType.Telnet, _Config.TerminalType));
                         // TODOX Confirm these are all needed
@@ -548,8 +446,7 @@ namespace RandM.GameSrv
                         _ServerThreads[_Config.TelnetServerPort].ConnectEvent += ServerThread_ConnectEvent;
                     }
 
-                    if (_Config.WebSocketServerPort > 0)
-                    {
+                    if (_Config.WebSocketServerPort > 0) {
                         // Create Server Thread and add to collection
                         _ServerThreads.Add(_Config.WebSocketServerPort, new ServerThread(_Config.WebSocketServerIP, _Config.WebSocketServerPort, ConnectionType.WebSocket, _Config.TerminalType));
                         // TODOX Confirm these are all needed
@@ -559,35 +456,27 @@ namespace RandM.GameSrv
                     }
 
                     // Now actually start the server threads
-                    foreach (KeyValuePair<int, ServerThread> KV in _ServerThreads)
-                    {
+                    foreach (KeyValuePair<int, ServerThread> KV in _ServerThreads) {
                         KV.Value.Start();
                     }
 
                     return true;
-                }
-                catch (Exception ex)
-                {
+                } catch (Exception ex) {
                     RMLog.Exception(ex, "Error in GameSrv::StartServerThreads()");
                     return false;
                 }
-            }
-            else
-            {
+            } else {
                 RMLog.Error("No server ports found");
                 return false;
             }
         }
 
-        public GameSrvStatus Status
-        {
+        public GameSrvStatus Status {
             get { return _Status; }
         }
 
-        public void Stop()
-        {
-            if ((_Status == GameSrvStatus.Paused) || (_Status == GameSrvStatus.Started))
-            {
+        public void Stop() {
+            if ((_Status == GameSrvStatus.Paused) || (_Status == GameSrvStatus.Started)) {
                 UpdateStatus(GameSrvStatus.Stopping);
 
                 StopIgnoredIPsThread();
@@ -599,114 +488,82 @@ namespace RandM.GameSrv
             }
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
-        private bool StopNodeManager()
-        {
-            if (_NodeManager != null)
-            {
+        private bool StopNodeManager() {
+            if (_NodeManager != null) {
                 RMLog.Info("Stopping Node Manager");
 
-                try
-                {
+                try {
                     _NodeManager.Stop();
                     _NodeManager = null;
 
                     return true;
-                }
-                catch (Exception ex)
-                {
+                } catch (Exception ex) {
                     RMLog.Exception(ex, "Error in GameSrv::StopNodeManger()");
                     return false;
                 }
-            }
-            else
-            {
+            } else {
                 return false;
             }
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
-        private bool StopServerThreads()
-        {
+        private bool StopServerThreads() {
             RMLog.Info("Stopping Server Threads");
 
-            try
-            {
-                foreach (KeyValuePair<int, ServerThread> KV in _ServerThreads)
-                {
+            try {
+                foreach (KeyValuePair<int, ServerThread> KV in _ServerThreads) {
                     KV.Value.Stop();
                 }
                 _ServerThreads.Clear();
                 return true;
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 RMLog.Exception(ex, "Error in GameSrv::StopServerThread()");
                 return false;
             }
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
-        private bool StopFlashSocketPolicyServerThread()
-        {
-            if (_FlashSocketPolicyServerThread != null)
-            {
+        private bool StopFlashSocketPolicyServerThread() {
+            if (_FlashSocketPolicyServerThread != null) {
                 RMLog.Info("Stopping Flash Socket Policy Server Thread");
 
-                try
-                {
+                try {
                     _FlashSocketPolicyServerThread.Stop();
                     _FlashSocketPolicyServerThread.Dispose();
                     _FlashSocketPolicyServerThread = null;
 
                     return true;
-                }
-                catch (Exception ex)
-                {
+                } catch (Exception ex) {
                     RMLog.Exception(ex, "Error in GameSrv::StopFlashSocketPolicyServerThread()");
                     return false;
                 }
-            }
-            else
-            {
+            } else {
                 return false;
             }
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
-        private bool StopIgnoredIPsThread()
-        {
-            if (_IgnoredIPsThread != null)
-            {
+        private bool StopIgnoredIPsThread() {
+            if (_IgnoredIPsThread != null) {
                 RMLog.Info("Stopping Ignored IPs Thread");
 
-                try
-                {
+                try {
                     _IgnoredIPsThread.Stop();
                     _IgnoredIPsThread.Dispose();
                     _IgnoredIPsThread = null;
 
                     return true;
-                }
-                catch (Exception ex)
-                {
+                } catch (Exception ex) {
                     RMLog.Exception(ex, "Error in GameSrv::StopIgnoredIPsThread()");
                     return false;
                 }
-            }
-            else
-            {
+            } else {
                 return false;
             }
         }
 
-        public string TimeFormatLog
-        {
+        public string TimeFormatLog {
             get { return _Config.TimeFormatLog; }
         }
 
-        public string TimeFormatUI
-        {
+        public string TimeFormatUI {
             get { return _Config.TimeFormatUI; }
         }
 
@@ -742,8 +599,7 @@ namespace RandM.GameSrv
             }
         }
 
-        public static string Version
-        {
+        public static string Version {
             get { return ProcessUtils.ProductVersionOfCallingAssembly; }
         }
     }

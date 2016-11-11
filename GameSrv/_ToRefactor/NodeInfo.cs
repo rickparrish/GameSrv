@@ -22,10 +22,8 @@ using System.Collections.Generic;
 using System.Text;
 using RandM.RMLib;
 
-namespace RandM.GameSrv
-{
-    public class NodeInfo
-    {
+namespace RandM.GameSrv {
+    public class NodeInfo {
         public TcpConnection Connection { get; set; }
         public ConnectionType ConnectionType { get; set; }
         public DoorInfo Door { get; set; }
@@ -36,8 +34,7 @@ namespace RandM.GameSrv
         public UserInfo User { get; set; }
         public bool UserLoggedOn { get; set; }
 
-        public NodeInfo()
-        {
+        public NodeInfo() {
             Connection = null;
             ConnectionType = ConnectionType.None;
             Door = new DoorInfo("");

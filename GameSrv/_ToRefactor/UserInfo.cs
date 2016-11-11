@@ -26,10 +26,8 @@ using System.Security.Cryptography;
 using System.IO;
 using System.Globalization;
 
-namespace RandM.GameSrv
-{
-    public class UserInfo : ConfigHelper
-    {
+namespace RandM.GameSrv {
+    public class UserInfo : ConfigHelper {
         public int AccessLevel { get; set; }
         public StringDictionary AdditionalInfo { get; set; }
         public string Alias { get; set; }
@@ -39,8 +37,7 @@ namespace RandM.GameSrv
         public int UserId { get; set; }
 
         internal UserInfo(string alias)
-            : base(ConfigSaveLocation.Relative, StringUtils.PathCombine("users", UserInfo.SafeAlias(alias.ToLower()) + ".ini"))
-        {
+            : base(ConfigSaveLocation.Relative, StringUtils.PathCombine("users", UserInfo.SafeAlias(alias.ToLower()) + ".ini")) {
             AccessLevel = 10;
             AdditionalInfo = new StringDictionary();
             Alias = alias;
@@ -52,39 +49,30 @@ namespace RandM.GameSrv
             Load("USER");
         }
 
-        public void AbortRegistration()
-        {
-            if ((!string.IsNullOrEmpty(Alias)) && (Alias.ToUpper() != "NEW"))
-            {
-                lock (Globals.RegistrationLock)
-                {
+        public void AbortRegistration() {
+            if ((!string.IsNullOrEmpty(Alias)) && (Alias.ToUpper() != "NEW")) {
+                lock (Globals.RegistrationLock) {
                     FileUtils.FileDelete(FileName);
                 }
             }
         }
 
-        public static string GetPasswordHash(string password, string salt, string pepper)
-        {
-            if (pepper.ToUpper().Trim() == "DISABLE")
-            {
+        public static string GetPasswordHash(string password, string salt, string pepper) {
+            if (pepper.ToUpper().Trim() == "DISABLE") {
                 return password;
-            }
-            else
-            {
+            } else {
                 // Build the array of bytes to hash.  This is made up of the concatenation of:
                 //   salt:     A random string.  This string should be unique per user, and can be stored in the user record along with the rest of the users information
                 //   password: The plain text password
                 //   pepper:   Another random string.  This string should be unique per BBS, and can be stored in the bbs config file
                 // The purpose of the salt is to ensure that if the password hashes are stolen, a single rainbow table cannot be used to crack all the passwords.  For example, 2 users both using "password" as their password will have different hashes, since different salts will be applied.
                 // The purpose of the pepper is to ensure that even if the password hashes and per user salt values are stolen, and the attacker has the CPU power required to create per-user rainbow tables, the tables will still be incomplete without the secret pepper value that is stored separately.  (Probably not far enough away in this case, but it doesn't hurt to haev this)
-                using (SHA512Managed SHA = new SHA512Managed())
-                {
+                using (SHA512Managed SHA = new SHA512Managed()) {
                     byte[] InBytes = Encoding.ASCII.GetBytes(salt + password + pepper);
                     byte[] OutBytes = SHA.ComputeHash(InBytes);
 
                     // Loop 1000 times -- this creates no noticeable delay on our server, but it may mean an attacker can now only try 1,000 per second instead of 1,000,000 per second
-                    for (int i = 0; i < 1024; i++)
-                    {
+                    for (int i = 0; i < 1024; i++) {
                         OutBytes = SHA.ComputeHash(OutBytes);
                     }
 
@@ -93,11 +81,9 @@ namespace RandM.GameSrv
             }
         }
 
-        public static string SafeAlias(string alias)
-        {
+        public static string SafeAlias(string alias) {
             char[] InvalidChars = Path.GetInvalidFileNameChars();
-            for (int i = 0; i < InvalidChars.Length; i++)
-            {
+            for (int i = 0; i < InvalidChars.Length; i++) {
                 // Pick a new character based on the old character that's either in the A-Z or a-z range
                 string NewText = "_" + ((int)InvalidChars[i]).ToString() + "_";
                 alias = alias.Replace(InvalidChars[i].ToString(), NewText);
@@ -105,37 +91,28 @@ namespace RandM.GameSrv
             return alias;
         }
 
-        public void SaveRegistration()
-        {
-            lock (Globals.PrivilegeLock)
-            {
+        public void SaveRegistration() {
+            lock (Globals.PrivilegeLock) {
                 base.Save();
             }
         }
 
-        public void SetPassword(string password, string pepper)
-        {
+        public void SetPassword(string password, string pepper) {
             PasswordSalt = StringUtils.RandomString(100);
             PasswordHash = GetPasswordHash(password, PasswordSalt, pepper);
         }
 
-        public bool StartRegistration(string alias)
-        {
-            lock (Globals.RegistrationLock)
-            {
+        public bool StartRegistration(string alias) {
+            lock (Globals.RegistrationLock) {
                 // Check for existence of alias
                 UserInfo U = new UserInfo(alias);
-                if (U.Load())
-                {
+                if (U.Load()) {
                     // Alias exists, can't start registration
                     return false;
-                }
-                else
-                {
+                } else {
                     // Alias is unique, save a file to start the registration process
                     base.FileName = U.FileName;
-                    lock (Globals.PrivilegeLock)
-                    {
+                    lock (Globals.PrivilegeLock) {
                         this.Alias = alias;
                         Save();
                     }
@@ -144,8 +121,7 @@ namespace RandM.GameSrv
             }
         }
 
-        public bool ValidatePassword(string password, string pepper)
-        {
+        public bool ValidatePassword(string password, string pepper) {
             return (PasswordHash == GetPasswordHash(password, PasswordSalt, pepper));
         }
     }

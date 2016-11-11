@@ -24,10 +24,8 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Text;
 
-namespace RandM.GameSrv
-{
-    public class DoorInfo : ConfigHelper
-    {
+namespace RandM.GameSrv {
+    public class DoorInfo : ConfigHelper {
         public string Command { get; set; }
         public int ForceQuitDelay { get; set; }
         public string Name { get; set; }
@@ -37,8 +35,7 @@ namespace RandM.GameSrv
         public ProcessWindowStyle WindowStyle { get; set; }
 
         public DoorInfo(string door)
-            : base(ConfigSaveLocation.Relative, StringUtils.PathCombine("doors", door.ToLower() + ".ini"))
-        {
+            : base(ConfigSaveLocation.Relative, StringUtils.PathCombine("doors", door.ToLower() + ".ini")) {
             Command = "";
             ForceQuitDelay = 5;
             Name = "";
@@ -47,14 +44,11 @@ namespace RandM.GameSrv
             WatchDTR = true;
             WindowStyle = ProcessWindowStyle.Minimized;
 
-            if (Load("DOOR"))
-            {
+            if (Load("DOOR")) {
                 // Check if sysop supplies a Platform value
-                if (Platform == OSUtils.Platform.Unknown)
-                {
+                if (Platform == OSUtils.Platform.Unknown) {
                     // Nope, this must be an old door .ini, so guess a platform based on the Native property
-                    using (IniFile Ini = new IniFile(base.FileName))
-                    {
+                    using (IniFile Ini = new IniFile(base.FileName)) {
                         bool Native = Ini.ReadBoolean(base.SectionName, "Native", false);
                         Platform = Native ? OSUtils.Platform.Windows : OSUtils.Platform.DOS;
                     }
