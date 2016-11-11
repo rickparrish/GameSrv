@@ -420,7 +420,9 @@ namespace RandM.GameSrv
             // 
             // rtbLog
             // 
+            this.rtbLog.BackColor = System.Drawing.Color.Black;
             this.rtbLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtbLog.ForeColor = System.Drawing.Color.LightGray;
             this.rtbLog.Location = new System.Drawing.Point(0, 0);
             this.rtbLog.Name = "rtbLog";
             this.rtbLog.ReadOnly = true;

@@ -60,7 +60,7 @@ namespace RandM.GameSrv
             // 
             this.siGameSrv.Description = "GameSrv BBS Door Game Server";
             this.siGameSrv.DisplayName = "GameSrv";
-            this.siGameSrv.ServiceName = "GameSrvService";
+            this.siGameSrv.ServiceName = "GameSrv";
             this.siGameSrv.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
             // 
             // ProjectInstaller

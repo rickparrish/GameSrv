@@ -30,19 +30,19 @@ using System.Text;
 namespace RandM.GameSrv
 {
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Globals")]
-    static public class Globals
+    public static class Globals
     {
-        static public bool Debug { get; set; }
-        static public Collection<string> Log = new Collection<string>();
-        static public object PrivilegeLock = new object();
-        static public object RegistrationLock = new object();
-        static public bool StartedAsRoot { get; set; }
-        static public Dictionary<string, DateTime> TempIgnoredIPs = new Dictionary<string, DateTime>();
+        public static bool Debug { get; set; }
+        public static Collection<string> Log = new Collection<string>();
+        public static object PrivilegeLock = new object();
+        public static object RegistrationLock = new object();
+        public static bool StartedAsRoot { get; set; }
+        public static Dictionary<string, DateTime> TempIgnoredIPs = new Dictionary<string, DateTime>();
 
-        static private object _RootLock = new object();
-        static private object _TempIgnoredIPsLock = new object();
+        private static object _RootLock = new object();
+        private static object _TempIgnoredIPsLock = new object();
 
-        static private WindowsImpersonationContext _WIC = null;
+        private static WindowsImpersonationContext _WIC = null;
 
         static Globals()
         {
@@ -59,7 +59,7 @@ namespace RandM.GameSrv
             StartedAsRoot = ((OSUtils.IsUnix) && (WindowsIdentity.GetCurrent().Token == IntPtr.Zero));
         }
 
-        static public void AddTempIgnoredIP(string ip)
+        public static void AddTempIgnoredIP(string ip)
         {
             lock (_TempIgnoredIPsLock)
             {
@@ -76,7 +76,7 @@ namespace RandM.GameSrv
             }
         }
 
-        static public void DropRoot(string dropToUser)
+        public static void DropRoot(string dropToUser)
         {
             if (!StartedAsRoot) return;
 
@@ -100,7 +100,7 @@ namespace RandM.GameSrv
             }
         }
 
-        static public string Copyright
+        public static string Copyright
         {
             get
             {
@@ -133,19 +133,19 @@ namespace RandM.GameSrv
             }
         }
 
-        static public bool IsDOSBoxInstalled()
+        public static bool IsDOSBoxInstalled()
         {
             string ProgramFilesX86 = Environment.GetEnvironmentVariable("PROGRAMFILES(X86)") ?? Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
             string DOSBoxExe = StringUtils.PathCombine(ProgramFilesX86, @"DOSBox-0.73\dosbox.exe"); // TODOZ add configuration variable so this path is not hardcoded
             return File.Exists(DOSBoxExe); 
         }
 
-        static public bool IsDOSEMUInstalled()
+        public static bool IsDOSEMUInstalled()
         {
             return File.Exists("/usr/bin/dosemu.bin"); // TODOZ add configuration variable so this path is not hardcoded
         }
 
-        static public bool IsTempIgnoredIP(string ip)
+        public static bool IsTempIgnoredIP(string ip)
         {
             lock (_TempIgnoredIPsLock)
             {
@@ -172,7 +172,7 @@ namespace RandM.GameSrv
             }
         }
 
-        static public void NeedRoot()
+        public static void NeedRoot()
         {
             if (!StartedAsRoot) return;
 

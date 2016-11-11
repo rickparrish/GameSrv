@@ -48,19 +48,11 @@ namespace RandM.GameSrv
         private Timer _LogTimer = new Timer();
         private NodeManager _NodeManager = null;
         private Dictionary<int, ServerThread> _ServerThreads = new Dictionary<int, ServerThread>();
-        private ServerStatus _Status = ServerStatus.Stopped;
+        private GameSrvStatus _Status = GameSrvStatus.Stopped;
 
-        public event EventHandler<StringEventArgs> AggregatedStatusMessageEvent = null;
         public event EventHandler<IntEventArgs> ConnectionCountChangeEvent = null;
-        public event EventHandler<StringEventArgs> ErrorMessageEvent = null;
-        public event EventHandler<ExceptionEventArgs> ExceptionEvent = null;
-        public event EventHandler<NodeEventArgs> LogOffEvent = null;
-        public event EventHandler<NodeEventArgs> LogOnEvent = null;
-        public event EventHandler<StringEventArgs> MessageEvent = null;
         public event EventHandler<NodeEventArgs> NodeEvent = null;
-        public event EventHandler<StatusEventArgs> StatusEvent = null;
-        public event EventHandler<StringEventArgs> StatusMessageEvent = null;
-        public event EventHandler<StringEventArgs> WarningMessageEvent = null;
+        public event EventHandler<StatusEventArgs> StatusChangeEvent = null;
 
         public GameSrv()
         {
@@ -161,7 +153,7 @@ namespace RandM.GameSrv
                         FileUtils.FileDelete("sbbsexec.dll");
                         if (!Globals.IsDOSBoxInstalled())
                         {
-                            RaiseErrorMessageEvent("PLEASE INSTALL DOSBOX 0.73 IF YOU PLAN ON RUNNING DOS DOORS USING DOSBOX");
+                            RMLog.Error("PLEASE INSTALL DOSBOX 0.73 IF YOU PLAN ON RUNNING DOS DOORS USING DOSBOX");
                         }
                     }
                     else
@@ -169,7 +161,7 @@ namespace RandM.GameSrv
                         FileUtils.FileDelete("dosbox.conf");
                         if (!File.Exists(StringUtils.PathCombine(Environment.SystemDirectory, "sbbsexec.dll")))
                         {
-                            RaiseErrorMessageEvent("PLEASE COPY SBBSEXEC.DLL TO " + StringUtils.PathCombine(Environment.SystemDirectory, "sbbsexec.dll").ToUpper() + " IF YOU PLAN ON RUNNING DOS DOORS USING THE EMBEDDED SYNCHRONET FOSSIL");
+                            RMLog.Error("PLEASE COPY SBBSEXEC.DLL TO " + StringUtils.PathCombine(Environment.SystemDirectory, "sbbsexec.dll").ToUpper() + " IF YOU PLAN ON RUNNING DOS DOORS USING THE EMBEDDED SYNCHRONET FOSSIL");
                         }
                     }
                 }
@@ -204,19 +196,20 @@ namespace RandM.GameSrv
             get { return _Config.FirstNode; }
         }
 
+        // TODOX FSPST should call RMLog methods directly
         private void FlashSocketPolicyServerThread_ErrorMessageEvent(object sender, StringEventArgs e)
         {
-            RaiseErrorMessageEvent(sender, e.Text);
+            RMLog.Error(e.Text);
         }
 
         private void FlashSocketPolicyServerThread_MessageEvent(object sender, StringEventArgs e)
         {
-            RaiseStatusMessageEvent(e.Text);
+            RMLog.Info(e.Text);
         }
 
         private void FlashSocketPolicyServerThread_WarningMessageEvent(object sender, StringEventArgs e)
         {
-            RaiseWarningMessageEvent(sender, e.Text);
+            RMLog.Warning(e.Text);
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
@@ -234,15 +227,10 @@ namespace RandM.GameSrv
                     }
                     catch (Exception ex)
                     {
-                        RaiseExceptionEvent("Unable to update gamesrv.log", ex);
+                        RMLog.Exception(ex, "Unable to update gamesrv.log");
                     }
                 }
             }
-        }
-
-        private void IgnoredIPsThread_ExceptionEvent(object sender, ExceptionEventArgs e)
-        {
-            RaiseExceptionEvent(sender, e);
         }
 
         public int LastNode
@@ -252,10 +240,10 @@ namespace RandM.GameSrv
 
         private bool LoadGlobalSettings()
         {
-            RaiseStatusMessageEvent("Loading Global Settings");
+            RMLog.Info("Loading Global Settings");
             if (_Config.FirstNode > _Config.LastNode)
             {
-                RaiseErrorMessageEvent("FirstNode cannot be greater than LastNode!");
+                RMLog.Error("FirstNode cannot be greater than LastNode!");
                 return false;
             }
 
@@ -271,200 +259,37 @@ namespace RandM.GameSrv
 
         void NodeManager_ConnectionCountChangeEvent(object sender, IntEventArgs e)
         {
-            RaiseConnectionCountChangeEvent(sender, e.Value);
-        }
-
-        void NodeManager_ErrorMessageEvent(object sender, StringEventArgs e)
-        {
-            RaiseErrorMessageEvent(sender, e.Text);
-        }
-
-        void NodeManager_ExceptionEvent(object sender, ExceptionEventArgs e)
-        {
-            RaiseExceptionEvent(sender, e);
-        }
-
-        void NodeManager_LogOffEvent(object sender, NodeEventArgs e)
-        {
-            RaiseLogOffEvent(sender, e);
-        }
-
-        void NodeManager_LogOnEvent(object sender, NodeEventArgs e)
-        {
-            RaiseLogOnEvent(sender, e);
+            ConnectionCountChangeEvent?.Invoke(sender, e);
         }
 
         void NodeManager_NodeEvent(object sender, NodeEventArgs e)
         {
-            RaiseNodeEvent(sender, e);
-        }
-
-        void NodeManager_WarningMessageEvent(object sender, StringEventArgs e)
-        {
-            RaiseWarningMessageEvent(sender, e.Text);
+            NodeEvent?.Invoke(sender, e);
         }
 
         public void Pause()
         {
-            if (_Status == ServerStatus.Paused)
+            if (_Status == GameSrvStatus.Paused)
             {
-                RaiseStatusEvent(ServerStatus.Resuming);
+                UpdateStatus(GameSrvStatus.Resuming);
                 foreach (KeyValuePair<int, ServerThread> KV in _ServerThreads)
                 {
                     KV.Value.Pause();
                 }
-                RaiseStatusEvent(ServerStatus.Resumed);
+                UpdateStatus(GameSrvStatus.Started);
 
                 // We really want to be in the Started state, so override the above (but dont raise an event)
-                _Status = ServerStatus.Started;
+                _Status = GameSrvStatus.Started;
             }
-            else if (_Status == ServerStatus.Started)
+            else if (_Status == GameSrvStatus.Started)
             {
-                RaiseStatusEvent(ServerStatus.Pausing);
+                UpdateStatus(GameSrvStatus.Pausing);
                 foreach (KeyValuePair<int, ServerThread> KV in _ServerThreads)
                 {
                     KV.Value.Pause();
                 }
-                RaiseStatusEvent(ServerStatus.Paused);
+                UpdateStatus(GameSrvStatus.Paused);
             }
-        }
-
-        private void RaiseAggregatedStatusMessageEvent(object sender, string message)
-        {
-            EventHandler<StringEventArgs> Handler = AggregatedStatusMessageEvent;
-            if (Handler != null) Handler(sender, new StringEventArgs(message));
-            AddToLog(message);
-        }
-
-        private void RaiseConnectionCountChangeEvent(object sender, int value)
-        {
-            EventHandler<IntEventArgs> Handler = ConnectionCountChangeEvent;
-            if (Handler != null) Handler(sender, new IntEventArgs(value));
-        }
-
-        private void RaiseErrorMessageEvent(string message)
-        {
-            RaiseErrorMessageEvent(this, message);
-        }
-
-        private void RaiseErrorMessageEvent(object sender, string message)
-        {
-            EventHandler<StringEventArgs> Handler = ErrorMessageEvent;
-            if (Handler != null) Handler(sender, new StringEventArgs(message));
-            RaiseAggregatedStatusMessageEvent(sender, "ERROR: " + message);
-        }
-
-        private void RaiseExceptionEvent(string message, Exception ex)
-        {
-            RaiseExceptionEvent(this, new ExceptionEventArgs(message, ex));
-        }
-
-        private void RaiseExceptionEvent(object sender, ExceptionEventArgs e)
-        {
-            EventHandler<ExceptionEventArgs> Handler = ExceptionEvent;
-            if (Handler != null) Handler(sender, e);
-            if (Globals.Debug)
-            {
-                RaiseAggregatedStatusMessageEvent(sender, "EXCEPTION: " + e.Message + " (" + e.Exception.ToString() + ")");
-            }
-            else
-            {
-                RaiseAggregatedStatusMessageEvent(sender, "EXCEPTION: " + e.Message + " (" + e.Exception.Message + ")");
-            }
-        }
-
-        private void RaiseLogOffEvent(object sender, NodeEventArgs logOffEvent)
-        {
-            EventHandler<NodeEventArgs> Handler = LogOffEvent;
-            if (Handler != null) Handler(sender, logOffEvent);
-            if (logOffEvent.NodeInfo.UserLoggedOn)
-            {
-                RaiseAggregatedStatusMessageEvent(sender, "Node " + logOffEvent.NodeInfo.Node.ToString() + " (LOGOFF): " + logOffEvent.NodeInfo.User.Alias + ": " + logOffEvent.Status);
-            }
-            else
-            {
-                RaiseAggregatedStatusMessageEvent(sender, "Node " + logOffEvent.NodeInfo.Node.ToString() + " (LOGOFF): " + logOffEvent.Status);
-            }
-        }
-
-        private void RaiseLogOnEvent(object sender, NodeEventArgs logOnEvent)
-        {
-            EventHandler<NodeEventArgs> Handler = LogOnEvent;
-            if (Handler != null) Handler(sender, logOnEvent);
-            RaiseAggregatedStatusMessageEvent(sender, "Node " + logOnEvent.NodeInfo.Node.ToString() + " (LOGON): " + logOnEvent.NodeInfo.User.Alias + " " + logOnEvent.Status);
-        }
-
-        private void RaiseMessageEvent(object sender, string message)
-        {
-            EventHandler<StringEventArgs> Handler = MessageEvent;
-            if (Handler != null) Handler(sender, new StringEventArgs(message));
-            RaiseAggregatedStatusMessageEvent(sender, message);
-        }
-
-        private void RaiseNodeEvent(object sender, NodeEventArgs nodeEvent)
-        {
-            EventHandler<NodeEventArgs> Handler = NodeEvent;
-            if (Handler != null) Handler(sender, nodeEvent);
-            if (nodeEvent.NodeInfo.UserLoggedOn)
-            {
-                RaiseAggregatedStatusMessageEvent(sender, "Node " + nodeEvent.NodeInfo.Node.ToString() + ": " + nodeEvent.NodeInfo.User.Alias + ": " + nodeEvent.Status);
-            }
-            else
-            {
-                RaiseAggregatedStatusMessageEvent(sender, "Node " + nodeEvent.NodeInfo.Node.ToString() + ": " + nodeEvent.Status);
-            }
-        }
-
-        private void RaiseStatusEvent(ServerStatus status)
-        {
-            // Record the new status
-            _Status = status;
-
-            EventHandler<StatusEventArgs> Handler = StatusEvent;
-            if (Handler != null) Handler(this, new StatusEventArgs(status));
-
-            switch (status)
-            {
-                case ServerStatus.Pausing:
-                    RaiseAggregatedStatusMessageEvent(null, "Server(s) are pausing...");
-                    break;
-                case ServerStatus.Resuming:
-                    RaiseAggregatedStatusMessageEvent(null, "Server(s) are resuming...");
-                    break;
-                case ServerStatus.Starting:
-                    RaiseAggregatedStatusMessageEvent(null, "Server(s) are going online...");
-                    break;
-                case ServerStatus.Stopping:
-                    RaiseAggregatedStatusMessageEvent(null, "Server(s) are going offline...");
-                    break;
-                case ServerStatus.Paused:
-                    RaiseAggregatedStatusMessageEvent(null, "Server(s) are paused");
-                    break;
-                case ServerStatus.Resumed:
-                    RaiseAggregatedStatusMessageEvent(null, "Server(s) have resumed");
-                    break;
-                case ServerStatus.Started:
-                    RaiseAggregatedStatusMessageEvent(null, "Server(s) are online");
-                    break;
-                case ServerStatus.Stopped:
-                    RaiseAggregatedStatusMessageEvent(null, "Server(s) are offline");
-                    FlushLog();
-                    break;
-            }
-        }
-
-        private void RaiseStatusMessageEvent(string message)
-        {
-            EventHandler<StringEventArgs> Handler = StatusMessageEvent;
-            if (Handler != null) Handler(this, new StringEventArgs(message));
-            RaiseAggregatedStatusMessageEvent(null, message);
-        }
-
-        private void RaiseWarningMessageEvent(object sender, string message)
-        {
-            EventHandler<StringEventArgs> Handler = WarningMessageEvent;
-            if (Handler != null) Handler(sender, new StringEventArgs(message));
-            RaiseAggregatedStatusMessageEvent(sender, "WARNING: " + message);
         }
 
         private void RMLog_Handler(object sender, RMLogEventArgs e)
@@ -475,7 +300,7 @@ namespace RandM.GameSrv
         private void ServerThread_BindFailedEvent(object sender, EventArgs e)
         {
             // Bind failed on one or more server threads, so abort the server
-            if (_Status == ServerStatus.Started)
+            if (_Status == GameSrvStatus.Started)
             {
                 Stop();
             }
@@ -498,10 +323,10 @@ namespace RandM.GameSrv
                     }
                     catch (ArgumentOutOfRangeException aoorex)
                     {
-                        RaiseExceptionEvent("Unable to drop from root to '" + _Config.UnixUser + "'", aoorex);
+                        RMLog.Exception(aoorex, "Unable to drop from root to '" + _Config.UnixUser + "'");
 
                         // Abort the server
-                        if (_Status == ServerStatus.Started)
+                        if (_Status == GameSrvStatus.Started)
                         {
                             Stop();
                         }
@@ -519,37 +344,17 @@ namespace RandM.GameSrv
             e.Node = _NodeManager.GetFreeNode(e.ClientThread);
         }
 
-        private void ServerThread_ErrorMessageEvent(object sender, StringEventArgs e)
-        {
-            RaiseErrorMessageEvent(sender, e.Text);
-        }
-
-        private void ServerThread_ExceptionEvent(object sender, ExceptionEventArgs e)
-        {
-            RaiseExceptionEvent(sender, e);
-        }
-
-        private void ServerThread_MessageEvent(object sender, StringEventArgs e)
-        {
-            RaiseMessageEvent(sender, e.Text);
-        }
-
-        private void ServerThread_WarningMessageEvent(object sender, StringEventArgs e)
-        {
-            RaiseWarningMessageEvent(sender, e.Text);
-        }
-
         public bool Start()
         {
-            if (_Status == ServerStatus.Paused)
+            if (_Status == GameSrvStatus.Paused)
             {
                 // If we're paused, call Pause() again to un-pause
                 Pause();
                 return true;
             }
-            else if (_Status == ServerStatus.Stopped)
+            else if (_Status == GameSrvStatus.Stopped)
             {
-                RaiseStatusEvent(ServerStatus.Starting);
+                UpdateStatus(GameSrvStatus.Starting);
 
                 // Clean up the files not needed by this platform
                 CleanUpFiles();
@@ -557,14 +362,14 @@ namespace RandM.GameSrv
                 // Load the Global settings
                 if (!LoadGlobalSettings())
                 {
-                    RaiseStatusMessageEvent("Unable To Load Global Settings...Will Use Defaults");
+                    RMLog.Info("Unable To Load Global Settings...Will Use Defaults");
                     _Config.Save();
                 }
 
                 // Start the node manager
                 if (!StartNodeManager())
                 {
-                    RaiseStatusMessageEvent("Unable To Start Node Manager");
+                    RMLog.Info("Unable To Start Node Manager");
                     // Undo previous actions
                     goto ERROR;
                 }
@@ -577,7 +382,7 @@ namespace RandM.GameSrv
                 // Start the server threads
                 if (!StartServerThreads())
                 {
-                    RaiseStatusMessageEvent("Unable To Start Server Threads");
+                    RMLog.Info("Unable To Start Server Threads");
                     // Undo previous actions
                     StopServerThreads();
                     StopNodeManager();
@@ -587,7 +392,7 @@ namespace RandM.GameSrv
                 // Start the flash socket policy server thread
                 if (!StartFlashSocketPolicyServerThread())
                 {
-                    RaiseErrorMessageEvent("Unable To Start Flash Socket Policy Server Thread");
+                    RMLog.Error("Unable To Start Flash Socket Policy Server Thread");
                     // Undo previous actions
                     StopServerThreads();
                     StopNodeManager();
@@ -597,7 +402,7 @@ namespace RandM.GameSrv
                 // Start the ignored ips thread
                 if (!StartIgnoredIPsThread())
                 {
-                    RaiseErrorMessageEvent("Unable To Start Ignored IPs Thread");
+                    RMLog.Error("Unable To Start Ignored IPs Thread");
                     // Undo previous actions
                     StopFlashSocketPolicyServerThread();
                     StopServerThreads();
@@ -608,7 +413,7 @@ namespace RandM.GameSrv
                 // Check if we had a bind failure before finishing
                 if (_BindFailed)
                 {
-                    RaiseErrorMessageEvent("One Or More Servers Failed To Bind To Their Assigned Ports");
+                    RMLog.Error("One Or More Servers Failed To Bind To Their Assigned Ports");
                     // Undo previous actions
                     StopIgnoredIPsThread();
                     StopFlashSocketPolicyServerThread();
@@ -618,13 +423,13 @@ namespace RandM.GameSrv
                 }
 
                 // If we get here, we're online
-                RaiseStatusEvent(ServerStatus.Started);
+                UpdateStatus(GameSrvStatus.Started);
                 return true;
 
             ERROR:
 
                 // If we get here, we failed to go online
-                RaiseStatusEvent(ServerStatus.Stopped);
+                UpdateStatus(GameSrvStatus.Stopped);
                 return false;
             }
 
@@ -646,23 +451,23 @@ namespace RandM.GameSrv
         {
             if (_Config.FlashSocketPolicyServerPort > 0)
             {
-                RaiseStatusMessageEvent("Starting Flash Socket Policy Server Thread");
+                RMLog.Info("Starting Flash Socket Policy Server Thread");
 
                 try
                 {
                     // Create Flash Socket Policy Server Thread and Thread objects
                     _FlashSocketPolicyServerThread = new FlashSocketPolicyServerThread(_Config.FlashSocketPolicyServerIP, _Config.FlashSocketPolicyServerPort, _Config.ServerPorts);
-                    _FlashSocketPolicyServerThread.BindFailedEvent += new EventHandler(ServerThread_BindFailedEvent);
-                    _FlashSocketPolicyServerThread.BoundEvent += new EventHandler(ServerThread_BoundEvent);
-                    _FlashSocketPolicyServerThread.ErrorMessageEvent += new EventHandler<StringEventArgs>(FlashSocketPolicyServerThread_ErrorMessageEvent);
-                    _FlashSocketPolicyServerThread.MessageEvent += new EventHandler<StringEventArgs>(FlashSocketPolicyServerThread_MessageEvent);
-                    _FlashSocketPolicyServerThread.WarningMessageEvent += new EventHandler<StringEventArgs>(FlashSocketPolicyServerThread_WarningMessageEvent);
+                    _FlashSocketPolicyServerThread.BindFailedEvent += ServerThread_BindFailedEvent;
+                    _FlashSocketPolicyServerThread.BoundEvent += ServerThread_BoundEvent;
+                    _FlashSocketPolicyServerThread.ErrorMessageEvent += FlashSocketPolicyServerThread_ErrorMessageEvent;
+                    _FlashSocketPolicyServerThread.MessageEvent += FlashSocketPolicyServerThread_MessageEvent;
+                    _FlashSocketPolicyServerThread.WarningMessageEvent += FlashSocketPolicyServerThread_WarningMessageEvent;
                     _FlashSocketPolicyServerThread.Start();
                     return true;
                 }
                 catch (Exception ex)
                 {
-                    RaiseExceptionEvent("Error in GameSrv::StartFlashSocketPolicyServerThread()", ex);
+                    RMLog.Exception(ex, "Error in GameSrv::StartFlashSocketPolicyServerThread()");
                     return false;
                 }
             }
@@ -675,19 +480,18 @@ namespace RandM.GameSrv
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
         private bool StartIgnoredIPsThread()
         {
-            RaiseStatusMessageEvent("Starting Ignored IPs Thread");
+            RMLog.Info("Starting Ignored IPs Thread");
 
             try
             {
                 // Create Ignored IPs Thread and Thread objects
                 _IgnoredIPsThread = new IgnoredIPsThread();
-                _IgnoredIPsThread.ExceptionEvent += IgnoredIPsThread_ExceptionEvent;
                 _IgnoredIPsThread.Start();
                 return true;
             }
             catch (Exception ex)
             {
-                RaiseExceptionEvent("Error in GameSrv::StartIgnoredIPsThread()", ex);
+                RMLog.Exception(ex, "Error in GameSrv::StartIgnoredIPsThread()");
                 return false;
             }
 
@@ -696,24 +500,19 @@ namespace RandM.GameSrv
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
         private bool StartNodeManager()
         {
-            RaiseStatusMessageEvent("Starting Node Manager");
+            RMLog.Info("Starting Node Manager");
 
             try
             {
                 _NodeManager = new NodeManager(_Config.FirstNode, _Config.LastNode);
-                _NodeManager.ConnectionCountChangeEvent += new EventHandler<IntEventArgs>(NodeManager_ConnectionCountChangeEvent);
-                _NodeManager.ErrorMessageEvent += new EventHandler<StringEventArgs>(NodeManager_ErrorMessageEvent);
-                _NodeManager.ExceptionEvent += new EventHandler<ExceptionEventArgs>(NodeManager_ExceptionEvent);
-                _NodeManager.LogOffEvent += new EventHandler<NodeEventArgs>(NodeManager_LogOffEvent);
-                _NodeManager.LogOnEvent += new EventHandler<NodeEventArgs>(NodeManager_LogOnEvent);
-                _NodeManager.NodeEvent += new EventHandler<NodeEventArgs>(NodeManager_NodeEvent);
-                _NodeManager.WarningMessageEvent += new EventHandler<StringEventArgs>(NodeManager_WarningMessageEvent);
+                _NodeManager.ConnectionCountChangeEvent += NodeManager_ConnectionCountChangeEvent;
+                _NodeManager.NodeEvent += NodeManager_NodeEvent;
                 _NodeManager.Start();
                 return true;
             }
             catch (Exception ex)
             {
-                RaiseExceptionEvent("Error in GameSrv::StartNodeManager()", ex);
+                RMLog.Exception(ex, "Error in GameSrv::StartNodeManager()");
                 return false;
             }
         }
@@ -723,7 +522,7 @@ namespace RandM.GameSrv
         {
             if ((_Config.RLoginServerPort > 0) || (_Config.TelnetServerPort > 0) || (_Config.WebSocketServerPort > 0))
             {
-                RaiseStatusMessageEvent("Starting Server Threads");
+                RMLog.Info("Starting Server Threads");
 
                 try
                 {
@@ -733,39 +532,30 @@ namespace RandM.GameSrv
                     {
                         // Create Server Thread and add to collection
                         _ServerThreads.Add(_Config.RLoginServerPort, new ServerThread(_Config.RLoginServerIP, _Config.RLoginServerPort, ConnectionType.RLogin, _Config.TerminalType));
-                        _ServerThreads[_Config.RLoginServerPort].BindFailedEvent += new EventHandler(ServerThread_BindFailedEvent);
-                        _ServerThreads[_Config.RLoginServerPort].BoundEvent += new EventHandler(ServerThread_BoundEvent);
-                        _ServerThreads[_Config.RLoginServerPort].ConnectEvent += new EventHandler<ConnectEventArgs>(ServerThread_ConnectEvent);
-                        _ServerThreads[_Config.RLoginServerPort].ErrorMessageEvent += new EventHandler<StringEventArgs>(ServerThread_ErrorMessageEvent);
-                        _ServerThreads[_Config.RLoginServerPort].ExceptionEvent += new EventHandler<ExceptionEventArgs>(ServerThread_ExceptionEvent);
-                        _ServerThreads[_Config.RLoginServerPort].MessageEvent += new EventHandler<StringEventArgs>(ServerThread_MessageEvent);
-                        _ServerThreads[_Config.RLoginServerPort].WarningMessageEvent += new EventHandler<StringEventArgs>(ServerThread_WarningMessageEvent);
+                        // TODOX Confirm these are all needed
+                        _ServerThreads[_Config.RLoginServerPort].BindFailedEvent += ServerThread_BindFailedEvent;
+                        _ServerThreads[_Config.RLoginServerPort].BoundEvent += ServerThread_BoundEvent;
+                        _ServerThreads[_Config.RLoginServerPort].ConnectEvent += ServerThread_ConnectEvent;
                     }
 
                     if (_Config.TelnetServerPort > 0)
                     {
                         // Create Server Thread and add to collection
                         _ServerThreads.Add(_Config.TelnetServerPort, new ServerThread(_Config.TelnetServerIP, _Config.TelnetServerPort, ConnectionType.Telnet, _Config.TerminalType));
-                        _ServerThreads[_Config.TelnetServerPort].BindFailedEvent += new EventHandler(ServerThread_BindFailedEvent);
-                        _ServerThreads[_Config.TelnetServerPort].BoundEvent += new EventHandler(ServerThread_BoundEvent);
-                        _ServerThreads[_Config.TelnetServerPort].ConnectEvent += new EventHandler<ConnectEventArgs>(ServerThread_ConnectEvent);
-                        _ServerThreads[_Config.TelnetServerPort].ErrorMessageEvent += new EventHandler<StringEventArgs>(ServerThread_ErrorMessageEvent);
-                        _ServerThreads[_Config.TelnetServerPort].ExceptionEvent += new EventHandler<ExceptionEventArgs>(ServerThread_ExceptionEvent);
-                        _ServerThreads[_Config.TelnetServerPort].MessageEvent += new EventHandler<StringEventArgs>(ServerThread_MessageEvent);
-                        _ServerThreads[_Config.TelnetServerPort].WarningMessageEvent += new EventHandler<StringEventArgs>(ServerThread_WarningMessageEvent);
+                        // TODOX Confirm these are all needed
+                        _ServerThreads[_Config.TelnetServerPort].BindFailedEvent += ServerThread_BindFailedEvent;
+                        _ServerThreads[_Config.TelnetServerPort].BoundEvent += ServerThread_BoundEvent;
+                        _ServerThreads[_Config.TelnetServerPort].ConnectEvent += ServerThread_ConnectEvent;
                     }
 
                     if (_Config.WebSocketServerPort > 0)
                     {
                         // Create Server Thread and add to collection
                         _ServerThreads.Add(_Config.WebSocketServerPort, new ServerThread(_Config.WebSocketServerIP, _Config.WebSocketServerPort, ConnectionType.WebSocket, _Config.TerminalType));
-                        _ServerThreads[_Config.WebSocketServerPort].BindFailedEvent += new EventHandler(ServerThread_BindFailedEvent);
-                        _ServerThreads[_Config.WebSocketServerPort].BoundEvent += new EventHandler(ServerThread_BoundEvent);
-                        _ServerThreads[_Config.WebSocketServerPort].ConnectEvent += new EventHandler<ConnectEventArgs>(ServerThread_ConnectEvent);
-                        _ServerThreads[_Config.WebSocketServerPort].ErrorMessageEvent += new EventHandler<StringEventArgs>(ServerThread_ErrorMessageEvent);
-                        _ServerThreads[_Config.WebSocketServerPort].ExceptionEvent += new EventHandler<ExceptionEventArgs>(ServerThread_ExceptionEvent);
-                        _ServerThreads[_Config.WebSocketServerPort].MessageEvent += new EventHandler<StringEventArgs>(ServerThread_MessageEvent);
-                        _ServerThreads[_Config.WebSocketServerPort].WarningMessageEvent += new EventHandler<StringEventArgs>(ServerThread_WarningMessageEvent);
+                        // TODOX Confirm these are all needed
+                        _ServerThreads[_Config.WebSocketServerPort].BindFailedEvent += ServerThread_BindFailedEvent;
+                        _ServerThreads[_Config.WebSocketServerPort].BoundEvent += ServerThread_BoundEvent;
+                        _ServerThreads[_Config.WebSocketServerPort].ConnectEvent += ServerThread_ConnectEvent;
                     }
 
                     // Now actually start the server threads
@@ -778,34 +568,34 @@ namespace RandM.GameSrv
                 }
                 catch (Exception ex)
                 {
-                    RaiseExceptionEvent("Error in GameSrv::StartServerThreads()", ex);
+                    RMLog.Exception(ex, "Error in GameSrv::StartServerThreads()");
                     return false;
                 }
             }
             else
             {
-                RaiseErrorMessageEvent("No server ports found");
+                RMLog.Error("No server ports found");
                 return false;
             }
         }
 
-        public ServerStatus Status
+        public GameSrvStatus Status
         {
             get { return _Status; }
         }
 
         public void Stop()
         {
-            if ((_Status == ServerStatus.Paused) || (_Status == ServerStatus.Started))
+            if ((_Status == GameSrvStatus.Paused) || (_Status == GameSrvStatus.Started))
             {
-                RaiseStatusEvent(ServerStatus.Stopping);
+                UpdateStatus(GameSrvStatus.Stopping);
 
                 StopIgnoredIPsThread();
                 StopFlashSocketPolicyServerThread();
                 StopServerThreads();
                 StopNodeManager();
 
-                RaiseStatusEvent(ServerStatus.Stopped);
+                UpdateStatus(GameSrvStatus.Stopped);
             }
         }
 
@@ -814,7 +604,7 @@ namespace RandM.GameSrv
         {
             if (_NodeManager != null)
             {
-                RaiseStatusMessageEvent("Stopping Node Manager");
+                RMLog.Info("Stopping Node Manager");
 
                 try
                 {
@@ -825,7 +615,7 @@ namespace RandM.GameSrv
                 }
                 catch (Exception ex)
                 {
-                    RaiseExceptionEvent("Error in GameSrv::StopNodeManger()", ex);
+                    RMLog.Exception(ex, "Error in GameSrv::StopNodeManger()");
                     return false;
                 }
             }
@@ -838,7 +628,7 @@ namespace RandM.GameSrv
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
         private bool StopServerThreads()
         {
-            RaiseStatusMessageEvent("Stopping Server Threads");
+            RMLog.Info("Stopping Server Threads");
 
             try
             {
@@ -851,7 +641,7 @@ namespace RandM.GameSrv
             }
             catch (Exception ex)
             {
-                RaiseExceptionEvent("Error in GameSrv::StopServerThread()", ex);
+                RMLog.Exception(ex, "Error in GameSrv::StopServerThread()");
                 return false;
             }
         }
@@ -861,7 +651,7 @@ namespace RandM.GameSrv
         {
             if (_FlashSocketPolicyServerThread != null)
             {
-                RaiseStatusMessageEvent("Stopping Flash Socket Policy Server Thread");
+                RMLog.Info("Stopping Flash Socket Policy Server Thread");
 
                 try
                 {
@@ -873,7 +663,7 @@ namespace RandM.GameSrv
                 }
                 catch (Exception ex)
                 {
-                    RaiseExceptionEvent("Error in GameSrv::StopFlashSocketPolicyServerThread()", ex);
+                    RMLog.Exception(ex, "Error in GameSrv::StopFlashSocketPolicyServerThread()");
                     return false;
                 }
             }
@@ -888,7 +678,7 @@ namespace RandM.GameSrv
         {
             if (_IgnoredIPsThread != null)
             {
-                RaiseStatusMessageEvent("Stopping Ignored IPs Thread");
+                RMLog.Info("Stopping Ignored IPs Thread");
 
                 try
                 {
@@ -900,7 +690,7 @@ namespace RandM.GameSrv
                 }
                 catch (Exception ex)
                 {
-                    RaiseExceptionEvent("Error in GameSrv::StopIgnoredIPsThread()", ex);
+                    RMLog.Exception(ex, "Error in GameSrv::StopIgnoredIPsThread()");
                     return false;
                 }
             }
@@ -920,7 +710,39 @@ namespace RandM.GameSrv
             get { return _Config.TimeFormatUI; }
         }
 
-        static public string Version
+        private void UpdateStatus(GameSrvStatus newStatus) {
+            // Record the new status
+            _Status = newStatus;
+
+            StatusChangeEvent?.Invoke(this, new StatusEventArgs(newStatus));
+
+            switch (newStatus) {
+                case GameSrvStatus.Paused:
+                    RMLog.Info("Server(s) are paused");
+                    break;
+                case GameSrvStatus.Pausing:
+                    RMLog.Info("Server(s) are pausing...");
+                    break;
+                case GameSrvStatus.Resuming:
+                    RMLog.Info("Server(s) are resuming...");
+                    break;
+                case GameSrvStatus.Started:
+                    RMLog.Info("Server(s) have started");
+                    break;
+                case GameSrvStatus.Starting:
+                    RMLog.Info("Server(s) are starting...");
+                    break;
+                case GameSrvStatus.Stopped:
+                    RMLog.Info("Server(s) have stopped");
+                    FlushLog();
+                    break;
+                case GameSrvStatus.Stopping:
+                    RMLog.Info("Server(s) are stopping...");
+                    break;
+            }
+        }
+
+        public static string Version
         {
             get { return ProcessUtils.ProductVersionOfCallingAssembly; }
         }

@@ -38,21 +38,21 @@ namespace RandM.GameSrv
     {
         public NodeInfo NodeInfo { get; private set; }
         public string Status { get; private set; }
-        public bool Stopped { get; private set; }
+        public NodeEventType EventType { get; private set; }
 
-        public NodeEventArgs(NodeInfo nodeInfo, string status, bool stopped)
+        public NodeEventArgs(NodeInfo nodeInfo, string status, NodeEventType eventType)
         {
             NodeInfo = nodeInfo;
             Status = status;
-            Stopped = stopped;
+            EventType = eventType;
         }
     }
 
     public class StatusEventArgs : EventArgs
     {
-        public ServerStatus Status { get; private set; }
+        public GameSrvStatus Status { get; private set; }
 
-        public StatusEventArgs(ServerStatus status)
+        public StatusEventArgs(GameSrvStatus status)
         {
             Status = status;
         }

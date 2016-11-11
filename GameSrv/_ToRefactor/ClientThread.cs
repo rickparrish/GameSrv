@@ -54,13 +54,8 @@ namespace RandM.GameSrv
         private string _Status = "";
 
         // TODOZ Add a Disconnect event of some sort to allow a sysop to disconnect another node
-        public event EventHandler<StringEventArgs> ErrorMessageEvent = null;
-        public event EventHandler<ExceptionEventArgs> ExceptionEvent = null;
-        public event EventHandler<NodeEventArgs> LogOffEvent = null;
-        public event EventHandler<NodeEventArgs> LogOnEvent = null;
         public event EventHandler<NodeEventArgs> NodeEvent = null;
-        public event EventHandler<StringEventArgs> WarningMessageEvent = null;
-        public event EventHandler<WhoIsOnlineEventArgs> WhoIsOnlineEvent = null;
+        public event EventHandler<WhoIsOnlineEventArgs> WhoIsOnlineEvent = null; // TODOX Gotta be a better way to get
 
         public ClientThread()
         {
@@ -158,7 +153,7 @@ namespace RandM.GameSrv
                         // We're going to just directly register the user since sysop wants to skip the prompts
                         if (IsBannedUser(UserName))
                         {
-                            RaiseWarningMessageEvent("RLogin user not allowed due to banned alias: '" + UserName + "'");
+                            RMLog.Warning("RLogin user not allowed due to banned alias: '" + UserName + "'");
                             return false;
                         }
                         else
@@ -177,7 +172,7 @@ namespace RandM.GameSrv
                                 {
                                     // TODOZ This user lost the race (_NodeInfo.User.Loaded returned false above, so the user should have been free to register, but between then and .StartRegistration the alias was taken)
                                     //       Not sure what to do in this case, aside from log that it happened
-                                    RaiseWarningMessageEvent("RLogin user lost a race condition and couldn't register as '" + UserName + "'");
+                                    RMLog.Warning("RLogin user lost a race condition and couldn't register as '" + UserName + "'");
                                 }
                             }
                         }
@@ -202,7 +197,7 @@ namespace RandM.GameSrv
             {
                 // Get alias
                 if (Globals.Debug) AddToLog("Entering Alias");
-                RaiseNodeEvent("Entering Alias");
+                UpdateStatus("Entering Alias");
                 DisplayAnsi("LOGON_ENTER_ALIAS");
                 if (Globals.Debug) _NodeInfo.Connection.ReadEvent += Connection_ReadEvent;
                 string Alias = ReadLn().Trim();
@@ -226,7 +221,7 @@ namespace RandM.GameSrv
                     else
                     {
                         // Get new user password
-                        RaiseNodeEvent("Entering New User Password");
+                        UpdateStatus("Entering New User Password");
                         DisplayAnsi("NEWUSER_ENTER_NEWUSER_PASSWORD");
                         string NewUserPassword = ReadLn('*').Trim();
                         _NodeInfo.Connection.WriteLn();
@@ -240,12 +235,12 @@ namespace RandM.GameSrv
                     if (CanRegister)
                     {
                         // Trying to register as a new user
-                        RaiseNodeEvent("Registering as new user");
+                        UpdateStatus("Registering as new user");
                         return Register();
                     }
                     else
                     {
-                        RaiseNodeEvent("Entered invalid newuser password");
+                        UpdateStatus("Entered invalid newuser password");
                     }
                 }
                 else if (IsBannedUser(Alias))
@@ -265,23 +260,23 @@ namespace RandM.GameSrv
                     // Add to temp ban list
                     Globals.AddTempIgnoredIP(_NodeInfo.Connection.GetRemoteIP());
 
-                    RaiseWarningMessageEvent("IP banned for trying to log in as " + Alias);
+                    RMLog.Warning("IP banned for trying to log in as " + Alias);
                     DisplayAnsi("USER_BANNED");
                     return false;
                 }
                 else if (!string.IsNullOrEmpty(Alias))
                 {
-                    RaiseNodeEvent("Logging on as " + Alias);
+                    UpdateStatus("Logging on as " + Alias);
 
                     // Get password
-                    RaiseNodeEvent("Entering Password");
+                    UpdateStatus("Entering Password");
                     DisplayAnsi("LOGON_ENTER_PASSWORD");
                     string Password = ReadLn('*').Trim();
 
                     // Make sure we should still proceed
                     if (QuitThread()) return false;
 
-                    RaiseNodeEvent("Validating Credentials");
+                    UpdateStatus("Validating Credentials");
                     _NodeInfo.User = new UserInfo(Alias);
                     if (_NodeInfo.User.Loaded && (_NodeInfo.User.ValidatePassword(Password, _Config.PasswordPepper)))
                     {
@@ -808,7 +803,7 @@ namespace RandM.GameSrv
             }
             catch (IOException ioex)
             {
-                RaiseExceptionEvent("Unable to display '" + fileName + "'", ioex);
+                RMLog.Exception(ioex, "Unable to display '" + fileName + "'");
                 return false;
             }
         }
@@ -826,7 +821,7 @@ namespace RandM.GameSrv
                 if (_NodeInfo.Door.Loaded)
                 {
                     _NodeInfo.User.Alias = "Anonymous";
-                    RaiseLogOnEvent("Running RUNBBS.INI process");
+                    NodeEvent?.Invoke(this, new NodeEventArgs(_NodeInfo, "Running RUNBBS.INI process", NodeEventType.LogOn));
 
                     _NodeInfo.SecondsThisSession = 86400; // RUNBBS.BAT can run for 24 hours
                     RunDoor();
@@ -847,7 +842,7 @@ namespace RandM.GameSrv
                         // Update the user's time remaining
                         _NodeInfo.UserLoggedOn = true;
                         _NodeInfo.SecondsThisSession = _Config.TimePerCall * 60;
-                        RaiseLogOnEvent();
+                        NodeEvent?.Invoke(this, new NodeEventArgs(_NodeInfo, "Logging on", NodeEventType.LogOn));
 
                         // Check if RLogin is requesting to launch a door immediately via the xtrn= command
                         if ((_NodeInfo.Door != null) && _NodeInfo.Door.Loaded)
@@ -858,14 +853,14 @@ namespace RandM.GameSrv
                         else
                         {
                             // Do the logon process
-                            RaiseNodeEvent("Running Logon Process");
+                            UpdateStatus("Running Logon Process");
                             HandleLogOnProcess();
 
                             // Make sure we should still proceed
                             if (QuitThread()) return;
 
                             // Do the logoff process
-                            RaiseNodeEvent("Running Logoff Process");
+                            UpdateStatus("Running Logoff Process");
                             HandleLogOffProcess();
 
                             // Make sure we should still proceed
@@ -879,7 +874,7 @@ namespace RandM.GameSrv
             }
             catch (Exception ex)
             {
-                RaiseExceptionEvent("Error in ClientThread::Execute()", ex);
+                RMLog.Exception(ex, "Error in ClientThread::Execute()");
             }
             finally
             {
@@ -888,7 +883,7 @@ namespace RandM.GameSrv
                 catch { /* Ignore */ }
 
                 // Try to free the node
-                try { RaiseLogOffEvent(); }
+                try { NodeEvent?.Invoke(this, new NodeEventArgs(_NodeInfo, "Logging off", NodeEventType.LogOff)); }
                 catch { /* Ignore */ }
 
                 FlushLog();
@@ -910,7 +905,7 @@ namespace RandM.GameSrv
                     }
                     catch (Exception ex)
                     {
-                        RaiseExceptionEvent("Unable to update node" + _NodeInfo.Node.ToString() + ".log", ex);
+                        RMLog.Exception(ex, "Unable to update node" + _NodeInfo.Node.ToString() + ".log");
                     }
                 }
             }
@@ -993,7 +988,7 @@ namespace RandM.GameSrv
                 catch (ArgumentException aex)
                 {
                     // If there's something wrong with the ini entry (Action is invalid for example), this will throw a System.ArgumentException error, so we just ignore that menu item
-                    RaiseExceptionEvent("Unable to load '" + _CurrentMenu + "' menu option for '" + HotKey + "'", aex);
+                    RMLog.Exception(aex, "Unable to load '" + _CurrentMenu + "' menu option for '" + HotKey + "'");
                 }
             }
         }
@@ -1037,7 +1032,7 @@ namespace RandM.GameSrv
                 catch (ArgumentException aex)
                 {
                     // If there's something wrong with the ini entry (Action is invalid for example), this will throw a System.ArgumentException error, so we just ignore that menu item
-                    RaiseExceptionEvent("Error during logoff process '" + Processes[i] + "'", aex);
+                    RMLog.Exception(aex, "Error during logoff process '" + Processes[i] + "'");
                 }
             }
         }
@@ -1084,7 +1079,7 @@ namespace RandM.GameSrv
                 catch (Exception ex)
                 {
                     // If there's something wrong with the ini entry (Action is invalid for example), this will throw a System.ArgumentException error, so we just ignore that menu item
-                    RaiseExceptionEvent("Error during logon process '" + Processes[i] + "'", ex);
+                    RMLog.Exception(ex, "Error during logon process '" + Processes[i] + "'");
                 }
             }
         }
@@ -1096,46 +1091,46 @@ namespace RandM.GameSrv
                 switch (menuOption.Action)
                 {
                     case Action.ChangeMenu:
-                        RaiseNodeEvent("Changing to " + menuOption.Parameters.ToUpper() + " menu");
+                        UpdateStatus("Changing to " + menuOption.Parameters.ToUpper() + " menu");
                         _CurrentMenu = menuOption.Parameters.ToUpper();
                         return false;
                     case Action.Disconnect:
-                        RaiseNodeEvent("Disconnecting");
+                        UpdateStatus("Disconnecting");
                         _NodeInfo.Connection.Close();
                         return true;
                     case Action.DisplayFile:
-                        RaiseNodeEvent("Displaying " + menuOption.Parameters);
+                        UpdateStatus("Displaying " + menuOption.Parameters);
                         DisplayFile(menuOption.Parameters, true, false, false);
-                        if (menuOption.Parameters != _LastDisplayFile) RaiseNodeEvent(" displayed " + _LastDisplayFile);
+                        if (menuOption.Parameters != _LastDisplayFile) UpdateStatus(" displayed " + _LastDisplayFile);
                         return false;
                     case Action.DisplayFileMore:
-                        RaiseNodeEvent("Displaying " + menuOption.Parameters + " (with more)");
+                        UpdateStatus("Displaying " + menuOption.Parameters + " (with more)");
                         DisplayFile(menuOption.Parameters, true, true, true);
-                        if (menuOption.Parameters != _LastDisplayFile) RaiseNodeEvent(" displayed " + _LastDisplayFile + " (with more)");
+                        if (menuOption.Parameters != _LastDisplayFile) UpdateStatus(" displayed " + _LastDisplayFile + " (with more)");
                         return false;
                     case Action.DisplayFilePause:
-                        RaiseNodeEvent("Displaying " + menuOption.Parameters + " (with pause)");
+                        UpdateStatus("Displaying " + menuOption.Parameters + " (with pause)");
                         DisplayFile(menuOption.Parameters, true, true, false);
-                        if (menuOption.Parameters != _LastDisplayFile) RaiseNodeEvent(" displayed " + _LastDisplayFile + " (with pause)");
+                        if (menuOption.Parameters != _LastDisplayFile) UpdateStatus(" displayed " + _LastDisplayFile + " (with pause)");
                         return false;
                     case Action.LogOff:
-                        RaiseNodeEvent("Logging off");
+                        UpdateStatus("Logging off");
                         return true;
                     case Action.MainMenu:
-                        RaiseNodeEvent("Changing to " + menuOption.Parameters.ToUpper() + " menu");
+                        UpdateStatus("Changing to " + menuOption.Parameters.ToUpper() + " menu");
                         _CurrentMenu = menuOption.Parameters.ToUpper();
                         MainMenu();
                         return true;
                     case Action.Pause:
-                        RaiseNodeEvent("Pausing for " + menuOption.Parameters + " seconds");
+                        UpdateStatus("Pausing for " + menuOption.Parameters + " seconds");
                         Thread.Sleep(int.Parse(menuOption.Parameters));
                         return false;
                     case Action.RunDoor:
-                        RaiseNodeEvent("Running " + menuOption.Parameters);
+                        UpdateStatus("Running " + menuOption.Parameters);
                         RunDoor(menuOption.Parameters);
                         return false;
                     case Action.Telnet:
-                        RaiseNodeEvent("Telnetting to " + menuOption.Parameters);
+                        UpdateStatus("Telnetting to " + menuOption.Parameters);
                         Telnet(menuOption.Parameters);
                         return false;
                 }
@@ -1170,7 +1165,7 @@ namespace RandM.GameSrv
             }
             catch (Exception ex)
             {
-                RaiseExceptionEvent("Unable to validate alias against banned-users.txt", ex);
+                RMLog.Exception(ex, "Unable to validate alias against banned-users.txt");
             }
 
             // If we get here, it's an OK name
@@ -1196,7 +1191,7 @@ namespace RandM.GameSrv
                 DisplayCurrentMenu();
 
                 // Send node event message
-                RaiseNodeEvent("At " + _CurrentMenu.ToUpper() + " menu");
+                UpdateStatus("At " + _CurrentMenu.ToUpper() + " menu");
 
                 string HotKey = ReadChar().ToString().ToUpper();
                 if (!string.IsNullOrEmpty(HotKey) && !QuitThread())
@@ -1239,48 +1234,6 @@ namespace RandM.GameSrv
             if (_NodeInfo.Connection.ReadTimedOut) return true;
             if (SecondsLeft() <= 0) return true;
             return false;
-        }
-
-        private void RaiseErrorMessageEvent(string message)
-        {
-            EventHandler<StringEventArgs> Handler = ErrorMessageEvent;
-            if (Handler != null) Handler(this, new StringEventArgs(message));
-        }
-
-        private void RaiseExceptionEvent(string message, Exception ex)
-        {
-            EventHandler<ExceptionEventArgs> Handler = ExceptionEvent;
-            if (Handler != null) Handler(this, new ExceptionEventArgs(message, ex));
-        }
-
-        private void RaiseLogOffEvent()
-        {
-            EventHandler<NodeEventArgs> Handler = LogOffEvent;
-            if (Handler != null) Handler(this, new NodeEventArgs(_NodeInfo, "Logging off", _Stop));
-        }
-
-        private void RaiseLogOnEvent()
-        {
-            RaiseLogOnEvent("Logging on");
-        }
-
-        private void RaiseLogOnEvent(string status)
-        {
-            EventHandler<NodeEventArgs> Handler = LogOnEvent;
-            if (Handler != null) Handler(this, new NodeEventArgs(_NodeInfo, status, _Stop));
-        }
-
-        private void RaiseNodeEvent(string AStatus)
-        {
-            _Status = AStatus;
-            EventHandler<NodeEventArgs> Handler = NodeEvent;
-            if (Handler != null) Handler(this, new NodeEventArgs(_NodeInfo, AStatus, _Stop));
-        }
-
-        private void RaiseWarningMessageEvent(string message)
-        {
-            EventHandler<StringEventArgs> Handler = WarningMessageEvent;
-            if (Handler != null) Handler(this, new StringEventArgs(message));
         }
 
         private char? ReadChar()
@@ -1477,7 +1430,7 @@ namespace RandM.GameSrv
                     }
                     else
                     {
-                        RaiseErrorMessageEvent("Unable to prompt new user for '" + Questions[i] + "' since ansi\\newuser_enter_" + Questions[i].ToLower() + ".ans is missing");
+                        RMLog.Error("Unable to prompt new user for '" + Questions[i] + "' since ansi\\newuser_enter_" + Questions[i].ToLower() + ".ans is missing");
                     }
                 }
 
@@ -1514,7 +1467,7 @@ namespace RandM.GameSrv
             }
             else
             {
-                RaiseErrorMessageEvent("Unable to find door: '" + door + "'");
+                RMLog.Error("Unable to find door: '" + door + "'");
             }
         }
 
@@ -1545,7 +1498,7 @@ namespace RandM.GameSrv
                         }
                         else
                         {
-                            RaiseErrorMessageEvent("DOS doors are not supported on 64bit Windows (unless you install DOSBox 0.73)");
+                            RMLog.Error("DOS doors are not supported on 64bit Windows (unless you install DOSBox 0.73)");
                         }
                     }
                     else
@@ -1569,17 +1522,17 @@ namespace RandM.GameSrv
                     }
                     else
                     {
-                        RaiseErrorMessageEvent("DOS doors are not supported on Linux (unless you install DOSEMU)");
+                        RMLog.Error("DOS doors are not supported on Linux (unless you install DOSEMU)");
                     }
                 }
                 else
                 {
-                    RaiseErrorMessageEvent("Unsure how to run door on current platform");
+                    RMLog.Error("Unsure how to run door on current platform");
                 }
             }
             catch (Exception ex)
             {
-                RaiseExceptionEvent("Error while running door '" + _NodeInfo.Door.Name + "'", ex);
+                RMLog.Exception(ex, "Error while running door '" + _NodeInfo.Door.Name + "'");
             }
             finally
             {
@@ -1596,7 +1549,7 @@ namespace RandM.GameSrv
 
         private void RunDoorDOSBox(string command, string parameters)
         {
-            if (Globals.Debug) RaiseNodeEvent("DEBUG: DOSBox launching " + command + " " + parameters);
+            if (Globals.Debug) UpdateStatus("DEBUG: DOSBox launching " + command + " " + parameters);
 
             string DOSBoxConf = StringUtils.PathCombine("node" + _NodeInfo.Node.ToString(), "dosbox.conf");
             string ProgramFilesX86 = Environment.GetEnvironmentVariable("PROGRAMFILES(X86)") ?? Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
@@ -1618,7 +1571,7 @@ namespace RandM.GameSrv
                 CFG\%1.cfg" -securemode -socket %2 -c "exit"
              */
             string Arguments = "-telnet -conf " + DOSBoxConf + " -socket " + _NodeInfo.Connection.GetSocket().Handle.ToInt32().ToString();
-            if (Globals.Debug) RaiseNodeEvent("Executing " + DOSBoxExe + " " + Arguments);
+            if (Globals.Debug) UpdateStatus("Executing " + DOSBoxExe + " " + Arguments);
 
             // Start the process
             using (RMProcess P = new RMProcess())
@@ -1636,7 +1589,7 @@ namespace RandM.GameSrv
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2122:DoNotIndirectlyExposeMethodsWithLinkDemands")]
         private void RunDoorDOSEMU(string command, string parameters)
         {
-            if (Globals.Debug) RaiseNodeEvent("DEBUG: DOSEMU launching " + command + " " + parameters);
+            if (Globals.Debug) UpdateStatus("DEBUG: DOSEMU launching " + command + " " + parameters);
 
             PseudoTerminal pty = null;
             Mono.Unix.UnixStream us = null;
@@ -1655,7 +1608,7 @@ namespace RandM.GameSrv
                 FileUtils.FileWriteAllText(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _NodeInfo.Node.ToString(), "external.bat"), String.Join("\r\n", ExternalBat), RMEncoding.Ansi);
 
                 string[] Arguments = new string[] { "HOME=" + ProcessUtils.StartupPath, "HOME=" + ProcessUtils.StartupPath, "QUIET=1", "DOSDRIVE_D=" + StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _NodeInfo.Node.ToString()), "/usr/bin/nice", "-n19", "/usr/bin/dosemu.bin", "-Ivideo { none }", "-Ikeystroke \\r", "-Iserial { virtual com 1 }", "-t", "-Ed:external.bat", "-o" + StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _NodeInfo.Node.ToString(), "dosemu.log") };//, "2> /gamesrv/NODE" + _NodeInfo.Node.ToString() + "/DOSEMU_BOOT.LOG" }; // TODO add configuration variable so this path is not hardcoded
-                if (Globals.Debug) RaiseNodeEvent("Executing /usr/bin/env " + string.Join(" ", Arguments));
+                if (Globals.Debug) UpdateStatus("Executing /usr/bin/env " + string.Join(" ", Arguments));
 
                 lock (Globals.PrivilegeLock)
                 {
@@ -1711,7 +1664,7 @@ namespace RandM.GameSrv
                     {
                         int Sleeps = 0;
 
-                        RaiseNodeEvent("User hung-up while in external program");
+                        UpdateStatus("User hung-up while in external program");
                         Mono.Unix.Native.Syscall.kill(pty.ChildPid, Mono.Unix.Native.Signum.SIGHUP);
                         while ((Sleeps++ < 5) && (Mono.Unix.Native.Syscall.waitpid(pty.ChildPid, out WaitStatus, Mono.Unix.Native.WaitOptions.WNOHANG) == 0))
                         {
@@ -1719,7 +1672,7 @@ namespace RandM.GameSrv
                         }
                         if (Mono.Unix.Native.Syscall.waitpid(pty.ChildPid, out WaitStatus, Mono.Unix.Native.WaitOptions.WNOHANG) == 0)
                         {
-                            RaiseNodeEvent("Process still active after waiting 5 seconds");
+                            UpdateStatus("Process still active after waiting 5 seconds");
                         }
                         return;
                     }
@@ -1788,7 +1741,7 @@ namespace RandM.GameSrv
                 {
                     if (Mono.Unix.Native.Syscall.waitpid(pty.ChildPid, out WaitStatus, Mono.Unix.Native.WaitOptions.WNOHANG) == 0)
                     {
-                        RaiseNodeEvent("Terminating process");
+                        UpdateStatus("Terminating process");
                         Mono.Unix.Native.Syscall.kill(pty.ChildPid, Mono.Unix.Native.Signum.SIGKILL);
                     }
                     pty.Dispose();
@@ -1798,7 +1751,7 @@ namespace RandM.GameSrv
 
         private void RunDoorNative(string command, string parameters)
         {
-            if (Globals.Debug) RaiseNodeEvent("DEBUG: Natively launching " + command + " " + parameters);
+            if (Globals.Debug) UpdateStatus("DEBUG: Natively launching " + command + " " + parameters);
             using (RMProcess P = new RMProcess())
             {
                 P.ProcessWaitEvent += OnDoorWait;
@@ -1821,7 +1774,7 @@ namespace RandM.GameSrv
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2122:DoNotIndirectlyExposeMethodsWithLinkDemands")]
         private unsafe void RunDoorSBBSEXEC9x(string command, string parameters, int forceQuitDelay)
         {
-            if (Globals.Debug) RaiseNodeEvent("DEBUG: SBBSEXEC9x launching " + command + " " + parameters);
+            if (Globals.Debug) UpdateStatus("DEBUG: SBBSEXEC9x launching " + command + " " + parameters);
 
             // SBBSEXEC constants
             const uint LoopsBeforeYield = 10;
@@ -1863,14 +1816,14 @@ namespace RandM.GameSrv
                 int LastWin32Error = Marshal.GetLastWin32Error();
                 if (VxD == (IntPtr)NativeMethods.INVALID_HANDLE_VALUE)
                 {
-                    RaiseErrorMessageEvent("CreateFile() failed to load VxD: " + LastWin32Error.ToString());
+                    RMLog.Error("CreateFile() failed to load VxD: " + LastWin32Error.ToString());
                     return;
                 }
 
                 StartEvent = NativeMethods.CreateEvent(IntPtr.Zero, true, false, null);
                 if (StartEvent == IntPtr.Zero)
                 {
-                    RaiseErrorMessageEvent("CreateEvent() failed to create StartEvent: " + Marshal.GetLastWin32Error().ToString());
+                    RMLog.Error("CreateEvent() failed to create StartEvent: " + Marshal.GetLastWin32Error().ToString());
                     return;
                 }
                 Start.Event = NativeMethods.OpenVxDHandle(StartEvent);
@@ -1882,7 +1835,7 @@ namespace RandM.GameSrv
 
                 if (!NativeMethods.DeviceIoControl(VxD, SBBSEXEC_IOCTL_START, StartPtr, StartSize, IntPtr.Zero, 0, out BytesRead, IntPtr.Zero))
                 {
-                    RaiseErrorMessageEvent("Error executing SBBSEXEC_IOCTL_START: " + Marshal.GetLastWin32Error().ToString());
+                    RMLog.Error("Error executing SBBSEXEC_IOCTL_START: " + Marshal.GetLastWin32Error().ToString());
                     return;
                 }
 
@@ -1896,14 +1849,14 @@ namespace RandM.GameSrv
 
                 if (P == null)
                 {
-                    RaiseErrorMessageEvent("Error launching " + FileName + " " + Arguments);
+                    RMLog.Error("Error launching " + FileName + " " + Arguments);
                     return;
                 }
 
                 // Wait for notification from VXD that new VM has started
                 if (NativeMethods.WaitForSingleObject(StartEvent, 5000) != (uint)NativeMethods.WAIT_OBJECT_0)
                 {
-                    RaiseErrorMessageEvent("WaitForSingleObject() timeout while waiting for StartEvent");
+                    RMLog.Error("WaitForSingleObject() timeout while waiting for StartEvent");
                     return;
                 }
 
@@ -1914,7 +1867,7 @@ namespace RandM.GameSrv
                 VM = Marshal.AllocHGlobal(sizeof(uint));
                 if (!NativeMethods.DeviceIoControl(VxD, SBBSEXEC_IOCTL_COMPLETE, IntPtr.Zero, 0, VM, sizeof(uint), out BytesRead, IntPtr.Zero))
                 {
-                    RaiseErrorMessageEvent("Error executing SBBSEXEC_IOCTL_COMPLETE: " + Marshal.GetLastWin32Error().ToString());
+                    RMLog.Error("Error executing SBBSEXEC_IOCTL_COMPLETE: " + Marshal.GetLastWin32Error().ToString());
                     return;
                 }
                 VMValue = RMEncoding.Ansi.GetString(BitConverter.GetBytes(Marshal.ReadInt32(VM)));
@@ -1929,11 +1882,11 @@ namespace RandM.GameSrv
                     // Check for dropped carrier
                     if (!_NodeInfo.Connection.Connected)
                     {
-                        RaiseNodeEvent("User hung-up while in external program");
+                        UpdateStatus("User hung-up while in external program");
 
                         if (!NativeMethods.DeviceIoControl(VxD, SBBSEXEC_IOCTL_DISCONNECT, VM, sizeof(uint), IntPtr.Zero, 0, out BytesRead, IntPtr.Zero))
                         {
-                            RaiseErrorMessageEvent("Error executing SBBSEXEC_IOCTL_DISCONNECT: " + Marshal.GetLastWin32Error().ToString());
+                            RMLog.Error("Error executing SBBSEXEC_IOCTL_DISCONNECT: " + Marshal.GetLastWin32Error().ToString());
                             return;
                         }
 
@@ -1943,7 +1896,7 @@ namespace RandM.GameSrv
                             if (P.HasExited) return;
                             P.WaitForExit(1000);
                         }
-                        RaiseNodeEvent("Process still active after waiting " + forceQuitDelay.ToString() + " seconds");
+                        UpdateStatus("Process still active after waiting " + forceQuitDelay.ToString() + " seconds");
                         return;
                     }
 
@@ -1958,7 +1911,7 @@ namespace RandM.GameSrv
 
                             if (!NativeMethods.DeviceIoControl(VxD, SBBSEXEC_IOCTL_WRITE, InBuf, (uint)ToSend.Length, BytesWritten, sizeof(uint), out BytesRead, IntPtr.Zero))
                             {
-                                RaiseErrorMessageEvent("Error executing SBBSEXEC_IOCTL_WRITE: " + Marshal.GetLastWin32Error().ToString());
+                                RMLog.Error("Error executing SBBSEXEC_IOCTL_WRITE: " + Marshal.GetLastWin32Error().ToString());
                                 return;
                             }
 
@@ -1975,7 +1928,7 @@ namespace RandM.GameSrv
                     // Read from VxD (send data from door to user)
                     if (!NativeMethods.DeviceIoControl(VxD, SBBSEXEC_IOCTL_READ, VM, sizeof(uint), ReadBuffer, XTRN_IO_BUF_LEN, out BytesRead, IntPtr.Zero))
                     {
-                        RaiseErrorMessageEvent("Error executing SBBSEXEC_IOCTL_READ: " + Marshal.GetLastWin32Error().ToString());
+                        RMLog.Error("Error executing SBBSEXEC_IOCTL_READ: " + Marshal.GetLastWin32Error().ToString());
                         return;
                     }
 
@@ -2030,7 +1983,7 @@ namespace RandM.GameSrv
             {
                 if ((VxD != IntPtr.Zero) && (!NativeMethods.DeviceIoControl(VxD, SBBSEXEC_IOCTL_STOP, VM, sizeof(uint), IntPtr.Zero, 0, out BytesRead, IntPtr.Zero)))
                 {
-                    RaiseErrorMessageEvent("Error executing SBBSEXEC_IOCTL_STOP: " + Marshal.GetLastWin32Error().ToString());
+                    RMLog.Error("Error executing SBBSEXEC_IOCTL_STOP: " + Marshal.GetLastWin32Error().ToString());
                 }
 
                 // Terminate process if it hasn't closed yet
@@ -2038,13 +1991,13 @@ namespace RandM.GameSrv
                 {
                     if ((P != null) && !P.HasExited)
                     {
-                        RaiseErrorMessageEvent("Door still running, performing a force quit");
+                        RMLog.Error("Door still running, performing a force quit");
                         P.Kill();
                     }
                 }
                 catch (Exception ex)
                 {
-                    RaiseExceptionEvent("Unable to perform force quit", ex);
+                    RMLog.Exception(ex, "Unable to perform force quit");
                 }
 
                 // Free unmanaged resources
@@ -2064,7 +2017,7 @@ namespace RandM.GameSrv
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2122:DoNotIndirectlyExposeMethodsWithLinkDemands")]
         private unsafe void RunDoorSBBSEXECNT(string command, string parameters, int forceQuitDelay)
         {
-            if (Globals.Debug) RaiseNodeEvent("DEBUG: SBBSEXECNT launching " + command + " " + parameters);
+            if (Globals.Debug) UpdateStatus("DEBUG: SBBSEXECNT launching " + command + " " + parameters);
 
             // SBBSEXEC constants
             const uint LoopsBeforeYield = 10;
@@ -2093,7 +2046,7 @@ namespace RandM.GameSrv
                 HungUpEvent = NativeMethods.CreateEvent(IntPtr.Zero, true, false, "sbbsexec_hungup" + _NodeInfo.Node.ToString());
                 if (HungUpEvent == IntPtr.Zero)
                 {
-                    RaiseErrorMessageEvent("CreateEvent() failed to create HungUpEvent: " + Marshal.GetLastWin32Error().ToString());
+                    RMLog.Error("CreateEvent() failed to create HungUpEvent: " + Marshal.GetLastWin32Error().ToString());
                     return;
                 }
 
@@ -2101,7 +2054,7 @@ namespace RandM.GameSrv
                 HangUpEvent = NativeMethods.CreateEvent(IntPtr.Zero, true, false, "sbbsexec_hangup" + _NodeInfo.Node.ToString());
                 if (HangUpEvent == IntPtr.Zero)
                 {
-                    RaiseErrorMessageEvent("CreateEvent() failed to create HangUpEvent: " + Marshal.GetLastWin32Error().ToString());
+                    RMLog.Error("CreateEvent() failed to create HangUpEvent: " + Marshal.GetLastWin32Error().ToString());
                     return;
                 }
 
@@ -2109,7 +2062,7 @@ namespace RandM.GameSrv
                 ReadSlot = NativeMethods.CreateMailslot("\\\\.\\mailslot\\sbbsexec\\rd" + _NodeInfo.Node.ToString(), XTRN_IO_BUF_LEN, 0, IntPtr.Zero);
                 if (ReadSlot == IntPtr.Zero)
                 {
-                    RaiseErrorMessageEvent("CreateMailslot() failed to create ReadSlot: " + Marshal.GetLastWin32Error().ToString());
+                    RMLog.Error("CreateMailslot() failed to create ReadSlot: " + Marshal.GetLastWin32Error().ToString());
                     return;
                 }
 
@@ -2123,7 +2076,7 @@ namespace RandM.GameSrv
 
                 if (P == null)
                 {
-                    RaiseErrorMessageEvent("Error launching " + FileName + " " + Arguments);
+                    RMLog.Error("Error launching " + FileName + " " + Arguments);
                     return;
                 }
 
@@ -2136,7 +2089,7 @@ namespace RandM.GameSrv
                     // Check for dropped carrier
                     if (!_NodeInfo.Connection.Connected)
                     {
-                        RaiseNodeEvent("User hung-up while in external program");
+                        UpdateStatus("User hung-up while in external program");
                         NativeMethods.SetEvent(HungUpEvent);
 
                         // Wait up to forceQuitDelay seconds for the process to terminate
@@ -2145,7 +2098,7 @@ namespace RandM.GameSrv
                             if (P.HasExited) return;
                             P.WaitForExit(1000);
                         }
-                        RaiseNodeEvent("Process still active after waiting " + forceQuitDelay.ToString() + " seconds");
+                        UpdateStatus("Process still active after waiting " + forceQuitDelay.ToString() + " seconds");
                         return;
                     }
 
@@ -2160,7 +2113,7 @@ namespace RandM.GameSrv
                             int LastWin32Error = Marshal.GetLastWin32Error();
                             if (WriteSlot == IntPtr.Zero)
                             {
-                                RaiseErrorMessageEvent("CreateFile() failed to create WriteSlot: " + LastWin32Error.ToString());
+                                RMLog.Error("CreateFile() failed to create WriteSlot: " + LastWin32Error.ToString());
                                 return;
                             }
                             else if (WriteSlot.ToInt32() == -1)
@@ -2168,13 +2121,13 @@ namespace RandM.GameSrv
                                 if (LastWin32Error == 2)
                                 {
                                     // ERROR_FILE_NOT_FOUND - User must have hit a key really fast to trigger this!
-                                    RaiseWarningMessageEvent("CreateFile() failed to find WriteSlot: \\\\.\\mailslot\\sbbsexec\\wr" + _NodeInfo.Node.ToString());
+                                    RMLog.Warning("CreateFile() failed to find WriteSlot: \\\\.\\mailslot\\sbbsexec\\wr" + _NodeInfo.Node.ToString());
                                     WriteSlot = IntPtr.Zero;
                                     Thread.Sleep(100);
                                 }
                                 else
                                 {
-                                    RaiseErrorMessageEvent("CreateFile() failed to create WriteSlot: " + LastWin32Error.ToString());
+                                    RMLog.Error("CreateFile() failed to create WriteSlot: " + LastWin32Error.ToString());
                                     return;
                                 }
                             }
@@ -2194,7 +2147,7 @@ namespace RandM.GameSrv
                             }
                             else
                             {
-                                RaiseErrorMessageEvent("Error calling WriteFile(): " + LastWin32Error.ToString());
+                                RMLog.Error("Error calling WriteFile(): " + LastWin32Error.ToString());
                                 return;
                             }
                         }
@@ -2250,7 +2203,7 @@ namespace RandM.GameSrv
                         {
                             if ((_NodeInfo.Door.WatchDTR) && (NativeMethods.WaitForSingleObject(HangUpEvent, 0) == NativeMethods.WAIT_OBJECT_0))
                             {
-                                RaiseNodeEvent("External program requested hangup (dropped DTR)");
+                                UpdateStatus("External program requested hangup (dropped DTR)");
                                 _NodeInfo.Connection.Close();
 
                                 // Wait up to forceQuitDelay seconds for the process to terminate
@@ -2259,13 +2212,13 @@ namespace RandM.GameSrv
                                     if (P.HasExited) return;
                                     P.WaitForExit(1000);
                                 }
-                                RaiseNodeEvent("Process still active after waiting " + forceQuitDelay.ToString() + " seconds");
+                                UpdateStatus("Process still active after waiting " + forceQuitDelay.ToString() + " seconds");
                                 return;
                             }
 
                             if (P.HasExited)
                             {
-                                RaiseNodeEvent("External terminated with exit code: " + P.ExitCode);
+                                UpdateStatus("External terminated with exit code: " + P.ExitCode);
                                 break;
                             }
 
@@ -2276,7 +2229,7 @@ namespace RandM.GameSrv
                             {
                                 try
                                 {
-                                    if (Globals.Debug) RaiseNodeEvent("DEBUG: w32door.run found");
+                                    if (Globals.Debug) UpdateStatus("DEBUG: w32door.run found");
                                     string[] W32DoorRunLines = FileUtils.FileReadAllLines(W32DoorFile);
                                     ConvertDoorSysToDoor32Sys(W32DoorRunLines[0]);
                                     RunDoorNative(W32DoorRunLines[1], W32DoorRunLines[2]);
@@ -2323,13 +2276,13 @@ namespace RandM.GameSrv
                     // Terminate process if it hasn't closed yet
                     if ((P != null) && !P.HasExited)
                     {
-                        RaiseErrorMessageEvent("Door still running, performing a force quit");
+                        RMLog.Error("Door still running, performing a force quit");
                         P.Kill();
                     }
                 }
                 catch (Exception ex)
                 {
-                    RaiseExceptionEvent("Unable to perform force quit", ex);
+                    RMLog.Exception(ex, "Unable to perform force quit");
                 }
 
                 // Free unmanaged resources
@@ -2579,6 +2532,11 @@ namespace RandM.GameSrv
             return text;
         }
 
+        private void UpdateStatus(string newStatus) {
+            _Status = newStatus;
+            NodeEvent?.Invoke(this, new NodeEventArgs(_NodeInfo, newStatus, NodeEventType.StatusChange));
+        }
+
         private class LogOffProcess : ConfigHelper
         {
             public string Name { get; set; }
@@ -2602,7 +2560,7 @@ namespace RandM.GameSrv
                 Load(section);
             }
 
-            static public string[] GetProcesses()
+            public static string[] GetProcesses()
             {
                 using (IniFile Ini = new IniFile(StringUtils.PathCombine(ProcessUtils.StartupPath, "config", "logoffprocess.ini")))
                 {
@@ -2634,7 +2592,7 @@ namespace RandM.GameSrv
                 Load(section);
             }
 
-            static public string[] GetProcesses()
+            public static string[] GetProcesses()
             {
                 using (IniFile Ini = new IniFile(StringUtils.PathCombine(ProcessUtils.StartupPath, "config", "logonprocess.ini")))
                 {
@@ -2666,7 +2624,7 @@ namespace RandM.GameSrv
                 Load(hotKey.ToString());
             }
 
-            static public string[] GetHotKeys(string menu)
+            public static string[] GetHotKeys(string menu)
             {
                 using (IniFile Ini = new IniFile(StringUtils.PathCombine(ProcessUtils.StartupPath, StringUtils.PathCombine("menus", menu.ToLower() + ".ini"))))
                 {
@@ -2696,7 +2654,7 @@ namespace RandM.GameSrv
                 Load(question);
             }
 
-            static public string[] GetQuestions()
+            public static string[] GetQuestions()
             {
                 using (IniFile Ini = new IniFile(StringUtils.PathCombine(ProcessUtils.StartupPath, StringUtils.PathCombine("config", "newuser.ini"))))
                 {

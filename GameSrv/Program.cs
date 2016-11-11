@@ -14,68 +14,50 @@ namespace RandM.GameSrv {
         static void Main(string[] args) {
             // Check for service mode or console mode
             if (Environment.UserInteractive || OSUtils.IsUnix) {
-                // Console mode, check for arguments
-                if (args.Length > 0) {
-                    try {
-                        // Check entire parameter string for service install or uninstall request
-                        string ParameterString = string.Concat(args).TrimStart('/').TrimStart('-');
-                        switch (ParameterString) {
-                            case "i":
-                            case "install":
-                                Console.WriteLine("Installing service...");
-                                ManagedInstallerClass.InstallHelper(new string[] { ProcessUtils.ExecutablePath });
-                                Console.WriteLine("Service installed successfully!");
-                                return;
-                            case "u":
-                            case "uninstall":
-                                Console.WriteLine("Uninstalling service...");
-                                ManagedInstallerClass.InstallHelper(new string[] { "/u", ProcessUtils.ExecutablePath });
-                                Console.WriteLine("Service uninstalled successfully!");
-                                return;
-                        }
-                    } catch (Exception ex) {
-                        Console.WriteLine("Error handling service request: " + ex.Message);
-                        return;
-                    }
-                }
-
-                // If we get here, we're running as console app
-                // TODOX Add ability to run as GUI app
-                if (args.Contains("console", StringComparer.OrdinalIgnoreCase)) {
+                // Interactive mode (in other words, not service mode)
+                if (args.Contains("service", StringComparer.OrdinalIgnoreCase) && args.Contains("install", StringComparer.OrdinalIgnoreCase)) {
+                    ServiceApp.Install();
+                } else if (args.Contains("service", StringComparer.OrdinalIgnoreCase) && args.Contains("uninstall", StringComparer.OrdinalIgnoreCase)) {
+                    ServiceApp.Uninstall();
+                } else if (args.Contains("console", StringComparer.OrdinalIgnoreCase)) {
                     ConsoleApp.Start(args);
                 } else if (args.Contains("gui", StringComparer.OrdinalIgnoreCase)) {
                     GuiApp.Start();
                 } else {
-                    Console.WriteLine();
-                    Console.WriteLine("GameSrv.exe Usage:");
-                    Console.WriteLine();
-                    Console.WriteLine("  CONSOLE MODE");
-                    Console.WriteLine("  ============");
-                    Console.WriteLine("      Fancy:       GameSrv.exe console");
-                    Console.WriteLine("      Simple:      GameSrv.exe console simple");
-                    Console.WriteLine();
-                    Console.WriteLine("  GUI MODE");
-                    Console.WriteLine("  ========");
-                    Console.WriteLine("      Normal:      GameSrv.exe gui");
-                    Console.WriteLine();
-                    Console.WriteLine("  SERVICE MODE");
-                    Console.WriteLine("  ============");
-                    Console.WriteLine("      Install:     GameSrvService.exe /i");
-                    Console.WriteLine("      Uninstall:   GameSrvService.exe /u");
-                    Console.WriteLine();
-                    Console.WriteLine("      Start:       NET START GameSrvService");
-                    Console.WriteLine("      Stop:        NET STOP GameSrvService");
-                    Console.WriteLine();
-                    Console.WriteLine("      Pause:       NET PAUSE GameSrvService");
-                    Console.WriteLine("      Resume:      NET CONTINUE GameSrvService");
-                    Console.WriteLine();
-                    Console.WriteLine("Hit a key to quit");
-                    Console.ReadKey();
+                    DisplayUsage();
                 }
             } else {
-                // Service mode
+                // Non-interactive mode (in other words, service mode)
                 ServiceApp.Start();
             }
+        }
+
+        private static void DisplayUsage() {
+            Console.WriteLine();
+            Console.WriteLine("GameSrv.exe Usage:");
+            Console.WriteLine();
+            Console.WriteLine("  CONSOLE MODE");
+            Console.WriteLine("  ============");
+            Console.WriteLine("      Fancy:       GameSrv.exe console");
+            Console.WriteLine("      Simple:      GameSrv.exe console simple");
+            Console.WriteLine();
+            Console.WriteLine("  GUI MODE");
+            Console.WriteLine("  ========");
+            Console.WriteLine("      Normal:      GameSrv.exe gui");
+            Console.WriteLine();
+            Console.WriteLine("  SERVICE MODE");
+            Console.WriteLine("  ============");
+            Console.WriteLine("      Install:     GameSrv.exe service install");
+            Console.WriteLine("      Uninstall:   GameSrv.exe service uninstall");
+            Console.WriteLine();
+            Console.WriteLine("      Start:       NET START GameSrv");
+            Console.WriteLine("      Stop:        NET STOP GameSrv");
+            Console.WriteLine();
+            Console.WriteLine("      Pause:       NET PAUSE GameSrv");
+            Console.WriteLine("      Resume:      NET CONTINUE GameSrv");
+            Console.WriteLine();
+            Console.WriteLine("Hit a key to quit");
+            Console.ReadKey();
         }
     }
 }

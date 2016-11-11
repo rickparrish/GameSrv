@@ -37,10 +37,6 @@ namespace RandM.GameSrv
         public event EventHandler BindFailedEvent = null;
         public event EventHandler BoundEvent = null;
         public event EventHandler<ConnectEventArgs> ConnectEvent = null;
-        public event EventHandler<StringEventArgs> ErrorMessageEvent = null;
-        public event EventHandler<ExceptionEventArgs> ExceptionEvent = null;
-        public event EventHandler<StringEventArgs> MessageEvent = null;
-        public event EventHandler<StringEventArgs> WarningMessageEvent = null;
 
         public ServerThread(string localAddress, int localPort, ConnectionType connectionType, TerminalType terminalType)
         {
@@ -94,11 +90,11 @@ namespace RandM.GameSrv
             }
             catch (IOException ioex)
             {
-                RaiseExceptionEvent("Unable to display '" + fileName + "'", ioex);
+                RMLog.Exception(ioex, "Unable to display '" + fileName + "'");
             }
             catch (Exception ex)
             {
-                RaiseExceptionEvent("Unable to display '" + fileName + "'", ex);
+                RMLog.Exception(ex, "Unable to display '" + fileName + "'");
             }
         }
 
@@ -109,7 +105,7 @@ namespace RandM.GameSrv
             {
                 if (Connection.Listen(_LocalAddress, _LocalPort))
                 {
-                    RaiseBoundEvent();
+                    BoundEvent?.Invoke(this, EventArgs.Empty);
 
                     while (!_Stop)
                     {
@@ -145,19 +141,19 @@ namespace RandM.GameSrv
                                             }
                                             else
                                             {
-                                                RaiseMessageEvent("Incoming " + _ConnectionType.ToString() + " connection from " + TypedConnection.GetRemoteIP() + ":" + TypedConnection.GetRemotePort());
+                                                RMLog.Info("Incoming " + _ConnectionType.ToString() + " connection from " + TypedConnection.GetRemoteIP() + ":" + TypedConnection.GetRemotePort());
 
                                                 TerminalType TT = _TerminalType == TerminalType.AUTODETECT ? GetTerminalType(TypedConnection) : _TerminalType;
                                                 if ((_ConnectionType == ConnectionType.RLogin) && !IsRLoginIP(TypedConnection.GetRemoteIP()))
                                                 {
                                                     // Do nothing for non-whitelisted RLogin IPs
-                                                    RaiseWarningMessageEvent("IP " + TypedConnection.GetRemoteIP() + " doesn't match RLogin IP whitelist");
+                                                    RMLog.Warning("IP " + TypedConnection.GetRemoteIP() + " doesn't match RLogin IP whitelist");
                                                     TypedConnection.Close();
                                                 }
                                                 else if (IsBannedIP(TypedConnection.GetRemoteIP()))
                                                 {
                                                     DisplayAnsi("IP_BANNED", TypedConnection, TT);
-                                                    RaiseWarningMessageEvent("IP " + TypedConnection.GetRemoteIP() + " matches banned IP filter");
+                                                    RMLog.Warning("IP " + TypedConnection.GetRemoteIP() + " matches banned IP filter");
                                                     TypedConnection.Close();
                                                 }
                                                 else if (_Paused)
@@ -169,7 +165,7 @@ namespace RandM.GameSrv
                                                 {
                                                     if (!TypedConnection.Connected)
                                                     {
-                                                        RaiseMessageEvent("No carrier detected (maybe it was a 'ping'?)");
+                                                        RMLog.Info("No carrier detected (maybe it was a 'ping'?)");
                                                         TypedConnection.Close();
                                                     }
                                                     else
@@ -194,11 +190,11 @@ namespace RandM.GameSrv
                                         {
                                             if (_ConnectionType == ConnectionType.RLogin)
                                             {
-                                                RaiseMessageEvent("Timeout waiting for RLogin header");
+                                                RMLog.Info("Timeout waiting for RLogin header");
                                             }
                                             else
                                             {
-                                                RaiseMessageEvent("No carrier detected (maybe it was a 'ping'?)");
+                                                RMLog.Info("No carrier detected (maybe it was a 'ping'?)");
                                             }
                                             TypedConnection.Close();
                                         }
@@ -207,15 +203,15 @@ namespace RandM.GameSrv
                             }
                             catch (Exception ex)
                             {
-                                RaiseExceptionEvent("Error in ServerThread::Execute()", ex);
+                                RMLog.Exception(ex, "Error in ServerThread::Execute()");
                             }
                         }
                     }
                 }
                 else
                 {
-                    RaiseErrorMessageEvent("Server Thread unable to listen on " + _LocalAddress + ":" + _LocalPort);
-                    RaiseBindFailedEvent();
+                    RMLog.Error("Server Thread unable to listen on " + _LocalAddress + ":" + _LocalPort);
+                    BindFailedEvent?.Invoke(this, EventArgs.Empty);
                 }
             }
         }
@@ -346,7 +342,7 @@ namespace RandM.GameSrv
             }
             catch (Exception ex)
             {
-                RaiseExceptionEvent("Unable to validate client IP against banned-ips.txt", ex);
+                RMLog.Exception(ex, "Unable to validate client IP against banned-ips.txt");
                 return false; // Give them the benefit of the doubt on error
             }
         }
@@ -371,7 +367,7 @@ namespace RandM.GameSrv
             }
             catch (Exception ex)
             {
-                RaiseExceptionEvent("Unable to validate client IP against ignored-ips.txt", ex);
+                RMLog.Exception(ex, "Unable to validate client IP against ignored-ips.txt");
                 return false; // Give them the benefit of the doubt on error
             }
         }
@@ -394,21 +390,9 @@ namespace RandM.GameSrv
             }
             catch (Exception ex)
             {
-                RaiseExceptionEvent("Unable to validate client IP against ignored-ips.txt", ex);
+                RMLog.Exception(ex, "Unable to validate client IP against ignored-ips.txt");
                 return true; // Give them the benefit of the doubt on error
             }
-        }
-
-        private void RaiseBindFailedEvent()
-        {
-            EventHandler Handler = BindFailedEvent;
-            if (Handler != null) Handler(this, EventArgs.Empty);
-        }
-
-        private void RaiseBoundEvent()
-        {
-            EventHandler Handler = BoundEvent;
-            if (Handler != null) Handler(this, EventArgs.Empty);
         }
 
         private int RaiseConnectEvent(ref ClientThread clientThread)
@@ -422,30 +406,6 @@ namespace RandM.GameSrv
             }
 
             return 0;
-        }
-
-        private void RaiseErrorMessageEvent(string message)
-        {
-            EventHandler<StringEventArgs> Handler = ErrorMessageEvent;
-            if (Handler != null) Handler(this, new StringEventArgs(message));
-        }
-
-        private void RaiseExceptionEvent(string message, Exception exception)
-        {
-            EventHandler<ExceptionEventArgs> Handler = ExceptionEvent;
-            if (Handler != null) Handler(this, new ExceptionEventArgs(message, exception));
-        }
-
-        private void RaiseMessageEvent(string message)
-        {
-            EventHandler<StringEventArgs> Handler = MessageEvent;
-            if (Handler != null) Handler(this, new StringEventArgs(message));
-        }
-
-        private void RaiseWarningMessageEvent(string message)
-        {
-            EventHandler<StringEventArgs> Handler = WarningMessageEvent;
-            if (Handler != null) Handler(this, new StringEventArgs(message));
         }
     }
 }

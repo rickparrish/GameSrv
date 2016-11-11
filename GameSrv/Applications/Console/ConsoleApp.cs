@@ -8,10 +8,11 @@ using System.Text;
 
 namespace RandM.GameSrv {
     class ConsoleApp {
-        static private Dictionary<ConnectionType, int> _ConnectionCounts = new Dictionary<ConnectionType, int>();
-        static private bool _FancyOutput = OSUtils.IsWindows;
-        static private GameSrv _GameSrv = null;
-        static private string _TimeFormatFooter = "hh:mmtt";
+        private static Dictionary<ConnectionType, int> _ConnectionCounts = new Dictionary<ConnectionType, int>();
+        private static bool _FancyOutput = OSUtils.IsWindows;
+        private static GameSrv _GameSrv = null;
+        private static object _StatusTextLock = new object();
+        private static string _TimeFormatFooter = "hh:mmtt";
 
         public static void Start(string[] args) {
             // Check command-line parameters
@@ -38,25 +39,27 @@ namespace RandM.GameSrv {
 
             // Initialize the screen
             InitConsole();
-            Write(Globals.Copyright, false);
+            StatusText(Globals.Copyright, Crt.White, false);
 
             // Check if running as root
             if (Globals.StartedAsRoot) {
-                WriteLn("", false);
-                WriteLn("*** WARNING: Running GameSrv as root is NOT recommended ***", false);
-                WriteLn("", false);
-                WriteLn("A safer alternative to running GameSrv as root is to run it via 'privbind'", false);
-                WriteLn("This will ensure GameSrv is able to bind to ports in the < 1024 range, but", false);
-                WriteLn("it will run as a regular unprivileged program in every other way", false);
-                WriteLn("", false);
-                WriteLn("See start.sh for an example of the recommended method to start GameSrv", false);
-                WriteLn("", false);
+                StatusText("", Crt.LightMagenta, false);
+                StatusText("*** WARNING: Running GameSrv as root is NOT recommended ***", Crt.LightMagenta, false);
+                StatusText("", Crt.LightMagenta, false);
+                StatusText("A safer alternative to running GameSrv as root is to run it via 'privbind'", Crt.LightMagenta, false);
+                StatusText("This will ensure GameSrv is able to bind to ports in the < 1024 range, but", Crt.LightMagenta, false);
+                StatusText("it will run as a regular unprivileged program in every other way", Crt.LightMagenta, false);
+                StatusText("", Crt.LightMagenta, false);
+                StatusText("See start.sh for an example of the recommended method to start GameSrv", Crt.LightMagenta, false);
+                StatusText("", Crt.LightMagenta, false);
             }
+
+            // Setup log handler
+            RMLog.Handler += RMLog_Handler;
 
             // Init GameSrv 
             _GameSrv = new GameSrv();
-            _GameSrv.AggregatedStatusMessageEvent += new EventHandler<StringEventArgs>(GameSrv_AggregatedStatusMessageEvent);
-            _GameSrv.LogOnEvent += new EventHandler<NodeEventArgs>(GameSrv_LogOnEvent);
+            _GameSrv.NodeEvent += GameSrv_NodeEvent;
             _GameSrv.Start();
 
             // Main program loop
@@ -91,15 +94,15 @@ namespace RandM.GameSrv {
                             char Ch2 = Crt.ReadKey();
                             if (Ch2 == ';') // F1
                             {
-                                WriteLn("", false);
-                                WriteLn("GameSrv WFC Screen Help", false);
-                                WriteLn("-=-=-=-=-=-=-=-=-=-=-=-", false);
-                                WriteLn("F1 = Help  (this screen)", false);
-                                WriteLn("C  = Clear (clear the status window)", false);
-                                WriteLn("P  = Pause (reject new connections, leave existing connections alone)", false);
-                                WriteLn("S  = Setup (launch the config program)", false);
-                                WriteLn("Q  = Quit  (shut down and terminate existing connections)", false);
-                                WriteLn("", false);
+                                StatusText("", Crt.White, false);
+                                StatusText("GameSrv WFC Screen Help", Crt.White, false);
+                                StatusText("-=-=-=-=-=-=-=-=-=-=-=-", Crt.White, false);
+                                StatusText("F1 = Help  (this screen)", Crt.White, false);
+                                StatusText("C  = Clear (clear the status window)", Crt.White, false);
+                                StatusText("P  = Pause (reject new connections, leave existing connections alone)", Crt.White, false);
+                                StatusText("S  = Setup (launch the config program)", Crt.White, false);
+                                StatusText("Q  = Quit  (shut down and terminate existing connections)", Crt.White, false);
+                                StatusText("", Crt.White, false);
                             }
                             break;
                         case "C":
@@ -114,18 +117,18 @@ namespace RandM.GameSrv {
                             break;
                         case "Q":
                             // Check if we're already stopped (or are stopping)
-                            if ((_GameSrv.Status != ServerStatus.Stopped) && (_GameSrv.Status != ServerStatus.Stopping)) {
+                            if ((_GameSrv.Status != GameSrvStatus.Stopped) && (_GameSrv.Status != GameSrvStatus.Stopping)) {
                                 int ConnectionCount = _GameSrv.ConnectionCount;
                                 if (ConnectionCount > 0) {
-                                    WriteLn("", false);
-                                    WriteLn("There are " + ConnectionCount.ToString() + " active connections.", false);
-                                    WriteLn("Are you sure you want to quit [y/N]: ", false);
-                                    WriteLn("", false);
+                                    StatusText("", Crt.White, false);
+                                    StatusText("There are " + ConnectionCount.ToString() + " active connections.", Crt.White, false);
+                                    StatusText("Are you sure you want to quit [y/N]: ", Crt.White, false);
+                                    StatusText("", Crt.White, false);
                                     Ch = Crt.ReadKey();
                                     if (Ch.ToString().ToUpper() != "Y") {
-                                        WriteLn("", false);
-                                        WriteLn("Cancelling quit request.", false);
-                                        WriteLn("", false);
+                                        StatusText("", Crt.White, false);
+                                        StatusText("Cancelling quit request.", Crt.White, false);
+                                        StatusText("", Crt.White, false);
                                         continue;
                                     }
                                 }
@@ -142,21 +145,19 @@ namespace RandM.GameSrv {
             Environment.Exit(0);
         }
 
-        static void GameSrv_AggregatedStatusMessageEvent(object sender, StringEventArgs e) {
-            WriteLn(e.Text);
-        }
+        private static void GameSrv_NodeEvent(object sender, NodeEventArgs e) {
+            if (e.EventType == NodeEventType.LogOn) {
+                if (_FancyOutput) {
+                    _ConnectionCounts[e.NodeInfo.ConnectionType] += 1;
 
-        static void GameSrv_LogOnEvent(object sender, NodeEventArgs e) {
-            if (_FancyOutput) {
-                _ConnectionCounts[e.NodeInfo.ConnectionType] += 1;
-
-                Crt.FastWrite(StringUtils.PadRight(e.NodeInfo.User.Alias + " (" + e.NodeInfo.Connection.GetRemoteIP() + ":" + e.NodeInfo.Connection.GetRemotePort() + ")", ' ', 65), 8, 1, (Crt.Blue << 4) + Crt.White);
-                Crt.FastWrite(StringUtils.PadRight(DateTime.Now.ToString("dddd MMMM dd, yyyy  " + _TimeFormatFooter), ' ', 65), 8, 2, (Crt.Blue << 4) + Crt.White);
-                Crt.FastWrite(StringUtils.PadRight(e.NodeInfo.ConnectionType.ToString(), ' ', 65), 8, 3, (Crt.Blue << 4) + Crt.White);
-                Crt.FastWrite(_ConnectionCounts[ConnectionType.RLogin].ToString(), 87, 1, (Crt.Blue << 4) + Crt.White);
-                Crt.FastWrite(_ConnectionCounts[ConnectionType.Telnet].ToString(), 87, 2, (Crt.Blue << 4) + Crt.White);
-                Crt.FastWrite(_ConnectionCounts[ConnectionType.WebSocket].ToString(), 87, 3, (Crt.Blue << 4) + Crt.White);
-                UpdateTime();
+                    Crt.FastWrite(StringUtils.PadRight(e.NodeInfo.User.Alias + " (" + e.NodeInfo.Connection.GetRemoteIP() + ":" + e.NodeInfo.Connection.GetRemotePort() + ")", ' ', 65), 8, 1, (Crt.Blue << 4) + Crt.White);
+                    Crt.FastWrite(StringUtils.PadRight(DateTime.Now.ToString("dddd MMMM dd, yyyy  " + _TimeFormatFooter), ' ', 65), 8, 2, (Crt.Blue << 4) + Crt.White);
+                    Crt.FastWrite(StringUtils.PadRight(e.NodeInfo.ConnectionType.ToString(), ' ', 65), 8, 3, (Crt.Blue << 4) + Crt.White);
+                    Crt.FastWrite(_ConnectionCounts[ConnectionType.RLogin].ToString(), 87, 1, (Crt.Blue << 4) + Crt.White);
+                    Crt.FastWrite(_ConnectionCounts[ConnectionType.Telnet].ToString(), 87, 2, (Crt.Blue << 4) + Crt.White);
+                    Crt.FastWrite(_ConnectionCounts[ConnectionType.WebSocket].ToString(), 87, 3, (Crt.Blue << 4) + Crt.White);
+                    UpdateTime();
+                }
             }
         }
 
@@ -180,40 +181,44 @@ namespace RandM.GameSrv {
             }
         }
 
+        // TODOX Have entries in the INI file that define which colour to use for each type of message
+        private static void RMLog_Handler(object sender, RMLogEventArgs e) {
+            switch (e.Level) {
+                case LogLevel.Debug:
+                    StatusText("DEBUG: " + e.Message, Crt.LightCyan);
+                    break;
+                case LogLevel.Error:
+                    StatusText("ERROR: " + e.Message, Crt.LightRed);
+                    break;
+                case LogLevel.Info:
+                    StatusText(e.Message, Crt.LightGray);
+                    break;
+                case LogLevel.Trace:
+                    StatusText("TRACE: " + e.Message, Crt.DarkGray);
+                    break;
+                case LogLevel.Warning:
+                    StatusText("WARNING: " + e.Message, Crt.Yellow);
+                    break;
+                default:
+                    StatusText("UNKNOWN: " + e.Message, Crt.White);
+                    break;
+            }
+        }
+
+        private static void StatusText(string text, int foreColour, bool prefixWithTime = true) {
+            lock (_StatusTextLock) {
+                if (prefixWithTime && (!string.IsNullOrEmpty(text))) Crt.Write(DateTime.Now.ToString(_GameSrv.TimeFormatUI) + "  ");
+                Crt.TextColor(foreColour);
+                Crt.Write(text + "\r\n");
+            }
+        }
+
         private static void UpdateTime() {
             if (_FancyOutput) {
                 // Update time
                 Crt.FastWrite(StringUtils.PadRight(DateTime.Now.ToString(_TimeFormatFooter).ToLower(), ' ', 7), 9, 38, Crt.LightGreen);
                 Crt.FastWrite(StringUtils.PadRight(DateTime.Now.ToString("dddd MMMM dd, yyyy"), ' ', 28), 23, 38, Crt.LightGreen);
             }
-        }
-
-        static private void Write(string text) {
-            Write(text, true);
-        }
-
-        static private void Write(string text, bool prefixWithTime) {
-            if (prefixWithTime && (!string.IsNullOrEmpty(text))) Crt.Write(DateTime.Now.ToString(_GameSrv.TimeFormatUI) + "  ");
-
-            if (text.Contains("ERROR:") || text.Contains("EXCEPTION:")) {
-                Crt.TextColor(Crt.LightRed);
-            } else if (text.Contains("WARNING:")) {
-                Crt.TextColor(Crt.Yellow);
-            } else if (text.Contains("DEBUG:")) {
-                Crt.TextColor(Crt.LightCyan);
-            } else {
-                Crt.TextColor(Crt.LightGray);
-            }
-
-            Crt.Write(text);
-        }
-
-        static private void WriteLn(string text) {
-            Write(text + "\r\n");
-        }
-
-        static private void WriteLn(string text, bool prefixWithTime) {
-            Write(text + "\r\n", prefixWithTime);
         }
     }
 }

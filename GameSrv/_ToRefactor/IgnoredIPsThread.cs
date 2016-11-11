@@ -9,8 +9,6 @@ namespace RandM.GameSrv
 {
     class IgnoredIPsThread : RMThread
     {
-        public event EventHandler<ExceptionEventArgs> ExceptionEvent = null;
-
         protected override void Dispose(bool disposing)
         {
             if (!_Disposed)
@@ -46,7 +44,7 @@ namespace RandM.GameSrv
                 }
                 catch (Exception ex)
                 {
-                    RaiseExceptionEvent("Unable to download https://www.statuscake.com/API/Locations/txt", ex);
+                    RMLog.Exception(ex, "Unable to download https://www.statuscake.com/API/Locations/txt");
                 }
                 
                 // Get the list of servers from UptimeRobot
@@ -64,7 +62,7 @@ namespace RandM.GameSrv
                 }
                 catch (Exception ex)
                 {
-                    RaiseExceptionEvent("Unable to download https://www.statuscake.com/API/Locations/txt", ex);
+                    RMLog.Exception(ex, "Unable to download https://www.statuscake.com/API/Locations/txt");
                 }
 
                 // Combine the lists
@@ -77,18 +75,12 @@ namespace RandM.GameSrv
                 }
                 catch (Exception ex)
                 {
-                    RaiseExceptionEvent("Unable to combine Ignored IPs lists", ex);
+                    RMLog.Exception(ex, "Unable to combine Ignored IPs lists");
                 }
 
                 // Wait for one hour before updating again
                 if (!_Stop && (_StopEvent != null)) _StopEvent.WaitOne(3600000); 
             }
-        }
-
-        private void RaiseExceptionEvent(string message, Exception exception)
-        {
-            EventHandler<ExceptionEventArgs> Handler = ExceptionEvent;
-            if (Handler != null) Handler(this, new ExceptionEventArgs(message, exception));
         }
     }
 }

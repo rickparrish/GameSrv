@@ -53,7 +53,7 @@ namespace RandM.GameSrv
             // 
             this.CanPauseAndContinue = true;
             this.CanShutdown = true;
-            this.ServiceName = "GameSrvService";
+            this.ServiceName = "GameSrv";
 
         }
 

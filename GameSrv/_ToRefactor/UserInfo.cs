@@ -63,7 +63,7 @@ namespace RandM.GameSrv
             }
         }
 
-        static public string GetPasswordHash(string password, string salt, string pepper)
+        public static string GetPasswordHash(string password, string salt, string pepper)
         {
             if (pepper.ToUpper().Trim() == "DISABLE")
             {
@@ -93,7 +93,7 @@ namespace RandM.GameSrv
             }
         }
 
-        static public string SafeAlias(string alias)
+        public static string SafeAlias(string alias)
         {
             char[] InvalidChars = Path.GetInvalidFileNameChars();
             for (int i = 0; i < InvalidChars.Length; i++)
