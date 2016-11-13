@@ -38,12 +38,10 @@ namespace RandM.GameSrv {
         private object _BoundEventLock = new object();
         private Config _Config = null;
         private bool _Disposed = false;
-        private FlashSocketPolicyServerThread _FlashSocketPolicyServerThread = null;
         private IgnoredIPsThread _IgnoredIPsThread = null;
         private List<string> _Log = new List<string>();
         private object _LogLock = new object();
         private Timer _LogTimer = new Timer();
-        private NodeManager _NodeManager = null;
         private Dictionary<int, ServerThread> _ServerThreads = new Dictionary<int, ServerThread>();
         private GameSrvStatus _Status = GameSrvStatus.Stopped;
 
@@ -85,10 +83,6 @@ namespace RandM.GameSrv {
                 // and unmanaged resources.
                 if (disposing) {
                     // Dispose managed resources.
-                    if (_FlashSocketPolicyServerThread != null) {
-                        _FlashSocketPolicyServerThread.Stop();
-                        _FlashSocketPolicyServerThread.Dispose();
-                    }
                     if (_IgnoredIPsThread != null) {
                         _IgnoredIPsThread.Stop();
                         _IgnoredIPsThread.Dispose();
@@ -153,30 +147,16 @@ namespace RandM.GameSrv {
 
         public int ConnectionCount {
             get {
-                if (_NodeManager == null) return 0;
-                return _NodeManager.ConnectionCount;
+                return NodeManager.ConnectionCount;
             }
         }
 
         public void DisconnectNode(int node) {
-            _NodeManager.DisconnectNode(node);
+            NodeManager.DisconnectNode(node);
         }
 
         public int FirstNode {
             get { return _Config.FirstNode; }
-        }
-
-        // TODOX FSPST should call RMLog methods directly
-        private void FlashSocketPolicyServerThread_ErrorMessageEvent(object sender, StringEventArgs e) {
-            RMLog.Error(e.Text);
-        }
-
-        private void FlashSocketPolicyServerThread_MessageEvent(object sender, StringEventArgs e) {
-            RMLog.Info(e.Text);
-        }
-
-        private void FlashSocketPolicyServerThread_WarningMessageEvent(object sender, StringEventArgs e) {
-            RMLog.Warning(e.Text);
         }
 
         private void FlushLog() {
@@ -244,15 +224,6 @@ namespace RandM.GameSrv {
             AddToLog($"[{e.Level.ToString()}] {e.Message}");
         }
 
-        private void ServerThread_BindFailedEvent(object sender, EventArgs e) {
-            // Bind failed on one or more server threads, so abort the server
-            if (_Status == GameSrvStatus.Started) {
-                Stop();
-            } else {
-                _BindFailed = true;
-            }
-        }
-
         private void ServerThread_BoundEvent(object sender, EventArgs e) {
             // Check if all server threads are now bound
             lock (_BoundEventLock) {
@@ -271,10 +242,6 @@ namespace RandM.GameSrv {
                     }
                 }
             }
-        }
-
-        private void ServerThread_ConnectEvent(object sender, ConnectEventArgs e) {
-            e.Node = _NodeManager.GetFreeNode(e.ClientThread);
         }
 
         public bool Start() {
@@ -315,20 +282,10 @@ namespace RandM.GameSrv {
                     goto ERROR;
                 }
 
-                // Start the flash socket policy server thread
-                if (!StartFlashSocketPolicyServerThread()) {
-                    RMLog.Error("Unable To Start Flash Socket Policy Server Thread");
-                    // Undo previous actions
-                    StopServerThreads();
-                    StopNodeManager();
-                    goto ERROR;
-                }
-
                 // Start the ignored ips thread
                 if (!StartIgnoredIPsThread()) {
                     RMLog.Error("Unable To Start Ignored IPs Thread");
                     // Undo previous actions
-                    StopFlashSocketPolicyServerThread();
                     StopServerThreads();
                     StopNodeManager();
                     goto ERROR;
@@ -339,7 +296,6 @@ namespace RandM.GameSrv {
                     RMLog.Error("One Or More Servers Failed To Bind To Their Assigned Ports");
                     // Undo previous actions
                     StopIgnoredIPsThread();
-                    StopFlashSocketPolicyServerThread();
                     StopServerThreads();
                     StopNodeManager();
                     goto ERROR;
@@ -351,6 +307,8 @@ namespace RandM.GameSrv {
 
                 ERROR:
 
+                // TODOX could all the rolling back be handled here via NULL checks?
+
                 // If we get here, we failed to go online
                 UpdateStatus(GameSrvStatus.Stopped);
                 return false;
@@ -361,34 +319,10 @@ namespace RandM.GameSrv {
 
         private int GetBindCount() {
             int Result = 0;
-            if (_Config.FlashSocketPolicyServerPort > 0) Result += 1;
             if (_Config.RLoginServerPort > 0) Result += 1;
             if (_Config.TelnetServerPort > 0) Result += 1;
             if (_Config.WebSocketServerPort > 0) Result += 1;
             return Result;
-        }
-
-        private bool StartFlashSocketPolicyServerThread() {
-            if (_Config.FlashSocketPolicyServerPort > 0) {
-                RMLog.Info("Starting Flash Socket Policy Server Thread");
-
-                try {
-                    // Create Flash Socket Policy Server Thread and Thread objects
-                    _FlashSocketPolicyServerThread = new FlashSocketPolicyServerThread(_Config.FlashSocketPolicyServerIP, _Config.FlashSocketPolicyServerPort, _Config.ServerPorts);
-                    _FlashSocketPolicyServerThread.BindFailedEvent += ServerThread_BindFailedEvent;
-                    _FlashSocketPolicyServerThread.BoundEvent += ServerThread_BoundEvent;
-                    _FlashSocketPolicyServerThread.ErrorMessageEvent += FlashSocketPolicyServerThread_ErrorMessageEvent;
-                    _FlashSocketPolicyServerThread.MessageEvent += FlashSocketPolicyServerThread_MessageEvent;
-                    _FlashSocketPolicyServerThread.WarningMessageEvent += FlashSocketPolicyServerThread_WarningMessageEvent;
-                    _FlashSocketPolicyServerThread.Start();
-                    return true;
-                } catch (Exception ex) {
-                    RMLog.Exception(ex, "Error in GameSrv::StartFlashSocketPolicyServerThread()");
-                    return false;
-                }
-            } else {
-                return true;
-            }
         }
 
         private bool StartIgnoredIPsThread() {
@@ -410,10 +344,8 @@ namespace RandM.GameSrv {
             RMLog.Info("Starting Node Manager");
 
             try {
-                _NodeManager = new NodeManager(_Config.FirstNode, _Config.LastNode);
-                _NodeManager.ConnectionCountChangeEvent += NodeManager_ConnectionCountChangeEvent;
-                _NodeManager.NodeEvent += NodeManager_NodeEvent;
-                _NodeManager.Start();
+                NodeManager.ConnectionCountChangeEvent += NodeManager_ConnectionCountChangeEvent;
+                NodeManager.Start(_Config.FirstNode, _Config.LastNode);
                 return true;
             } catch (Exception ex) {
                 RMLog.Exception(ex, "Error in GameSrv::StartNodeManager()");
@@ -430,29 +362,20 @@ namespace RandM.GameSrv {
 
                     if (_Config.RLoginServerPort > 0) {
                         // Create Server Thread and add to collection
-                        _ServerThreads.Add(_Config.RLoginServerPort, new ServerThread(_Config.RLoginServerIP, _Config.RLoginServerPort, ConnectionType.RLogin, _Config.TerminalType));
-                        // TODOX Confirm these are all needed
-                        _ServerThreads[_Config.RLoginServerPort].BindFailedEvent += ServerThread_BindFailedEvent;
+                        _ServerThreads.Add(_Config.RLoginServerPort, new RLoginServerThread(_Config));
                         _ServerThreads[_Config.RLoginServerPort].BoundEvent += ServerThread_BoundEvent;
-                        _ServerThreads[_Config.RLoginServerPort].ConnectEvent += ServerThread_ConnectEvent;
                     }
 
                     if (_Config.TelnetServerPort > 0) {
                         // Create Server Thread and add to collection
-                        _ServerThreads.Add(_Config.TelnetServerPort, new ServerThread(_Config.TelnetServerIP, _Config.TelnetServerPort, ConnectionType.Telnet, _Config.TerminalType));
-                        // TODOX Confirm these are all needed
-                        _ServerThreads[_Config.TelnetServerPort].BindFailedEvent += ServerThread_BindFailedEvent;
+                        _ServerThreads.Add(_Config.TelnetServerPort, new TelnetServerThread(_Config));
                         _ServerThreads[_Config.TelnetServerPort].BoundEvent += ServerThread_BoundEvent;
-                        _ServerThreads[_Config.TelnetServerPort].ConnectEvent += ServerThread_ConnectEvent;
                     }
 
                     if (_Config.WebSocketServerPort > 0) {
                         // Create Server Thread and add to collection
-                        _ServerThreads.Add(_Config.WebSocketServerPort, new ServerThread(_Config.WebSocketServerIP, _Config.WebSocketServerPort, ConnectionType.WebSocket, _Config.TerminalType));
-                        // TODOX Confirm these are all needed
-                        _ServerThreads[_Config.WebSocketServerPort].BindFailedEvent += ServerThread_BindFailedEvent;
+                        _ServerThreads.Add(_Config.WebSocketServerPort, new WebSocketServerThread(_Config));
                         _ServerThreads[_Config.WebSocketServerPort].BoundEvent += ServerThread_BoundEvent;
-                        _ServerThreads[_Config.WebSocketServerPort].ConnectEvent += ServerThread_ConnectEvent;
                     }
 
                     // Now actually start the server threads
@@ -480,7 +403,6 @@ namespace RandM.GameSrv {
                 UpdateStatus(GameSrvStatus.Stopping);
 
                 StopIgnoredIPsThread();
-                StopFlashSocketPolicyServerThread();
                 StopServerThreads();
                 StopNodeManager();
 
@@ -489,21 +411,16 @@ namespace RandM.GameSrv {
         }
 
         private bool StopNodeManager() {
-            if (_NodeManager != null) {
                 RMLog.Info("Stopping Node Manager");
 
                 try {
-                    _NodeManager.Stop();
-                    _NodeManager = null;
+                    NodeManager.Stop();
 
                     return true;
                 } catch (Exception ex) {
                     RMLog.Exception(ex, "Error in GameSrv::StopNodeManger()");
                     return false;
                 }
-            } else {
-                return false;
-            }
         }
 
         private bool StopServerThreads() {
@@ -517,25 +434,6 @@ namespace RandM.GameSrv {
                 return true;
             } catch (Exception ex) {
                 RMLog.Exception(ex, "Error in GameSrv::StopServerThread()");
-                return false;
-            }
-        }
-
-        private bool StopFlashSocketPolicyServerThread() {
-            if (_FlashSocketPolicyServerThread != null) {
-                RMLog.Info("Stopping Flash Socket Policy Server Thread");
-
-                try {
-                    _FlashSocketPolicyServerThread.Stop();
-                    _FlashSocketPolicyServerThread.Dispose();
-                    _FlashSocketPolicyServerThread = null;
-
-                    return true;
-                } catch (Exception ex) {
-                    RMLog.Exception(ex, "Error in GameSrv::StopFlashSocketPolicyServerThread()");
-                    return false;
-                }
-            } else {
                 return false;
             }
         }

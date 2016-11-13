@@ -68,9 +68,6 @@ namespace RandM.GameSrv
             this.cboRLoginServerIP = new System.Windows.Forms.ComboBox();
             this.txtRLoginServerPort = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.cboFlashSocketPolicyServerIP = new System.Windows.Forms.ComboBox();
-            this.txtFlashSocketPolicyServerPort = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
             this.cboWebSocketServerIP = new System.Windows.Forms.ComboBox();
             this.txtWebSocketServerPort = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -266,35 +263,6 @@ namespace RandM.GameSrv
             this.label9.TabIndex = 18;
             this.label9.Text = "RLogin Server IP Address and Port";
             // 
-            // cboFlashSocketPolicyServerIP
-            // 
-            this.cboFlashSocketPolicyServerIP.FormattingEnabled = true;
-            this.cboFlashSocketPolicyServerIP.Items.AddRange(new object[] {
-            "All IP addresses"});
-            this.cboFlashSocketPolicyServerIP.Location = new System.Drawing.Point(222, 141);
-            this.cboFlashSocketPolicyServerIP.Name = "cboFlashSocketPolicyServerIP";
-            this.cboFlashSocketPolicyServerIP.Size = new System.Drawing.Size(135, 21);
-            this.cboFlashSocketPolicyServerIP.TabIndex = 14;
-            this.cboFlashSocketPolicyServerIP.Tag = "Flash Policy Server IP";
-            this.cboFlashSocketPolicyServerIP.Text = "All IP addresses";
-            // 
-            // txtFlashSocketPolicyServerPort
-            // 
-            this.txtFlashSocketPolicyServerPort.Location = new System.Drawing.Point(363, 142);
-            this.txtFlashSocketPolicyServerPort.Name = "txtFlashSocketPolicyServerPort";
-            this.txtFlashSocketPolicyServerPort.Size = new System.Drawing.Size(59, 20);
-            this.txtFlashSocketPolicyServerPort.TabIndex = 15;
-            this.txtFlashSocketPolicyServerPort.Tag = "Flash Policy Server Port";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(222, 126);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(194, 13);
-            this.label10.TabIndex = 21;
-            this.label10.Text = "Flash Policy Server IP Address and Port";
-            // 
             // cboWebSocketServerIP
             // 
             this.cboWebSocketServerIP.FormattingEnabled = true;
@@ -454,9 +422,6 @@ namespace RandM.GameSrv
             this.Controls.Add(this.cboWebSocketServerIP);
             this.Controls.Add(this.txtWebSocketServerPort);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.cboFlashSocketPolicyServerIP);
-            this.Controls.Add(this.txtFlashSocketPolicyServerPort);
-            this.Controls.Add(this.label10);
             this.Controls.Add(this.cboRLoginServerIP);
             this.Controls.Add(this.txtRLoginServerPort);
             this.Controls.Add(this.label9);
@@ -510,9 +475,6 @@ namespace RandM.GameSrv
         private System.Windows.Forms.ComboBox cboRLoginServerIP;
         private System.Windows.Forms.TextBox txtRLoginServerPort;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox cboFlashSocketPolicyServerIP;
-        private System.Windows.Forms.TextBox txtFlashSocketPolicyServerPort;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox cboWebSocketServerIP;
         private System.Windows.Forms.TextBox txtWebSocketServerPort;
         private System.Windows.Forms.Label label11;

@@ -26,21 +26,15 @@ using System.IO;
 using System.Text;
 
 namespace RandM.GameSrv {
-    class NodeManager {
-        private Dictionary<int, ClientThread> _ClientThreads = new Dictionary<int, ClientThread>();
-        private object _ListLock = new Object();
-        private int _NodeFirst = 0;
-        private int _NodeLast = 0;
+    public static class NodeManager {
+        private static Dictionary<int, ClientThread> _ClientThreads = new Dictionary<int, ClientThread>();
+        private static object _ListLock = new Object();
+        private static int _NodeFirst = 0;
+        private static int _NodeLast = 0;
 
-        public event EventHandler<IntEventArgs> ConnectionCountChangeEvent = null;
-        public event EventHandler<NodeEventArgs> NodeEvent = null;
+        public static event EventHandler<IntEventArgs> ConnectionCountChangeEvent = null;
 
-        public NodeManager(int nodeFirst, int nodeLast) {
-            _NodeFirst = nodeFirst;
-            _NodeLast = nodeLast;
-        }
-
-        private void ClientThread_FinishEvent(object sender, EventArgs e) {
+        private static void ClientThread_FinishEvent(object sender, EventArgs e) {
             var FinishedClientThread = sender as ClientThread;
 
             // Free up the node that the finished thread was using
@@ -63,7 +57,7 @@ namespace RandM.GameSrv {
             }
         }
 
-        void ClientThread_NodeEvent(object sender, NodeEventArgs e) {
+        static void ClientThread_NodeEvent(object sender, NodeEventArgs e) {
             if (e.EventType == NodeEventType.LogOn) {
                 // Kill other session if the user is a logged in user (ie not a RUNBBS.INI connection) and the user isn't allowed on multiple nodes
                 if ((e.NodeInfo.User.UserId > 0) && (!e.NodeInfo.User.AllowMultipleConnections)) {
@@ -72,11 +66,10 @@ namespace RandM.GameSrv {
 
             }
 
-            NodeEvent?.Invoke(sender, e);
             UpdateWhoIsOnlineFile();
         }
 
-        void ClientThread_WhosOnlineEvent(object sender, WhoIsOnlineEventArgs e) {
+        static void ClientThread_WhosOnlineEvent(object sender, WhoIsOnlineEventArgs e) {
             lock (_ListLock) {
                 for (int NodeLoop = _NodeFirst; NodeLoop <= _NodeLast; NodeLoop++) {
                     // Make sure this node has a client
@@ -93,7 +86,7 @@ namespace RandM.GameSrv {
             }
         }
 
-        public int ConnectionCount {
+        public static int ConnectionCount {
             get {
                 int Result = 0;
 
@@ -108,7 +101,7 @@ namespace RandM.GameSrv {
             }
         }
 
-        public void DisconnectNode(int node) {
+        public static void DisconnectNode(int node) {
             bool Raise = false;
 
             if (IsValidNode(node)) {
@@ -127,7 +120,7 @@ namespace RandM.GameSrv {
             }
         }
 
-        private void DisplayAnsi(string ansi, int node) {
+        private static void DisplayAnsi(string ansi, int node) {
             if (IsValidNode(node)) {
                 lock (_ListLock) {
                     if (_ClientThreads[node] != null) {
@@ -137,7 +130,7 @@ namespace RandM.GameSrv {
             }
         }
 
-        public int GetFreeNode(ClientThread clientThread) {
+        public static int GetFreeNode(ClientThread clientThread) {
             int Result = 0;
             bool Raise = false;
 
@@ -162,11 +155,11 @@ namespace RandM.GameSrv {
             return Result;
         }
 
-        private bool IsValidNode(int node) {
+        private static bool IsValidNode(int node) {
             return ((node >= _NodeFirst) && (node <= _NodeLast));
         }
 
-        public void KillOtherSession(string alias, int node) {
+        public static void KillOtherSession(string alias, int node) {
             int NodeToKill = 0;
 
             lock (_ListLock) {
@@ -191,7 +184,10 @@ namespace RandM.GameSrv {
             }
         }
 
-        public void Start() {
+        public static void Start(int firstNode, int lastNode) {
+            _NodeFirst = firstNode;
+            _NodeLast = lastNode;
+
             lock (_ListLock) {
                 _ClientThreads.Clear();
                 for (int Node = _NodeFirst; Node <= _NodeLast; Node++) {
@@ -203,7 +199,7 @@ namespace RandM.GameSrv {
             UpdateWhoIsOnlineFile();
         }
 
-        public void Stop() {
+        public static void Stop() {
             lock (_ListLock) {
                 // Shutdown any client threads that are still active
                 for (int Node = _NodeFirst; Node <= _NodeLast; Node++) {
@@ -218,11 +214,11 @@ namespace RandM.GameSrv {
             UpdateWhoIsOnlineFile();
         }
 
-        private void UpdateConnectionCount() {
-            ConnectionCountChangeEvent?.Invoke(this, new IntEventArgs(ConnectionCount));
+        private static void UpdateConnectionCount() {
+            ConnectionCountChangeEvent?.Invoke(null, new IntEventArgs(ConnectionCount));
         }
 
-        private void UpdateWhoIsOnlineFile() {
+        private static void UpdateWhoIsOnlineFile() {
             try {
                 var SB = new StringBuilder();
                 SB.AppendLine("Node,RemoteIP,User,Status");

@@ -27,12 +27,11 @@ namespace RandM.GameSrv {
     public class Config : ConfigHelper {
         public string BBSName { get; set; }
         public int FirstNode { get; set; }
-        public string FlashSocketPolicyServerIP { get; set; }
-        public int FlashSocketPolicyServerPort { get; set; }
         public int LastNode { get; set; }
         public int NextUserId { get; set; }
         public string NewUserPassword { get; set; }
         public string PasswordPepper { get; set; }
+        public bool RLoginPromptForCredentialsOnFailedLogin { get; set; }
         public string RLoginServerIP { get; set; }
         public int RLoginServerPort { get; set; }
         public bool RLoginSkipNewUserPrompts { get; set; }
@@ -54,12 +53,11 @@ namespace RandM.GameSrv {
             : base(ConfigSaveLocation.Relative, StringUtils.PathCombine("config", "gamesrv.ini")) {
             BBSName = "New GameSrv BBS";
             FirstNode = 1;
-            FlashSocketPolicyServerIP = "0.0.0.0";
-            FlashSocketPolicyServerPort = 843;
             LastNode = 5;
             NextUserId = 1;
             NewUserPassword = "";
             PasswordPepper = Debugger.IsAttached ? "ABCDEFGHIJKLMNOPQRSTUVWXYZ" : StringUtils.RandomString(100);
+            RLoginPromptForCredentialsOnFailedLogin = false;
             RLoginServerIP = "0.0.0.0";
             RLoginServerPort = 513;
             RLoginSkipNewUserPrompts = true;

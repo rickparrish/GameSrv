@@ -25,22 +25,19 @@ using System.Threading;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 
+// TODOX Add check for flash socket policy request by doing a peek with a 1 second timeout or something
+//       If peeked character is < then peek another character to see if it's the flash request string
 namespace RandM.GameSrv {
-    class ServerThread : RMThread {
-        private ConnectionType _ConnectionType;
-        private string _LocalAddress;
-        private int _LocalPort;
-        private TerminalType _TerminalType;
+    public abstract class ServerThread : RMThread {
+        protected Config _Config;
+        protected ConnectionType _ConnectionType;
+        protected string _LocalAddress;
+        protected int _LocalPort;
 
-        public event EventHandler BindFailedEvent = null;
         public event EventHandler BoundEvent = null;
-        public event EventHandler<ConnectEventArgs> ConnectEvent = null;
 
-        public ServerThread(string localAddress, int localPort, ConnectionType connectionType, TerminalType terminalType) {
-            _LocalAddress = localAddress;
-            _LocalPort = localPort;
-            _ConnectionType = connectionType;
-            _TerminalType = terminalType;
+        public ServerThread(Config config) {
+            _Config = config;
             _Paused = false;
         }
 
@@ -94,64 +91,7 @@ namespace RandM.GameSrv {
                             try {
                                 TcpConnection NewConnection = Connection.AcceptTCP();
                                 if (NewConnection != null) {
-                                    TcpConnection TypedConnection = null;
-                                    switch (_ConnectionType) {
-                                        case ConnectionType.RLogin:
-                                            TypedConnection = new RLoginConnection();
-                                            break;
-                                        case ConnectionType.Telnet:
-                                            TypedConnection = new TelnetConnection();
-                                            break;
-                                        case ConnectionType.WebSocket:
-                                            TypedConnection = new WebSocketConnection();
-                                            break;
-                                    }
-                                    if (TypedConnection != null) {
-                                        if (TypedConnection.Open(NewConnection.GetSocket())) {
-                                            if (IsIgnoredIP(TypedConnection.GetRemoteIP())) {
-                                                // Do nothing for ignored IPs
-                                                TypedConnection.Close();
-                                            } else {
-                                                RMLog.Info("Incoming " + _ConnectionType.ToString() + " connection from " + TypedConnection.GetRemoteIP() + ":" + TypedConnection.GetRemotePort());
-
-                                                TerminalType TT = _TerminalType == TerminalType.AUTODETECT ? GetTerminalType(TypedConnection) : _TerminalType;
-                                                if ((_ConnectionType == ConnectionType.RLogin) && !IsRLoginIP(TypedConnection.GetRemoteIP())) {
-                                                    // Do nothing for non-whitelisted RLogin IPs
-                                                    RMLog.Warning("IP " + TypedConnection.GetRemoteIP() + " doesn't match RLogin IP whitelist");
-                                                    TypedConnection.Close();
-                                                } else if (IsBannedIP(TypedConnection.GetRemoteIP())) {
-                                                    DisplayAnsi("IP_BANNED", TypedConnection, TT);
-                                                    RMLog.Warning("IP " + TypedConnection.GetRemoteIP() + " matches banned IP filter");
-                                                    TypedConnection.Close();
-                                                } else if (_Paused) {
-                                                    DisplayAnsi("SERVER_PAUSED", TypedConnection, TT);
-                                                    TypedConnection.Close();
-                                                } else {
-                                                    if (!TypedConnection.Connected) {
-                                                        RMLog.Info("No carrier detected (maybe it was a 'ping'?)");
-                                                        TypedConnection.Close();
-                                                    } else {
-                                                        ClientThread NewClientThread = new ClientThread();
-                                                        int NewNode = RaiseConnectEvent(ref NewClientThread);
-                                                        if (NewNode == 0) {
-                                                            NewClientThread.Dispose();
-                                                            DisplayAnsi("SERVER_BUSY", TypedConnection, TT);
-                                                            TypedConnection.Close();
-                                                        } else {
-                                                            NewClientThread.Start(NewNode, TypedConnection, _ConnectionType, TT);
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        } else {
-                                            if (_ConnectionType == ConnectionType.RLogin) {
-                                                RMLog.Info("Timeout waiting for RLogin header");
-                                            } else {
-                                                RMLog.Info("No carrier detected (maybe it was a 'ping'?)");
-                                            }
-                                            TypedConnection.Close();
-                                        }
-                                    }
+                                    HandleNewConnection(NewConnection);
                                 }
                             } catch (Exception ex) {
                                 RMLog.Exception(ex, "Error in ServerThread::Execute()");
@@ -159,8 +99,7 @@ namespace RandM.GameSrv {
                         }
                     }
                 } else {
-                    RMLog.Error("Server Thread unable to listen on " + _LocalAddress + ":" + _LocalPort);
-                    BindFailedEvent?.Invoke(this, EventArgs.Empty);
+                    RMLog.Error($"{_ConnectionType} Server Thread unable to listen on {_LocalAddress}:{_LocalPort}");
                 }
             }
         }
@@ -255,6 +194,67 @@ namespace RandM.GameSrv {
             return TerminalType.ASCII;
         }
 
+        protected void HandleNewConnection(TcpConnection newConnection) {
+            TcpConnection TypedConnection = null;
+            switch (_ConnectionType) {
+                case ConnectionType.RLogin:
+                    TypedConnection = new RLoginConnection();
+                    break;
+                case ConnectionType.Telnet:
+                    TypedConnection = new TelnetConnection();
+                    break;
+                case ConnectionType.WebSocket:
+                    TypedConnection = new WebSocketConnection();
+                    break;
+            }
+            if (TypedConnection != null) {
+                if (TypedConnection.Open(newConnection.GetSocket())) {
+                    if (IsIgnoredIP(TypedConnection.GetRemoteIP())) {
+                        // Do nothing for ignored IPs
+                        TypedConnection.Close();
+                    } else {
+                        RMLog.Info("Incoming " + _ConnectionType.ToString() + " connection from " + TypedConnection.GetRemoteIP() + ":" + TypedConnection.GetRemotePort());
+
+                        TerminalType TT = _Config.TerminalType == TerminalType.AUTODETECT ? GetTerminalType(TypedConnection) : _Config.TerminalType;
+                        if ((_ConnectionType == ConnectionType.RLogin) && !IsRLoginIP(TypedConnection.GetRemoteIP())) {
+                            // Do nothing for non-whitelisted RLogin IPs
+                            RMLog.Warning("IP " + TypedConnection.GetRemoteIP() + " doesn't match RLogin IP whitelist");
+                            TypedConnection.Close();
+                        } else if (IsBannedIP(TypedConnection.GetRemoteIP())) {
+                            DisplayAnsi("IP_BANNED", TypedConnection, TT);
+                            RMLog.Warning("IP " + TypedConnection.GetRemoteIP() + " matches banned IP filter");
+                            TypedConnection.Close();
+                        } else if (_Paused) {
+                            DisplayAnsi("SERVER_PAUSED", TypedConnection, TT);
+                            TypedConnection.Close();
+                        } else {
+                            if (!TypedConnection.Connected) {
+                                RMLog.Info("No carrier detected (maybe it was a 'ping'?)");
+                                TypedConnection.Close();
+                            } else {
+                                ClientThread NewClientThread = new ClientThread();
+                                int NewNode = NodeManager.GetFreeNode(NewClientThread);
+                                if (NewNode == 0) {
+                                    NewClientThread.Dispose();
+                                    DisplayAnsi("SERVER_BUSY", TypedConnection, TT);
+                                    TypedConnection.Close();
+                                } else {
+                                    NewClientThread.Start(NewNode, TypedConnection, _ConnectionType, TT);
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    if (_ConnectionType == ConnectionType.RLogin) {
+                        RMLog.Info("Timeout waiting for RLogin header");
+                    } else {
+                        RMLog.Info("No carrier detected (maybe it was a 'ping'?)");
+                    }
+                    TypedConnection.Close();
+                }
+            }
+        }
+
         private bool IsBannedIP(string ip) {
             try {
                 string BannedIPsFileName = StringUtils.PathCombine(ProcessUtils.StartupPath, "config", "banned-ips.txt");
@@ -300,17 +300,6 @@ namespace RandM.GameSrv {
                 RMLog.Exception(ex, "Unable to validate client IP against ignored-ips.txt");
                 return true; // Give them the benefit of the doubt on error
             }
-        }
-
-        private int RaiseConnectEvent(ref ClientThread clientThread) {
-            EventHandler<ConnectEventArgs> Handler = ConnectEvent;
-            if (Handler != null) {
-                ConnectEventArgs e = new ConnectEventArgs(clientThread);
-                Handler(this, e);
-                return e.Node;
-            }
-
-            return 0;
         }
     }
 }

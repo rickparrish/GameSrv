@@ -71,7 +71,7 @@ namespace RandM.GameSrv {
                     byte[] InBytes = Encoding.ASCII.GetBytes(salt + password + pepper);
                     byte[] OutBytes = SHA.ComputeHash(InBytes);
 
-                    // Loop 1000 times -- this creates no noticeable delay on our server, but it may mean an attacker can now only try 1,000 per second instead of 1,000,000 per second
+                    // Loop 1024 times -- this creates no noticeable delay on our server, but it may mean an attacker can now only try 1,000 per second instead of 1,000,000 per second
                     for (int i = 0; i < 1024; i++) {
                         OutBytes = SHA.ComputeHash(OutBytes);
                     }
@@ -82,6 +82,7 @@ namespace RandM.GameSrv {
         }
 
         public static string SafeAlias(string alias) {
+            // TODOX This differs between win and linux.  Maybe filter to just alphanumeric?
             char[] InvalidChars = Path.GetInvalidFileNameChars();
             for (int i = 0; i < InvalidChars.Length; i++) {
                 // Pick a new character based on the old character that's either in the A-Z or a-z range

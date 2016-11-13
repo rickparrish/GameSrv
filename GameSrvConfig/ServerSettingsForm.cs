@@ -65,12 +65,6 @@ namespace RandM.GameSrv
                 cboWebSocketServerIP.Text = _Config.WebSocketServerIP;
             }
             txtWebSocketServerPort.Text = _Config.WebSocketServerPort.ToString();
-            if (_Config.FlashSocketPolicyServerIP != "0.0.0.0")
-            {
-                if (!cboFlashSocketPolicyServerIP.Items.Contains(_Config.FlashSocketPolicyServerIP)) cboFlashSocketPolicyServerIP.Items.Add(_Config.FlashSocketPolicyServerIP);
-                cboFlashSocketPolicyServerIP.Text = _Config.FlashSocketPolicyServerIP;
-            }
-            txtFlashSocketPolicyServerPort.Text = _Config.FlashSocketPolicyServerPort.ToString();
             txtTimeFormatLog.Text = _Config.TimeFormatLog;
             txtTimeFormatUI.Text = _Config.TimeFormatUI;
         }
@@ -92,7 +86,6 @@ namespace RandM.GameSrv
                     cboTelnetServerIP.Items.Add(ip.ToString());
                     cboRLoginServerIP.Items.Add(ip.ToString());
                     cboWebSocketServerIP.Items.Add(ip.ToString());
-                    cboFlashSocketPolicyServerIP.Items.Add(ip.ToString());
                 }
             }
         }
@@ -138,8 +131,6 @@ namespace RandM.GameSrv
                 if (!Dialog.ValidateIsInRange(txtRLoginServerPort, 0, 65535)) return;
                 if ((cboWebSocketServerIP.SelectedIndex != 0) && (!Dialog.ValidateIsIPAddress(cboWebSocketServerIP))) return;
                 if (!Dialog.ValidateIsInRange(txtWebSocketServerPort, 0, 65535)) return;
-                if ((cboFlashSocketPolicyServerIP.SelectedIndex != 0) && (!Dialog.ValidateIsIPAddress(cboFlashSocketPolicyServerIP))) return;
-                if (!Dialog.ValidateIsInRange(txtFlashSocketPolicyServerPort, 0, 65535)) return;
 
                 _Config.BBSName = txtBBSName.Text.Trim();
                 _Config.SysopFirstName = txtSysopFirstName.Text.Trim();
@@ -154,8 +145,6 @@ namespace RandM.GameSrv
                 _Config.RLoginServerPort = int.Parse(txtRLoginServerPort.Text.Trim());
                 _Config.WebSocketServerIP = (cboWebSocketServerIP.SelectedIndex == 0) ? "0.0.0.0" : cboWebSocketServerIP.Text;
                 _Config.WebSocketServerPort = int.Parse(txtWebSocketServerPort.Text.Trim());
-                _Config.FlashSocketPolicyServerIP = (cboFlashSocketPolicyServerIP.SelectedIndex == 0) ? "0.0.0.0" : cboFlashSocketPolicyServerIP.Text;
-                _Config.FlashSocketPolicyServerPort = int.Parse(txtFlashSocketPolicyServerPort.Text.Trim());
                 _Config.TimeFormatLog = txtTimeFormatLog.Text.Trim();
                 _Config.TimeFormatUI = txtTimeFormatUI.Text.Trim();
                 _Config.Save();

@@ -98,8 +98,12 @@ namespace RandM.GameSrv {
 
             if (string.IsNullOrEmpty(UserName) || string.IsNullOrEmpty(Password)) {
                 // RLogin requires both fields
-                DisplayAnsi("RLOGIN_INVALID");
-                return false;
+                if (_Config.RLoginPromptForCredentialsOnFailedLogin) {
+                    return AuthenticateTelnet();
+                } else {
+                    DisplayAnsi("RLOGIN_INVALID");
+                    return false;
+                }
             } else {
                 // Check if we're requesting a door
                 if (TerminalType.ToLower().StartsWith("xtrn=")) {
@@ -118,13 +122,20 @@ namespace RandM.GameSrv {
                     if (_Config.RLoginValidatePassword) {
                         if (!_NodeInfo.User.ValidatePassword(Password, _Config.PasswordPepper)) {
                             // Password is bad
-                            DisplayAnsi("RLOGIN_INVALID_PASSWORD");
-                            return false;
+                            if (_Config.RLoginPromptForCredentialsOnFailedLogin) {
+                                return AuthenticateTelnet();
+                            } else {
+                                DisplayAnsi("RLOGIN_INVALID_PASSWORD");
+                                return false;
+                            }
                         }
                     }
 
                     // TODOX Add option where password is validated at the server-level instead of user level
                     //       That would allow someone to allow RLogin to anybody, but only if they had the right password
+                } else if (_Config.RLoginPromptForCredentialsOnFailedLogin) {
+                    // Nope, and we want to prompt for credentials when the alias isn't found
+                    return AuthenticateTelnet();
                 } else {
                     // Nope, so perform the new user process with given username and password
                     if (_Config.RLoginSkipNewUserPrompts) {

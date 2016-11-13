@@ -81,14 +81,20 @@
     <Compile Include="Applications\Service\ServiceApp.cs" />
     <Compile Include="Enumerators\GameSrvStatus.cs" />
     <Compile Include="Enumerators\NodeEventType.cs" />
+    <Compile Include="Events\ConnectEventArgs.cs" />
+    <Compile Include="Events\NodeEventArgs.cs" />
+    <Compile Include="Events\StatusEventArgs.cs" />
+    <Compile Include="Events\WhoIsOnlineEventArgs.cs" />
+    <Compile Include="Threads\ServerThreads\RLoginServerThread.cs" />
+    <Compile Include="Threads\ServerThreads\WebSocketServerThread.cs" />
+    <Compile Include="Threads\ServerThreads\TelnetServerThread.cs" />
     <Compile Include="_ToRefactor\ClientThread.cs" />
-    <Compile Include="_ToRefactor\Config.cs" />
-    <Compile Include="_ToRefactor\CustomEvents.cs" />
-    <Compile Include="_ToRefactor\DoorInfo.cs" />
+    <Compile Include="Classes\Config.cs" />
+    <Compile Include="Classes\DoorInfo.cs" />
     <Compile Include="_ToRefactor\GameSrv.cs" />
     <Compile Include="_ToRefactor\Globals.cs" />
     <Compile Include="_ToRefactor\IgnoredIPsThread.cs" />
-    <Compile Include="_ToRefactor\NodeInfo.cs" />
+    <Compile Include="Classes\NodeInfo.cs" />
     <Compile Include="_ToRefactor\NodeManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -97,9 +103,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="_ToRefactor\ServerThread.cs" />
-    <Compile Include="_ToRefactor\TerminalType.cs" />
-    <Compile Include="_ToRefactor\UserInfo.cs" />
+    <Compile Include="Threads\ServerThreads\ServerThread.cs" />
+    <Compile Include="Enumerators\TerminalType.cs" />
+    <Compile Include="Classes\UserInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\DLL\RMLibUI\RMLibUI.csproj">
