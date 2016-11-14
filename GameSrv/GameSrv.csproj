@@ -88,7 +88,7 @@
     <Compile Include="Threads\ServerThreads\RLoginServerThread.cs" />
     <Compile Include="Threads\ServerThreads\WebSocketServerThread.cs" />
     <Compile Include="Threads\ServerThreads\TelnetServerThread.cs" />
-    <Compile Include="_ToRefactor\ClientThread.cs" />
+    <Compile Include="Threads\ClientThread\ClientThread.cs" />
     <Compile Include="Classes\Config.cs" />
     <Compile Include="Classes\DoorInfo.cs" />
     <Compile Include="_ToRefactor\GameSrv.cs" />
@@ -163,6 +163,7 @@
   <ItemGroup>
     <None Include="Resources\GameSrv16Stopped.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -11,5 +11,17 @@ namespace RandM.GameSrv {
             _LocalAddress = config.WebSocketServerIP;
             _LocalPort = config.WebSocketServerPort;
         }
+
+        protected override void HandleNewConnection(TcpConnection newConnection) {
+            WebSocketConnection TypedConnection = new WebSocketConnection();
+            if (TypedConnection.Open(newConnection.GetSocket())) {
+                // TODOX Start a proxy thread instead of a clientthread
+                ClientThread NewClientThread = new ClientThread(TypedConnection, _ConnectionType, _Config.TerminalType);
+                NewClientThread.Start();
+            } else {
+                RMLog.Info("No carrier detected (probably a portscanner)");
+                TypedConnection.Close();
+            }
+        }
     }
 }

@@ -24,6 +24,7 @@ using System;
 using System.Diagnostics;
 
 namespace RandM.GameSrv {
+    // TODOX Create a Config.Default singleton?
     public class Config : ConfigHelper {
         public string BBSName { get; set; }
         public int FirstNode { get; set; }

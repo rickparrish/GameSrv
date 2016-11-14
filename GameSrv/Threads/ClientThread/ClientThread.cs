@@ -37,6 +37,7 @@ using Unix;
 using System.Net.Sockets;
 using System.Timers;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace RandM.GameSrv {
     public class ClientThread : RMThread {
@@ -55,7 +56,11 @@ namespace RandM.GameSrv {
         public event EventHandler<NodeEventArgs> NodeEvent = null;
         public event EventHandler<WhoIsOnlineEventArgs> WhoIsOnlineEvent = null; // TODOX Gotta be a better way to get
 
-        public ClientThread() {
+        public ClientThread(TcpConnection connection, ConnectionType connectionType, TerminalType terminalType) {
+            _NodeInfo.Connection = connection;
+            _NodeInfo.ConnectionType = connectionType;
+            _NodeInfo.TerminalType = terminalType;
+
             _LogTimer.Interval = 60000; // 1 minute
             _LogTimer.Elapsed += LogTimer_Elapsed;
             _LogTimer.Start();
@@ -699,11 +704,57 @@ namespace RandM.GameSrv {
         }
 
         protected override void Execute() {
+            bool ShouldRaiseLogOffEvent = false;
+
             try {
                 // Make telnet connections convert CRLF to CR
                 _NodeInfo.Connection.LineEnding = "\r";
                 _NodeInfo.Connection.StripLF = true;
 
+                // Check for an ignored IP
+                if (IsIgnoredIP(_NodeInfo.Connection.GetRemoteIP())) {
+                    // Do nothing for ignored IPs
+                    RMLog.Debug("Ignored " + _NodeInfo.ConnectionType.ToString() + " connection from " + _NodeInfo.Connection.GetRemoteIP() + ":" + _NodeInfo.Connection.GetRemotePort());
+                    return;
+                }
+
+                // Log the incoming connction
+                RMLog.Info("Incoming " + _NodeInfo.ConnectionType.ToString() + " connection from " + _NodeInfo.Connection.GetRemoteIP() + ":" + _NodeInfo.Connection.GetRemotePort());
+
+                // Get our terminal type, if necessary
+                if (_NodeInfo.TerminalType == TerminalType.AUTODETECT) GetTerminalType();
+
+                // Check for whitelist/blacklist type rejections
+                if ((_NodeInfo.ConnectionType == ConnectionType.RLogin) && !IsRLoginIP(_NodeInfo.Connection.GetRemoteIP())) {
+                    // Do nothing for non-whitelisted RLogin IPs
+                    RMLog.Warning("IP " + _NodeInfo.Connection.GetRemoteIP() + " doesn't match RLogin IP whitelist");
+                    return;
+                } else if (IsBannedIP(_NodeInfo.Connection.GetRemoteIP())) {
+                    RMLog.Warning("IP " + _NodeInfo.Connection.GetRemoteIP() + " matches banned IP filter");
+                    DisplayAnsi("IP_BANNED");
+                    Thread.Sleep(2500);
+                    return;
+                } else if (_Paused) {
+                    DisplayAnsi("SERVER_PAUSED");
+                    Thread.Sleep(2500);
+                    return;
+                } else if (!_NodeInfo.Connection.Connected) {
+                    RMLog.Info("No carrier detected (probably a portscanner)");
+                    return;
+                }
+
+                // Get our node number and bail if there are none available
+                _NodeInfo.Node = NodeManager.GetFreeNode(this);
+                if (_NodeInfo.Node == 0) {
+                    DisplayAnsi("SERVER_BUSY");
+                    Thread.Sleep(2500);
+                    return;
+                }
+
+                // If we get here we can raise a logoff event at the end of the method
+                ShouldRaiseLogOffEvent = true;
+
+                // Check if we're doing RUNBBS mode
                 _NodeInfo.Door = new DoorInfo("RUNBBS");
                 if (_NodeInfo.Door.Loaded) {
                     _NodeInfo.User.Alias = "Anonymous";
@@ -711,56 +762,85 @@ namespace RandM.GameSrv {
 
                     _NodeInfo.SecondsThisSession = 86400; // RUNBBS.BAT can run for 24 hours
                     RunDoor();
-                } else {
-                    // Handle authentication based on the connection type
-                    bool Authed = false;
-                    switch (_NodeInfo.ConnectionType) {
-                        case ConnectionType.RLogin: Authed = AuthenticateRLogin(); break;
-                        case ConnectionType.Telnet: Authed = AuthenticateTelnet(); break;
-                        case ConnectionType.WebSocket: Authed = AuthenticateTelnet(); break;
-                    }
-
-                    if ((Authed) && (!QuitThread())) {
-                        // Update the user's time remaining
-                        _NodeInfo.UserLoggedOn = true;
-                        _NodeInfo.SecondsThisSession = _Config.TimePerCall * 60;
-                        NodeEvent?.Invoke(this, new NodeEventArgs(_NodeInfo, "Logging on", NodeEventType.LogOn));
-
-                        // Check if RLogin is requesting to launch a door immediately via the xtrn= command
-                        if ((_NodeInfo.Door != null) && _NodeInfo.Door.Loaded) {
-                            RunDoor();
-                            Thread.Sleep(2500);
-                        } else {
-                            // Do the logon process
-                            UpdateStatus("Running Logon Process");
-                            HandleLogOnProcess();
-
-                            // Make sure we should still proceed
-                            if (QuitThread()) return;
-
-                            // Do the logoff process
-                            UpdateStatus("Running Logoff Process");
-                            HandleLogOffProcess();
-
-                            // Make sure we should still proceed
-                            if (QuitThread()) return;
-
-                            DisplayAnsi("LOGOFF");
-                            Thread.Sleep(2500);
-                        }
-                    }
+                    return;
                 }
+
+                // Handle authentication based on the connection type
+                bool Authed = (_NodeInfo.ConnectionType == ConnectionType.RLogin) ? AuthenticateRLogin() : AuthenticateTelnet();
+                if (!Authed || QuitThread()) return;
+
+                // Update the user's time remaining
+                _NodeInfo.UserLoggedOn = true;
+                _NodeInfo.SecondsThisSession = _Config.TimePerCall * 60;
+                NodeEvent?.Invoke(this, new NodeEventArgs(_NodeInfo, "Logging on", NodeEventType.LogOn));
+
+                // Check if RLogin is requesting to launch a door immediately via the xtrn= command
+                if ((_NodeInfo.Door != null) && _NodeInfo.Door.Loaded) {
+                    RunDoor();
+                    Thread.Sleep(2500);
+                    return;
+                }
+
+                // Do the logon process
+                UpdateStatus("Running Logon Process");
+                HandleLogOnProcess();
+
+                // Make sure we should still proceed
+                if (QuitThread()) return;
+
+                // Do the logoff process
+                UpdateStatus("Running Logoff Process");
+                HandleLogOffProcess();
+
+                // Make sure we should still proceed
+                if (QuitThread()) return;
+
+                DisplayAnsi("LOGOFF");
+                Thread.Sleep(2500);
             } catch (Exception ex) {
-                RMLog.Exception(ex, "Error in ClientThread::Execute()");
+                RMLog.Exception(ex, "Exception in ClientThread::Execute()");
             } finally {
                 // Try to close the connection
                 try { _NodeInfo.Connection.Close(); } catch { /* Ignore */ }
 
                 // Try to free the node
-                try { NodeEvent?.Invoke(this, new NodeEventArgs(_NodeInfo, "Logging off", NodeEventType.LogOff)); } catch { /* Ignore */ }
+                if (ShouldRaiseLogOffEvent) {
+                    try { NodeEvent?.Invoke(this, new NodeEventArgs(_NodeInfo, "Logging off", NodeEventType.LogOff)); } catch { /* Ignore */ }
+                }
 
                 FlushLog();
             }
+        }
+
+        private bool FileContainsIP(string filename, string ip) {
+            // TODOZ Handle IPv6
+            string[] ConnectionOctets = ip.Split('.');
+            if (ConnectionOctets.Length == 4) {
+                string[] FileIPs = FileUtils.FileReadAllLines(filename);
+                foreach (string FileIP in FileIPs) {
+                    if (FileIP.StartsWith(";")) continue;
+
+                    string[] FileOctets = FileIP.Split('.');
+                    if (FileOctets.Length == 4) {
+                        bool Match = true;
+                        for (int i = 0; i < 4; i++) {
+                            if ((FileOctets[i] == "*") || (FileOctets[i] == ConnectionOctets[i])) {
+                                // We still have a match
+                                continue;
+                            } else {
+                                // No longer have a match
+                                Match = false;
+                                break;
+                            }
+                        }
+
+                        // If we still have a match after the loop, it's a banned IP
+                        if (Match) return true;
+                    }
+                }
+            }
+
+            return false;
         }
 
         private void FlushLog() {
@@ -834,6 +914,65 @@ namespace RandM.GameSrv {
                     RMLog.Exception(aex, "Unable to load '" + _CurrentMenu + "' menu option for '" + HotKey + "'");
                 }
             }
+        }
+
+        // Logic for this terminal type detection taken from Synchronet's ANSWER.CPP
+        private void GetTerminalType() {
+            try {
+                /* Detect terminal type */
+                Thread.Sleep(200);
+                _NodeInfo.Connection.ReadString();		/* flush input buffer */
+                _NodeInfo.Connection.Write("\r\n" +		/* locate cursor at column 1 */
+                    "\x1b[s" +	                /* save cursor position (necessary for HyperTerm auto-ANSI) */
+                    "\x1b[255B" +	            /* locate cursor as far down as possible */
+                    "\x1b[255C" +	            /* locate cursor as far right as possible */
+                    "\b_" +		                /* need a printable at this location to actually move cursor */
+                    "\x1b[6n" +	                /* Get cursor position */
+                    "\x1b[u" +	                /* restore cursor position */
+                    "\x1b[!_" +	                /* RIP? */
+                    "\x1b[0m_" +	            /* "Normal" colors */
+                    "\x1b[2J" +	                /* clear screen */
+                    "\x1b[H" +	                /* home cursor */
+                    "\xC" +		                /* clear screen (in case not ANSI) */
+                    "\r"		                /* Move cursor left (in case previous char printed) */
+                );
+
+                char? c = '\0';
+                int i = 0;
+                string str = "";
+                while (i++ < 50) { 	/* wait up to 5 seconds for response */
+                    c = _NodeInfo.Connection.ReadChar(100);
+                    if (_NodeInfo.Connection.ReadTimedOut)
+                        continue;
+                    if (c == null)
+                        continue;
+                    c = (char)(c & 0x7f);
+                    if (c == 0)
+                        continue;
+                    i = 0;
+                    if (string.IsNullOrEmpty(str) && c != '\x1b')	// response must begin with escape char
+                        continue;
+                    str += c;
+                    if (c == 'R') {   /* break immediately if ANSI response */
+                        Thread.Sleep(500);
+                        break;
+                    }
+                }
+
+                while (_NodeInfo.Connection.CanRead(100)) {
+                    str += _NodeInfo.Connection.ReadString();
+                }
+
+                if (str.ToUpper().Contains("RIPSCRIP")) {
+                    _NodeInfo.TerminalType = TerminalType.RIP;
+                } else if (Regex.IsMatch(str, "\\x1b[[]\\d{1,3};\\d{1,3}R")) {
+                    _NodeInfo.TerminalType = TerminalType.ANSI;
+                }
+            } catch (Exception) {
+                // Ignore, we'll just assume ASCII if something bad happens
+            }
+
+            _NodeInfo.TerminalType = TerminalType.ASCII;
         }
 
         private void HandleLogOffProcess() {
@@ -967,6 +1106,21 @@ namespace RandM.GameSrv {
             get { return _NodeInfo.Connection.GetRemoteIP(); }
         }
 
+        private bool IsBannedIP(string ip) {
+            try {
+                string BannedIPsFileName = StringUtils.PathCombine(ProcessUtils.StartupPath, "config", "banned-ips.txt");
+                if (File.Exists(BannedIPsFileName)) {
+                    return FileContainsIP(BannedIPsFileName, ip);
+                } else {
+                    // No file means not banned
+                    return false;
+                }
+            } catch (Exception ex) {
+                RMLog.Exception(ex, "Unable to validate client IP against banned-ips.txt");
+                return false; // Give them the benefit of the doubt on error
+            }
+        }
+
         private bool IsBannedUser(string alias) {
             try {
                 alias = alias.Trim().ToLower();
@@ -987,6 +1141,38 @@ namespace RandM.GameSrv {
 
             // If we get here, it's an OK name
             return false;
+        }
+
+        private bool IsIgnoredIP(string ip) {
+            try {
+                if (Globals.IsTempIgnoredIP(ip)) return true;
+
+                string IgnoredIPsFileName = StringUtils.PathCombine(ProcessUtils.StartupPath, "config", "ignored-ips-combined.txt");
+                if (File.Exists(IgnoredIPsFileName)) {
+                    return FileContainsIP(IgnoredIPsFileName, ip);
+                } else {
+                    // No file means not ignored
+                    return false;
+                }
+            } catch (Exception ex) {
+                RMLog.Exception(ex, "Unable to validate client IP against ignored-ips.txt");
+                return false; // Give them the benefit of the doubt on error
+            }
+        }
+
+        private bool IsRLoginIP(string ip) {
+            try {
+                string RLoginIPsFileName = StringUtils.PathCombine(ProcessUtils.StartupPath, "config", "rlogin-ips.txt");
+                if (File.Exists(RLoginIPsFileName)) {
+                    return FileContainsIP(RLoginIPsFileName, ip);
+                } else {
+                    // No file means any RLogin connection allowed
+                    return true;
+                }
+            } catch (Exception ex) {
+                RMLog.Exception(ex, "Unable to validate client IP against ignored-ips.txt");
+                return true; // Give them the benefit of the doubt on error
+            }
         }
 
         void LogTimer_Elapsed(object sender, ElapsedEventArgs e) {
@@ -1921,17 +2107,6 @@ namespace RandM.GameSrv {
 
         private int SecondsLeft() {
             return _NodeInfo.SecondsThisSession - (int)DateTime.Now.Subtract(_NodeInfo.TimeOn).TotalSeconds;
-        }
-
-        public void Start(int node, TcpConnection connection, ConnectionType connectionType, TerminalType terminalType) {
-            if (connection == null) throw new ArgumentNullException("connection");
-
-            _NodeInfo.TerminalType = terminalType;
-            _NodeInfo.Node = node;
-            _NodeInfo.Connection = connection;
-            _NodeInfo.ConnectionType = connectionType;
-
-            base.Start();
         }
 
         public string Status {

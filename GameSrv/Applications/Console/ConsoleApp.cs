@@ -207,7 +207,10 @@ namespace RandM.GameSrv {
 
         private static void StatusText(string text, int foreColour, bool prefixWithTime = true) {
             lock (_StatusTextLock) {
-                if (prefixWithTime && (!string.IsNullOrEmpty(text))) Crt.Write(DateTime.Now.ToString(_GameSrv.TimeFormatUI) + "  ");
+                if (prefixWithTime && (!string.IsNullOrEmpty(text))) {
+                    Crt.TextColor(Crt.LightGray);
+                    Crt.Write(DateTime.Now.ToString(_GameSrv.TimeFormatUI) + "  ");
+                }
                 Crt.TextColor(foreColour);
                 Crt.Write(text + "\r\n");
             }
