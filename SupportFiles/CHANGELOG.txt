@@ -31,7 +31,7 @@ Jan 31, 2014
 
 Jan 29, 2014
 	- Fixed a problem running DOS doors with Console and Service versions (output was going to GameSrv window, and
-	  doors would crash when trying to run a second one during the same login session).  Thanks Ed!
+	  doors would crash when trying to run a second one during the same logon session).  Thanks Ed!
 
 Jan 4, 2014
 	- History and Log windows now both visible at same time on GUI.  Hopefully nobody is still using 800x600 or smaller!

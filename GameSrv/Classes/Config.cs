@@ -32,7 +32,7 @@ namespace RandM.GameSrv {
         public int NextUserId { get; set; }
         public string NewUserPassword { get; set; }
         public string PasswordPepper { get; set; }
-        public bool RLoginPromptForCredentialsOnFailedLogin { get; set; }
+        public bool RLoginPromptForCredentialsOnFailedLogOn { get; set; }
         public string RLoginServerIP { get; set; }
         public int RLoginServerPort { get; set; }
         public bool RLoginSkipNewUserPrompts { get; set; }
@@ -58,7 +58,7 @@ namespace RandM.GameSrv {
             NextUserId = 1;
             NewUserPassword = "";
             PasswordPepper = Debugger.IsAttached ? "ABCDEFGHIJKLMNOPQRSTUVWXYZ" : StringUtils.RandomString(100);
-            RLoginPromptForCredentialsOnFailedLogin = false;
+            RLoginPromptForCredentialsOnFailedLogOn = false;
             RLoginServerIP = "0.0.0.0";
             RLoginServerPort = 513;
             RLoginSkipNewUserPrompts = true;

@@ -103,7 +103,7 @@ namespace RandM.GameSrv {
 
             if (string.IsNullOrEmpty(UserName) || string.IsNullOrEmpty(Password)) {
                 // RLogin requires both fields
-                if (_Config.RLoginPromptForCredentialsOnFailedLogin) {
+                if (_Config.RLoginPromptForCredentialsOnFailedLogOn) {
                     return AuthenticateTelnet();
                 } else {
                     DisplayAnsi("RLOGIN_INVALID");
@@ -127,7 +127,7 @@ namespace RandM.GameSrv {
                     if (_Config.RLoginValidatePassword) {
                         if (!_NodeInfo.User.ValidatePassword(Password, _Config.PasswordPepper)) {
                             // Password is bad
-                            if (_Config.RLoginPromptForCredentialsOnFailedLogin) {
+                            if (_Config.RLoginPromptForCredentialsOnFailedLogOn) {
                                 return AuthenticateTelnet();
                             } else {
                                 DisplayAnsi("RLOGIN_INVALID_PASSWORD");
@@ -138,7 +138,7 @@ namespace RandM.GameSrv {
 
                     // TODOX Add option where password is validated at the server-level instead of user level
                     //       That would allow someone to allow RLogin to anybody, but only if they had the right password
-                } else if (_Config.RLoginPromptForCredentialsOnFailedLogin) {
+                } else if (_Config.RLoginPromptForCredentialsOnFailedLogOn) {
                     // Nope, and we want to prompt for credentials when the alias isn't found
                     return AuthenticateTelnet();
                 } else {
@@ -169,7 +169,7 @@ namespace RandM.GameSrv {
                 }
             }
 
-            // If we get here, login is ok
+            // If we get here, logon is ok
             return true;
         }
 
@@ -182,12 +182,7 @@ namespace RandM.GameSrv {
                 if (Globals.Debug) AddToLog("Entering Alias");
                 UpdateStatus("Entering Alias");
                 DisplayAnsi("LOGON_ENTER_ALIAS");
-                if (Globals.Debug) _NodeInfo.Connection.ReadEvent += Connection_ReadEvent;
                 string Alias = ReadLn().Trim();
-                if (Globals.Debug) {
-                    _NodeInfo.Connection.ReadEvent -= Connection_ReadEvent;
-                    FlushLog();
-                }
 
                 // Make sure we should still proceed
                 if (QuitThread()) return false;
@@ -275,10 +270,6 @@ namespace RandM.GameSrv {
                     _NodeInfo.Connection.Write("\r\n!|*" + Ansi.TextAttr(7) + Ansi.ClrScr() + Ansi.GotoXY(1, 1));
                     break;
             }
-        }
-
-        private void Connection_ReadEvent(object sender, StringEventArgs e) {
-            AddToLog("ReadEvent " + e.Text);
         }
 
         private void ConvertDoorSysToDoor32Sys(string doorSysPath) {

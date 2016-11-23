@@ -11,6 +11,7 @@ namespace RandM.GameSrv {
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
+        [STAThread]
         static void Main(string[] args) {
             // Check for service mode or console mode
             if (Environment.UserInteractive || OSUtils.IsUnix) {

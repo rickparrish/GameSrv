@@ -152,9 +152,4 @@ namespace RandM.GameSrv {
             }
         }
     }
-
-    public enum RLoginMode {
-        Classic,
-        Web
-    }
 }
