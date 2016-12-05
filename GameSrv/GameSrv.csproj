@@ -83,7 +83,6 @@
     <Compile Include="Applications\Service\ServiceApp.cs" />
     <Compile Include="Enumerators\GameSrvStatus.cs" />
     <Compile Include="Enumerators\NodeEventType.cs" />
-    <Compile Include="Events\ConnectEventArgs.cs" />
     <Compile Include="Events\NodeEventArgs.cs" />
     <Compile Include="Events\StatusEventArgs.cs" />
     <Compile Include="Events\WhoIsOnlineEventArgs.cs" />
@@ -100,11 +99,11 @@
     <Compile Include="Threads\ClientThread\ClientThread.cs" />
     <Compile Include="Classes\Config.cs" />
     <Compile Include="Classes\DoorInfo.cs" />
-    <Compile Include="_ToRefactor\GameSrv.cs" />
-    <Compile Include="_ToRefactor\Globals.cs" />
-    <Compile Include="_ToRefactor\IgnoredIPsThread.cs" />
+    <Compile Include="Classes\GameSrv.cs" />
+    <Compile Include="Classes\Globals.cs" />
+    <Compile Include="Threads\IgnoredIPsThread.cs" />
     <Compile Include="Classes\NodeInfo.cs" />
-    <Compile Include="_ToRefactor\NodeManager.cs" />
+    <Compile Include="Classes\NodeManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">

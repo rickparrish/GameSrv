@@ -25,8 +25,6 @@ using System.Threading;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 
-// TODOX Add check for flash socket policy request by doing a peek with a 1 second timeout or something
-//       If peeked character is < then peek another character to see if it's the flash request string
 namespace RandM.GameSrv {
     public abstract class ServerThread : RMThread {
         protected Config _Config;
@@ -55,30 +53,6 @@ namespace RandM.GameSrv {
             }
         }
 
-        private void DisplayAnsi(string fileName, TcpConnection connection, TerminalType terminalType) {
-            try {
-                List<string> FileNames = new List<string>();
-                if (terminalType == TerminalType.RIP) {
-                    FileNames.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "ansi", fileName.ToLower() + ".rip"));
-                }
-                if ((terminalType == TerminalType.RIP) || (terminalType == TerminalType.ANSI)) {
-                    FileNames.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "ansi", fileName.ToLower() + ".ans"));
-                }
-                FileNames.Add(StringUtils.PathCombine(ProcessUtils.StartupPath, "ansi", fileName.ToLower() + ".asc"));
-
-                foreach (string FullFileName in FileNames) {
-                    if (File.Exists(FullFileName)) {
-                        connection.Write(FileUtils.FileReadAllText(FullFileName));
-                        break;
-                    }
-                }
-            } catch (IOException ioex) {
-                RMLog.Exception(ioex, "Unable to display '" + fileName + "'");
-            } catch (Exception ex) {
-                RMLog.Exception(ex, "Unable to display '" + fileName + "'");
-            }
-        }
-
         protected override void Execute() {
             while (!_Stop) {
                 using (TcpConnection Connection = new TcpConnection()) {
@@ -92,6 +66,8 @@ namespace RandM.GameSrv {
                                 try {
                                     TcpConnection NewConnection = Connection.AcceptTCP();
                                     if (NewConnection != null) {
+                                        // TODOX Add check for flash socket policy request by doing a peek with a 1 second timeout or something
+                                        //       If peeked character is < then peek another character to see if it's the flash request string
                                         HandleNewConnection(NewConnection);
                                     }
                                 } catch (Exception ex) {

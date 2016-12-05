@@ -18,6 +18,7 @@ namespace RandM.GameSrv {
                 ClientThread NewClientThread = new ClientThread(TypedConnection, _ConnectionType, _Config.TerminalType);
                 NewClientThread.Start();
             } else {
+                // TODOX Duplicated code.  Maybe add method to base class and call it?
                 RMLog.Info("No carrier detected (probably a portscanner)");
                 TypedConnection.Close();
             }

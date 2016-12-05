@@ -201,7 +201,6 @@ namespace RandM.GameSrv {
                     }
                 } else if ((_CT.NodeInfo.Door.Platform == OSUtils.Platform.DOS) && OSUtils.IsUnix) {
                     if (Globals.IsDOSEMUInstalled()) {
-                        // TODOZ Doesn't this allow a door to hang if the user hangs up?  We need some method to force-quit it!
                         RunDoorDOSEMU(TranslateCLS(_CT.NodeInfo.Door.Command), TranslateCLS(_CT.NodeInfo.Door.Parameters));
                     } else {
                         RMLog.Error("DOS doors are not supported on Linux (unless you install DOSEMU)");

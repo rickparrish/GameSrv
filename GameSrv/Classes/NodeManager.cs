@@ -138,7 +138,7 @@ namespace RandM.GameSrv {
                 // Check for a free node
                 for (int i = _NodeFirst; i <= _NodeLast; i++) {
                     if (_ClientThreads[i] == null) {
-                        clientThread.FinishEvent += ClientThread_FinishEvent; // TODOX This one should be responsible for freeing up the node
+                        clientThread.FinishEvent += ClientThread_FinishEvent;
                         clientThread.NodeEvent += ClientThread_NodeEvent;
                         clientThread.WhoIsOnlineEvent += ClientThread_WhosOnlineEvent;
                         _ClientThreads[i] = clientThread;

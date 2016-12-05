@@ -117,9 +117,6 @@ namespace RandM.GameSrv {
                             }
                         }
                     }
-
-                    // TODOX Add option where password is validated at the server-level instead of user level
-                    //       That would allow someone to allow RLogin to anybody, but only if they had the right password
                 } else if (_Config.RLoginPromptForCredentialsOnFailedLogOn) {
                     // Nope, and we want to prompt for credentials when the alias isn't found
                     return AuthenticateTelnet();
@@ -624,7 +621,7 @@ namespace RandM.GameSrv {
                 RMLog.Exception(ex, "Exception in ClientThread::Execute()");
             } finally {
                 // Try to close the connection
-                try { _NodeInfo.Connection.Close(); } catch { /* TODOX Should log debug? Ignore */ }
+                try { _NodeInfo.Connection.Close(); } catch (Exception ex) { RMLog.Debug($"Exception closing connection in client thread: {ex.ToString()}"); }
 
                 // Try to free the node
                 if (ShouldRaiseLogOffEvent) {

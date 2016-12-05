@@ -1,4 +1,6 @@
-﻿TODO Add maintenance events
+﻿TODO Add HTTP, HTTPS, WebSocket->Telnet
+TODO HTTP/HTTPS can be used to host an embedded fTelnet client
+TODO Add maintenance events
 TODO Starting, stopping, and starting again fails because all ports fail to bind
 TODO Add setting to specify terminal type (ascii, ansi, rip, auto-detect)
 TODO You have an entry for 2048 but no binaries

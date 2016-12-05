@@ -1,8 +1,4 @@
-﻿// TODO Redo server thread so it immediately hands off to a client thread
-//      Break ClientThread up into multiple pieces
-//      Add HTTP, HTTPS, WebSocket->Telnet
-//      HTTP/HTTPS can be used to host an embedded fTelnet client
-/*
+﻿/*
   GameSrv: A BBS Door Game Server
   Copyright (C) 2002-2014  Rick Parrish, R&M Software
 
