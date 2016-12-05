@@ -116,11 +116,7 @@ namespace RandM.GameSrv {
                 FileUtils.FileDelete("install.sh");
                 FileUtils.FileDelete("pty-sharp-1.0.zip");
                 FileUtils.FileDelete("start.sh");
-                if (OSUtils.IsWin9x) {
-                    FileUtils.FileDelete("dosbox.conf");
-                    FileUtils.FileDelete("sbbsexec.dll");
-                } else if (OSUtils.IsWinNT) {
-                    FileUtils.FileDelete("sbbsexec.vxd");
+                if (OSUtils.IsWinNT) {
                     if (ProcessUtils.Is64BitOperatingSystem) {
                         FileUtils.FileDelete("dosxtrn.exe");
                         FileUtils.FileDelete("dosxtrn.pif");
@@ -141,7 +137,6 @@ namespace RandM.GameSrv {
                 FileUtils.FileDelete("dosxtrn.pif");
                 FileUtils.FileDelete("install.cmd");
                 FileUtils.FileDelete("sbbsexec.dll");
-                FileUtils.FileDelete("sbbsexec.vxd");
             }
         }
 

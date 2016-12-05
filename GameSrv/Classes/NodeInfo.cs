@@ -45,5 +45,24 @@ namespace RandM.GameSrv {
             User = new UserInfo("");
             UserLoggedOn = false;
         }
+
+        public int MinutesLeft {
+            get {
+                return SecondsLeft / 60;
+            }
+        }
+
+        public int ReadTimeout {
+            get {
+                return Math.Min(5 * 60, SecondsLeft) * 1000;
+            }
+        }
+
+        public int SecondsLeft {
+            get {
+                return SecondsThisSession - (int)DateTime.Now.Subtract(TimeOn).TotalSeconds;
+            }
+        }
+
     }
 }

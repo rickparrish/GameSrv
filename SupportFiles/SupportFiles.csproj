@@ -548,9 +548,6 @@
     <None Include="pty-sharp-1.0.zip">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="sbbsexec.vxd">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="start.sh">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

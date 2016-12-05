@@ -88,10 +88,7 @@ namespace RandM.GameSrv {
                 string Result = "";
                 Result += ProcessUtils.ProductNameOfCallingAssembly + " " + ProcessUtils.ProductVersionOfCallingAssembly + " is copyright Rick Parrish, R&M Software\r\n";
                 Result += "\r\n";
-                if (OSUtils.IsWin9x) {
-                    Result += "dosxtrn.exe, sbbsexec.vxd and code ported from Synchronet's xtrn.cpp are copyright Rob Swindell - http://www.synchro.net/copyright.html\r\n";
-                    Result += "\r\n";
-                } else if (OSUtils.IsWinNT) {
+                if (OSUtils.IsWinNT) {
                     Result += "dosxtrn.exe, sbbsexec.dll and code ported from Synchronet's xtrn.cpp are copyright Rob Swindell - http://www.synchro.net/copyright.html\r\n";
                     Result += "\r\n";
                 } else if (OSUtils.IsUnix) {
