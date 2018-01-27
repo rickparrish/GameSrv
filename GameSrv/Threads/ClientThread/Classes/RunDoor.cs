@@ -155,7 +155,7 @@ namespace RandM.GameSrv {
         }
 
         private void DeleteNodeDirectory() {
-            if (!Globals.Debug) {
+            if (!Helpers.Debug) {
                 FileUtils.FileDelete(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _CT.NodeInfo.Node.ToString(), "door.sys"));
                 FileUtils.FileDelete(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _CT.NodeInfo.Node.ToString(), "door32.sys"));
                 FileUtils.FileDelete(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _CT.NodeInfo.Node.ToString(), "doorfile.sr"));
@@ -191,7 +191,7 @@ namespace RandM.GameSrv {
                     RunDoorNative(TranslateCLS(_CT.NodeInfo.Door.Command), TranslateCLS(_CT.NodeInfo.Door.Parameters));
                 } else if ((_CT.NodeInfo.Door.Platform == OSUtils.Platform.DOS) && OSUtils.IsWindows) {
                     if (ProcessUtils.Is64BitOperatingSystem) {
-                        if (Globals.IsDOSBoxInstalled()) {
+                        if (Helpers.IsDOSBoxInstalled()) {
                             RunDoorDOSBox(TranslateCLS(_CT.NodeInfo.Door.Command), TranslateCLS(_CT.NodeInfo.Door.Parameters));
                         } else {
                             RMLog.Error("DOS doors are not supported on 64bit Windows (unless you install DOSBox 0.73)");
@@ -200,7 +200,7 @@ namespace RandM.GameSrv {
                         RunDoorSBBSEXECNT(TranslateCLS(_CT.NodeInfo.Door.Command), TranslateCLS(_CT.NodeInfo.Door.Parameters), _CT.NodeInfo.Door.ForceQuitDelay);
                     }
                 } else if ((_CT.NodeInfo.Door.Platform == OSUtils.Platform.DOS) && OSUtils.IsUnix) {
-                    if (Globals.IsDOSEMUInstalled()) {
+                    if (Helpers.IsDOSEMUInstalled()) {
                         RunDoorDOSEMU(TranslateCLS(_CT.NodeInfo.Door.Command), TranslateCLS(_CT.NodeInfo.Door.Parameters));
                     } else {
                         RMLog.Error("DOS doors are not supported on Linux (unless you install DOSEMU)");
@@ -221,7 +221,7 @@ namespace RandM.GameSrv {
         }
 
         private void RunDoorDOSBox(string command, string parameters) {
-            if (Globals.Debug) _CT.UpdateStatus("DEBUG: DOSBox launching " + command + " " + parameters);
+            if (Helpers.Debug) _CT.UpdateStatus("DEBUG: DOSBox launching " + command + " " + parameters);
 
             string DOSBoxConf = StringUtils.PathCombine("node" + _CT.NodeInfo.Node.ToString(), "dosbox.conf");
             string ProgramFilesX86 = Environment.GetEnvironmentVariable("PROGRAMFILES(X86)") ?? Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
@@ -243,7 +243,7 @@ namespace RandM.GameSrv {
                 CFG\%1.cfg" -securemode -socket %2 -c "exit"
              */
             string Arguments = "-telnet -conf " + DOSBoxConf + " -socket " + _CT.NodeInfo.Connection.GetSocket().Handle.ToInt32().ToString();
-            if (Globals.Debug) _CT.UpdateStatus("Executing " + DOSBoxExe + " " + Arguments);
+            if (Helpers.Debug) _CT.UpdateStatus("Executing " + DOSBoxExe + " " + Arguments);
 
             // Start the process
             using (RMProcess P = new RMProcess()) {
@@ -258,7 +258,7 @@ namespace RandM.GameSrv {
         }
 
         private void RunDoorDOSEMU(string command, string parameters) {
-            if (Globals.Debug) _CT.UpdateStatus("DEBUG: DOSEMU launching " + command + " " + parameters);
+            if (Helpers.Debug) _CT.UpdateStatus("DEBUG: DOSEMU launching " + command + " " + parameters);
 
             PseudoTerminal pty = null;
             Mono.Unix.UnixStream us = null;
@@ -276,15 +276,15 @@ namespace RandM.GameSrv {
                 FileUtils.FileWriteAllText(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _CT.NodeInfo.Node.ToString(), "external.bat"), String.Join("\r\n", ExternalBat), RMEncoding.Ansi);
 
                 string[] Arguments = new string[] { "HOME=" + ProcessUtils.StartupPath, "HOME=" + ProcessUtils.StartupPath, "QUIET=1", "DOSDRIVE_D=" + StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _CT.NodeInfo.Node.ToString()), "/usr/bin/nice", "-n19", "/usr/bin/dosemu.bin", "-Ivideo { none }", "-Ikeystroke \\r", "-Iserial { virtual com 1 }", "-t", "-Ed:external.bat", "-o" + StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _CT.NodeInfo.Node.ToString(), "dosemu.log") };//, "2> /gamesrv/NODE" + _CT.NodeInfo.Node.ToString() + "/DOSEMU_BOOT.LOG" }; // TODO add configuration variable so this path is not hardcoded
-                if (Globals.Debug) _CT.UpdateStatus("Executing /usr/bin/env " + string.Join(" ", Arguments));
+                if (Helpers.Debug) _CT.UpdateStatus("Executing /usr/bin/env " + string.Join(" ", Arguments));
 
-                lock (Globals.PrivilegeLock) {
+                lock (Helpers.PrivilegeLock) {
                     try {
-                        Globals.NeedRoot();
+                        Helpers.NeedRoot();
                         pty = PseudoTerminal.Open(null, "/usr/bin/env", Arguments, "/tmp", 80, 25, false, false, false);
                         us = new Mono.Unix.UnixStream(pty.FileDescriptor, false);
                     } finally {
-                        Globals.DropRoot(_Config.UnixUser);
+                        Helpers.DropRoot(_Config.UnixUser);
                     }
                 }
 
@@ -392,7 +392,7 @@ namespace RandM.GameSrv {
         }
 
         private void RunDoorNative(string command, string parameters) {
-            if (Globals.Debug) _CT.UpdateStatus("DEBUG: Natively launching " + command + " " + parameters);
+            if (Helpers.Debug) _CT.UpdateStatus("DEBUG: Natively launching " + command + " " + parameters);
             using (RMProcess P = new RMProcess()) {
                 P.ProcessWaitEvent += _CT.OnDoorWait;
 
@@ -410,7 +410,7 @@ namespace RandM.GameSrv {
         }
 
         private unsafe void RunDoorSBBSEXECNT(string command, string parameters, int forceQuitDelay) {
-            if (Globals.Debug) _CT.UpdateStatus("DEBUG: SBBSEXECNT launching " + command + " " + parameters);
+            if (Helpers.Debug) _CT.UpdateStatus("DEBUG: SBBSEXECNT launching " + command + " " + parameters);
 
             // SBBSEXEC constants
             const uint LoopsBeforeYield = 10;
@@ -590,7 +590,7 @@ namespace RandM.GameSrv {
                             // W32DOOR.RUN will contain two lines, the first is the command to run, the second is the parameters
                             if (File.Exists(W32DoorFile)) {
                                 try {
-                                    if (Globals.Debug) _CT.UpdateStatus("DEBUG: w32door.run found");
+                                    if (Helpers.Debug) _CT.UpdateStatus("DEBUG: w32door.run found");
                                     string[] W32DoorRunLines = FileUtils.FileReadAllLines(W32DoorFile);
                                     ConvertDoorSysToDoor32Sys(W32DoorRunLines[0]);
                                     RunDoorNative(W32DoorRunLines[1], W32DoorRunLines[2]);

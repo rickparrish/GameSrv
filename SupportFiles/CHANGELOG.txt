@@ -1,4 +1,7 @@
-﻿TODO Add HTTP, HTTPS, WebSocket->Telnet
+﻿TODO Support timed events.  At the very least let users say "start at x, run for y minutes" and this would affect the time left given in doors.  It would also show SERVER_EVENT.ANS to users who connect during that period (maybe allow SERVER_EVENT_* so a unique-to-each-event screen should be shown?)
+     Ideally there could be a system where it's more than just "take the server offline temporarily" and the user could actually schedule things to happen (kind of like a login process, where different tasks could be run)
+TODO Add a captcha like bbs.eob-bbs.com
+TODO Add HTTP, HTTPS, WebSocket->Telnet
 TODO HTTP/HTTPS can be used to host an embedded fTelnet client
 TODO Add maintenance events
 TODO Starting, stopping, and starting again fails because all ports fail to bind

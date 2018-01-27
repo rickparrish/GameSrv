@@ -39,10 +39,10 @@ namespace RandM.GameSrv {
 
             // Initialize the screen
             InitConsole();
-            StatusText(Globals.Copyright, Crt.White, false);
+            StatusText(Helpers.Copyright, Crt.White, false);
 
             // Check if running as root
-            if (Globals.StartedAsRoot) {
+            if (Helpers.StartedAsRoot) {
                 StatusText("", Crt.LightMagenta, false);
                 StatusText("*** WARNING: Running GameSrv as root is NOT recommended ***", Crt.LightMagenta, false);
                 StatusText("", Crt.LightMagenta, false);
@@ -79,7 +79,7 @@ namespace RandM.GameSrv {
                         if (File.Exists(StringUtils.PathCombine(ProcessUtils.StartupPath, "gamesrvconsole.stop"))) {
                             FileUtils.FileDelete(StringUtils.PathCombine(ProcessUtils.StartupPath, "gamesrvconsole.stop"));
 
-                            _GameSrv.Stop();
+                            _GameSrv.Stop(true);
                             _GameSrv.Dispose();
                             Quit = true;
                             break;
@@ -134,7 +134,7 @@ namespace RandM.GameSrv {
                                 }
                             }
 
-                            _GameSrv.Stop();
+                            _GameSrv.Stop(true);
                             _GameSrv.Dispose();
                             Quit = true;
                             break;

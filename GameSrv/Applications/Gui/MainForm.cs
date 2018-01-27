@@ -59,7 +59,7 @@ namespace RandM.GameSrv {
             Tray.Text = this.Text;
 
             // Display copyright message(s)
-            StatusText(Globals.Copyright, Color.White, false);
+            StatusText(Helpers.Copyright, Color.White, false);
 
             // Setup log handler
             RMLog.Handler += RMLog_Handler;
@@ -129,8 +129,8 @@ namespace RandM.GameSrv {
             }
 
             // If we get here it's OK to quit, so check if we're already stopped (or are stopping)
-            if ((_GameSrv.Status != GameSrvStatus.Stopped) && (_GameSrv.Status != GameSrvStatus.Stopping)) {
-                _GameSrv.Stop();
+            if (_GameSrv.Status != GameSrvStatus.Offline) {
+                _GameSrv.Stop(true);
                 _GameSrv.Dispose();
             }
         }
@@ -223,7 +223,7 @@ namespace RandM.GameSrv {
         }
 
         void tsbStop_Click(object sender, EventArgs e) {
-            _GameSrv.Stop();
+            _GameSrv.Stop(false);
         }
 
         private void UpdateButtonsAndTrayIcon() {

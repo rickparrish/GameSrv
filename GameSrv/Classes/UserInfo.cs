@@ -51,7 +51,7 @@ namespace RandM.GameSrv {
 
         public void AbortRegistration() {
             if ((!string.IsNullOrEmpty(Alias)) && (Alias.ToUpper() != "NEW")) {
-                lock (Globals.RegistrationLock) {
+                lock (Helpers.RegistrationLock) {
                     FileUtils.FileDelete(FileName);
                 }
             }
@@ -93,7 +93,7 @@ namespace RandM.GameSrv {
         }
 
         public void SaveRegistration() {
-            lock (Globals.PrivilegeLock) {
+            lock (Helpers.PrivilegeLock) {
                 base.Save();
             }
         }
@@ -104,7 +104,7 @@ namespace RandM.GameSrv {
         }
 
         public bool StartRegistration(string alias) {
-            lock (Globals.RegistrationLock) {
+            lock (Helpers.RegistrationLock) {
                 // Check for existence of alias
                 UserInfo U = new UserInfo(alias);
                 if (U.Load()) {
@@ -113,7 +113,7 @@ namespace RandM.GameSrv {
                 } else {
                     // Alias is unique, save a file to start the registration process
                     base.FileName = U.FileName;
-                    lock (Globals.PrivilegeLock) {
+                    lock (Helpers.PrivilegeLock) {
                         this.Alias = alias;
                         Save();
                     }

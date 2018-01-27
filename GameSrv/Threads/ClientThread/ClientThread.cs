@@ -128,7 +128,7 @@ namespace RandM.GameSrv {
                             RMLog.Warning("RLogin user not allowed due to banned alias: '" + UserName + "'");
                             return false;
                         } else {
-                            lock (Globals.RegistrationLock) {
+                            lock (Helpers.RegistrationLock) {
                                 if (_NodeInfo.User.StartRegistration(Alias)) {
                                     _NodeInfo.User.SetPassword(Password, _Config.PasswordPepper);
                                     Config C = new Config();
@@ -204,7 +204,7 @@ namespace RandM.GameSrv {
                     //FileUtils.FileWriteAllLines(BannedIPsFileName, BannedIPs.ToArray());
 
                     // Add to temp ban list
-                    Globals.AddTempIgnoredIP(_NodeInfo.Connection.GetRemoteIP());
+                    Helpers.AddTempIgnoredIP(_NodeInfo.Connection.GetRemoteIP());
 
                     RMLog.Warning("IP banned for trying to log in as " + Alias);
                     DisplayAnsi("USER_BANNED");
@@ -686,14 +686,14 @@ namespace RandM.GameSrv {
                                     if (OSUtils.IsWindows) {
                                         if (ProcessUtils.Is64BitOperatingSystem) {
                                             // DOS doors are OK on 64bit Windows if DOSBox is installed
-                                            CanAdd = Globals.IsDOSBoxInstalled();
+                                            CanAdd = Helpers.IsDOSBoxInstalled();
                                         } else {
                                             // DOS doors are OK on 32bit Windows
                                             CanAdd = true;
                                         }
                                     } else if (OSUtils.IsUnix) {
                                         // DOS doors are OK on Linux if DOSEMU is installed
-                                        CanAdd = Globals.IsDOSEMUInstalled();
+                                        CanAdd = Helpers.IsDOSEMUInstalled();
                                     } else {
                                         // DOS doors are not OK on unknown platforms
                                         CanAdd = false;
@@ -874,7 +874,7 @@ namespace RandM.GameSrv {
 
         private bool IsIgnoredIP(string ip) {
             try {
-                if (Globals.IsTempIgnoredIP(ip)) return true;
+                if (Helpers.IsTempIgnoredIP(ip)) return true;
 
                 string IgnoredIPsFileName = StringUtils.PathCombine(ProcessUtils.StartupPath, "config", "ignored-ips-combined.txt");
                 if (File.Exists(IgnoredIPsFileName)) {
@@ -1114,7 +1114,7 @@ namespace RandM.GameSrv {
                 return Registered;
             } finally {
                 if (Registered) {
-                    lock (Globals.RegistrationLock) {
+                    lock (Helpers.RegistrationLock) {
                         Config C = new Config();
                         _NodeInfo.User.UserId = C.NextUserId++;
                         _NodeInfo.User.SaveRegistration();

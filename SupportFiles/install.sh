@@ -57,7 +57,7 @@ while true; do
     esac
 done
 
-unzip -a dosutils.zip
+unzip -d dosutils.zip
 
 while true; do
     read -p "OK, so should I continue with compiling pty-sharp? " yn

@@ -81,6 +81,7 @@
       <DependentUpon>ProjectInstaller.cs</DependentUpon>
     </Compile>
     <Compile Include="Applications\Service\ServiceApp.cs" />
+    <Compile Include="Classes\LogHandler.cs" />
     <Compile Include="Enumerators\GameSrvStatus.cs" />
     <Compile Include="Enumerators\NodeEventType.cs" />
     <Compile Include="Events\NodeEventArgs.cs" />
@@ -100,7 +101,7 @@
     <Compile Include="Classes\Config.cs" />
     <Compile Include="Classes\DoorInfo.cs" />
     <Compile Include="Classes\GameSrv.cs" />
-    <Compile Include="Classes\Globals.cs" />
+    <Compile Include="Classes\Helpers.cs" />
     <Compile Include="Threads\IgnoredIPsThread.cs" />
     <Compile Include="Classes\NodeInfo.cs" />
     <Compile Include="Classes\NodeManager.cs" />

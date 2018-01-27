@@ -33,13 +33,10 @@ namespace RandM.GameSrv {
         private int _BoundCount = 0;
         private object _BoundEventLock = new object();
         private Config _Config = null;
-        private bool _Disposed = false;
         private IgnoredIPsThread _IgnoredIPsThread = null;
-        private List<string> _Log = new List<string>();
-        private object _LogLock = new object();
-        private Timer _LogTimer = new Timer();
+        private LogHandler _LogHandler = null;
         private Dictionary<int, ServerThread> _ServerThreads = new Dictionary<int, ServerThread>();
-        private GameSrvStatus _Status = GameSrvStatus.Stopped;
+        private GameSrvStatus _Status = GameSrvStatus.Offline;
 
         public event EventHandler<IntEventArgs> ConnectionCountChangeEvent = null;
         public event EventHandler<NodeEventArgs> NodeEvent = null;
@@ -47,93 +44,7 @@ namespace RandM.GameSrv {
 
         public GameSrv() {
             _Config = new Config();
-
-            // Ensure the log directory exists
-            Directory.CreateDirectory(StringUtils.PathCombine(ProcessUtils.StartupPath, "logs"));
-
-            _LogTimer.Interval = 60000; // 1 minute
-            _LogTimer.Elapsed += LogTimer_Elapsed;
-            _LogTimer.Start();
-
-            RMLog.Handler += RMLog_Handler;
-        }
-
-        ~GameSrv() {
-            Dispose(false);
-        }
-
-        public void Dispose() {
-            Dispose(true);
-            // This object will be cleaned up by the Dispose method.
-            // Therefore, you should call GC.SupressFinalize to
-            // take this object off the finalization queue
-            // and prevent finalization code for this object
-            // from executing a second time.
-            GC.SuppressFinalize(this);
-        }
-
-        private void Dispose(bool disposing) {
-            // Check to see if Dispose has already been called.
-            if (!_Disposed) {
-                // If disposing equals true, dispose all managed
-                // and unmanaged resources.
-                if (disposing) {
-                    // Dispose managed resources.
-                    if (_IgnoredIPsThread != null) {
-                        _IgnoredIPsThread.Stop();
-                        _IgnoredIPsThread.Dispose();
-                    }
-                    if (_LogTimer != null) {
-                        _LogTimer.Stop();
-                        _LogTimer.Dispose();
-                    }
-                }
-
-                // Call the appropriate methods to clean up
-                // unmanaged resources here.
-                // If disposing is false,
-                // only the following code is executed.
-
-                // Note disposing has been done.
-                _Disposed = true;
-            }
-        }
-
-        private void AddToLog(string logMessage) {
-            lock (_LogLock) {
-                _Log.Add(DateTime.Now.ToString(_Config.TimeFormatLog) + "  " + logMessage);
-            }
-        }
-
-        private void CleanUpFiles() {
-            if (OSUtils.IsWindows) {
-                FileUtils.FileDelete("cpulimit.sh");
-                FileUtils.FileDelete("dosutils.zip");
-                FileUtils.FileDelete("install.sh");
-                FileUtils.FileDelete("pty-sharp-1.0.zip");
-                FileUtils.FileDelete("start.sh");
-                if (OSUtils.IsWinNT) {
-                    if (ProcessUtils.Is64BitOperatingSystem) {
-                        FileUtils.FileDelete("dosxtrn.exe");
-                        FileUtils.FileDelete("dosxtrn.pif");
-                        FileUtils.FileDelete("sbbsexec.dll");
-                        if (!Globals.IsDOSBoxInstalled()) {
-                            RMLog.Error("PLEASE INSTALL DOSBOX 0.73 IF YOU PLAN ON RUNNING DOS DOORS USING DOSBOX");
-                        }
-                    } else {
-                        FileUtils.FileDelete("dosbox.conf");
-                        if (!File.Exists(StringUtils.PathCombine(Environment.SystemDirectory, "sbbsexec.dll"))) {
-                            RMLog.Error("PLEASE COPY SBBSEXEC.DLL TO " + StringUtils.PathCombine(Environment.SystemDirectory, "sbbsexec.dll").ToUpper() + " IF YOU PLAN ON RUNNING DOS DOORS USING THE EMBEDDED SYNCHRONET FOSSIL");
-                        }
-                    }
-                }
-            } else if (OSUtils.IsUnix) {
-                FileUtils.FileDelete("dosbox.conf");
-                FileUtils.FileDelete("dosxtrn.exe");
-                FileUtils.FileDelete("dosxtrn.pif");
-                FileUtils.FileDelete("install.cmd");
-                FileUtils.FileDelete("sbbsexec.dll");
-            }
+            _LogHandler = new LogHandler(_Config.TimeFormatLog);
         }
 
         public int ConnectionCount {
@@ -150,25 +61,12 @@ namespace RandM.GameSrv {
             get { return _Config.FirstNode; }
         }
 
-        private void FlushLog() {
-            lock (_LogLock) {
-                // Flush log to disk
-                if (_Log.Count > 0) {
-                    try {
-                        FileUtils.FileAppendAllText(StringUtils.PathCombine(ProcessUtils.StartupPath, "logs", "gamesrv.log"), string.Join(Environment.NewLine, _Log.ToArray()) + Environment.NewLine);
-                        _Log.Clear();
-                    } catch (Exception ex) {
-                        RMLog.Exception(ex, "Unable to update gamesrv.log");
-                    }
-                }
-            }
-        }
-
         public int LastNode {
             get { return _Config.LastNode; }
         }
 
         private bool LoadGlobalSettings() {
+            // Settings are actually loaded already, just checking that the node numbers are sane here
             RMLog.Info("Loading Global Settings");
             if (_Config.FirstNode > _Config.LastNode) {
                 RMLog.Error("FirstNode cannot be greater than LastNode!");
@@ -176,12 +74,6 @@ namespace RandM.GameSrv {
             }
 
             return _Config.Loaded;
-        }
-
-        void LogTimer_Elapsed(object sender, ElapsedEventArgs e) {
-            _LogTimer.Stop();
-            FlushLog();
-            _LogTimer.Start();
         }
 
         void NodeManager_ConnectionCountChangeEvent(object sender, IntEventArgs e) {
@@ -199,9 +91,6 @@ namespace RandM.GameSrv {
                     KV.Value.Pause();
                 }
                 UpdateStatus(GameSrvStatus.Started);
-
-                // We really want to be in the Started state, so override the above (but dont raise an event)
-                _Status = GameSrvStatus.Started;
             } else if (_Status == GameSrvStatus.Started) {
                 UpdateStatus(GameSrvStatus.Pausing);
                 foreach (KeyValuePair<int, ServerThread> KV in _ServerThreads) {
@@ -211,22 +100,18 @@ namespace RandM.GameSrv {
             }
         }
 
-        private void RMLog_Handler(object sender, RMLogEventArgs e) {
-            AddToLog($"[{e.Level.ToString()}] {e.Message}");
-        }
-
         private void ServerThread_BoundEvent(object sender, EventArgs e) {
             // Check if all server threads are now bound
             lock (_BoundEventLock) {
                 if (++_BoundCount == _BindCount) {
                     try {
-                        Globals.DropRoot(_Config.UnixUser);
+                        Helpers.DropRoot(_Config.UnixUser);
                     } catch (ArgumentOutOfRangeException aoorex) {
                         RMLog.Exception(aoorex, "Unable to drop from root to '" + _Config.UnixUser + "'");
 
                         // Abort the server
                         if (_Status == GameSrvStatus.Started) {
-                            Stop();
+                            Stop(true);
                         } else {
                             _BindFailed = true;
                         }
@@ -242,9 +127,11 @@ namespace RandM.GameSrv {
                 return true;
             } else if (_Status == GameSrvStatus.Stopped) {
                 UpdateStatus(GameSrvStatus.Starting);
-
+                _Status = GameSrvStatus.Started;
+                return true;
+            } else if (_Status == GameSrvStatus.Offline) { 
                 // Clean up the files not needed by this platform
-                CleanUpFiles();
+                Helpers.CleanUpFiles();
 
                 // Load the Global settings
                 if (!LoadGlobalSettings()) {
@@ -254,7 +141,7 @@ namespace RandM.GameSrv {
 
                 // Start the node manager
                 if (!StartNodeManager()) {
-                    RMLog.Info("Unable To Start Node Manager");
+                    RMLog.Error("Unable To Start Node Manager");
                     // Undo previous actions
                     goto ERROR;
                 }
@@ -266,7 +153,7 @@ namespace RandM.GameSrv {
 
                 // Start the server threads
                 if (!StartServerThreads()) {
-                    RMLog.Info("Unable To Start Server Threads");
+                    RMLog.Error("Unable To Start Server Threads");
                     // Undo previous actions
                     StopServerThreads();
                     StopNodeManager();
@@ -283,6 +170,7 @@ namespace RandM.GameSrv {
                 }
 
                 // Check if we had a bind failure before finishing
+                // TODOX Is there a race condition here?
                 if (_BindFailed) {
                     RMLog.Error("One Or More Servers Failed To Bind To Their Assigned Ports");
                     // Undo previous actions
@@ -301,7 +189,7 @@ namespace RandM.GameSrv {
                 // TODOX could all the rolling back be handled here via NULL checks?
 
                 // If we get here, we failed to go online
-                UpdateStatus(GameSrvStatus.Stopped);
+                UpdateStatus(GameSrvStatus.Offline);
                 return false;
             }
 
@@ -389,15 +277,20 @@ namespace RandM.GameSrv {
             get { return _Status; }
         }
 
-        public void Stop() {
+        public void Stop(bool shutdown) {
             if ((_Status == GameSrvStatus.Paused) || (_Status == GameSrvStatus.Started)) {
-                UpdateStatus(GameSrvStatus.Stopping);
+                if (shutdown) {
+                    UpdateStatus(GameSrvStatus.Stopping);
 
-                StopIgnoredIPsThread();
-                StopServerThreads();
-                StopNodeManager();
+                    StopIgnoredIPsThread();
+                    StopServerThreads();
+                    StopNodeManager();
 
-                UpdateStatus(GameSrvStatus.Stopped);
+                    UpdateStatus(GameSrvStatus.Offline);
+                } else {
+                    // TODOX Need to let the server/client threads know so they can reject new connections?
+                    UpdateStatus(GameSrvStatus.Stopped);
+                }
             }
         }
 
@@ -480,7 +373,6 @@ namespace RandM.GameSrv {
                     break;
                 case GameSrvStatus.Stopped:
                     RMLog.Info("Server(s) have stopped");
-                    FlushLog();
                     break;
                 case GameSrvStatus.Stopping:
                     RMLog.Info("Server(s) are stopping...");
@@ -491,5 +383,41 @@ namespace RandM.GameSrv {
         public static string Version {
             get { return ProcessUtils.ProductVersionOfCallingAssembly; }
         }
+
+        #region IDisposable Support
+        private bool _Disposed = false; // To detect redundant calls
+
+        protected virtual void Dispose(bool disposing) {
+            if (!_Disposed) {
+                if (disposing) {
+                    // dispose managed state (managed objects).
+                    if (_IgnoredIPsThread != null) {
+                        _IgnoredIPsThread.Stop();
+                        _IgnoredIPsThread.Dispose();
+                    }
+                }
+
+                // free unmanaged resources (unmanaged objects) and override a finalizer below.
+                // set large fields to null.
+
+                _Disposed = true;
+            }
+        }
+
+        // override a finalizer only if Dispose(bool disposing) above has code to free unmanaged resources.
+        // ~GameSrv() {
+        //   // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
+        //   Dispose(false);
+        // }
+
+        // This code added to correctly implement the disposable pattern.
+        public void Dispose() {
+            // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
+            Dispose(true);
+
+            // uncomment the following line if the finalizer is overridden above.
+            // GC.SuppressFinalize(this);
+        }
+        #endregion
     }
 }

@@ -28,7 +28,7 @@ using System.Security.Principal;
 using System.Text;
 
 namespace RandM.GameSrv {
-    public static class Globals {
+    public static class Helpers {
         public static bool Debug { get; set; }
         public static Collection<string> Log = new Collection<string>();
         public static object PrivilegeLock = new object();
@@ -41,7 +41,7 @@ namespace RandM.GameSrv {
 
         private static WindowsImpersonationContext _WIC = null;
 
-        static Globals() {
+        static Helpers() {
             Debug = Debugger.IsAttached;
             foreach (string arg in Environment.GetCommandLineArgs()) {
                 if (arg.ToUpper() == "DEBUG") {
@@ -62,6 +62,37 @@ namespace RandM.GameSrv {
                     // Key does not exist, so add it
                     TempIgnoredIPs.Add(ip, DateTime.Now);
                 }
+            }
+        }
+
+        public static void CleanUpFiles() {
+            if (OSUtils.IsWindows) {
+                FileUtils.FileDelete("cpulimit.sh");
+                FileUtils.FileDelete("dosutils.zip");
+                FileUtils.FileDelete("install.sh");
+                FileUtils.FileDelete("pty-sharp-1.0.zip");
+                FileUtils.FileDelete("start.sh");
+                if (OSUtils.IsWinNT) {
+                    if (ProcessUtils.Is64BitOperatingSystem) {
+                        FileUtils.FileDelete("dosxtrn.exe");
+                        FileUtils.FileDelete("dosxtrn.pif");
+                        FileUtils.FileDelete("sbbsexec.dll");
+                        if (!Helpers.IsDOSBoxInstalled()) {
+                            RMLog.Error("PLEASE INSTALL DOSBOX 0.73 IF YOU PLAN ON RUNNING DOS DOORS USING DOSBOX");
+                        }
+                    } else {
+                        FileUtils.FileDelete("dosbox.conf");
+                        if (!File.Exists(StringUtils.PathCombine(Environment.SystemDirectory, "sbbsexec.dll"))) {
+                            RMLog.Error("PLEASE COPY SBBSEXEC.DLL TO " + StringUtils.PathCombine(Environment.SystemDirectory, "sbbsexec.dll").ToUpper() + " IF YOU PLAN ON RUNNING DOS DOORS USING THE EMBEDDED SYNCHRONET FOSSIL");
+                        }
+                    }
+                }
+            } else if (OSUtils.IsUnix) {
+                FileUtils.FileDelete("dosbox.conf");
+                FileUtils.FileDelete("dosxtrn.exe");
+                FileUtils.FileDelete("dosxtrn.pif");
+                FileUtils.FileDelete("install.cmd");
+                FileUtils.FileDelete("sbbsexec.dll");
             }
         }
 
