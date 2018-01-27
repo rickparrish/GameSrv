@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("SupportFiles")]
-[assembly: AssemblyCopyright("Copyright ©  2015")]
+[assembly: AssemblyCopyright("Copyright (C) Rick Parrish, R&M Software")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -1,6 +1,6 @@
 ﻿/*
   GameSrv: A BBS Door Game Server
-  Copyright (C) 2002-2014  Rick Parrish, R&M Software
+  Copyright (C) Rick Parrish, R&M Software
 
   This file is part of GameSrv.
 
@@ -31,7 +31,7 @@ using System.Resources;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("R&M Software")]
 [assembly: AssemblyProduct("GameSrv")]
-[assembly: AssemblyCopyright("Copyright (c) 2000-2014 Rick Parrish, R&M Software")]
+[assembly: AssemblyCopyright("Copyright (C) Rick Parrish, R&M Software")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

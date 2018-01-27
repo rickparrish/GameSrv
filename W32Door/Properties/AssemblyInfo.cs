@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("R&M Software")]
 [assembly: AssemblyProduct("W32Door")]
-[assembly: AssemblyCopyright("Copyright (c) 2000-2014 Rick Parrish, R&M Software")]
+[assembly: AssemblyCopyright("Copyright (C) Rick Parrish, R&M Software")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
