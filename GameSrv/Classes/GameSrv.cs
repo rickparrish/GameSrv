@@ -28,14 +28,8 @@ using System.Net;
 
 namespace RandM.GameSrv {
     public class GameSrv : IDisposable {
-        private int _BindCount = 0;
-        private bool _BindFailed = false;
-        private int _BoundCount = 0;
-        private object _BoundEventLock = new object();
-        private Config _Config = null;
         private IgnoredIPsThread _IgnoredIPsThread = null;
         private LogHandler _LogHandler = null;
-        private Dictionary<int, ServerThread> _ServerThreads = new Dictionary<int, ServerThread>();
         private GameSrvStatus _Status = GameSrvStatus.Offline;
 
         public event EventHandler<IntEventArgs> ConnectionCountChangeEvent = null;
@@ -43,8 +37,7 @@ namespace RandM.GameSrv {
         public event EventHandler<StatusEventArgs> StatusChangeEvent = null;
 
         public GameSrv() {
-            _Config = new Config();
-            _LogHandler = new LogHandler(_Config.TimeFormatLog);
+            _LogHandler = new LogHandler(Config.Default.TimeFormatLog);
         }
 
         public int ConnectionCount {
@@ -58,22 +51,22 @@ namespace RandM.GameSrv {
         }
 
         public int FirstNode {
-            get { return _Config.FirstNode; }
+            get { return Config.Default.FirstNode; }
         }
 
         public int LastNode {
-            get { return _Config.LastNode; }
+            get { return Config.Default.LastNode; }
         }
 
         private bool LoadGlobalSettings() {
             // Settings are actually loaded already, just checking that the node numbers are sane here
             RMLog.Info("Loading Global Settings");
-            if (_Config.FirstNode > _Config.LastNode) {
+            if (Config.Default.FirstNode > Config.Default.LastNode) {
                 RMLog.Error("FirstNode cannot be greater than LastNode!");
                 return false;
             }
 
-            return _Config.Loaded;
+            return Config.Default.Loaded;
         }
 
         void NodeManager_ConnectionCountChangeEvent(object sender, IntEventArgs e) {
@@ -87,36 +80,12 @@ namespace RandM.GameSrv {
         public void Pause() {
             if (_Status == GameSrvStatus.Paused) {
                 UpdateStatus(GameSrvStatus.Resuming);
-                foreach (KeyValuePair<int, ServerThread> KV in _ServerThreads) {
-                    KV.Value.Pause();
-                }
+                ServerThreadManager.Resume();
                 UpdateStatus(GameSrvStatus.Started);
             } else if (_Status == GameSrvStatus.Started) {
                 UpdateStatus(GameSrvStatus.Pausing);
-                foreach (KeyValuePair<int, ServerThread> KV in _ServerThreads) {
-                    KV.Value.Pause();
-                }
+                ServerThreadManager.Pause();
                 UpdateStatus(GameSrvStatus.Paused);
-            }
-        }
-
-        private void ServerThread_BoundEvent(object sender, EventArgs e) {
-            // Check if all server threads are now bound
-            lock (_BoundEventLock) {
-                if (++_BoundCount == _BindCount) {
-                    try {
-                        Helpers.DropRoot(_Config.UnixUser);
-                    } catch (ArgumentOutOfRangeException aoorex) {
-                        RMLog.Exception(aoorex, "Unable to drop from root to '" + _Config.UnixUser + "'");
-
-                        // Abort the server
-                        if (_Status == GameSrvStatus.Started) {
-                            Stop(true);
-                        } else {
-                            _BindFailed = true;
-                        }
-                    }
-                }
             }
         }
 
@@ -136,7 +105,7 @@ namespace RandM.GameSrv {
                 // Load the Global settings
                 if (!LoadGlobalSettings()) {
                     RMLog.Info("Unable To Load Global Settings...Will Use Defaults");
-                    _Config.Save();
+                    Config.Default.Save();
                 }
 
                 // Start the node manager
@@ -146,16 +115,11 @@ namespace RandM.GameSrv {
                     goto ERROR;
                 }
 
-                // Reset bind variables
-                _BindCount = GetBindCount();
-                _BindFailed = false;
-                _BoundCount = 0;
-
                 // Start the server threads
-                if (!StartServerThreads()) {
+                if (!ServerThreadManager.Start()) {
                     RMLog.Error("Unable To Start Server Threads");
                     // Undo previous actions
-                    StopServerThreads();
+                    ServerThreadManager.Stop();
                     StopNodeManager();
                     goto ERROR;
                 }
@@ -164,18 +128,18 @@ namespace RandM.GameSrv {
                 if (!StartIgnoredIPsThread()) {
                     RMLog.Error("Unable To Start Ignored IPs Thread");
                     // Undo previous actions
-                    StopServerThreads();
+                    ServerThreadManager.Stop();
                     StopNodeManager();
                     goto ERROR;
                 }
 
                 // Check if we had a bind failure before finishing
                 // TODOX Is there a race condition here?
-                if (_BindFailed) {
+                if (ServerThreadManager.BindFailed) {
                     RMLog.Error("One Or More Servers Failed To Bind To Their Assigned Ports");
                     // Undo previous actions
                     StopIgnoredIPsThread();
-                    StopServerThreads();
+                    ServerThreadManager.Stop();
                     StopNodeManager();
                     goto ERROR;
                 }
@@ -194,14 +158,6 @@ namespace RandM.GameSrv {
             }
 
             return false;
-        }
-
-        private int GetBindCount() {
-            int Result = 0;
-            if (_Config.RLoginServerPort > 0) Result += 1;
-            if (_Config.TelnetServerPort > 0) Result += 1;
-            if (_Config.WebSocketServerPort > 0) Result += 1;
-            return Result;
         }
 
         private bool StartIgnoredIPsThread() {
@@ -224,51 +180,10 @@ namespace RandM.GameSrv {
 
             try {
                 NodeManager.ConnectionCountChangeEvent += NodeManager_ConnectionCountChangeEvent;
-                NodeManager.Start(_Config.FirstNode, _Config.LastNode);
+                NodeManager.Start(Config.Default.FirstNode, Config.Default.LastNode);
                 return true;
             } catch (Exception ex) {
                 RMLog.Exception(ex, "Error in GameSrv::StartNodeManager()");
-                return false;
-            }
-        }
-
-        private bool StartServerThreads() {
-            if ((_Config.RLoginServerPort > 0) || (_Config.TelnetServerPort > 0) || (_Config.WebSocketServerPort > 0)) {
-                RMLog.Info("Starting Server Threads");
-
-                try {
-                    _ServerThreads.Clear();
-
-                    if (_Config.RLoginServerPort > 0) {
-                        // Create Server Thread and add to collection
-                        _ServerThreads.Add(_Config.RLoginServerPort, new RLoginServerThread(_Config));
-                        _ServerThreads[_Config.RLoginServerPort].BoundEvent += ServerThread_BoundEvent;
-                    }
-
-                    if (_Config.TelnetServerPort > 0) {
-                        // Create Server Thread and add to collection
-                        _ServerThreads.Add(_Config.TelnetServerPort, new TelnetServerThread(_Config));
-                        _ServerThreads[_Config.TelnetServerPort].BoundEvent += ServerThread_BoundEvent;
-                    }
-
-                    if (_Config.WebSocketServerPort > 0) {
-                        // Create Server Thread and add to collection
-                        _ServerThreads.Add(_Config.WebSocketServerPort, new WebSocketServerThread(_Config));
-                        _ServerThreads[_Config.WebSocketServerPort].BoundEvent += ServerThread_BoundEvent;
-                    }
-
-                    // Now actually start the server threads
-                    foreach (KeyValuePair<int, ServerThread> KV in _ServerThreads) {
-                        KV.Value.Start();
-                    }
-
-                    return true;
-                } catch (Exception ex) {
-                    RMLog.Exception(ex, "Error in GameSrv::StartServerThreads()");
-                    return false;
-                }
-            } else {
-                RMLog.Error("No server ports found");
                 return false;
             }
         }
@@ -283,7 +198,7 @@ namespace RandM.GameSrv {
                     UpdateStatus(GameSrvStatus.Stopping);
 
                     StopIgnoredIPsThread();
-                    StopServerThreads();
+                    ServerThreadManager.Stop();
                     StopNodeManager();
 
                     UpdateStatus(GameSrvStatus.Offline);
@@ -307,21 +222,6 @@ namespace RandM.GameSrv {
                 }
         }
 
-        private bool StopServerThreads() {
-            RMLog.Info("Stopping Server Threads");
-
-            try {
-                foreach (KeyValuePair<int, ServerThread> KV in _ServerThreads) {
-                    KV.Value.Stop();
-                }
-                _ServerThreads.Clear();
-                return true;
-            } catch (Exception ex) {
-                RMLog.Exception(ex, "Error in GameSrv::StopServerThread()");
-                return false;
-            }
-        }
-
         private bool StopIgnoredIPsThread() {
             if (_IgnoredIPsThread != null) {
                 RMLog.Info("Stopping Ignored IPs Thread");
@@ -342,11 +242,11 @@ namespace RandM.GameSrv {
         }
 
         public string TimeFormatLog {
-            get { return _Config.TimeFormatLog; }
+            get { return Config.Default.TimeFormatLog; }
         }
 
         public string TimeFormatUI {
-            get { return _Config.TimeFormatUI; }
+            get { return Config.Default.TimeFormatUI; }
         }
 
         private void UpdateStatus(GameSrvStatus newStatus) {

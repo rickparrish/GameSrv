@@ -6,17 +6,17 @@ using System.Text;
 
 namespace RandM.GameSrv {
     class WebSocketServerThread : ServerThread {
-        public WebSocketServerThread(Config config) : base(config) {
+        public WebSocketServerThread() : base() {
             _ConnectionType = ConnectionType.WebSocket;
-            _LocalAddress = config.WebSocketServerIP;
-            _LocalPort = config.WebSocketServerPort;
+            _LocalAddress = Config.Default.WebSocketServerIP;
+            _LocalPort = Config.Default.WebSocketServerPort;
         }
 
         protected override void HandleNewConnection(TcpConnection newConnection) {
             WebSocketConnection TypedConnection = new WebSocketConnection();
             if (TypedConnection.Open(newConnection.GetSocket())) {
                 // TODOX Start a proxy thread instead of a clientthread
-                ClientThread NewClientThread = new ClientThread(TypedConnection, _ConnectionType, _Config.TerminalType);
+                ClientThread NewClientThread = new ClientThread(TypedConnection, _ConnectionType);
                 NewClientThread.Start();
             } else {
                 RMLog.Info("No carrier detected (probably a portscanner)");

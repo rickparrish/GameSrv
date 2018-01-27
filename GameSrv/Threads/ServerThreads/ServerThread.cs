@@ -27,15 +27,13 @@ using System.Collections.Generic;
 
 namespace RandM.GameSrv {
     public abstract class ServerThread : RMThread {
-        protected Config _Config;
         protected ConnectionType _ConnectionType;
         protected string _LocalAddress;
         protected int _LocalPort;
 
         public event EventHandler BoundEvent = null;
 
-        public ServerThread(Config config) {
-            _Config = config;
+        public ServerThread() {
             _Paused = false;
         }
 

@@ -24,7 +24,6 @@ using System;
 using System.Diagnostics;
 
 namespace RandM.GameSrv {
-    // TODOX Create a Config.Default singleton?
     public class Config : ConfigHelper {
         public string BBSName { get; set; }
         public int FirstNode { get; set; }
@@ -49,6 +48,8 @@ namespace RandM.GameSrv {
         public string UnixUser { get; set; }
         public string WebSocketServerIP { get; set; }
         public int WebSocketServerPort { get; set; }
+
+        public static Config Default = new Config();
 
         public Config()
             : base(ConfigSaveLocation.Relative, StringUtils.PathCombine("config", "gamesrv.ini")) {

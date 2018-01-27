@@ -6,16 +6,16 @@ using System.Text;
 
 namespace RandM.GameSrv {
     class RLoginServerThread : ServerThread {
-        public RLoginServerThread(Config config) : base(config) {
+        public RLoginServerThread() : base() {
             _ConnectionType = ConnectionType.RLogin;
-            _LocalAddress = config.RLoginServerIP;
-            _LocalPort = config.RLoginServerPort;
+            _LocalAddress = Config.Default.RLoginServerIP;
+            _LocalPort = Config.Default.RLoginServerPort;
         }
 
         protected override void HandleNewConnection(TcpConnection newConnection) {
             RLoginConnection TypedConnection = new RLoginConnection();
             if (TypedConnection.Open(newConnection.GetSocket())) {
-                ClientThread NewClientThread = new ClientThread(TypedConnection, _ConnectionType, _Config.TerminalType);
+                ClientThread NewClientThread = new ClientThread(TypedConnection, _ConnectionType);
                 NewClientThread.Start();
             } else {
                 RMLog.Info("Timeout waiting for RLogin header");

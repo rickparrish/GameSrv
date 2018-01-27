@@ -82,6 +82,7 @@
     </Compile>
     <Compile Include="Applications\Service\ServiceApp.cs" />
     <Compile Include="Classes\LogHandler.cs" />
+    <Compile Include="Classes\ServerThreadManager.cs" />
     <Compile Include="Enumerators\GameSrvStatus.cs" />
     <Compile Include="Enumerators\NodeEventType.cs" />
     <Compile Include="Events\NodeEventArgs.cs" />

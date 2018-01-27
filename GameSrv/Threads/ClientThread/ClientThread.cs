@@ -53,10 +53,10 @@ namespace RandM.GameSrv {
         public event EventHandler<NodeEventArgs> NodeEvent = null;
         public event EventHandler<WhoIsOnlineEventArgs> WhoIsOnlineEvent = null; // TODOX Gotta be a better way to get
 
-        public ClientThread(TcpConnection connection, ConnectionType connectionType, TerminalType terminalType) {
+        public ClientThread(TcpConnection connection, ConnectionType connectionType) {
             _NodeInfo.Connection = connection;
             _NodeInfo.ConnectionType = connectionType;
-            _NodeInfo.TerminalType = terminalType;
+            _NodeInfo.TerminalType = Config.Default.TerminalType;
         }
 
         protected override void Dispose(bool disposing) {
@@ -75,7 +75,7 @@ namespace RandM.GameSrv {
         }
 
         public string Alias {
-            get { return (_NodeInfo.User.Alias == null) ? "" : _NodeInfo.User.Alias; }
+            get { return _NodeInfo.User.Alias ?? ""; }
         }
 
         private bool AuthenticateRLogin() {

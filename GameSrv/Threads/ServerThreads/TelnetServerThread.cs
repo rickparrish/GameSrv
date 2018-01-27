@@ -6,16 +6,16 @@ using System.Text;
 
 namespace RandM.GameSrv {
     class TelnetServerThread : ServerThread {
-        public TelnetServerThread(Config config) : base(config) {
+        public TelnetServerThread() : base() {
             _ConnectionType = ConnectionType.Telnet;
-            _LocalAddress = config.TelnetServerIP;
-            _LocalPort = config.TelnetServerPort;
+            _LocalAddress = Config.Default.TelnetServerIP;
+            _LocalPort = Config.Default.TelnetServerPort;
         }
 
         protected override void HandleNewConnection(TcpConnection newConnection) {
             TelnetConnection TypedConnection = new TelnetConnection();
             if (TypedConnection.Open(newConnection.GetSocket())) {
-                ClientThread NewClientThread = new ClientThread(TypedConnection, _ConnectionType, _Config.TerminalType);
+                ClientThread NewClientThread = new ClientThread(TypedConnection, _ConnectionType);
                 NewClientThread.Start();
             } else {
                 // TODOX Duplicated code.  Maybe add method to base class and call it?
