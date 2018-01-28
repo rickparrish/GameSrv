@@ -16,14 +16,16 @@ namespace RandM.GameSrv {
             // Check for service mode or console mode
             if (Environment.UserInteractive || OSUtils.IsUnix) {
                 // Interactive mode (in other words, not service mode)
-                if (args.Contains("service", StringComparer.OrdinalIgnoreCase) && args.Contains("install", StringComparer.OrdinalIgnoreCase)) {
-                    ServiceApp.Install();
-                } else if (args.Contains("service", StringComparer.OrdinalIgnoreCase) && args.Contains("uninstall", StringComparer.OrdinalIgnoreCase)) {
-                    ServiceApp.Uninstall();
-                } else if (args.Contains("console", StringComparer.OrdinalIgnoreCase)) {
+                if (args.Contains("console", StringComparer.OrdinalIgnoreCase)) {
                     ConsoleApp.Start(args);
                 } else if (args.Contains("gui", StringComparer.OrdinalIgnoreCase)) {
                     GuiApp.Start();
+                } else if (args.Contains("service", StringComparer.OrdinalIgnoreCase) && args.Contains("install", StringComparer.OrdinalIgnoreCase)) {
+                    ServiceApp.Install();
+                } else if (args.Contains("service", StringComparer.OrdinalIgnoreCase) && args.Contains("uninstall", StringComparer.OrdinalIgnoreCase)) {
+                    ServiceApp.Uninstall();
+                } else if (args.Contains("simpleconsole", StringComparer.OrdinalIgnoreCase)) {
+                    SimpleConsoleApp.Start();
                 } else {
                     DisplayUsage();
                 }

@@ -7,6 +7,8 @@ using System.Text.RegularExpressions;
 
 namespace RandM.GameSrv {
     class IgnoredIPsThread : RMThread {
+        private static IgnoredIPsThread _IgnoredIPsThread = null;
+
         protected override void Dispose(bool disposing) {
             if (!_Disposed) {
                 if (disposing) {
@@ -64,6 +66,39 @@ namespace RandM.GameSrv {
 
                 // Wait for one hour before updating again
                 if (!_Stop && (_StopEvent != null)) _StopEvent.WaitOne(3600000);
+            }
+        }
+
+        public static bool StartThread() {
+            RMLog.Info("Starting Ignored IPs Thread");
+
+            try {
+                // Create Ignored IPs Thread and Thread objects
+                _IgnoredIPsThread = new IgnoredIPsThread();
+                _IgnoredIPsThread.Start();
+                return true;
+            } catch (Exception ex) {
+                RMLog.Exception(ex, "Error in GameSrv::StartIgnoredIPsThread()");
+                return false;
+            }
+        }
+
+        public static bool StopThread() {
+            if (_IgnoredIPsThread != null) {
+                RMLog.Info("Stopping Ignored IPs Thread");
+
+                try {
+                    _IgnoredIPsThread.Stop();
+                    _IgnoredIPsThread.Dispose();
+                    _IgnoredIPsThread = null;
+
+                    return true;
+                } catch (Exception ex) {
+                    RMLog.Exception(ex, "Error in GameSrv::StopIgnoredIPsThread()");
+                    return false;
+                }
+            } else {
+                return true;
             }
         }
     }

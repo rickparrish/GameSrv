@@ -7,22 +7,12 @@ using System.Linq;
 using System.Text;
 
 namespace RandM.GameSrv {
-    class ConsoleApp {
+    class SimpleConsoleApp {
         private static Dictionary<ConnectionType, int> _ConnectionCounts = new Dictionary<ConnectionType, int>();
         private static GameSrv _GameSrv = null;
         private static object _StatusTextLock = new object();
-        private static string _TimeFormatFooter = "hh:mmtt";
 
-        public static void Start(string[] args) {
-            // Check command-line parameters
-            foreach (string Arg in args) {
-                switch (Arg.ToLower()) {
-                    case "24h":
-                        _TimeFormatFooter = "HH:mm";
-                        break;
-                }
-            }
-
+        public static void Start() {
             // Remove old "stop requested" file
             if (File.Exists(StringUtils.PathCombine(ProcessUtils.StartupPath, "gamesrvconsole.stop"))) {
                 FileUtils.FileDelete(StringUtils.PathCombine(ProcessUtils.StartupPath, "gamesrvconsole.stop"));
@@ -55,20 +45,14 @@ namespace RandM.GameSrv {
 
             // Init GameSrv 
             _GameSrv = new GameSrv();
-            _GameSrv.NodeEvent += GameSrv_NodeEvent;
             _GameSrv.Start();
 
             // Main program loop
-            int LastMinute = -1;
             int LastSecond = -1;
             bool Quit = false;
             while (!Quit) {
                 while (!Crt.KeyPressed()) {
                     Crt.Delay(100);
-                    if (DateTime.Now.Minute != LastMinute) {
-                        UpdateTime();
-                        LastMinute = DateTime.Now.Minute;
-                    }
 
                     if ((DateTime.Now.Second % 2 == 0) && (DateTime.Now.Second != LastSecond)) {
                         LastSecond = DateTime.Now.Second;
@@ -103,7 +87,6 @@ namespace RandM.GameSrv {
                             break;
                         case "C":
                             Crt.ClrScr();
-                            Crt.GotoXY(1, 32);
                             break;
                         case "P":
                             _GameSrv.Pause();
@@ -141,34 +124,8 @@ namespace RandM.GameSrv {
             Environment.Exit(0);
         }
 
-        private static void GameSrv_NodeEvent(object sender, NodeEventArgs e) {
-            if (e.EventType == NodeEventType.LogOn) {
-                _ConnectionCounts[e.NodeInfo.ConnectionType] += 1;
-
-                Crt.FastWrite(StringUtils.PadRight(e.NodeInfo.User.Alias + " (" + e.NodeInfo.Connection.GetRemoteIP() + ":" + e.NodeInfo.Connection.GetRemotePort() + ")", ' ', 65), 8, 1, (Crt.Blue << 4) + Crt.White);
-                Crt.FastWrite(StringUtils.PadRight(DateTime.Now.ToString("dddd MMMM dd, yyyy  " + _TimeFormatFooter), ' ', 65), 8, 2, (Crt.Blue << 4) + Crt.White);
-                Crt.FastWrite(StringUtils.PadRight(e.NodeInfo.ConnectionType.ToString(), ' ', 65), 8, 3, (Crt.Blue << 4) + Crt.White);
-                Crt.FastWrite(_ConnectionCounts[ConnectionType.RLogin].ToString(), 87, 1, (Crt.Blue << 4) + Crt.White);
-                Crt.FastWrite(_ConnectionCounts[ConnectionType.Telnet].ToString(), 87, 2, (Crt.Blue << 4) + Crt.White);
-                Crt.FastWrite(_ConnectionCounts[ConnectionType.WebSocket].ToString(), 87, 3, (Crt.Blue << 4) + Crt.White);
-                UpdateTime();
-            }
-        }
-
         private static void InitConsole() {
-            Crt.SetTitle("GameSrv WFC Screen v" + GameSrv.Version);
-            Crt.SetWindowSize(90, 40);
-            Crt.HideCursor();
             Crt.ClrScr();
-
-            // WFC Screen
-            Ansi.Write("[0;1;1;44;36m Last: [37mNo callers yet...                                                 [0;44;30m³    [1;36mRLogin: [37m0[36m      On: [37mNo callers yet...                                                 [0;44;30m³    [1;36mTelnet: [37m0[36m    Type: [37mNo callers yet...                                                 [0;44;30m³ [1;36mWebSocket: [37m0[36m   [0;34mÚðð[1mStatus[0;34mððÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³³[37m[88C[34m³ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ³[37m [32mTime: [37m[8C[32mDate: [37m[29C[34m³ °±²Û[1;44;37mGameSrv WFC Screen v" + GameSrv.Version + " [0;34m²±° ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ[37m  Press [1;30m[[33mF1[30m][0m For Help or [1;30m[[33mQ[30m][0m To Quit");
-            Crt.FastWrite(DateTime.Now.ToString(_TimeFormatFooter).ToLower(), 9, 38, Crt.LightGreen);
-            Crt.FastWrite(DateTime.Now.ToString("dddd MMMM dd, yyyy"), 23, 38, Crt.LightGreen);
-
-            // Setup scrolling region with a window
-            Crt.Window(3, 5, 88, 36);
-            Crt.GotoXY(1, 32);
         }
 
         // TODOX Have entries in the INI file that define which colour to use for each type of message
@@ -204,12 +161,6 @@ namespace RandM.GameSrv {
                 Crt.TextColor(foreColour);
                 Crt.Write(text + "\r\n");
             }
-        }
-
-        private static void UpdateTime() {
-            // Update time
-            Crt.FastWrite(StringUtils.PadRight(DateTime.Now.ToString(_TimeFormatFooter).ToLower(), ' ', 7), 9, 38, Crt.LightGreen);
-            Crt.FastWrite(StringUtils.PadRight(DateTime.Now.ToString("dddd MMMM dd, yyyy"), ' ', 28), 23, 38, Crt.LightGreen);
         }
     }
 }

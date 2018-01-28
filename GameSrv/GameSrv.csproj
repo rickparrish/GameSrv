@@ -81,6 +81,7 @@
       <DependentUpon>ProjectInstaller.cs</DependentUpon>
     </Compile>
     <Compile Include="Applications\Service\ServiceApp.cs" />
+    <Compile Include="Applications\SimpleConsole\SimpleConsoleApp.cs" />
     <Compile Include="Classes\LogHandler.cs" />
     <Compile Include="Classes\ServerThreadManager.cs" />
     <Compile Include="Enumerators\GameSrvStatus.cs" />

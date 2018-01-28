@@ -1,4 +1,6 @@
-﻿/*
+﻿//TODOX Handle gamesrv.stop requests here via file system watcher?
+//TODOX Also handle changes to gamesrv.ini via file system watcher?  not all changes can be dynamically updated, but maybe some can
+/*
   GameSrv: A BBS Door Game Server
   Copyright (C) Rick Parrish, R&M Software
 
@@ -28,7 +30,6 @@ using System.Net;
 
 namespace RandM.GameSrv {
     public class GameSrv : IDisposable {
-        private IgnoredIPsThread _IgnoredIPsThread = null;
         private LogHandler _LogHandler = null;
         private GameSrvStatus _Status = GameSrvStatus.Offline;
 
@@ -80,11 +81,11 @@ namespace RandM.GameSrv {
         public void Pause() {
             if (_Status == GameSrvStatus.Paused) {
                 UpdateStatus(GameSrvStatus.Resuming);
-                ServerThreadManager.Resume();
+                ServerThreadManager.ResumeThreads();
                 UpdateStatus(GameSrvStatus.Started);
             } else if (_Status == GameSrvStatus.Started) {
                 UpdateStatus(GameSrvStatus.Pausing);
-                ServerThreadManager.Pause();
+                ServerThreadManager.PauseThreads();
                 UpdateStatus(GameSrvStatus.Paused);
             }
         }
@@ -116,30 +117,31 @@ namespace RandM.GameSrv {
                 }
 
                 // Start the server threads
-                if (!ServerThreadManager.Start()) {
+                if (!ServerThreadManager.StartThreads()) {
                     RMLog.Error("Unable To Start Server Threads");
                     // Undo previous actions
-                    ServerThreadManager.Stop();
+                    ServerThreadManager.StopThreads();
                     StopNodeManager();
                     goto ERROR;
                 }
 
                 // Start the ignored ips thread
-                if (!StartIgnoredIPsThread()) {
+                if (!IgnoredIPsThread.StartThread()) {
                     RMLog.Error("Unable To Start Ignored IPs Thread");
                     // Undo previous actions
-                    ServerThreadManager.Stop();
+                    ServerThreadManager.StopThreads();
                     StopNodeManager();
                     goto ERROR;
                 }
 
-                // Check if we had a bind failure before finishing
-                // TODOX Is there a race condition here?
-                if (ServerThreadManager.BindFailed) {
-                    RMLog.Error("One Or More Servers Failed To Bind To Their Assigned Ports");
+                // Drop root, if necessary
+                try {
+                    Helpers.DropRoot(Config.Default.UnixUser);
+                } catch (ArgumentOutOfRangeException aoorex) {
+                    RMLog.Exception(aoorex, "Unable to drop from root to '" + Config.Default.UnixUser + "'");
                     // Undo previous actions
-                    StopIgnoredIPsThread();
-                    ServerThreadManager.Stop();
+                    IgnoredIPsThread.StopThread();
+                    ServerThreadManager.StopThreads();
                     StopNodeManager();
                     goto ERROR;
                 }
@@ -158,21 +160,6 @@ namespace RandM.GameSrv {
             }
 
             return false;
-        }
-
-        private bool StartIgnoredIPsThread() {
-            RMLog.Info("Starting Ignored IPs Thread");
-
-            try {
-                // Create Ignored IPs Thread and Thread objects
-                _IgnoredIPsThread = new IgnoredIPsThread();
-                _IgnoredIPsThread.Start();
-                return true;
-            } catch (Exception ex) {
-                RMLog.Exception(ex, "Error in GameSrv::StartIgnoredIPsThread()");
-                return false;
-            }
-
         }
 
         private bool StartNodeManager() {
@@ -197,8 +184,8 @@ namespace RandM.GameSrv {
                 if (shutdown) {
                     UpdateStatus(GameSrvStatus.Stopping);
 
-                    StopIgnoredIPsThread();
-                    ServerThreadManager.Stop();
+                    IgnoredIPsThread.StopThread();
+                    ServerThreadManager.StopThreads();
                     StopNodeManager();
 
                     UpdateStatus(GameSrvStatus.Offline);
@@ -220,25 +207,6 @@ namespace RandM.GameSrv {
                     RMLog.Exception(ex, "Error in GameSrv::StopNodeManger()");
                     return false;
                 }
-        }
-
-        private bool StopIgnoredIPsThread() {
-            if (_IgnoredIPsThread != null) {
-                RMLog.Info("Stopping Ignored IPs Thread");
-
-                try {
-                    _IgnoredIPsThread.Stop();
-                    _IgnoredIPsThread.Dispose();
-                    _IgnoredIPsThread = null;
-
-                    return true;
-                } catch (Exception ex) {
-                    RMLog.Exception(ex, "Error in GameSrv::StopIgnoredIPsThread()");
-                    return false;
-                }
-            } else {
-                return false;
-            }
         }
 
         public string TimeFormatLog {
@@ -291,10 +259,8 @@ namespace RandM.GameSrv {
             if (!_Disposed) {
                 if (disposing) {
                     // dispose managed state (managed objects).
-                    if (_IgnoredIPsThread != null) {
-                        _IgnoredIPsThread.Stop();
-                        _IgnoredIPsThread.Dispose();
-                    }
+                    IgnoredIPsThread.StopThread();
+                    ServerThreadManager.StopThreads();
                 }
 
                 // free unmanaged resources (unmanaged objects) and override a finalizer below.

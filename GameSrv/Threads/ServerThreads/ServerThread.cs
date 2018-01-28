@@ -31,10 +31,9 @@ namespace RandM.GameSrv {
         protected string _LocalAddress;
         protected int _LocalPort;
 
-        public event EventHandler BoundEvent = null;
-
         public ServerThread() {
             _Paused = false;
+            // TODOX Start listening here, so we'll know in the constructor if the listen fails (ie if port is in use)
         }
 
         protected override void Dispose(bool disposing) {
@@ -55,8 +54,6 @@ namespace RandM.GameSrv {
             while (!_Stop) {
                 using (TcpConnection Connection = new TcpConnection()) {
                     if (Connection.Listen(_LocalAddress, _LocalPort)) {
-                        BoundEvent?.Invoke(this, EventArgs.Empty);
-
                         while (!_Stop) {
                             // Accept an incoming connection
                             if (Connection.CanAccept(1000)) // 1 second
