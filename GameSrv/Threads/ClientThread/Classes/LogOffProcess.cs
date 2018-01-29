@@ -31,7 +31,7 @@ namespace RandM.GameSrv {
             }
         }
 
-        public static void Run(ClientThread CT) {
+        public static void Run(ClientThread clientThread) {
             // Get all the sections from the ini file and sort them
             string[] Processes = GetProcesses();
 
@@ -40,7 +40,7 @@ namespace RandM.GameSrv {
             for (int i = 0; i < Processes.Length; i++) {
                 try {
                     LogOffProcess LP = new LogOffProcess(Processes[i]);
-                    if ((LP.Loaded) && (!CT.QuitThread())) {
+                    if ((LP.Loaded) && (!clientThread.QuitThread())) {
                         switch (LP.Action) {
                             case Action.Disconnect:
                             case Action.DisplayFile:
@@ -53,7 +53,7 @@ namespace RandM.GameSrv {
                                 MO.Name = LP.Name;
                                 MO.Parameters = LP.Parameters;
                                 MO.RequiredAccess = LP.RequiredAccess;
-                                ExitFor = CT.HandleMenuOption(MO);
+                                ExitFor = clientThread.HandleMenuOption(MO);
                                 break;
                         }
                         if (ExitFor) {

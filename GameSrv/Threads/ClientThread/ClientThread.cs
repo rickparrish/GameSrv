@@ -56,7 +56,7 @@ namespace RandM.GameSrv {
         public ClientThread(TcpConnection connection, ConnectionType connectionType) {
             _NodeInfo.Connection = connection;
             _NodeInfo.ConnectionType = connectionType;
-            _NodeInfo.TerminalType = Config.Default.TerminalType;
+            _NodeInfo.TerminalType = Config.Instance.TerminalType;
         }
 
         protected override void Dispose(bool disposing) {

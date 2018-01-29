@@ -31,7 +31,7 @@ namespace RandM.GameSrv {
             }
         }
 
-        public static void Run(ClientThread CT) {
+        public static void Run(ClientThread clientThread) {
             string[] Processes = LogOnProcess.GetProcesses();
             Action LastAction = Action.None;
 
@@ -40,7 +40,7 @@ namespace RandM.GameSrv {
             for (int i = 0; i < Processes.Length; i++) {
                 try {
                     LogOnProcess LP = new LogOnProcess(Processes[i]);
-                    if ((LP.Loaded) && (!CT.QuitThread())) {
+                    if ((LP.Loaded) && (!clientThread.QuitThread())) {
                         LastAction = LP.Action;
 
                         switch (LP.Action) {
@@ -56,7 +56,7 @@ namespace RandM.GameSrv {
                                 MO.Name = LP.Name;
                                 MO.Parameters = LP.Parameters;
                                 MO.RequiredAccess = LP.RequiredAccess;
-                                ExitFor = CT.HandleMenuOption(MO);
+                                ExitFor = clientThread.HandleMenuOption(MO);
                                 break;
                         }
                         if (ExitFor) {

@@ -21,25 +21,25 @@ namespace RandM.GameSrv {
         }
 
         public static bool StartThreads() {
-            if ((Config.Default.RLoginServerPort > 0) || (Config.Default.TelnetServerPort > 0) || (Config.Default.WebSocketServerPort > 0)) {
+            if ((Config.Instance.RLoginServerPort > 0) || (Config.Instance.TelnetServerPort > 0) || (Config.Instance.WebSocketServerPort > 0)) {
                 RMLog.Info("Starting Server Threads");
 
                 try {
                     _ServerThreads.Clear();
 
-                    if (Config.Default.RLoginServerPort > 0) {
+                    if (Config.Instance.RLoginServerPort > 0) {
                         // Create Server Thread and add to collection
-                        _ServerThreads.Add(Config.Default.RLoginServerPort, new RLoginServerThread());
+                        _ServerThreads.Add(Config.Instance.RLoginServerPort, new RLoginServerThread());
                     }
 
-                    if (Config.Default.TelnetServerPort > 0) {
+                    if (Config.Instance.TelnetServerPort > 0) {
                         // Create Server Thread and add to collection
-                        _ServerThreads.Add(Config.Default.TelnetServerPort, new TelnetServerThread());
+                        _ServerThreads.Add(Config.Instance.TelnetServerPort, new TelnetServerThread());
                     }
 
-                    if (Config.Default.WebSocketServerPort > 0) {
+                    if (Config.Instance.WebSocketServerPort > 0) {
                         // Create Server Thread and add to collection
-                        _ServerThreads.Add(Config.Default.WebSocketServerPort, new WebSocketServerThread());
+                        _ServerThreads.Add(Config.Instance.WebSocketServerPort, new WebSocketServerThread());
                     }
 
                     // Now actually start the server threads

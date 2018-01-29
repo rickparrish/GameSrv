@@ -8,8 +8,8 @@ namespace RandM.GameSrv {
     class WebSocketServerThread : ServerThread {
         public WebSocketServerThread() : base() {
             _ConnectionType = ConnectionType.WebSocket;
-            _LocalAddress = Config.Default.WebSocketServerIP;
-            _LocalPort = Config.Default.WebSocketServerPort;
+            _LocalAddress = Config.Instance.WebSocketServerIP;
+            _LocalPort = Config.Instance.WebSocketServerPort;
         }
 
         protected override void HandleNewConnection(TcpConnection newConnection) {

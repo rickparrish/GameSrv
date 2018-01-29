@@ -8,8 +8,8 @@ namespace RandM.GameSrv {
     class TelnetServerThread : ServerThread {
         public TelnetServerThread() : base() {
             _ConnectionType = ConnectionType.Telnet;
-            _LocalAddress = Config.Default.TelnetServerIP;
-            _LocalPort = Config.Default.TelnetServerPort;
+            _LocalAddress = Config.Instance.TelnetServerIP;
+            _LocalPort = Config.Instance.TelnetServerPort;
         }
 
         protected override void HandleNewConnection(TcpConnection newConnection) {

@@ -101,7 +101,7 @@ namespace RandM.GameSrv {
                 }
 
                 // Update status
-                ListViewItem LVI = lvNodes.Items[e.NodeInfo.Node - _GameSrv.FirstNode];
+                ListViewItem LVI = lvNodes.Items[e.NodeInfo.Node - Config.Instance.FirstNode];
                 LVI.SubItems[1].Text = (e.EventType == NodeEventType.LogOff ? "" : e.NodeInfo.ConnectionType.ToString());
                 LVI.SubItems[2].Text = (e.EventType == NodeEventType.LogOff ? "" : e.NodeInfo.Connection.GetRemoteIP());
                 LVI.SubItems[3].Text = (e.EventType == NodeEventType.LogOff ? "" : e.NodeInfo.User.Alias);
@@ -118,7 +118,7 @@ namespace RandM.GameSrv {
             if ((e.CloseReason == CloseReason.FormOwnerClosing) || (e.CloseReason == CloseReason.UserClosing)) {
                 // Check if we're already stopped (or are stopping)
                 if ((_GameSrv.Status != GameSrvStatus.Stopped) && (_GameSrv.Status != GameSrvStatus.Stopping)) {
-                    int ConnectionCount = _GameSrv.ConnectionCount;
+                    int ConnectionCount = NodeManager.ConnectionCount;
                     if (ConnectionCount > 0) {
                         if (Dialog.YesNo("There are " + ConnectionCount.ToString() + " active connections.\r\n\r\nAre you sure you want to quit?", "Confirm quit") == DialogResult.No) {
                             e.Cancel = true;
@@ -146,7 +146,7 @@ namespace RandM.GameSrv {
             }
         }
 
-        void mnuFileExit_Click(object sender, EventArgs e) {
+        private void mnuFileExit_Click(object sender, EventArgs e) {
             this.Close();
         }
 
@@ -180,7 +180,7 @@ namespace RandM.GameSrv {
             } else {
 
                 if (prefixWithTime) {
-                    string Time = DateTime.Now.ToString(_GameSrv.TimeFormatUI) + "  ";
+                    string Time = DateTime.Now.ToString(Config.Instance.TimeFormatUI) + "  ";
                     rtbLog.SelectionHangingIndent = Time.Length * _CharWidth;
                     rtbLog.AppendText(Time, Color.LightGray);
                 } else {
@@ -205,7 +205,7 @@ namespace RandM.GameSrv {
                 Dialog.Error("Please select a node to disconnect first", "ERROR: No node selected");
             } else {
                 if (Dialog.NoYes("Are you sure you want to disconnect this user?", "Confirm disconnect") == DialogResult.Yes) {
-                    _GameSrv.DisconnectNode(Convert.ToInt32(lvNodes.SelectedItems[0].SubItems[0].Text));
+                    NodeManager.DisconnectNode(Convert.ToInt32(lvNodes.SelectedItems[0].SubItems[0].Text));
                 }
             }
         }
@@ -243,11 +243,11 @@ namespace RandM.GameSrv {
                         tsbPause.Enabled = true;
                         tsbStop.Enabled = true;
                         tsbDisconnect.Enabled = true;
-                        this.Icon = (_GameSrv.ConnectionCount == 0) ? Properties.Resources.GameSrv16_32Started : Properties.Resources.GameSrv16_32InUse;
+                        this.Icon = (NodeManager.ConnectionCount == 0) ? Properties.Resources.GameSrv16_32Started : Properties.Resources.GameSrv16_32InUse;
 
                         // Only add if we haven't previously added
                         if (lvNodes.Items.Count == 0) {
-                            for (int i = _GameSrv.FirstNode; i <= _GameSrv.LastNode; i++) {
+                            for (int i = Config.Instance.FirstNode; i <= Config.Instance.LastNode; i++) {
                                 ListViewItem LVI = new ListViewItem(i.ToString());
                                 LVI.SubItems.Add("");
                                 LVI.SubItems.Add("");

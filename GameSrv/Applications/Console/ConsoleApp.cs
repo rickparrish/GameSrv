@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 
 namespace RandM.GameSrv {
-    class ConsoleApp {
+    static class ConsoleApp {
         private static Dictionary<ConnectionType, int> _ConnectionCounts = new Dictionary<ConnectionType, int>();
         private static GameSrv _GameSrv = null;
         private static object _StatusTextLock = new object();
@@ -114,7 +114,7 @@ namespace RandM.GameSrv {
                         case "Q":
                             // Check if we're already stopped (or are stopping)
                             if ((_GameSrv.Status != GameSrvStatus.Stopped) && (_GameSrv.Status != GameSrvStatus.Stopping)) {
-                                int ConnectionCount = _GameSrv.ConnectionCount;
+                                int ConnectionCount = NodeManager.ConnectionCount;
                                 if (ConnectionCount > 0) {
                                     StatusText("", Crt.White, false);
                                     StatusText("There are " + ConnectionCount.ToString() + " active connections.", Crt.White, false);
@@ -199,7 +199,7 @@ namespace RandM.GameSrv {
             lock (_StatusTextLock) {
                 if (prefixWithTime && (!string.IsNullOrEmpty(text))) {
                     Crt.TextColor(Crt.LightGray);
-                    Crt.Write(DateTime.Now.ToString(_GameSrv.TimeFormatUI) + "  ");
+                    Crt.Write(DateTime.Now.ToString(Config.Instance.TimeFormatUI) + "  ");
                 }
                 Crt.TextColor(foreColour);
                 Crt.Write(text + "\r\n");

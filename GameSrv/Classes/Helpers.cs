@@ -172,10 +172,8 @@ namespace RandM.GameSrv {
             lock (_RootLock) {
                 // If we're on a Unix machine, raise back to root privilege
                 if ((OSUtils.IsUnix) && (_WIC != null) && (WindowsIdentity.GetCurrent().Token != IntPtr.Zero)) {
-                    WindowsIdentity Before = WindowsIdentity.GetCurrent();
                     _WIC.Undo();
                     _WIC = null;
-                    WindowsIdentity After = WindowsIdentity.GetCurrent();
                 }
             }
         }

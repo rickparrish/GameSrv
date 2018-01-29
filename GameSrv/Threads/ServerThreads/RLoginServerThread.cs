@@ -8,8 +8,8 @@ namespace RandM.GameSrv {
     class RLoginServerThread : ServerThread {
         public RLoginServerThread() : base() {
             _ConnectionType = ConnectionType.RLogin;
-            _LocalAddress = Config.Default.RLoginServerIP;
-            _LocalPort = Config.Default.RLoginServerPort;
+            _LocalAddress = Config.Instance.RLoginServerIP;
+            _LocalPort = Config.Instance.RLoginServerPort;
         }
 
         protected override void HandleNewConnection(TcpConnection newConnection) {

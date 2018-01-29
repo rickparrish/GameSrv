@@ -38,44 +38,22 @@ namespace RandM.GameSrv {
         public event EventHandler<StatusEventArgs> StatusChangeEvent = null;
 
         public GameSrv() {
-            _LogHandler = new LogHandler(Config.Default.TimeFormatLog);
-        }
-
-        public int ConnectionCount {
-            get {
-                return NodeManager.ConnectionCount;
-            }
-        }
-
-        public void DisconnectNode(int node) {
-            NodeManager.DisconnectNode(node);
-        }
-
-        public int FirstNode {
-            get { return Config.Default.FirstNode; }
-        }
-
-        public int LastNode {
-            get { return Config.Default.LastNode; }
+            _LogHandler = new LogHandler(Config.Instance.TimeFormatLog);
         }
 
         private bool LoadGlobalSettings() {
             // Settings are actually loaded already, just checking that the node numbers are sane here
             RMLog.Info("Loading Global Settings");
-            if (Config.Default.FirstNode > Config.Default.LastNode) {
+            if (Config.Instance.FirstNode > Config.Instance.LastNode) {
                 RMLog.Error("FirstNode cannot be greater than LastNode!");
                 return false;
             }
 
-            return Config.Default.Loaded;
+            return Config.Instance.Loaded;
         }
 
         void NodeManager_ConnectionCountChangeEvent(object sender, IntEventArgs e) {
             ConnectionCountChangeEvent?.Invoke(sender, e);
-        }
-
-        void NodeManager_NodeEvent(object sender, NodeEventArgs e) {
-            NodeEvent?.Invoke(sender, e);
         }
 
         public void Pause() {
@@ -106,7 +84,7 @@ namespace RandM.GameSrv {
                 // Load the Global settings
                 if (!LoadGlobalSettings()) {
                     RMLog.Info("Unable To Load Global Settings...Will Use Defaults");
-                    Config.Default.Save();
+                    Config.Instance.Save();
                 }
 
                 // Start the node manager
@@ -136,9 +114,9 @@ namespace RandM.GameSrv {
 
                 // Drop root, if necessary
                 try {
-                    Helpers.DropRoot(Config.Default.UnixUser);
+                    Helpers.DropRoot(Config.Instance.UnixUser);
                 } catch (ArgumentOutOfRangeException aoorex) {
-                    RMLog.Exception(aoorex, "Unable to drop from root to '" + Config.Default.UnixUser + "'");
+                    RMLog.Exception(aoorex, "Unable to drop from root to '" + Config.Instance.UnixUser + "'");
                     // Undo previous actions
                     IgnoredIPsThread.StopThread();
                     ServerThreadManager.StopThreads();
@@ -167,7 +145,7 @@ namespace RandM.GameSrv {
 
             try {
                 NodeManager.ConnectionCountChangeEvent += NodeManager_ConnectionCountChangeEvent;
-                NodeManager.Start(Config.Default.FirstNode, Config.Default.LastNode);
+                NodeManager.Start(Config.Instance.FirstNode, Config.Instance.LastNode);
                 return true;
             } catch (Exception ex) {
                 RMLog.Exception(ex, "Error in GameSrv::StartNodeManager()");
@@ -207,14 +185,6 @@ namespace RandM.GameSrv {
                     RMLog.Exception(ex, "Error in GameSrv::StopNodeManger()");
                     return false;
                 }
-        }
-
-        public string TimeFormatLog {
-            get { return Config.Default.TimeFormatLog; }
-        }
-
-        public string TimeFormatUI {
-            get { return Config.Default.TimeFormatUI; }
         }
 
         private void UpdateStatus(GameSrvStatus newStatus) {
@@ -261,6 +231,10 @@ namespace RandM.GameSrv {
                     // dispose managed state (managed objects).
                     IgnoredIPsThread.StopThread();
                     ServerThreadManager.StopThreads();
+                    if (_LogHandler != null) {
+                        _LogHandler.Dispose();
+                        _LogHandler = null;
+                    }
                 }
 
                 // free unmanaged resources (unmanaged objects) and override a finalizer below.

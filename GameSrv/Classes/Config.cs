@@ -49,8 +49,6 @@ namespace RandM.GameSrv {
         public string WebSocketServerIP { get; set; }
         public int WebSocketServerPort { get; set; }
 
-        public static Config Default = new Config();
-
         public Config()
             : base(ConfigSaveLocation.Relative, StringUtils.PathCombine("config", "gamesrv.ini")) {
             BBSName = "New GameSrv BBS";
@@ -101,5 +99,22 @@ namespace RandM.GameSrv {
         public new void Save() {
             base.Save();
         }
+
+        #region Singleton https://msdn.microsoft.com/en-us/library/ff650316.aspx
+        private static volatile Config _Instance;
+        private static object _Lock = new object();
+
+        public static Config Instance {
+            get {
+                if (_Instance == null) {
+                    lock (_Lock) {
+                        if (_Instance == null) _Instance = new Config();
+                    }
+                }
+
+                return _Instance;
+            }
+        }
+        #endregion
     }
 }

@@ -134,19 +134,21 @@ namespace RandM.GameSrv {
             int Result = 0;
             bool Raise = false;
 
-            lock (_ListLock) {
-                // Check for a free node
-                for (int i = _NodeFirst; i <= _NodeLast; i++) {
-                    if (_ClientThreads[i] == null) {
-                        clientThread.FinishEvent += ClientThread_FinishEvent;
-                        clientThread.NodeEvent += ClientThread_NodeEvent;
-                        clientThread.WhoIsOnlineEvent += ClientThread_WhosOnlineEvent;
-                        _ClientThreads[i] = clientThread;
+            if (clientThread != null) {
+                lock (_ListLock) {
+                    // Check for a free node
+                    for (int i = _NodeFirst; i <= _NodeLast; i++) {
+                        if (_ClientThreads[i] == null) {
+                            clientThread.FinishEvent += ClientThread_FinishEvent;
+                            clientThread.NodeEvent += ClientThread_NodeEvent;
+                            clientThread.WhoIsOnlineEvent += ClientThread_WhosOnlineEvent;
+                            _ClientThreads[i] = clientThread;
 
-                        Result = i;
-                        Raise = true;
+                            Result = i;
+                            Raise = true;
 
-                        break;
+                            break;
+                        }
                     }
                 }
             }

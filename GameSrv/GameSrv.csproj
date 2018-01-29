@@ -89,6 +89,7 @@
     <Compile Include="Events\NodeEventArgs.cs" />
     <Compile Include="Events\StatusEventArgs.cs" />
     <Compile Include="Events\WhoIsOnlineEventArgs.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Threads\ClientThread\Enumerators\Action.cs" />
     <Compile Include="Threads\ClientThread\Classes\LogOnProcess.cs" />
     <Compile Include="Threads\ClientThread\Classes\LogOffProcess.cs" />

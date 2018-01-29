@@ -7,7 +7,7 @@ using System.ServiceProcess;
 using System.Text;
 
 namespace RandM.GameSrv {
-    class ServiceApp {
+    static class ServiceApp {
         public static void Start() {
             ServiceBase.Run(new MainService());
         }
