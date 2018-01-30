@@ -33,27 +33,10 @@ namespace RandM.GameSrv {
         private LogHandler _LogHandler = null;
         private GameSrvStatus _Status = GameSrvStatus.Offline;
 
-        public event EventHandler<IntEventArgs> ConnectionCountChangeEvent = null;
-        public event EventHandler<NodeEventArgs> NodeEvent = null;
         public event EventHandler<StatusEventArgs> StatusChangeEvent = null;
 
         public GameSrv() {
             _LogHandler = new LogHandler(Config.Instance.TimeFormatLog);
-        }
-
-        private bool LoadGlobalSettings() {
-            // Settings are actually loaded already, just checking that the node numbers are sane here
-            RMLog.Info("Loading Global Settings");
-            if (Config.Instance.FirstNode > Config.Instance.LastNode) {
-                RMLog.Error("FirstNode cannot be greater than LastNode!");
-                return false;
-            }
-
-            return Config.Instance.Loaded;
-        }
-
-        void NodeManager_ConnectionCountChangeEvent(object sender, IntEventArgs e) {
-            ConnectionCountChangeEvent?.Invoke(sender, e);
         }
 
         public void Pause() {
@@ -68,88 +51,47 @@ namespace RandM.GameSrv {
             }
         }
 
-        public bool Start() {
+        public void Start() {
             if (_Status == GameSrvStatus.Paused) {
                 // If we're paused, call Pause() again to un-pause
                 Pause();
-                return true;
             } else if (_Status == GameSrvStatus.Stopped) {
                 UpdateStatus(GameSrvStatus.Starting);
                 _Status = GameSrvStatus.Started;
-                return true;
-            } else if (_Status == GameSrvStatus.Offline) { 
+            } else if (_Status == GameSrvStatus.Offline) {
                 // Clean up the files not needed by this platform
                 Helpers.CleanUpFiles();
 
                 // Load the Global settings
-                if (!LoadGlobalSettings()) {
-                    RMLog.Info("Unable To Load Global Settings...Will Use Defaults");
-                    Config.Instance.Save();
-                }
+                Config.Instance.Init();
 
                 // Start the node manager
-                if (!StartNodeManager()) {
-                    RMLog.Error("Unable To Start Node Manager");
-                    // Undo previous actions
-                    goto ERROR;
-                }
+                NodeManager.Start();
 
                 // Start the server threads
-                if (!ServerThreadManager.StartThreads()) {
-                    RMLog.Error("Unable To Start Server Threads");
-                    // Undo previous actions
-                    ServerThreadManager.StopThreads();
-                    StopNodeManager();
-                    goto ERROR;
-                }
+                ServerThreadManager.StartThreads();
 
                 // Start the ignored ips thread
-                if (!IgnoredIPsThread.StartThread()) {
-                    RMLog.Error("Unable To Start Ignored IPs Thread");
-                    // Undo previous actions
-                    ServerThreadManager.StopThreads();
-                    StopNodeManager();
-                    goto ERROR;
-                }
+                IgnoredIPsThread.StartThread();
 
                 // Drop root, if necessary
                 try {
                     Helpers.DropRoot(Config.Instance.UnixUser);
                 } catch (ArgumentOutOfRangeException aoorex) {
                     RMLog.Exception(aoorex, "Unable to drop from root to '" + Config.Instance.UnixUser + "'");
-                    // Undo previous actions
+                    
+                    // Undo previous actions on error
                     IgnoredIPsThread.StopThread();
                     ServerThreadManager.StopThreads();
-                    StopNodeManager();
-                    goto ERROR;
+                    NodeManager.Stop();
+
+                    // If we get here, we failed to go online
+                    UpdateStatus(GameSrvStatus.Offline);
+                    return;
                 }
 
                 // If we get here, we're online
                 UpdateStatus(GameSrvStatus.Started);
-                return true;
-
-                ERROR:
-
-                // TODOX could all the rolling back be handled here via NULL checks?
-
-                // If we get here, we failed to go online
-                UpdateStatus(GameSrvStatus.Offline);
-                return false;
-            }
-
-            return false;
-        }
-
-        private bool StartNodeManager() {
-            RMLog.Info("Starting Node Manager");
-
-            try {
-                NodeManager.ConnectionCountChangeEvent += NodeManager_ConnectionCountChangeEvent;
-                NodeManager.Start(Config.Instance.FirstNode, Config.Instance.LastNode);
-                return true;
-            } catch (Exception ex) {
-                RMLog.Exception(ex, "Error in GameSrv::StartNodeManager()");
-                return false;
             }
         }
 
@@ -157,6 +99,7 @@ namespace RandM.GameSrv {
             get { return _Status; }
         }
 
+        // TODOX I don't really like this shutdown parameter, or the Offline vs Stopped states.  Need to make that more clear
         public void Stop(bool shutdown) {
             if ((_Status == GameSrvStatus.Paused) || (_Status == GameSrvStatus.Started)) {
                 if (shutdown) {
@@ -164,7 +107,7 @@ namespace RandM.GameSrv {
 
                     IgnoredIPsThread.StopThread();
                     ServerThreadManager.StopThreads();
-                    StopNodeManager();
+                    NodeManager.Stop();
 
                     UpdateStatus(GameSrvStatus.Offline);
                 } else {
@@ -172,19 +115,6 @@ namespace RandM.GameSrv {
                     UpdateStatus(GameSrvStatus.Stopped);
                 }
             }
-        }
-
-        private bool StopNodeManager() {
-                RMLog.Info("Stopping Node Manager");
-
-                try {
-                    NodeManager.Stop();
-
-                    return true;
-                } catch (Exception ex) {
-                    RMLog.Exception(ex, "Error in GameSrv::StopNodeManger()");
-                    return false;
-                }
         }
 
         private void UpdateStatus(GameSrvStatus newStatus) {
@@ -256,7 +186,8 @@ namespace RandM.GameSrv {
             Dispose(true);
 
             // uncomment the following line if the finalizer is overridden above.
-            // GC.SuppressFinalize(this);
+            // or, if code analysis gives a CA1816
+            GC.SuppressFinalize(this);
         }
         #endregion
     }

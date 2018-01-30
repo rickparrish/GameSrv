@@ -58,7 +58,13 @@ namespace RandM.GameSrv {
         }
 
         public static string GetPasswordHash(string password, string salt, string pepper) {
-            if (pepper.ToUpper().Trim() == "DISABLE") {
+            if (string.IsNullOrEmpty(password)) {
+                throw new ArgumentNullException("password");
+            } else if (string.IsNullOrEmpty(salt)) {
+                throw new ArgumentNullException("salt");
+            } else if (string.IsNullOrEmpty(pepper)) {
+                throw new ArgumentNullException("pepper");
+            } else if (pepper.ToUpper().Trim() == "DISABLE") {
                 return password;
             } else {
                 // Build the array of bytes to hash.  This is made up of the concatenation of:

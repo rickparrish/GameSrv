@@ -13,6 +13,10 @@ namespace RandM.GameSrv {
         }
 
         protected override void HandleNewConnection(TcpConnection newConnection) {
+            if (newConnection == null) {
+                throw new ArgumentNullException("newConnection");
+            }
+
             RLoginConnection TypedConnection = new RLoginConnection();
             if (TypedConnection.Open(newConnection.GetSocket())) {
                 ClientThread NewClientThread = new ClientThread(TypedConnection, _ConnectionType);

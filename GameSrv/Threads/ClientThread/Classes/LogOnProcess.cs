@@ -32,17 +32,17 @@ namespace RandM.GameSrv {
         }
 
         public static void Run(ClientThread clientThread) {
-            string[] Processes = LogOnProcess.GetProcesses();
-            Action LastAction = Action.None;
+            if (clientThread == null) {
+                throw new ArgumentNullException("clientThread");
+            }
 
             // Loop through the options, and run the ones we allow here
             bool ExitFor = false;
+            string[] Processes = LogOnProcess.GetProcesses();
             for (int i = 0; i < Processes.Length; i++) {
                 try {
                     LogOnProcess LP = new LogOnProcess(Processes[i]);
                     if ((LP.Loaded) && (!clientThread.QuitThread())) {
-                        LastAction = LP.Action;
-
                         switch (LP.Action) {
                             case Action.Disconnect:
                             case Action.DisplayFile:

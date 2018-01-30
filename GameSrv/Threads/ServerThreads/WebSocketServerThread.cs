@@ -13,6 +13,10 @@ namespace RandM.GameSrv {
         }
 
         protected override void HandleNewConnection(TcpConnection newConnection) {
+            if (newConnection == null) {
+                throw new ArgumentNullException("newConnection");
+            }
+
             WebSocketConnection TypedConnection = new WebSocketConnection();
             if (TypedConnection.Open(newConnection.GetSocket())) {
                 // TODOX Start a proxy thread instead of a clientthread

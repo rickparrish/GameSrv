@@ -124,7 +124,7 @@ namespace RandM.GameSrv {
                     // Nope, so perform the new user process with given username and password
                     if (_Config.RLoginSkipNewUserPrompts) {
                         // We're going to just directly register the user since sysop wants to skip the prompts
-                        if (IsBannedUser(UserName)) {
+                        if (Helpers.IsBannedUser(UserName)) {
                             RMLog.Warning("RLogin user not allowed due to banned alias: '" + UserName + "'");
                             return false;
                         } else {
@@ -190,7 +190,7 @@ namespace RandM.GameSrv {
                     } else {
                         UpdateStatus("Entered invalid newuser password");
                     }
-                } else if (IsBannedUser(Alias)) {
+                } else if (Helpers.IsBannedUser(Alias)) {
                     //List<string> BannedIPs = new List<string>();
 
                     // Load existing banned ips, if file exists
@@ -532,7 +532,7 @@ namespace RandM.GameSrv {
                 _NodeInfo.Connection.StripLF = true;
 
                 // Check for an ignored IP
-                if (IsIgnoredIP(_NodeInfo.Connection.GetRemoteIP())) {
+                if (Helpers.IsIgnoredIP(_NodeInfo.Connection.GetRemoteIP())) {
                     // Do nothing for ignored IPs
                     RMLog.Debug("Ignored " + _NodeInfo.ConnectionType.ToString() + " connection from " + _NodeInfo.Connection.GetRemoteIP() + ":" + _NodeInfo.Connection.GetRemotePort());
                     return;
@@ -545,11 +545,11 @@ namespace RandM.GameSrv {
                 if (_NodeInfo.TerminalType == TerminalType.AUTODETECT) GetTerminalType();
 
                 // Check for whitelist/blacklist type rejections
-                if ((_NodeInfo.ConnectionType == ConnectionType.RLogin) && !IsRLoginIP(_NodeInfo.Connection.GetRemoteIP())) {
+                if ((_NodeInfo.ConnectionType == ConnectionType.RLogin) && !Helpers.IsRLoginIP(_NodeInfo.Connection.GetRemoteIP())) {
                     // Do nothing for non-whitelisted RLogin IPs
                     RMLog.Warning("IP " + _NodeInfo.Connection.GetRemoteIP() + " doesn't match RLogin IP whitelist");
                     return;
-                } else if (IsBannedIP(_NodeInfo.Connection.GetRemoteIP())) {
+                } else if (Helpers.IsBannedIP(_NodeInfo.Connection.GetRemoteIP())) {
                     RMLog.Warning("IP " + _NodeInfo.Connection.GetRemoteIP() + " matches banned IP filter");
                     DisplayAnsi("IP_BANNED");
                     Thread.Sleep(2500);
@@ -630,43 +630,14 @@ namespace RandM.GameSrv {
             }
         }
 
-        private bool FileContainsIP(string filename, string ip) {
-            // TODOZ Handle IPv6
-            string[] ConnectionOctets = ip.Split('.');
-            if (ConnectionOctets.Length == 4) {
-                string[] FileIPs = FileUtils.FileReadAllLines(filename);
-                foreach (string FileIP in FileIPs) {
-                    if (FileIP.StartsWith(";")) continue;
 
-                    string[] FileOctets = FileIP.Split('.');
-                    if (FileOctets.Length == 4) {
-                        bool Match = true;
-                        for (int i = 0; i < 4; i++) {
-                            if ((FileOctets[i] == "*") || (FileOctets[i] == ConnectionOctets[i])) {
-                                // We still have a match
-                                continue;
-                            } else {
-                                // No longer have a match
-                                Match = false;
-                                break;
-                            }
-                        }
-
-                        // If we still have a match after the loop, it's a banned IP
-                        if (Match) return true;
-                    }
-                }
-            }
-
-            return false;
-        }
 
         private void GetCurrentMenu() {
             // Clear the dictionary
             _CurrentMenuOptions.Clear();
 
             // Find out what hotkeys the menu has
-            string[] HotKeys = MenuOption.GetHotKeys(_CurrentMenu);
+            string[] HotKeys = MenuOption.GetHotkeys(_CurrentMenu);
 
             // Get the data for each hotkey
             for (int i = 0; i < HotKeys.Length; i++) {
@@ -780,6 +751,10 @@ namespace RandM.GameSrv {
         }
 
         public bool HandleMenuOption(MenuOption menuOption) {
+            if (menuOption == null) {
+                throw new ArgumentNullException("menuOption");
+            }
+
             if (_NodeInfo.User.AccessLevel >= menuOption.RequiredAccess) {
                 switch (menuOption.Action) {
                     case Action.ChangeMenu:
@@ -835,75 +810,6 @@ namespace RandM.GameSrv {
             get { return _NodeInfo.Connection.GetRemoteIP(); }
         }
 
-        private bool IsBannedIP(string ip) {
-            try {
-                string BannedIPsFileName = StringUtils.PathCombine(ProcessUtils.StartupPath, "config", "banned-ips.txt");
-                if (File.Exists(BannedIPsFileName)) {
-                    return FileContainsIP(BannedIPsFileName, ip);
-                } else {
-                    // No file means not banned
-                    return false;
-                }
-            } catch (Exception ex) {
-                RMLog.Exception(ex, "Unable to validate client IP against banned-ips.txt");
-                return false; // Give them the benefit of the doubt on error
-            }
-        }
-
-        private bool IsBannedUser(string alias) {
-            try {
-                alias = alias.Trim().ToLower();
-                if (string.IsNullOrEmpty(alias)) return false; // Don't ban for blank inputs
-
-                string BannedUsersFileName = StringUtils.PathCombine(ProcessUtils.StartupPath, "config", "banned-users.txt");
-                if (File.Exists(BannedUsersFileName)) {
-                    string[] BannedUsers = FileUtils.FileReadAllLines(BannedUsersFileName);
-                    foreach (string BannedUser in BannedUsers) {
-                        if (BannedUser.StartsWith(";")) continue;
-
-                        if (BannedUser.Trim().ToLower() == alias) return true;
-                    }
-                }
-            } catch (Exception ex) {
-                RMLog.Exception(ex, "Unable to validate alias against banned-users.txt");
-            }
-
-            // If we get here, it's an OK name
-            return false;
-        }
-
-        private bool IsIgnoredIP(string ip) {
-            try {
-                if (Helpers.IsTempIgnoredIP(ip)) return true;
-
-                string IgnoredIPsFileName = StringUtils.PathCombine(ProcessUtils.StartupPath, "config", "ignored-ips-combined.txt");
-                if (File.Exists(IgnoredIPsFileName)) {
-                    return FileContainsIP(IgnoredIPsFileName, ip);
-                } else {
-                    // No file means not ignored
-                    return false;
-                }
-            } catch (Exception ex) {
-                RMLog.Exception(ex, "Unable to validate client IP against ignored-ips.txt");
-                return false; // Give them the benefit of the doubt on error
-            }
-        }
-
-        private bool IsRLoginIP(string ip) {
-            try {
-                string RLoginIPsFileName = StringUtils.PathCombine(ProcessUtils.StartupPath, "config", "rlogin-ips.txt");
-                if (File.Exists(RLoginIPsFileName)) {
-                    return FileContainsIP(RLoginIPsFileName, ip);
-                } else {
-                    // No file means any RLogin connection allowed
-                    return true;
-                }
-            } catch (Exception ex) {
-                RMLog.Exception(ex, "Unable to validate client IP against ignored-ips.txt");
-                return true; // Give them the benefit of the doubt on error
-            }
-        }
-
         private void MainMenu() {
             bool ExitWhile = false;
             while ((!ExitWhile) && (!QuitThread())) {
@@ -940,6 +846,10 @@ namespace RandM.GameSrv {
         public NodeInfo NodeInfo { get { return _NodeInfo; } }
 
         public void OnDoorWait(object sender, RMProcessStartAndWaitEventArgs e) {
+            if (e == null) {
+                throw new ArgumentNullException("e");
+            }
+
             e.Stop = QuitThread();
         }
 
@@ -1020,7 +930,7 @@ namespace RandM.GameSrv {
                     }
 
                     // StartRegistration will check if the alias already exists, and if not, reserve it so there's no race condition for two people registering at the same time and both wanting the same alias
-                    if (IsBannedUser(Alias) || !_NodeInfo.User.StartRegistration(Alias)) {
+                    if (Helpers.IsBannedUser(Alias) || !_NodeInfo.User.StartRegistration(Alias)) {
                         // Alias has already been taken
                         DisplayAnsi("NEWUSER_ENTER_ALIAS_DUPLICATE");
                         goto GetAlias;
@@ -1134,7 +1044,9 @@ namespace RandM.GameSrv {
 
         public override void Stop() {
             // Close the socket so that any waits on ReadLn(), ReadChar(), etc, will not block
-            _NodeInfo.Connection.Close();
+            if (_NodeInfo.Connection != null) {
+                _NodeInfo.Connection.Close();
+            }
 
             base.Stop();
         }

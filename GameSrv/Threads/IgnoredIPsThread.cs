@@ -69,36 +69,29 @@ namespace RandM.GameSrv {
             }
         }
 
-        public static bool StartThread() {
+        public static void StartThread() {
             RMLog.Info("Starting Ignored IPs Thread");
 
             try {
                 // Create Ignored IPs Thread and Thread objects
                 _IgnoredIPsThread = new IgnoredIPsThread();
                 _IgnoredIPsThread.Start();
-                return true;
             } catch (Exception ex) {
                 RMLog.Exception(ex, "Error in GameSrv::StartIgnoredIPsThread()");
-                return false;
             }
         }
 
-        public static bool StopThread() {
-            if (_IgnoredIPsThread != null) {
-                RMLog.Info("Stopping Ignored IPs Thread");
+        public static void StopThread() {
+            RMLog.Info("Stopping Ignored IPs Thread");
 
+            if (_IgnoredIPsThread != null) {
                 try {
                     _IgnoredIPsThread.Stop();
                     _IgnoredIPsThread.Dispose();
                     _IgnoredIPsThread = null;
-
-                    return true;
                 } catch (Exception ex) {
                     RMLog.Exception(ex, "Error in GameSrv::StopIgnoredIPsThread()");
-                    return false;
                 }
-            } else {
-                return true;
             }
         }
     }

@@ -54,8 +54,8 @@ namespace RandM.GameSrv {
             RMLog.Handler += RMLog_Handler;
 
             // Init GameSrv 
+            NodeManager.NodeEvent += NodeManager_NodeEvent;
             _GameSrv = new GameSrv();
-            _GameSrv.NodeEvent += GameSrv_NodeEvent;
             _GameSrv.Start();
 
             // Main program loop
@@ -141,20 +141,6 @@ namespace RandM.GameSrv {
             Environment.Exit(0);
         }
 
-        private static void GameSrv_NodeEvent(object sender, NodeEventArgs e) {
-            if (e.EventType == NodeEventType.LogOn) {
-                _ConnectionCounts[e.NodeInfo.ConnectionType] += 1;
-
-                Crt.FastWrite(StringUtils.PadRight(e.NodeInfo.User.Alias + " (" + e.NodeInfo.Connection.GetRemoteIP() + ":" + e.NodeInfo.Connection.GetRemotePort() + ")", ' ', 65), 8, 1, (Crt.Blue << 4) + Crt.White);
-                Crt.FastWrite(StringUtils.PadRight(DateTime.Now.ToString("dddd MMMM dd, yyyy  " + _TimeFormatFooter), ' ', 65), 8, 2, (Crt.Blue << 4) + Crt.White);
-                Crt.FastWrite(StringUtils.PadRight(e.NodeInfo.ConnectionType.ToString(), ' ', 65), 8, 3, (Crt.Blue << 4) + Crt.White);
-                Crt.FastWrite(_ConnectionCounts[ConnectionType.RLogin].ToString(), 87, 1, (Crt.Blue << 4) + Crt.White);
-                Crt.FastWrite(_ConnectionCounts[ConnectionType.Telnet].ToString(), 87, 2, (Crt.Blue << 4) + Crt.White);
-                Crt.FastWrite(_ConnectionCounts[ConnectionType.WebSocket].ToString(), 87, 3, (Crt.Blue << 4) + Crt.White);
-                UpdateTime();
-            }
-        }
-
         private static void InitConsole() {
             Crt.SetTitle("GameSrv WFC Screen v" + GameSrv.Version);
             Crt.SetWindowSize(90, 40);
@@ -169,6 +155,20 @@ namespace RandM.GameSrv {
             // Setup scrolling region with a window
             Crt.Window(3, 5, 88, 36);
             Crt.GotoXY(1, 32);
+        }
+
+        private static void NodeManager_NodeEvent(object sender, NodeEventArgs e) {
+            if (e.EventType == NodeEventType.LogOn) {
+                _ConnectionCounts[e.NodeInfo.ConnectionType] += 1;
+
+                Crt.FastWrite(StringUtils.PadRight(e.NodeInfo.User.Alias + " (" + e.NodeInfo.Connection.GetRemoteIP() + ":" + e.NodeInfo.Connection.GetRemotePort() + ")", ' ', 65), 8, 1, (Crt.Blue << 4) + Crt.White);
+                Crt.FastWrite(StringUtils.PadRight(DateTime.Now.ToString("dddd MMMM dd, yyyy  " + _TimeFormatFooter), ' ', 65), 8, 2, (Crt.Blue << 4) + Crt.White);
+                Crt.FastWrite(StringUtils.PadRight(e.NodeInfo.ConnectionType.ToString(), ' ', 65), 8, 3, (Crt.Blue << 4) + Crt.White);
+                Crt.FastWrite(_ConnectionCounts[ConnectionType.RLogin].ToString(), 87, 1, (Crt.Blue << 4) + Crt.White);
+                Crt.FastWrite(_ConnectionCounts[ConnectionType.Telnet].ToString(), 87, 2, (Crt.Blue << 4) + Crt.White);
+                Crt.FastWrite(_ConnectionCounts[ConnectionType.WebSocket].ToString(), 87, 3, (Crt.Blue << 4) + Crt.White);
+                UpdateTime();
+            }
         }
 
         // TODOX Have entries in the INI file that define which colour to use for each type of message

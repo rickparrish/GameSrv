@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 
 namespace RandM.GameSrv {
-    class ServerThreadManager {
+    static class ServerThreadManager {
         private static Dictionary<int, ServerThread> _ServerThreads = new Dictionary<int, ServerThread>();
 
         public static void PauseThreads() {
@@ -20,8 +20,8 @@ namespace RandM.GameSrv {
             }
         }
 
-        public static bool StartThreads() {
-            if ((Config.Instance.RLoginServerPort > 0) || (Config.Instance.TelnetServerPort > 0) || (Config.Instance.WebSocketServerPort > 0)) {
+        public static void StartThreads() {
+            if ((Config.Instance.RLoginServerPort > 0) || (Config.Instance.TelnetServerPort > 0)) {
                 RMLog.Info("Starting Server Threads");
 
                 try {
@@ -43,37 +43,27 @@ namespace RandM.GameSrv {
                     }
 
                     // Now actually start the server threads
-                    foreach (KeyValuePair<int, ServerThread> KV in _ServerThreads) {
-                        KV.Value.Start();
+                    foreach (var KVP in _ServerThreads) {
+                        KVP.Value.Start();
                     }
-
-                    return true;
                 } catch (Exception ex) {
                     RMLog.Exception(ex, "Error in GameSrv::StartServerThreads()");
-                    return false;
                 }
             } else {
-                RMLog.Error("No server ports found");
-                return false;
+                RMLog.Error("Must specify a port for RLogin and/or Telnet servers");
             }
         }
 
-        public static bool StopThreads() {
-            if (_ServerThreads.Any()) {
-                RMLog.Info("Stopping Server Threads");
+        public static void StopThreads() {
+            RMLog.Info("Stopping Server Threads");
 
-                try {
-                    foreach (KeyValuePair<int, ServerThread> KV in _ServerThreads) {
-                        KV.Value.Stop();
-                    }
-                    _ServerThreads.Clear();
-                    return true;
-                } catch (Exception ex) {
-                    RMLog.Exception(ex, "Error in GameSrv::StopServerThread()");
-                    return false;
+            try {
+                foreach (KeyValuePair<int, ServerThread> KV in _ServerThreads) {
+                    KV.Value.Stop();
                 }
-            } else {
-                return true;
+                _ServerThreads.Clear();
+            } catch (Exception ex) {
+                RMLog.Exception(ex, "Error in GameSrv::StopServerThread()");
             }
         }
     }

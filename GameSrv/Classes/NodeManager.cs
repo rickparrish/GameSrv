@@ -29,10 +29,9 @@ namespace RandM.GameSrv {
     public static class NodeManager {
         private static Dictionary<int, ClientThread> _ClientThreads = new Dictionary<int, ClientThread>();
         private static object _ListLock = new Object();
-        private static int _NodeFirst = 0;
-        private static int _NodeLast = 0;
 
         public static event EventHandler<IntEventArgs> ConnectionCountChangeEvent = null;
+        public static event EventHandler<NodeEventArgs> NodeEvent = null;
 
         private static void ClientThread_FinishEvent(object sender, EventArgs e) {
             var FinishedClientThread = sender as ClientThread;
@@ -40,7 +39,7 @@ namespace RandM.GameSrv {
             // Free up the node that the finished thread was using
             bool FoundClientThread = false;
             lock (_ListLock) {
-                for (int NodeLoop = _NodeFirst; NodeLoop <= _NodeLast; NodeLoop++) {
+                for (int NodeLoop = Config.Instance.FirstNode; NodeLoop <= Config.Instance.LastNode; NodeLoop++) {
                     if (_ClientThreads[NodeLoop] == FinishedClientThread) {
                         _ClientThreads[NodeLoop].Dispose();
                         _ClientThreads[NodeLoop] = null;
@@ -66,12 +65,13 @@ namespace RandM.GameSrv {
 
             }
 
+            NodeEvent?.Invoke(sender, e);
             UpdateWhoIsOnlineFile();
         }
 
         static void ClientThread_WhosOnlineEvent(object sender, WhoIsOnlineEventArgs e) {
             lock (_ListLock) {
-                for (int NodeLoop = _NodeFirst; NodeLoop <= _NodeLast; NodeLoop++) {
+                for (int NodeLoop = Config.Instance.FirstNode; NodeLoop <= Config.Instance.LastNode; NodeLoop++) {
                     // Make sure this node has a client
                     if (_ClientThreads[NodeLoop] == null) {
                         e.WhoIsOnline.Add("WHOSONLINE_" + NodeLoop.ToString() + "_ALIAS", "");
@@ -92,7 +92,7 @@ namespace RandM.GameSrv {
 
                 lock (_ListLock) {
                     // Check for a free node
-                    for (int i = _NodeFirst; i <= _NodeLast; i++) {
+                    for (int i = Config.Instance.FirstNode; i <= Config.Instance.LastNode; i++) {
                         if (_ClientThreads[i] != null) Result += 1;
                     }
                 }
@@ -137,7 +137,7 @@ namespace RandM.GameSrv {
             if (clientThread != null) {
                 lock (_ListLock) {
                     // Check for a free node
-                    for (int i = _NodeFirst; i <= _NodeLast; i++) {
+                    for (int i = Config.Instance.FirstNode; i <= Config.Instance.LastNode; i++) {
                         if (_ClientThreads[i] == null) {
                             clientThread.FinishEvent += ClientThread_FinishEvent;
                             clientThread.NodeEvent += ClientThread_NodeEvent;
@@ -158,41 +158,43 @@ namespace RandM.GameSrv {
         }
 
         private static bool IsValidNode(int node) {
-            return ((node >= _NodeFirst) && (node <= _NodeLast));
+            return ((node >= Config.Instance.FirstNode) && (node <= Config.Instance.LastNode));
         }
 
         public static void KillOtherSession(string alias, int node) {
-            int NodeToKill = 0;
+            if (string.IsNullOrEmpty(alias)) {
+                throw new ArgumentNullException("alias");
+            }
 
-            lock (_ListLock) {
-                for (int NodeLoop = _NodeFirst; NodeLoop <= _NodeLast; NodeLoop++) {
-                    // Make sure we don't kill our own node!
-                    if (NodeLoop != node) {
-                        // Make sure this node has a client
-                        if (_ClientThreads[NodeLoop] != null) {
-                            // Make sure this node matches the alias
-                            if (_ClientThreads[NodeLoop].Alias.ToUpper() == alias.ToUpper()) {
-                                NodeToKill = NodeLoop;
+                int NodeToKill = 0;
+
+                lock (_ListLock) {
+                    for (int NodeLoop = Config.Instance.FirstNode; NodeLoop <= Config.Instance.LastNode; NodeLoop++) {
+                        // Make sure we don't kill our own node!
+                        if (NodeLoop != node) {
+                            // Make sure this node has a client
+                            if (_ClientThreads[NodeLoop] != null) {
+                                // Make sure this node matches the alias
+                                if (_ClientThreads[NodeLoop].Alias.ToUpper() == alias.ToUpper()) {
+                                    NodeToKill = NodeLoop;
+                                    break;
+                                }
                             }
                         }
                     }
                 }
-            }
 
-            if (NodeToKill > 0) {
-                // Show "you're on too many nodes" message before disconnecting
-                DisplayAnsi("LOGON_TWO_NODES", NodeToKill);
-                DisconnectNode(NodeToKill);
-            }
+                if (NodeToKill > 0) {
+                    // Show "you're on too many nodes" message before disconnecting
+                    DisplayAnsi("LOGON_TWO_NODES", NodeToKill);
+                    DisconnectNode(NodeToKill);
+                }
         }
 
-        public static void Start(int firstNode, int lastNode) {
-            _NodeFirst = firstNode;
-            _NodeLast = lastNode;
-
+        public static void Start() {
             lock (_ListLock) {
                 _ClientThreads.Clear();
-                for (int Node = _NodeFirst; Node <= _NodeLast; Node++) {
+                for (int Node = Config.Instance.FirstNode; Node <= Config.Instance.LastNode; Node++) {
                     _ClientThreads[Node] = null;
                 }
             }
@@ -204,7 +206,7 @@ namespace RandM.GameSrv {
         public static void Stop() {
             lock (_ListLock) {
                 // Shutdown any client threads that are still active
-                for (int Node = _NodeFirst; Node <= _NodeLast; Node++) {
+                for (int Node = Config.Instance.FirstNode; Node <= Config.Instance.LastNode; Node++) {
                     if (_ClientThreads[Node] != null) {
                         _ClientThreads[Node].Stop();
                         _ClientThreads[Node] = null;
@@ -226,7 +228,7 @@ namespace RandM.GameSrv {
                 SB.AppendLine("Node,RemoteIP,User,Status");
                 lock (_ListLock) {
                     // Get status from each node
-                    for (int Node = _NodeFirst; Node <= _NodeLast; Node++) {
+                    for (int Node = Config.Instance.FirstNode; Node <= Config.Instance.LastNode; Node++) {
                         if (_ClientThreads[Node] == null) {
                             SB.AppendLine($"{Node}\t\t\tWaiting for caller");
                         } else {

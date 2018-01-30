@@ -15,17 +15,17 @@ namespace RandM.GameSrv {
             // Don't let the user instantiate this without a constructor
         }
 
-        public MenuOption(string menu, char hotKey)
+        public MenuOption(string menu, char hotkey)
             : base(ConfigSaveLocation.Relative, StringUtils.PathCombine("menus", menu.ToLower() + ".ini")) {
             Name = "";
             Action = Action.None;
             Parameters = "";
             RequiredAccess = 0;
 
-            Load(hotKey.ToString());
+            Load(hotkey.ToString());
         }
 
-        public static string[] GetHotKeys(string menu) {
+        public static string[] GetHotkeys(string menu) {
             using (IniFile Ini = new IniFile(StringUtils.PathCombine(ProcessUtils.StartupPath, StringUtils.PathCombine("menus", menu.ToLower() + ".ini")))) {
                 return Ini.ReadSections();
             }

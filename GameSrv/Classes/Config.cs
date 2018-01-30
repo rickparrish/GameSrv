@@ -86,6 +86,24 @@ namespace RandM.GameSrv {
             }
         }
 
+        public void Init() {
+            // Settings are actually loaded already, just checking that the node numbers are sane here
+            RMLog.Info("Loading Global Settings");
+
+            // Flip nodes, if necessary
+            if (FirstNode > LastNode) {
+                int Temp = FirstNode;
+                FirstNode = LastNode;
+                LastNode = Temp;
+            }
+
+            // Save default config file, if necessary
+            if (!Loaded) {
+                RMLog.Info("Unable To Load Global Settings...Will Use Defaults");
+                Save();
+            }
+        }
+
         public string ServerPorts {
             get {
                 List<string> Result = new List<string>();

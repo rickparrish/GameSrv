@@ -29,12 +29,11 @@ using System.Text;
 
 namespace RandM.GameSrv {
     public static class Helpers {
-        public static bool Debug { get; set; }
-        public static Collection<string> Log = new Collection<string>();
-        public static object PrivilegeLock = new object();
-        public static object RegistrationLock = new object();
-        public static bool StartedAsRoot { get; set; }
-        public static Dictionary<string, DateTime> TempIgnoredIPs = new Dictionary<string, DateTime>();
+        public static bool Debug { get; } = Debugger.IsAttached;
+        public static object PrivilegeLock { get; } = new object();
+        public static object RegistrationLock { get; } = new object();
+        public static bool StartedAsRoot { get; } = ((OSUtils.IsUnix) && (WindowsIdentity.GetCurrent().Token == IntPtr.Zero));
+        public static Dictionary<string, DateTime> TempIgnoredIPs { get; } = new Dictionary<string, DateTime>();
 
         private static object _RootLock = new object();
         private static object _TempIgnoredIPsLock = new object();
@@ -42,15 +41,12 @@ namespace RandM.GameSrv {
         private static WindowsImpersonationContext _WIC = null;
 
         static Helpers() {
-            Debug = Debugger.IsAttached;
             foreach (string arg in Environment.GetCommandLineArgs()) {
                 if (arg.ToUpper() == "DEBUG") {
                     Debug = true;
                     break;
                 }
             }
-
-            StartedAsRoot = ((OSUtils.IsUnix) && (WindowsIdentity.GetCurrent().Token == IntPtr.Zero));
         }
 
         public static void AddTempIgnoredIP(string ip) {
@@ -96,24 +92,6 @@ namespace RandM.GameSrv {
             }
         }
 
-        public static void DropRoot(string dropToUser) {
-            if (!StartedAsRoot) return;
-
-            lock (_RootLock) {
-                // If we're on a Unix machine, and running as root, drop privilege
-                if ((OSUtils.IsUnix) && (_WIC == null) && (WindowsIdentity.GetCurrent().Token == IntPtr.Zero)) {
-                    using (WindowsIdentity Before = WindowsIdentity.GetCurrent()) {
-                        using (WindowsIdentity DropTo = new WindowsIdentity(dropToUser)) {
-                            _WIC = DropTo.Impersonate();
-                            using (WindowsIdentity After = WindowsIdentity.GetCurrent()) {
-                                if (After.Name != dropToUser) throw new ArgumentOutOfRangeException("dropToUser", "requested user account '" + dropToUser + "' does not exist");
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
         public static string Copyright {
             get {
                 string Result = "";
@@ -137,6 +115,109 @@ namespace RandM.GameSrv {
             }
         }
 
+        public static void DropRoot(string dropToUser) {
+            if (!StartedAsRoot)
+                return;
+
+            lock (_RootLock) {
+                // If we're on a Unix machine, and running as root, drop privilege
+                if ((OSUtils.IsUnix) && (_WIC == null) && (WindowsIdentity.GetCurrent().Token == IntPtr.Zero)) {
+                    using (WindowsIdentity Before = WindowsIdentity.GetCurrent()) {
+                        using (WindowsIdentity DropTo = new WindowsIdentity(dropToUser)) {
+                            _WIC = DropTo.Impersonate();
+                            using (WindowsIdentity After = WindowsIdentity.GetCurrent()) {
+                                if (After.Name != dropToUser)
+                                    throw new ArgumentOutOfRangeException("dropToUser", "requested user account '" + dropToUser + "' does not exist");
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        public static bool FileContainsIP(string fileName, string ip) {
+            if (string.IsNullOrEmpty(fileName)) {
+                throw new ArgumentNullException("fileName");
+            } else if (string.IsNullOrEmpty(ip)) {
+                throw new ArgumentNullException("ip");
+            }
+
+            // TODOZ Handle IPv6
+            string[] ConnectionOctets = ip.Split('.');
+            if (ConnectionOctets.Length == 4) {
+                string[] FileIPs = FileUtils.FileReadAllLines(fileName);
+                foreach (string FileIP in FileIPs) {
+                    if (FileIP.StartsWith(";"))
+                        continue;
+
+                    string[] FileOctets = FileIP.Split('.');
+                    if (FileOctets.Length == 4) {
+                        bool Match = true;
+                        for (int i = 0; i < 4; i++) {
+                            if ((FileOctets[i] == "*") || (FileOctets[i] == ConnectionOctets[i])) {
+                                // We still have a match
+                                continue;
+                            } else {
+                                // No longer have a match
+                                Match = false;
+                                break;
+                            }
+                        }
+
+                        // If we still have a match after the loop, it's a banned IP
+                        if (Match)
+                            return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        public static bool IsBannedIP(string ip) {
+            try {
+                string BannedIPsFileName = StringUtils.PathCombine(ProcessUtils.StartupPath, "config", "banned-ips.txt");
+                if (File.Exists(BannedIPsFileName)) {
+                    return FileContainsIP(BannedIPsFileName, ip);
+                } else {
+                    // No file means not banned
+                    return false;
+                }
+            } catch (Exception ex) {
+                RMLog.Exception(ex, "Unable to validate client IP against banned-ips.txt");
+                return false; // Give them the benefit of the doubt on error
+            }
+        }
+
+        public static bool IsBannedUser(string alias) {
+            if (string.IsNullOrEmpty(alias)) {
+                throw new ArgumentNullException("alias");
+            }
+
+            try {
+                alias = alias.Trim().ToLower();
+                if (string.IsNullOrEmpty(alias))
+                    return false; // Don't ban for blank inputs
+
+                string BannedUsersFileName = StringUtils.PathCombine(ProcessUtils.StartupPath, "config", "banned-users.txt");
+                if (File.Exists(BannedUsersFileName)) {
+                    string[] BannedUsers = FileUtils.FileReadAllLines(BannedUsersFileName);
+                    foreach (string BannedUser in BannedUsers) {
+                        if (BannedUser.StartsWith(";"))
+                            continue;
+
+                        if (BannedUser.Trim().ToLower() == alias)
+                            return true;
+                    }
+                }
+            } catch (Exception ex) {
+                RMLog.Exception(ex, "Unable to validate alias against banned-users.txt");
+            }
+
+            // If we get here, it's an OK name
+            return false;
+        }
+
         public static bool IsDOSBoxInstalled() {
             string ProgramFilesX86 = Environment.GetEnvironmentVariable("PROGRAMFILES(X86)") ?? Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
             string DOSBoxExe = StringUtils.PathCombine(ProgramFilesX86, @"DOSBox-0.73\dosbox.exe"); // TODOZ add configuration variable so this path is not hardcoded
@@ -145,6 +226,39 @@ namespace RandM.GameSrv {
 
         public static bool IsDOSEMUInstalled() {
             return File.Exists("/usr/bin/dosemu.bin"); // TODOZ add configuration variable so this path is not hardcoded
+        }
+
+        public static bool IsIgnoredIP(string ip) {
+            try {
+                if (Helpers.IsTempIgnoredIP(ip))
+                    return true;
+
+                string IgnoredIPsFileName = StringUtils.PathCombine(ProcessUtils.StartupPath, "config", "ignored-ips-combined.txt");
+                if (File.Exists(IgnoredIPsFileName)) {
+                    return FileContainsIP(IgnoredIPsFileName, ip);
+                } else {
+                    // No file means not ignored
+                    return false;
+                }
+            } catch (Exception ex) {
+                RMLog.Exception(ex, "Unable to validate client IP against ignored-ips.txt");
+                return false; // Give them the benefit of the doubt on error
+            }
+        }
+
+        public static bool IsRLoginIP(string ip) {
+            try {
+                string RLoginIPsFileName = StringUtils.PathCombine(ProcessUtils.StartupPath, "config", "rlogin-ips.txt");
+                if (File.Exists(RLoginIPsFileName)) {
+                    return FileContainsIP(RLoginIPsFileName, ip);
+                } else {
+                    // No file means any RLogin connection allowed
+                    return true;
+                }
+            } catch (Exception ex) {
+                RMLog.Exception(ex, "Unable to validate client IP against ignored-ips.txt");
+                return true; // Give them the benefit of the doubt on error
+            }
         }
 
         public static bool IsTempIgnoredIP(string ip) {
@@ -167,7 +281,8 @@ namespace RandM.GameSrv {
         }
 
         public static void NeedRoot() {
-            if (!StartedAsRoot) return;
+            if (!StartedAsRoot)
+                return;
 
             lock (_RootLock) {
                 // If we're on a Unix machine, raise back to root privilege

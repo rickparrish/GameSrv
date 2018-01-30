@@ -65,48 +65,10 @@ namespace RandM.GameSrv {
             RMLog.Handler += RMLog_Handler;
 
             // Init GameSrv object
-            _GameSrv.ConnectionCountChangeEvent += GameSrv_ConnectionCountChangeEvent;
-            _GameSrv.NodeEvent += GameSrv_NodeEvent;
+            NodeManager.ConnectionCountChangeEvent += NodeManager_ConnectionCountChangeEvent;
+            NodeManager.NodeEvent += NodeManager_NodeEvent;
             _GameSrv.StatusChangeEvent += GameSrv_StatusChangeEvent;
             _GameSrv.Start();
-        }
-
-        private void GameSrv_ConnectionCountChangeEvent(object sender, IntEventArgs e) {
-            UpdateButtonsAndTrayIcon();
-        }
-
-        void GameSrv_NodeEvent(object sender, NodeEventArgs e) {
-            if (this.InvokeRequired) {
-                this.Invoke(new MethodInvoker(delegate { GameSrv_NodeEvent(sender, e); }));
-            } else {
-                if (e.EventType == NodeEventType.LogOff) {
-                    UpdateButtonsAndTrayIcon();
-                } else if (e.EventType == NodeEventType.LogOn) {
-                    UpdateButtonsAndTrayIcon();
-
-                    // Add history item
-                    ListViewItem LVIHistory = new ListViewItem(e.NodeInfo.Node.ToString());
-                    LVIHistory.SubItems.Add(e.NodeInfo.ConnectionType.ToString());
-                    LVIHistory.SubItems.Add(e.NodeInfo.Connection.GetRemoteIP());
-                    LVIHistory.SubItems.Add(e.NodeInfo.User.Alias);
-                    LVIHistory.SubItems.Add(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString());
-                    lvHistory.Items.Insert(0, LVIHistory);
-
-                    // Keep a counter for number of connections
-                    switch (e.NodeInfo.ConnectionType) {
-                        case ConnectionType.RLogin: lblRLoginCount.Text = (Convert.ToInt32(lblRLoginCount.Text) + 1).ToString(); break;
-                        case ConnectionType.Telnet: lblTelnetCount.Text = (Convert.ToInt32(lblTelnetCount.Text) + 1).ToString(); break;
-                        case ConnectionType.WebSocket: lblWebSocketCount.Text = (Convert.ToInt32(lblWebSocketCount.Text) + 1).ToString(); break;
-                    }
-                }
-
-                // Update status
-                ListViewItem LVI = lvNodes.Items[e.NodeInfo.Node - Config.Instance.FirstNode];
-                LVI.SubItems[1].Text = (e.EventType == NodeEventType.LogOff ? "" : e.NodeInfo.ConnectionType.ToString());
-                LVI.SubItems[2].Text = (e.EventType == NodeEventType.LogOff ? "" : e.NodeInfo.Connection.GetRemoteIP());
-                LVI.SubItems[3].Text = (e.EventType == NodeEventType.LogOff ? "" : e.NodeInfo.User.Alias);
-                LVI.SubItems[4].Text = (e.EventType == NodeEventType.LogOff ? "Waiting for a caller..." : e.Status);
-            }
         }
 
         private void GameSrv_StatusChangeEvent(object sender, StatusEventArgs e) {
@@ -148,6 +110,50 @@ namespace RandM.GameSrv {
 
         private void mnuFileExit_Click(object sender, EventArgs e) {
             this.Close();
+        }
+
+        private void NodeManager_ConnectionCountChangeEvent(object sender, IntEventArgs e) {
+            UpdateButtonsAndTrayIcon();
+        }
+
+        private void NodeManager_NodeEvent(object sender, NodeEventArgs e) {
+            if (this.InvokeRequired) {
+                this.Invoke(new MethodInvoker(delegate { NodeManager_NodeEvent(sender, e); }));
+            } else {
+                if (e.EventType == NodeEventType.LogOff) {
+                    UpdateButtonsAndTrayIcon();
+                } else if (e.EventType == NodeEventType.LogOn) {
+                    UpdateButtonsAndTrayIcon();
+
+                    // Add history item
+                    ListViewItem LVIHistory = new ListViewItem(e.NodeInfo.Node.ToString());
+                    LVIHistory.SubItems.Add(e.NodeInfo.ConnectionType.ToString());
+                    LVIHistory.SubItems.Add(e.NodeInfo.Connection.GetRemoteIP());
+                    LVIHistory.SubItems.Add(e.NodeInfo.User.Alias);
+                    LVIHistory.SubItems.Add(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString());
+                    lvHistory.Items.Insert(0, LVIHistory);
+
+                    // Keep a counter for number of connections
+                    switch (e.NodeInfo.ConnectionType) {
+                        case ConnectionType.RLogin:
+                            lblRLoginCount.Text = (Convert.ToInt32(lblRLoginCount.Text) + 1).ToString();
+                            break;
+                        case ConnectionType.Telnet:
+                            lblTelnetCount.Text = (Convert.ToInt32(lblTelnetCount.Text) + 1).ToString();
+                            break;
+                        case ConnectionType.WebSocket:
+                            lblWebSocketCount.Text = (Convert.ToInt32(lblWebSocketCount.Text) + 1).ToString();
+                            break;
+                    }
+                }
+
+                // Update status
+                ListViewItem LVI = lvNodes.Items[e.NodeInfo.Node - Config.Instance.FirstNode];
+                LVI.SubItems[1].Text = (e.EventType == NodeEventType.LogOff ? "" : e.NodeInfo.ConnectionType.ToString());
+                LVI.SubItems[2].Text = (e.EventType == NodeEventType.LogOff ? "" : e.NodeInfo.Connection.GetRemoteIP());
+                LVI.SubItems[3].Text = (e.EventType == NodeEventType.LogOff ? "" : e.NodeInfo.User.Alias);
+                LVI.SubItems[4].Text = (e.EventType == NodeEventType.LogOff ? "Waiting for a caller..." : e.Status);
+            }
         }
 
         // TODOX Have entries in the INI file that define which colour to use for each type of message

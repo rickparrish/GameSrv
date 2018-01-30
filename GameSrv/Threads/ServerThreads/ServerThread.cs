@@ -27,27 +27,12 @@ using System.Collections.Generic;
 
 namespace RandM.GameSrv {
     public abstract class ServerThread : RMThread {
-        protected ConnectionType _ConnectionType;
-        protected string _LocalAddress;
-        protected int _LocalPort;
+        protected ConnectionType _ConnectionType { get; set; }
+        protected string _LocalAddress { get; set; }
+        protected int _LocalPort { get; set; }
 
-        public ServerThread() {
+        protected ServerThread() {
             _Paused = false;
-            // TODOX Start listening here, so we'll know in the constructor if the listen fails (ie if port is in use)
-        }
-
-        protected override void Dispose(bool disposing) {
-            if (!_Disposed) {
-                if (disposing) {
-                    // dispose managed state (managed objects).
-                }
-
-                // free unmanaged resources (unmanaged objects)
-                // set large fields to null.
-
-                // Call the base dispose
-                base.Dispose(disposing);
-            }
         }
 
         protected override void Execute() {

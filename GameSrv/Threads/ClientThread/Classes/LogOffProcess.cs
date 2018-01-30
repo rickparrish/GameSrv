@@ -32,11 +32,13 @@ namespace RandM.GameSrv {
         }
 
         public static void Run(ClientThread clientThread) {
-            // Get all the sections from the ini file and sort them
-            string[] Processes = GetProcesses();
+            if (clientThread == null) {
+                throw new ArgumentNullException("clientThread");
+            }
 
             // Loop through the options, and run the ones we allow here
             bool ExitFor = false;
+            string[] Processes = GetProcesses();
             for (int i = 0; i < Processes.Length; i++) {
                 try {
                     LogOffProcess LP = new LogOffProcess(Processes[i]);
