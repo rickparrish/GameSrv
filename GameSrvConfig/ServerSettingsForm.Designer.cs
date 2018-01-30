@@ -79,8 +79,8 @@ namespace RandM.GameSrv
             this.label15 = new System.Windows.Forms.Label();
             this.lblTimeFormatLogSample = new System.Windows.Forms.Label();
             this.lblTimeFormatUISample = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.cmdCancel = new System.Windows.Forms.Button();
+            this.cmdSave = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
             this.lblTimePerCallMinutes = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -364,25 +364,25 @@ namespace RandM.GameSrv
             this.lblTimeFormatUISample.TabIndex = 34;
             this.lblTimeFormatUISample.Text = "UI sample time";
             // 
-            // button1
+            // cmdCancel
             // 
-            this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button1.Location = new System.Drawing.Point(347, 263);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 19;
-            this.button1.Text = "&Cancel";
-            this.button1.UseVisualStyleBackColor = true;
+            this.cmdCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.cmdCancel.Location = new System.Drawing.Point(347, 263);
+            this.cmdCancel.Name = "cmdCancel";
+            this.cmdCancel.Size = new System.Drawing.Size(75, 23);
+            this.cmdCancel.TabIndex = 19;
+            this.cmdCancel.Text = "&Cancel";
+            this.cmdCancel.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // cmdSave
             // 
-            this.button2.Location = new System.Drawing.Point(266, 263);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 18;
-            this.button2.Text = "&Save";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.cmdSave.Location = new System.Drawing.Point(266, 263);
+            this.cmdSave.Name = "cmdSave";
+            this.cmdSave.Size = new System.Drawing.Size(75, 23);
+            this.cmdSave.TabIndex = 18;
+            this.cmdSave.Text = "&Save";
+            this.cmdSave.UseVisualStyleBackColor = true;
+            this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click);
             // 
             // label16
             // 
@@ -409,8 +409,8 @@ namespace RandM.GameSrv
             this.ClientSize = new System.Drawing.Size(434, 298);
             this.Controls.Add(this.lblTimePerCallMinutes);
             this.Controls.Add(this.label16);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.cmdSave);
+            this.Controls.Add(this.cmdCancel);
             this.Controls.Add(this.lblTimeFormatUISample);
             this.Controls.Add(this.lblTimeFormatLogSample);
             this.Controls.Add(this.label15);
@@ -486,8 +486,8 @@ namespace RandM.GameSrv
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label lblTimeFormatLogSample;
         private System.Windows.Forms.Label lblTimeFormatUISample;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button cmdCancel;
+        private System.Windows.Forms.Button cmdSave;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label lblTimePerCallMinutes;
     }

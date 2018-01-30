@@ -112,7 +112,7 @@ namespace RandM.GameSrv
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void cmdSave_Click(object sender, EventArgs e)
         {
             try
             {
