@@ -51,11 +51,12 @@ namespace RandM.GameSrv {
                             case Action.MainMenu:
                             case Action.Pause:
                             case Action.RunDoor:
-                                MenuOption MO = new MenuOption("", '\0');
-                                MO.Action = LP.Action;
-                                MO.Name = LP.Name;
-                                MO.Parameters = LP.Parameters;
-                                MO.RequiredAccess = LP.RequiredAccess;
+                                MenuOption MO = new MenuOption("", '\0') {
+                                    Action = LP.Action,
+                                    Name = LP.Name,
+                                    Parameters = LP.Parameters,
+                                    RequiredAccess = LP.RequiredAccess,
+                                };
                                 ExitFor = clientThread.HandleMenuOption(MO);
                                 break;
                         }

@@ -41,7 +41,6 @@ using System.Text.RegularExpressions;
 
 namespace RandM.GameSrv {
     public class ClientThread : RMThread {
-        private Config _Config = new Config();
         private string _CurrentMenu;
         private Dictionary<char, MenuOption> _CurrentMenuOptions = new Dictionary<char, MenuOption>();
         private string _LastDisplayFile = "";
@@ -85,7 +84,7 @@ namespace RandM.GameSrv {
 
             if (string.IsNullOrEmpty(UserName) || string.IsNullOrEmpty(Password)) {
                 // RLogin requires both fields
-                if (_Config.RLoginPromptForCredentialsOnFailedLogOn) {
+                if (Config.Instance.RLoginPromptForCredentialsOnFailedLogOn) {
                     return AuthenticateTelnet();
                 } else {
                     DisplayAnsi("RLOGIN_INVALID");
@@ -106,10 +105,10 @@ namespace RandM.GameSrv {
                 _NodeInfo.User = new UserInfo(UserName);
                 if (_NodeInfo.User.Loaded) {
                     // Yep, so validate the password
-                    if (_Config.RLoginValidatePassword) {
-                        if (!_NodeInfo.User.ValidatePassword(Password, _Config.PasswordPepper)) {
+                    if (Config.Instance.RLoginValidatePassword) {
+                        if (!_NodeInfo.User.ValidatePassword(Password)) {
                             // Password is bad
-                            if (_Config.RLoginPromptForCredentialsOnFailedLogOn) {
+                            if (Config.Instance.RLoginPromptForCredentialsOnFailedLogOn) {
                                 return AuthenticateTelnet();
                             } else {
                                 DisplayAnsi("RLOGIN_INVALID_PASSWORD");
@@ -117,12 +116,12 @@ namespace RandM.GameSrv {
                             }
                         }
                     }
-                } else if (_Config.RLoginPromptForCredentialsOnFailedLogOn) {
+                } else if (Config.Instance.RLoginPromptForCredentialsOnFailedLogOn) {
                     // Nope, and we want to prompt for credentials when the alias isn't found
                     return AuthenticateTelnet();
                 } else {
                     // Nope, so perform the new user process with given username and password
-                    if (_Config.RLoginSkipNewUserPrompts) {
+                    if (Config.Instance.RLoginSkipNewUserPrompts) {
                         // We're going to just directly register the user since sysop wants to skip the prompts
                         if (Helpers.IsBannedUser(UserName)) {
                             RMLog.Warning("RLogin user not allowed due to banned alias: '" + UserName + "'");
@@ -130,11 +129,10 @@ namespace RandM.GameSrv {
                         } else {
                             lock (Helpers.RegistrationLock) {
                                 if (_NodeInfo.User.StartRegistration(Alias)) {
-                                    _NodeInfo.User.SetPassword(Password, _Config.PasswordPepper);
-                                    Config C = new Config();
-                                    _NodeInfo.User.UserId = C.NextUserId++;
+                                    _NodeInfo.User.SetPassword(Password);
+                                    _NodeInfo.User.UserId = Config.Instance.NextUserId++;
                                     _NodeInfo.User.SaveRegistration();
-                                    C.Save();
+                                    Config.Instance.Save();
                                 } else {
                                     // TODOZ This user lost the race (_NodeInfo.User.Loaded returned false above, so the user should have been free to register, but between then and .StartRegistration the alias was taken)
                                     //       Not sure what to do in this case, aside from log that it happened
@@ -168,7 +166,7 @@ namespace RandM.GameSrv {
                 if (Alias.ToUpper() == "NEW") {
                     bool CanRegister = false;
 
-                    if (string.IsNullOrEmpty(_Config.NewUserPassword)) {
+                    if (string.IsNullOrEmpty(Config.Instance.NewUserPassword)) {
                         CanRegister = true;
                     } else {
                         // Get new user password
@@ -177,7 +175,7 @@ namespace RandM.GameSrv {
                         string NewUserPassword = ReadLn('*').Trim();
                         _NodeInfo.Connection.WriteLn();
 
-                        CanRegister = NewUserPassword == _Config.NewUserPassword;
+                        CanRegister = NewUserPassword == Config.Instance.NewUserPassword;
                     }
 
                     // Make sure we should still proceed
@@ -222,7 +220,7 @@ namespace RandM.GameSrv {
 
                     UpdateStatus("Validating Credentials");
                     _NodeInfo.User = new UserInfo(Alias);
-                    if (_NodeInfo.User.Loaded && (_NodeInfo.User.ValidatePassword(Password, _Config.PasswordPepper))) {
+                    if (_NodeInfo.User.Loaded && (_NodeInfo.User.ValidatePassword(Password))) {
                         // Successfully loaded user info
                         return true;
                     } else {
@@ -591,7 +589,7 @@ namespace RandM.GameSrv {
 
                 // Update the user's time remaining
                 _NodeInfo.UserLoggedOn = true;
-                _NodeInfo.SecondsThisSession = _Config.TimePerCall * 60;
+                _NodeInfo.SecondsThisSession = Config.Instance.TimePerCall * 60;
                 NodeEvent?.Invoke(this, new NodeEventArgs(_NodeInfo, "Logging on", NodeEventType.LogOn));
 
                 // Check if RLogin is requesting to launch a door immediately via the xtrn= command
@@ -948,14 +946,14 @@ namespace RandM.GameSrv {
                         Password = ReadLn('*').Trim();
                         if (QuitThread()) return false;
                     }
-                    _NodeInfo.User.SetPassword(Password, _Config.PasswordPepper);
+                    _NodeInfo.User.SetPassword(Password);
 
                     // Confirm their password
                     DisplayAnsi("NEWUSER_ENTER_PASSWORD_CONFIRM");
                     Password = ReadLn('*').Trim();
                     if (QuitThread()) return false;
 
-                    if (!_NodeInfo.User.ValidatePassword(Password, _Config.PasswordPepper)) {
+                    if (!_NodeInfo.User.ValidatePassword(Password)) {
                         DisplayAnsi("NEWUSER_ENTER_PASSWORD_MISMATCH");
                         goto GetPassword;
                     }
@@ -1025,10 +1023,9 @@ namespace RandM.GameSrv {
             } finally {
                 if (Registered) {
                     lock (Helpers.RegistrationLock) {
-                        Config C = new Config();
-                        _NodeInfo.User.UserId = C.NextUserId++;
+                        _NodeInfo.User.UserId = Config.Instance.NextUserId++;
                         _NodeInfo.User.SaveRegistration();
-                        C.Save();
+                        Config.Instance.Save();
                     }
 
                     DisplayAnsi("NEWUSER_SUCCESS", true);
@@ -1152,20 +1149,21 @@ namespace RandM.GameSrv {
         }
 
         private string TranslateMCI(string text, string fileName) {
-            StringDictionary MCI = new StringDictionary();
-            MCI.Add("ACCESSLEVEL", _NodeInfo.User.AccessLevel.ToString());
-            MCI.Add("ALIAS", _NodeInfo.User.Alias);
-            MCI.Add("BBSNAME", _Config.BBSName);
-            MCI.Add("DATE", DateTime.Now.ToShortDateString());
-            MCI.Add("FILENAME", fileName.Replace(StringUtils.PathCombine(ProcessUtils.StartupPath, ""), ""));
-            MCI.Add("GSDIR", StringUtils.PathCombine(ProcessUtils.StartupPath, ""));
-            MCI.Add("MENUNAME", _CurrentMenu);
-            MCI.Add("NODE", _NodeInfo.Node.ToString());
-            MCI.Add("OPERATINGSYSTEM", OSUtils.GetNameAndVersion());
-            MCI.Add("SYSOPEMAIL", _Config.SysopEmail);
-            MCI.Add("SYSOPNAME", _Config.SysopFirstName + " " + _Config.SysopLastName);
-            MCI.Add("TIME", DateTime.Now.ToShortTimeString());
-            MCI.Add("TIMELEFT", StringUtils.SecToHMS(_NodeInfo.SecondsLeft));
+            StringDictionary MCI = new StringDictionary() {
+                { "ACCESSLEVEL", _NodeInfo.User.AccessLevel.ToString() },
+                { "ALIAS", _NodeInfo.User.Alias },
+                { "BBSNAME", Config.Instance.BBSName },
+                { "DATE", DateTime.Now.ToShortDateString() },
+                { "FILENAME", fileName.Replace(StringUtils.PathCombine(ProcessUtils.StartupPath, ""), "") },
+                { "GSDIR", StringUtils.PathCombine(ProcessUtils.StartupPath, "") },
+                { "MENUNAME", _CurrentMenu },
+                { "NODE", _NodeInfo.Node.ToString() },
+                { "OPERATINGSYSTEM", OSUtils.GetNameAndVersion() },
+                { "SYSOPEMAIL", Config.Instance.SysopEmail },
+                { "SYSOPNAME", Config.Instance.SysopFirstName + " " + Config.Instance.SysopLastName },
+                { "TIME", DateTime.Now.ToShortTimeString() },
+                { "TIMELEFT", StringUtils.SecToHMS(_NodeInfo.SecondsLeft) },
+            };
             foreach (DictionaryEntry DE in _NodeInfo.User.AdditionalInfo) {
                 MCI.Add(DE.Key.ToString(), DE.Value.ToString());
             }

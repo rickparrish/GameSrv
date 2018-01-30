@@ -57,14 +57,12 @@ namespace RandM.GameSrv {
             }
         }
 
-        public static string GetPasswordHash(string password, string salt, string pepper) {
+        public static string GetPasswordHash(string password, string salt) {
             if (string.IsNullOrEmpty(password)) {
                 throw new ArgumentNullException("password");
             } else if (string.IsNullOrEmpty(salt)) {
                 throw new ArgumentNullException("salt");
-            } else if (string.IsNullOrEmpty(pepper)) {
-                throw new ArgumentNullException("pepper");
-            } else if (pepper.ToUpper().Trim() == "DISABLE") {
+            } else if (Config.Instance.PasswordPepper.ToUpper().Trim() == "DISABLE") {
                 return password;
             } else {
                 // Build the array of bytes to hash.  This is made up of the concatenation of:
@@ -74,7 +72,7 @@ namespace RandM.GameSrv {
                 // The purpose of the salt is to ensure that if the password hashes are stolen, a single rainbow table cannot be used to crack all the passwords.  For example, 2 users both using "password" as their password will have different hashes, since different salts will be applied.
                 // The purpose of the pepper is to ensure that even if the password hashes and per user salt values are stolen, and the attacker has the CPU power required to create per-user rainbow tables, the tables will still be incomplete without the secret pepper value that is stored separately.  (Probably not far enough away in this case, but it doesn't hurt to haev this)
                 using (SHA512Managed SHA = new SHA512Managed()) {
-                    byte[] InBytes = Encoding.ASCII.GetBytes(salt + password + pepper);
+                    byte[] InBytes = Encoding.ASCII.GetBytes(salt + password + Config.Instance.PasswordPepper);
                     byte[] OutBytes = SHA.ComputeHash(InBytes);
 
                     // Loop 1024 times -- this creates no noticeable delay on our server, but it may mean an attacker can now only try 1,000 per second instead of 1,000,000 per second
@@ -104,9 +102,9 @@ namespace RandM.GameSrv {
             }
         }
 
-        public void SetPassword(string password, string pepper) {
+        public void SetPassword(string password) {
             PasswordSalt = StringUtils.RandomString(100);
-            PasswordHash = GetPasswordHash(password, PasswordSalt, pepper);
+            PasswordHash = GetPasswordHash(password, PasswordSalt);
         }
 
         public bool StartRegistration(string alias) {
@@ -128,8 +126,8 @@ namespace RandM.GameSrv {
             }
         }
 
-        public bool ValidatePassword(string password, string pepper) {
-            return (PasswordHash == GetPasswordHash(password, PasswordSalt, pepper));
+        public bool ValidatePassword(string password) {
+            return (PasswordHash == GetPasswordHash(password, PasswordSalt));
         }
     }
 

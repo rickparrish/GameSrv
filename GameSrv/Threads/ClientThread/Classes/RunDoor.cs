@@ -12,7 +12,6 @@ using System.Collections;
 
 namespace RandM.GameSrv {
     public class RunDoor {
-        private Config _Config = new Config();
         private ClientThread _CT;
 
         public RunDoor(ClientThread clientThread) {
@@ -48,107 +47,107 @@ namespace RandM.GameSrv {
 
             // Create DOOR.SYS
             Sl.Clear();
-            Sl.Add("COM1:");                                                    // 1 - Comm Port
-            Sl.Add("57600");                                                    // 2 - Connection Baud Rate
-            Sl.Add("8");                                                        // 3 - Parity
-            Sl.Add(_CT.NodeInfo.Node.ToString());                                  // 4 - Current Node Number
-            Sl.Add("57600");                                                    // 5 - Locked Baud Rate
-            Sl.Add("Y");                                                        // 6 - Screen Display
-            Sl.Add("Y");                                                        // 7 - Printer Toggle
-            Sl.Add("Y");                                                        // 8 - Page Bell
-            Sl.Add("Y");                                                        // 9 - Caller Alarm
-            Sl.Add(_CT.NodeInfo.User.Alias);                                       // 10 - User's Real Name
-            Sl.Add("City, State");                                              // 11 - User's Location
-            Sl.Add("555-555-5555");                                             // 12 - User's Home Phone #
-            Sl.Add("555-555-5555");                                             // 13 - User's Work Phone #
-            Sl.Add("PASSWORD");                                                 // 14 - User's Password
-            Sl.Add(_CT.NodeInfo.User.AccessLevel.ToString());                      // 15 - User's Access Level
-            Sl.Add("1");                                                        // 16 - User's Total Calls
-            Sl.Add("00/00/00");                                                 // 17 - User's Last Call Date
-            Sl.Add(_CT.NodeInfo.SecondsLeft.ToString());                           // 18 - Users's Seconds Left This Call
-            Sl.Add(_CT.NodeInfo.MinutesLeft.ToString());                           // 19 - User's Minutes Left This Call (I love redundancy!)
-            Sl.Add("GR");                                                       // 20 - Graphics Mode GR=Graphics, NG=No Graphics, 7E=7-bit
-            Sl.Add("24");                                                       // 21 - Screen Length
-            Sl.Add("N");                                                        // 22 - Expert Mode
-            Sl.Add("");                                                         // 23 - Conferences Registered In
-            Sl.Add("");                                                         // 24 - Conference Exited To Door From
-            Sl.Add("00/00/00");                                                 // 25 - User's Expiration Date
-            Sl.Add((_CT.NodeInfo.User.UserId - 1).ToString());                     // 26 - User's Record Position (0 based)
-            Sl.Add("Z");                                                        // 27 - User's Default XFer Protocol
-            Sl.Add("0");                                                        // 28 - Total Uploads
-            Sl.Add("0");                                                        // 29 - Total Downloads
-            Sl.Add("0");                                                        // 30 - Total Downloaded Today (kB)
-            Sl.Add("0");                                                        // 31 - Daily Download Limit (kB)
-            Sl.Add("00/00/00");                                                 // 32 - User's Birthday
-            Sl.Add(StringUtils.ExtractShortPathName(ProcessUtils.StartupPath)); // 33 - Path To User File
-            Sl.Add(StringUtils.ExtractShortPathName(ProcessUtils.StartupPath)); // 34 - Path To GEN Directory
-            Sl.Add(_Config.SysopFirstName + " " + _Config.SysopLastName);       // 35 - SysOp's Name
-            Sl.Add(_CT.NodeInfo.User.Alias);                                       // 36 - User's Alias
-            Sl.Add("00:00");                                                    // 37 - Next Event Time
-            Sl.Add("Y");                                                        // 38 - Error Correcting Connection
-            Sl.Add(_CT.NodeInfo.TerminalType == TerminalType.ASCII ? "N" : "Y");   // 39 - ANSI Supported
-            Sl.Add("Y");                                                        // 40 - Use Record Locking
-            Sl.Add("7");                                                        // 41 - Default BBS Colour
-            Sl.Add("0");                                                        // 42 - Time Credits (In Minutes)
-            Sl.Add("00/00/00");                                                 // 43 - Last New File Scan
-            Sl.Add("00:00");                                                    // 44 - Time Of This Call
-            Sl.Add("00:00");                                                    // 45 - Time Of Last Call
-            Sl.Add("0");                                                        // 46 - Daily File Limit
-            Sl.Add("0");                                                        // 47 - Files Downloaded Today
-            Sl.Add("0");                                                        // 48 - Total Uploaded (kB)
-            Sl.Add("0");                                                        // 49 - Total Downloaded (kB)
-            Sl.Add("No Comment");                                               // 50 - User's Comment
-            Sl.Add("0");                                                        // 51 - Total Doors Opened
-            Sl.Add("0");                                                        // 52 - Total Messages Left
+            Sl.Add("COM1:");                                                                // 1 - Comm Port
+            Sl.Add("57600");                                                                // 2 - Connection Baud Rate
+            Sl.Add("8");                                                                    // 3 - Parity
+            Sl.Add(_CT.NodeInfo.Node.ToString());                                 // 4 - Current Node Number
+            Sl.Add("57600");                                                                // 5 - Locked Baud Rate
+            Sl.Add("Y");                                                                    // 6 - Screen Display
+            Sl.Add("Y");                                                                    // 7 - Printer Toggle
+            Sl.Add("Y");                                                                    // 8 - Page Bell
+            Sl.Add("Y");                                                                    // 9 - Caller Alarm
+            Sl.Add(_CT.NodeInfo.User.Alias);                                      // 10 - User's Real Name
+            Sl.Add("City, State");                                                          // 11 - User's Location
+            Sl.Add("555-555-5555");                                                         // 12 - User's Home Phone #
+            Sl.Add("555-555-5555");                                                         // 13 - User's Work Phone #
+            Sl.Add("PASSWORD");                                                             // 14 - User's Password
+            Sl.Add(_CT.NodeInfo.User.AccessLevel.ToString());                     // 15 - User's Access Level
+            Sl.Add("1");                                                                    // 16 - User's Total Calls
+            Sl.Add("00/00/00");                                                             // 17 - User's Last Call Date
+            Sl.Add(_CT.NodeInfo.SecondsLeft.ToString());                          // 18 - Users's Seconds Left This Call
+            Sl.Add(_CT.NodeInfo.MinutesLeft.ToString());                          // 19 - User's Minutes Left This Call (I love redundancy!)
+            Sl.Add("GR");                                                                   // 20 - Graphics Mode GR=Graphics, NG=No Graphics, 7E=7-bit
+            Sl.Add("24");                                                                   // 21 - Screen Length
+            Sl.Add("N");                                                                    // 22 - Expert Mode
+            Sl.Add("");                                                                     // 23 - Conferences Registered In
+            Sl.Add("");                                                                     // 24 - Conference Exited To Door From
+            Sl.Add("00/00/00");                                                             // 25 - User's Expiration Date
+            Sl.Add((_CT.NodeInfo.User.UserId - 1).ToString());                    // 26 - User's Record Position (0 based)
+            Sl.Add("Z");                                                                    // 27 - User's Default XFer Protocol
+            Sl.Add("0");                                                                    // 28 - Total Uploads
+            Sl.Add("0");                                                                    // 29 - Total Downloads
+            Sl.Add("0");                                                                    // 30 - Total Downloaded Today (kB)
+            Sl.Add("0");                                                                    // 31 - Daily Download Limit (kB)
+            Sl.Add("00/00/00");                                                             // 32 - User's Birthday
+            Sl.Add(StringUtils.ExtractShortPathName(ProcessUtils.StartupPath));             // 33 - Path To User File
+            Sl.Add(StringUtils.ExtractShortPathName(ProcessUtils.StartupPath));             // 34 - Path To GEN Directory
+            Sl.Add(Config.Instance.SysopFirstName + " " + Config.Instance.SysopLastName);   // 35 - SysOp's Name
+            Sl.Add(_CT.NodeInfo.User.Alias);                                      // 36 - User's Alias
+            Sl.Add("00:00");                                                                // 37 - Next Event Time
+            Sl.Add("Y");                                                                    // 38 - Error Correcting Connection
+            Sl.Add(_CT.NodeInfo.TerminalType == TerminalType.ASCII ? "N" : "Y");  // 39 - ANSI Supported
+            Sl.Add("Y");                                                                    // 40 - Use Record Locking
+            Sl.Add("7");                                                                    // 41 - Default BBS Colour
+            Sl.Add("0");                                                                    // 42 - Time Credits (In Minutes)
+            Sl.Add("00/00/00");                                                             // 43 - Last New File Scan
+            Sl.Add("00:00");                                                                // 44 - Time Of This Call
+            Sl.Add("00:00");                                                                // 45 - Time Of Last Call
+            Sl.Add("0");                                                                    // 46 - Daily File Limit
+            Sl.Add("0");                                                                    // 47 - Files Downloaded Today
+            Sl.Add("0");                                                                    // 48 - Total Uploaded (kB)
+            Sl.Add("0");                                                                    // 49 - Total Downloaded (kB)
+            Sl.Add("No Comment");                                                           // 50 - User's Comment
+            Sl.Add("0");                                                                    // 51 - Total Doors Opened
+            Sl.Add("0");                                                                    // 52 - Total Messages Left
             FileUtils.FileWriteAllText(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _CT.NodeInfo.Node.ToString(), "door.sys"), String.Join("\r\n", Sl.ToArray()));
 
             // Create DOOR32.SYS
             Sl.Clear();
-            Sl.Add("2");                                                            // 1 - Comm Type (0=Local, 1=Serial, 2=Telnet)
-            Sl.Add(_CT.NodeInfo.Connection.Handle.ToString());                         // 2 - Comm Or Socket Handle
-            Sl.Add("57600");                                                        // 3 - Baud Rate
-            Sl.Add(ProcessUtils.ProductName + " v" + GameSrv.Version);              // 4 - BBSID (Software Name & Version
-            Sl.Add(_CT.NodeInfo.User.UserId.ToString());                               // 5 - User's Record Position (1 based)
-            Sl.Add(_CT.NodeInfo.User.Alias);                                           // 6 - User's Real Name
-            Sl.Add(_CT.NodeInfo.User.Alias);                                           // 7 - User's Handle/Alias
-            Sl.Add(_CT.NodeInfo.User.AccessLevel.ToString());                          // 8 - User's Access Level
-            Sl.Add(_CT.NodeInfo.MinutesLeft.ToString());                               // 9 - User's Time Left (In Minutes)
-            switch (_CT.NodeInfo.TerminalType)                                         // 10 - Emulation (0=Ascii, 1=Ansi, 2=Avatar, 3=RIP, 4=MaxGfx)
+            Sl.Add("2");                                                    // 1 - Comm Type (0=Local, 1=Serial, 2=Telnet)
+            Sl.Add(_CT.NodeInfo.Connection.Handle.ToString());    // 2 - Comm Or Socket Handle
+            Sl.Add("57600");                                                // 3 - Baud Rate
+            Sl.Add(ProcessUtils.ProductName + " v" + GameSrv.Version);      // 4 - BBSID (Software Name & Version
+            Sl.Add(_CT.NodeInfo.User.UserId.ToString());          // 5 - User's Record Position (1 based)
+            Sl.Add(_CT.NodeInfo.User.Alias);                      // 6 - User's Real Name
+            Sl.Add(_CT.NodeInfo.User.Alias);                      // 7 - User's Handle/Alias
+            Sl.Add(_CT.NodeInfo.User.AccessLevel.ToString());     // 8 - User's Access Level
+            Sl.Add(_CT.NodeInfo.MinutesLeft.ToString());          // 9 - User's Time Left (In Minutes)
+            switch (_CT.NodeInfo.TerminalType)                    // 10 - Emulation (0=Ascii, 1=Ansi, 2=Avatar, 3=RIP, 4=MaxGfx)
             {
                 case TerminalType.ANSI: Sl.Add("1"); break;
                 case TerminalType.ASCII: Sl.Add("0"); break;
                 case TerminalType.RIP: Sl.Add("3"); break;
             }
-            Sl.Add(_CT.NodeInfo.Node.ToString());                                      // 11 - Current Node Number
+            Sl.Add(_CT.NodeInfo.Node.ToString());                 // 11 - Current Node Number
             FileUtils.FileWriteAllText(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _CT.NodeInfo.Node.ToString(), "door32.sys"), String.Join("\r\n", Sl.ToArray()));
 
             // Create DOORFILE.SR
             Sl.Clear();
-            Sl.Add(_CT.NodeInfo.User.Alias);                                       // Complete name or handle of user
-            Sl.Add(_CT.NodeInfo.TerminalType == TerminalType.ASCII ? "0" : "1");   // ANSI status:  1 = yes, 0 = no, -1 = don't know
-            Sl.Add("1");                                                        // IBM Graphic characters:  1 = yes, 0 = no, -1 = unknown
-            Sl.Add("24");                                                       // Page length of screen, in lines.  Assume 25 if unknown
-            Sl.Add("57600");                                                    // Baud Rate:  300, 1200, 2400, 9600, 19200, etc.
-            Sl.Add("1");                                                        // Com Port:  1, 2, 3, or 4; 0 if local.
-            Sl.Add(_CT.NodeInfo.MinutesLeft.ToString());                           // Time Limit:  (in minutes); -1 if unknown.
-            Sl.Add(_CT.NodeInfo.User.Alias);                                       // Real name (the same as line 1 if not known)
+            Sl.Add(_CT.NodeInfo.User.Alias);                                      // Complete name or handle of user
+            Sl.Add(_CT.NodeInfo.TerminalType == TerminalType.ASCII ? "0" : "1");  // ANSI status:  1 = yes, 0 = no, -1 = don't know
+            Sl.Add("1");                                                                    // IBM Graphic characters:  1 = yes, 0 = no, -1 = unknown
+            Sl.Add("24");                                                                   // Page length of screen, in lines.  Assume 25 if unknown
+            Sl.Add("57600");                                                                // Baud Rate:  300, 1200, 2400, 9600, 19200, etc.
+            Sl.Add("1");                                                                    // Com Port:  1, 2, 3, or 4; 0 if local.
+            Sl.Add(_CT.NodeInfo.MinutesLeft.ToString());                          // Time Limit:  (in minutes); -1 if unknown.
+            Sl.Add(_CT.NodeInfo.User.Alias);                                      // Real name (the same as line 1 if not known)
             FileUtils.FileWriteAllText(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _CT.NodeInfo.Node.ToString(), "doorfile.sr"), String.Join("\r\n", Sl.ToArray()));
 
             // Create DORINFO.DEF
             Sl.Clear();
-            Sl.Add(_Config.BBSName);                                           // 1 - BBS Name
-            Sl.Add(_Config.SysopFirstName);                                    // 2 - Sysop's First Name
-            Sl.Add(_Config.SysopLastName);                                     // 3 - Sysop's Last Name
-            Sl.Add("COM1");                                                    // 4 - Comm Number in COMxxx Form
-            Sl.Add("57600 BAUD,N,8,1");                                        // 5 - Baud Rate in 57600 BAUD,N,8,1 Form
-            Sl.Add("0");                                                       // 6 - Networked?
+            Sl.Add(Config.Instance.BBSName);                                                // 1 - BBS Name
+            Sl.Add(Config.Instance.SysopFirstName);                                         // 2 - Sysop's First Name
+            Sl.Add(Config.Instance.SysopLastName);                                          // 3 - Sysop's Last Name
+            Sl.Add("COM1");                                                                 // 4 - Comm Number in COMxxx Form
+            Sl.Add("57600 BAUD,N,8,1");                                                     // 5 - Baud Rate in 57600 BAUD,N,8,1 Form
+            Sl.Add("0");                                                                    // 6 - Networked?
             Sl.Add(_CT.NodeInfo.User.Alias);                                      // 7 - User's First Name / Alias
-            Sl.Add("");                                                        // 8 - User's Last Name
-            Sl.Add("City, State");                                             // 9 - User's Location (City, State, etc.)
+            Sl.Add("");                                                                     // 8 - User's Last Name
+            Sl.Add("City, State");                                                          // 9 - User's Location (City, State, etc.)
             Sl.Add(_CT.NodeInfo.TerminalType == TerminalType.ASCII ? "0" : "1");  // 10 - User's Emulation (0=Ascii, 1=Ansi)
             Sl.Add(_CT.NodeInfo.User.AccessLevel.ToString());                     // 11 - User's Access Level
             Sl.Add(_CT.NodeInfo.MinutesLeft.ToString());                          // 12 - User's Time Left (In Minutes)
-            Sl.Add("1");                                                       // 13 - Fossil?
+            Sl.Add("1");                                                                    // 13 - Fossil?
             FileUtils.FileWriteAllText(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _CT.NodeInfo.Node.ToString(), "dorinfo.def"), String.Join("\r\n", Sl.ToArray()));
             FileUtils.FileWriteAllText(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _CT.NodeInfo.Node.ToString(), "dorinfo1.def"), String.Join("\r\n", Sl.ToArray()));
             FileUtils.FileWriteAllText(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _CT.NodeInfo.Node.ToString(), "dorinfo" + _CT.NodeInfo.Node.ToString() + ".def"), String.Join("\r\n", Sl.ToArray()));
@@ -197,7 +196,7 @@ namespace RandM.GameSrv {
                             RMLog.Error("DOS doors are not supported on 64bit Windows (unless you install DOSBox 0.73)");
                         }
                     } else {
-                        RunDoorSBBSEXECNT(TranslateCLS(_CT.NodeInfo.Door.Command), TranslateCLS(_CT.NodeInfo.Door.Parameters), _CT.NodeInfo.Door.ForceQuitDelay);
+                        RunDoorSBBSEXEC(TranslateCLS(_CT.NodeInfo.Door.Command), TranslateCLS(_CT.NodeInfo.Door.Parameters), _CT.NodeInfo.Door.ForceQuitDelay);
                     }
                 } else if ((_CT.NodeInfo.Door.Platform == OSUtils.Platform.DOS) && OSUtils.IsUnix) {
                     if (Helpers.IsDOSEMUInstalled()) {
@@ -249,10 +248,10 @@ namespace RandM.GameSrv {
             using (RMProcess P = new RMProcess()) {
                 P.ProcessWaitEvent += _CT.OnDoorWait;
 
-                ProcessStartInfo PSI = new ProcessStartInfo(DOSBoxExe, Arguments);
-                PSI.WorkingDirectory = ProcessUtils.StartupPath;
-                PSI.WindowStyle = _CT.NodeInfo.Door.WindowStyle;
-
+                ProcessStartInfo PSI = new ProcessStartInfo(DOSBoxExe, Arguments) {
+                    WindowStyle = _CT.NodeInfo.Door.WindowStyle,
+                    WorkingDirectory = ProcessUtils.StartupPath,
+                };
                 P.StartAndWait(PSI);
             }
         }
@@ -284,7 +283,7 @@ namespace RandM.GameSrv {
                         pty = PseudoTerminal.Open(null, "/usr/bin/env", Arguments, "/tmp", 80, 25, false, false, false);
                         us = new Mono.Unix.UnixStream(pty.FileDescriptor, false);
                     } finally {
-                        Helpers.DropRoot(_Config.UnixUser);
+                        Helpers.DropRoot(Config.Instance.UnixUser);
                     }
                 }
 
@@ -396,20 +395,15 @@ namespace RandM.GameSrv {
             using (RMProcess P = new RMProcess()) {
                 P.ProcessWaitEvent += _CT.OnDoorWait;
 
-                ProcessStartInfo PSI = new ProcessStartInfo(command, parameters);
-                PSI.WorkingDirectory = ProcessUtils.StartupPath;
-                PSI.WindowStyle = _CT.NodeInfo.Door.WindowStyle;
-
+                ProcessStartInfo PSI = new ProcessStartInfo(command, parameters) {
+                    WindowStyle = _CT.NodeInfo.Door.WindowStyle,
+                    WorkingDirectory = ProcessUtils.StartupPath,
+                };
                 P.StartAndWait(PSI);
             }
         }
 
-        struct sbbsexec_start_t {
-            public uint Mode;
-            public IntPtr Event;
-        }
-
-        private unsafe void RunDoorSBBSEXECNT(string command, string parameters, int forceQuitDelay) {
+        private unsafe void RunDoorSBBSEXEC(string command, string parameters, int forceQuitDelay) {
             if (Helpers.Debug) _CT.UpdateStatus("DEBUG: SBBSEXECNT launching " + command + " " + parameters);
 
             // SBBSEXEC constants
@@ -458,9 +452,10 @@ namespace RandM.GameSrv {
                 // Start the process
                 string FileName = StringUtils.PathCombine(ProcessUtils.StartupPath, "DOSXTRN.EXE");
                 string Arguments = StringUtils.ExtractShortPathName(EnvFile) + " NT " + _CT.NodeInfo.Node.ToString() + " " + SBBSEXEC_MODE_FOSSIL.ToString() + " " + LoopsBeforeYield.ToString();
-                ProcessStartInfo PSI = new ProcessStartInfo(FileName, Arguments);
-                PSI.WorkingDirectory = ProcessUtils.StartupPath;
-                PSI.WindowStyle = _CT.NodeInfo.Door.WindowStyle;
+                ProcessStartInfo PSI = new ProcessStartInfo(FileName, Arguments) {
+                    WindowStyle = _CT.NodeInfo.Door.WindowStyle,
+                    WorkingDirectory = ProcessUtils.StartupPath,
+                };
                 P = RMProcess.Start(PSI);
 
                 if (P == null) {
@@ -514,8 +509,7 @@ namespace RandM.GameSrv {
                         // Write the text to the program
                         if (WriteSlot != IntPtr.Zero) {
                             byte[] BufBytes = _CT.NodeInfo.Connection.PeekBytes();
-                            uint BytesWritten = 0;
-                            bool Result = NativeMethods.WriteFile(WriteSlot, BufBytes, (uint)BufBytes.Length, out BytesWritten, null);
+                            bool Result = NativeMethods.WriteFile(WriteSlot, BufBytes, (uint)BufBytes.Length, out uint BytesWritten, null);
                             int LastWin32Error = Marshal.GetLastWin32Error();
                             if (Result) {
                                 _CT.NodeInfo.Connection.ReadBytes((int)BytesWritten);
@@ -647,22 +641,23 @@ namespace RandM.GameSrv {
         }
 
         private string TranslateCLS(string command) {
-            List<KeyValuePair<string, string>> CLS = new List<KeyValuePair<string, string>>();
-            CLS.Add(new KeyValuePair<string, string>("**ALIAS", _CT.NodeInfo.User.Alias));
-            CLS.Add(new KeyValuePair<string, string>("DOOR32", StringUtils.ExtractShortPathName(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _CT.NodeInfo.Node.ToString(), "door32.sys"))));
-            CLS.Add(new KeyValuePair<string, string>("DOORSYS", StringUtils.ExtractShortPathName(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _CT.NodeInfo.Node.ToString(), "door.sys"))));
-            CLS.Add(new KeyValuePair<string, string>("DOORFILE", StringUtils.ExtractShortPathName(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _CT.NodeInfo.Node.ToString(), "doorfile.sr"))));
-            CLS.Add(new KeyValuePair<string, string>("DORINFOx", StringUtils.ExtractShortPathName(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _CT.NodeInfo.Node.ToString(), "dorinfo" + _CT.NodeInfo.Node.ToString() + ".def"))));
-            CLS.Add(new KeyValuePair<string, string>("DORINFO1", StringUtils.ExtractShortPathName(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _CT.NodeInfo.Node.ToString(), "dorinfo1.def"))));
-            CLS.Add(new KeyValuePair<string, string>("DORINFO", StringUtils.ExtractShortPathName(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _CT.NodeInfo.Node.ToString(), "dorinfo.def"))));
-            CLS.Add(new KeyValuePair<string, string>("HANDLE", _CT.NodeInfo.Connection.Handle.ToString()));
-            CLS.Add(new KeyValuePair<string, string>("IPADDRESS", _CT.NodeInfo.Connection.GetRemoteIP()));
-            CLS.Add(new KeyValuePair<string, string>("MINUTESLEFT", _CT.NodeInfo.MinutesLeft.ToString()));
-            CLS.Add(new KeyValuePair<string, string>("NODE", _CT.NodeInfo.Node.ToString()));
-            CLS.Add(new KeyValuePair<string, string>("**PASSWORD", _CT.NodeInfo.User.PasswordHash));
-            CLS.Add(new KeyValuePair<string, string>("SECONDSLEFT", _CT.NodeInfo.SecondsLeft.ToString()));
-            CLS.Add(new KeyValuePair<string, string>("SOCKETHANDLE", _CT.NodeInfo.Connection.Handle.ToString()));
-            CLS.Add(new KeyValuePair<string, string>("**USERNAME", _CT.NodeInfo.User.Alias));
+            List<KeyValuePair<string, string>> CLS = new List<KeyValuePair<string, string>>() {
+                new KeyValuePair<string, string>("**ALIAS", _CT.NodeInfo.User.Alias),
+                new KeyValuePair<string, string>("DOOR32", StringUtils.ExtractShortPathName(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _CT.NodeInfo.Node.ToString(), "door32.sys"))),
+                new KeyValuePair<string, string>("DOORSYS", StringUtils.ExtractShortPathName(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _CT.NodeInfo.Node.ToString(), "door.sys"))),
+                new KeyValuePair<string, string>("DOORFILE", StringUtils.ExtractShortPathName(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _CT.NodeInfo.Node.ToString(), "doorfile.sr"))),
+                new KeyValuePair<string, string>("DORINFOx", StringUtils.ExtractShortPathName(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _CT.NodeInfo.Node.ToString(), "dorinfo" + _CT.NodeInfo.Node.ToString() + ".def"))),
+                new KeyValuePair<string, string>("DORINFO1", StringUtils.ExtractShortPathName(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _CT.NodeInfo.Node.ToString(), "dorinfo1.def"))),
+                new KeyValuePair<string, string>("DORINFO", StringUtils.ExtractShortPathName(StringUtils.PathCombine(ProcessUtils.StartupPath, "node" + _CT.NodeInfo.Node.ToString(), "dorinfo.def"))),
+                new KeyValuePair<string, string>("HANDLE", _CT.NodeInfo.Connection.Handle.ToString()),
+                new KeyValuePair<string, string>("IPADDRESS", _CT.NodeInfo.Connection.GetRemoteIP()),
+                new KeyValuePair<string, string>("MINUTESLEFT", _CT.NodeInfo.MinutesLeft.ToString()),
+                new KeyValuePair<string, string>("NODE", _CT.NodeInfo.Node.ToString()),
+                new KeyValuePair<string, string>("**PASSWORD", _CT.NodeInfo.User.PasswordHash),
+                new KeyValuePair<string, string>("SECONDSLEFT", _CT.NodeInfo.SecondsLeft.ToString()),
+                new KeyValuePair<string, string>("SOCKETHANDLE", _CT.NodeInfo.Connection.Handle.ToString()),
+                new KeyValuePair<string, string>("**USERNAME", _CT.NodeInfo.User.Alias),
+            };
             foreach (DictionaryEntry DE in _CT.NodeInfo.User.AdditionalInfo) {
                 CLS.Add(new KeyValuePair<string, string>("**" + DE.Key.ToString(), DE.Value.ToString()));
             }

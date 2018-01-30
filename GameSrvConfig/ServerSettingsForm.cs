@@ -32,41 +32,39 @@ namespace RandM.GameSrv
 {
     public partial class frmServerSettings : Form
     {
-        Config _Config = new Config();
-
         public frmServerSettings()
         {
             InitializeComponent();
 
             PopulateIPAddresses();
 
-            txtBBSName.Text = _Config.BBSName;
-            txtSysopFirstName.Text = _Config.SysopFirstName;
-            txtSysopLastName.Text = _Config.SysopLastName;
-            txtSysopEmail.Text = _Config.SysopEmail;
-            txtFirstNode.Text = _Config.FirstNode.ToString();
-            txtLastNode.Text = _Config.LastNode.ToString();
-            txtTimePerCall.Text = _Config.TimePerCall.ToString();
-            if (_Config.TelnetServerIP != "0.0.0.0")
+            txtBBSName.Text = Config.Instance.BBSName;
+            txtSysopFirstName.Text = Config.Instance.SysopFirstName;
+            txtSysopLastName.Text = Config.Instance.SysopLastName;
+            txtSysopEmail.Text = Config.Instance.SysopEmail;
+            txtFirstNode.Text = Config.Instance.FirstNode.ToString();
+            txtLastNode.Text = Config.Instance.LastNode.ToString();
+            txtTimePerCall.Text = Config.Instance.TimePerCall.ToString();
+            if (Config.Instance.TelnetServerIP != "0.0.0.0")
             {
-                if (!cboTelnetServerIP.Items.Contains(_Config.TelnetServerIP)) cboTelnetServerIP.Items.Add(_Config.TelnetServerIP);
-                cboTelnetServerIP.Text = _Config.TelnetServerIP;
+                if (!cboTelnetServerIP.Items.Contains(Config.Instance.TelnetServerIP)) cboTelnetServerIP.Items.Add(Config.Instance.TelnetServerIP);
+                cboTelnetServerIP.Text = Config.Instance.TelnetServerIP;
             }
-            txtTelnetServerPort.Text = _Config.TelnetServerPort.ToString();
-            if (_Config.RLoginServerIP != "0.0.0.0")
+            txtTelnetServerPort.Text = Config.Instance.TelnetServerPort.ToString();
+            if (Config.Instance.RLoginServerIP != "0.0.0.0")
             {
-                if (!cboRLoginServerIP.Items.Contains(_Config.RLoginServerIP)) cboRLoginServerIP.Items.Add(_Config.RLoginServerIP);
-                cboRLoginServerIP.Text = _Config.RLoginServerIP;
+                if (!cboRLoginServerIP.Items.Contains(Config.Instance.RLoginServerIP)) cboRLoginServerIP.Items.Add(Config.Instance.RLoginServerIP);
+                cboRLoginServerIP.Text = Config.Instance.RLoginServerIP;
             }
-            txtRLoginServerPort.Text = _Config.RLoginServerPort.ToString();
-            if (_Config.WebSocketServerIP != "0.0.0.0")
+            txtRLoginServerPort.Text = Config.Instance.RLoginServerPort.ToString();
+            if (Config.Instance.WebSocketServerIP != "0.0.0.0")
             {
-                if (!cboWebSocketServerIP.Items.Contains(_Config.WebSocketServerIP)) cboWebSocketServerIP.Items.Add(_Config.WebSocketServerIP);
-                cboWebSocketServerIP.Text = _Config.WebSocketServerIP;
+                if (!cboWebSocketServerIP.Items.Contains(Config.Instance.WebSocketServerIP)) cboWebSocketServerIP.Items.Add(Config.Instance.WebSocketServerIP);
+                cboWebSocketServerIP.Text = Config.Instance.WebSocketServerIP;
             }
-            txtWebSocketServerPort.Text = _Config.WebSocketServerPort.ToString();
-            txtTimeFormatLog.Text = _Config.TimeFormatLog;
-            txtTimeFormatUI.Text = _Config.TimeFormatUI;
+            txtWebSocketServerPort.Text = Config.Instance.WebSocketServerPort.ToString();
+            txtTimeFormatLog.Text = Config.Instance.TimeFormatLog;
+            txtTimeFormatUI.Text = Config.Instance.TimeFormatUI;
         }
 
         public void InitRunBBS()
@@ -132,22 +130,22 @@ namespace RandM.GameSrv
                 if ((cboWebSocketServerIP.SelectedIndex != 0) && (!Dialog.ValidateIsIPAddress(cboWebSocketServerIP))) return;
                 if (!Dialog.ValidateIsInRange(txtWebSocketServerPort, 0, 65535)) return;
 
-                _Config.BBSName = txtBBSName.Text.Trim();
-                _Config.SysopFirstName = txtSysopFirstName.Text.Trim();
-                _Config.SysopLastName = txtSysopLastName.Text.Trim();
-                _Config.SysopEmail = txtSysopEmail.Text.Trim();
-                _Config.FirstNode = int.Parse(txtFirstNode.Text.Trim());
-                _Config.LastNode = int.Parse(txtLastNode.Text.Trim());
-                _Config.TimePerCall = int.Parse(txtTimePerCall.Text.Trim());
-                _Config.TelnetServerIP = (cboTelnetServerIP.SelectedIndex == 0) ? "0.0.0.0" : cboTelnetServerIP.Text;
-                _Config.TelnetServerPort = int.Parse(txtTelnetServerPort.Text.Trim());
-                _Config.RLoginServerIP = (cboRLoginServerIP.SelectedIndex == 0) ? "0.0.0.0" : cboRLoginServerIP.Text;
-                _Config.RLoginServerPort = int.Parse(txtRLoginServerPort.Text.Trim());
-                _Config.WebSocketServerIP = (cboWebSocketServerIP.SelectedIndex == 0) ? "0.0.0.0" : cboWebSocketServerIP.Text;
-                _Config.WebSocketServerPort = int.Parse(txtWebSocketServerPort.Text.Trim());
-                _Config.TimeFormatLog = txtTimeFormatLog.Text.Trim();
-                _Config.TimeFormatUI = txtTimeFormatUI.Text.Trim();
-                _Config.Save();
+                Config.Instance.BBSName = txtBBSName.Text.Trim();
+                Config.Instance.SysopFirstName = txtSysopFirstName.Text.Trim();
+                Config.Instance.SysopLastName = txtSysopLastName.Text.Trim();
+                Config.Instance.SysopEmail = txtSysopEmail.Text.Trim();
+                Config.Instance.FirstNode = int.Parse(txtFirstNode.Text.Trim());
+                Config.Instance.LastNode = int.Parse(txtLastNode.Text.Trim());
+                Config.Instance.TimePerCall = int.Parse(txtTimePerCall.Text.Trim());
+                Config.Instance.TelnetServerIP = (cboTelnetServerIP.SelectedIndex == 0) ? "0.0.0.0" : cboTelnetServerIP.Text;
+                Config.Instance.TelnetServerPort = int.Parse(txtTelnetServerPort.Text.Trim());
+                Config.Instance.RLoginServerIP = (cboRLoginServerIP.SelectedIndex == 0) ? "0.0.0.0" : cboRLoginServerIP.Text;
+                Config.Instance.RLoginServerPort = int.Parse(txtRLoginServerPort.Text.Trim());
+                Config.Instance.WebSocketServerIP = (cboWebSocketServerIP.SelectedIndex == 0) ? "0.0.0.0" : cboWebSocketServerIP.Text;
+                Config.Instance.WebSocketServerPort = int.Parse(txtWebSocketServerPort.Text.Trim());
+                Config.Instance.TimeFormatLog = txtTimeFormatLog.Text.Trim();
+                Config.Instance.TimeFormatUI = txtTimeFormatUI.Text.Trim();
+                Config.Instance.Save();
             }
             catch (Exception ex)
             {
