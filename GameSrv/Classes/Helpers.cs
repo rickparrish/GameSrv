@@ -24,12 +24,13 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Security.Principal;
 using System.Text;
 
 namespace RandM.GameSrv {
     public static class Helpers {
-        public static bool Debug { get; } = Debugger.IsAttached;
+        public static bool Debug { get; } = Debugger.IsAttached || Environment.GetCommandLineArgs().Any(x => x.ToLower() == "debug");
         public static object PrivilegeLock { get; } = new object();
         public static object RegistrationLock { get; } = new object();
         public static bool StartedAsRoot { get; } = ((OSUtils.IsUnix) && (WindowsIdentity.GetCurrent().Token == IntPtr.Zero));
@@ -40,15 +41,6 @@ namespace RandM.GameSrv {
 
         private static WindowsImpersonationContext _WIC = null;
 
-        static Helpers() {
-            foreach (string arg in Environment.GetCommandLineArgs()) {
-                if (arg.ToUpper() == "DEBUG") {
-                    Debug = true;
-                    break;
-                }
-            }
-        }
-
         public static void AddTempIgnoredIP(string ip) {
             lock (_TempIgnoredIPsLock) {
                 if (TempIgnoredIPs.ContainsKey(ip)) {
@@ -57,6 +49,20 @@ namespace RandM.GameSrv {
                 } else {
                     // Key does not exist, so add it
                     TempIgnoredIPs.Add(ip, DateTime.Now);
+                }
+            }
+        }
+
+        public static void CheckFor3rdPartySoftware() {
+            if (OSUtils.IsWinNT) {
+                if (ProcessUtils.Is64BitOperatingSystem) {
+                    if (!Helpers.IsDOSBoxInstalled()) {
+                        RMLog.Error("PLEASE INSTALL DOSBOX 0.73 IF YOU PLAN ON RUNNING DOS DOORS USING DOSBOX");
+                    }
+                } else {
+                    if (!File.Exists(StringUtils.PathCombine(Environment.SystemDirectory, "sbbsexec.dll"))) {
+                        RMLog.Error("PLEASE COPY SBBSEXEC.DLL TO " + StringUtils.PathCombine(Environment.SystemDirectory, "sbbsexec.dll").ToUpper() + " IF YOU PLAN ON RUNNING DOS DOORS USING THE EMBEDDED SYNCHRONET FOSSIL");
+                    }
                 }
             }
         }
@@ -73,14 +79,8 @@ namespace RandM.GameSrv {
                         FileUtils.FileDelete("dosxtrn.exe");
                         FileUtils.FileDelete("dosxtrn.pif");
                         FileUtils.FileDelete("sbbsexec.dll");
-                        if (!Helpers.IsDOSBoxInstalled()) {
-                            RMLog.Error("PLEASE INSTALL DOSBOX 0.73 IF YOU PLAN ON RUNNING DOS DOORS USING DOSBOX");
-                        }
                     } else {
                         FileUtils.FileDelete("dosbox.conf");
-                        if (!File.Exists(StringUtils.PathCombine(Environment.SystemDirectory, "sbbsexec.dll"))) {
-                            RMLog.Error("PLEASE COPY SBBSEXEC.DLL TO " + StringUtils.PathCombine(Environment.SystemDirectory, "sbbsexec.dll").ToUpper() + " IF YOU PLAN ON RUNNING DOS DOORS USING THE EMBEDDED SYNCHRONET FOSSIL");
-                        }
                     }
                 }
             } else if (OSUtils.IsUnix) {
@@ -190,7 +190,7 @@ namespace RandM.GameSrv {
         }
 
         public static bool IsBannedUser(string alias) {
-            if (string.IsNullOrEmpty(alias)) {
+            if (alias == null) {
                 throw new ArgumentNullException("alias");
             }
 

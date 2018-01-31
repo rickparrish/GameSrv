@@ -58,7 +58,7 @@ namespace RandM.GameSrv {
         }
 
         public static string GetPasswordHash(string password, string salt) {
-            if (string.IsNullOrEmpty(password)) {
+            if (password == null) {
                 throw new ArgumentNullException("password");
             } else if (string.IsNullOrEmpty(salt)) {
                 throw new ArgumentNullException("salt");

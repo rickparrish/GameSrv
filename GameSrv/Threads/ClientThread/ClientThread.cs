@@ -628,8 +628,6 @@ namespace RandM.GameSrv {
             }
         }
 
-
-
         private void GetCurrentMenu() {
             // Clear the dictionary
             _CurrentMenuOptions.Clear();

@@ -31,7 +31,7 @@ using System.Net;
 namespace RandM.GameSrv {
     public class GameSrv : IDisposable {
         private LogHandler _LogHandler = null;
-        private GameSrvStatus _Status = GameSrvStatus.Offline;
+        private GameSrvStatus _Status = GameSrvStatus.Stopped;
 
         public event EventHandler<StatusEventArgs> StatusChangeEvent = null;
 
@@ -56,11 +56,11 @@ namespace RandM.GameSrv {
                 // If we're paused, call Pause() again to un-pause
                 Pause();
             } else if (_Status == GameSrvStatus.Stopped) {
-                UpdateStatus(GameSrvStatus.Starting);
-                _Status = GameSrvStatus.Started;
-            } else if (_Status == GameSrvStatus.Offline) {
                 // Clean up the files not needed by this platform
                 Helpers.CleanUpFiles();
+
+                // Check for 3rd party software
+                Helpers.CheckFor3rdPartySoftware();
 
                 // Load the Global settings
                 Config.Instance.Init();
@@ -86,7 +86,7 @@ namespace RandM.GameSrv {
                     NodeManager.Stop();
 
                     // If we get here, we failed to go online
-                    UpdateStatus(GameSrvStatus.Offline);
+                    UpdateStatus(GameSrvStatus.Stopped);
                     return;
                 }
 
@@ -100,20 +100,15 @@ namespace RandM.GameSrv {
         }
 
         // TODOX I don't really like this shutdown parameter, or the Offline vs Stopped states.  Need to make that more clear
-        public void Stop(bool shutdown) {
+        public void Stop() {
             if ((_Status == GameSrvStatus.Paused) || (_Status == GameSrvStatus.Started)) {
-                if (shutdown) {
-                    UpdateStatus(GameSrvStatus.Stopping);
+                UpdateStatus(GameSrvStatus.Stopping);
 
-                    IgnoredIPsThread.StopThread();
-                    ServerThreadManager.StopThreads();
-                    NodeManager.Stop();
+                IgnoredIPsThread.StopThread();
+                ServerThreadManager.StopThreads();
+                NodeManager.Stop();
 
-                    UpdateStatus(GameSrvStatus.Offline);
-                } else {
-                    // TODOX Need to let the server/client threads know so they can reject new connections?
-                    UpdateStatus(GameSrvStatus.Stopped);
-                }
+                UpdateStatus(GameSrvStatus.Stopped);
             }
         }
 

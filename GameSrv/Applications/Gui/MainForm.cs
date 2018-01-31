@@ -91,8 +91,8 @@ namespace RandM.GameSrv {
             }
 
             // If we get here it's OK to quit, so check if we're already stopped (or are stopping)
-            if (_GameSrv.Status != GameSrvStatus.Offline) {
-                _GameSrv.Stop(true);
+            if ((_GameSrv.Status != GameSrvStatus.Stopped) && (_GameSrv.Status != GameSrvStatus.Stopping)) {
+                _GameSrv.Stop();
                 _GameSrv.Dispose();
             }
         }
@@ -229,7 +229,7 @@ namespace RandM.GameSrv {
         }
 
         void tsbStop_Click(object sender, EventArgs e) {
-            _GameSrv.Stop(false);
+            _GameSrv.Stop();
         }
 
         private void UpdateButtonsAndTrayIcon() {
