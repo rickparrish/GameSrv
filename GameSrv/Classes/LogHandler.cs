@@ -23,6 +23,9 @@ namespace RandM.GameSrv {
             _LogTimer.Elapsed += LogTimer_Elapsed;
             _LogTimer.Start();
 
+            if (Helpers.Debug) {
+                RMLog.Level = LogLevel.Debug;
+            }
             RMLog.Handler += RMLog_Handler;
         }
 

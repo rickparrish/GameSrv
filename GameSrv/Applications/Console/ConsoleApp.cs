@@ -75,7 +75,7 @@ namespace RandM.GameSrv {
                         if (File.Exists(StringUtils.PathCombine(ProcessUtils.StartupPath, "gamesrvconsole.stop"))) {
                             FileUtils.FileDelete(StringUtils.PathCombine(ProcessUtils.StartupPath, "gamesrvconsole.stop"));
 
-                            _GameSrv.Stop(true);
+                            _GameSrv.Stop();
                             _GameSrv.Dispose();
                             Quit = true;
                             break;
@@ -130,7 +130,7 @@ namespace RandM.GameSrv {
                                 }
                             }
 
-                            _GameSrv.Stop(true);
+                            _GameSrv.Stop();
                             _GameSrv.Dispose();
                             Quit = true;
                             break;

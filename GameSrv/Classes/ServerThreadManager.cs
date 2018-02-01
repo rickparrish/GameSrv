@@ -47,7 +47,7 @@ namespace RandM.GameSrv {
                         KVP.Value.Start();
                     }
                 } catch (Exception ex) {
-                    RMLog.Exception(ex, "Error in GameSrv::StartServerThreads()");
+                    RMLog.Exception(ex, "Error in ServerThreadManager::StartThreads()");
                 }
             } else {
                 RMLog.Error("Must specify a port for RLogin and/or Telnet servers");
@@ -63,7 +63,7 @@ namespace RandM.GameSrv {
                 }
                 _ServerThreads.Clear();
             } catch (Exception ex) {
-                RMLog.Exception(ex, "Error in GameSrv::StopServerThread()");
+                RMLog.Exception(ex, "Error in ServerThreadManager::StopThreads()");
             }
         }
     }

@@ -98,6 +98,8 @@
     <Compile Include="Threads\ClientThread\Classes\NewUserQuestion.cs" />
     <Compile Include="Threads\ClientThread\Classes\RunDoor.cs" />
     <Compile Include="Threads\ClientThread\Enumerators\ValidationType.cs" />
+    <Compile Include="Threads\TimedEventsThread\TimedEvent.cs" />
+    <Compile Include="Threads\TimedEventsThread\TimedEventsThread.cs" />
     <Compile Include="Threads\ServerThreads\RLoginServerThread.cs" />
     <Compile Include="Threads\ServerThreads\WebSocketServerThread.cs" />
     <Compile Include="Threads\ServerThreads\TelnetServerThread.cs" />

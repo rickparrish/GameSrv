@@ -277,6 +277,9 @@
     <None Include="config\logonprocess.ini">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="config\timed-events.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="config\newuser.ini">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -552,6 +555,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="stop.sh">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="timed-events\ping.cmd">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="update_from_git.ps1">

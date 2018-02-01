@@ -74,13 +74,17 @@ namespace RandM.GameSrv {
                 // Start the ignored ips thread
                 IgnoredIPsThread.StartThread();
 
+                // Start the timed events thread
+                TimedEventsThread.StartThread();
+
                 // Drop root, if necessary
                 try {
                     Helpers.DropRoot(Config.Instance.UnixUser);
                 } catch (ArgumentOutOfRangeException aoorex) {
                     RMLog.Exception(aoorex, "Unable to drop from root to '" + Config.Instance.UnixUser + "'");
-                    
+
                     // Undo previous actions on error
+                    TimedEventsThread.StopThread();
                     IgnoredIPsThread.StopThread();
                     ServerThreadManager.StopThreads();
                     NodeManager.Stop();
@@ -104,6 +108,7 @@ namespace RandM.GameSrv {
             if ((_Status == GameSrvStatus.Paused) || (_Status == GameSrvStatus.Started)) {
                 UpdateStatus(GameSrvStatus.Stopping);
 
+                TimedEventsThread.StopThread();
                 IgnoredIPsThread.StopThread();
                 ServerThreadManager.StopThreads();
                 NodeManager.Stop();
@@ -154,6 +159,7 @@ namespace RandM.GameSrv {
             if (!_Disposed) {
                 if (disposing) {
                     // dispose managed state (managed objects).
+                    TimedEventsThread.StopThread();
                     IgnoredIPsThread.StopThread();
                     ServerThreadManager.StopThreads();
                     if (_LogHandler != null) {

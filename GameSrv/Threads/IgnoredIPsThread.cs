@@ -77,7 +77,7 @@ namespace RandM.GameSrv {
                 _IgnoredIPsThread = new IgnoredIPsThread();
                 _IgnoredIPsThread.Start();
             } catch (Exception ex) {
-                RMLog.Exception(ex, "Error in GameSrv::StartIgnoredIPsThread()");
+                RMLog.Exception(ex, "Error in IgnoredIPsThread::StartThread()");
             }
         }
 
@@ -90,7 +90,7 @@ namespace RandM.GameSrv {
                     _IgnoredIPsThread.Dispose();
                     _IgnoredIPsThread = null;
                 } catch (Exception ex) {
-                    RMLog.Exception(ex, "Error in GameSrv::StopIgnoredIPsThread()");
+                    RMLog.Exception(ex, "Error in IgnoredIPsThread::StopThread()");
                 }
             }
         }
