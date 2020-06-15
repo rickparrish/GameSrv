@@ -12,8 +12,8 @@
 ; Block in a really weird but syntactically valid way:
 ; 1.*.*.4
 ;
-; If you don't want to implement a RLogin whitelist list, you could delete this file to save a few cycles of unnecessary processing
+; If you don't want to implement an RLogin allowlist list, you could delete this file to save a few cycles of unnecessary processing
 ; for each RLogin connection
 ;
-; For backwards compatability the whitelist defaults to allowing anybody to connect via RLogin
+; For backwards compatability the allowlist defaults to allowing anybody to connect via RLogin
 *.*.*.*

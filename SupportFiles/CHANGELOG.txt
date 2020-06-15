@@ -3,7 +3,7 @@ TODO Add HTTP, HTTPS, WebSocket->Telnet
 TODO HTTP/HTTPS can be used to host an embedded fTelnet client
 TODO Starting, stopping, and starting again fails because all ports fail to bind
 TODO You have an entry for 2048 but no binaries
-TODO Add support for whitelisting rlogin domain names instead of just IP addresses
+TODO Add support for allowlisting rlogin domain names instead of just IP addresses
 TODO Test socket inheritance when passing off to DOSBox
 TODO update_from_git scripts need updating.  Also confirm CleanUpFiles is accurate
 TODO runbbs.bat.html needs updating

@@ -542,10 +542,10 @@ namespace RandM.GameSrv {
                 // Get our terminal type, if necessary
                 if (_NodeInfo.TerminalType == TerminalType.AUTODETECT) GetTerminalType();
 
-                // Check for whitelist/blacklist type rejections
+                // Check for allowlist/blocklist type rejections
                 if ((_NodeInfo.ConnectionType == ConnectionType.RLogin) && !Helpers.IsRLoginIP(_NodeInfo.Connection.GetRemoteIP())) {
-                    // Do nothing for non-whitelisted RLogin IPs
-                    RMLog.Warning("IP " + _NodeInfo.Connection.GetRemoteIP() + " doesn't match RLogin IP whitelist");
+                    // Do nothing for non-allowlisted RLogin IPs
+                    RMLog.Warning("IP " + _NodeInfo.Connection.GetRemoteIP() + " doesn't match RLogin IP allowlist");
                     return;
                 } else if (Helpers.IsBannedIP(_NodeInfo.Connection.GetRemoteIP())) {
                     RMLog.Warning("IP " + _NodeInfo.Connection.GetRemoteIP() + " matches banned IP filter");
